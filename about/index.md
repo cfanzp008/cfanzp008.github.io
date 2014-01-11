@@ -4,10 +4,10 @@ layout: page
 comments: yes
 ---
   
-cfanzp
-      
-目前从事Mac,iOS,android,cocos2d-x开发相关工作.      
-
 QQ:759850519
 
-个人邮箱:cfanzp008@gmail.com      
+CSDN:http://blog.csdn.net/cfanzp
+
+个人邮箱:cfanzp008@gmail.com     
+
+
