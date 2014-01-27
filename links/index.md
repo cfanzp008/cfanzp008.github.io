@@ -14,3 +14,7 @@ comments: yes
 <br />
 <a href="http://man.chinaunix.net/develop/c&c++/c/c.htm" target="_blank">004_高质量C++/C编程指南</a>
 <br />
+<a href="http://www.cplusplus.com/reference/" target="_blank">005_C++在线参考手册</a>
+<br />
+<a href="http://shouce.jb51.net/c++/" target="_blank">006_C++ Primer, Fourth Edition</a>
+<br />
