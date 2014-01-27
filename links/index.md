@@ -16,5 +16,9 @@ comments: yes
 <br />
 <a href="http://www.cplusplus.com/reference/" target="_blank">005_C++在线参考手册</a>
 <br />
-<a href="http://shouce.jb51.net/c++/" target="_blank">006_C++ Primer, Fourth Edition</a>
+<a href="http://en.cppreference.com/w/Main_Page" target="_blank">006_C++在线参考手册(en)</a>
+<br />
+<a href="http://shouce.jb51.net/c++/" target="_blank">007_C++ Primer, Fourth Edition</a>
+<br />
+<a href="http://shouce.jb51.net/shell/" target="_blank">008_Shell脚本</a>
 <br />
