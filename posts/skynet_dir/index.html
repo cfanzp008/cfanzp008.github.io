@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>skynet-skynet目录结构 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate." /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-skynet目录结构">
+<meta itemprop="description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate."><meta itemprop="datePublished" content="2022-07-29T12:45:13+08:00" />
+<meta itemprop="dateModified" content="2022-07-29T12:45:13+08:00" />
+<meta itemprop="wordCount" content="774"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-skynet目录结构" />
+<meta property="og:description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/posts/skynet_dir/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-29T12:45:13+08:00" />
+<meta property="article:modified_time" content="2022-07-29T12:45:13+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="skynet-skynet目录结构"/>
+<meta name="twitter:description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/skynet_dir/" /><link rel="prev" href="https://cfanzp.com/posts/i3wm-i3status-conf/" /><link rel="next" href="https://cfanzp.com/posts/linux-ubuntu-remotedesktop/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "skynet-skynet目录结构",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/posts\/skynet_dir\/"
+    },"genre": "posts","keywords": "skynet","wordcount":  774 ,
+    "url": "https:\/\/cfanzp.com\/posts\/skynet_dir\/","datePublished": "2022-07-29T12:45:13+08:00","dateModified": "2022-07-29T12:45:13+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>skynet-skynet目录结构</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div>
+      <div class="post-meta-line"><span title=2022-07-29&#32;12:45:13><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 774 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#skynet目录结构">skynet目录结构</a></li>
+    <li><a href="#目录结构分析">目录结构分析</a>
+      <ul>
+        <li><a href="#3rd目录">3rd目录</a></li>
+        <li><a href="#cservice目录">cservice目录</a></li>
+        <li><a href="#luaclib目录">luaclib目录</a></li>
+        <li><a href="#lualib目录">lualib目录</a></li>
+        <li><a href="#lualib-src目录">lualib-src目录</a></li>
+        <li><a href="#service目录">service目录</a></li>
+        <li><a href="#service-src目录">service-src目录</a></li>
+        <li><a href="#skynet-src目录">skynet-src目录</a></li>
+        <li><a href="#test目录">test目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="skynet学习笔记skynet的目录结构">【skynet学习笔记】skynet的目录结构</h1>
+<h2 id="skynet目录结构">skynet目录结构</h2>
+<ul>
+<li>学习skynet必须先了解一下skynet的目录结构。</li>
+<li>skynet的目录结构十分清晰，一目了然。</li>
+<li>下面来具体看看各个目录。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── ./3rd
+</span></span><span class="line"><span class="cl">├── ./cservice
+</span></span><span class="line"><span class="cl">├── ./examples
+</span></span><span class="line"><span class="cl">├── ./HISTORY.md
+</span></span><span class="line"><span class="cl">├── ./LICENSE
+</span></span><span class="line"><span class="cl">├── ./luaclib
+</span></span><span class="line"><span class="cl">├── ./lualib
+</span></span><span class="line"><span class="cl">├── ./lualib-src
+</span></span><span class="line"><span class="cl">├── ./Makefile
+</span></span><span class="line"><span class="cl">├── ./platform.mk
+</span></span><span class="line"><span class="cl">├── ./README.md
+</span></span><span class="line"><span class="cl">├── ./service
+</span></span><span class="line"><span class="cl">├── ./service-src
+</span></span><span class="line"><span class="cl">├── ./skynet
+</span></span><span class="line"><span class="cl">├── ./skynet-src
+</span></span><span class="line"><span class="cl">└── ./test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="目录结构分析">目录结构分析</h2>
+<h3 id="3rd目录">3rd目录</h3>
+<ul>
+<li>./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5</li>
+<li>jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。</li>
+<li>lpeg:是一个模式匹配库。</li>
+<li>lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。</li>
+<li>lua-md5:一个lua的md5库。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 3rd/
+</span></span><span class="line"><span class="cl">3rd
+</span></span><span class="line"><span class="cl">├── 3rd/jemalloc
+</span></span><span class="line"><span class="cl">├── 3rd/lpeg
+</span></span><span class="line"><span class="cl">├── 3rd/lua
+</span></span><span class="line"><span class="cl">└── 3rd/lua-md5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cservice目录">cservice目录</h3>
+<ul>
+<li>cservice目录存放c语言实现的skynet服务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 cservice/
+</span></span><span class="line"><span class="cl">cservice
+</span></span><span class="line"><span class="cl">├── cservice/gate.so
+</span></span><span class="line"><span class="cl">├── cservice/harbor.so
+</span></span><span class="line"><span class="cl">├── cservice/logger.so
+</span></span><span class="line"><span class="cl">└── cservice/snlua.so
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>examples：存放skynet的一些官方的例子，这里不展开介绍了，后面会逐个分析一下各个例子。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 examples/
+</span></span><span class="line"><span class="cl">examples
+</span></span><span class="line"><span class="cl">├── examples/abort.lua
+</span></span><span class="line"><span class="cl">├── examples/agent.lua
+</span></span><span class="line"><span class="cl">├── examples/checkdeadloop.lua
+</span></span><span class="line"><span class="cl">├── examples/client.lua
+</span></span><span class="line"><span class="cl">├── examples/cluster1.lua
+</span></span><span class="line"><span class="cl">├── examples/cluster2.lua
+</span></span><span class="line"><span class="cl">├── examples/clustername.lua
+</span></span><span class="line"><span class="cl">├── examples/config
+</span></span><span class="line"><span class="cl">├── examples/config.c1
+</span></span><span class="line"><span class="cl">├── examples/config.c2
+</span></span><span class="line"><span class="cl">├── examples/config_log
+</span></span><span class="line"><span class="cl">├── examples/config.login
+</span></span><span class="line"><span class="cl">├── examples/config.mc
+</span></span><span class="line"><span class="cl">├── examples/config.mongodb
+</span></span><span class="line"><span class="cl">├── examples/config.mysql
+</span></span><span class="line"><span class="cl">├── examples/config.path
+</span></span><span class="line"><span class="cl">├── examples/config.userlog
+</span></span><span class="line"><span class="cl">├── examples/globallog.lua
+</span></span><span class="line"><span class="cl">├── examples/injectlaunch.lua
+</span></span><span class="line"><span class="cl">├── examples/login
+</span></span><span class="line"><span class="cl">├── examples/main_log.lua
+</span></span><span class="line"><span class="cl">├── examples/main.lua
+</span></span><span class="line"><span class="cl">├── examples/main_mongodb.lua
+</span></span><span class="line"><span class="cl">├── examples/main_mysql.lua
+</span></span><span class="line"><span class="cl">├── examples/preload.lua
+</span></span><span class="line"><span class="cl">├── examples/protoloader.lua
+</span></span><span class="line"><span class="cl">├── examples/proto.lua
+</span></span><span class="line"><span class="cl">├── examples/share.lua
+</span></span><span class="line"><span class="cl">├── examples/simpledb.lua
+</span></span><span class="line"><span class="cl">├── examples/simplemonitor.lua
+</span></span><span class="line"><span class="cl">├── examples/simpleweb.lua
+</span></span><span class="line"><span class="cl">├── examples/simplewebsocket.lua
+</span></span><span class="line"><span class="cl">├── examples/userlog.lua
+</span></span><span class="line"><span class="cl">└── examples/watchdog.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="luaclib目录">luaclib目录</h3>
+<ul>
+<li>luaclib目录存放.so库</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 luaclib/
+</span></span><span class="line"><span class="cl">luaclib
+</span></span><span class="line"><span class="cl">├── luaclib/bson.so
+</span></span><span class="line"><span class="cl">├── luaclib/client.so
+</span></span><span class="line"><span class="cl">├── luaclib/clientws.so
+</span></span><span class="line"><span class="cl">├── luaclib/lpeg.so
+</span></span><span class="line"><span class="cl">├── luaclib/ltls.so
+</span></span><span class="line"><span class="cl">├── luaclib/md5.so
+</span></span><span class="line"><span class="cl">├── luaclib/mysqlaux.so
+</span></span><span class="line"><span class="cl">├── luaclib/skynet.so
+</span></span><span class="line"><span class="cl">├── luaclib/sproto.so
+</span></span><span class="line"><span class="cl">└── luaclib/wsnetpack.so
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lualib目录">lualib目录</h3>
+<ul>
+<li>存放skynet的lua库</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree lualib -L 1
+</span></span><span class="line"><span class="cl">lualib
+</span></span><span class="line"><span class="cl">├── compat10
+</span></span><span class="line"><span class="cl">├── http
+</span></span><span class="line"><span class="cl">├── loader.lua
+</span></span><span class="line"><span class="cl">├── md5.lua
+</span></span><span class="line"><span class="cl">├── skynet
+</span></span><span class="line"><span class="cl">├── skynet.lua
+</span></span><span class="line"><span class="cl">├── snax
+</span></span><span class="line"><span class="cl">├── sprotoloader.lua
+</span></span><span class="line"><span class="cl">├── sproto.lua
+</span></span><span class="line"><span class="cl">└── sprotoparser.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lualib-src目录">lualib-src目录</h3>
+<ul>
+<li>存放skynetlua库的源码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 lualib-src
+</span></span><span class="line"><span class="cl">lualib-src
+</span></span><span class="line"><span class="cl">├── lualib-src/lsha1.c
+</span></span><span class="line"><span class="cl">├── lualib-src/ltls.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-bson.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-clientsocket.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-clientwebsocket.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-cluster.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-crypt.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-datasheet.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-debugchannel.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-memory.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-mongo.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-multicast.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-mysqlaux.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-netpack.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-profile.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-seri.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-seri.h
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-sharedata.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-sharetable.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-skynet.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-socket.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-stm.c
+</span></span><span class="line"><span class="cl">├── lualib-src/lua-websocketnetpack.c
+</span></span><span class="line"><span class="cl">└── lualib-src/sproto
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="service目录">service目录</h3>
+<ul>
+<li>service目录存放一些lua实现的skynet服务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 service
+</span></span><span class="line"><span class="cl">service
+</span></span><span class="line"><span class="cl">├── service/bootstrap.lua
+</span></span><span class="line"><span class="cl">├── service/cdummy.lua
+</span></span><span class="line"><span class="cl">├── service/clusteragent.lua
+</span></span><span class="line"><span class="cl">├── service/clusterd.lua
+</span></span><span class="line"><span class="cl">├── service/clusterproxy.lua
+</span></span><span class="line"><span class="cl">├── service/clustersender.lua
+</span></span><span class="line"><span class="cl">├── service/cmaster.lua
+</span></span><span class="line"><span class="cl">├── service/cmemory.lua
+</span></span><span class="line"><span class="cl">├── service/console.lua
+</span></span><span class="line"><span class="cl">├── service/cslave.lua
+</span></span><span class="line"><span class="cl">├── service/datacenterd.lua
+</span></span><span class="line"><span class="cl">├── service/dbg.lua
+</span></span><span class="line"><span class="cl">├── service/debug_agent.lua
+</span></span><span class="line"><span class="cl">├── service/debug_console.lua
+</span></span><span class="line"><span class="cl">├── service/gate.lua
+</span></span><span class="line"><span class="cl">├── service/launcher.lua
+</span></span><span class="line"><span class="cl">├── service/multicastd.lua
+</span></span><span class="line"><span class="cl">├── service/service_cell.lua
+</span></span><span class="line"><span class="cl">├── service/service_mgr.lua
+</span></span><span class="line"><span class="cl">├── service/service_provider.lua
+</span></span><span class="line"><span class="cl">├── service/sharedatad.lua
+</span></span><span class="line"><span class="cl">├── service/snaxd.lua
+</span></span><span class="line"><span class="cl">└── service/wsgate.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="service-src目录">service-src目录</h3>
+<ul>
+<li>service-src目录存放c语言写的服务的源码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 service-src
+</span></span><span class="line"><span class="cl">service-src
+</span></span><span class="line"><span class="cl">├── service-src/databuffer.h
+</span></span><span class="line"><span class="cl">├── service-src/hashid.h
+</span></span><span class="line"><span class="cl">├── service-src/service_gate.c
+</span></span><span class="line"><span class="cl">├── service-src/service_harbor.c
+</span></span><span class="line"><span class="cl">├── service-src/service_logger.c
+</span></span><span class="line"><span class="cl">└── service-src/service_snlua.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="skynet-src目录">skynet-src目录</h3>
+<ul>
+<li>skynet-src目录存放skynet的核心c语言源码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 skynet-src
+</span></span><span class="line"><span class="cl">skynet-src
+</span></span><span class="line"><span class="cl">├── skynet-src/atomic.h
+</span></span><span class="line"><span class="cl">├── skynet-src/malloc_hook.c
+</span></span><span class="line"><span class="cl">├── skynet-src/malloc_hook.h
+</span></span><span class="line"><span class="cl">├── skynet-src/rwlock.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_daemon.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_daemon.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_env.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_env.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_error.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_handle.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_handle.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_harbor.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_harbor.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_imp.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_log.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_log.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_main.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_malloc.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_module.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_module.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_monitor.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_monitor.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_mq.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_mq.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_server.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_server.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_socket.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_socket.h
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_start.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_timer.c
+</span></span><span class="line"><span class="cl">├── skynet-src/skynet_timer.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_buffer.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_epoll.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_info.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_kqueue.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_poll.h
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_server.c
+</span></span><span class="line"><span class="cl">├── skynet-src/socket_server.h
+</span></span><span class="line"><span class="cl">└── skynet-src/spinlock.h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="test目录">test目录</h3>
+<ul>
+<li>test目录存放skynet的测试代码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 test
+</span></span><span class="line"><span class="cl">test
+</span></span><span class="line"><span class="cl">├── test/pingserver.lua
+</span></span><span class="line"><span class="cl">├── test/sharemap.sp
+</span></span><span class="line"><span class="cl">├── test/testbson.lua
+</span></span><span class="line"><span class="cl">├── test/testcoroutine.lua
+</span></span><span class="line"><span class="cl">├── test/testcrypt.lua
+</span></span><span class="line"><span class="cl">├── test/testdatacenter.lua
+</span></span><span class="line"><span class="cl">├── test/testdatasheet.lua
+</span></span><span class="line"><span class="cl">├── test/testdeadcall.lua
+</span></span><span class="line"><span class="cl">├── test/testdeadloop.lua
+</span></span><span class="line"><span class="cl">├── test/testdns.lua
+</span></span><span class="line"><span class="cl">├── test/testecho.lua
+</span></span><span class="line"><span class="cl">├── test/testendless.lua
+</span></span><span class="line"><span class="cl">├── test/testharborlink.lua
+</span></span><span class="line"><span class="cl">├── test/testhttp.lua
+</span></span><span class="line"><span class="cl">├── test/testmemlimit.lua
+</span></span><span class="line"><span class="cl">├── test/testmongodb.lua
+</span></span><span class="line"><span class="cl">├── test/testmulticast2.lua
+</span></span><span class="line"><span class="cl">├── test/testmulticast.lua
+</span></span><span class="line"><span class="cl">├── test/testmysql.lua
+</span></span><span class="line"><span class="cl">├── test/testoverload.lua
+</span></span><span class="line"><span class="cl">├── test/testping.lua
+</span></span><span class="line"><span class="cl">├── test/testpipeline.lua
+</span></span><span class="line"><span class="cl">├── test/testqueue.lua
+</span></span><span class="line"><span class="cl">├── test/testredis2.lua
+</span></span><span class="line"><span class="cl">├── test/testrediscluster.lua
+</span></span><span class="line"><span class="cl">├── test/testredis.lua
+</span></span><span class="line"><span class="cl">├── test/testresponse.lua
+</span></span><span class="line"><span class="cl">├── test/testselect.lua
+</span></span><span class="line"><span class="cl">├── test/testservice
+</span></span><span class="line"><span class="cl">├── test/testsha.lua
+</span></span><span class="line"><span class="cl">├── test/testsharetable.lua
+</span></span><span class="line"><span class="cl">├── test/testsm.lua
+</span></span><span class="line"><span class="cl">├── test/testsocket.lua
+</span></span><span class="line"><span class="cl">├── test/teststm.lua
+</span></span><span class="line"><span class="cl">├── test/testterm.lua
+</span></span><span class="line"><span class="cl">├── test/testtimeout.lua
+</span></span><span class="line"><span class="cl">├── test/testtimer.lua
+</span></span><span class="line"><span class="cl">├── test/testtobeclosed.lua
+</span></span><span class="line"><span class="cl">├── test/testudp.lua
+</span></span><span class="line"><span class="cl">└── test/time.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<ul>
+<li>以上粗略地介绍了一下skynet的目录结构。后续会逐个分析一下每个目录里的文件以及作用。</li>
+<li>在使用skynet进行开发的时候，我们最好不要在skynet这几个目录同级目录建立自己的项目，而是在他的上级目录去创建一个文件夹来包含skynet框架的代码，这样方便我们去更新和维护skynet的源代码。</li>
+<li>在某些时候需要对skynet进行扩展时，最好不要直接修改代码，而是以新的模块的方式去扩展，这样更方便日后同步更新skynet框架。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-07-29&#32;12:45:13>更新于 2022-07-29&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/posts/skynet_dir/" data-title="skynet-skynet目录结构"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/i3wm-i3status-conf/" class="prev" rel="prev" title="i3wm-i3wm状态栏i3status如何配置显示星期？"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>i3wm-i3wm状态栏i3status如何配置显示星期？</a>
+      <a href="/posts/linux-ubuntu-remotedesktop/" class="next" rel="next" title="ubuntu-远程连接windows的几种方法">ubuntu-远程连接windows的几种方法<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>skynet-debug_console 简介 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog." /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-debug_console 简介">
+<meta itemprop="description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog."><meta itemprop="datePublished" content="2022-07-28T18:12:13+08:00" />
+<meta itemprop="dateModified" content="2022-07-28T18:12:13+08:00" />
+<meta itemprop="wordCount" content="824"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-debug_console 简介" />
+<meta property="og:description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/debug_console/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-28T18:12:13+08:00" />
+<meta property="article:modified_time" content="2022-07-28T18:12:13+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="skynet-debug_console 简介"/>
+<meta name="twitter:description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/debug_console/" /><link rel="prev" href="https://cfanzp.com/skynet-traceid/" /><link rel="next" href="https://cfanzp.com/mac-terminal-color/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "skynet-debug_console 简介",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/debug_console\/"
+    },"genre": "posts","keywords": "skynet","wordcount":  824 ,
+    "url": "https:\/\/cfanzp.com\/debug_console\/","datePublished": "2022-07-28T18:12:13+08:00","dateModified": "2022-07-28T18:12:13+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>skynet-debug_console 简介</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div>
+      <div class="post-meta-line"><span title=2022-07-28&#32;18:12:13><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-28">2022-07-28</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 824 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#skynet-自带了一个调试控制台服务">skynet 自带了一个调试控制台服务。</a></li>
+    <li><a href="#可以用-telnet-或-nc-登录调试控制台启动后会显示">可以用 telnet 或 nc 登录调试控制台。启动后会显示</a></li>
+    <li><a href="#命令的一般格式是-命令-地址-有些命令不带地址会针对所有的服务">命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。</a></li>
+    <li><a href="#常用的针对所有-lua-服务的指令有">常用的针对所有 lua 服务的指令有：</a></li>
+    <li><a href="#针对单个-lua-服务的指令有">针对单个 lua 服务的指令有：</a></li>
+    <li><a href="#使用举例">使用举例</a>
+      <ul>
+        <li><a href="#list">list</a></li>
+        <li><a href="#stat">stat</a></li>
+        <li><a href="#info">info</a></li>
+        <li><a href="#task">task</a></li>
+        <li><a href="#call">call</a></li>
+        <li><a href="#clearcache">clearcache</a></li>
+        <li><a href="#service">service</a></li>
+        <li><a href="#exit">exit</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="skynet-debug_console-简介">skynet debug_console 简介</h1>
+<h2 id="skynet-自带了一个调试控制台服务">skynet 自带了一个调试控制台服务。</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   skynet.newservice(&#34;debug_console&#34;,8000)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>这里的示例是监听 8000 端口，你可以修改成别的端口。</li>
+<li>出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。</li>
+<li>所以如果需要远程使用，需要先登录到本机，然后再连接。</li>
+</ol>
+<h2 id="可以用-telnet-或-nc-登录调试控制台启动后会显示">可以用 telnet 或 nc 登录调试控制台。启动后会显示</h2>
+<ul>
+<li>Welcome to skynet console 表示连接成功。</li>
+<li>由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。</li>
+<li>如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。</li>
+<li>输入 help 可以列出目前支持的所有指令。</li>
+<li>这份文档可能落后于实际版本，所以应以 help 列出的指令为准。</li>
+</ul>
+<h2 id="命令的一般格式是-命令-地址-有些命令不带地址会针对所有的服务">命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。</h2>
+<ul>
+<li>当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址.</li>
+<li>服务地址：由冒号开头的8位16进制数字，</li>
+<li>前面两个数字的 harbor id，</li>
+<li>01000001 可以简写为 1 。</li>
+<li>所有活动的服务可以输入 list 列出。</li>
+</ul>
+<h2 id="常用的针对所有-lua-服务的指令有">常用的针对所有 lua 服务的指令有：</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">list</td>
+<td style="text-align:left">列出所有服务，以及启动服务的命令参数。</td>
+</tr>
+<tr>
+<td style="text-align:left">gc</td>
+<td style="text-align:left">强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。</td>
+</tr>
+<tr>
+<td style="text-align:left">mem</td>
+<td style="text-align:left">让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。</td>
+</tr>
+<tr>
+<td style="text-align:left">stat</td>
+<td style="text-align:left">列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。</td>
+</tr>
+<tr>
+<td style="text-align:left">service</td>
+<td style="text-align:left">列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。</td>
+</tr>
+<tr>
+<td style="text-align:left">netstat</td>
+<td style="text-align:left">列出网络连接的概况。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。</li>
+</ul>
+<h2 id="针对单个-lua-服务的指令有">针对单个 lua 服务的指令有：</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">exit address</td>
+<td style="text-align:left">让一个 lua 服务退出。</td>
+</tr>
+<tr>
+<td style="text-align:left">kill address</td>
+<td style="text-align:left">强制中止一个 lua 服务。</td>
+</tr>
+<tr>
+<td style="text-align:left">info address</td>
+<td style="text-align:left">让一个 lua 服务汇报自己的内部信息，参见 Profile 。</td>
+</tr>
+<tr>
+<td style="text-align:left">signal address sig</td>
+<td style="text-align:left">向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。</td>
+</tr>
+<tr>
+<td style="text-align:left">task address</td>
+<td style="text-align:left">显示一个服务中所有被挂起的请求的调用栈。</td>
+</tr>
+<tr>
+<td style="text-align:left">debug address</td>
+<td style="text-align:left">针对一个 lua 服务启动内置的单步调试器。http://blog.codingnow.com/2015/02/skynet_debugger.html</td>
+</tr>
+<tr>
+<td style="text-align:left">logon/logoff address</td>
+<td style="text-align:left">记录一个服务所有的输入消息到文件。需要在 Config 里配置 logpath 。</td>
+</tr>
+<tr>
+<td style="text-align:left">inject address script</td>
+<td style="text-align:left">将 script 名字对应的脚本插入到指定服务中运行（通常可用于热更新补丁）。</td>
+</tr>
+<tr>
+<td style="text-align:left">call address</td>
+<td style="text-align:left">调用一个服务的lua类型接口，格式为: call address &ldquo;foo&rdquo;, arg1, &hellip; 注意接口名和string型参数必须加引号,且以逗号隔开, address目前支持服务名方式。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用举例">使用举例</h2>
+<h3 id="list">list</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">list
+</span></span><span class="line"><span class="cl">:00000004       snlua cdummy
+</span></span><span class="line"><span class="cl">:00000006       snlua datacenterd
+</span></span><span class="line"><span class="cl">:00000007       snlua service_mgr
+</span></span><span class="line"><span class="cl">:00000009       snlua clusterd
+</span></span><span class="line"><span class="cl">:0000000a       snlua clustersender centernode mybonline130153 192.168.0.40 7002
+</span></span><span class="line"><span class="cl">:0000000b       snlua debug_console 7701
+</span></span><span class="line"><span class="cl">:0000000c       snlua redis_mgr
+</span></span><span class="line"><span class="cl">:0000000d       snlua mysql_mgr
+</span></span><span class="line"><span class="cl">:0000000e       snlua mysql_agent 1
+</span></span><span class="line"><span class="cl">:0000000f       snlua mysql_agent 2
+</span></span><span class="line"><span class="cl">:00000010       snlua mysql_agent 3
+</span></span><span class="line"><span class="cl">:00000011       snlua dbservice
+</span></span><span class="line"><span class="cl">:00000012       snlua gate
+</span></span><span class="line"><span class="cl">:00000013       snlua dbservice_agent 1
+</span></span><span class="line"><span class="cl">:00000014       snlua dbservice_agent 2
+</span></span><span class="line"><span class="cl">:00000015       snlua dbservice_agent 3
+</span></span><span class="line"><span class="cl">:00000016       snlua clusteragent 9 18 8
+</span></span><span class="line"><span class="cl">:00000017       snlua clusteragent 9 18 9
+</span></span><span class="line"><span class="cl">:00000018       snlua clusteragent 9 18 11
+</span></span><span class="line"><span class="cl">:00000019       snlua clustersender gate1node mybonline130153 192.168.0.40 7005
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="stat">stat</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">stat
+</span></span><span class="line"><span class="cl">:00000004       cpu:0.000648    message:9       mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000006       cpu:0.000417    message:7       mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000007       cpu:0.001085    message:27      mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000009       cpu:0.00093     message:27      mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:0000000a       cpu:0.001511    message:15      mqlen:0 task:1
+</span></span><span class="line"><span class="cl">:0000000b       cpu:0.005971    message:36      mqlen:0 task:1
+</span></span><span class="line"><span class="cl">:0000000c       cpu:0.002868    message:90      mqlen:0 task:1
+</span></span><span class="line"><span class="cl">:0000000d       cpu:0.586735    message:32433   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:0000000e       cpu:1.041848    message:16828   mqlen:0 task:2
+</span></span><span class="line"><span class="cl">:0000000f       cpu:1.045539    message:16767   mqlen:0 task:2
+</span></span><span class="line"><span class="cl">:00000010       cpu:1.054712    message:17290   mqlen:0 task:2
+</span></span><span class="line"><span class="cl">:00000011       cpu:0.568066    message:32442   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000012       cpu:0.34314     message:20203   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000013       cpu:0.549106    message:10815   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000014       cpu:0.541082    message:10834   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000015       cpu:0.550082    message:10868   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000016       cpu:0.000717    message:9       mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000017       cpu:0.677452    message:32350   mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000018       cpu:0.002423    message:80      mqlen:0 task:0
+</span></span><span class="line"><span class="cl">:00000019       cpu:0.003337    message:81      mqlen:0 task:1
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="info">info</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">info d
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">   agent_index_ = 1,
+</span></span><span class="line"><span class="cl">   balance_ = {},
+</span></span><span class="line"><span class="cl">   mysql_agent_count_ = 3
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="task">task</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">task e
+</span></span><span class="line"><span class="cl">22527   stack traceback:
+</span></span><span class="line"><span class="cl">[C]: in function &#39;skynet.profile.yield&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet.lua:141: in function &lt;skynet/lualib/skynet.lua:113&gt;
+</span></span><span class="line"><span class="cl">22530   stack traceback:
+</span></span><span class="line"><span class="cl">[C]: in function &#39;skynet.profile.yield&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet.lua:244: in upvalue &#39;suspend_sleep&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet.lua:270: in function &#39;skynet.wait&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet/socketchannel.lua:127: in upvalue &#39;pop_response&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet/socketchannel.lua:167: in function &lt;skynet/lualib/skynet/socketchannel.lua:165&gt;
+</span></span><span class="line"><span class="cl">[C]: in function &#39;pcall&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet/socketchannel.lua:303: in upvalue &#39;f&#39;
+</span></span><span class="line"><span class="cl">skynet/lualib/skynet.lua:141: in function &lt;skynet/lualib/skynet.lua:113&gt;
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="call">call</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:0000002f       snlua luckyshop_service
+</span></span><span class="line"><span class="cl">:00000030       snlua luckyshop_agent 1
+</span></span><span class="line"><span class="cl">total_count     4
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span><span class="line"><span class="cl">call 30 &#34;reload&#34;
+</span></span><span class="line"><span class="cl">n       0
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="clearcache">clearcache</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">clearcache
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="service">service</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">service
+</span></span><span class="line"><span class="cl">clusterd        :00000009
+</span></span><span class="line"><span class="cl">debug_console   :0000000b
+</span></span><span class="line"><span class="cl">mysql_mgr       :0000000d
+</span></span><span class="line"><span class="cl">redis_mgr       :0000000c
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="exit">exit</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">list
+</span></span><span class="line"><span class="cl">:00000004       snlua cdummy
+</span></span><span class="line"><span class="cl">:00000006       snlua datacenterd
+</span></span><span class="line"><span class="cl">:00000007       snlua service_mgr
+</span></span><span class="line"><span class="cl">:00000009       snlua clusterd
+</span></span><span class="line"><span class="cl">:0000000a       snlua clustersender centernode dev1273031 192.168.2.127 7002
+</span></span><span class="line"><span class="cl">:0000000b       snlua debug_console 7310
+</span></span><span class="line"><span class="cl">:0000000c       snlua gateservice
+</span></span><span class="line"><span class="cl">:0000000d       snlua forward_service
+</span></span><span class="line"><span class="cl">:0000000e       snlua wsgate
+</span></span><span class="line"><span class="cl">:0000000f       snlua node_service
+</span></span><span class="line"><span class="cl">:00000010       snlua node_agent 1
+</span></span><span class="line"><span class="cl">:00000011       snlua gate
+</span></span><span class="line"><span class="cl">:00000012       snlua clustersender loginnode dev1273031 192.168.2.127 7001
+</span></span><span class="line"><span class="cl">:00000013       snlua clusteragent 9 17 6
+</span></span><span class="line"><span class="cl">:00000014       snlua clustersender lobbynode dev1273031 192.168.2.127 7003
+</span></span><span class="line"><span class="cl">:00000017       snlua clustersender matchnode dev1273031 192.168.2.127 7201
+</span></span><span class="line"><span class="cl">:00000018       snlua clusteragent 9 17 11
+</span></span><span class="line"><span class="cl">:00000036       snlua clustersender recreationnode dev1273031 192.168.2.127 7401
+</span></span><span class="line"><span class="cl">:00000039       snlua clusteragent 9 17 30
+</span></span><span class="line"><span class="cl">:00000040       snlua clustersender paynode dev1273031 192.168.2.127 7008
+</span></span><span class="line"><span class="cl">:00000042       snlua clusteragent 9 17 41
+</span></span><span class="line"><span class="cl">:0000009a       snlua clusteragent 9 17 69
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span><span class="line"><span class="cl">exit 10
+</span></span><span class="line"><span class="cl">&lt;CMD OK&gt;
+</span></span><span class="line"><span class="cl">list
+</span></span><span class="line"><span class="cl">:00000004       snlua cdummy
+</span></span><span class="line"><span class="cl">:00000006       snlua datacenterd
+</span></span><span class="line"><span class="cl">:00000007       snlua service_mgr
+</span></span><span class="line"><span class="cl">:00000009       snlua clusterd
+</span></span><span class="line"><span class="cl">:0000000a       snlua clustersender centernode dev1273031 192.168.2.127 7002
+</span></span><span class="line"><span class="cl">:0000000b       snlua debug_console 7310
+</span></span><span class="line"><span class="cl">:0000000c       snlua gateservice
+</span></span><span class="line"><span class="cl">:0000000d       snlua forward_service
+</span></span><span class="line"><span class="cl">:0000000e       snlua wsgate
+</span></span><span class="line"><span class="cl">:0000000f       snlua node_service
+</span></span><span class="line"><span class="cl">:00000011       snlua gate
+</span></span><span class="line"><span class="cl">:00000012       snlua clustersender loginnode dev1273031 192.168.2.127 7001
+</span></span><span class="line"><span class="cl">:00000013       snlua clusteragent 9 17 6
+</span></span><span class="line"><span class="cl">:00000014       snlua clustersender lobbynode dev1273031 192.168.2.127 7003
+</span></span><span class="line"><span class="cl">:00000017       snlua clustersender matchnode dev1273031 192.168.2.127 7201
+</span></span><span class="line"><span class="cl">:00000018       snlua clusteragent 9 17 11
+</span></span><span class="line"><span class="cl">:00000036       snlua clustersender recreationnode dev1273031 192.168.2.127 7401
+</span></span><span class="line"><span class="cl">:00000039       snlua clusteragent 9 17 30
+</span></span><span class="line"><span class="cl">:00000040       snlua clustersender paynode dev1273031 192.168.2.127 7008
+</span></span><span class="line"><span class="cl">:00000042       snlua clusteragent 9 17 41
+</span></span><span class="line"><span class="cl">:0000009a       snlua clusteragent 9 17 69
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<ul>
+<li>扫描下方二维码，关注我的公众号，获取更多技术方面的知识</li>
+<li><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/gzh.jpeg"
+    data-srcset="/images/gzh.jpeg, /images/gzh.jpeg 1.5x, /images/gzh.jpeg 2x"
+    data-sizes="auto"
+    alt="/images/gzh.jpeg"
+    title="技术分享" /></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-07-28&#32;18:12:13>更新于 2022-07-28&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/debug_console/" data-title="skynet-debug_console 简介"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/skynet-traceid/" class="prev" rel="prev" title="skynet-给项目日志添加traceid"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>skynet-给项目日志添加traceid</a>
+      <a href="/mac-terminal-color/" class="next" rel="next" title="mac-如何让terminal中能够看到不同的颜色?">mac-如何让terminal中能够看到不同的颜色?<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>git学习笔记 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee." /><meta name="keywords" content='git' /><meta itemprop="name" content="git学习笔记">
+<meta itemprop="description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee."><meta itemprop="datePublished" content="2021-10-10T18:36:16+08:00" />
+<meta itemprop="dateModified" content="2021-10-10T18:36:16+08:00" />
+<meta itemprop="wordCount" content="483"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="git," /><meta property="og:title" content="git学习笔记" />
+<meta property="og:description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/git-base/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-10T18:36:16+08:00" />
+<meta property="article:modified_time" content="2021-10-10T18:36:16+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="git学习笔记"/>
+<meta name="twitter:description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/git-base/" /><link rel="prev" href="https://cfanzp.com/gtest/" /><link rel="next" href="https://cfanzp.com/devtools-tmux/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "git学习笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/git-base\/"
+    },"genre": "posts","keywords": "git","wordcount":  483 ,
+    "url": "https:\/\/cfanzp.com\/git-base\/","datePublished": "2021-10-10T18:36:16+08:00","dateModified": "2021-10-10T18:36:16+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>git学习笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/git/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> git</a></span></div>
+      <div class="post-meta-line"><span title=2021-10-10&#32;18:36:16><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-10-10">2021-10-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 483 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#git-缩写配置">git 缩写配置</a></li>
+    <li><a href="#常用缩写">常用缩写</a></li>
+    <li><a href="#工作流">工作流</a></li>
+    <li><a href="#常用命令">常用命令</a>
+      <ul>
+        <li><a href="#git-tag">git tag</a></li>
+        <li><a href="#git-stash">git stash</a></li>
+        <li><a href="#git-diff">git diff</a></li>
+        <li><a href="#git-回退到某个版本">git 回退到某个版本</a></li>
+        <li><a href="#远程分支更新">远程分支更新</a></li>
+      </ul>
+    </li>
+    <li><a href="#删除所有历史commit创建一个新仓库">删除所有历史commit,创建一个新仓库</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="git学习笔记">git学习笔记</h1>
+<h2 id="git-缩写配置">git 缩写配置</h2>
+<ul>
+<li>在home目录创建.gitconfig文件复制粘贴以下配置并保存退出</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[user]
+</span></span><span class="line"><span class="cl">name = xx
+</span></span><span class="line"><span class="cl">email = xx@qq.com
+</span></span><span class="line"><span class="cl">[color]
+</span></span><span class="line"><span class="cl">interactive = auto
+</span></span><span class="line"><span class="cl">diff = auto
+</span></span><span class="line"><span class="cl">status = auto
+</span></span><span class="line"><span class="cl">branch = auto
+</span></span><span class="line"><span class="cl">ui = true
+</span></span><span class="line"><span class="cl">repositoryformatversion = 0
+</span></span><span class="line"><span class="cl">filemode = true
+</span></span><span class="line"><span class="cl">bare = false
+</span></span><span class="line"><span class="cl">logallrefupdates = true
+</span></span><span class="line"><span class="cl">ignorecase = true
+</span></span><span class="line"><span class="cl">precomposeunicode = false
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[alias]
+</span></span><span class="line"><span class="cl">co = checkout
+</span></span><span class="line"><span class="cl">ci = commit
+</span></span><span class="line"><span class="cl">st = status
+</span></span><span class="line"><span class="cl">sh = stash
+</span></span><span class="line"><span class="cl">sa = stash apply
+</span></span><span class="line"><span class="cl">sp = stash pop
+</span></span><span class="line"><span class="cl">ap = add -p
+</span></span><span class="line"><span class="cl">br = branch
+</span></span><span class="line"><span class="cl">cp = checkout -p
+</span></span><span class="line"><span class="cl">cv = commit -v
+</span></span><span class="line"><span class="cl">dc = diff --cached
+</span></span><span class="line"><span class="cl">d = diff
+</span></span><span class="line"><span class="cl">pr = pull --rebase
+</span></span><span class="line"><span class="cl">ps = push
+</span></span><span class="line"><span class="cl">l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all
+</span></span><span class="line"><span class="cl">lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all
+</span></span><span class="line"><span class="cl">[hub]
+</span></span><span class="line"><span class="cl">protocol = https
+</span></span><span class="line"><span class="cl">[diff]
+</span></span><span class="line"><span class="cl">tool = vimdiff
+</span></span><span class="line"><span class="cl">[core]
+</span></span><span class="line"><span class="cl">editor = vim
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用缩写">常用缩写</h2>
+<ul>
+<li>git co</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/blog/devtools/git/git_co.png"
+    data-srcset="/images/blog/devtools/git/git_co.png, /images/blog/devtools/git/git_co.png 1.5x, /images/blog/devtools/git/git_co.png 2x"
+    data-sizes="auto"
+    alt="/images/blog/devtools/git/git_co.png"
+    title="/images/blog/devtools/git/git_co.png" /></p>
+<ul>
+<li>git br</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/blog/devtools/git/git_br.png"
+    data-srcset="/images/blog/devtools/git/git_br.png, /images/blog/devtools/git/git_br.png 1.5x, /images/blog/devtools/git/git_br.png 2x"
+    data-sizes="auto"
+    alt="/images/blog/devtools/git/git_br.png"
+    title="/images/blog/devtools/git/git_br.png" /></p>
+<ul>
+<li>git st</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/blog/devtools/git/git_st.png"
+    data-srcset="/images/blog/devtools/git/git_st.png, /images/blog/devtools/git/git_st.png 1.5x, /images/blog/devtools/git/git_st.png 2x"
+    data-sizes="auto"
+    alt="/images/blog/devtools/git/git_st.png"
+    title="/images/blog/devtools/git/git_st.png" /></p>
+<ul>
+<li>git lg</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/blog/devtools/git/git_lg.png"
+    data-srcset="/images/blog/devtools/git/git_lg.png, /images/blog/devtools/git/git_lg.png 1.5x, /images/blog/devtools/git/git_lg.png 2x"
+    data-sizes="auto"
+    alt="/images/blog/devtools/git/git_lg.png"
+    title="/images/blog/devtools/git/git_lg.png" /></p>
+<h2 id="工作流">工作流</h2>
+<ol>
+<li>开发新功能a</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">　　　participant proj1
+</span></span><span class="line"><span class="cl">　　　participant a
+</span></span><span class="line"><span class="cl">　　　proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1)
+</span></span><span class="line"><span class="cl">　　　a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">step1:
+</span></span><span class="line"><span class="cl">git br a proj1
+</span></span><span class="line"><span class="cl">git push origin a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">step2:
+</span></span><span class="line"><span class="cl">git co proj1
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl">git co a
+</span></span><span class="line"><span class="cl">git merge proj1
+</span></span><span class="line"><span class="cl">git push
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git co proj1
+</span></span><span class="line"><span class="cl">git merge a
+</span></span><span class="line"><span class="cl">git push
+</span></span><span class="line"><span class="cl">git br -D a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用命令">常用命令</h2>
+<ul>
+<li>删除远程分支a:</li>
+<li>切换到本地其它分支,如master</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git co master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>删除远程分支</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git push origin --delete a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>修改远程分支地址</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git remote -v
+</span></span><span class="line"><span class="cl">git remote rm origin
+</span></span><span class="line"><span class="cl">git remote add origin git@gitee.com:cfanzp/linux_note.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>git添加多个远程分支地址</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git remote add gitee git@gitee.com:cfanzp/linux_note.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-tag">git tag</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git tag</td>
+<td>查看标签列表</td>
+</tr>
+<tr>
+<td>git tag -l &ldquo;v1.0*&rdquo;</td>
+<td>模糊匹配查询</td>
+</tr>
+<tr>
+<td>git tag &ndash;list &ldquo;v0.0*&rdquo;</td>
+<td>模糊匹配查询</td>
+</tr>
+<tr>
+<td>git tag -a v1.0 -m &ldquo;my version 1.0&rdquo;</td>
+<td>添加附注标签</td>
+</tr>
+<tr>
+<td>git show v1.0</td>
+<td>查看标签相关信息</td>
+</tr>
+<tr>
+<td>git tag -lw</td>
+<td>创建轻量标签，git show 不会看到额外标签信息</td>
+</tr>
+<tr>
+<td>git tag -a v0.9 9fceb02</td>
+<td>后期打标签</td>
+</tr>
+<tr>
+<td>git push origin &ndash;tags</td>
+<td>将标签推送到远端</td>
+</tr>
+<tr>
+<td>git tag -d v1.0</td>
+<td>删除标签</td>
+</tr>
+<tr>
+<td>git push origin &ndash;delete <tagname></td>
+<td>删除远端标签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-stash">git stash</h3>
+<p>当自己代码写了一半了，突然需要切换分支，去修改一下另外一个分支的某个问题的时候怎么办?
+可以将当前分支放入暂存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git stash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当其它分支修改完后，想回到之前的状态怎么办?先checkout原来的分支，然后恢复暂存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git stash pop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当自己发现暂存的代码没用了如何删除?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git stash drop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>清空暂存的所有内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git stash clear
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看暂存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git stash list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="git-diff">git diff</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git diff</td>
+<td>查看差异</td>
+</tr>
+<tr>
+<td>git diff cached</td>
+<td>查看工作版本和暂存的差异</td>
+</tr>
+<tr>
+<td>git diff HEAD</td>
+<td>查看工作版本和HEAD的差异</td>
+</tr>
+<tr>
+<td>git diff HEAD^ HEAD</td>
+<td>查看上上个版本和HEAD的差异</td>
+</tr>
+<tr>
+<td>git diff &ndash;stat</td>
+<td>查看差异的文件列表</td>
+</tr>
+<tr>
+<td>git diff &ndash;stat ./client</td>
+<td>查看client目录 差异的文件列表</td>
+</tr>
+<tr>
+<td>git diff &gt; patch</td>
+<td>使用git diff 打补丁</td>
+</tr>
+<tr>
+<td>git apply &ndash;check patch</td>
+<td>使用补丁,没有任何输出表示可以顺利接受这个补丁</td>
+</tr>
+<tr>
+<td>git apply &ndash;reject patch</td>
+<td>使用补丁,冲突会生成.rej文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-回退到某个版本">git 回退到某个版本</h3>
+<ol>
+<li>git reset commit-id</li>
+<li>git push origin branch-name &ndash;force</li>
+</ol>
+<h3 id="远程分支更新">远程分支更新</h3>
+<ol>
+<li>git remote update origin &ndash;prune</li>
+</ol>
+<h2 id="删除所有历史commit创建一个新仓库">删除所有历史commit,创建一个新仓库</h2>
+<ol>
+<li>Checkout</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git checkout --orphan latest_branch
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Add all the files</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git add -A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Commit the changes</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git commit -am &#34;commit message&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>Delete the branch</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch -D master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>Rename the current branch to master</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git branch -m master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>Finally, force update your repository</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git push -f origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2021-10-10&#32;18:36:16>更新于 2021-10-10&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/git-base/" data-title="git学习笔记"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">git</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/gtest/" class="prev" rel="prev" title="ubuntu20.04配置gtest环境"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu20.04配置gtest环境</a>
+      <a href="/devtools-tmux/" class="next" rel="next" title="tmux基本配置及vim适配">tmux基本配置及vim适配<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>k8s学习笔记 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='k8s' /><meta itemprop="name" content="k8s学习笔记">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-18T11:41:19+08:00" />
+<meta itemprop="dateModified" content="2023-02-18T11:41:19+08:00" />
+<meta itemprop="wordCount" content="140"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="k8s," /><meta property="og:title" content="k8s学习笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/k8s/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-18T11:41:19+08:00" />
+<meta property="article:modified_time" content="2023-02-18T11:41:19+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="k8s学习笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/k8s/" /><link rel="prev" href="https://cfanzp.com/grafana/" /><link rel="next" href="https://cfanzp.com/yaml/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "k8s学习笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/k8s\/"
+    },"genre": "posts","keywords": "k8s","wordcount":  140 ,
+    "url": "https:\/\/cfanzp.com\/k8s\/","datePublished": "2023-02-18T11:41:19+08:00","dateModified": "2023-02-18T11:41:19+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>k8s学习笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/k8s/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> k8s</a>&ensp;<a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div>
+      <div class="post-meta-line"><span title=2023-02-18&#32;11:41:19><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-18">2023-02-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 140 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本概念">基本概念</a>
+      <ul>
+        <li><a href="#0宕机">0宕机</a></li>
+        <li><a href="#资源调度">资源调度</a></li>
+        <li><a href="#服务发布">服务发布</a></li>
+        <li><a href="#配置管理">配置管理</a></li>
+        <li><a href="#持久化存储">持久化存储</a></li>
+        <li><a href="#高级调度">高级调度</a></li>
+        <li><a href="#准入控制及细力度权限控制">准入控制及细力度权限控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级篇">高级篇</a>
+      <ul>
+        <li><a href="#云原生存储">云原生存储</a></li>
+        <li><a href="#中间件容器化以及helm">中间件容器化以及Helm</a></li>
+        <li><a href="#源码修改">源码修改</a></li>
+        <li><a href="#组件">组件</a></li>
+        <li><a href="#pod">Pod</a></li>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+    <li><a href="#运维">运维</a></li>
+    <li><a href="#游戏中实践">游戏中实践</a></li>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#哪些公司在用k8s">哪些公司在用k8s</a>
+      <ul>
+        <li><a href="#游戏公司">游戏公司</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="k8s学习笔记">k8s学习笔记</h1>
+<h2 id="基本概念">基本概念</h2>
+<ul>
+<li>statefulset</li>
+<li>helm</li>
+<li>pod</li>
+<li>configmap</li>
+<li>kubeadm</li>
+<li>二进制安装</li>
+<li>bootstrapping</li>
+<li>kubelet</li>
+</ul>
+<h3 id="0宕机">0宕机</h3>
+<ul>
+<li>startupprobe</li>
+<li>Pod三种探针</li>
+</ul>
+<h3 id="资源调度">资源调度</h3>
+<ul>
+<li>Deployment</li>
+<li>有状态的应用管理StatefulSet</li>
+<li>守护进程服务DaemonSet</li>
+<li>HAP自动扩容</li>
+</ul>
+<h3 id="服务发布">服务发布</h3>
+<ul>
+<li>Label Selector</li>
+<li>Ingress</li>
+<li>Sevice</li>
+</ul>
+<h3 id="配置管理">配置管理</h3>
+<ul>
+<li>ConfigMap</li>
+<li>Secret</li>
+</ul>
+<h3 id="持久化存储">持久化存储</h3>
+<ul>
+<li>Volumes</li>
+<li>Volumes HostPath挂载宿主路径</li>
+<li>Volumes EmptyDir实现数据共享</li>
+<li>NFS</li>
+<li>持久化PV&amp;PVC</li>
+</ul>
+<h3 id="高级调度">高级调度</h3>
+<ul>
+<li>CronJob计划任务</li>
+<li>污点和容忍Taint&amp;Toleration</li>
+<li>initContainer</li>
+<li>Affinity亲和力入门</li>
+<li>节点亲和力NodeAffinity</li>
+<li>Pod亲和力和反亲和力</li>
+<li>Topology拓扑域</li>
+<li>Topology实现多地多机房部署</li>
+<li>临时容器</li>
+<li>临时容器在线debug</li>
+</ul>
+<h3 id="准入控制及细力度权限控制">准入控制及细力度权限控制</h3>
+<ul>
+<li>RBAC权限管理</li>
+<li>Ratel</li>
+<li>准入控制</li>
+<li>服务质量Qos</li>
+<li>PodPreset</li>
+<li>Dashboard基于用户名密码认证</li>
+</ul>
+<h2 id="高级篇">高级篇</h2>
+<h3 id="云原生存储">云原生存储</h3>
+<ul>
+<li>Rook</li>
+<li>Ceph</li>
+<li>StorageClass</li>
+<li>Rook Ceph xfs_repair问题</li>
+</ul>
+<h3 id="中间件容器化以及helm">中间件容器化以及Helm</h3>
+<ul>
+<li>Redis Operator</li>
+<li>Redis集群部署</li>
+<li>Helm v3(yum)</li>
+<li>编写Helm部署RabbitMQ</li>
+</ul>
+<h3 id="源码修改">源码修改</h3>
+<ul>
+<li>Kubeadm源码修改(默认证书只有1年)</li>
+</ul>
+<h3 id="组件">组件</h3>
+<ul>
+<li>APISERVER</li>
+<li>ControllerManager</li>
+<li>Scheduler</li>
+<li>ETCD</li>
+<li>Kubelet</li>
+<li>Kube-proxy</li>
+<li>CORENDS</li>
+<li>DASHBOARD</li>
+<li>INGRESS CONTROLLER</li>
+<li>FEDERATION</li>
+<li>PROMETHEUS</li>
+<li>ELK</li>
+</ul>
+<h3 id="pod">Pod</h3>
+<h3 id="heading"></h3>
+<ul>
+<li>ReplicationController</li>
+<li>ReplicaSet</li>
+</ul>
+<h2 id="运维">运维</h2>
+<ul>
+<li>EFK日志收集</li>
+<li>Filebeat 收集容器内日志</li>
+<li>prometheus</li>
+<li>prometheus告警</li>
+</ul>
+<h2 id="游戏中实践">游戏中实践</h2>
+<ul>
+<li><a
+  href="https://longzhiri.github.io/Game&#43;Servers&#43;k8s&#43;practice.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://longzhiri.github.io/Game+Servers+k8s+practice.html</a></li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://www.bilibili.com/video/BV1JR4y1B7oa"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.bilibili.com/video/BV1JR4y1B7oa</a></li>
+</ul>
+<h2 id="哪些公司在用k8s">哪些公司在用k8s</h2>
+<ul>
+<li>参考: <a
+  href="https://blog.csdn.net/xueshenlaila/article/details/118895406"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.csdn.net/xueshenlaila/article/details/118895406</a></li>
+<li>京东</li>
+<li>知呼</li>
+<li>天猫</li>
+<li>阿里巴巴</li>
+<li>诺基亚</li>
+<li>永辉超市</li>
+<li>美团: <a
+  href="https://tech.meituan.com/2019/08/22/kubernetes-cluster-management-practice.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://tech.meituan.com/2019/08/22/kubernetes-cluster-management-practice.html</a></li>
+<li>网易: <a
+  href="https://blog.csdn.net/NetEaseResearch/article/details/108279775"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.csdn.net/NetEaseResearch/article/details/108279775</a></li>
+<li>字节跳动: <a
+  href="http://science.china.com.cn/2022-06/14/content_42001803.htm"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>http://science.china.com.cn/2022-06/14/content_42001803.htm</a></li>
+<li>联通: <a
+  href="https://www.alauda.cn/news/detail/id/526.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.alauda.cn/news/detail/id/526.html</a></li>
+<li>中国移动: <a
+  href="https://blog.51cto.com/u_15127420/3213363"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.51cto.com/u_15127420/3213363</a></li>
+<li>中国电信: <a
+  href="https://www.linkedin.cn/incareer/jobs/view/k8s%E5%AE%B9%E5%99%A8%E5%8C%96%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-mj000003-at-%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-3488457311"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.linkedin.cn/incareer/jobs/view/k8s%E5%AE%B9%E5%99%A8%E5%8C%96%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%B8%88-mj000003-at-%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-3488457311</a></li>
+<li>腾讯: <a
+  href="https://cloud.tencent.com/developer/article/1761279"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://cloud.tencent.com/developer/article/1761279</a></li>
+<li>奇虎360</li>
+<li>新浪微博</li>
+<li>金山云</li>
+<li>滴滴出行</li>
+<li>新东方</li>
+<li>小红书</li>
+<li>百度</li>
+<li>华为</li>
+<li>快手</li>
+<li>国家电网</li>
+<li>小米</li>
+<li>汽车之家</li>
+<li>爱奇异</li>
+<li>同城旅游</li>
+</ul>
+<h3 id="游戏公司">游戏公司</h3>
+<ul>
+<li>途游游戏: <a
+  href="https://www.zhipin.com/job_detail/3aa179d364ffab8d1nN739u6EFdY.html?lid=3VSJoP8D3j.search.117&amp;securityId=Fc1F1o44tKNcn-J1I-29BpFzWhOqCNClK9-RM_g-qa2f82Hvr1XJQJm9WiOHiVU2oY2RdkgwO_KwGMkMP_Ds9zG7FYgGu4_68Al1ibHcJAOlVoOp&amp;sessionId="
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.zhipin.com/job_detail/3aa179d364ffab8d1nN739u6EFdY.html?lid=3VSJoP8D3j.search.117&securityId=Fc1F1o44tKNcn-J1I-29BpFzWhOqCNClK9-RM_g-qa2f82Hvr1XJQJm9WiOHiVU2oY2RdkgwO_KwGMkMP_Ds9zG7FYgGu4_68Al1ibHcJAOlVoOp&sessionId=</a></li>
+<li>乐游科技: <a
+  href="https://www.zhipin.com/job_detail/d0a714b4821a42171XF83dq-E1BT.html?lid=3VSJoP8D3j.search.171&amp;securityId=YN-f3a5ndWKe7-Y11SZn4a-XEs6T67zWva4U7rb0fWXTBCFYTQgvN6EL-P6IucnCpxzZdqYTFqdKykmMWJApgj0acw1aiE183M-AXpb2r0M1D-69hw~~&amp;sessionId="
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.zhipin.com/job_detail/d0a714b4821a42171XF83dq-E1BT.html?lid=3VSJoP8D3j.search.171&securityId=YN-f3a5ndWKe7-Y11SZn4a-XEs6T67zWva4U7rb0fWXTBCFYTQgvN6EL-P6IucnCpxzZdqYTFqdKykmMWJApgj0acw1aiE183M-AXpb2r0M1D-69hw~~&sessionId=</a></li>
+<li>乐城堡: <a
+  href="https://www.zhipin.com/job_detail/584ce224107695a61XF-3tq-ElJT.html?lid=46RGh1G3vA.search.3&amp;securityId=FOsKEPbMI48vt-w15pvM_RmhwkmGC-0Xi2a-P2e98OfnSEedhLgfofmHYxuyWC0jXd56ui4pN91cXj9h0WEwFhTGMyRcYFP_jEmVl7UzjDrGPBvB0XnuFeZkWuRuB_CDW6GnK7mX3EXcBL4S3sIttw~~&amp;sessionId="
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.zhipin.com/job_detail/584ce224107695a61XF-3tq-ElJT.html?lid=46RGh1G3vA.search.3&securityId=FOsKEPbMI48vt-w15pvM_RmhwkmGC-0Xi2a-P2e98OfnSEedhLgfofmHYxuyWC0jXd56ui4pN91cXj9h0WEwFhTGMyRcYFP_jEmVl7UzjDrGPBvB0XnuFeZkWuRuB_CDW6GnK7mX3EXcBL4S3sIttw~~&sessionId=</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-02-18&#32;11:41:19>更新于 2023-02-18&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/k8s/" data-title="k8s学习笔记"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/k8s/">k8s</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/grafana/" class="prev" rel="prev" title="Grafana"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Grafana</a>
+      <a href="/yaml/" class="next" rel="next" title="yaml配置文件编写规范">yaml配置文件编写规范<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

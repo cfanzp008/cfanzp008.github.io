@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>如何在terminal中使用Joplin并像vim一样移动? - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12&#43;. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12&#43;
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync." /><meta name="keywords" content='joplin, devtools, vim, terminal' /><meta itemprop="name" content="如何在terminal中使用Joplin并像vim一样移动?">
+<meta itemprop="description" content="如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12&#43;. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12&#43;
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync."><meta itemprop="datePublished" content="2022-08-31T19:06:00+08:00" />
+<meta itemprop="dateModified" content="2022-08-31T19:06:00+08:00" />
+<meta itemprop="wordCount" content="566"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="joplin,devtools,vim,terminal," /><meta property="og:title" content="如何在terminal中使用Joplin并像vim一样移动?" />
+<meta property="og:description" content="如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12&#43;. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12&#43;
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/posts/joplin-terminal/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-31T19:06:00+08:00" />
+<meta property="article:modified_time" content="2022-08-31T19:06:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="如何在terminal中使用Joplin并像vim一样移动?"/>
+<meta name="twitter:description" content="如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12&#43;. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12&#43;
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/joplin-terminal/" /><link rel="prev" href="https://cfanzp.com/posts/health-ls/" /><link rel="next" href="https://cfanzp.com/posts/linux-stop-process/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "如何在terminal中使用Joplin并像vim一样移动?",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/posts\/joplin-terminal\/"
+    },"genre": "posts","keywords": "joplin, devtools, vim, terminal","wordcount":  566 ,
+    "url": "https:\/\/cfanzp.com\/posts\/joplin-terminal\/","datePublished": "2022-08-31T19:06:00+08:00","dateModified": "2022-08-31T19:06:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>如何在terminal中使用Joplin并像vim一样移动?</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-31&#32;19:06:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-31">2022-08-31</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 566 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#mac-安装方法">mac 安装方法</a></li>
+        <li><a href="#ubuntu-安装方法">ubuntu 安装方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置文件同步">配置文件同步</a></li>
+    <li><a href="#快捷键配置">快捷键配置</a>
+      <ul>
+        <li><a href="#快捷键配置demo-keymapjson">快捷键配置demo keymap.json</a></li>
+        <li><a href="#vim快捷键配置demo-keymapjson">vim快捷键配置demo keymap.json</a>
+          <ul>
+            <li><a href="#主要快捷键">主要快捷键</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置默认编辑器为vim">配置默认编辑器为Vim</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="如何在terminal中使用joplin并像vim一样移动">如何在terminal中使用Joplin并像vim一样移动?</h1>
+<h2 id="安装">安装</h2>
+<h3 id="mac-安装方法">mac 安装方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install node
+</span></span><span class="line"><span class="cl"><span class="nv">NPM_CONFIG_PREFIX</span><span class="o">=</span>~/.joplin-bin npm install -g joplin
+</span></span><span class="line"><span class="cl">sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+</span></span><span class="line"><span class="cl"><span class="o">[</span>zp@localhost bin<span class="o">]</span>$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+</span></span><span class="line"><span class="cl">ln: /usr/bin/joplin: Read-only file system
+</span></span><span class="line"><span class="cl">sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ubuntu-安装方法">ubuntu 安装方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#Important: First, install Node 12+.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NPM_CONFIG_PREFIX</span><span class="o">=</span>~/.joplin-bin npm install -g joplin
+</span></span><span class="line"><span class="cl">sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我安装的时候<code>nodejs</code>版本是:<code>v10.19.0</code>,建议按官方要求使用Node <code>12+</code></p>
+<p>进入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置文件同步">配置文件同步</h2>
+<p>同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:config sync.target 2
+</span></span><span class="line"><span class="cl">:config sync.2.path /home/cfanzp/jgy/joplin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置将会被保存在下面文件中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">~/.config/joplin/settings.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="快捷键配置">快捷键配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">~/.config/joplin/keymap.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="快捷键配置demo-keymapjson">快捷键配置demo keymap.json</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;:&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;enter_command_line_mode&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;TAB&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;focus_next&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;SHIFT_TAB&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;focus_previous&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;UP&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;move_up&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;DOWN&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;move_down&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;PAGE_UP&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;page_up&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;PAGE_DOWN&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;page_down&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ENTER&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;activate&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;DELETE&#34;</span><span class="p">,</span> <span class="s2">&#34;BACKSPACE&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;delete&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34; &#34;</span><span class="p">],</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;todo toggle $n&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;n&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;next_link&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;b&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;previous_link&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;o&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;open_link&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;tc&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;toggle_console&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;tm&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;toggle_metadata&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;/&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;search \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mknote \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mt&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mktodo \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mb&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mkbook \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;yn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;cp $n \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;dn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mv $n \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vim快捷键配置demo-keymapjson">vim快捷键配置demo keymap.json</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;:&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;enter_command_line_mode&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;TAB&#34;</span><span class="p">,</span><span class="s2">&#34;l&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;focus_next&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;SHIFT_TAB&#34;</span><span class="p">,</span><span class="s2">&#34;h&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;focus_previous&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;UP&#34;</span><span class="p">,</span><span class="s2">&#34;k&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;move_up&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;DOWN&#34;</span><span class="p">,</span><span class="s2">&#34;j&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;move_down&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;PAGE_UP&#34;</span><span class="p">,</span><span class="s2">&#34;{&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;page_up&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;PAGE_DOWN&#34;</span><span class="p">,</span><span class="s2">&#34;}&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;page_down&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ENTER&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;activate&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;DELETE&#34;</span><span class="p">,</span> <span class="s2">&#34;BACKSPACE&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;delete&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34; &#34;</span><span class="p">],</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;todo toggle $n&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;tc&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;toggle_console&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;tm&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;toggle_metadata&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;/&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;search \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mknote \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mt&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mktodo \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;mb&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mkbook \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;yn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;cp $n \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;dn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;mv $n \&#34;\&#34;&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-2</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>vim快捷键添加e进入Vim编辑</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;ENTER&#34;</span><span class="p">,</span><span class="s2">&#34;e&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;function&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;activate&#34;</span> <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>vim快捷键添加q退出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"> <span class="p">{</span> <span class="nt">&#34;keys&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;dn&#34;</span><span class="p">],</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;prompt&#34;</span><span class="p">,</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;exit&#34;</span><span class="p">,</span> <span class="nt">&#34;cursorPosition&#34;</span><span class="p">:</span> <span class="mi">-1</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="主要快捷键">主要快捷键</h4>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>note</th>
+<th>cmd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hjkl</td>
+<td>移动</td>
+<td>-</td>
+</tr>
+<tr>
+<td>(SPACE)</td>
+<td>完成todo项目</td>
+<td>:todo toggle $n</td>
+</tr>
+<tr>
+<td>/</td>
+<td>搜索</td>
+<td>:search</td>
+</tr>
+<tr>
+<td>mn</td>
+<td>make note 创建笔记</td>
+<td>:mknote</td>
+</tr>
+<tr>
+<td>mt</td>
+<td>make todo 创建待办</td>
+<td>:mktodo</td>
+</tr>
+<tr>
+<td>mb</td>
+<td>make book 创建笔记本</td>
+<td>:mkbook</td>
+</tr>
+<tr>
+<td>yn</td>
+<td>cp当前项目</td>
+<td>cp       $n</td>
+</tr>
+<tr>
+<td>dn</td>
+<td>删除当前项目</td>
+<td>:mv $n</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出</td>
+<td>:exit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="配置默认编辑器为vim">配置默认编辑器为Vim</h3>
+<p>在命令行中执行:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">joplin config editor <span class="s2">&#34;/usr/bin/vim&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或在jopliin内部命令行模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">:config editor &#34;/usr/bin/vim&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://joplinapp.org/terminal"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://joplinapp.org/terminal</a></li>
+<li><a
+  href="https://zhuanlan.zhihu.com/p/107334649"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://zhuanlan.zhihu.com/p/107334649</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-31&#32;19:06:00>更新于 2022-08-31&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/posts/joplin-terminal/" data-title="如何在terminal中使用Joplin并像vim一样移动?"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/joplin/">joplin</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/terminal/">terminal</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/health-ls/" class="prev" rel="prev" title="开发者需要注意健康饮食习惯之一"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>开发者需要注意健康饮食习惯之一</a>
+      <a href="/posts/linux-stop-process/" class="next" rel="next" title="linux中使用脚本关闭进程">linux中使用脚本关闭进程<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

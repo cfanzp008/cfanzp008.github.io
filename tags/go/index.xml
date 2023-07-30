@@ -1,0 +1,57 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>go - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/go/</link>
+    <description>go - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 24 Jun 2023 22:13:29 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/go/" rel="self" type="application/rss+xml" /><item>
+  <title>go语言的实名认证库wlc</title>
+  <link>https://cfanzp.com/idcards_verify-wlc/</link>
+  <pubDate>Sat, 24 Jun 2023 22:13:29 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/idcards_verify-wlc/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>go build提示timeout如何解决？</title>
+  <link>https://cfanzp.com/go-build-timeout/</link>
+  <pubDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-build-timeout/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Golang轻量级服务端框架zinx</title>
+  <link>https://cfanzp.com/golang-zinx/</link>
+  <pubDate>Sun, 07 May 2023 17:18:37 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/golang-zinx/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Go语言中pprof的使用</title>
+  <link>https://cfanzp.com/go-pprof/</link>
+  <pubDate>Fri, 21 Apr 2023 14:35:37 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-pprof/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Go基本环境配置</title>
+  <link>https://cfanzp.com/go-env/</link>
+  <pubDate>Wed, 24 Aug 2022 20:25:24 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-env/</guid>
+  <description><![CDATA[Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found .]]></description>
+</item>
+<item>
+  <title>GOPROXY配置</title>
+  <link>https://cfanzp.com/goproxy/</link>
+  <pubDate>Tue, 23 Aug 2022 19:50:28 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/goproxy/</guid>
+  <description><![CDATA[GOPROXY配置 最近在使用hugo时需要依赖go环境在安装依赖包的时候，速度很慢，之前都是配置外网环境解决的。其实go环境有国内的替代域名资源可以使用。 在go环境下，需要下载依赖包的时候，如果没有外网环境的话，很多包默认是无法下载下来的，解决办法就是修改一下GOPROXY的配置
+1 go env -w GOPROXY=https://goproxy.io,direct ]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,200 @@
+---
+title: "关于"
+date: 2022-07-28T11:04:49+08:00
+draft: false
+description: "关于作者"
+images: ["/Apple-Devices-Preview.png"]
+
+lightgallery: true
+
+math:
+  enable: true
+---
+
+> cfanzp
+>
+> email:cfanzp@qq.com
+>
+> [公众号二维码](/images/gzh.jpeg#pic_center "公众号")
+>
+> [CSDN二维码](/images/csdn.jpg#pic_center "csdn")
+
+### steps
+{{< echarts >}}
+{
+    "title": {
+        "text": "steps",
+            "top": "2%",
+            "left": "center"
+    },
+        "tooltip": {
+            "trigger": "axis"
+        },
+        "legend": {
+            "data": ["BaseLine","Step"],
+            "top": "10%"
+        },
+        "grid": {
+            "left": "5%",
+            "right": "5%",
+            "bottom": "5%",
+            "top": "20%",
+            "containLabel": true
+        },
+        "toolbox": {
+            "feature": {
+                "saveAsImage": {
+                    "title": "保存为图片"
+                }
+            }
+        },
+        "xAxis": {
+            "type": "category", "boundaryGap": false,
+            "data": [
+                "1-8.29" , "2-8.30" , "3-8.31" , "4-9.1" , "5-9.2" , "6-9.3"  , "7-9.4"  ,
+                "1-9.5"  , "2-9.6"  , "3-9.7"  , "4-9.8" , "5-9.9" , "6-9.10" , "7-9.11" ,
+                "1-9.12" , "2-9.13" , "3-9.14" , "4-9.15", "5-9.16", "6-9.17" , "7-9.18" ,
+                "1-9.19" , "2-9.20" , "3-9.21"
+            ]
+        },
+        "yAxis": { "type": "value" },
+
+        "series": [
+        {
+            "name": "Step", "type": "line", "stack": "总量",
+            "data": [
+                3920 , 4002  , 2783  , 6845  , 3235  , 6463 , 5283 ,
+                2823 , 9137  , 13155 , 10898 , 22658 , 5129 , 6171 ,
+                5073 , 15121 , 11783 , 14373 , 15412 , 8126 , 11719 ,
+                10226, 10629 , 13246
+            ]
+        },
+        {
+            "name": "BaseLine",
+            "type": "line",
+            "stack": "check",
+            "data": [
+                10000 , 10000 , 10000 , 10000 , 10000 , 10000 , 10000 ,
+                10000 , 10000 , 10000 , 10000 , 10000 , 10000 , 10000 ,
+                10000 , 10000 , 10000 , 10000 , 10000 , 10000 , 10000 ,
+                10000 , 10000 , 10000
+            ]
+        }
+        ]
+}
+{{< /echarts >}}
+
+
+### categories
+{{< echarts >}}
+{
+    "title": {
+        "text": "categories-2022-09",
+        "top": "%",
+        "left": "center"
+    },
+    "tooltip": {
+        "trigger": "item"
+    },
+    "legend": {
+        "top":"30",
+        "left": "left"
+    },
+    "toolbox": {
+        "feature": {
+            "saveAsImage": {
+                "title": "保存为图片"
+            }
+        }
+    },
+
+    "series": [{
+        "name": "categories",
+        "type": "pie",
+        "stack": "count",
+        "radius": "45%",
+        "data": [
+            {"value":17, "name":"linux"},
+            {"value":15, "name":"开发工具"},
+            {"value":9, "name":"lua"},
+            {"value":9, "name":"skynet框架"},
+            {"value":7, "name":"vim"},
+            {"value":5, "name":"nginx"},
+            {"value":5, "name":"terminal"},
+
+            {"value":4, "name":"language"},
+
+            {"value":2, "name":"git"},
+            {"value":2, "name":"go"},
+
+            {"value":2, "name":"hugo"},
+            {"value":2, "name":"mac"},
+            {"value":2, "name":"tmux"},
+
+            {"value":1, "name":"health"},
+            {"value":1, "name":"i3wm"},
+            {"value":1, "name":"lsof"},
+            {"value":1, "name":"mysql"},
+            {"value":1, "name":"redis"},
+
+            {"value":1, "name":"硬件"}
+        ]
+    }
+    ]
+}
+{{< /echarts >}}
+
+### tags
+
+{{< echarts >}}
+{
+    "title": {
+        "text": "tags-2022-09",
+        "top": "0",
+        "left": "center"
+    },
+    "tooltip": {
+        "trigger": "item"
+    },
+    "legend": {
+        "top":"30",
+        "left": "center"
+    },
+    "toolbox": {
+        "feature": {
+            "saveAsImage": {
+                "title": "保存为图片"
+            }
+        }
+    },
+
+    "series": [{
+        "name": "tags",
+        "type": "pie",
+        "stack": "count",
+        "radius": "45%",
+        "data": [
+            {"value":17, "name":"linux"},
+            {"value":9, "name":"skynet"},
+            {"value":8, "name":"lua"},
+            {"value":7, "name":"devtools"},
+            {"value":6, "name":"terminal"},
+            {"value":5, "name":"nginx"},
+            {"value":4, "name":"git"},
+            {"value":2, "name":"config"},
+            {"value":2, "name":"go"},
+            {"value":2, "name":"hugo"},
+            {"value":2, "name":"i3wm"},
+            {"value":2, "name":"mac"},
+            {"value":2, "name":"mysql"},
+            {"value":2, "name":"tmux"},
+            {"value":2, "name":"ubuntu"},
+            {"value":2, "name":"快捷键"},
+            {"value":10, "name":"others(count<2)"}
+        ]
+    }
+    ]
+}
+{{< /echarts >}}
+
+

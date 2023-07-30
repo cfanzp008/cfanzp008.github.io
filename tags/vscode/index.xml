@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>vscode - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/vscode/</link>
+    <description>vscode - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 04 May 2023 11:45:42 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/vscode/" rel="self" type="application/rss+xml" /><item>
+  <title>解决mac系统中vscode中使用vim插件，按下某个键不连续输入的问题</title>
+  <link>https://cfanzp.com/vscode-vim-key-fix/</link>
+  <pubDate>Thu, 04 May 2023 11:45:42 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/vscode-vim-key-fix/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>vscode的使用</title>
+  <link>https://cfanzp.com/edit-vscode/</link>
+  <pubDate>Tue, 23 Aug 2022 08:58:53 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/edit-vscode/</guid>
+  <description><![CDATA[vscode使用笔记 FAQ vscode必备插件有哪些？ vim Lua Vscode-lua Go Rainbow Brackets Thunder Client 如何给vscode添加ruler? 按语言添加:
+1 2 3 &#34;[lua]&#34;:{ &#34;editor.rulers&#34;:[80], } vscode配置vim插件jk退出插入模式 https://www.cnblogs.com/YunyaSir/p/15522565.html 1 2 3 4 5 6 7 8 9 10 11 &#34;vim.insertModeKeyBindings&#34;: [ { &#34;before&#34;: [ &#34;j&#34;, &#34;k&#34; ], &#34;after&#34;: [ &#34;&lt;Esc&gt;&#34; ] }, ], vscode 在mac上无法连续输入k如何解决？ 1 2 3 4 5 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false # For VS Code defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider defaults write com.]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>nginx基本用法与配置笔记 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { ." /><meta name="keywords" content='nginx' /><meta itemprop="name" content="nginx基本用法与配置笔记">
+<meta itemprop="description" content="nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { ."><meta itemprop="datePublished" content="2022-08-02T22:26:04+08:00" />
+<meta itemprop="dateModified" content="2022-08-02T22:26:04+08:00" />
+<meta itemprop="wordCount" content="254"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="nginx," /><meta property="og:title" content="nginx基本用法与配置笔记" />
+<meta property="og:description" content="nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/posts/nginx-config/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-02T22:26:04+08:00" />
+<meta property="article:modified_time" content="2022-08-02T22:26:04+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="nginx基本用法与配置笔记"/>
+<meta name="twitter:description" content="nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { ."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/nginx-config/" /><link rel="prev" href="https://cfanzp.com/posts/skynet-uuid/" /><link rel="next" href="https://cfanzp.com/posts/nginx-web-balance/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "nginx基本用法与配置笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/posts\/nginx-config\/"
+    },"genre": "posts","keywords": "nginx","wordcount":  254 ,
+    "url": "https:\/\/cfanzp.com\/posts\/nginx-config\/","datePublished": "2022-08-02T22:26:04+08:00","dateModified": "2022-08-02T22:26:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>nginx基本用法与配置笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-02&#32;22:26:04><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 254 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本概念">基本概念</a></li>
+    <li><a href="#全局块">全局块</a></li>
+    <li><a href="#event块">event块</a></li>
+    <li><a href="#http块">http块</a></li>
+    <li><a href="#server块">server块</a></li>
+    <li><a href="#location-块">location 块</a></li>
+    <li><a href="#nginx文件结构">nginx文件结构</a></li>
+    <li><a href="#一个nginx-配置文件的拆解分析">一个nginx 配置文件的拆解分析</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="nginx配置笔记">nginx配置笔记</h1>
+<h2 id="基本概念">基本概念</h2>
+<ul>
+<li>惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。</li>
+</ul>
+<h2 id="全局块">全局块</h2>
+<ul>
+<li>nginx服务器用户组</li>
+<li>nginx进程pid</li>
+<li>日志存放路径</li>
+<li>配置文件引入</li>
+<li>允许生成worker process数</li>
+</ul>
+<h2 id="event块">event块</h2>
+<ul>
+<li>配置影响nginx服务器或与用户的网络连接。包括:</li>
+<li>每个进程的最大连接数</li>
+<li>选取那种事件驱动模型处理连接请求</li>
+<li>是否允许同时接受多个网路连接</li>
+<li>开启多个网络连接序列化等。</li>
+</ul>
+<h2 id="http块">http块</h2>
+<ul>
+<li>可以嵌套多个server</li>
+<li>配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。</li>
+<li>文件引入</li>
+<li>mime-type定义</li>
+<li>日志定义</li>
+<li>是否使用sendfile传输文件</li>
+<li>连接超时时间</li>
+<li>单连接请求数</li>
+</ul>
+<h2 id="server块">server块</h2>
+<ul>
+<li>配置虚拟主机的相关参数，一个http中可以有多个server块</li>
+</ul>
+<h2 id="location-块">location 块</h2>
+<ul>
+<li>配置请求的路由，以及各种页面的请求情况</li>
+</ul>
+<h2 id="nginx文件结构">nginx文件结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...  #全局块
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">events {         #events块
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">http      #http块
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    ...   #http全局块
+</span></span><span class="line"><span class="cl">    server        #server块
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        ...       #server全局块
+</span></span><span class="line"><span class="cl">            location [PATTERN]   #location块
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                ...
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        location [PATTERN] 
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            ...
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    server
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    ...     #http全局块
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="一个nginx-配置文件的拆解分析">一个nginx 配置文件的拆解分析</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">########### 每个指令必须有分号结束。#################
+</span></span><span class="line"><span class="cl">#user administrator administrators;  #配置用户或者组，默认为nobody nobody。
+</span></span><span class="line"><span class="cl">#worker_processes 2;  #允许生成的进程数，默认为1
+</span></span><span class="line"><span class="cl">#pid /nginx/pid/nginx.pid;   #指定nginx进程运行文件存放地址
+</span></span><span class="line"><span class="cl">error_log log/error.log debug;  #制定日志路径，级别。这个设置可以放入全局块，http块，server块，级别以此为：debug|info|notice|warn|error|crit|alert|emerg
+</span></span><span class="line"><span class="cl">events {
+</span></span><span class="line"><span class="cl">    accept_mutex on;   #设置网路连接序列化，防止惊群现象发生，默认为on
+</span></span><span class="line"><span class="cl">    multi_accept on;  #设置一个进程是否同时接受多个网络连接，默认为off
+</span></span><span class="line"><span class="cl">    #use epoll;      #事件驱动模型，select|poll|kqueue|epoll|resig|/dev/poll|eventport
+</span></span><span class="line"><span class="cl">    worker_connections  1024;    #最大连接数，默认为512
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">http {
+</span></span><span class="line"><span class="cl">        include       mime.types;   #文件扩展名与文件类型映射表
+</span></span><span class="line"><span class="cl">        default_type  application/octet-stream; #默认文件类型，默认为text/plain
+</span></span><span class="line"><span class="cl">        #access_log off; #取消服务日志
+</span></span><span class="line"><span class="cl">        log_format myFormat &#39;$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for&#39;; #自定义格式
+</span></span><span class="line"><span class="cl">        access_log log/access.log myFormat;  #combined为日志格式的默认值
+</span></span><span class="line"><span class="cl">        sendfile on;   #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
+</span></span><span class="line"><span class="cl">        sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
+</span></span><span class="line"><span class="cl">        keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        upstream mysvr {
+</span></span><span class="line"><span class="cl">                server 127.0.0.1:7878;
+</span></span><span class="line"><span class="cl">                server 192.168.10.121:3333 backup;  #热备
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        error_page 404 https://www.baidu.com; #错误页
+</span></span><span class="line"><span class="cl">        server {
+</span></span><span class="line"><span class="cl">            keepalive_requests 120; #单连接请求上限次数。
+</span></span><span class="line"><span class="cl">            listen       4545;   #监听端口
+</span></span><span class="line"><span class="cl">            server_name  127.0.0.1;   #监听地址
+</span></span><span class="line"><span class="cl">            location  ~*^.+$ {       #请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
+</span></span><span class="line"><span class="cl">                #root path;  #根目录
+</span></span><span class="line"><span class="cl">                #index vv.txt;  #设置默认页
+</span></span><span class="line"><span class="cl">                proxy_pass  http://mysvr;  #请求转向mysvr 定义的服务器列表
+</span></span><span class="line"><span class="cl">                deny 127.0.0.1;  #拒绝的ip
+</span></span><span class="line"><span class="cl">                allow 172.18.5.54; #允许的ip
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://www.runoob.com/w3cnote/nginx-setup-intro.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.runoob.com/w3cnote/nginx-setup-intro.html</a></li>
+<li><a
+  href="https://www.jianshu.com/p/96d3b1fba09b"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.jianshu.com/p/96d3b1fba09b</a></li>
+<li><a
+  href="https://www.jianshu.com/p/96d3b1fba09b"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.jianshu.com/p/96d3b1fba09b</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-02&#32;22:26:04>更新于 2022-08-02&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/posts/nginx-config/" data-title="nginx基本用法与配置笔记"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/skynet-uuid/" class="prev" rel="prev" title="skynet中使用uuid库"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>skynet中使用uuid库</a>
+      <a href="/posts/nginx-web-balance/" class="next" rel="next" title="nginx web负载均衡配置">nginx web负载均衡配置<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

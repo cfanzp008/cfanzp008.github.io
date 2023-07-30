@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux基础 - 分类 - Linux开发</title>
+        <link>http://cfanzp.com/categories/linux%E5%9F%BA%E7%A1%80/</link>
+        <description>linux基础 - 分类 - Linux开发</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+            <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 03 Aug 2022 15:51:56 &#43;0800</lastBuildDate><atom:link href="http://cfanzp.com/categories/linux%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux Process Port</title>
+    <link>http://cfanzp.com/linux-process-port/</link>
+    <pubDate>Wed, 03 Aug 2022 15:51:56 &#43;0800</pubDate>
+    <author>cfanzp</author>
+    <guid>http://cfanzp.com/linux-process-port/</guid>
+    <description><![CDATA[linux查看哪个进程占用了端口? 方法1:使用lsof命令 1 2 3 [root@dev127 paoshang]# lsof -i:8201 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME skynet 110379 root 6u IPv4 7563011 0t0 TCP localhost:trivnet2 (LISTEN) 方法2:使用netstat命令]]></description>
+</item>
+</channel>
+</rss>

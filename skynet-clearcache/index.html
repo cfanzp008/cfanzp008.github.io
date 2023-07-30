@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>skynet-clearcache - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
+方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
+方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。
+这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：
+1 A1 ---&gt; B1 我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为： 1 A1 ---&gt; B_Manager ---&gt; B1 这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为: 1 A1 ---&gt; B_Manager ---&gt; B2 这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。
+当然这里有几个必须要注意的问题:
+如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。
+如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。
+如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。
+消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
+上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
+总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ " /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-clearcache">
+<meta itemprop="description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
+方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
+方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。
+这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：
+1 A1 ---&gt; B1 我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为： 1 A1 ---&gt; B_Manager ---&gt; B1 这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为: 1 A1 ---&gt; B_Manager ---&gt; B2 这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。
+当然这里有几个必须要注意的问题:
+如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。
+如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。
+如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。
+消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
+上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
+总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ "><meta itemprop="datePublished" content="2022-08-01T12:52:33+08:00" />
+<meta itemprop="dateModified" content="2022-08-01T12:52:33+08:00" />
+<meta itemprop="wordCount" content="48"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-clearcache" />
+<meta property="og:description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
+方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
+方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。
+这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：
+1 A1 ---&gt; B1 我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为： 1 A1 ---&gt; B_Manager ---&gt; B1 这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为: 1 A1 ---&gt; B_Manager ---&gt; B2 这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。
+当然这里有几个必须要注意的问题:
+如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。
+如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。
+如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。
+消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
+上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
+总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/skynet-clearcache/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-01T12:52:33+08:00" />
+<meta property="article:modified_time" content="2022-08-01T12:52:33+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="skynet-clearcache"/>
+<meta name="twitter:description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
+方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
+方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。
+这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：
+1 A1 ---&gt; B1 我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为： 1 A1 ---&gt; B_Manager ---&gt; B1 这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为: 1 A1 ---&gt; B_Manager ---&gt; B2 这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。
+当然这里有几个必须要注意的问题:
+如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。
+如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。
+如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。
+消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
+上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
+总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ "/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/skynet-clearcache/" /><link rel="prev" href="https://cfanzp.com/skynet-debug_console-ag/" /><link rel="next" href="https://cfanzp.com/skynet-update-log/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "skynet-clearcache",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/skynet-clearcache\/"
+    },"genre": "posts","keywords": "skynet","wordcount":  48 ,
+    "url": "https:\/\/cfanzp.com\/skynet-clearcache\/","datePublished": "2022-08-01T12:52:33+08:00","dateModified": "2022-08-01T12:52:33+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>skynet-clearcache</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-01&#32;12:52:33><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 48 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#skynet-热更新主要有2种方法">skynet 热更新主要有2种方法</a></li>
+    <li><a href="#动态创建的服务的热更新">动态创建的服务的热更新</a></li>
+    <li><a href="#创建后长期不销毁重建的服务如何热更新">创建后长期不销毁重建的服务，如何热更新？</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="skynet热更新-clearcache的使用体会">skynet热更新-clearcache的使用体会</h1>
+<h2 id="skynet-热更新主要有2种方法">skynet 热更新主要有2种方法</h2>
+<ul>
+<li>第一种：使用clearcache</li>
+<li>第二种：使用console inject lua脚本</li>
+</ul>
+<h2 id="动态创建的服务的热更新">动态创建的服务的热更新</h2>
+<ul>
+<li>如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。</li>
+</ul>
+<h2 id="创建后长期不销毁重建的服务如何热更新">创建后长期不销毁重建的服务，如何热更新？</h2>
+<ul>
+<li>
+<p>如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？</p>
+</li>
+<li>
+<p>方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。</p>
+</li>
+<li>
+<p>方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。</p>
+</li>
+<li>
+<p>这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A1 ---&gt; B1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A1 ---&gt; B_Manager ---&gt; B1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A1 ---&gt; B_Manager ---&gt; B2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。</p>
+</li>
+<li>
+<p>当然这里有几个必须要注意的问题:</p>
+</li>
+<li>
+<p>如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。</p>
+</li>
+<li>
+<p>如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。</p>
+</li>
+<li>
+<p>如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。</p>
+</li>
+<li>
+<p>消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。</p>
+</li>
+<li>
+<p>上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。</p>
+</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！</li>
+<li>个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-01&#32;12:52:33>更新于 2022-08-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/skynet-clearcache/" data-title="skynet-clearcache"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/skynet-debug_console-ag/" class="prev" rel="prev" title="skynet-给debug_console添加ag搜索"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>skynet-给debug_console添加ag搜索</a>
+      <a href="/skynet-update-log/" class="next" rel="next" title="skynet 更新记录">skynet 更新记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

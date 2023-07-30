@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>lua-luacheck - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
+安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
+安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs." /><meta name="keywords" content='linux, luacheck' /><meta itemprop="name" content="lua-luacheck">
+<meta itemprop="description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
+安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
+安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs."><meta itemprop="datePublished" content="2022-08-01T18:16:43+08:00" />
+<meta itemprop="dateModified" content="2022-08-01T18:16:43+08:00" />
+<meta itemprop="wordCount" content="222"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="linux,luacheck," /><meta property="og:title" content="lua-luacheck" />
+<meta property="og:description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
+安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
+安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/posts/lua-luacheck/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-01T18:16:43+08:00" />
+<meta property="article:modified_time" content="2022-08-01T18:16:43+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="lua-luacheck"/>
+<meta name="twitter:description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
+安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
+安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/lua-luacheck/" /><link rel="prev" href="https://cfanzp.com/posts/linux-bc/" /><link rel="next" href="https://cfanzp.com/posts/skynet-uuid/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "lua-luacheck",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/posts\/lua-luacheck\/"
+    },"genre": "posts","keywords": "linux, luacheck","wordcount":  222 ,
+    "url": "https:\/\/cfanzp.com\/posts\/lua-luacheck\/","datePublished": "2022-08-01T18:16:43+08:00","dateModified": "2022-08-01T18:16:43+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>lua-luacheck</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>
+          <span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-01&#32;18:16:43><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 222 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#ubuntu">ubuntu</a></li>
+        <li><a href="#centos">centos</a></li>
+      </ul>
+    </li>
+    <li><a href="#github安装帮助">github安装帮助</a></li>
+    <li><a href="#配置文件">配置文件</a></li>
+    <li><a href="#配置参数">配置参数</a></li>
+    <li><a href="#使用">使用</a></li>
+    <li><a href="#vim中配置luacheck">vim中配置luacheck</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="luacheck">luacheck</h1>
+<p>luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。</p>
+<h2 id="安装">安装</h2>
+<h3 id="ubuntu">ubuntu</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install lua-check
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="centos">centos</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install luarocks
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。</p>
+<ul>
+<li>安装报错信息:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@mybonline1 mybonline<span class="o">]</span><span class="c1"># luarocks install luacheck</span>
+</span></span><span class="line"><span class="cl">Installing https://luarocks.org/luacheck-0.25.0-1.src.rock...
+</span></span><span class="line"><span class="cl">Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to <span class="s1">&#39;build&#39;</span> mode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Missing dependencies <span class="k">for</span> luacheck:
+</span></span><span class="line"><span class="cl">luafilesystem &gt;<span class="o">=</span> 1.6.3
+</span></span><span class="line"><span class="cl">argparse &gt;<span class="o">=</span> 0.6.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to <span class="s1">&#39;build&#39;</span> mode
+</span></span><span class="line"><span class="cl">gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o
+</span></span><span class="line"><span class="cl">src/lfs.c:84:10: fatal error: lua.h: No such file or directory
+</span></span><span class="line"><span class="cl">   <span class="m">84</span> <span class="p">|</span> <span class="c1">#include &lt;lua.h&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">|</span>          ^~~~~~~
+</span></span><span class="line"><span class="cl">         compilation terminated.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         Error: Failed installing dependency: https://luarocks.org/luafilesystem-1.8.0-1.src.rock - Build error: Failed compiling object src/lfs.o
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>centos 安装luarocks</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-$ wget https://luarocks.org/releases/luarocks-3.8.0.tar.gz
+</span></span><span class="line"><span class="cl">-$ tar zxpf luarocks-3.8.0.tar.gz
+</span></span><span class="line"><span class="cl">-$ <span class="nb">cd</span> luarocks-3.8.0
+</span></span><span class="line"><span class="cl">./configure --with-lua-include<span class="o">=</span>/usr/local/include
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make install
+</span></span><span class="line"><span class="cl">/usr/local/bin/luarocks install luacheck
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>使用luarocks 安装</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install luarocks
+</span></span><span class="line"><span class="cl">luarocks install luacheck
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="github安装帮助">github安装帮助</h2>
+<ul>
+<li><a
+  href="https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Unix"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Unix</a></li>
+</ul>
+<h2 id="配置文件">配置文件</h2>
+<ul>
+<li>.luacheckrc</li>
+</ul>
+<h2 id="配置参数">配置参数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ignore = {
+</span></span><span class="line"><span class="cl">    &#34;631&#34;,  -- max_line_length
+</span></span><span class="line"><span class="cl">        &#34;212/_.*&#34;,  -- unused argument, for vars with &#34;_&#34; prefix
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用</h2>
+<ol>
+<li>忽略注释长度超过限制</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">luacheck --no-max-comment-line-length inject_test.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>查看错误代码codes</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">luacheck --codes inject_test.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vim中配置luacheck">vim中配置luacheck</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;no-unused-args 忽略不使用的参数
+</span></span><span class="line"><span class="cl">&#34;no-redefined 忽略重定义
+</span></span><span class="line"><span class="cl">&#34;no-max-line-length 忽略每行最长的检测
+</span></span><span class="line"><span class="cl">&#34;ignore 542 551 忽略if条件的body为空(如...elseif ret == nil then end，then和end中间没有语句)；忽略空语句(如;)，如果用了;则成对出现该语法检测warning
+</span></span><span class="line"><span class="cl">&#34;有语法错误的一行左侧栏会有S&amp;gt;标识，光标移动到改行，vim下发会给出提示。修改正确后保存，则该&#39;S&amp;gt;&#39;会消失。
+</span></span><span class="line"><span class="cl">&#34;let g:syntastic_lua_checkers = [&#34;luac&#34;, &#34;luacheck&#34;]
+</span></span><span class="line"><span class="cl">let g:syntastic_lua_checkers = [&#34;/use/bin/luac5.4.3&#34;, &#34;luacheck&#34;]
+</span></span><span class="line"><span class="cl">&#34;let g:syntastic_lua_luacheck_args =
+</span></span><span class="line"><span class="cl">&#34;--codes --no-max-comment-line-length --ignore 542 551&#34;
+</span></span><span class="line"><span class="cl">let g:syntastic_lua_luacheck_args = &#34;--codes&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-01&#32;18:16:43>更新于 2022-08-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/posts/lua-luacheck/" data-title="lua-luacheck"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/luacheck/">luacheck</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/linux-bc/" class="prev" rel="prev" title="linux-计算器命令bc"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>linux-计算器命令bc</a>
+      <a href="/posts/skynet-uuid/" class="next" rel="next" title="skynet中使用uuid库">skynet中使用uuid库<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,35 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>快捷键 - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+    <description>快捷键 - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 08 Aug 2022 20:06:22 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="self" type="application/rss+xml" /><item>
+  <title>tmux常用快捷键</title>
+  <link>https://cfanzp.com/tmux-shortcut-key/</link>
+  <pubDate>Mon, 08 Aug 2022 20:06:22 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/tmux-shortcut-key/</guid>
+  <description><![CDATA[tmux常用快捷键 注意 c-a:表示ctrl+a,我这里修改了默认的ctrl+b为ctrl+a 常用快捷键 c-a +z:在全屏和窗口之间切换
+c-a +c:创建一个新的窗口
+c-a+%:竖直创建一个新的pannel
+c-a+,:水平创建一个新的pannel
+c-a+(h,j,kl):在各个pannel间切换，需要在.tmux.conf配置文件中配置
+c-a+[:进入复制模式，q:退出复制模式
+c-a+w:查看所有窗口列表
+c-a+$:重命名当前的session]]></description>
+</item>
+<item>
+  <title>mac快捷键汇总</title>
+  <link>https://cfanzp.com/mac-shortcut-key/</link>
+  <pubDate>Mon, 08 Aug 2022 19:51:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/mac-shortcut-key/</guid>
+  <description><![CDATA[mac快捷键汇总 注意 这里Win键对应mac键盘的Command键 常用快捷键 command + backspace: 删除文件
+选中文件+enter: 重命名文件
+打开搜索 win/command+space：打开搜索 切换应用 win/command+tab:切换应用 刷新chrome网页 win+r:刷新chrome网页 terminal 新建一个terminal command+N:新建一个terminal 多个terminal之间切换 command+`:在多个terminal之间切换
+这个时非常实用的，但是每次想用的时候都不记得快捷键了，相当尴尬。。。
+切换输入法 ctrl+space:切换输入法 在全屏和窗口模式间相互切换 ctrl+command+F:在全屏和窗口模式间相互切换 mac要进入窗口最大化的方式就是双击标题栏，而没有键盘快捷键，这个有点不太友好。 取而代之的时mac推荐用command + control + F进入全屏模式专注于当前的工作 ]]></description>
+</item>
+</channel>
+</rss>

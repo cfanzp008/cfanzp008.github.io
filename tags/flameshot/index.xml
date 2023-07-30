@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>flameshot - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/flameshot/</link>
+    <description>flameshot - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 30 Jul 2022 19:06:52 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/flameshot/" rel="self" type="application/rss+xml" /><item>
+  <title>devtools-flameshot</title>
+  <link>https://cfanzp.com/devtools-flameshot/</link>
+  <pubDate>Sat, 30 Jul 2022 19:06:52 &#43;0800</pubDate>
+  <author>cfanzp</author>
+  <guid>https://cfanzp.com/devtools-flameshot/</guid>
+  <description><![CDATA[flameshot 简介 flameshot 是一款跨平台的截图工具。
+配置文件路经 1 2 3 4 linux: ~/.config/flameshot/flameshot.ini windows: C:\Users\{YOURNAME}\AppData\Roaming\flameshot\flameshot.ini github地址: 1 https://github.com/flameshot-org/flameshot 下载 1 https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2 常见平台安装 MacOS 1 brew install --cask flameshot Manjaro 1 pacman -S flameshot Ubuntu 16.04 1 wget https://github.com/flameshot-org/flameshot/releases/download/v11.0.rc1/Flameshot-11.0.rc1.x86_64.AppImage Ubuntu 18.04+ 1 apt install flameshot Ubuntu 20.04+ 下载deb包安装 1 2 3 https://github.com/flameshot-org/flameshot/releases wget http://github.com/flameshot-org/flameshot/releases/download/v11.0.0/flameshot-11.0.0-1.ubuntu-20.04.amd64.deb sudo apt install ./flameshot-11.0.0-1.ubuntu-20.04.amd64.deb Debian 10+
+1 apt install flameshot windows 直接下载安装包,下载地址: 1 https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2 常用快捷键 1 2 3 4 按PrintScreen键 激活 Ctrl + c 拷贝到剪贴版 Ctrl + s 保存到文件 Ctrl + z 撤销 常见问题 运行时提示 linux下提示/usr/lib64/libstdc++.]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>tmux - 分类 - Linux开发</title>
+    <link>https://cfanzp.com/categories/tmux/</link>
+    <description>tmux - 分类 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 08 Aug 2022 20:06:22 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/tmux/" rel="self" type="application/rss+xml" /><item>
+  <title>tmux常用快捷键</title>
+  <link>https://cfanzp.com/tmux-shortcut-key/</link>
+  <pubDate>Mon, 08 Aug 2022 20:06:22 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/tmux-shortcut-key/</guid>
+  <description><![CDATA[tmux常用快捷键 注意 c-a:表示ctrl+a,我这里修改了默认的ctrl+b为ctrl+a 常用快捷键 c-a +z:在全屏和窗口之间切换
+c-a +c:创建一个新的窗口
+c-a+%:竖直创建一个新的pannel
+c-a+,:水平创建一个新的pannel
+c-a+(h,j,kl):在各个pannel间切换，需要在.tmux.conf配置文件中配置
+c-a+[:进入复制模式，q:退出复制模式
+c-a+w:查看所有窗口列表
+c-a+$:重命名当前的session]]></description>
+</item>
+<item>
+  <title>tmux基本配置及vim适配</title>
+  <link>https://cfanzp.com/devtools-tmux/</link>
+  <pubDate>Mon, 25 Apr 2022 19:19:14 &#43;0800</pubDate>
+  <author>cfanzp</author>
+  <guid>https://cfanzp.com/devtools-tmux/</guid>
+  <description><![CDATA[tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
+下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.6 ./configure make make install 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !]]></description>
+</item>
+</channel>
+</rss>

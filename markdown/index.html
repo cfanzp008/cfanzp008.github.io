@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Markdown需要掌握的基础 - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1." /><meta name="keywords" content='markdown' /><meta itemprop="name" content="Markdown需要掌握的基础">
+<meta itemprop="description" content="markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1."><meta itemprop="datePublished" content="2022-08-17T08:22:14+08:00" />
+<meta itemprop="dateModified" content="2022-08-17T08:22:14+08:00" />
+<meta itemprop="wordCount" content="1892"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="markdown," /><meta property="og:title" content="Markdown需要掌握的基础" />
+<meta property="og:description" content="markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/markdown/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-17T08:22:14+08:00" />
+<meta property="article:modified_time" content="2022-08-17T08:22:14+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="Markdown需要掌握的基础"/>
+<meta name="twitter:description" content="markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1."/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/markdown/" /><link rel="prev" href="https://cfanzp.com/weak-net/" /><link rel="next" href="https://cfanzp.com/tools_download/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Markdown需要掌握的基础",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/markdown\/"
+    },"genre": "posts","keywords": "markdown","wordcount":  1892 ,
+    "url": "https:\/\/cfanzp.com\/markdown\/","datePublished": "2022-08-17T08:22:14+08:00","dateModified": "2022-08-17T08:22:14+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Markdown需要掌握的基础</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-17&#32;08:22:14><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-17">2022-08-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1892 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 9 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#标题">标题</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#标题2">标题2</a>
+      <ul>
+        <li><a href="#标题3">标题3</a>
+          <ul>
+            <li><a href="#标题4">标题4</a>
+              <ul>
+                <li><a href="#标题5">标题5</a>
+                  <ul>
+                    <li><a href="#标题6">标题6</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#分割线">分割线</a></li>
+    <li><a href="#效果">效果:</a></li>
+    <li><a href="#删除线">删除线</a></li>
+    <li><a href="#图片链接">图片链接</a></li>
+    <li><a href="#脚注">脚注</a></li>
+    <li><a href="#列表">列表</a>
+      <ul>
+        <li><a href="#无序列表">无序列表</a></li>
+        <li><a href="#有序列表">有序列表</a></li>
+      </ul>
+    </li>
+    <li><a href="#表格">表格</a></li>
+    <li><a href="#emoji表情">Emoji表情</a></li>
+    <li><a href="#官方教程">官方教程</a></li>
+    <li><a href="#emoji表情-1">emoji表情</a></li>
+    <li><a href="#学习资源扩展">学习资源扩展</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="markdown-基础">markdown 基础</h1>
+<h2 id="标题">标题</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 标题1
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="gu">## 标题2
+</span></span></span><span class="line"><span class="cl"><span class="gu">### 标题3
+</span></span></span><span class="line"><span class="cl"><span class="gu">#### 标题4
+</span></span></span><span class="line"><span class="cl"><span class="gu">##### 标题5
+</span></span></span><span class="line"><span class="cl"><span class="gu">###### 标题6
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<blockquote>
+<h1 id="标题1">标题1</h1>
+<h2 id="标题2">标题2</h2>
+<h3 id="标题3">标题3</h3>
+<h4 id="标题4">标题4</h4>
+<h5 id="标题5">标题5</h5>
+<h6 id="标题6">标题6</h6>
+</blockquote>
+<h2 id="分割线">分割线</h2>
+<p>可以使用三个及以上的星号、减号、下划线来表示一条分割线</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl"><span class="ge">**</span>*
+</span></span><span class="line"><span class="cl">___
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="效果">效果:</h2>
+<hr>
+<hr>
+<hr>
+<h2 id="删除线">删除线</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">~~ del line ~~
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<p><del>del line</del></p>
+<h2 id="图片链接">图片链接</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">![<span class="nt">公众号二维码</span>](<span class="na">/images/gzh.jpeg#pic_center &#34;公众号&#34;</span>) 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<p><figure><a class="lightgallery" href="/images/gzh.jpeg#pic_center" title="公众号二维码" data-thumbnail="/images/gzh.jpeg#pic_center" data-sub-html="<h2>公众号</h2><p>公众号二维码</p>">
+    <img
+      class="lazyload"
+      src="/svg/loading.min.svg"
+      data-src="/images/gzh.jpeg#pic_center"
+      data-srcset="/images/gzh.jpeg#pic_center, /images/gzh.jpeg#pic_center 1.5x, /images/gzh.jpeg#pic_center 2x"
+      data-sizes="auto"
+      alt="/images/gzh.jpeg#pic_center" />
+  </a><figcaption class="image-caption">公众号</figcaption>
+  </figure></p>
+<h2 id="脚注">脚注</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">cfanzp主页[^cfanzp]
+</span></span><span class="line"><span class="cl">[^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<p>cfanzp主页<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<h2 id="列表">列表</h2>
+<h3 id="无序列表">无序列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- item1
+</span></span><span class="line"><span class="cl">- item2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<blockquote>
+<ul>
+<li>item1</li>
+<li>item2</li>
+</ul>
+</blockquote>
+<h3 id="有序列表">有序列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. item1
+</span></span><span class="line"><span class="cl">2. item2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<blockquote>
+<ol>
+<li>item1</li>
+<li>item2</li>
+</ol>
+</blockquote>
+<h2 id="表格">表格</h2>
+<ul>
+<li>:-标题栏左对齐</li>
+<li>-:标题栏右边对齐</li>
+<li>:-:标题栏中间对齐</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">| 左对齐 | 居中对齐 | 右对齐 |
+</span></span><span class="line"><span class="cl">| :---  | :---:  |  ---:  |
+</span></span><span class="line"><span class="cl">| item1 | item2 | item3 |
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果:</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:center">居中对齐</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">item1</td>
+<td style="text-align:center">item2</td>
+<td style="text-align:right">item3</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="emoji表情">Emoji表情</h2>
+<p><a
+  href="https://www.webfx.com/tools/emoji-cheat-sheet/#tabs-3"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>emoji表情参照表</a>
+使用<code>:code:</code>的方式使用,例如code为dog:使用<code>: dog :</code>,中间没有空格。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">code icon</th>
+<th style="text-align:center">code icon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">joy 😂</td>
+<td style="text-align:center">dog 🐶</td>
+</tr>
+<tr>
+<td style="text-align:center">smile 😄</td>
+<td style="text-align:center">cat 🐱</td>
+</tr>
+<tr>
+<td style="text-align:center">ok 🆗</td>
+<td style="text-align:center">+1 👍</td>
+</tr>
+</tbody>
+</table>
+<h2 id="官方教程">官方教程</h2>
+<ul>
+<li><a
+  href="https://blog.csdn.net/u012102104/article/details/78950290o"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.csdn.net/u012102104/article/details/78950290</a></li>
+<li><a
+  href="https://www.jianshu.com/p/8aa2a292c04d"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>代码块高亮</a></li>
+<li><a
+  href="https://blog.csdn.net/penriver/article/details/121356728"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>emoji表情</a></li>
+<li><a
+  href="https://apps.timwhitlock.info/emoji/tables/unicode"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Emoji Unicode Tables</a></li>
+<li><a
+  href="https://github.com/ikatyang/emoji-cheat-sheet"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>github emoji-cheat-sheet</a></li>
+</ul>
+<h2 id="emoji表情-1">emoji表情</h2>
+<ul>
+<li><a
+  href="https://gist.githubusercontent.com/rxaviers/7360908/raw/0c0f6869d780ce6d8958ada4f82a8b798bac98e5/gistfile1.md"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>来源</a></li>
+</ul>
+<p>People</p>
+<table>
+<thead>
+<tr>
+<th>:bowtie: <code>:bowtie:</code></th>
+<th>😄 <code>😄</code></th>
+<th>😆 <code>😆</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>😊 <code>😊</code></td>
+<td>😃 <code>😃</code></td>
+<td>☺️ <code>☺️</code></td>
+</tr>
+<tr>
+<td>😏 <code>😏</code></td>
+<td>😍 <code>😍</code></td>
+<td>😘 <code>😘</code></td>
+</tr>
+<tr>
+<td>😚 <code>😚</code></td>
+<td>😳 <code>😳</code></td>
+<td>😌 <code>😌</code></td>
+</tr>
+<tr>
+<td>😆 <code>😆</code></td>
+<td>😁 <code>😁</code></td>
+<td>😉 <code>😉</code></td>
+</tr>
+<tr>
+<td>😜 <code>😜</code></td>
+<td>😝 <code>😝</code></td>
+<td>😀 <code>😀</code></td>
+</tr>
+<tr>
+<td>😗 <code>😗</code></td>
+<td>😙 <code>😙</code></td>
+<td>😛 <code>😛</code></td>
+</tr>
+<tr>
+<td>😴 <code>😴</code></td>
+<td>😟 <code>😟</code></td>
+<td>😦 <code>😦</code></td>
+</tr>
+<tr>
+<td>😧 <code>😧</code></td>
+<td>😮 <code>😮</code></td>
+<td>😬 <code>😬</code></td>
+</tr>
+<tr>
+<td>😕 <code>😕</code></td>
+<td>😯 <code>😯</code></td>
+<td>😑 <code>😑</code></td>
+</tr>
+<tr>
+<td>😒 <code>😒</code></td>
+<td>😅 <code>😅</code></td>
+<td>😓 <code>😓</code></td>
+</tr>
+<tr>
+<td>😥 <code>😥</code></td>
+<td>😩 <code>😩</code></td>
+<td>😔 <code>😔</code></td>
+</tr>
+<tr>
+<td>😞 <code>😞</code></td>
+<td>😖 <code>😖</code></td>
+<td>😨 <code>😨</code></td>
+</tr>
+<tr>
+<td>😰 <code>😰</code></td>
+<td>😣 <code>😣</code></td>
+<td>😢 <code>😢</code></td>
+</tr>
+<tr>
+<td>😭 <code>😭</code></td>
+<td>😂 <code>😂</code></td>
+<td>😲 <code>😲</code></td>
+</tr>
+<tr>
+<td>😱 <code>😱</code></td>
+<td>:neckbeard: <code>:neckbeard:</code></td>
+<td>😫 <code>😫</code></td>
+</tr>
+<tr>
+<td>😠 <code>😠</code></td>
+<td>😡 <code>😡</code></td>
+<td>😤 <code>😤</code></td>
+</tr>
+<tr>
+<td>😪 <code>😪</code></td>
+<td>😋 <code>😋</code></td>
+<td>😷 <code>😷</code></td>
+</tr>
+<tr>
+<td>😎 <code>😎</code></td>
+<td>😵 <code>😵</code></td>
+<td>👿 <code>👿</code></td>
+</tr>
+<tr>
+<td>😈 <code>😈</code></td>
+<td>😐 <code>😐</code></td>
+<td>😶 <code>😶</code></td>
+</tr>
+<tr>
+<td>😇 <code>😇</code></td>
+<td>👽 <code>👽</code></td>
+<td>💛 <code>💛</code></td>
+</tr>
+<tr>
+<td>💙 <code>💙</code></td>
+<td>💜 <code>💜</code></td>
+<td>❤️ <code>❤️</code></td>
+</tr>
+<tr>
+<td>💚 <code>💚</code></td>
+<td>💔 <code>💔</code></td>
+<td>💓 <code>💓</code></td>
+</tr>
+<tr>
+<td>💗 <code>💗</code></td>
+<td>💕 <code>💕</code></td>
+<td>💞 <code>💞</code></td>
+</tr>
+<tr>
+<td>💘 <code>💘</code></td>
+<td>💖 <code>💖</code></td>
+<td>✨ <code>✨</code></td>
+</tr>
+<tr>
+<td>⭐ <code>⭐</code></td>
+<td>🌟 <code>🌟</code></td>
+<td>💫 <code>💫</code></td>
+</tr>
+<tr>
+<td>💥 <code>💥</code></td>
+<td>💥 <code>💥</code></td>
+<td>💢 <code>💢</code></td>
+</tr>
+<tr>
+<td>❗ <code>❗</code></td>
+<td>❓ <code>❓</code></td>
+<td>❕ <code>❕</code></td>
+</tr>
+<tr>
+<td>❔ <code>❔</code></td>
+<td>💤 <code>💤</code></td>
+<td>💨 <code>💨</code></td>
+</tr>
+<tr>
+<td>💦 <code>💦</code></td>
+<td>🎶 <code>🎶</code></td>
+<td>🎵 <code>🎵</code></td>
+</tr>
+<tr>
+<td>🔥 <code>🔥</code></td>
+<td>💩 <code>💩</code></td>
+<td>💩 <code>💩</code></td>
+</tr>
+<tr>
+<td>💩 <code>💩</code></td>
+<td>👍 <code>👍</code></td>
+<td>👍 <code>👍</code></td>
+</tr>
+<tr>
+<td>👎 <code>👎</code></td>
+<td>👎 <code>👎</code></td>
+<td>👌 <code>👌</code></td>
+</tr>
+<tr>
+<td>👊 <code>👊</code></td>
+<td>👊 <code>👊</code></td>
+<td>✊ <code>✊</code></td>
+</tr>
+<tr>
+<td>✌️ <code>✌️</code></td>
+<td>👋 <code>👋</code></td>
+<td>✋ <code>✋</code></td>
+</tr>
+<tr>
+<td>✋ <code>✋</code></td>
+<td>👐 <code>👐</code></td>
+<td>☝️ <code>☝️</code></td>
+</tr>
+<tr>
+<td>👇 <code>👇</code></td>
+<td>👈 <code>👈</code></td>
+<td>👉 <code>👉</code></td>
+</tr>
+<tr>
+<td>🙌 <code>🙌</code></td>
+<td>🙏 <code>🙏</code></td>
+<td>👆 <code>👆</code></td>
+</tr>
+<tr>
+<td>👏 <code>👏</code></td>
+<td>💪 <code>💪</code></td>
+<td>🤘 <code>🤘</code></td>
+</tr>
+<tr>
+<td>🖕 <code>🖕</code></td>
+<td>🚶‍♂️ <code>🚶‍♂️</code></td>
+<td>🏃‍♂️ <code>🏃‍♂️</code></td>
+</tr>
+<tr>
+<td>🏃 <code>🏃</code></td>
+<td>👫 <code>👫</code></td>
+<td>👨‍👩‍👦 <code>👨‍👩‍👦</code></td>
+</tr>
+<tr>
+<td>👬 <code>👬</code></td>
+<td>👭 <code>👭</code></td>
+<td>💃 <code>💃</code></td>
+</tr>
+<tr>
+<td>👯‍♀️ <code>👯‍♀️</code></td>
+<td>🙆‍♀️ <code>🙆‍♀️</code></td>
+<td>🙅‍♀️ <code>🙅‍♀️</code></td>
+</tr>
+<tr>
+<td>💁‍♀️ <code>💁‍♀️</code></td>
+<td>🙋‍♀️ <code>🙋‍♀️</code></td>
+<td>👰 <code>👰</code></td>
+</tr>
+<tr>
+<td>🙎‍♀️ <code>🙎‍♀️</code></td>
+<td>🙍‍♀️ <code>🙍‍♀️</code></td>
+<td>🙇 <code>🙇</code></td>
+</tr>
+<tr>
+<td>💏 <code>💏</code></td>
+<td>💑 <code>💑</code></td>
+<td>💆‍♀️ <code>💆‍♀️</code></td>
+</tr>
+<tr>
+<td>💇‍♀️ <code>💇‍♀️</code></td>
+<td>💅 <code>💅</code></td>
+<td>👦 <code>👦</code></td>
+</tr>
+<tr>
+<td>👧 <code>👧</code></td>
+<td>👩 <code>👩</code></td>
+<td>👨 <code>👨</code></td>
+</tr>
+<tr>
+<td>👶 <code>👶</code></td>
+<td>👵 <code>👵</code></td>
+<td>👴 <code>👴</code></td>
+</tr>
+<tr>
+<td>👱‍♂️ <code>👱‍♂️</code></td>
+<td>👲 <code>👲</code></td>
+<td>👳‍♂️ <code>👳‍♂️</code></td>
+</tr>
+<tr>
+<td>👷‍♂️ <code>👷‍♂️</code></td>
+<td>👮‍♂️ <code>👮‍♂️</code></td>
+<td>👼 <code>👼</code></td>
+</tr>
+<tr>
+<td>👸 <code>👸</code></td>
+<td>😺 <code>😺</code></td>
+<td>😸 <code>😸</code></td>
+</tr>
+<tr>
+<td>😻 <code>😻</code></td>
+<td>😽 <code>😽</code></td>
+<td>😼 <code>😼</code></td>
+</tr>
+<tr>
+<td>🙀 <code>🙀</code></td>
+<td>😿 <code>😿</code></td>
+<td>😹 <code>😹</code></td>
+</tr>
+<tr>
+<td>😾 <code>😾</code></td>
+<td>👹 <code>👹</code></td>
+<td>👺 <code>👺</code></td>
+</tr>
+<tr>
+<td>🙈 <code>🙈</code></td>
+<td>🙉 <code>🙉</code></td>
+<td>🙊 <code>🙊</code></td>
+</tr>
+<tr>
+<td>💂‍♂️ <code>💂‍♂️</code></td>
+<td>💀 <code>💀</code></td>
+<td>🐾 <code>🐾</code></td>
+</tr>
+<tr>
+<td>👄 <code>👄</code></td>
+<td>💋 <code>💋</code></td>
+<td>💧 <code>💧</code></td>
+</tr>
+<tr>
+<td>👂 <code>👂</code></td>
+<td>👀 <code>👀</code></td>
+<td>👃 <code>👃</code></td>
+</tr>
+<tr>
+<td>👅 <code>👅</code></td>
+<td>💌 <code>💌</code></td>
+<td>👤 <code>👤</code></td>
+</tr>
+<tr>
+<td>👥 <code>👥</code></td>
+<td>💬 <code>💬</code></td>
+<td>💭 <code>💭</code></td>
+</tr>
+<tr>
+<td>:feelsgood: <code>:feelsgood:</code></td>
+<td>:finnadie: <code>:finnadie:</code></td>
+<td>:goberserk: <code>:goberserk:</code></td>
+</tr>
+<tr>
+<td>:godmode: <code>:godmode:</code></td>
+<td>:hurtrealbad: <code>:hurtrealbad:</code></td>
+<td>:rage1: <code>:rage1:</code></td>
+</tr>
+<tr>
+<td>:rage2: <code>:rage2:</code></td>
+<td>:rage3: <code>:rage3:</code></td>
+<td>:rage4: <code>:rage4:</code></td>
+</tr>
+<tr>
+<td>:suspect: <code>:suspect:</code></td>
+<td>:trollface: <code>:trollface:</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Nature</p>
+<table>
+<thead>
+<tr>
+<th>☀️ <code>☀️</code></th>
+<th>☂️ <code>☂️</code></th>
+<th>☁️ <code>☁️</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❄️ <code>❄️</code></td>
+<td>☃️ <code>☃️</code></td>
+<td>⚡ <code>⚡</code></td>
+</tr>
+<tr>
+<td>🌀 <code>🌀</code></td>
+<td>🌁 <code>🌁</code></td>
+<td>🌊 <code>🌊</code></td>
+</tr>
+<tr>
+<td>🐱 <code>🐱</code></td>
+<td>🐶 <code>🐶</code></td>
+<td>🐭 <code>🐭</code></td>
+</tr>
+<tr>
+<td>🐹 <code>🐹</code></td>
+<td>🐰 <code>🐰</code></td>
+<td>🐺 <code>🐺</code></td>
+</tr>
+<tr>
+<td>🐸 <code>🐸</code></td>
+<td>🐯 <code>🐯</code></td>
+<td>🐨 <code>🐨</code></td>
+</tr>
+<tr>
+<td>🐻 <code>🐻</code></td>
+<td>🐷 <code>🐷</code></td>
+<td>🐽 <code>🐽</code></td>
+</tr>
+<tr>
+<td>🐮 <code>🐮</code></td>
+<td>🐗 <code>🐗</code></td>
+<td>🐵 <code>🐵</code></td>
+</tr>
+<tr>
+<td>🐒 <code>🐒</code></td>
+<td>🐴 <code>🐴</code></td>
+<td>🐎 <code>🐎</code></td>
+</tr>
+<tr>
+<td>🐫 <code>🐫</code></td>
+<td>🐑 <code>🐑</code></td>
+<td>🐘 <code>🐘</code></td>
+</tr>
+<tr>
+<td>🐼 <code>🐼</code></td>
+<td>🐍 <code>🐍</code></td>
+<td>🐦 <code>🐦</code></td>
+</tr>
+<tr>
+<td>🐤 <code>🐤</code></td>
+<td>🐥 <code>🐥</code></td>
+<td>🐣 <code>🐣</code></td>
+</tr>
+<tr>
+<td>🐔 <code>🐔</code></td>
+<td>🐧 <code>🐧</code></td>
+<td>🐢 <code>🐢</code></td>
+</tr>
+<tr>
+<td>🐛 <code>🐛</code></td>
+<td>🐝 <code>🐝</code></td>
+<td>🐜 <code>🐜</code></td>
+</tr>
+<tr>
+<td>🪲 <code>🪲</code></td>
+<td>🐌 <code>🐌</code></td>
+<td>🐙 <code>🐙</code></td>
+</tr>
+<tr>
+<td>🐠 <code>🐠</code></td>
+<td>🐟 <code>🐟</code></td>
+<td>🐳 <code>🐳</code></td>
+</tr>
+<tr>
+<td>🐋 <code>🐋</code></td>
+<td>🐬 <code>🐬</code></td>
+<td>🐄 <code>🐄</code></td>
+</tr>
+<tr>
+<td>🐏 <code>🐏</code></td>
+<td>🐀 <code>🐀</code></td>
+<td>🐃 <code>🐃</code></td>
+</tr>
+<tr>
+<td>🐅 <code>🐅</code></td>
+<td>🐇 <code>🐇</code></td>
+<td>🐉 <code>🐉</code></td>
+</tr>
+<tr>
+<td>🐐 <code>🐐</code></td>
+<td>🐓 <code>🐓</code></td>
+<td>🐕 <code>🐕</code></td>
+</tr>
+<tr>
+<td>🐖 <code>🐖</code></td>
+<td>🐁 <code>🐁</code></td>
+<td>🐂 <code>🐂</code></td>
+</tr>
+<tr>
+<td>🐲 <code>🐲</code></td>
+<td>🐡 <code>🐡</code></td>
+<td>🐊 <code>🐊</code></td>
+</tr>
+<tr>
+<td>🐪 <code>🐪</code></td>
+<td>🐆 <code>🐆</code></td>
+<td>🐈 <code>🐈</code></td>
+</tr>
+<tr>
+<td>🐩 <code>🐩</code></td>
+<td>🐾 <code>🐾</code></td>
+<td>💐 <code>💐</code></td>
+</tr>
+<tr>
+<td>🌸 <code>🌸</code></td>
+<td>🌷 <code>🌷</code></td>
+<td>🍀 <code>🍀</code></td>
+</tr>
+<tr>
+<td>🌹 <code>🌹</code></td>
+<td>🌻 <code>🌻</code></td>
+<td>🌺 <code>🌺</code></td>
+</tr>
+<tr>
+<td>🍁 <code>🍁</code></td>
+<td>🍃 <code>🍃</code></td>
+<td>🍂 <code>🍂</code></td>
+</tr>
+<tr>
+<td>🌿 <code>🌿</code></td>
+<td>🍄 <code>🍄</code></td>
+<td>🌵 <code>🌵</code></td>
+</tr>
+<tr>
+<td>🌴 <code>🌴</code></td>
+<td>🌲 <code>🌲</code></td>
+<td>🌳 <code>🌳</code></td>
+</tr>
+<tr>
+<td>🌰 <code>🌰</code></td>
+<td>🌱 <code>🌱</code></td>
+<td>🌼 <code>🌼</code></td>
+</tr>
+<tr>
+<td>🌾 <code>🌾</code></td>
+<td>🐚 <code>🐚</code></td>
+<td>🌐 <code>🌐</code></td>
+</tr>
+<tr>
+<td>🌞 <code>🌞</code></td>
+<td>🌝 <code>🌝</code></td>
+<td>🌚 <code>🌚</code></td>
+</tr>
+<tr>
+<td>🌑 <code>🌑</code></td>
+<td>🌒 <code>🌒</code></td>
+<td>🌓 <code>🌓</code></td>
+</tr>
+<tr>
+<td>🌔 <code>🌔</code></td>
+<td>🌕 <code>🌕</code></td>
+<td>🌖 <code>🌖</code></td>
+</tr>
+<tr>
+<td>🌗 <code>🌗</code></td>
+<td>🌘 <code>🌘</code></td>
+<td>🌜 <code>🌜</code></td>
+</tr>
+<tr>
+<td>🌛 <code>🌛</code></td>
+<td>🌔 <code>🌔</code></td>
+<td>🌍 <code>🌍</code></td>
+</tr>
+<tr>
+<td>🌎 <code>🌎</code></td>
+<td>🌏 <code>🌏</code></td>
+<td>🌋 <code>🌋</code></td>
+</tr>
+<tr>
+<td>🌌 <code>🌌</code></td>
+<td>⛅ <code>⛅</code></td>
+<td>:octocat: <code>:octocat:</code></td>
+</tr>
+<tr>
+<td>:squirrel: <code>:squirrel:</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Objects</p>
+<table>
+<thead>
+<tr>
+<th>🎍 <code>🎍</code></th>
+<th>💝 <code>💝</code></th>
+<th>🎎 <code>🎎</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎒 <code>🎒</code></td>
+<td>🎓 <code>🎓</code></td>
+<td>🎏 <code>🎏</code></td>
+</tr>
+<tr>
+<td>🎆 <code>🎆</code></td>
+<td>🎇 <code>🎇</code></td>
+<td>🎐 <code>🎐</code></td>
+</tr>
+<tr>
+<td>🎑 <code>🎑</code></td>
+<td>🎃 <code>🎃</code></td>
+<td>👻 <code>👻</code></td>
+</tr>
+<tr>
+<td>🎅 <code>🎅</code></td>
+<td>🎄 <code>🎄</code></td>
+<td>🎁 <code>🎁</code></td>
+</tr>
+<tr>
+<td>🔔 <code>🔔</code></td>
+<td>🔕 <code>🔕</code></td>
+<td>🎋 <code>🎋</code></td>
+</tr>
+<tr>
+<td>🎉 <code>🎉</code></td>
+<td>🎊 <code>🎊</code></td>
+<td>🎈 <code>🎈</code></td>
+</tr>
+<tr>
+<td>🔮 <code>🔮</code></td>
+<td>💿 <code>💿</code></td>
+<td>📀 <code>📀</code></td>
+</tr>
+<tr>
+<td>💾 <code>💾</code></td>
+<td>📷 <code>📷</code></td>
+<td>📹 <code>📹</code></td>
+</tr>
+<tr>
+<td>🎥 <code>🎥</code></td>
+<td>💻 <code>💻</code></td>
+<td>📺 <code>📺</code></td>
+</tr>
+<tr>
+<td>📱 <code>📱</code></td>
+<td>☎️ <code>☎️</code></td>
+<td>☎ <code>☎</code></td>
+</tr>
+<tr>
+<td>📞 <code>📞</code></td>
+<td>📟 <code>📟</code></td>
+<td>📠 <code>📠</code></td>
+</tr>
+<tr>
+<td>💽 <code>💽</code></td>
+<td>📼 <code>📼</code></td>
+<td>🔉 <code>🔉</code></td>
+</tr>
+<tr>
+<td>🔈 <code>🔈</code></td>
+<td>🔇 <code>🔇</code></td>
+<td>📢 <code>📢</code></td>
+</tr>
+<tr>
+<td>📣 <code>📣</code></td>
+<td>⌛ <code>⌛</code></td>
+<td>⏳ <code>⏳</code></td>
+</tr>
+<tr>
+<td>⏰ <code>⏰</code></td>
+<td>⌚ <code>⌚</code></td>
+<td>📻 <code>📻</code></td>
+</tr>
+<tr>
+<td>🛰️ <code>🛰️</code></td>
+<td>➿ <code>➿</code></td>
+<td>🔍 <code>🔍</code></td>
+</tr>
+<tr>
+<td>🔎 <code>🔎</code></td>
+<td>🔓 <code>🔓</code></td>
+<td>🔒 <code>🔒</code></td>
+</tr>
+<tr>
+<td>🔏 <code>🔏</code></td>
+<td>🔐 <code>🔐</code></td>
+<td>🔑 <code>🔑</code></td>
+</tr>
+<tr>
+<td>💡 <code>💡</code></td>
+<td>🔦 <code>🔦</code></td>
+<td>🔆 <code>🔆</code></td>
+</tr>
+<tr>
+<td>🔅 <code>🔅</code></td>
+<td>🔌 <code>🔌</code></td>
+<td>🔋 <code>🔋</code></td>
+</tr>
+<tr>
+<td>📲 <code>📲</code></td>
+<td>✉️ <code>✉️</code></td>
+<td>📫 <code>📫</code></td>
+</tr>
+<tr>
+<td>📮 <code>📮</code></td>
+<td>🛀 <code>🛀</code></td>
+<td>🛁 <code>🛁</code></td>
+</tr>
+<tr>
+<td>🚿 <code>🚿</code></td>
+<td>🚽 <code>🚽</code></td>
+<td>🔧 <code>🔧</code></td>
+</tr>
+<tr>
+<td>🔩 <code>🔩</code></td>
+<td>🔨 <code>🔨</code></td>
+<td>💺 <code>💺</code></td>
+</tr>
+<tr>
+<td>💰 <code>💰</code></td>
+<td>💴 <code>💴</code></td>
+<td>💵 <code>💵</code></td>
+</tr>
+<tr>
+<td>💷 <code>💷</code></td>
+<td>💶 <code>💶</code></td>
+<td>💳 <code>💳</code></td>
+</tr>
+<tr>
+<td>💸 <code>💸</code></td>
+<td>📧 <code>📧</code></td>
+<td>📥 <code>📥</code></td>
+</tr>
+<tr>
+<td>📤 <code>📤</code></td>
+<td>✉ <code>✉</code></td>
+<td>📨 <code>📨</code></td>
+</tr>
+<tr>
+<td>📯 <code>📯</code></td>
+<td>📪 <code>📪</code></td>
+<td>📬 <code>📬</code></td>
+</tr>
+<tr>
+<td>📭 <code>📭</code></td>
+<td>🚪 <code>🚪</code></td>
+<td>🚬 <code>🚬</code></td>
+</tr>
+<tr>
+<td>💣 <code>💣</code></td>
+<td>🔫 <code>🔫</code></td>
+<td>🔪 <code>🔪</code></td>
+</tr>
+<tr>
+<td>💊 <code>💊</code></td>
+<td>💉 <code>💉</code></td>
+<td>📄 <code>📄</code></td>
+</tr>
+<tr>
+<td>📃 <code>📃</code></td>
+<td>📑 <code>📑</code></td>
+<td>📊 <code>📊</code></td>
+</tr>
+<tr>
+<td>📈 <code>📈</code></td>
+<td>📉 <code>📉</code></td>
+<td>📜 <code>📜</code></td>
+</tr>
+<tr>
+<td>📋 <code>📋</code></td>
+<td>📆 <code>📆</code></td>
+<td>📅 <code>📅</code></td>
+</tr>
+<tr>
+<td>📇 <code>📇</code></td>
+<td>📁 <code>📁</code></td>
+<td>📂 <code>📂</code></td>
+</tr>
+<tr>
+<td>✂️ <code>✂️</code></td>
+<td>📌 <code>📌</code></td>
+<td>📎 <code>📎</code></td>
+</tr>
+<tr>
+<td>✒️ <code>✒️</code></td>
+<td>✏️ <code>✏️</code></td>
+<td>📏 <code>📏</code></td>
+</tr>
+<tr>
+<td>📐 <code>📐</code></td>
+<td>📕 <code>📕</code></td>
+<td>📗 <code>📗</code></td>
+</tr>
+<tr>
+<td>📘 <code>📘</code></td>
+<td>📙 <code>📙</code></td>
+<td>📓 <code>📓</code></td>
+</tr>
+<tr>
+<td>📔 <code>📔</code></td>
+<td>📒 <code>📒</code></td>
+<td>📚 <code>📚</code></td>
+</tr>
+<tr>
+<td>🔖 <code>🔖</code></td>
+<td>📛 <code>📛</code></td>
+<td>🔬 <code>🔬</code></td>
+</tr>
+<tr>
+<td>🔭 <code>🔭</code></td>
+<td>📰 <code>📰</code></td>
+<td>🏈 <code>🏈</code></td>
+</tr>
+<tr>
+<td>🏀 <code>🏀</code></td>
+<td>⚽ <code>⚽</code></td>
+<td>⚾ <code>⚾</code></td>
+</tr>
+<tr>
+<td>🎾 <code>🎾</code></td>
+<td>🎱 <code>🎱</code></td>
+<td>🏉 <code>🏉</code></td>
+</tr>
+<tr>
+<td>🎳 <code>🎳</code></td>
+<td>⛳ <code>⛳</code></td>
+<td>🚵‍♂️ <code>🚵‍♂️</code></td>
+</tr>
+<tr>
+<td>🚴‍♂️ <code>🚴‍♂️</code></td>
+<td>🏇 <code>🏇</code></td>
+<td>🏂 <code>🏂</code></td>
+</tr>
+<tr>
+<td>🏊‍♂️ <code>🏊‍♂️</code></td>
+<td>🏄‍♂️ <code>🏄‍♂️</code></td>
+<td>🎿 <code>🎿</code></td>
+</tr>
+<tr>
+<td>♠️ <code>♠️</code></td>
+<td>♥️ <code>♥️</code></td>
+<td>♣️ <code>♣️</code></td>
+</tr>
+<tr>
+<td>♦️ <code>♦️</code></td>
+<td>💎 <code>💎</code></td>
+<td>💍 <code>💍</code></td>
+</tr>
+<tr>
+<td>🏆 <code>🏆</code></td>
+<td>🎼 <code>🎼</code></td>
+<td>🎹 <code>🎹</code></td>
+</tr>
+<tr>
+<td>🎻 <code>🎻</code></td>
+<td>👾 <code>👾</code></td>
+<td>🎮 <code>🎮</code></td>
+</tr>
+<tr>
+<td>🃏 <code>🃏</code></td>
+<td>🎴 <code>🎴</code></td>
+<td>🎲 <code>🎲</code></td>
+</tr>
+<tr>
+<td>🎯 <code>🎯</code></td>
+<td>🀄 <code>🀄</code></td>
+<td>🎬 <code>🎬</code></td>
+</tr>
+<tr>
+<td>📝 <code>📝</code></td>
+<td>✏ <code>✏</code></td>
+<td>📖 <code>📖</code></td>
+</tr>
+<tr>
+<td>🎨 <code>🎨</code></td>
+<td>🎤 <code>🎤</code></td>
+<td>🎧 <code>🎧</code></td>
+</tr>
+<tr>
+<td>🎺 <code>🎺</code></td>
+<td>🎷 <code>🎷</code></td>
+<td>🎸 <code>🎸</code></td>
+</tr>
+<tr>
+<td>👞 <code>👞</code></td>
+<td>👡 <code>👡</code></td>
+<td>👠 <code>👠</code></td>
+</tr>
+<tr>
+<td>💄 <code>💄</code></td>
+<td>👢 <code>👢</code></td>
+<td>👕 <code>👕</code></td>
+</tr>
+<tr>
+<td>👕 <code>👕</code></td>
+<td>👔 <code>👔</code></td>
+<td>👚 <code>👚</code></td>
+</tr>
+<tr>
+<td>👗 <code>👗</code></td>
+<td>🎽 <code>🎽</code></td>
+<td>👖 <code>👖</code></td>
+</tr>
+<tr>
+<td>👘 <code>👘</code></td>
+<td>👙 <code>👙</code></td>
+<td>🎀 <code>🎀</code></td>
+</tr>
+<tr>
+<td>🎩 <code>🎩</code></td>
+<td>👑 <code>👑</code></td>
+<td>👒 <code>👒</code></td>
+</tr>
+<tr>
+<td>👞 <code>👞</code></td>
+<td>🌂 <code>🌂</code></td>
+<td>💼 <code>💼</code></td>
+</tr>
+<tr>
+<td>👜 <code>👜</code></td>
+<td>👝 <code>👝</code></td>
+<td>👛 <code>👛</code></td>
+</tr>
+<tr>
+<td>👓 <code>👓</code></td>
+<td>🎣 <code>🎣</code></td>
+<td>☕ <code>☕</code></td>
+</tr>
+<tr>
+<td>🍵 <code>🍵</code></td>
+<td>🍶 <code>🍶</code></td>
+<td>🍼 <code>🍼</code></td>
+</tr>
+<tr>
+<td>🍺 <code>🍺</code></td>
+<td>🍻 <code>🍻</code></td>
+<td>🍸 <code>🍸</code></td>
+</tr>
+<tr>
+<td>🍹 <code>🍹</code></td>
+<td>🍷 <code>🍷</code></td>
+<td>🍴 <code>🍴</code></td>
+</tr>
+<tr>
+<td>🍕 <code>🍕</code></td>
+<td>🍔 <code>🍔</code></td>
+<td>🍟 <code>🍟</code></td>
+</tr>
+<tr>
+<td>🍗 <code>🍗</code></td>
+<td>🍖 <code>🍖</code></td>
+<td>🍝 <code>🍝</code></td>
+</tr>
+<tr>
+<td>🍛 <code>🍛</code></td>
+<td>🍤 <code>🍤</code></td>
+<td>🍱 <code>🍱</code></td>
+</tr>
+<tr>
+<td>🍣 <code>🍣</code></td>
+<td>🍥 <code>🍥</code></td>
+<td>🍙 <code>🍙</code></td>
+</tr>
+<tr>
+<td>🍘 <code>🍘</code></td>
+<td>🍚 <code>🍚</code></td>
+<td>🍜 <code>🍜</code></td>
+</tr>
+<tr>
+<td>🍲 <code>🍲</code></td>
+<td>🍢 <code>🍢</code></td>
+<td>🍡 <code>🍡</code></td>
+</tr>
+<tr>
+<td>🥚 <code>🥚</code></td>
+<td>🍞 <code>🍞</code></td>
+<td>🍩 <code>🍩</code></td>
+</tr>
+<tr>
+<td>🍮 <code>🍮</code></td>
+<td>🍦 <code>🍦</code></td>
+<td>🍨 <code>🍨</code></td>
+</tr>
+<tr>
+<td>🍧 <code>🍧</code></td>
+<td>🎂 <code>🎂</code></td>
+<td>🍰 <code>🍰</code></td>
+</tr>
+<tr>
+<td>🍪 <code>🍪</code></td>
+<td>🍫 <code>🍫</code></td>
+<td>🍬 <code>🍬</code></td>
+</tr>
+<tr>
+<td>🍭 <code>🍭</code></td>
+<td>🍯 <code>🍯</code></td>
+<td>🍎 <code>🍎</code></td>
+</tr>
+<tr>
+<td>🍏 <code>🍏</code></td>
+<td>🍊 <code>🍊</code></td>
+<td>🍋 <code>🍋</code></td>
+</tr>
+<tr>
+<td>🍒 <code>🍒</code></td>
+<td>🍇 <code>🍇</code></td>
+<td>🍉 <code>🍉</code></td>
+</tr>
+<tr>
+<td>🍓 <code>🍓</code></td>
+<td>🍑 <code>🍑</code></td>
+<td>🍈 <code>🍈</code></td>
+</tr>
+<tr>
+<td>🍌 <code>🍌</code></td>
+<td>🍐 <code>🍐</code></td>
+<td>🍍 <code>🍍</code></td>
+</tr>
+<tr>
+<td>🍠 <code>🍠</code></td>
+<td>🍆 <code>🍆</code></td>
+<td>🍅 <code>🍅</code></td>
+</tr>
+<tr>
+<td>🌽 <code>🌽</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Places</p>
+<table>
+<thead>
+<tr>
+<th>🏠 <code>🏠</code></th>
+<th>🏡 <code>🏡</code></th>
+<th>🏫 <code>🏫</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🏢 <code>🏢</code></td>
+<td>🏣 <code>🏣</code></td>
+<td>🏥 <code>🏥</code></td>
+</tr>
+<tr>
+<td>🏦 <code>🏦</code></td>
+<td>🏪 <code>🏪</code></td>
+<td>🏩 <code>🏩</code></td>
+</tr>
+<tr>
+<td>🏨 <code>🏨</code></td>
+<td>💒 <code>💒</code></td>
+<td>⛪ <code>⛪</code></td>
+</tr>
+<tr>
+<td>🏬 <code>🏬</code></td>
+<td>🏤 <code>🏤</code></td>
+<td>🌇 <code>🌇</code></td>
+</tr>
+<tr>
+<td>🌆 <code>🌆</code></td>
+<td>🏯 <code>🏯</code></td>
+<td>🏰 <code>🏰</code></td>
+</tr>
+<tr>
+<td>⛺ <code>⛺</code></td>
+<td>🏭 <code>🏭</code></td>
+<td>🗼 <code>🗼</code></td>
+</tr>
+<tr>
+<td>🗾 <code>🗾</code></td>
+<td>🗻 <code>🗻</code></td>
+<td>🌄 <code>🌄</code></td>
+</tr>
+<tr>
+<td>🌅 <code>🌅</code></td>
+<td>🌠 <code>🌠</code></td>
+<td>🗽 <code>🗽</code></td>
+</tr>
+<tr>
+<td>🌉 <code>🌉</code></td>
+<td>🎠 <code>🎠</code></td>
+<td>🌈 <code>🌈</code></td>
+</tr>
+<tr>
+<td>🎡 <code>🎡</code></td>
+<td>⛲ <code>⛲</code></td>
+<td>🎢 <code>🎢</code></td>
+</tr>
+<tr>
+<td>🚢 <code>🚢</code></td>
+<td>🚤 <code>🚤</code></td>
+<td>⛵ <code>⛵</code></td>
+</tr>
+<tr>
+<td>⛵ <code>⛵</code></td>
+<td>🚣‍♂️ <code>🚣‍♂️</code></td>
+<td>⚓ <code>⚓</code></td>
+</tr>
+<tr>
+<td>🚀 <code>🚀</code></td>
+<td>✈️ <code>✈️</code></td>
+<td>🚁 <code>🚁</code></td>
+</tr>
+<tr>
+<td>🚂 <code>🚂</code></td>
+<td>🚊 <code>🚊</code></td>
+<td>🚞 <code>🚞</code></td>
+</tr>
+<tr>
+<td>🚲 <code>🚲</code></td>
+<td>🚡 <code>🚡</code></td>
+<td>🚟 <code>🚟</code></td>
+</tr>
+<tr>
+<td>🚠 <code>🚠</code></td>
+<td>🚜 <code>🚜</code></td>
+<td>🚙 <code>🚙</code></td>
+</tr>
+<tr>
+<td>🚘 <code>🚘</code></td>
+<td>🚗 <code>🚗</code></td>
+<td>🚗 <code>🚗</code></td>
+</tr>
+<tr>
+<td>🚕 <code>🚕</code></td>
+<td>🚖 <code>🚖</code></td>
+<td>🚛 <code>🚛</code></td>
+</tr>
+<tr>
+<td>🚌 <code>🚌</code></td>
+<td>🚍 <code>🚍</code></td>
+<td>🚨 <code>🚨</code></td>
+</tr>
+<tr>
+<td>🚓 <code>🚓</code></td>
+<td>🚔 <code>🚔</code></td>
+<td>🚒 <code>🚒</code></td>
+</tr>
+<tr>
+<td>🚑 <code>🚑</code></td>
+<td>🚐 <code>🚐</code></td>
+<td>🚚 <code>🚚</code></td>
+</tr>
+<tr>
+<td>🚋 <code>🚋</code></td>
+<td>🚉 <code>🚉</code></td>
+<td>🚆 <code>🚆</code></td>
+</tr>
+<tr>
+<td>🚅 <code>🚅</code></td>
+<td>🚄 <code>🚄</code></td>
+<td>🚈 <code>🚈</code></td>
+</tr>
+<tr>
+<td>🚝 <code>🚝</code></td>
+<td>🚃 <code>🚃</code></td>
+<td>🚎 <code>🚎</code></td>
+</tr>
+<tr>
+<td>🎫 <code>🎫</code></td>
+<td>⛽ <code>⛽</code></td>
+<td>🚦 <code>🚦</code></td>
+</tr>
+<tr>
+<td>🚥 <code>🚥</code></td>
+<td>⚠️ <code>⚠️</code></td>
+<td>🚧 <code>🚧</code></td>
+</tr>
+<tr>
+<td>🔰 <code>🔰</code></td>
+<td>🏧 <code>🏧</code></td>
+<td>🎰 <code>🎰</code></td>
+</tr>
+<tr>
+<td>🚏 <code>🚏</code></td>
+<td>💈 <code>💈</code></td>
+<td>♨️ <code>♨️</code></td>
+</tr>
+<tr>
+<td>🏁 <code>🏁</code></td>
+<td>🎌 <code>🎌</code></td>
+<td>🏮 <code>🏮</code></td>
+</tr>
+<tr>
+<td>🗿 <code>🗿</code></td>
+<td>🎪 <code>🎪</code></td>
+<td>🎭 <code>🎭</code></td>
+</tr>
+<tr>
+<td>📍 <code>📍</code></td>
+<td>🚩 <code>🚩</code></td>
+<td>🇯🇵 <code>🇯🇵</code></td>
+</tr>
+<tr>
+<td>🇰🇷 <code>🇰🇷</code></td>
+<td>🇨🇳 <code>🇨🇳</code></td>
+<td>🇺🇸 <code>🇺🇸</code></td>
+</tr>
+<tr>
+<td>🇫🇷 <code>🇫🇷</code></td>
+<td>🇪🇸 <code>🇪🇸</code></td>
+<td>🇮🇹 <code>🇮🇹</code></td>
+</tr>
+<tr>
+<td>🇷🇺 <code>🇷🇺</code></td>
+<td>🇬🇧 <code>🇬🇧</code></td>
+<td>🇬🇧 <code>🇬🇧</code></td>
+</tr>
+<tr>
+<td>🇩🇪 <code>🇩🇪</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Symbols</p>
+<table>
+<thead>
+<tr>
+<th>1️⃣ <code>1️⃣</code></th>
+<th>2️⃣ <code>2️⃣</code></th>
+<th>3️⃣ <code>3️⃣</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4️⃣ <code>4️⃣</code></td>
+<td>5️⃣ <code>5️⃣</code></td>
+<td>6️⃣ <code>6️⃣</code></td>
+</tr>
+<tr>
+<td>7️⃣ <code>7️⃣</code></td>
+<td>8️⃣ <code>8️⃣</code></td>
+<td>9️⃣ <code>9️⃣</code></td>
+</tr>
+<tr>
+<td>🔟 <code>🔟</code></td>
+<td>🔢 <code>🔢</code></td>
+<td>0️⃣ <code>0️⃣</code></td>
+</tr>
+<tr>
+<td>#️⃣ <code>#️⃣</code></td>
+<td>🔣 <code>🔣</code></td>
+<td>◀️ <code>◀️</code></td>
+</tr>
+<tr>
+<td>⬇️ <code>⬇️</code></td>
+<td>▶️ <code>▶️</code></td>
+<td>⬅️ <code>⬅️</code></td>
+</tr>
+<tr>
+<td>🔠 <code>🔠</code></td>
+<td>🔡 <code>🔡</code></td>
+<td>🔤 <code>🔤</code></td>
+</tr>
+<tr>
+<td>↙️ <code>↙️</code></td>
+<td>↘️ <code>↘️</code></td>
+<td>➡️ <code>➡️</code></td>
+</tr>
+<tr>
+<td>⬆️ <code>⬆️</code></td>
+<td>↖️ <code>↖️</code></td>
+<td>↗️ <code>↗️</code></td>
+</tr>
+<tr>
+<td>⏬ <code>⏬</code></td>
+<td>⏫ <code>⏫</code></td>
+<td>🔽 <code>🔽</code></td>
+</tr>
+<tr>
+<td>⤵️ <code>⤵️</code></td>
+<td>⤴️ <code>⤴️</code></td>
+<td>↩️ <code>↩️</code></td>
+</tr>
+<tr>
+<td>↪️ <code>↪️</code></td>
+<td>↔️ <code>↔️</code></td>
+<td>↕️ <code>↕️</code></td>
+</tr>
+<tr>
+<td>🔼 <code>🔼</code></td>
+<td>🔃 <code>🔃</code></td>
+<td>🔄 <code>🔄</code></td>
+</tr>
+<tr>
+<td>⏪ <code>⏪</code></td>
+<td>⏩ <code>⏩</code></td>
+<td>ℹ️ <code>ℹ️</code></td>
+</tr>
+<tr>
+<td>🆗 <code>🆗</code></td>
+<td>🔀 <code>🔀</code></td>
+<td>🔁 <code>🔁</code></td>
+</tr>
+<tr>
+<td>🔂 <code>🔂</code></td>
+<td>🆕 <code>🆕</code></td>
+<td>🔝 <code>🔝</code></td>
+</tr>
+<tr>
+<td>🆙 <code>🆙</code></td>
+<td>🆒 <code>🆒</code></td>
+<td>🆓 <code>🆓</code></td>
+</tr>
+<tr>
+<td>🆖 <code>🆖</code></td>
+<td>🎦 <code>🎦</code></td>
+<td>🈁 <code>🈁</code></td>
+</tr>
+<tr>
+<td>📶 <code>📶</code></td>
+<td>🈹 <code>🈹</code></td>
+<td>🈴 <code>🈴</code></td>
+</tr>
+<tr>
+<td>🈺 <code>🈺</code></td>
+<td>🈯 <code>🈯</code></td>
+<td>🈷️ <code>🈷️</code></td>
+</tr>
+<tr>
+<td>🈶 <code>🈶</code></td>
+<td>🈵 <code>🈵</code></td>
+<td>🈚 <code>🈚</code></td>
+</tr>
+<tr>
+<td>🈸 <code>🈸</code></td>
+<td>🈳 <code>🈳</code></td>
+<td>🈲 <code>🈲</code></td>
+</tr>
+<tr>
+<td>🈂️ <code>🈂️</code></td>
+<td>🚻 <code>🚻</code></td>
+<td>🚹 <code>🚹</code></td>
+</tr>
+<tr>
+<td>🚺 <code>🚺</code></td>
+<td>🚼 <code>🚼</code></td>
+<td>🚭 <code>🚭</code></td>
+</tr>
+<tr>
+<td>🅿️ <code>🅿️</code></td>
+<td>♿ <code>♿</code></td>
+<td>🚇 <code>🚇</code></td>
+</tr>
+<tr>
+<td>🛄 <code>🛄</code></td>
+<td>🉑 <code>🉑</code></td>
+<td>🚾 <code>🚾</code></td>
+</tr>
+<tr>
+<td>🚰 <code>🚰</code></td>
+<td>🚮 <code>🚮</code></td>
+<td>㊙️ <code>㊙️</code></td>
+</tr>
+<tr>
+<td>㊗️ <code>㊗️</code></td>
+<td>ⓜ️ <code>ⓜ️</code></td>
+<td>🛂 <code>🛂</code></td>
+</tr>
+<tr>
+<td>🛅 <code>🛅</code></td>
+<td>🛃 <code>🛃</code></td>
+<td>🉐 <code>🉐</code></td>
+</tr>
+<tr>
+<td>🆑 <code>🆑</code></td>
+<td>🆘 <code>🆘</code></td>
+<td>🆔 <code>🆔</code></td>
+</tr>
+<tr>
+<td>🚫 <code>🚫</code></td>
+<td>🔞 <code>🔞</code></td>
+<td>📵 <code>📵</code></td>
+</tr>
+<tr>
+<td>🚯 <code>🚯</code></td>
+<td>🚱 <code>🚱</code></td>
+<td>🚳 <code>🚳</code></td>
+</tr>
+<tr>
+<td>🚷 <code>🚷</code></td>
+<td>🚸 <code>🚸</code></td>
+<td>⛔ <code>⛔</code></td>
+</tr>
+<tr>
+<td>✳️ <code>✳️</code></td>
+<td>✴️ <code>✴️</code></td>
+<td>💟 <code>💟</code></td>
+</tr>
+<tr>
+<td>🆚 <code>🆚</code></td>
+<td>📳 <code>📳</code></td>
+<td>📴 <code>📴</code></td>
+</tr>
+<tr>
+<td>💹 <code>💹</code></td>
+<td>💱 <code>💱</code></td>
+<td>♈ <code>♈</code></td>
+</tr>
+<tr>
+<td>♉ <code>♉</code></td>
+<td>♊ <code>♊</code></td>
+<td>♋ <code>♋</code></td>
+</tr>
+<tr>
+<td>♌ <code>♌</code></td>
+<td>♍ <code>♍</code></td>
+<td>♎ <code>♎</code></td>
+</tr>
+<tr>
+<td>♏ <code>♏</code></td>
+<td>♐ <code>♐</code></td>
+<td>♑ <code>♑</code></td>
+</tr>
+<tr>
+<td>♒ <code>♒</code></td>
+<td>♓ <code>♓</code></td>
+<td>⛎ <code>⛎</code></td>
+</tr>
+<tr>
+<td>🔯 <code>🔯</code></td>
+<td>❎ <code>❎</code></td>
+<td>🅰️ <code>🅰️</code></td>
+</tr>
+<tr>
+<td>🅱️ <code>🅱️</code></td>
+<td>🆎 <code>🆎</code></td>
+<td>🅾️ <code>🅾️</code></td>
+</tr>
+<tr>
+<td>💠 <code>💠</code></td>
+<td>♻️ <code>♻️</code></td>
+<td>🔚 <code>🔚</code></td>
+</tr>
+<tr>
+<td>🔛 <code>🔛</code></td>
+<td>🔜 <code>🔜</code></td>
+<td>🕐 <code>🕐</code></td>
+</tr>
+<tr>
+<td>🕜 <code>🕜</code></td>
+<td>🕙 <code>🕙</code></td>
+<td>🕥 <code>🕥</code></td>
+</tr>
+<tr>
+<td>🕚 <code>🕚</code></td>
+<td>🕦 <code>🕦</code></td>
+<td>🕛 <code>🕛</code></td>
+</tr>
+<tr>
+<td>🕧 <code>🕧</code></td>
+<td>🕑 <code>🕑</code></td>
+<td>🕝 <code>🕝</code></td>
+</tr>
+<tr>
+<td>🕒 <code>🕒</code></td>
+<td>🕞 <code>🕞</code></td>
+<td>🕓 <code>🕓</code></td>
+</tr>
+<tr>
+<td>🕟 <code>🕟</code></td>
+<td>🕔 <code>🕔</code></td>
+<td>🕠 <code>🕠</code></td>
+</tr>
+<tr>
+<td>🕕 <code>🕕</code></td>
+<td>🕡 <code>🕡</code></td>
+<td>🕖 <code>🕖</code></td>
+</tr>
+<tr>
+<td>🕢 <code>🕢</code></td>
+<td>🕗 <code>🕗</code></td>
+<td>🕣 <code>🕣</code></td>
+</tr>
+<tr>
+<td>🕘 <code>🕘</code></td>
+<td>🕤 <code>🕤</code></td>
+<td>💲 <code>💲</code></td>
+</tr>
+<tr>
+<td>©️ <code>©️</code></td>
+<td>®️ <code>®️</code></td>
+<td>™️ <code>™️</code></td>
+</tr>
+<tr>
+<td>❌ <code>❌</code></td>
+<td>❗ <code>❗</code></td>
+<td>‼️ <code>‼️</code></td>
+</tr>
+<tr>
+<td>⁉️ <code>⁉️</code></td>
+<td>⭕ <code>⭕</code></td>
+<td>✖️ <code>✖️</code></td>
+</tr>
+<tr>
+<td>➕ <code>➕</code></td>
+<td>➖ <code>➖</code></td>
+<td>➗ <code>➗</code></td>
+</tr>
+<tr>
+<td>💮 <code>💮</code></td>
+<td>💯 <code>💯</code></td>
+<td>✔️ <code>✔️</code></td>
+</tr>
+<tr>
+<td>☑️ <code>☑️</code></td>
+<td>🔘 <code>🔘</code></td>
+<td>🔗 <code>🔗</code></td>
+</tr>
+<tr>
+<td>➰ <code>➰</code></td>
+<td>〰️ <code>〰️</code></td>
+<td>〽️ <code>〽️</code></td>
+</tr>
+<tr>
+<td>🔱 <code>🔱</code></td>
+<td>:black_square: <code>:black_square:</code></td>
+<td>:white_square: <code>:white_square:</code></td>
+</tr>
+<tr>
+<td>✅ <code>✅</code></td>
+<td>🔲 <code>🔲</code></td>
+<td>🔳 <code>🔳</code></td>
+</tr>
+<tr>
+<td>⚫ <code>⚫</code></td>
+<td>⚪ <code>⚪</code></td>
+<td>🔴 <code>🔴</code></td>
+</tr>
+<tr>
+<td>🔵 <code>🔵</code></td>
+<td>🔷 <code>🔷</code></td>
+<td>🔶 <code>🔶</code></td>
+</tr>
+<tr>
+<td>🔹 <code>🔹</code></td>
+<td>🔸 <code>🔸</code></td>
+<td>🔺 <code>🔺</code></td>
+</tr>
+<tr>
+<td>🔻 <code>🔻</code></td>
+<td>:shipit: <code>:shipit:</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="学习资源扩展">学习资源扩展</h2>
+<ul>
+<li>GitHub风格的Markdown规范:<a
+  href="https://gfm.docschina.org/zh-hans/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://gfm.docschina.org/zh-hans/</a></li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>主页地址:<a
+  href="https://cfanzp.com"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://cfanzp.com</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-17&#32;08:22:14>更新于 2022-08-17&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/markdown/" data-title="Markdown需要掌握的基础"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/markdown/">markdown</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/weak-net/" class="prev" rel="prev" title="弱网测试环境的搭建"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>弱网测试环境的搭建</a>
+      <a href="/tools_download/" class="next" rel="next" title="常用工具下载地址汇总">常用工具下载地址汇总<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

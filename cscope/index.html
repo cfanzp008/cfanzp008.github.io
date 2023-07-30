@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>vim配置使用cscope - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cscope, vim, ubuntu, c/c&#43;&#43;' /><meta itemprop="name" content="vim配置使用cscope">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-07-09T22:34:12+08:00" />
+<meta itemprop="dateModified" content="2023-07-09T22:34:12+08:00" />
+<meta itemprop="wordCount" content="469"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="cscope,vim,ubuntu,c/c&#43;&#43;," /><meta property="og:title" content="vim配置使用cscope" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/cscope/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-07-09T22:34:12+08:00" />
+<meta property="article:modified_time" content="2023-07-09T22:34:12+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="vim配置使用cscope"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/cscope/" /><link rel="prev" href="https://cfanzp.com/tmux-source-bashrc-invalid/" /><link rel="next" href="https://cfanzp.com/clangd/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "vim配置使用cscope",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/cscope\/"
+    },"genre": "posts","keywords": "cscope, vim, ubuntu, c\/c\u002b\u002b","wordcount":  469 ,
+    "url": "https:\/\/cfanzp.com\/cscope\/","datePublished": "2023-07-09T22:34:12+08:00","dateModified": "2023-07-09T22:34:12+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/devtools/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/game/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/go/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/devtools/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 工具</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/game/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/proj/"
+                  
+                  
+                ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>vim配置使用cscope</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/c/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c/c++</a></span></div>
+      <div class="post-meta-line"><span title=2023-07-09&#32;22:34:12><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-09">2023-07-09</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 469 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ubuntu2004-安装cscope">ubuntu20.04 安装cscope</a></li>
+    <li><a href="#cscope-生成索引文件">cscope 生成索引文件</a></li>
+    <li><a href="#cscoptvim-快捷键配置">cscopt.vim 快捷键配置</a></li>
+    <li><a href="#vim-配置">vim 配置</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="vim配置使用cscope">vim配置使用cscope</h1>
+<h2 id="ubuntu2004-安装cscope">ubuntu20.04 安装cscope</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install cscope
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cscope-生成索引文件">cscope 生成索引文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="n">find</span><span class="w"> </span><span class="o">`</span><span class="n">pwd</span><span class="o">`</span><span class="w"> </span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&#34;*.h&#34;</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&#34;*.hpp&#34;</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&#34;*.cpp&#34;</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&#34;*.cc&#34;</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&#34;*.c&#34;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cscope</span><span class="p">.</span><span class="n">files</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cscope</span><span class="w"> </span><span class="o">-</span><span class="n">Rbq</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">cscope</span><span class="p">.</span><span class="n">files</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">或者</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cscope</span><span class="w"> </span><span class="o">-</span><span class="n">Rbq</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">cscope</span><span class="w"> </span><span class="err">默认在当前路径查找</span><span class="n">cscope</span><span class="p">.</span><span class="n">files</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cscoptvim-快捷键配置">cscopt.vim 快捷键配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Below is the minimum key mappings.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fa :call cscope#findInteractive(expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;l :call ToggleLocationList()&lt;CR&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Some optional key mappings to search directly.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; s: Find this C symbol
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fs :call cscope#find(&#39;s&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; g: Find this definition
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fg :call cscope#find(&#39;g&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; d: Find functions called by this function
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fd :call cscope#find(&#39;d&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; c: Find functions calling this function
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fc :call cscope#find(&#39;c&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; t: Find this text string
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;ft :call cscope#find(&#39;t&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; e: Find this egrep pattern
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fe :call cscope#find(&#39;e&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; f: Find this file
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;ff :call cscope#find(&#39;f&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; i: Find files #including this file
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;fi :call cscope#find(&#39;i&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vim-配置">vim 配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;vim-scripts/cscope.vim&#39;
+</span></span><span class="line"><span class="cl">&#34;cscope
+</span></span><span class="line"><span class="cl">set cscopequickfix=s-,c-,d-,i-,t-,e-
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;sa :call cscope#findInteractive(expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;sl :call ToggleLocationList()&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; s: Find this C symbol
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;ss :call cscope#find(&#39;s&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; &#34; g: Find this definition
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;sg :call cscope#find(&#39;g&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; &#34; d: Find functions called by this function
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;sd :call cscope#find(&#39;d&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; &#34; c: Find functions calling this function
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;sc :call cscope#find(&#39;c&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; t: Find this text string
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;st :call cscope#find(&#39;t&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; e: Find this egrep pattern
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;se :call cscope#find(&#39;e&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; f: Find this file
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;sf :call cscope#find(&#39;f&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34; i: Find files #including this file
+</span></span><span class="line"><span class="cl">nnoremap  &lt;leader&gt;si :call cscope#find(&#39;i&#39;, expand(&#39;&lt;cword&gt;&#39;))&lt;CR&gt;
+</span></span><span class="line"><span class="cl">if has(&#34;cscope&#34;)
+</span></span><span class="line"><span class="cl">    set csprg=/usr/bin/cscope
+</span></span><span class="line"><span class="cl">    set csto=0
+</span></span><span class="line"><span class="cl">    set cst
+</span></span><span class="line"><span class="cl">    set nocsverb
+</span></span><span class="line"><span class="cl">    &#34; add any database in current directory
+</span></span><span class="line"><span class="cl">    if filereadable(&#34;cscope.out&#34;)
+</span></span><span class="line"><span class="cl">        cs add cscope.out
+</span></span><span class="line"><span class="cl">        &#34; else add database pointed to by environment
+</span></span><span class="line"><span class="cl">    elseif $CSCOPE_DB != &#34;&#34;
+</span></span><span class="line"><span class="cl">        cs add $CSCOPE_DB
+</span></span><span class="line"><span class="cl">    endif
+</span></span><span class="line"><span class="cl">    set csverb
+</span></span><span class="line"><span class="cl">endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;map g&lt;C-]&gt; :cs find 3 &lt;C-R&gt;=expand(“&lt;cword&gt;”)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;map g&lt;C-/&gt; :cs find 0 &lt;C-R&gt;=expand(“&lt;cword&gt;”)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;s :cs find s &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;g :cs find g &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;c :cs find c &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;t :cs find t &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;e :cs find e &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;f :cs find f &lt;C-R&gt;=expand(&#34;&lt;cfile&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;i :cs find i &lt;C-R&gt;=expand(&#34;&lt;cfile&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;nmap &lt;C-_&gt;d :cs find d &lt;C-R&gt;=expand(&#34;&lt;cword&gt;&#34;)&lt;CR&gt;&lt;CR&gt;
+</span></span><span class="line"><span class="cl">&#34;设定是否使用 quickfix 窗口来显示 cscope 结果
+</span></span><span class="line"><span class="cl">&#34;set cscopequickfix=s-,c-,d-,i-,t-,e-
+</span></span><span class="line"><span class="cl">&#34;生成数据库
+</span></span><span class="line"><span class="cl">&#34;cscope -Rbkq
+</span></span><span class="line"><span class="cl">&#34;R 表示把所有子目录里的文件也建立索引
+</span></span><span class="line"><span class="cl">&#34;b 表示cscope不启动自带的用户界面，而仅仅建立符号数据库
+</span></span><span class="line"><span class="cl">&#34;q生成cscope.in.out和cscope.po.out文件，加快cscope的索引速度
+</span></span><span class="line"><span class="cl">&#34;k在生成索引文件时，不搜索/usr/include目录
+</span></span><span class="line"><span class="cl">&#34;end cscope config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://www.jianshu.com/p/5d53802ab745"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>参考1</a></li>
+<li><a
+  href="https://blog.csdn.net/hunter___/article/details/80333543"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>参考2</a></li>
+<li><a
+  href="https://zhuanlan.zhihu.com/p/504862247"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://zhuanlan.zhihu.com/p/504862247</a></li>
+<li><a
+  href="https://blog.csdn.net/ywgdk/article/details/53607874"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.csdn.net/ywgdk/article/details/53607874</a></li>
+<li><a
+  href="https://github.com/vim-scripts/cscope.vim"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>cscop.vim</a></li>
+<li><a
+  href="https://www.cnblogs.com/willsonli/p/6561398.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.cnblogs.com/willsonli/p/6561398.html</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-07-09&#32;22:34:12>更新于 2023-07-09&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/cscope/" data-title="vim配置使用cscope"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cscope/">cscope</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/c/c&#43;&#43;/">c/c&#43;&#43;</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/tmux-source-bashrc-invalid/" class="prev" rel="prev" title="ubuntu20.04中source .bashrc后在tmux中无效？"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu20.04中source .bashrc后在tmux中无效？</a>
+      <a href="/clangd/" class="next" rel="next" title="clangd如何使用？">clangd如何使用？<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

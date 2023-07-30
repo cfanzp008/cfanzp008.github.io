@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>bc - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/bc/</link>
+    <description>bc - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 01 Aug 2022 13:25:15 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/bc/" rel="self" type="application/rss+xml" /><item>
+  <title>linux-计算器命令bc</title>
+  <link>https://cfanzp.com/linux-bc/</link>
+  <pubDate>Mon, 01 Aug 2022 13:25:15 &#43;0800</pubDate>
+  <author>cfanzp</author>
+  <guid>https://cfanzp.com/linux-bc/</guid>
+  <description><![CDATA[linux-计算器命令bc 基本用法 查看版本 1 2 3 $ bc -v bc 1.07.1 Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc. 查看帮助 1 2 3 4 5 6 7 8 9 $ bc -h usage: bc [options] [file ...] -h --help print this usage and exit -i --interactive force interactive mode -l --mathlib use the predefined math routines -q --quiet don&#39;t print initial banner -s --standard non-standard bc constructs are errors -w --warn warn about non-standard bc constructs -v --version print version information and exit 支持的运算 +:加 -:减 *:乘 /:除 ^:指数 %:求余数 sqrt:开方 ibase:输入进制 obase:输出进制 ;要计算多个结果用分号分隔 scale:小数部分位数 1.]]></description>
+</item>
+</channel>
+</rss>

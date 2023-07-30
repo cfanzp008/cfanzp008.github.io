@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>du - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/du/</link>
+    <description>du - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 20 Jul 2022 22:30:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/du/" rel="self" type="application/rss+xml" /><item>
+  <title>linux-du命令</title>
+  <link>https://cfanzp.com/linux-du/</link>
+  <pubDate>Wed, 20 Jul 2022 22:30:30 &#43;0800</pubDate>
+  <author>cfanzp</author>
+  <guid>https://cfanzp.com/linux-du/</guid>
+  <description><![CDATA[du命令 du命令简介 du命令是linux系统里的文件大小查看的命令。 du命令的应用场景十分广泛： 需要查看单个目录里面多个文件总大小。 需要查看目录中每个文件的大小以及每个子文件夹中文件的大小。 查看日志文件的大小。 查看文件大小并排序，找出最大的或最小的文件。 其它需要统计文件大小的场景。 ls,df也有类似的功能，但是du更侧重于文件大小，并且更灵活好用。是运维人员、服务端开发人员以及其他linux用户很好的工具。掌握du命令的用法十分有必要。 du命令的使用 查看帮助 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 用法：du [选项].]]></description>
+</item>
+</channel>
+</rss>

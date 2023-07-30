@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Vim常用插件有哪些? - Linux开发</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
+molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
+更多vim用发可以浏览: https://cfanzp.com/categories/vim/" /><meta name="keywords" content='vim' /><meta itemprop="name" content="Vim常用插件有哪些?">
+<meta itemprop="description" content="Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
+molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
+更多vim用发可以浏览: https://cfanzp.com/categories/vim/"><meta itemprop="datePublished" content="2022-08-26T10:25:44+08:00" />
+<meta itemprop="dateModified" content="2022-08-26T10:25:44+08:00" />
+<meta itemprop="wordCount" content="46"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="vim," /><meta property="og:title" content="Vim常用插件有哪些?" />
+<meta property="og:description" content="Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
+molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
+更多vim用发可以浏览: https://cfanzp.com/categories/vim/" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/posts/vim-plug-in/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-26T10:25:44+08:00" />
+<meta property="article:modified_time" content="2022-08-26T10:25:44+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
+
+<meta name="twitter:title" content="Vim常用插件有哪些?"/>
+<meta name="twitter:description" content="Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
+molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
+更多vim用发可以浏览: https://cfanzp.com/categories/vim/"/>
+<meta name="application-name" content="Linux开发">
+<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/vim-plug-in/" /><link rel="prev" href="https://cfanzp.com/posts/skynet-res/" /><link rel="next" href="https://cfanzp.com/posts/vim-swap/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Vim常用插件有哪些?",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/posts\/vim-plug-in\/"
+    },"genre": "posts","keywords": "vim","wordcount":  46 ,
+    "url": "https:\/\/cfanzp.com\/posts\/vim-plug-in\/","datePublished": "2022-08-26T10:25:44+08:00","dateModified": "2022-08-26T10:25:44+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发"
+    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Vim常用插件有哪些?</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div>
+      <div class="post-meta-line"><span title=2022-08-26&#32;10:25:44><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 46 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="vim常用插件有哪些">Vim常用插件有哪些?</h1>
+<p>Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。</p>
+<ul>
+<li>molokai配色方案</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vimrc" data-lang="vimrc"><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;git://github.com/tomasr/molokai.git&#39;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>树形插件:nerdtree</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;preservim/nerdtree&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>函数标签栏:tagbar</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;majutsushi/tagbar&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>对齐工具:tabular</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;godlygeek/tabular&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>文件查找插件:ctrlp</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;ctrlpvim/ctrlp.vim&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>文本查找插件:ag.vim</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;git://github.com/rking/ag.vim.git&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>markdown预览插件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;iamcco/markdown-preview.vim&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>fzf 查找插件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;junegunn/fzf.vim&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>LeaderF查找插件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。</p>
+<p>更多vim用发可以浏览: <a
+  href="https://cfanzp.com/categories/vim/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://cfanzp.com/categories/vim/</a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-08-26&#32;10:25:44>更新于 2022-08-26&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/posts/vim-plug-in/" data-title="Vim常用插件有哪些?"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/skynet-res/" class="prev" rel="prev" title="skynet学习资源汇总"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>skynet学习资源汇总</a>
+      <a href="/posts/vim-swap/" class="next" rel="next" title="vim交换文件是否应该开启？">vim交换文件是否应该开启？<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

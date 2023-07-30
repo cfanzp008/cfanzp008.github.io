@@ -1,0 +1,91 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>vim - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/vim/</link>
+    <description>vim - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 09 Jul 2023 22:34:12 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/vim/" rel="self" type="application/rss+xml" /><item>
+  <title>vim配置使用cscope</title>
+  <link>https://cfanzp.com/cscope/</link>
+  <pubDate>Sun, 09 Jul 2023 22:34:12 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/cscope/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Vim保存的时候提示Read only如何解决?</title>
+  <link>https://cfanzp.com/vim-readonly/</link>
+  <pubDate>Sat, 03 Jun 2023 22:12:44 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/vim-readonly/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>ubuntu中为nvim安装coc插件支持c&#43;&#43;</title>
+  <link>https://cfanzp.com/nvim-coc/</link>
+  <pubDate>Sun, 07 May 2023 19:33:49 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/nvim-coc/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>把Vim作为Unity开发的编辑器</title>
+  <link>https://cfanzp.com/unity-vim/</link>
+  <pubDate>Fri, 05 May 2023 20:53:36 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/unity-vim/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>解决mac系统中vscode中使用vim插件，按下某个键不连续输入的问题</title>
+  <link>https://cfanzp.com/vscode-vim-key-fix/</link>
+  <pubDate>Thu, 04 May 2023 11:45:42 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/vscode-vim-key-fix/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>mac中安ctags取代原有ctags解决Vim报错问题</title>
+  <link>https://cfanzp.com/mac-vim-ctags/</link>
+  <pubDate>Sat, 15 Apr 2023 22:06:46 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/mac-vim-ctags/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>nvim的安装与使用</title>
+  <link>https://cfanzp.com/nvim/</link>
+  <pubDate>Thu, 29 Dec 2022 09:14:43 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/nvim/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>如何在centos7.6中源码安装Vim8?</title>
+  <link>https://cfanzp.com/install-vim8/</link>
+  <pubDate>Fri, 25 Nov 2022 18:45:01 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/install-vim8/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>vim常用技巧</title>
+  <link>https://cfanzp.com/vim-skill-normal/</link>
+  <pubDate>Fri, 09 Sep 2022 10:32:48 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/vim-skill-normal/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>如何在terminal中使用Joplin并像vim一样移动?</title>
+  <link>https://cfanzp.com/joplin-terminal/</link>
+  <pubDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/joplin-terminal/</guid>
+  <description><![CDATA[如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync.]]></description>
+</item>
+</channel>
+</rss>

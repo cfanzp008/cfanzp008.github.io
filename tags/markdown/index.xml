@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>markdown - 标签 - Linux开发</title>
+    <link>https://cfanzp.com/tags/markdown/</link>
+    <description>markdown - 标签 - Linux开发</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 17 Aug 2022 08:22:14 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/markdown/" rel="self" type="application/rss+xml" /><item>
+  <title>Markdown需要掌握的基础</title>
+  <link>https://cfanzp.com/markdown/</link>
+  <pubDate>Wed, 17 Aug 2022 08:22:14 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/markdown/</guid>
+  <description><![CDATA[markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1.]]></description>
+</item>
+</channel>
+</rss>
