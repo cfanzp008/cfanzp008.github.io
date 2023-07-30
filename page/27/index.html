@@ -530,6 +530,20 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/linux-process-port/">linux查看哪个进程占用了端口?</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 15:51:56'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux查看哪个进程占用了端口? 方法1:使用lsof命令
+1 2 3 [root@dev127 paoshang]# lsof -i:8201 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME skynet 110379 root 6u IPv4 7563011 0t0 TCP localhost:trivnet2 (LISTEN) 方法2:使用netstat命令
+1 2 [root@dev127 paoshang]# netstat -tunlp | grep 8201 tcp 0 0 127.0.0.1:8201 0.0.0.0:* LISTEN 110379/skynet </div><div class="post-footer">
+    <a href="/linux-process-port/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/lua-3rd/">lua第三方开源库学习整理</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -594,21 +608,6 @@ Returns a binary string containing the values v1, v2, etc. serialized in binary 
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-02 22:26:04'>发布于 <time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div><div class="content">nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { .</div><div class="post-footer">
     <a href="/nginx-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/skynet-uuid/">skynet中使用uuid库</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-02 19:37:59'>发布于 <time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet中使用uuid库 最近在使用之前一位同学写的uuid库时发现了uuid在不通的skynet虚拟机中可能会产生相同的值的现象，这里记录一下。产生的原因是，这2个虚拟机是在服务启动的时候创建的，间隔时间很短，随机种子估计是一样的。后面产生的随机序列都是一样的。
-uuid库初始化种子 相同时间初始化种子，后续产生的随机数是相同的,随机种子初始化代码如下:
-1 2 local uuid = require &#34;uuid&#34; uuid.seed() -- 初始化uuid种子 不同lua虚拟机中使用uuid可能生成相同的uuid,下面就是2个skynet服务在相同时间创建并初始化uuid种子的例子,不难看出，2个服务轮询接受请求，依次产生的uuid是相同的。
-1 2 3 4 [:0000001a] [2022-07-29 11:36:36.561] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001b] [2022-07-29 11:36:44.059] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001a] [2022-07-29 11:36:55.069] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 [:0000001b] [2022-07-29 11:41:13.213] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 总结 这个uuid库的使用需要保证uuid的使用是在一个虚拟机内。如果想uuid不重复，又要保证唯一性，可以创建一个专有的skynet虚拟机来提供uuid的分配工作。</div><div class="post-footer">
-    <a href="/skynet-uuid/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

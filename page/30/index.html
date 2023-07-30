@@ -530,6 +530,20 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/devtools-flameshot/">devtools-flameshot</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-30 19:06:52'>发布于 <time datetime="2022-07-30">2022-07-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">flameshot 简介 flameshot 是一款跨平台的截图工具。
+配置文件路经 1 2 3 4 linux: ~/.config/flameshot/flameshot.ini windows: C:\Users\{YOURNAME}\AppData\Roaming\flameshot\flameshot.ini github地址: 1 https://github.com/flameshot-org/flameshot 下载 1 https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2 常见平台安装 MacOS 1 brew install --cask flameshot Manjaro 1 pacman -S flameshot Ubuntu 16.04 1 wget https://github.com/flameshot-org/flameshot/releases/download/v11.0.rc1/Flameshot-11.0.rc1.x86_64.AppImage Ubuntu 18.04+ 1 apt install flameshot Ubuntu 20.04+ 下载deb包安装 1 2 3 https://github.com/flameshot-org/flameshot/releases wget http://github.com/flameshot-org/flameshot/releases/download/v11.0.0/flameshot-11.0.0-1.ubuntu-20.04.amd64.deb sudo apt install ./flameshot-11.0.0-1.ubuntu-20.04.amd64.deb Debian 10+
+1 apt install flameshot windows 直接下载安装包,下载地址: 1 https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2 常用快捷键 1 2 3 4 按PrintScreen键 激活 Ctrl + c 拷贝到剪贴版 Ctrl + s 保存到文件 Ctrl + z 撤销 常见问题 运行时提示 linux下提示/usr/lib64/libstdc++.</div><div class="post-footer">
+    <a href="/devtools-flameshot/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flameshot/">flameshot</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/linux-mysqldump/">mysql-使用mysqldump来备份数据库</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -588,18 +602,6 @@
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-28 19:23:26'>发布于 <time datetime="2022-07-28">2022-07-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a></span></div><div class="content">mac-如何让terminal中能够看到不同的颜色? 为什么要配置终端配色? 终端对不通类型的文件进行配色能够方便我们通过颜色区分文件夹，脚本文件，图片文件等，大大提高了寻找文件的效率。 如何配置？ 使用vim打开文件~/.bash_profile,在最后加入如下代码: 1 2 3 4 5 alias ll=&#39;ls -la&#39; # 命令别名 #export LS_OPTIONS=&#39;--color=auto&#39; # 如果没有指定，则自动选择颜色 export CLICOLOR=&#39;Yes&#39; # 是否输出颜色 export LSCOLORS=&#39;ExGxFxdaCxDaDahbadacec&#39; # 指定颜色 export PS1=&#34;\[\033[01;31;01m\][\u@\h \W]\$\[\033[01;00;00m\] &#34; # 指定命令行提示符的颜色为红色 加完后不会立即生效，立即生效请执行: 1 source ~/.bash_profile 参考 https://www.cnblogs.com/FengZeng666/p/16026268.html </div><div class="post-footer">
     <a href="/mac-terminal-color/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/debug_console/">skynet-debug_console 简介</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-28 18:12:13'>发布于 <time datetime="2022-07-28">2022-07-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog.</div><div class="post-footer">
-    <a href="/debug_console/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
