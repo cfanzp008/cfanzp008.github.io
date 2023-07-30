@@ -530,6 +530,12 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/httperf/">Httperf</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 16:13:57'>发布于 <time datetime="2022-08-19">2022-08-19</time></span></div><div class="content">web压力测试工具:httperf 下载地址: 使用demo: 1 httperf --client=0/1 --server 192.168.2.127 --port 7100 --uri /loginReq --num-conns 30000 --rate 30000 --hog 教程: https://blog.csdn.net/qq_33391644/article/details/103794115 https://www.cnblogs.com/cllovewxq/p/5533487.html </div><div class="post-footer">
+    <a href="/httperf/">阅读全文</a></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/lsof/">linux查看打开文件情况</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-19 15:57:01'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lsof/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lsof</a></span></div><div class="content">linux查看打开文件情况 查看进程skynet(config.login)的pid 1 2 3 4 5 [root@dev127 login]# ps -ef | grep login root 657 1 0 6月20 ? 00:00:49 /usr/lib/systemd/systemd-logind root 113262 1 8 15:27 ? 00:02:19 /data/myb/sh/../skynet/skynet /data/myb/sh/login/config.login root 113983 107342 0 15:42 pts/4 00:00:02 tail login.20220819.log -f root 114702 112029 0 15:55 pts/2 00:00:00 grep --color=auto login 查看进程能打开的最大文件数目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [root@dev127 login]# cat /proc/113262/limits Limit Soft Limit Hard Limit Units Max cpu time unlimited unlimited seconds Max file size unlimited unlimited bytes Max data size unlimited unlimited bytes Max stack size 8388608 unlimited bytes Max core file size unlimited unlimited bytes Max resident set unlimited unlimited bytes Max processes 26047 26047 processes Max open files 1024 4096 files Max locked memory 65536 65536 bytes Max address space unlimited unlimited bytes Max file locks unlimited unlimited locks Max pending signals 26047 26047 signals Max msgqueue size 819200 819200 bytes Max nice priority 0 0 Max realtime priority 0 0 Max realtime timeout unlimited unlimited us [root@dev127 login]# 参考链接 https://blog.</div><div class="post-footer">
@@ -570,15 +576,6 @@ chrome开发者工具 chrome开发者工具自带网络限速功能，可以限�
       </span></span>&nbsp;<span class="post-publish" title='2022-08-09 22:40:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中的self self的用法 使用:定义的函数默认接收第一个参数是self 使用:调用函数默认传入第一个参数是调用者 使用.定义和调用函数不会接受或传入self :为我们省下了一个参数，下面例子中的A:Add()与A.Add(t)是等价的
 1 2 3 4 5 6 7 local A = {x = 1, y = 2} function t:Add() return (self.x + self.y) end print(A:Add()) print(A.Add(A)) </div><div class="post-footer">
     <a href="/lua-self/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/git-tag-sort/">git tag排序,解决默认看到的最后一个不是最新的tag的问题</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-09 09:06:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span></div><div class="content">git tag排序,解决默认看到的最后一个不是最新的tag的问题 git tag的问题 在使用git tag查看标签的时候，默认是按tag的字符串排序的，只有命名的顺序与字符串排序相同的时候,显示在最后的tag才是最新的,例如,有下面几个标签:
-1 2 v0.9.0 v0.10.0 v0.10.0按字符串排序会默认显示在上面:
-1 2 v0.10.0 v0.9.0 git tag加上排序 让git按照打标签的时间进行排序，加上参数&ndash;sort=taggerdate
-1 git tag -n --sort=taggerdate 为了方便平时输入在.gitconfig上加上缩写 1 2 [alias] stag = tag -n --sort=taggerdate 1 git tag -n --sort=taggerdate </div><div class="post-footer">
-    <a href="/git-tag-sort/">阅读全文</a></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
