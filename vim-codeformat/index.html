@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='vim' /><meta itemprop="name" content="Vim使用clang-format等工具格式化c&#43;&#43;代码">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-08-03T22:02:50+08:00" />
 <meta itemprop="dateModified" content="2023-08-03T22:02:50+08:00" />
-<meta itemprop="wordCount" content="68"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="54"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
 <meta itemprop="keywords" content="vim," /><meta property="og:title" content="Vim使用clang-format等工具格式化c&#43;&#43;代码" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -34,7 +34,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/vim-codeformat\/"
-    },"genre": "posts","keywords": "vim","wordcount":  68 ,
+    },"genre": "posts","keywords": "vim","wordcount":  54 ,
     "url": "https:\/\/cfanzp.com\/vim-codeformat\/","datePublished": "2023-08-03T22:02:50+08:00","dateModified": "2023-08-03T22:02:50+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -499,7 +499,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/cpp/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> cpp</a></span></div>
-      <div class="post-meta-line"><span title=2023-08-03&#32;22:02:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-03">2023-08-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 68 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-08-03&#32;22:02:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-03">2023-08-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 54 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -507,9 +507,11 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#在vim中你可以使用equalprg选项来设置格式化c代码时使用的外部程序以下是一些常用的外部程序可用于对齐和格式化c代码">在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：</a>
+    <li>
       <ul>
         <li><a href="#clang-format">clang-format</a></li>
+        <li><a href="#astyle">astyle</a></li>
+        <li><a href="#uncrustify">uncrustify</a></li>
       </ul>
     </li>
   </ul>
@@ -520,7 +522,7 @@
       
       
     ><h1 id="vim使用等号格式化代码">vim使用等号格式化代码</h1>
-<h2 id="在vim中你可以使用equalprg选项来设置格式化c代码时使用的外部程序以下是一些常用的外部程序可用于对齐和格式化c代码">在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：</h2>
+<p>在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：</p>
 <h3 id="clang-format">clang-format</h3>
 <ul>
 <li>安装</li>
@@ -577,48 +579,37 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set equalprg=clang-format\ -style=file\ --fallback-style=google
-</span></span><span class="line"><span class="cl">``
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">### astyle
-</span></span><span class="line"><span class="cl">- astyle: 一个流行的源码格式化工具，支持多种编程语言，包括C++。你需要先安装AStyle，并确保astyle命令可用。在Vim配置文件中添加以下行来设置equalprg选项：
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>set equalprg=astyle\ &ndash;style=gnu\ &ndash;indent=spaces=4</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">上述示例中的选项--style=gnu表示使用GNU风格的缩进和格式化规则，而--indent=spaces=4表示使用4个空格进行缩进。
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">### uncrustify
-</span></span><span class="line"><span class="cl">- uncrustify: 另一个流行的源码格式化工具，支持C++等多种语言。你需要先安装Uncrustify，并确保uncrustify命令可用。在Vim配置文件中添加以下行来设置equalprg选项：
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>set equalprg=uncrustify\ -c\ /path/to/uncrustify.cfg</p>
+</div><h3 id="astyle">astyle</h3>
+<ul>
+<li>astyle: 一个流行的源码格式化工具，支持多种编程语言，包括C++。你需要先安装AStyle，并确保astyle命令可用。在Vim配置文件中添加以下行来设置equalprg选项：</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">上述示例中的-c选项后面是一个指向Uncrustify配置文件的路径，你需要将其替换为实际的配置文件路径。
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set equalprg=astyle\ --style=gnu\ --indent=spaces=4
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><p>上述示例中的选项&ndash;style=gnu表示使用GNU风格的缩进和格式化规则，而&ndash;indent=spaces=4表示使用4个空格进行缩进。</p>
+<h3 id="uncrustify">uncrustify</h3>
+<ul>
+<li>uncrustify: 另一个流行的源码格式化工具，支持C++等多种语言。你需要先安装Uncrustify，并确保uncrustify命令可用。在Vim配置文件中添加以下行来设置equalprg选项：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set equalprg=uncrustify\ -c\ /path/to/uncrustify.cfg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述示例中的-c选项后面是一个指向Uncrustify配置文件的路径，你需要将其替换为实际的配置文件路径。</p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
