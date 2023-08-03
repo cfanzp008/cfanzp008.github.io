@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
-	<meta name="generator" content="Hugo 0.113.0">
-    
-      <meta name="theme" content='FixIt v0.2.16-RC'>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Linux开发</title><meta name="author" content="cfanzp">
+    <title>Vim使用clang-format等工具格式化c&#43;&#43;代码 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Linux开发">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="Linux开发" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/>
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='vim' /><meta itemprop="name" content="Vim使用clang-format等工具格式化c&#43;&#43;代码">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-08-03T22:02:50+08:00" />
+<meta itemprop="dateModified" content="2023-08-03T22:02:50+08:00" />
+<meta itemprop="wordCount" content="68"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="vim," /><meta property="og:title" content="Vim使用clang-format等工具格式化c&#43;&#43;代码" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/vim-codeformat/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-03T22:02:50+08:00" />
+<meta property="article:modified_time" content="2023-08-03T22:02:50+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="Linux开发"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:title" content="Vim使用clang-format等工具格式化c&#43;&#43;代码"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/vim-codeformat/" /><link rel="prev" href="https://cfanzp.com/vpp/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "WebSite",
-    "url": "https:\/\/cfanzp.com\/","inLanguage": "zh-CN","author": {
+    "@type": "BlogPosting",
+    "headline": "Vim使用clang-format等工具格式化c++代码",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/vim-codeformat\/"
+    },"genre": "posts","keywords": "vim","wordcount":  68 ,
+    "url": "https:\/\/cfanzp.com\/vim-codeformat\/","datePublished": "2023-08-03T22:02:50+08:00","dateModified": "2023-08-03T22:02:50+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "cfanzp开发笔记","name": "Linux开发"
+      },"description": ""
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -476,18 +485,70 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page home posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="所有文章"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" /></a></div><h2 class="home-subtitle"><span class="d-none">开发笔记，个人生活随感</span>
-        <span id="typeit-profile-subtitle" class="typeit"></span></h2><div class="links"><a
-  href="https://www.zhihu.com/people/alex_hjkl"
-  
-    title="知乎"
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Vim使用clang-format等工具格式化c&#43;&#43;代码</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/cpp/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> cpp</a></span></div>
+      <div class="post-meta-line"><span title=2023-08-03&#32;22:02:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-03">2023-08-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 68 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#在vim中你可以使用equalprg选项来设置格式化c代码时使用的外部程序以下是一些常用的外部程序可用于对齐和格式化c代码">在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：</a>
+      <ul>
+        <li><a href="#clang-format">clang-format</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="vim使用等号格式化代码">vim使用等号格式化代码</h1>
+<h2 id="在vim中你可以使用equalprg选项来设置格式化c代码时使用的外部程序以下是一些常用的外部程序可用于对齐和格式化c代码">在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：</h2>
+<h3 id="clang-format">clang-format</h3>
+<ul>
+<li>安装</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install clang-format
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>配置:配置文件可以房子项目目录或者,家目录</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 支持LLVM, GNU, Google, Chromium, Microsoft, Mozilla, WebKit
+</span></span><span class="line"><span class="cl">clang-format -style=google -dump-config &gt; .clang-format
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>配置说明文档:<a
+  href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html"
   
   
     
@@ -495,190 +556,93 @@
     target="_blank"
   
   
-    rel="external nofollow noopener noreferrer me"
+    rel="external nofollow noopener noreferrer"
   
   
   
-><i class="fa-brands fa-zhihu fa-fw" aria-hidden="true"></i>
-    </a><a
-  href="https://blog.csdn.net/cfanzp"
-  
-    title="CSDN"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer me"
-  
-  
-  
-><i data-svg-src="/svg/icons/csdn.min.svg" aria-hidden="true"></i>
-    </a><a
-  href="mailto:cfanzp@qq.com"
-  
-    title="Email"
-  
-  
-  
-    rel=" me"
-  
-  
-  
-><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
-    </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/terminal-color/">lua中给日志关键字加上颜色</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-09-06 17:05:35'>发布于 <time datetime="2022-09-06">2022-09-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a>&ensp;<a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/terminal-color/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/skynet/">skynet</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/hugo-theme-fixit/">Hugo主题FixIt简单介绍</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-09-04 22:08:08'>发布于 <time datetime="2022-09-04">2022-09-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/hugo/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> hugo</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/hugo-theme-fixit/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/fixit/">fixit</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-stop-process/">linux中使用脚本关闭进程</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp.com/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2022-09-01 11:15:18'>发布于 <time datetime="2022-09-01">2022-09-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div><div class="content">linux中使用脚本关闭进程 关闭进程脚本 通过ps命令，grep命令以及awk命令找到进程的pid 使用kill命令关闭进程 脚本demo: 1 2 3 4 5 6 7 8 9 10 11 12 13 rootot@dev doc]# cat stop_mdbook_doc.sh #!/bin/bash kill_pid=`ps -ef | grep mdbook | grep 4001 | grep -v grep | awk &#39;{print $2}&#39;` echo &#34;pid = &#34;${kill_pid} if [ -n &#34;${kill_pid}&#34; ] then kill -9 ${kill_pid} echo &#34;mdbook 4001 pid:&#34;${kill_pid}&#34;进程已kill成功&#34; else echo &#34;mdbook 4001 进程已不存在&#34; fi [root@dev doc]# </div><div class="post-footer">
-    <a href="/linux-stop-process/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/joplin-terminal/">如何在terminal中使用Joplin并像vim一样移动?</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp.com/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2022-08-31 19:06:00'>发布于 <time datetime="2022-08-31">2022-08-31</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div><div class="content">如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
-进入
-1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
-1 2 :config sync.</div><div class="post-footer">
-    <a href="/joplin-terminal/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/joplin/">joplin</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/health-ls/">开发者需要注意健康饮食习惯之一</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp.com/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 11:43:25'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/health/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> health</a></span></div><div class="content">开发者注意健康饮食习惯 图片来源:腾讯医典,如有侵权，请联系本站删除。</div><div class="post-footer">
-    <a href="/health-ls/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/health/">health</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-pbc/">lua-pbc(lua的protobuf库)如何使用？</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp.com/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 08:36:15'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
-lua-pbc github地址为: https://github.com/cloudwu/pbc
-关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
-lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
-编写protobuf的proto文件 User.proto
-1 2 3 4 package tutorial; message User { optional string name = 1; } 引入模块protobuf
-1 local pb = require &#34;protobuf&#34; 注册文件
-1 pb.register_file &#34;User.pb&#34; encode
-1 2 3 4 local msg_table = { name = &#34;test1&#34; } pb.encode(&#34;tutorial.User&#34;,msg_table}, decode
-1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
-参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.</div><div class="post-footer">
-    <a href="/lua-pbc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
-</article>
-<ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/19/">19</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/20/">20</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/page/21/">21</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/22/">22</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/23/">23</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/33/">33</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+>url</a></li>
+<li>clang-format: Clang格式化工具，可以自动对齐和格式化C++代码。你需要先安装Clang，并确保clang-format命令可用。在Vim配置文件（如.vimrc）中添加以下行来设置equalprg选项：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set equalprg=clang-format
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>vimrc配置使用等号格式化</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set equalprg=clang-format\ -style=file\ --fallback-style=google
+</span></span><span class="line"><span class="cl">``
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### astyle
+</span></span><span class="line"><span class="cl">- astyle: 一个流行的源码格式化工具，支持多种编程语言，包括C++。你需要先安装AStyle，并确保astyle命令可用。在Vim配置文件中添加以下行来设置equalprg选项：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>set equalprg=astyle\ &ndash;style=gnu\ &ndash;indent=spaces=4</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">上述示例中的选项--style=gnu表示使用GNU风格的缩进和格式化规则，而--indent=spaces=4表示使用4个空格进行缩进。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### uncrustify
+</span></span><span class="line"><span class="cl">- uncrustify: 另一个流行的源码格式化工具，支持C++等多种语言。你需要先安装Uncrustify，并确保uncrustify命令可用。在Vim配置文件中添加以下行来设置equalprg选项：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>set equalprg=uncrustify\ -c\ /path/to/uncrustify.cfg</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">上述示例中的-c选项后面是一个指向Uncrustify配置文件的路径，你需要将其替换为实际的配置文件路径。
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-08-03&#32;22:02:50>更新于 2023-08-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/vim-codeformat/" data-title="Vim使用clang-format等工具格式化c&#43;&#43;代码"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/vpp/" class="prev" rel="prev" title="vpp"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>vpp</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -704,5 +668,5 @@ lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/typeit.min.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"data":{"typeit-profile-subtitle":"开发笔记，个人生活随感"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00","typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-profile-subtitle":["typeit-profile-subtitle"]},"duration":-1,"speed":100}};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
