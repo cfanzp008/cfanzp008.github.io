@@ -5,6 +5,9 @@
 # vim使用等号格式化代码
 在Vim中，你可以使用equalprg选项来设置格式化C++代码时使用的外部程序。以下是一些常用的外部程序，可用于对齐和格式化C++代码：
 ### clang-format
+
+![img](/images/blog/devtools/clang-format.png)
+
 - 安装
 ```
 apt install clang-format
