@@ -54,6 +54,11 @@ SET img = REPLACE(img, 'https://a.com', 'https://b.com')
 WHERE img LIKE 'https://a.com.net%';
 ```
 
+- mysql替换字符串中的部分字符
+```sql
+UPDATE t_account SET note = REPLACE(note, 'www.aaa.com', 'wwww.bbb.com');
+```
+
 
 ---
 
