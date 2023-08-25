@@ -530,6 +530,18 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lua-3rd/">lua第三方开源库学习整理</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 09:01:02'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua第三方开源库学习整理 skynet框架:https://github.com/cloudwu/skynet lua的protobuf工具-pbc:https://github.com/cloudwu/pbc lua-cjson库:https://github.com/mpx/lua-cjson 一个lua写的websocket库https://github.com/flaribbit/love2d-lua-websocket lua-protobuf库https://github.com/starwing/lua-protobuf/blob/master/README.zh.md </div><div class="post-footer">
+    <a href="/lua-3rd/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/lua-string-pack/">lua中string.pack,string.unpack的用法</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -598,20 +610,6 @@ uuid库初始化种子 相同时间初始化种子，后续产生的随机数是
 1 2 3 4 [:0000001a] [2022-07-29 11:36:36.561] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001b] [2022-07-29 11:36:44.059] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001a] [2022-07-29 11:36:55.069] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 [:0000001b] [2022-07-29 11:41:13.213] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 总结 这个uuid库的使用需要保证uuid的使用是在一个虚拟机内。如果想uuid不重复，又要保证唯一性，可以创建一个专有的skynet虚拟机来提供uuid的分配工作。</div><div class="post-footer">
     <a href="/skynet-uuid/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-luacheck/">lua-luacheck</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 18:16:43'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
-安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
-安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs.</div><div class="post-footer">
-    <a href="/lua-luacheck/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/luacheck/">luacheck</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -642,7 +640,7 @@ uuid库初始化种子 相同时间初始化种子，后续产生的随机数是
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/33/">33</a>
+            <a href="/page/34/">34</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

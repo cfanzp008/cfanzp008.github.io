@@ -530,6 +530,32 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/joplin-terminal/">如何在terminal中使用Joplin并像vim一样移动?</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-08-31 19:06:00'>发布于 <time datetime="2022-08-31">2022-08-31</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div><div class="content">如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync.</div><div class="post-footer">
+    <a href="/joplin-terminal/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/joplin/">joplin</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/health-ls/">开发者需要注意健康饮食习惯之一</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp.com/about/"
@@ -611,12 +637,6 @@ molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形�
 skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文档: https://github.com/cloudwu/skynet/wiki skynet作者博客: https://blog.codingnow.com/ skynet sample: https://github.com/cloudwu/skynet_sample skynet pbc: https://github.com/cloudwu/pbc 我的skynet学习笔记: https://cfanzp.com/categories/skynet/ skynet资源：http://forthxu.com/blog/skynet.html skynet视频教程 4小时玩转skynet: https://www.bilibili.com/video/BV1AV411r71g </div><div class="post-footer">
     <a href="/skynet-res/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/go-env/">Go基本环境配置</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-24 20:25:24'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> go</a></span></div><div class="content">Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found .</div><div class="post-footer">
-    <a href="/go-env/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -647,7 +667,7 @@ skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文�
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/33/">33</a>
+            <a href="/page/34/">34</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
