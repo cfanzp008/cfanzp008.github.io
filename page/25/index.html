@@ -530,6 +530,29 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/markdown/">Markdown需要掌握的基础</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-17 08:22:14'>发布于 <time datetime="2022-08-17">2022-08-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1.</div><div class="post-footer">
+    <a href="/markdown/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/markdown/">markdown</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/weak-net/">弱网测试环境的搭建</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-12 08:46:30'>发布于 <time datetime="2022-08-12">2022-08-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">弱网测试环境的搭建 最近有一个线上项目反馈在弱网环境下，容易掉线。我们自己测试的时候网络环境都还比较好，想模拟一下弱网环境，这里介绍一下几个方案。
+路由器限速 路由器可以直接对某个设备进行限速，这个登录路由器就可以配置了，方法比较简单，这里就不赘述了。
+chrome开发者工具 chrome开发者工具自带网络限速功能，可以限制速度,可以自定义各种网络带宽，使用比较方便。
+使用Charles设置代理限速 这种方法配置起来相比前面2种情况，稍微麻烦一些,另外有一个缺点，websockt限速好像没办法设置(Charles 4.6.2)。</div><div class="post-footer">
+    <a href="/weak-net/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/lua-self/">lua中的self</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-09 22:40:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中的self self的用法 使用:定义的函数默认接收第一个参数是self 使用:调用函数默认传入第一个参数是调用者 使用.定义和调用函数不会接受或传入self :为我们省下了一个参数，下面例子中的A:Add()与A.Add(t)是等价的
@@ -566,22 +589,6 @@ c-a+[:进入复制模式，q:退出复制模式
 c-a+w:查看所有窗口列表
 c-a+$:重命名当前的session</div><div class="post-footer">
     <a href="/tmux-shortcut-key/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">快捷键</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/mac-shortcut-key/">mac快捷键汇总</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 19:51:35'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a></span></div><div class="content">mac快捷键汇总 注意 这里Win键对应mac键盘的Command键 常用快捷键 command + backspace: 删除文件
-选中文件+enter: 重命名文件
-打开搜索 win/command+space：打开搜索 切换应用 win/command+tab:切换应用 刷新chrome网页 win+r:刷新chrome网页 terminal 新建一个terminal command+N:新建一个terminal 多个terminal之间切换 command+`:在多个terminal之间切换
-这个时非常实用的，但是每次想用的时候都不记得快捷键了，相当尴尬。。。
-切换输入法 ctrl+space:切换输入法 在全屏和窗口模式间相互切换 ctrl+command+F:在全屏和窗口模式间相互切换 mac要进入窗口最大化的方式就是双击标题栏，而没有键盘快捷键，这个有点不太友好。 取而代之的时mac推荐用command + control + F进入全屏模式专注于当前的工作 </div><div class="post-footer">
-    <a href="/mac-shortcut-key/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">快捷键</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/http-req/">http测试工具</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 16:27:24'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">http测试工具 curl 官网:https://curl.se/ Postman 官网:https://www.postman.com/ Apifox 官网:https://www.apifox.cn/ VSCode插件Thunder Client 用法:https://github.com/rangav/thunder-client-support#usage </div><div class="post-footer">
-    <a href="/http-req/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
