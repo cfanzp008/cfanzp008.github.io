@@ -197,6 +197,15 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
                       </li></ul></li><li class="menu-item has-children">
               <a
                 class="menu-link"
@@ -428,6 +437,15 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
                       </li></ul></li><li
               class="menu-item"
             ><span class="nested-item">
@@ -530,6 +548,13 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/mysql-procedure/">mysql存储过程</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 09:22:30'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mysql</a></span></div><div class="content">mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
+存储过程名为:p_login 存储过程有3个参数:a_platform,a_account,a_password 1 2 3 4 5 6 7 8 9 10 CREATE DEFINER=`root`@`%` PROCEDURE `p_login`(in a_platform int, in a_account varchar(64), in a_password varchar(32)) begin SELECT *,userid as uid FROM tb_account WHERE account=a_account AND platform=a_platform AND `password`=a_password AND nullity = &#39;0&#39; AND android = &#39;0&#39;; end 如何调用存储过程? 1 CALL p_login(1,&#34;aaa&#34;,&#34;password&#34;); 存储过程中常用的函数有哪些？ 获取当前时间搓 1 current_timestamp() 获取时间 1 NOW() 获取当前日期 1 curdate() 获取最后一个标识值 在一条 INSERT、SELECT INTO 或大容量复制语句完成后，@@IDENTITY 中包含语句生成的最后一个标识值 1 select @@IDENTITY 获取今天，昨天，前天的当前时间 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 CREATE DEFINER=`root`@`%` PROCEDURE `p_demo_get_daily_login_report`(IN `a_step` int) BEGIN DECLARE start_day TIMESTAMP; DECLARE end_day TIMESTAMP; # a_step=0 今天 # a_step=1 昨天 # a_step=2 前天 SET start_day = (CAST(SYSDATE()AS DATE) - INTERVAL a_step DAY); SET end_day = (CAST(SYSDATE()AS DATE) + INTERVAL 1 DAY - INTERVAL a_step DAY); select a.</div><div class="post-footer">
+    <a href="/mysql-procedure/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/edit-vscode/">vscode的使用</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-23 08:58:53'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">vscode使用笔记 FAQ vscode必备插件有哪些？ vim Lua Vscode-lua Go Rainbow Brackets Thunder Client 如何给vscode添加ruler? 按语言添加:
@@ -568,12 +593,6 @@ cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-19 16:13:57'>发布于 <time datetime="2022-08-19">2022-08-19</time></span></div><div class="content">web压力测试工具:httperf 下载地址: 使用demo: 1 httperf --client=0/1 --server 192.168.2.127 --port 7100 --uri /loginReq --num-conns 30000 --rate 30000 --hog 教程: https://blog.csdn.net/qq_33391644/article/details/103794115 https://www.cnblogs.com/cllovewxq/p/5533487.html </div><div class="post-footer">
     <a href="/httperf/">阅读全文</a></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lsof/">linux查看打开文件情况</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 15:57:01'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lsof/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lsof</a></span></div><div class="content">linux查看打开文件情况 查看进程skynet(config.login)的pid 1 2 3 4 5 [root@dev127 login]# ps -ef | grep login root 657 1 0 6月20 ? 00:00:49 /usr/lib/systemd/systemd-logind root 113262 1 8 15:27 ? 00:02:19 /data/myb/sh/../skynet/skynet /data/myb/sh/login/config.login root 113983 107342 0 15:42 pts/4 00:00:02 tail login.20220819.log -f root 114702 112029 0 15:55 pts/2 00:00:00 grep --color=auto login 查看进程能打开的最大文件数目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [root@dev127 login]# cat /proc/113262/limits Limit Soft Limit Hard Limit Units Max cpu time unlimited unlimited seconds Max file size unlimited unlimited bytes Max data size unlimited unlimited bytes Max stack size 8388608 unlimited bytes Max core file size unlimited unlimited bytes Max resident set unlimited unlimited bytes Max processes 26047 26047 processes Max open files 1024 4096 files Max locked memory 65536 65536 bytes Max address space unlimited unlimited bytes Max file locks unlimited unlimited locks Max pending signals 26047 26047 signals Max msgqueue size 819200 819200 bytes Max nice priority 0 0 Max realtime priority 0 0 Max realtime timeout unlimited unlimited us [root@dev127 login]# 参考链接 https://blog.</div><div class="post-footer">
-    <a href="/lsof/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lsof/">lsof</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

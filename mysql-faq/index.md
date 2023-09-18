@@ -60,6 +60,14 @@ UPDATE t_account SET note = REPLACE(note, 'www.aaa.com', 'wwww.bbb.com');
 ```
 
 
+## 案例
+- 一次机器断点后发现mysql(mysql8)无法自动重启了。排查后发现原因是mysql日志文件夹没有权限，为什么会出现mysql日志文件夹没有权限呢？因为之前因为磁盘快满了，删日志的同学mysql的整个日志目录都删掉了。解决方法是创建mysql日志目录并添加权限。
+```
+mkdir /var/log/mysql
+chown mysql:mysql /var/log/mysql/
+```
+
+
 ---
 
 > 作者:   

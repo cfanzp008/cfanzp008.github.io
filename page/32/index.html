@@ -197,6 +197,15 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
                       </li></ul></li><li class="menu-item has-children">
               <a
                 class="menu-link"
@@ -428,6 +437,15 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
                       </li></ul></li><li
               class="menu-item"
             ><span class="nested-item">
@@ -530,6 +548,18 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/debug_console/">skynet-debug_console 简介</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-28 18:12:13'>发布于 <time datetime="2022-07-28">2022-07-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog.</div><div class="post-footer">
+    <a href="/debug_console/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/skynet-traceid/">skynet-给项目日志添加traceid</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -588,18 +618,6 @@
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-18 17:36:01'>发布于 <time datetime="2022-07-18">2022-07-18</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; 参考 文档: https://rust-lang.</div><div class="post-footer">
     <a href="/devtools-mdbook/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/mdbook/">mdbook</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/vim-plug-tabular/">Vim插件:对齐插件-Tabular</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-06 22:26:19'>发布于 <time datetime="2022-07-06">2022-07-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim插件-对齐插件tabular 简单介绍 vim中怎么按&quot;=&quot;,&quot;+&quot; 等符号对齐代码呢？使用tabular插件可以轻松解决。 tabular英语单词，主要用作动词，意思是:列成表格的 安装 使用Plug管理插件的话，.vimrc中加入如下代码: 1 Plug &#39;godlygeek/tabular&#39; 使用其它管理工具的安装方法类似，这里就不介绍了。 不了解Plug管理插件的同学可以先了解一下相关方面的知识。 使用方法 例如按=号对齐代码 visual模式选中要对齐的行 进入底行模式输入Tabularize/= 单词太长记不住怎么办？按Tab键会有提示的。 1 :Tabularize/= 执行前 1 2 3 4 local a = 1 local hello = &#34;hello&#34; ```lua - 执行后 local a = 1 local hello = &ldquo;hello&rdquo;</div><div class="post-footer">
-    <a href="/vim-plug-tabular/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

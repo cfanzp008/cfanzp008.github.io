@@ -9,6 +9,7 @@
 - [安全策略/acl](/acl/)
 - [路由表ip-route](/ip_route/)
 - [LDAP协议](/ldap/)
+- 用户管控
 - Link-Group
 - IP-Link
 - VRRP
@@ -16,7 +17,7 @@
 - DNS服务器
   - [ubunu下搭建DNS服务器](https://blog.csdn.net/qq_44465615/article/details/121666349)
 - DHCP服务器
-  - 【ubuntu下搭建DHCP服务器](https://blog.csdn.net/IT_ZRS/article/details/121396649)
+  - [ubuntu下搭建DHCP服务器](https://blog.csdn.net/IT_ZRS/article/details/121396649)
 
 ### portal认证
 - [portal认证](https://blog.csdn.net/qq_38265137/article/details/90723259)

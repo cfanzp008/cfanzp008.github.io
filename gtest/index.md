@@ -4,6 +4,7 @@
 <!--more-->
 # ubuntu20.04配置gtest环境
 ## 写一个脚本安装gtest
+### 方法1
 - cat ./install_gtest1.8.1.sh
 ```bash
 cd /usr/local/src/
@@ -14,6 +15,16 @@ mkdir build
 cd build
 cmake ../
 make && make install
+```
+### 方法2
+```
+sudo apt install libgtest-dev
+cd /usr/src/gtest/
+mkdir build
+cd build
+sudo cmake ..
+sudo make
+cp ./lib/*.a /usr/local/lib/
 ```
 
 ## 编写一个测试程序
