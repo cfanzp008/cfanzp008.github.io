@@ -12,13 +12,23 @@ wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz
 
 ##  安装
 - centos安装
-```
+```bash
 yum install libevent-devel ncurses-devel
 tar -zxvf tmux-1.9.tar.gz
-cd tmux-1.6
+cd tmux-1.9
 ./configure
 make
 make install
+```
+
+- ubuntu
+```bash
+sudo apt install tmux
+```
+
+- 查看版本号
+```bash
+tmux -V
 ```
 
 ## 使用
@@ -66,6 +76,57 @@ bind-key h select-pane -L
 #right
 bind-key l select-pane -R
 ```
+
+### tmux插件配置文件分享
+```
+root@vpps:~/.tmux/plugins# cat ~/.tmux.conf 
+set -g default-terminal "screen-256color"
+#-- base settings --#
+set -g mode-keys vi
+
+set-environment -g EDITOR nvim
+
+# prefix key (Ctrl+a)
+set -g prefix ^a
+unbind ^b
+bind a send-prefix
+
+#up
+bind-key k select-pane -U
+#down
+bind-key j select-pane -D
+#left
+bind-key h select-pane -L
+#right
+bind-key l select-pane -R
+
+unbind-key -Troot Enter
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+#set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'tmux-plugins/tmux-urlview'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+
+set-option -g @urlview-command "nvim {}"
+set -g @shell_mode 'vi'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+run-shell  '~/.tmux/plugins/tmux-urlview/urlview.tmux'
+run-shell '~/.tmux/plugins/tmux-open/open.tmux'
+run-shell '~/.tmux/plugins/tmux-yank/yank.tmux'
+run-shell '~/.tmux/plugins/tmux-copycat/copycat.tmux'
+```
+
 - tmux无需过多配置，用vim的同学绑定hjkl就特别好用了。
 
 ### 更新配置文件
@@ -88,6 +149,13 @@ HJKL:选择需要复制的文本
 Enter:复制并结束
 Ctrl-a + ]:粘贴
 ```
+
+### tmux插件
+- [tmux-yank](https://github.com/tmux-plugins/tmux-yank)
+- [tmux-copycat](https://github.com/tmux-plugins/tmux-copycat)
+- [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+- [urlview](https://github.com/sigpipe/urlview)
+- [tmux-open](https://github.com/tmux-plugins/tmux-open)
 
 
 ---
