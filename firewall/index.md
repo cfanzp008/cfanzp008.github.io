@@ -4,12 +4,16 @@
 <!--more-->
 # 防火墙知识点汇总
 ## 基本概念
+- NFV
 - [ASPF](/aspf/)
 - [接口/interface](/interface/)
 - [安全策略/acl](/acl/)
 - [路由表ip-route](/ip_route/)
-- [LDAP协议](/ldap/)
-- 用户管控
+- CASB
+- SWG
+- WAF
+- SASE
+- NGFW
 - Link-Group
 - IP-Link
 - VRRP
@@ -19,7 +23,10 @@
 - DHCP服务器
   - [ubuntu下搭建DHCP服务器](https://blog.csdn.net/IT_ZRS/article/details/121396649)
 
-### portal认证
+### 用户相关
+- portal认证
+- [LDAP协议](/ldap/)
+- 用户管控
 - [portal认证](https://blog.csdn.net/qq_38265137/article/details/90723259)
 - [portal认证服务器](https://blog.csdn.net/xlh1991/article/details/38946075)
 
