@@ -604,6 +604,18 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lua-man/">Lua开发手册</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-31 09:47:48'>发布于 <time datetime="2022-07-31">2022-07-31</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> language</a>&ensp;<a href="/categories/development-manual/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发手册</a>&ensp;<a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua5.3开发手册 https://cloud.tencent.com/developer/doc/1141 云风翻译:http://cloudwu.github.io/lua53doc/manual.html lua5.4开发手册 官网英文版:http://www.lua.org/manual/5.4/manual.html lua匹配库Lpeg 官网: http://www.inf.puc-rio.br/~roberto/lpeg/ 帮助: https://www.jianshu.com/p/e8e1c5abfdbb tutorial: https://lua-users.org/wiki/LpegTutorial luasocket github: https://github.com/lunarmodules/luasocket 使用demo: https://blog.csdn.net/h1023417614/article/details/52297408 lua md5 github: https://github.com/keplerproject/md5 jemalloc http://jemalloc.net/ </div><div class="post-footer">
+    <a href="/lua-man/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/language-rust/">rust语言基础</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -664,18 +676,6 @@
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-29 12:45:13'>发布于 <time datetime="2022-07-29">2022-07-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate.</div><div class="post-footer">
     <a href="/skynet_dir/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/i3wm-i3status-conf/">i3wm-i3wm状态栏i3status如何配置显示星期？</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-28 20:18:39'>发布于 <time datetime="2022-07-28">2022-07-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/i3wm/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> i3wm</a></span></div><div class="content">i3wm-i3wm状态栏i3status如何配置显示星期？ i3wm用的状态栏是i3status i3status配置状态栏的方法如下: 配置文件路径/etc/i3status.conf 1 vim /etc/i3status.conf tztime 结点中加入%A 1 2 3 tztime local { format = &#34;%Y-%m-%d %H:%M:%S %A&#34; } </div><div class="post-footer">
-    <a href="/i3wm-i3status-conf/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/i3wm/">i3wm</a>,&nbsp;<a href="/tags/i3status/">i3status</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
