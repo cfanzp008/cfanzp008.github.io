@@ -604,6 +604,12 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/ubuntu-nginx/">如何使用Ubuntu linux使用nginx部署简单的静态网站?</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-09-07 11:43:48'>发布于 <time datetime="2022-09-07">2022-09-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/ubuntu-nginx/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/terminal-color/">lua中给日志关键字加上颜色</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-09-06 17:05:35'>发布于 <time datetime="2022-09-06">2022-09-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a>&ensp;<a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a>&ensp;<a href="/categories/terminal/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> terminal</a></span></div><div class="content"></div><div class="post-footer">
@@ -686,39 +692,6 @@
 ><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
     </a></span>&nbsp;<span class="post-publish" title='2022-08-30 11:43:25'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/health/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> health</a></span></div><div class="content">开发者注意健康饮食习惯 图片来源:腾讯医典,如有侵权，请联系本站删除。</div><div class="post-footer">
     <a href="/health-ls/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/health/">health</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-pbc/">lua-pbc(lua的protobuf库)如何使用？</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp.com/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 08:36:15'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
-lua-pbc github地址为: https://github.com/cloudwu/pbc
-关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
-lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
-编写protobuf的proto文件 User.proto
-1 2 3 4 package tutorial; message User { optional string name = 1; } 引入模块protobuf
-1 local pb = require &#34;protobuf&#34; 注册文件
-1 pb.register_file &#34;User.pb&#34; encode
-1 2 3 4 local msg_table = { name = &#34;test1&#34; } pb.encode(&#34;tutorial.User&#34;,msg_table}, decode
-1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
-参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.</div><div class="post-footer">
-    <a href="/lua-pbc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

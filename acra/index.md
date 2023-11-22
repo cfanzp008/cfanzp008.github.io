@@ -19,6 +19,25 @@
 ## 目录结构
 
 ## 使用
+```
+sudo apt-get install git libssl-dev make build-essential
+git clone https://github.com/cossacklabs/themis.git
+cd themis
+make
+sudo make install
+git clone https://github.com/cossacklabs/acra.git
+```
+### make key
+```
+acra-keymaker --keystore=v1 --generate_master_key=master.key
+root@ca96fb4df685:/opt/casb/acra/build/bin# export ACRA_MASTER_KEY=$(cat master.key | base64)
+root@ca96fb4df685:/opt/casb/acra/build/bin# echo $ACRA_MASTER_KEY
+N83aD76oJK4T0rvW213efyOeGUFl6O1bw4A9+JSYGCI=
+vim ~/.bashrc
+export ACRA_MASTER_KEY='N83aD76oJK4T0rvW213efyOeGUFl6O1bw4A9+JSYGCI='
+source ~/.bashrc
+./acra-keymaker --client_id=python1 --keystore=v1
+```
 
 
 ## github
