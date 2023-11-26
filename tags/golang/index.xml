@@ -28,5 +28,21 @@
   <guid>https://cfanzp.com/go-question/</guid>
   <description><![CDATA[]]></description>
 </item>
+<item>
+  <title>Go基本环境配置</title>
+  <link>https://cfanzp.com/go-env/</link>
+  <pubDate>Wed, 24 Aug 2022 20:25:24 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-env/</guid>
+  <description><![CDATA[Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found .]]></description>
+</item>
+<item>
+  <title>Golang库</title>
+  <link>https://cfanzp.com/golang-lib/</link>
+  <pubDate>Wed, 25 Nov 2020 21:24:13 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/golang-lib/</guid>
+  <description><![CDATA[]]></description>
+</item>
 </channel>
 </rss>
