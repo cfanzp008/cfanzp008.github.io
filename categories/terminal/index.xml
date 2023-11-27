@@ -32,21 +32,6 @@
 1 2 :config sync.]]></description>
 </item>
 <item>
-  <title>tmux常用快捷键</title>
-  <link>https://cfanzp.com/tmux-shortcut-key/</link>
-  <pubDate>Mon, 08 Aug 2022 20:06:22 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp.com/tmux-shortcut-key/</guid>
-  <description><![CDATA[tmux常用快捷键 注意 c-a:表示ctrl+a,我这里修改了默认的ctrl+b为ctrl+a 常用快捷键 c-a +z:在全屏和窗口之间切换
-c-a +c:创建一个新的窗口
-c-a+%:竖直创建一个新的pannel
-c-a+,:水平创建一个新的pannel
-c-a+(h,j,kl):在各个pannel间切换，需要在.tmux.conf配置文件中配置
-c-a+[:进入复制模式，q:退出复制模式
-c-a+w:查看所有窗口列表
-c-a+$:重命名当前的session]]></description>
-</item>
-<item>
   <title>tmux基本配置及vim适配</title>
   <link>https://cfanzp.com/devtools-tmux/</link>
   <pubDate>Mon, 25 Apr 2022 19:19:14 &#43;0800</pubDate>
