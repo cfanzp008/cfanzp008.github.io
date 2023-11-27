@@ -13,12 +13,28 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>Windows如何写一个脚本定时删除日志？</title>
+  <link>https://cfanzp.com/windows-del-log/</link>
+  <pubDate>Wed, 07 Dec 2022 14:27:50 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/windows-del-log/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>解决Oss跨域问题</title>
   <link>https://cfanzp.com/oss-core-error/</link>
   <pubDate>Mon, 28 Nov 2022 12:31:58 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp.com/oss-core-error/</guid>
   <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>linux中使用脚本关闭进程</title>
+  <link>https://cfanzp.com/linux-stop-process/</link>
+  <pubDate>Thu, 01 Sep 2022 11:15:18 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/linux-stop-process/</guid>
+  <description><![CDATA[linux中使用脚本关闭进程 关闭进程脚本 通过ps命令，grep命令以及awk命令找到进程的pid 使用kill命令关闭进程 脚本demo: 1 2 3 4 5 6 7 8 9 10 11 12 13 rootot@dev doc]# cat stop_mdbook_doc.sh #!/bin/bash kill_pid=`ps -ef | grep mdbook | grep 4001 | grep -v grep | awk &#39;{print $2}&#39;` echo &#34;pid = &#34;${kill_pid} if [ -n &#34;${kill_pid}&#34; ] then kill -9 ${kill_pid} echo &#34;mdbook 4001 pid:&#34;${kill_pid}&#34;进程已kill成功&#34; else echo &#34;mdbook 4001 进程已不存在&#34; fi [root@dev doc]# ]]></description>
 </item>
 </channel>
 </rss>
