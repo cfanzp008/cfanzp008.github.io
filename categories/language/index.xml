@@ -4,7 +4,41 @@
     <link>https://cfanzp.com/categories/language/</link>
     <description>language - 分类 - Linux开发</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 23 Aug 2022 19:50:28 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/language/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/language/" rel="self" type="application/rss+xml" /><item>
+  <title>go build提示timeout如何解决？</title>
+  <link>https://cfanzp.com/go-build-timeout/</link>
+  <pubDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-build-timeout/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Go语言中pprof的使用</title>
+  <link>https://cfanzp.com/go-pprof/</link>
+  <pubDate>Fri, 21 Apr 2023 14:35:37 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/go-pprof/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>lua-pbc(lua的protobuf库)如何使用？</title>
+  <link>https://cfanzp.com/lua-pbc/</link>
+  <pubDate>Tue, 30 Aug 2022 08:36:15 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/lua-pbc/</guid>
+  <description><![CDATA[lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
+lua-pbc github地址为: https://github.com/cloudwu/pbc
+关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
+lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
+编写protobuf的proto文件 User.proto
+1 2 3 4 package tutorial; message User { optional string name = 1; } 引入模块protobuf
+1 local pb = require &#34;protobuf&#34; 注册文件
+1 pb.register_file &#34;User.pb&#34; encode
+1 2 3 4 local msg_table = { name = &#34;test1&#34; } pb.encode(&#34;tutorial.User&#34;,msg_table}, decode
+1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
+参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.]]></description>
+</item>
+<item>
   <title>GOPROXY配置</title>
   <link>https://cfanzp.com/goproxy/</link>
   <pubDate>Tue, 23 Aug 2022 19:50:28 &#43;0800</pubDate>

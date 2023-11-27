@@ -7,11 +7,11 @@
     <meta name="robots" content="noodp" />
     <title>Go基本环境配置 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found ." /><meta name="keywords" content='go, golang' /><meta itemprop="name" content="Go基本环境配置">
+<meta name="description" content="Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found ." /><meta name="keywords" content='golang' /><meta itemprop="name" content="Go基本环境配置">
 <meta itemprop="description" content="Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found ."><meta itemprop="datePublished" content="2022-08-24T20:25:24+08:00" />
 <meta itemprop="dateModified" content="2022-08-24T20:25:24+08:00" />
 <meta itemprop="wordCount" content="151"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
-<meta itemprop="keywords" content="go,golang," /><meta property="og:title" content="Go基本环境配置" />
+<meta itemprop="keywords" content="golang," /><meta property="og:title" content="Go基本环境配置" />
 <meta property="og:description" content="Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 编译 1 go build -o main.exe main.go 运行 直接运行编译后的可执行程序 go run 运行源代码 vim配置 https://blog.csdn.net/Jmilk/article/details/107292042 https://zhuanlan.zhihu.com/p/51656877 https://www.sunzhongwei.com/vim-execution-goinstallbinaries-installation-depend-on-failure https://blog.csdn.net/pujiao5201314/article/details/77947885 vim配置vim-go推出时语法检查 相关工具 gocode,errorcheck https://www.imooc.com/wenda/detail/664397 .vimrc 1 let g:syntastic_go_checkers = [&#39;govet&#39;, &#39;errcheck&#39;, &#39;go&#39;] GoBinaryInstall 1 2 go install github.com/nsf/gocode@latest go install github.com/golang/lint@latest vim GoRun报错 1 malformed import path &#34;go: cannot find main module, but found ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://cfanzp.com/go-env/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
@@ -34,7 +34,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/go-env\/"
-    },"genre": "posts","keywords": "go, golang","wordcount":  151 ,
+    },"genre": "posts","keywords": "golang","wordcount":  151 ,
     "url": "https:\/\/cfanzp.com\/go-env\/","datePublished": "2022-08-24T20:25:24+08:00","dateModified": "2022-08-24T20:25:24+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -74,6 +74,15 @@
                       >
                         <a
                           class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
                           href="/categories/linux/"
                           
                           
@@ -87,15 +96,6 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
-                      </li><li
-                        class="menu-item"
-                      >
-                        <a
-                          class="menu-link"
-                          href="/categories/golang/"
-                          
-                          
-                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
                       </li><li
                         class="menu-item"
                       >
@@ -332,6 +332,15 @@
                       >
                         <a
                           class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
                           href="/categories/linux/"
                           
                           
@@ -345,15 +354,6 @@
                           
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
-                      </li><li
-                        class="menu-item"
-                      >
-                        <a
-                          class="menu-link"
-                          href="/categories/golang/"
-                          
-                          
-                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
                       </li><li
                         class="menu-item"
                       >
@@ -590,7 +590,7 @@
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
-          <span class="post-category">收录于 <a href="/categories/go/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> go</a>&ensp;<a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div>
+          <span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div>
       <div class="post-meta-line"><span title=2022-08-24&#32;20:25:24><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 151 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
@@ -1159,7 +1159,7 @@
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/golang/">golang</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>

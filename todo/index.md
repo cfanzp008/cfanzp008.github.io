@@ -2,6 +2,14 @@
 
 
 # TODO
+## 2024年
+
+## 2023年
+- [ ] 学习[golang](/categories/golang)
+- [ ] 学习[acra](/acra)
+- [ ] 学习[docker](/categories/docker)
+- [ ] 复习[计算机网络](/network)
+
 ## 源码学习
 - [ ] lua
 - [ ] nginx
@@ -16,10 +24,9 @@
 - [ ] Unity3d
 - [ ] cocos creator
 
-## 学习笔记
+## 学习
 - [x] 《Vim实用技巧（第2版）》学习笔记
 - [ ] golang学习笔记
-- [ ] [rust学习笔记](http://43.138.214.246:8084/chapter_1.html)
 
 
 
