@@ -23,6 +23,10 @@
 - sonic(字节优化版的json库): https://github.com/bytedance/sonic
 - gjson: github.com/tidwall/gjson
 
+### 算法
+- [AES256算法](https://github.com/chentaihan/aesCbc)
+- [crypto](https://github.com/golang/crypto)
+
 
 ---
 

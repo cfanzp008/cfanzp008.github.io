@@ -622,6 +622,20 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/goproxy/">GOPROXY配置</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 19:50:28'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a>&ensp;<a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">GOPROXY配置 最近在使用hugo时需要依赖go环境在安装依赖包的时候，速度很慢，之前都是配置外网环境解决的。其实go环境有国内的替代域名资源可以使用。 在go环境下，需要下载依赖包的时候，如果没有外网环境的话，很多包默认是无法下载下来的，解决办法就是修改一下GOPROXY的配置
+1 go env -w GOPROXY=https://goproxy.io,direct </div><div class="post-footer">
+    <a href="/goproxy/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lua-debug/">lua中如何实现打印行号和当前函数名？</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 11:28:13'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:</div><div class="post-footer">
+    <a href="/lua-debug/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/mysql-procedure/">mysql存储过程</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-23 09:22:30'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mysql</a></span></div><div class="content">mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
@@ -649,24 +663,6 @@
 网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
 配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 </div><div class="post-footer">
     <a href="/gitlab-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gitlab/">gitlab</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/cpu_ttt/">cpu天梯图</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-20 16:45:20'>发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content">cpu天梯图 在购买电脑的时候不知道怎么选电脑? 选电脑选好主要的cpu,显卡，主板等就不会吃大亏。这里给大家展示一下本人在百度贴吧找到的今年7月分最新的cpu天梯图。
-天梯图 图片原址:https://tieba.baidu.com/p/5005825360?pn=19 (在这里感谢原作者分享，图片如有侵权，请联系本站删除。)
-cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu总地来说会更好，但是进步是需要踩坑的，也需要时间一代一代地迭代，中间版本过渡过程中，新的一代不一定就比旧的强。
-本人家里的旧电脑cpu是i5-4590,公司用的旧电脑cpu是i5-6400,直观地看公司的电脑cpu似乎更好，但是看看天梯图，却发现其实i5-4590性能更强一些。
-再去多查一些资料，根据网友的反馈来看，总体来看:
-从性能上来说,4590比6400还要稍微强一点点 6代的6400比4代的4590功耗更低 6400是14nm工艺，4590是22nm工艺 对于现在而言都是很差的cpu了。不过平时办公日常需求也够用了。平时选购cpu时参考一下天梯图，再查查网友的使用对比，会比较 稳妥一些。
-参考 2个cpu参数对比:https://cpu.bmcx.com/1537_1506_1496__cpu/ B站2个cpu的对比视频:https://www.bilibili.com/video/av5101266 </div><div class="post-footer">
-    <a href="/cpu_ttt/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/httperf/">Httperf</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 16:13:57'>发布于 <time datetime="2022-08-19">2022-08-19</time></span></div><div class="content">web压力测试工具:httperf 下载地址: 使用demo: 1 httperf --client=0/1 --server 192.168.2.127 --port 7100 --uri /loginReq --num-conns 30000 --rate 30000 --hog 教程: https://blog.csdn.net/qq_33391644/article/details/103794115 https://www.cnblogs.com/cllovewxq/p/5533487.html </div><div class="post-footer">
-    <a href="/httperf/">阅读全文</a></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

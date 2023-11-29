@@ -15,6 +15,10 @@ CASB云访问安全代理 是介于企业用户和云服务提供商之间的安
 ## CASB产品
 - [微软CASB](https://www.microsoft.com/zh-cn/security/business/security-101/what-is-a-cloud-access-security-broker-casb#four-cornerstones-of-casbs)
 
+## 参考
+- [CASB和SASE：有什么区别？](https://searchsecurity.techtarget.com.cn/11-26503/)
+- [CASB用例](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE3nibJ)
+
 
 ---
 
