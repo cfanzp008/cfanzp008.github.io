@@ -8,6 +8,7 @@
 - redis命令手册: https://www.redis.net.cn/order/
 
 ### 语言
+- [golang](https://go.dev/doc/):https://go.dev/doc/ [在线运行golang程序](https://go.dev/play/)
 - lua5.3开发手册: https://cloud.tencent.com/developer/doc/1141
 - lua5.4 官网英文版: http://www.lua.org/manual/5.4/manual.html
 - rust: https://github.com/rust-lang/reference
