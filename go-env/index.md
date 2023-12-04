@@ -21,6 +21,34 @@ source /etc/profile ##在当前bash环境下读取并执行profile中的命令�
 go env 
 ```
 
+## 初始化项目
+- gin demo
+```golang
+package main
+
+import "github.com/gin-gonic/gin"
+
+func main() {
+    // 创建一个默认的Gin引擎
+    r := gin.Default()
+
+    // 定义一个简单的GET请求路由
+    r.GET("/", func(c *gin.Context) {
+        c.String(200, "Hello, Gin!")
+    })
+
+    // 启动HTTP服务器，监听在 8080 端口
+    r.Run(":8080")
+}
+```
+
+- 初始化项目
+```bash
+go mod init example.com/gin_demo
+go mod tidy
+go build
+```
+
 ## 编译
 ```
 go build -o main.exe main.go
