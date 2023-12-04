@@ -47,6 +47,9 @@
 ## EC6108v9U带刷机包
 - https://www.bilibili.com/video/BV1o34y1J7b1/?spm_id_from=333.788.recommend_more_video.1&vd_source=5cbf24b674b5b4183e6f626cd037b179
 
+## 如何刷nas?
+- https://www.ecoo.top/docs/tutorial-basics/adb-flash
+
 
 ---
 
