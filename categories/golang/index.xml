@@ -4,7 +4,23 @@
     <link>https://cfanzp.com/categories/golang/</link>
     <description>golang - 分类 - Linux开发</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 27 Nov 2023 19:46:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/golang/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 05 Dec 2023 21:52:19 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/golang/" rel="self" type="application/rss+xml" /><item>
+  <title>Vim配置vim-go</title>
+  <link>https://cfanzp.com/vim-go/</link>
+  <pubDate>Tue, 05 Dec 2023 21:52:19 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/vim-go/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Golang GoFrame框架</title>
+  <link>https://cfanzp.com/gf/</link>
+  <pubDate>Tue, 05 Dec 2023 20:44:37 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/gf/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>golang mutex用法</title>
   <link>https://cfanzp.com/golang-mutex/</link>
   <pubDate>Mon, 27 Nov 2023 19:46:50 &#43;0800</pubDate>
@@ -67,23 +83,6 @@
   <author>作者</author>
   <guid>https://cfanzp.com/go-question/</guid>
   <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Go基本环境配置</title>
-  <link>https://cfanzp.com/go-env/</link>
-  <pubDate>Wed, 24 Aug 2022 20:25:24 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp.com/go-env/</guid>
-  <description><![CDATA[Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 初始化项目 gin demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 package main import &#34;github.com/gin-gonic/gin&#34; func main() { // 创建一个默认的Gin引擎 r := gin.Default() // 定义一个简单的GET请求路由 r.GET(&#34;/&#34;, func(c *gin.Context) { c.String(200, &#34;Hello, Gin!&#34;) }) // 启动HTTP服务器，监听在 8080 端口 r.]]></description>
-</item>
-<item>
-  <title>GOPROXY配置</title>
-  <link>https://cfanzp.com/goproxy/</link>
-  <pubDate>Tue, 23 Aug 2022 19:50:28 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp.com/goproxy/</guid>
-  <description><![CDATA[GOPROXY配置 最近在使用hugo时需要依赖go环境在安装依赖包的时候，速度很慢，之前都是配置外网环境解决的。其实go环境有国内的替代域名资源可以使用。 在go环境下，需要下载依赖包的时候，如果没有外网环境的话，很多包默认是无法下载下来的，解决办法就是修改一下GOPROXY的配置
-1 go env -w GOPROXY=https://goproxy.io,direct ]]></description>
 </item>
 </channel>
 </rss>
