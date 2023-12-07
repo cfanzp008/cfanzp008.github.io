@@ -622,6 +622,14 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/gitlab-config/">解决gitlab占用内存太大的问题</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-22 14:06:24'>发布于 <time datetime="2022-08-22">2022-08-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">解决gitlab占用内存太大的问题 最近gitlab服务器出现了占用内存太大的问题。虚拟机里的linux系统内存&gt;4G都被几乎用完了。
+网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
+配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 </div><div class="post-footer">
+    <a href="/gitlab-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gitlab/">gitlab</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/cpu_ttt/">cpu天梯图</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-20 16:45:20'>发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content">cpu天梯图 在购买电脑的时候不知道怎么选电脑? 选电脑选好主要的cpu,显卡，主板等就不会吃大亏。这里给大家展示一下本人在百度贴吧找到的今年7月分最新的cpu天梯图。
@@ -664,15 +672,6 @@ cfanzp主页1
 列表 无序列表 1 2 - item1 - item2 效果:
 item1 item2 有序列表 1 2 1.</div><div class="post-footer">
     <a href="/markdown/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/markdown/">markdown</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/weak-net/">弱网测试环境的搭建</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-12 08:46:30'>发布于 <time datetime="2022-08-12">2022-08-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">弱网测试环境的搭建 最近有一个线上项目反馈在弱网环境下，容易掉线。我们自己测试的时候网络环境都还比较好，想模拟一下弱网环境，这里介绍一下几个方案。
-路由器限速 路由器可以直接对某个设备进行限速，这个登录路由器就可以配置了，方法比较简单，这里就不赘述了。
-chrome开发者工具 chrome开发者工具自带网络限速功能，可以限制速度,可以自定义各种网络带宽，使用比较方便。
-使用Charles设置代理限速 这种方法配置起来相比前面2种情况，稍微麻烦一些,另外有一个缺点，websockt限速好像没办法设置(Charles 4.6.2)。</div><div class="post-footer">
-    <a href="/weak-net/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

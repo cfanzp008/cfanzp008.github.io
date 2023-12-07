@@ -4,7 +4,15 @@
     <link>https://cfanzp.com/categories/mysql/</link>
     <description>mysql - 分类 - Linux开发</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 21 Apr 2023 21:54:11 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/mysql/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 07 Dec 2023 21:06:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/mysql/" rel="self" type="application/rss+xml" /><item>
+  <title>mysql数据包分析</title>
+  <link>https://cfanzp.com/mysql-packet/</link>
+  <pubDate>Thu, 07 Dec 2023 21:06:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/mysql-packet/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>mysql修改编码支持utf8mb4</title>
   <link>https://cfanzp.com/mysql-charsets/</link>
   <pubDate>Fri, 21 Apr 2023 21:54:11 &#43;0800</pubDate>
@@ -76,14 +84,6 @@
   <guid>https://cfanzp.com/mysql-procedure/</guid>
   <description><![CDATA[mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
 存储过程名为:p_login 存储过程有3个参数:a_platform,a_account,a_password 1 2 3 4 5 6 7 8 9 10 CREATE DEFINER=`root`@`%` PROCEDURE `p_login`(in a_platform int, in a_account varchar(64), in a_password varchar(32)) begin SELECT *,userid as uid FROM tb_account WHERE account=a_account AND platform=a_platform AND `password`=a_password AND nullity = &#39;0&#39; AND android = &#39;0&#39;; end 如何调用存储过程? 1 CALL p_login(1,&#34;aaa&#34;,&#34;password&#34;); 存储过程中常用的函数有哪些？ 获取当前时间搓 1 current_timestamp() 获取时间 1 NOW() 获取当前日期 1 curdate() 获取最后一个标识值 在一条 INSERT、SELECT INTO 或大容量复制语句完成后，@@IDENTITY 中包含语句生成的最后一个标识值 1 select @@IDENTITY 获取今天，昨天，前天的当前时间 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 CREATE DEFINER=`root`@`%` PROCEDURE `p_demo_get_daily_login_report`(IN `a_step` int) BEGIN DECLARE start_day TIMESTAMP; DECLARE end_day TIMESTAMP; # a_step=0 今天 # a_step=1 昨天 # a_step=2 前天 SET start_day = (CAST(SYSDATE()AS DATE) - INTERVAL a_step DAY); SET end_day = (CAST(SYSDATE()AS DATE) + INTERVAL 1 DAY - INTERVAL a_step DAY); select a.]]></description>
-</item>
-<item>
-  <title>mysql&#43;&#43;的使用</title>
-  <link>https://cfanzp.com/mysql-/</link>
-  <pubDate>Tue, 14 Jun 2022 22:06:55 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp.com/mysql-/</guid>
-  <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>

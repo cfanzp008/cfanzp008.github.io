@@ -122,6 +122,12 @@ greenlet.h:8:20: fatal error: Python.h: No such file or directory #99
 yum install python3-devel
 ```
 
+### FAQ
+- 远程连接到linux服务器使用neovim的时候如何将neovim中的文本复制出来？
+```
+shift + 鼠标是一种解决方案
+```
+
 
 ---
 
