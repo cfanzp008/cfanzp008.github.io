@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>HTTP1.0/1.1/2.0的区别 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>http协议 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='http' /><meta itemprop="name" content="HTTP1.0/1.1/2.0的区别">
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='http' /><meta itemprop="name" content="http协议">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-03-23T16:00:38+08:00" />
 <meta itemprop="dateModified" content="2023-03-23T16:00:38+08:00" />
-<meta itemprop="wordCount" content="25"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
-<meta itemprop="keywords" content="http," /><meta property="og:title" content="HTTP1.0/1.1/2.0的区别" />
+<meta itemprop="wordCount" content="153"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="keywords" content="http," /><meta property="og:title" content="http协议" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://cfanzp.com/http/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="HTTP1.0/1.1/2.0的区别"/>
+<meta name="twitter:title" content="http协议"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -29,12 +29,12 @@
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "HTTP1.0/1.1/2.0的区别",
+    "headline": "http协议",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/http\/"
-    },"genre": "posts","keywords": "http","wordcount":  25 ,
+    },"genre": "posts","keywords": "http","wordcount":  153 ,
     "url": "https:\/\/cfanzp.com\/http\/","datePublished": "2023-03-23T16:00:38+08:00","dateModified": "2023-03-23T16:00:38+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -586,12 +586,12 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>HTTP1.0/1.1/2.0的区别</span>
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>http协议</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2023-03-23&#32;16:00:38><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-23">2023-03-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 25 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-03-23&#32;16:00:38><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-23">2023-03-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 153 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -599,6 +599,12 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#http协议的格式">http协议的格式</a>
+      <ul>
+        <li><a href="#http请求报文">HTTP请求报文</a></li>
+        <li><a href="#http返回报文">HTTP返回报文</a></li>
+      </ul>
+    </li>
     <li><a href="#http10">HTTP1.0</a></li>
     <li><a href="#http11">HTTP1.1</a></li>
     <li><a href="#http20">HTTP2.0</a></li>
@@ -610,8 +616,118 @@
       id="content"
       
       
-    ><h1 id="http101120的区别">HTTP1.0/1.1/2.0的区别</h1>
-<h2 id="http10">HTTP1.0</h2>
+    ><h1 id="http协议">http协议</h1>
+<h2 id="http协议的格式">http协议的格式</h2>
+<h3 id="http请求报文">HTTP请求报文</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">方法 URL 版本 \n\r   (请求行)
+</span></span><span class="line"><span class="cl">首部字段名:值 \n\r
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">首部字段名:值 \n\r
+</span></span><span class="line"><span class="cl">\n\r
+</span></span><span class="line"><span class="cl">实体主体（通常不用）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>方法:OPTION GET HEAD POST PUT DELETE TRACE CONNECT</li>
+<li>请求例子</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /gts1c3/aaa HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: ocsp.pki.goog
+</span></span><span class="line"><span class="cl">X-Apple-Request-UUID: 111-222-333-444-99999
+</span></span><span class="line"><span class="cl">Accept: */*
+</span></span><span class="line"><span class="cl">User-Agent: com.apple.trustd/2.2
+</span></span><span class="line"><span class="cl">Accept-Language: zh-CN,zh-Hans;q=0.9
+</span></span><span class="line"><span class="cl">Accept-Encoding: gzip, deflate
+</span></span><span class="line"><span class="cl">Connection: keep-alive
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="http返回报文">HTTP返回报文</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">版本 状态码 短语\n\r   (状态行)
+</span></span><span class="line"><span class="cl">首部字段名:值 \n\r
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">首部字段名:值 \n\r
+</span></span><span class="line"><span class="cl">\n\r
+</span></span><span class="line"><span class="cl">实体主体（有些报文不用）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>返回例子</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">Server: ocsp_responder
+</span></span><span class="line"><span class="cl">Content-Length: 471
+</span></span><span class="line"><span class="cl">X-XSS-Protection: 0
+</span></span><span class="line"><span class="cl">X-Frame-Options: SAMEORIGIN
+</span></span><span class="line"><span class="cl">Date: Fri, 22 Dec 2023 13:56:50 GMT
+</span></span><span class="line"><span class="cl">Cache-Control: public, max-age=14400
+</span></span><span class="line"><span class="cl">Content-Type: application/ocsp-response
+</span></span><span class="line"><span class="cl">Age: 1993
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">0...
+</span></span><span class="line"><span class="cl">......0....	+.....0......0...0.......t.......
+</span></span><span class="line"><span class="cl">n...i.q..6S...c....20231221122544Z....20231228112543Z0
+</span></span><span class="line"><span class="cl">.	*.H..
+</span></span><span class="line"><span class="cl">.............M.19ZV..lT.x%..*.&gt;..&#34;w&lt;.{.&amp;...9.........f.,.....):.5....5%e........
+</span></span><span class="line"><span class="cl">.M..@.i...U	l.....6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="http10">HTTP1.0</h2>
 <ul>
 <li>HTTP1.0 是http协议的第二个版本，是第一个在通讯中定版本号的HTTP协议</li>
 <li>http1.0 浏览器与服务器只保持短暂的连接，每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后，立即断开TCP连接，服务器不跟踪每个客户,也不记录过去的请求。
@@ -668,7 +784,7 @@
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/http/" data-title="HTTP1.0/1.1/2.0的区别"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/http/" data-title="http协议"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>

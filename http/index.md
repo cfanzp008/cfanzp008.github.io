@@ -1,8 +1,65 @@
-# HTTP1.0/1.1/2.0的区别
+# http协议
 
 
 <!--more-->
-# HTTP1.0/1.1/2.0的区别
+# http协议
+## http协议的格式
+### HTTP请求报文
+```
+方法 URL 版本 \n\r   (请求行)
+首部字段名:值 \n\r
+...
+...
+首部字段名:值 \n\r
+\n\r
+实体主体（通常不用）
+```
+- 方法:OPTION GET HEAD POST PUT DELETE TRACE CONNECT
+- 请求例子
+```
+GET /gts1c3/aaa HTTP/1.1
+Host: ocsp.pki.goog
+X-Apple-Request-UUID: 111-222-333-444-99999
+Accept: */*
+User-Agent: com.apple.trustd/2.2
+Accept-Language: zh-CN,zh-Hans;q=0.9
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+```
+
+### HTTP返回报文
+```
+版本 状态码 短语\n\r   (状态行)
+首部字段名:值 \n\r
+...
+...
+首部字段名:值 \n\r
+\n\r
+实体主体（有些报文不用）
+```
+
+- 返回例子
+```
+HTTP/1.1 200 OK
+Server: ocsp_responder
+Content-Length: 471
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Date: Fri, 22 Dec 2023 13:56:50 GMT
+Cache-Control: public, max-age=14400
+Content-Type: application/ocsp-response
+Age: 1993
+
+0...
+......0....	+.....0......0...0.......t.......
+n...i.q..6S...c....20231221122544Z....20231228112543Z0
+.	*.H..
+.............M.19ZV..lT.x%..*.>.."w<.{.&...9.........f.,.....):.5....5%e........
+.M..@.i...U	l.....6
+
+```
+
 ## HTTP1.0
 - HTTP1.0 是http协议的第二个版本，是第一个在通讯中定版本号的HTTP协议
 - http1.0 浏览器与服务器只保持短暂的连接，每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后，立即断开TCP连接，服务器不跟踪每个客户,也不记录过去的请求。
