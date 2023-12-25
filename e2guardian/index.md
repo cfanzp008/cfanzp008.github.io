@@ -8,9 +8,17 @@ e2guardian是一个开源的url过滤和url内容过滤的软件。最近编译�
 
 ## e2guardian下载
 - https://github.com/e2guardian/e2guardian
+```
+wget https://github.com/e2guardian/e2guardian/archive/refs/tags/v5.5.4r.tar.gz
+```
 
 ## 源码安装
 - 参考: https://github.com/e2guardian/e2guardian/wiki/Installation-From-Source
+```
+apt-get build-dep e2guardian
+./autogen.sh
+./configure '--prefix=/usr' '--enable-clamd=yes' '--with-proxyuser=e2guardian' '--with-proxygroup=e2guardian' '--sysconfdir=/etc' '--localstatedir=/var' '--enable-icap=yes' '--enable-commandline=yes' '--enable-email=yes' '--enable-ntlm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--enable-pcre=yes' '--enable-sslmitm=yes' 'CPPFLAGS=-mno-sse2 -g -O2'
+```
 
 ## squid与e2guardian配合使用
 - e2guardian可作为icap server与squid配合使用。
