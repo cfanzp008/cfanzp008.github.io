@@ -45,16 +45,23 @@
   u3d
 
 ### 开发工具
-- [git](/categories/git)
+- [vim](/vim)
+  [git](/categories/git)
   [nginx](/categories/nginx)
   [svn](/tags/svn)
   jenkins,gitlab
 
+### 学习
+- squid源码
+- [lazy.vim](https://github.com/folke/lazy.nvim)
 
 ## 更多
 - [公众号](/images/gzh.jpeg#pic_center "公众号")
   [加我微信](/images/wechat-zp.jpg#pic_center "微信")
   [CSDN](/images/csdn.jpg#pic_center "csdn")
+
+## TODO
+- [TODO](/todo)
 
 
 ### categories

@@ -8,6 +8,7 @@
 
 ## 开源项目
 - [ACRA](https://github.com/cossacklabs/acra)
+- [squid](https://github.com/squid-cache/squid)
 
 
 ---

@@ -4,6 +4,13 @@
 ## 思维导图
 - [freemind](/tags/freemind)
   [freeplane](/tags/freeplane)
+## 在图工具
+### 在线画图工具:
+- [iodraw](https://www.iodraw.com/)
+- [drawio github](https://github.com/jgraph/drawio)
+
+- 在线json格式化工具:[sojson](https://www.sojson.com/)
+- https://cloud.tencent.com/developer/article/2230844
 
 
 ## 转发
@@ -15,8 +22,8 @@
   jenkins,gitlab
 
 ### 编辑器
-- [vim](/categories/vim)
-    
+- [vim](/vim)
+
 ### 截图
 - [flameshot](/tags/flameshot)
 
