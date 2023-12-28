@@ -6,6 +6,7 @@
 ## nvim配置
 - [https://gitee.com/cfanzp/nvim-config.git](https://gitee.com/cfanzp/nvim-config.git)
 
+## nvim常用插件
 {{< mermaid >}}
 graph LR
   Vim-->plug
