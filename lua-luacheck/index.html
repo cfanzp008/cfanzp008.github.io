@@ -14,19 +14,18 @@
 安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
 安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs."><meta itemprop="datePublished" content="2022-08-01T18:16:43+08:00" />
 <meta itemprop="dateModified" content="2022-08-01T18:16:43+08:00" />
-<meta itemprop="wordCount" content="222"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="222"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="linux,luacheck," /><meta property="og:title" content="lua-luacheck" />
 <meta property="og:description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
 安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
 安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/lua-luacheck/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/lua-luacheck/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-01T18:16:43+08:00" />
 <meta property="article:modified_time" content="2022-08-01T18:16:43+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="lua-luacheck"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="lua-luacheck"/>
 <meta name="twitter:description" content="luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
 安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
 安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs."/>
@@ -780,10 +779,10 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ignore = {
-</span></span><span class="line"><span class="cl">    &#34;631&#34;,  -- max_line_length
-</span></span><span class="line"><span class="cl">        &#34;212/_.*&#34;,  -- unused argument, for vars with &#34;_&#34; prefix
-</span></span><span class="line"><span class="cl">}
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;631&#34;</span><span class="p">,</span>  <span class="o">--</span> <span class="n">max_line_length</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;212/_.*&#34;</span><span class="p">,</span>  <span class="o">--</span> <span class="n">unused</span> <span class="n">argument</span><span class="p">,</span> <span class="k">for</span> <span class="n">vars</span> <span class="n">with</span> <span class="s2">&#34;_&#34;</span> <span class="n">prefix</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="使用">使用</h2>

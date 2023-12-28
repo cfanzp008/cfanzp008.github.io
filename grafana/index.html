@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='grafana, 监控' /><meta itemprop="name" content="Grafana">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-17T18:57:53+08:00" />
 <meta itemprop="dateModified" content="2023-02-17T18:57:53+08:00" />
-<meta itemprop="wordCount" content="178"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="178"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="grafana,监控," /><meta property="og:title" content="Grafana" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/grafana/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/grafana/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-02-17T18:57:53+08:00" />
 <meta property="article:modified_time" content="2023-02-17T18:57:53+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="Grafana"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Grafana"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -715,53 +714,53 @@
 </span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@dev127 cig]# cat docker-compose.yml
-</span></span><span class="line"><span class="cl">version: &#39;3.1&#39;
-</span></span><span class="line"><span class="cl">volumes:
-</span></span><span class="line"><span class="cl">  grafana_data: {}
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">dev127</span> <span class="n">cig</span><span class="p">]</span><span class="c1"># cat docker-compose.yml</span>
+</span></span><span class="line"><span class="cl"><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;3.1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">grafana_data</span><span class="p">:</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">services:
-</span></span><span class="line"><span class="cl"> influxdb:
-</span></span><span class="line"><span class="cl">  image: tutum/influxdb:0.9
-</span></span><span class="line"><span class="cl">  restart: always
-</span></span><span class="line"><span class="cl">  environment:
-</span></span><span class="line"><span class="cl">    - PRE_CREATE_DB=cadvisor
-</span></span><span class="line"><span class="cl">  ports:
-</span></span><span class="line"><span class="cl">    - &#34;8083:8083&#34;
-</span></span><span class="line"><span class="cl">    - &#34;8086:8086&#34;
-</span></span><span class="line"><span class="cl">  volumes:
-</span></span><span class="line"><span class="cl">    - /data/influxdb:/data
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="n">influxdb</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">image</span><span class="p">:</span> <span class="n">tutum</span><span class="o">/</span><span class="n">influxdb</span><span class="p">:</span><span class="mf">0.9</span>
+</span></span><span class="line"><span class="cl">  <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+</span></span><span class="line"><span class="cl">  <span class="n">environment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">PRE_CREATE_DB</span><span class="o">=</span><span class="n">cadvisor</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="s2">&#34;8083:8083&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="s2">&#34;8086:8086&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">influxdb</span><span class="p">:</span><span class="o">/</span><span class="n">data</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> cadvisor:
-</span></span><span class="line"><span class="cl">  image: google/cadvisor
-</span></span><span class="line"><span class="cl">  restart: always
-</span></span><span class="line"><span class="cl">  ports:
-</span></span><span class="line"><span class="cl">    - &#34;8082:8080&#34;
-</span></span><span class="line"><span class="cl">  volumes:
-</span></span><span class="line"><span class="cl">    - /:/rootfs:ro
-</span></span><span class="line"><span class="cl">    - /var/run:/var/run:rw
-</span></span><span class="line"><span class="cl">    - /sys:/sys:ro
-</span></span><span class="line"><span class="cl">    - /var/lib/docker/:/var/lib/docker:ro
+</span></span><span class="line"><span class="cl"> <span class="n">cadvisor</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">image</span><span class="p">:</span> <span class="n">google</span><span class="o">/</span><span class="n">cadvisor</span>
+</span></span><span class="line"><span class="cl">  <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="s2">&#34;8082:8080&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">rootfs</span><span class="p">:</span><span class="n">ro</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="p">:</span><span class="n">rw</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">/</span><span class="n">sys</span><span class="p">:</span><span class="o">/</span><span class="n">sys</span><span class="p">:</span><span class="n">ro</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="p">:</span><span class="n">ro</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"> grafana:
-</span></span><span class="line"><span class="cl">  user: &#34;104&#34;
-</span></span><span class="line"><span class="cl">  image: grafana/grafana
-</span></span><span class="line"><span class="cl">  user: &#34;104&#34;
-</span></span><span class="line"><span class="cl">  restart: always
-</span></span><span class="line"><span class="cl">  links:
-</span></span><span class="line"><span class="cl">    - influxdb:influxsrv
-</span></span><span class="line"><span class="cl">  ports:
-</span></span><span class="line"><span class="cl">    - &#34;3000:3000&#34;
-</span></span><span class="line"><span class="cl">  volumes:
-</span></span><span class="line"><span class="cl">    - grafana_data:/var/lib/grafana
-</span></span><span class="line"><span class="cl">  environment:
-</span></span><span class="line"><span class="cl">    - HTTP_USER=admin
-</span></span><span class="line"><span class="cl">    - HTTP_PASS=admin
-</span></span><span class="line"><span class="cl">    - INFLUXDB_HOST=influxsrv
-</span></span><span class="line"><span class="cl">    - INFLUXDB_PORT=8086
-</span></span><span class="line"><span class="cl">    - INFLUXDB_NAME=cadvisor
-</span></span><span class="line"><span class="cl">    - INFLUXDB_USER=root
-</span></span><span class="line"><span class="cl">    - INFLUXDB_PASS=root
+</span></span><span class="line"><span class="cl"> <span class="n">grafana</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">user</span><span class="p">:</span> <span class="s2">&#34;104&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">image</span><span class="p">:</span> <span class="n">grafana</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl">  <span class="n">user</span><span class="p">:</span> <span class="s2">&#34;104&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+</span></span><span class="line"><span class="cl">  <span class="n">links</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">influxdb</span><span class="p">:</span><span class="n">influxsrv</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="s2">&#34;3000:3000&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">grafana_data</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl">  <span class="n">environment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">HTTP_USER</span><span class="o">=</span><span class="n">admin</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">HTTP_PASS</span><span class="o">=</span><span class="n">admin</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">INFLUXDB_HOST</span><span class="o">=</span><span class="n">influxsrv</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">INFLUXDB_PORT</span><span class="o">=</span><span class="mi">8086</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">INFLUXDB_NAME</span><span class="o">=</span><span class="n">cadvisor</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">INFLUXDB_USER</span><span class="o">=</span><span class="n">root</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="n">INFLUXDB_PASS</span><span class="o">=</span><span class="n">root</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="直接通过命令来启动">直接通过命令来启动</h3>

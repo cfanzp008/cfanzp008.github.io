@@ -32,7 +32,7 @@
 上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
 总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ "><meta itemprop="datePublished" content="2022-08-01T12:52:33+08:00" />
 <meta itemprop="dateModified" content="2022-08-01T12:52:33+08:00" />
-<meta itemprop="wordCount" content="48"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="48"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-clearcache" />
 <meta property="og:description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
 方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
@@ -47,13 +47,12 @@
 上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
 总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/skynet-clearcache/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/skynet-clearcache/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-01T12:52:33+08:00" />
 <meta property="article:modified_time" content="2022-08-01T12:52:33+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="skynet-clearcache"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="skynet-clearcache"/>
 <meta name="twitter:description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
 方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
 方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。

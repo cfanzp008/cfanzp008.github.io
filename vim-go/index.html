@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='vim, golang' /><meta itemprop="name" content="Vim配置vim-go">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-12-05T21:52:19+08:00" />
 <meta itemprop="dateModified" content="2023-12-05T21:52:19+08:00" />
-<meta itemprop="wordCount" content="88"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="88"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="vim,golang," /><meta property="og:title" content="Vim配置vim-go" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/vim-go/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/vim-go/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-12-05T21:52:19+08:00" />
 <meta property="article:modified_time" content="2023-12-05T21:52:19+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="Vim配置vim-go"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Vim配置vim-go"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -636,8 +635,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vimL" data-lang="vimL"><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;fatih/vim-go&#39;</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-vimL" data-lang="vimL"><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;fatih/vim-go&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="配置文件中加入vim-go相关配置">配置文件中加入vim-go相关配置</h2>
 <div class="highlight"><div class="chroma">
@@ -664,27 +663,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vimL" data-lang="vimL"><span class="line"><span class="cl"><span class="c">&#34; 自动补全</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_sameids</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_type_info</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_unimported</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
-</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 代码格式化</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">autocmd</span> <span class="nx">BufWritePre</span> *.<span class="nx">go</span> :<span class="nx">silent</span><span class="p">!</span> <span class="nx">call</span> <span class="nx">go</span>#<span class="nx">fmt</span>#<span class="nx">Fmt</span><span class="p">()</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
-</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 调试支持</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_gdb_enabled</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_debug_breakpoint_style</span> <span class="p">=</span> <span class="s1">&#39;condition&#39;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_debug_adapter</span> <span class="p">=</span> <span class="s1">&#39;dlv&#39;</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
-</span></span></span><span class="line"><span class="cl"><span class="c">&#34;golang高亮</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_types</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_fields</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_functions</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_function_calls</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_operators</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_extra_types</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-vimL" data-lang="vimL"><span class="line"><span class="cl"><span class="c">&#34; 自动补全</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_sameids</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_type_info</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_auto_unimported</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 代码格式化</span>
+</span></span><span class="line"><span class="cl"><span class="k">autocmd</span> <span class="nx">BufWritePre</span> *.<span class="nx">go</span> :<span class="nx">silent</span><span class="p">!</span> <span class="nx">call</span> <span class="nx">go</span>#<span class="nx">fmt</span>#<span class="nx">Fmt</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 调试支持</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_gdb_enabled</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_debug_breakpoint_style</span> <span class="p">=</span> <span class="s1">&#39;condition&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_debug_adapter</span> <span class="p">=</span> <span class="s1">&#39;dlv&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34;golang高亮</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_types</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_fields</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_functions</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_function_calls</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_operators</span> <span class="p">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">go_highlight_extra_types</span> <span class="p">=</span> <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">

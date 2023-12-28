@@ -12,18 +12,17 @@
 <meta itemprop="description" content="lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:"><meta itemprop="datePublished" content="2022-08-23T11:28:13+08:00" />
 <meta itemprop="dateModified" content="2022-08-23T11:28:13+08:00" />
-<meta itemprop="wordCount" content="212"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="212"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="lua," /><meta property="og:title" content="lua中如何实现打印行号和当前函数名？" />
 <meta property="og:description" content="lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/lua-debug/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/lua-debug/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-23T11:28:13+08:00" />
 <meta property="article:modified_time" content="2022-08-23T11:28:13+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="lua中如何实现打印行号和当前函数名？"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="lua中如何实现打印行号和当前函数名？"/>
 <meta name="twitter:description" content="lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:"/>
 <meta name="application-name" content="Linux开发">
@@ -647,7 +646,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">isvararg</span> <span class="o">=</span> <span class="kc">false</span>    <span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="n">what</span> <span class="o">=</span> <span class="n">Lua</span>  <span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">func</span> <span class="o">=</span> <span class="kr">function</span><span class="p">:</span> <span class="err">0</span><span class="nf">x7f92b7b8d600</span>     <span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">func</span> <span class="o">=</span> <span class="kr">function</span><span class="p">:</span> <span class="nf">0x7f92b7b8d600</span>     <span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="n">namewhat</span> <span class="o">=</span>  <span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="n">istailcall</span> <span class="o">=</span> <span class="kc">true</span>   <span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="n">lastlinedefined</span> <span class="o">=</span> <span class="mi">16</span>        <span class="p">,</span>

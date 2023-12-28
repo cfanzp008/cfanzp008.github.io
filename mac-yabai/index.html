@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='yabai, mac, m1' /><meta itemprop="name" content="mac平铺式桌面管理器yabai">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-05-05T22:38:44+08:00" />
 <meta itemprop="dateModified" content="2023-05-05T22:38:44+08:00" />
-<meta itemprop="wordCount" content="588"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="588"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="yabai,mac,m1," /><meta property="og:title" content="mac平铺式桌面管理器yabai" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/mac-yabai/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/mac-yabai/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-05-05T22:38:44+08:00" />
 <meta property="article:modified_time" content="2023-05-05T22:38:44+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="mac平铺式桌面管理器yabai"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="mac平铺式桌面管理器yabai"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -673,8 +672,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">echo &#34;$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d &#34; &#34; -f 1) $(which yabai) --load-sa&#34;
-</span></span><span class="line"><span class="cl">zp ALL=(root) NOPASSWD: sha256:0c054aec0f8eeb0ba2328aa91654f5354eeacc53e9e679250afb7db1eaf062b3 /usr/local/bin/yabai --load-sa
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">echo</span> <span class="s2">&#34;$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d &#34;</span> <span class="s2">&#34; -f 1) $(which yabai) --load-sa&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">zp</span> <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span> <span class="n">sha256</span><span class="p">:</span><span class="mi">0</span><span class="n">c054aec0f8eeb0ba2328aa91654f5354eeacc53e9e679250afb7db1eaf062b3</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">yabai</span> <span class="o">--</span><span class="nb">load</span><span class="o">-</span><span class="n">sa</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="修改配置文件etcsudoers">修改配置文件/etc/sudoers</h3>
@@ -684,8 +683,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo vim /etc/sudoers
-</span></span><span class="line"><span class="cl">zp ALL=(root) NOPASSWD: sha256:0c054aec0f8eeb0ba2328aa91654f5354eeacc53e9e679250afb7db1eaf062b3 /usr/local/bin/yabai --load-sa
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sudoers</span>
+</span></span><span class="line"><span class="cl"><span class="n">zp</span> <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span> <span class="n">sha256</span><span class="p">:</span><span class="mi">0</span><span class="n">c054aec0f8eeb0ba2328aa91654f5354eeacc53e9e679250afb7db1eaf062b3</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">yabai</span> <span class="o">--</span><span class="nb">load</span><span class="o">-</span><span class="n">sa</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="修改配置文件">修改配置文件</h3>
@@ -696,9 +695,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vim ~/.yabairc
-</span></span><span class="line"><span class="cl">yabai -m signal --add event=dock_did_restart action=&#34;sudo yabai --load-sa&#34;
-</span></span><span class="line"><span class="cl">sudo yabai --load-sa
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">vim</span> <span class="o">~/.</span><span class="n">yabairc</span>
+</span></span><span class="line"><span class="cl"><span class="n">yabai</span> <span class="o">-</span><span class="n">m</span> <span class="k">signal</span> <span class="o">--</span><span class="n">add</span> <span class="n">event</span><span class="o">=</span><span class="n">dock_did_restart</span> <span class="n">action</span><span class="o">=</span><span class="s2">&#34;sudo yabai --load-sa&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">yabai</span> <span class="o">--</span><span class="nb">load</span><span class="o">-</span><span class="n">sa</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="开启调试日志">开启调试日志</h3>

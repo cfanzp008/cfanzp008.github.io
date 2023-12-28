@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='c&#43;&#43;' /><meta itemprop="name" content="c&#43;&#43;11新特性">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-13T14:44:14+08:00" />
 <meta itemprop="dateModified" content="2023-04-13T14:44:14+08:00" />
-<meta itemprop="wordCount" content="546"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="546"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="c&#43;&#43;," /><meta property="og:title" content="c&#43;&#43;11新特性" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/cpp11/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/cpp11/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-13T14:44:14+08:00" />
 <meta property="article:modified_time" content="2023-04-13T14:44:14+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="c&#43;&#43;11新特性"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="c&#43;&#43;11新特性"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -772,8 +771,8 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span><span class="cpf">&lt;functional&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;functional&gt;
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -910,7 +909,7 @@
 <li>thread() noexcept：默认构造函数，创建一个空的thread执行对象;</li>
 <li>thread(const thread&amp;) = delete：拷贝构造函数被禁用，意味着thread对象不可拷贝构造；</li>
 <li>thread(thread&amp;&amp; x) noexcept：移动构造函数，调用成功之后，x不代表任何thread执行对象；</li>
-<li>get_id()：获取线程的ID，它将返回一个类型为std:🧵:id的对象。</li>
+<li>get_id()：获取线程的ID，它将返回一个类型为std:&#x1f9f5;:id的对象。</li>
 <li>joinable()：检查线程是否可被join。</li>
 <li>detach()：将当前线程对象所代表的执行实例与此线程对象分离，使得线程可以单独执行。</li>
 <li>swap()：交换两个线程对象所代表的底层句柄，参数是两个线程对象；</li>

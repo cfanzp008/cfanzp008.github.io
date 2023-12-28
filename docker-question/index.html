@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='docker' /><meta itemprop="name" content="docker基础">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-01T16:41:44+08:00" />
 <meta itemprop="dateModified" content="2023-04-01T16:41:44+08:00" />
-<meta itemprop="wordCount" content="86"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="86"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="docker," /><meta property="og:title" content="docker基础" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/docker-question/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/docker-question/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-01T16:41:44+08:00" />
 <meta property="article:modified_time" content="2023-04-01T16:41:44+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="docker基础"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="docker基础"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -656,24 +655,24 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run 创建并运行一个容器， -d让容器后台运行
-</span></span><span class="line"><span class="cl">docker inspect 查看容器信息
-</span></span><span class="line"><span class="cl">docker pull 拉取镜像
-</span></span><span class="line"><span class="cl">docker build构建镜像
-</span></span><span class="line"><span class="cl">docker images 查看当前下载的镜像
-</span></span><span class="line"><span class="cl">docker rmi 删除镜像
-</span></span><span class="line"><span class="cl">docker save -o nginx.tar nginx:latest  镜像保存为nginx.tar
-</span></span><span class="line"><span class="cl">docker load -i nginx.tar  加载镜像nginx.tar
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="err">创建并运行一个容器，</span> <span class="o">-</span><span class="n">d让容器后台运行</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">inspect</span> <span class="err">查看容器信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">pull</span> <span class="err">拉取镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">build构建镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">images</span> <span class="err">查看当前下载的镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">rmi</span> <span class="err">删除镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">save</span> <span class="o">-</span><span class="n">o</span> <span class="n">nginx</span><span class="o">.</span><span class="n">tar</span> <span class="n">nginx</span><span class="p">:</span><span class="n">latest</span>  <span class="err">镜像保存为</span><span class="n">nginx</span><span class="o">.</span><span class="n">tar</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="nb">load</span> <span class="o">-</span><span class="n">i</span> <span class="n">nginx</span><span class="o">.</span><span class="n">tar</span>  <span class="err">加载镜像</span><span class="n">nginx</span><span class="o">.</span><span class="n">tar</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">docker run 创建并运行容器
-</span></span><span class="line"><span class="cl">--name:容器名
-</span></span><span class="line"><span class="cl">- p 8000:3306 前面是宿主机端口，后面是容器的端口
-</span></span><span class="line"><span class="cl">-e MYSQL_ROOT_PASSWORD=123 -e 环境变量
-</span></span><span class="line"><span class="cl">docker ps 查看当前运行的容器
-</span></span><span class="line"><span class="cl">docker stop 停止容器
-</span></span><span class="line"><span class="cl">exit 或ctrl + d推出容器
-</span></span><span class="line"><span class="cl">docker exec -it containerId或containerName /bin/bash进入容器
-</span></span><span class="line"><span class="cl">docker cp /opt/tools/nvim.tar.gz nginx1:/opt/tools/  将宿主机中的nvim.tar.gz拷贝到容器nginx1的/opt/tools/目录中
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="err">创建并运行容器</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">name</span><span class="p">:</span><span class="err">容器名</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">p</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">3306</span> <span class="err">前面是宿主机端口，后面是容器的端口</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">e</span> <span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="mi">123</span> <span class="o">-</span><span class="n">e</span> <span class="err">环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">ps</span> <span class="err">查看当前运行的容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">stop</span> <span class="err">停止容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">exit</span> <span class="err">或</span><span class="n">ctrl</span> <span class="o">+</span> <span class="n">d推出容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">containerId或containerName</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash进入容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">cp</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">nvim</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="n">nginx1</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span>  <span class="err">将宿主机中的</span><span class="n">nvim</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz拷贝到容器nginx1的</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="err">目录中</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="docker怎么使用">docker怎么使用？</h2>

@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='portainer, docker' /><meta itemprop="name" content="docker安装portainer">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-01-29T19:21:55+08:00" />
 <meta itemprop="dateModified" content="2023-01-29T19:21:55+08:00" />
-<meta itemprop="wordCount" content="302"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="302"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="portainer,docker," /><meta property="og:title" content="docker安装portainer" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/docker-portainer/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/docker-portainer/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-29T19:21:55+08:00" />
 <meta property="article:modified_time" content="2023-01-29T19:21:55+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="docker安装portainer"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="docker安装portainer"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -670,7 +669,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> <span class="o">--</span><span class="n">name</span> <span class="n">portainer</span> <span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="o">-</span><span class="n">v</span> <span class="n">portainer_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span> <span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="首选回顾一下docker的基本命令">首选回顾一下docker的基本命令</h2>
@@ -711,16 +710,16 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">查看容器: docker ps -a | grep
-</span></span><span class="line"><span class="cl">进入容器: docker exec -it containerId(容器id)/containerName(容器名称) /bin/bash
-</span></span><span class="line"><span class="cl">退出容器: exit或ctrl+d
-</span></span><span class="line"><span class="cl">停止容器: docker stop containerId/containerName
-</span></span><span class="line"><span class="cl">启动容器: docker start containerId/containerName
-</span></span><span class="line"><span class="cl">删除容器: docker rm containerId/containerName
-</span></span><span class="line"><span class="cl">复制宿主机文件到容器：docker cp 宿主机目录及文件 容器名称:容器目录
-</span></span><span class="line"><span class="cl">创建容器:docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-</span></span><span class="line"><span class="cl">查看启动成功的容器: docker ps
-</span></span><span class="line"><span class="cl">查看所有容器: docker ps -a
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">查看容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span>
+</span></span><span class="line"><span class="cl"><span class="err">进入容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">containerId</span><span class="p">(</span><span class="err">容器</span><span class="n">id</span><span class="p">)</span><span class="o">/</span><span class="n">containerName</span><span class="p">(</span><span class="err">容器名称</span><span class="p">)</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">bash</span>
+</span></span><span class="line"><span class="cl"><span class="err">退出容器</span><span class="p">:</span> <span class="n">exit或ctrl</span><span class="o">+</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="err">停止容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">stop</span> <span class="n">containerId</span><span class="o">/</span><span class="n">containerName</span>
+</span></span><span class="line"><span class="cl"><span class="err">启动容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">start</span> <span class="n">containerId</span><span class="o">/</span><span class="n">containerName</span>
+</span></span><span class="line"><span class="cl"><span class="err">删除容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">rm</span> <span class="n">containerId</span><span class="o">/</span><span class="n">containerName</span>
+</span></span><span class="line"><span class="cl"><span class="err">复制宿主机文件到容器：</span><span class="n">docker</span> <span class="n">cp</span> <span class="err">宿主机目录及文件</span> <span class="err">容器名称</span><span class="p">:</span><span class="err">容器目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">创建容器</span><span class="p">:</span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span> <span class="o">--</span><span class="n">name</span> <span class="n">portainer</span> <span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="o">-</span><span class="n">v</span> <span class="n">portainer_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span> <span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span>
+</span></span><span class="line"><span class="cl"><span class="err">查看启动成功的容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">ps</span>
+</span></span><span class="line"><span class="cl"><span class="err">查看所有容器</span><span class="p">:</span> <span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="修改docker源">修改docker源</h2>
@@ -759,11 +758,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo curl -L &#34;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&#34; -o /usr/local/bin/docker-compose
-</span></span><span class="line"><span class="cl">#
-</span></span><span class="line"><span class="cl">sudo chmod +x /usr/local/bin/docker-compose
-</span></span><span class="line"><span class="cl"># 检查是否安装成功
-</span></span><span class="line"><span class="cl">docker-compose --version
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="s2">&#34;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&#34;</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查是否安装成功</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">--</span><span class="n">version</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="启动默认实例后删除容器目的是获取配置文件">启动默认实例后删除容器(目的是获取配置文件)</h3>
@@ -817,23 +816,23 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo touch docker-compose-nginx.yml
-</span></span><span class="line"><span class="cl">vim docker-compose-nginx.yml
-</span></span><span class="line"><span class="cl">version: &#39;3&#39;
-</span></span><span class="line"><span class="cl">services:
-</span></span><span class="line"><span class="cl">  nginx:
-</span></span><span class="line"><span class="cl">    container_name: nginx8080
-</span></span><span class="line"><span class="cl">    image: nginx
-</span></span><span class="line"><span class="cl">    restart: always
-</span></span><span class="line"><span class="cl">    ports:
-</span></span><span class="line"><span class="cl">      - 8080:80
-</span></span><span class="line"><span class="cl">    privileged: true
-</span></span><span class="line"><span class="cl">    volumes:
-</span></span><span class="line"><span class="cl">      - /etc/localtime:/etc/localtime:ro
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/nginx8080/log/:/var/log/nginx
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/nginx8080/conf.d:/etc/nginx/conf.d
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/nginx8080/nginx.conf:/etc/nginx/nginx.conf:ro
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/nginx8080/html:/usr/share/nginx/html
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">touch</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">nginx</span><span class="o">.</span><span class="n">yml</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">nginx</span><span class="o">.</span><span class="n">yml</span>
+</span></span><span class="line"><span class="cl"><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">nginx</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">container_name</span><span class="p">:</span> <span class="n">nginx8080</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="p">:</span> <span class="n">nginx</span>
+</span></span><span class="line"><span class="cl">    <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">80</span>
+</span></span><span class="line"><span class="cl">    <span class="n">privileged</span><span class="p">:</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl">    <span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">localtime</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">localtime</span><span class="p">:</span><span class="n">ro</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">nginx8080</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">nginx8080</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">nginx8080</span><span class="o">/</span><span class="n">nginx</span><span class="o">.</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">nginx</span><span class="o">.</span><span class="n">conf</span><span class="p">:</span><span class="n">ro</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">nginx8080</span><span class="o">/</span><span class="n">html</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="编写启动脚本">编写启动脚本</h3>

@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='docker, mysql, linux' /><meta itemprop="name" content="Docker安装运行Mysql">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-09T11:22:02+08:00" />
 <meta itemprop="dateModified" content="2023-02-09T11:22:02+08:00" />
-<meta itemprop="wordCount" content="68"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="68"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="docker,mysql,linux," /><meta property="og:title" content="Docker安装运行Mysql" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/docker-mysql/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/docker-mysql/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-02-09T11:22:02+08:00" />
 <meta property="article:modified_time" content="2023-02-09T11:22:02+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="Docker安装运行Mysql"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Docker安装运行Mysql"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -653,24 +652,24 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">version: &#39;3&#39; #设置docker compose 版本
-</span></span><span class="line"><span class="cl">services: #设置services
-</span></span><span class="line"><span class="cl">  mysql:
-</span></span><span class="line"><span class="cl">    image: mysql:5.6
-</span></span><span class="line"><span class="cl">    container_name: dev127_mysql
-</span></span><span class="line"><span class="cl">    restart: always
-</span></span><span class="line"><span class="cl">    ports:
-</span></span><span class="line"><span class="cl">      - 3306:3306
-</span></span><span class="line"><span class="cl">    volumes: #指定挂载目录
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/mysql/conf:/etc/mysql/conf.d
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/mysql/conf:/etc/mysql/mysql.conf.d
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/mysql/data:/var/lib/mysql
-</span></span><span class="line"><span class="cl">      - /data/dockerrun/mysql/logs:/var/lib/mysql/error.log
-</span></span><span class="line"><span class="cl">    environment:
-</span></span><span class="line"><span class="cl">      MYSQL_ROOT_PASSWORD: test123456
-</span></span><span class="line"><span class="cl">      MYSQL_DATABASE: test
-</span></span><span class="line"><span class="cl">      MYSQL_USER: test123
-</span></span><span class="line"><span class="cl">      MYSQL_PASSWORD: test123456
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span> <span class="c1">#设置docker compose 版本</span>
+</span></span><span class="line"><span class="cl"><span class="n">services</span><span class="p">:</span> <span class="c1">#设置services</span>
+</span></span><span class="line"><span class="cl">  <span class="n">mysql</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="p">:</span> <span class="n">mysql</span><span class="p">:</span><span class="mf">5.6</span>
+</span></span><span class="line"><span class="cl">    <span class="n">container_name</span><span class="p">:</span> <span class="n">dev127_mysql</span>
+</span></span><span class="line"><span class="cl">    <span class="n">restart</span><span class="p">:</span> <span class="n">always</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span>
+</span></span><span class="line"><span class="cl">    <span class="n">volumes</span><span class="p">:</span> <span class="c1">#指定挂载目录</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">dockerrun</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">logs</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">error</span><span class="o">.</span><span class="n">log</span>
+</span></span><span class="line"><span class="cl">    <span class="n">environment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="n">test123456</span>
+</span></span><span class="line"><span class="cl">      <span class="n">MYSQL_DATABASE</span><span class="p">:</span> <span class="n">test</span>
+</span></span><span class="line"><span class="cl">      <span class="n">MYSQL_USER</span><span class="p">:</span> <span class="n">test123</span>
+</span></span><span class="line"><span class="cl">      <span class="n">MYSQL_PASSWORD</span><span class="p">:</span> <span class="n">test123456</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="编写启动脚本start_dev127_mysqlsh">编写启动脚本:start_dev127_mysql.sh</h2>

@@ -10,17 +10,16 @@
 <meta name="description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee." /><meta name="keywords" content='git' /><meta itemprop="name" content="git学习笔记">
 <meta itemprop="description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee."><meta itemprop="datePublished" content="2021-10-10T18:36:16+08:00" />
 <meta itemprop="dateModified" content="2021-10-10T18:36:16+08:00" />
-<meta itemprop="wordCount" content="483"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="483"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="git," /><meta property="og:title" content="git学习笔记" />
 <meta property="og:description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/git-base/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/git-base/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-10-10T18:36:16+08:00" />
 <meta property="article:modified_time" content="2021-10-10T18:36:16+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="git学习笔记"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="git学习笔记"/>
 <meta name="twitter:description" content="git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee."/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -693,45 +692,45 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[user]
-</span></span><span class="line"><span class="cl">name = xx
-</span></span><span class="line"><span class="cl">email = xx@qq.com
-</span></span><span class="line"><span class="cl">[color]
-</span></span><span class="line"><span class="cl">interactive = auto
-</span></span><span class="line"><span class="cl">diff = auto
-</span></span><span class="line"><span class="cl">status = auto
-</span></span><span class="line"><span class="cl">branch = auto
-</span></span><span class="line"><span class="cl">ui = true
-</span></span><span class="line"><span class="cl">repositoryformatversion = 0
-</span></span><span class="line"><span class="cl">filemode = true
-</span></span><span class="line"><span class="cl">bare = false
-</span></span><span class="line"><span class="cl">logallrefupdates = true
-</span></span><span class="line"><span class="cl">ignorecase = true
-</span></span><span class="line"><span class="cl">precomposeunicode = false
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="n">xx</span>
+</span></span><span class="line"><span class="cl"><span class="n">email</span> <span class="o">=</span> <span class="n">xx</span><span class="err">@</span><span class="n">qq</span><span class="o">.</span><span class="n">com</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">color</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">interactive</span> <span class="o">=</span> <span class="n">auto</span>
+</span></span><span class="line"><span class="cl"><span class="n">diff</span> <span class="o">=</span> <span class="n">auto</span>
+</span></span><span class="line"><span class="cl"><span class="n">status</span> <span class="o">=</span> <span class="n">auto</span>
+</span></span><span class="line"><span class="cl"><span class="n">branch</span> <span class="o">=</span> <span class="n">auto</span>
+</span></span><span class="line"><span class="cl"><span class="n">ui</span> <span class="o">=</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">repositoryformatversion</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">filemode</span> <span class="o">=</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">bare</span> <span class="o">=</span> <span class="bp">false</span>
+</span></span><span class="line"><span class="cl"><span class="n">logallrefupdates</span> <span class="o">=</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">ignorecase</span> <span class="o">=</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">precomposeunicode</span> <span class="o">=</span> <span class="bp">false</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">[alias]
-</span></span><span class="line"><span class="cl">co = checkout
-</span></span><span class="line"><span class="cl">ci = commit
-</span></span><span class="line"><span class="cl">st = status
-</span></span><span class="line"><span class="cl">sh = stash
-</span></span><span class="line"><span class="cl">sa = stash apply
-</span></span><span class="line"><span class="cl">sp = stash pop
-</span></span><span class="line"><span class="cl">ap = add -p
-</span></span><span class="line"><span class="cl">br = branch
-</span></span><span class="line"><span class="cl">cp = checkout -p
-</span></span><span class="line"><span class="cl">cv = commit -v
-</span></span><span class="line"><span class="cl">dc = diff --cached
-</span></span><span class="line"><span class="cl">d = diff
-</span></span><span class="line"><span class="cl">pr = pull --rebase
-</span></span><span class="line"><span class="cl">ps = push
-</span></span><span class="line"><span class="cl">l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all
-</span></span><span class="line"><span class="cl">lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all
-</span></span><span class="line"><span class="cl">[hub]
-</span></span><span class="line"><span class="cl">protocol = https
-</span></span><span class="line"><span class="cl">[diff]
-</span></span><span class="line"><span class="cl">tool = vimdiff
-</span></span><span class="line"><span class="cl">[core]
-</span></span><span class="line"><span class="cl">editor = vim
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">alias</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">co</span> <span class="o">=</span> <span class="n">checkout</span>
+</span></span><span class="line"><span class="cl"><span class="n">ci</span> <span class="o">=</span> <span class="n">commit</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span> <span class="o">=</span> <span class="n">status</span>
+</span></span><span class="line"><span class="cl"><span class="n">sh</span> <span class="o">=</span> <span class="n">stash</span>
+</span></span><span class="line"><span class="cl"><span class="n">sa</span> <span class="o">=</span> <span class="n">stash</span> <span class="n">apply</span>
+</span></span><span class="line"><span class="cl"><span class="n">sp</span> <span class="o">=</span> <span class="n">stash</span> <span class="n">pop</span>
+</span></span><span class="line"><span class="cl"><span class="n">ap</span> <span class="o">=</span> <span class="n">add</span> <span class="o">-</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl"><span class="n">br</span> <span class="o">=</span> <span class="n">branch</span>
+</span></span><span class="line"><span class="cl"><span class="n">cp</span> <span class="o">=</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl"><span class="n">cv</span> <span class="o">=</span> <span class="n">commit</span> <span class="o">-</span><span class="n">v</span>
+</span></span><span class="line"><span class="cl"><span class="n">dc</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">--</span><span class="n">cached</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">diff</span>
+</span></span><span class="line"><span class="cl"><span class="n">pr</span> <span class="o">=</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+</span></span><span class="line"><span class="cl"><span class="n">ps</span> <span class="o">=</span> <span class="n">push</span>
+</span></span><span class="line"><span class="cl"><span class="n">l</span> <span class="o">=</span> <span class="nb">log</span> <span class="o">--</span><span class="n">graph</span> <span class="o">--</span><span class="n">pretty</span><span class="o">=</span><span class="n">format</span><span class="p">:</span><span class="s1">&#39;%C(yellow)</span><span class="si">%h%</span><span class="s1">Creset %C(yellow)</span><span class="si">%d</span><span class="s1">%Creset </span><span class="si">%s</span><span class="s1"> %Cgreen(</span><span class="si">%c</span><span class="s1">r) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> <span class="o">--</span><span class="n">abbrev</span><span class="o">-</span><span class="n">commit</span> <span class="o">--</span><span class="n">date</span><span class="o">=</span><span class="n">short</span> <span class="o">--</span><span class="n">all</span>
+</span></span><span class="line"><span class="cl"><span class="n">lg</span> <span class="o">=</span> <span class="nb">log</span> <span class="o">--</span><span class="n">color</span> <span class="o">--</span><span class="n">graph</span> <span class="o">--</span><span class="n">pretty</span><span class="o">=</span><span class="n">format</span><span class="p">:</span><span class="s1">&#39;%Cred</span><span class="si">%h%</span><span class="s1">Creset -%C(yellow)</span><span class="si">%d</span><span class="s1">%Creset </span><span class="si">%s</span><span class="s1"> %Cgreen(</span><span class="si">%c</span><span class="s1">r) %C(bold blue)&lt;%an&gt;%Creset&#39;</span> <span class="o">--</span><span class="n">abbrev</span><span class="o">-</span><span class="n">commit</span> <span class="o">--</span><span class="n">all</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">hub</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">protocol</span> <span class="o">=</span> <span class="n">https</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">diff</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">tool</span> <span class="o">=</span> <span class="n">vimdiff</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">core</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">editor</span> <span class="o">=</span> <span class="n">vim</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="常用缩写">常用缩写</h2>

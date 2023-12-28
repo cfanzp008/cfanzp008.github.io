@@ -10,17 +10,16 @@
 <meta name="description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate." /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-skynet目录结构">
 <meta itemprop="description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate."><meta itemprop="datePublished" content="2022-07-29T12:45:13+08:00" />
 <meta itemprop="dateModified" content="2022-07-29T12:45:13+08:00" />
-<meta itemprop="wordCount" content="774"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="774"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-skynet目录结构" />
 <meta property="og:description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/skynet_dir/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/skynet_dir/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-29T12:45:13+08:00" />
 <meta property="article:modified_time" content="2022-07-29T12:45:13+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="skynet-skynet目录结构"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="skynet-skynet目录结构"/>
 <meta name="twitter:description" content="【skynet学习笔记】skynet的目录结构 skynet目录结构 学习skynet必须先了解一下skynet的目录结构。 skynet的目录结构十分清晰，一目了然。 下面来具体看看各个目录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 [root@lzw skynet]# tree -f -L 1 . ├── ./3rd ├── ./cservice ├── ./examples ├── ./HISTORY.md ├── ./LICENSE ├── ./luaclib ├── ./lualib ├── ./lualib-src ├── ./Makefile ├── ./platform.mk ├── ./README.md ├── ./service ├── ./service-src ├── ./skynet ├── ./skynet-src └── ./test 目录结构分析 3rd目录 ./3rd：存放第三方库里面包括了:jemalloc,lpeg,lua,lua-md5 jemalloc:是个内存管理库，可以提高内存是利用率，减少内存碎片。skynet中可以通过编译选项来决定是否使用这个库。 lpeg:是一个模式匹配库。 lua:lua源代码，目前skynet1.5.0用的lua版本是5.4.4。 lua-md5:一个lua的md5库。 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 3rd/ 3rd ├── 3rd/jemalloc ├── 3rd/lpeg ├── 3rd/lua └── 3rd/lua-md5 cservice目录 cservice目录存放c语言实现的skynet服务 1 2 3 4 5 6 [root@lzw skynet]# tree -f -L 1 cservice/ cservice ├── cservice/gate."/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -788,42 +787,42 @@
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 examples/
-</span></span><span class="line"><span class="cl">examples
-</span></span><span class="line"><span class="cl">├── examples/abort.lua
-</span></span><span class="line"><span class="cl">├── examples/agent.lua
-</span></span><span class="line"><span class="cl">├── examples/checkdeadloop.lua
-</span></span><span class="line"><span class="cl">├── examples/client.lua
-</span></span><span class="line"><span class="cl">├── examples/cluster1.lua
-</span></span><span class="line"><span class="cl">├── examples/cluster2.lua
-</span></span><span class="line"><span class="cl">├── examples/clustername.lua
-</span></span><span class="line"><span class="cl">├── examples/config
-</span></span><span class="line"><span class="cl">├── examples/config.c1
-</span></span><span class="line"><span class="cl">├── examples/config.c2
-</span></span><span class="line"><span class="cl">├── examples/config_log
-</span></span><span class="line"><span class="cl">├── examples/config.login
-</span></span><span class="line"><span class="cl">├── examples/config.mc
-</span></span><span class="line"><span class="cl">├── examples/config.mongodb
-</span></span><span class="line"><span class="cl">├── examples/config.mysql
-</span></span><span class="line"><span class="cl">├── examples/config.path
-</span></span><span class="line"><span class="cl">├── examples/config.userlog
-</span></span><span class="line"><span class="cl">├── examples/globallog.lua
-</span></span><span class="line"><span class="cl">├── examples/injectlaunch.lua
-</span></span><span class="line"><span class="cl">├── examples/login
-</span></span><span class="line"><span class="cl">├── examples/main_log.lua
-</span></span><span class="line"><span class="cl">├── examples/main.lua
-</span></span><span class="line"><span class="cl">├── examples/main_mongodb.lua
-</span></span><span class="line"><span class="cl">├── examples/main_mysql.lua
-</span></span><span class="line"><span class="cl">├── examples/preload.lua
-</span></span><span class="line"><span class="cl">├── examples/protoloader.lua
-</span></span><span class="line"><span class="cl">├── examples/proto.lua
-</span></span><span class="line"><span class="cl">├── examples/share.lua
-</span></span><span class="line"><span class="cl">├── examples/simpledb.lua
-</span></span><span class="line"><span class="cl">├── examples/simplemonitor.lua
-</span></span><span class="line"><span class="cl">├── examples/simpleweb.lua
-</span></span><span class="line"><span class="cl">├── examples/simplewebsocket.lua
-</span></span><span class="line"><span class="cl">├── examples/userlog.lua
-</span></span><span class="line"><span class="cl">└── examples/watchdog.lua
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">lzw</span> <span class="n">skynet</span><span class="p">]</span><span class="c1"># tree -f -L 1 examples/</span>
+</span></span><span class="line"><span class="cl"><span class="n">examples</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">abort</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">agent</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">checkdeadloop</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">cluster1</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">cluster2</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">clustername</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">c1</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">c2</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config_log</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">mc</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">mongodb</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">mysql</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">path</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">userlog</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">globallog</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">injectlaunch</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">main_log</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">main_mongodb</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">main_mysql</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="nb">preload</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">protoloader</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">proto</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">share</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">simpledb</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">simplemonitor</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">simpleweb</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">simplewebsocket</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">examples</span><span class="o">/</span><span class="n">userlog</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">examples</span><span class="o">/</span><span class="n">watchdog</span><span class="o">.</span><span class="n">lua</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="luaclib目录">luaclib目录</h3>
@@ -880,18 +879,18 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree lualib -L 1
-</span></span><span class="line"><span class="cl">lualib
-</span></span><span class="line"><span class="cl">├── compat10
-</span></span><span class="line"><span class="cl">├── http
-</span></span><span class="line"><span class="cl">├── loader.lua
-</span></span><span class="line"><span class="cl">├── md5.lua
-</span></span><span class="line"><span class="cl">├── skynet
-</span></span><span class="line"><span class="cl">├── skynet.lua
-</span></span><span class="line"><span class="cl">├── snax
-</span></span><span class="line"><span class="cl">├── sprotoloader.lua
-</span></span><span class="line"><span class="cl">├── sproto.lua
-</span></span><span class="line"><span class="cl">└── sprotoparser.lua
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">lzw</span> <span class="n">skynet</span><span class="p">]</span><span class="c1"># tree lualib -L 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">lualib</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">compat10</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">http</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">loader</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">md5</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">skynet</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">skynet</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">snax</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">sprotoloader</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">sproto</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">sprotoparser</span><span class="o">.</span><span class="n">lua</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="lualib-src目录">lualib-src目录</h3>
@@ -1186,48 +1185,48 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@lzw skynet]# tree -f -L 1 test
-</span></span><span class="line"><span class="cl">test
-</span></span><span class="line"><span class="cl">├── test/pingserver.lua
-</span></span><span class="line"><span class="cl">├── test/sharemap.sp
-</span></span><span class="line"><span class="cl">├── test/testbson.lua
-</span></span><span class="line"><span class="cl">├── test/testcoroutine.lua
-</span></span><span class="line"><span class="cl">├── test/testcrypt.lua
-</span></span><span class="line"><span class="cl">├── test/testdatacenter.lua
-</span></span><span class="line"><span class="cl">├── test/testdatasheet.lua
-</span></span><span class="line"><span class="cl">├── test/testdeadcall.lua
-</span></span><span class="line"><span class="cl">├── test/testdeadloop.lua
-</span></span><span class="line"><span class="cl">├── test/testdns.lua
-</span></span><span class="line"><span class="cl">├── test/testecho.lua
-</span></span><span class="line"><span class="cl">├── test/testendless.lua
-</span></span><span class="line"><span class="cl">├── test/testharborlink.lua
-</span></span><span class="line"><span class="cl">├── test/testhttp.lua
-</span></span><span class="line"><span class="cl">├── test/testmemlimit.lua
-</span></span><span class="line"><span class="cl">├── test/testmongodb.lua
-</span></span><span class="line"><span class="cl">├── test/testmulticast2.lua
-</span></span><span class="line"><span class="cl">├── test/testmulticast.lua
-</span></span><span class="line"><span class="cl">├── test/testmysql.lua
-</span></span><span class="line"><span class="cl">├── test/testoverload.lua
-</span></span><span class="line"><span class="cl">├── test/testping.lua
-</span></span><span class="line"><span class="cl">├── test/testpipeline.lua
-</span></span><span class="line"><span class="cl">├── test/testqueue.lua
-</span></span><span class="line"><span class="cl">├── test/testredis2.lua
-</span></span><span class="line"><span class="cl">├── test/testrediscluster.lua
-</span></span><span class="line"><span class="cl">├── test/testredis.lua
-</span></span><span class="line"><span class="cl">├── test/testresponse.lua
-</span></span><span class="line"><span class="cl">├── test/testselect.lua
-</span></span><span class="line"><span class="cl">├── test/testservice
-</span></span><span class="line"><span class="cl">├── test/testsha.lua
-</span></span><span class="line"><span class="cl">├── test/testsharetable.lua
-</span></span><span class="line"><span class="cl">├── test/testsm.lua
-</span></span><span class="line"><span class="cl">├── test/testsocket.lua
-</span></span><span class="line"><span class="cl">├── test/teststm.lua
-</span></span><span class="line"><span class="cl">├── test/testterm.lua
-</span></span><span class="line"><span class="cl">├── test/testtimeout.lua
-</span></span><span class="line"><span class="cl">├── test/testtimer.lua
-</span></span><span class="line"><span class="cl">├── test/testtobeclosed.lua
-</span></span><span class="line"><span class="cl">├── test/testudp.lua
-</span></span><span class="line"><span class="cl">└── test/time.lua
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="err">@</span><span class="n">lzw</span> <span class="n">skynet</span><span class="p">]</span><span class="c1"># tree -f -L 1 test</span>
+</span></span><span class="line"><span class="cl"><span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">pingserver</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">sharemap</span><span class="o">.</span><span class="n">sp</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testbson</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testcoroutine</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testcrypt</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testdatacenter</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testdatasheet</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testdeadcall</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testdeadloop</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testdns</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testecho</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testendless</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testharborlink</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testhttp</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testmemlimit</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testmongodb</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testmulticast2</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testmulticast</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testmysql</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testoverload</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testping</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testpipeline</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testqueue</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testredis2</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testrediscluster</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testredis</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testresponse</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testselect</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testservice</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testsha</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testsharetable</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testsm</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testsocket</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">teststm</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testterm</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testtimeout</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testtimer</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testtobeclosed</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="n">test</span><span class="o">/</span><span class="n">testudp</span><span class="o">.</span><span class="n">lua</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="n">test</span><span class="o">/</span><span class="n">time</span><span class="o">.</span><span class="n">lua</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="总结">总结</h2>

@@ -10,17 +10,16 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='homebrew, brew' /><meta itemprop="name" content="Linux如何安装Homebrew?">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-12-27T15:23:18+08:00" />
 <meta itemprop="dateModified" content="2022-12-27T15:23:18+08:00" />
-<meta itemprop="wordCount" content="178"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="178"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="homebrew,brew," /><meta property="og:title" content="Linux如何安装Homebrew?" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/linux-homebrew/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/linux-homebrew/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-12-27T15:23:18+08:00" />
 <meta property="article:modified_time" content="2022-12-27T15:23:18+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="Linux如何安装Homebrew?"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Linux如何安装Homebrew?"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -668,10 +667,10 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vim ~/.bashrc
-</span></span><span class="line"><span class="cl">export HOMEBREW_BREW_GIT_REMOTE=&#34;https://mirrors.ustc.edu.cn/brew.git&#34;
-</span></span><span class="line"><span class="cl">export HOMEBREW_CORE_GIT_REMOTE=&#34;https://mirrors.ustc.edu.cn/homebrew-core.git&#34;
-</span></span><span class="line"><span class="cl">export HOMEBREW_BOTTLE_DOMAIN=&#34;https://mirrors.ustc.edu.cn/homebrew-bottles&#34;
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">vim</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">HOMEBREW_BREW_GIT_REMOTE</span><span class="o">=</span><span class="s2">&#34;https://mirrors.ustc.edu.cn/brew.git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">HOMEBREW_CORE_GIT_REMOTE</span><span class="o">=</span><span class="s2">&#34;https://mirrors.ustc.edu.cn/homebrew-core.git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">HOMEBREW_BOTTLE_DOMAIN</span><span class="o">=</span><span class="s2">&#34;https://mirrors.ustc.edu.cn/homebrew-bottles&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="执行安装脚本">执行安装脚本</h3>
@@ -742,8 +741,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alias proxy=&#39;export all_proxy=socks5://192.168.2.128:1088;export http_proxy=socks5://192.168.2.128:1088;export https_proxy=socks5://192.168.2.128:1088;export no_proxy=socks5://192.168.2.128:1088; export ALL_PROXY=socks5://192.168.2.128:1088;export HTTP_PROXY=socks5://192.168.2.128:1088;export HTTPS_PROXY=socks5://192.168.2.128:1088;export NO_PROXY=socks5://192.168.2.128:1088&#39;
-</span></span><span class="line"><span class="cl">alias unproxy=&#39;unset all_proxy; unset http_proxy; unset https_proxy;unset no_proxy; unset ALL_PROXY; unset HTTP_PROXY; unset HTTPS_PROXY;unset NO_PROXY&#39;
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">alias</span> <span class="n">proxy</span><span class="o">=</span><span class="s1">&#39;export all_proxy=socks5://192.168.2.128:1088;export http_proxy=socks5://192.168.2.128:1088;export https_proxy=socks5://192.168.2.128:1088;export no_proxy=socks5://192.168.2.128:1088; export ALL_PROXY=socks5://192.168.2.128:1088;export HTTP_PROXY=socks5://192.168.2.128:1088;export HTTPS_PROXY=socks5://192.168.2.128:1088;export NO_PROXY=socks5://192.168.2.128:1088&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">alias</span> <span class="n">unproxy</span><span class="o">=</span><span class="s1">&#39;unset all_proxy; unset http_proxy; unset https_proxy;unset no_proxy; unset ALL_PROXY; unset HTTP_PROXY; unset HTTPS_PROXY;unset NO_PROXY&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -754,7 +753,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Downloading https://ghcr.io/v2/homebrew/portable-ruby/portable-ruby/blobs/sha256:fc45ee6eddf4c7a17f4373dde7b1bc8a58255ea61e6847d3bf895225b28d072a
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Downloading</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">ghcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">portable</span><span class="o">-</span><span class="n">ruby</span><span class="o">/</span><span class="n">portable</span><span class="o">-</span><span class="n">ruby</span><span class="o">/</span><span class="n">blobs</span><span class="o">/</span><span class="n">sha256</span><span class="p">:</span><span class="n">fc45ee6eddf4c7a17f4373dde7b1bc8a58255ea61e6847d3bf895225b28d072a</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="安装完后设置brew的环境变量">安装完后设置brew的环境变量</h3>

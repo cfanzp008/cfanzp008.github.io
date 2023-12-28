@@ -6,7 +6,38 @@
 ## nvim配置
 - [https://gitee.com/cfanzp/nvim-config.git](https://gitee.com/cfanzp/nvim-config.git)
 
-## nvim常用插件
+### 字体
+下载太大太慢了,建议使用国内镜像
+- https://github.com/ryanoasis/nerd-fonts.git
+- https://gitee.com/keyboardkiller/nerd-fonts
+- https://gitee.com/keyboardkiller/nerd-fonts.git
+
+#### mac
+```
+brew tap homebrew/cask-fonts
+brew install --cask font-ubuntu-nerd-font
+```
+
+#### ubuntu
+```
+https://blog.csdn.net/auteman_dan/article/details/128872671
+```
+
+## neovim lazy.nvim管理配置常用插件
+{{< mermaid >}}
+graph LR
+  NeoVim-->lazy.nvim
+  lazy.nvim-->nvim-lspconfig
+  lazy.nvim-->neo-tree
+  lazy.nvim-->telescope
+  lazy.nvim-->tagbar
+  lazy.nvim-->molokai
+  lazy.nvim-->tabular
+  lazy.nvim-->vim-surround
+{{</ mermaid >}}
+
+
+## vim 之前常用插件
 {{< mermaid >}}
 graph LR
   Vim-->plug

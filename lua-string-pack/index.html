@@ -22,7 +22,7 @@ Returns a binary string containing the values v1, v2, etc. serialized in binary 
 1 2 3 local pb_data = pb_helper.pb_encode(msgname, msg) local buf = string.pack(&#34;&gt;I4c&#34; .. #pb_data, msgid, pb_data) local send_buf = string.pack(&#34;&gt;s2&#34;, buf) 解包过程如下:
 1 2 3 local buf = msg --des_decode(secret, msg) local len = string."><meta itemprop="datePublished" content="2022-08-03T08:34:18+08:00" />
 <meta itemprop="dateModified" content="2022-08-03T08:34:18+08:00" />
-<meta itemprop="wordCount" content="269"><meta itemprop="image" content="https://cfanzp.com/logo.png"/>
+<meta itemprop="wordCount" content="269"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="lua," /><meta property="og:title" content="lua中string.pack,string.unpack的用法" />
 <meta property="og:description" content="lua中string.pack,string.unpack的用法 lua string.pack的用法,查看lua5.4的官方帮助手册不难找到下面的解释:
 string.pack (fmt, v1, v2, ···)
@@ -32,13 +32,12 @@ Returns a binary string containing the values v1, v2, etc. serialized in binary 
 1 2 3 local pb_data = pb_helper.pb_encode(msgname, msg) local buf = string.pack(&#34;&gt;I4c&#34; .. #pb_data, msgid, pb_data) local send_buf = string.pack(&#34;&gt;s2&#34;, buf) 解包过程如下:
 1 2 3 local buf = msg --des_decode(secret, msg) local len = string." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/lua-string-pack/" /><meta property="og:image" content="https://cfanzp.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://cfanzp.com/lua-string-pack/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-03T08:34:18+08:00" />
 <meta property="article:modified_time" content="2022-08-03T08:34:18+08:00" />
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cfanzp.com/logo.png"/>
 
-<meta name="twitter:title" content="lua中string.pack,string.unpack的用法"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="lua中string.pack,string.unpack的用法"/>
 <meta name="twitter:description" content="lua中string.pack,string.unpack的用法 lua string.pack的用法,查看lua5.4的官方帮助手册不难找到下面的解释:
 string.pack (fmt, v1, v2, ···)
 Returns a binary string containing the values v1, v2, etc. serialized in binary form (packed) according to the format string fmt (see §6.4.2).
