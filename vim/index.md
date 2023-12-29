@@ -6,11 +6,28 @@
 ## nvim配置
 - [https://gitee.com/cfanzp/nvim-config.git](https://gitee.com/cfanzp/nvim-config.git)
 
-### 字体
+### 代码跳转
+- c++使用bear生成compile_commands.json,解决clangd代码跳转找不到头文件的问题。
+- 在项目根目录如果有makefile文件运行bear make就会生成对应的compile_commands.json文件。
+```
+apt install bear
+bear make
+``````
+```
+
+### 显示
+#### 字体
 下载太大太慢了,建议使用国内镜像
 - https://github.com/ryanoasis/nerd-fonts.git
 - https://gitee.com/keyboardkiller/nerd-fonts
 - https://gitee.com/keyboardkiller/nerd-fonts.git
+
+- hasklig
+```
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hasklig.zip
+unzip Hasklig.zip -d /usr/local/share/fonts/
+fc-cache -fv
+```
 
 #### mac
 ```
@@ -36,6 +53,9 @@ graph LR
   lazy.nvim-->vim-surround
 {{</ mermaid >}}
 
+### neovim 插件
+- code_runner.vim - https://github.com/CRAG666/code_runner.nvim
+- vista:liuchengxu/vista.vim https://github.com/liuchengxu/vista.vim
 
 ## vim 之前常用插件
 {{< mermaid >}}
@@ -68,6 +88,9 @@ graph LR
 ### Vim插件
 ### NeoVim插件
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+## 值得一看的文章
+- [2023年Vim的C++配置](https://martins3.github.io/My-Linux-Config/docs/nvim.html)
 
 
 ---
