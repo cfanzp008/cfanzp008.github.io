@@ -3,14 +3,25 @@
 
 # TODO
 ## 2024年
+- [ ] 养成多做笔记的习惯。
+- [ ] 做技术实验，博客对自己的技术实验进行总结分享给大家。
+- [ ] 阅读复习计算机网络这本书。
+- [ ] 学习squid源码。
+- [ ] 学习e2guardian源码。
 
 ## 2023年
-- [ ] 学习[golang](/categories/golang)
-- [ ] 学习[acra](/acra)
-- [ ] 学习[docker](/categories/docker)
-- [ ] 复习[计算机网络](/network)
+- [x] 学习golang:[golang学习笔记](/categories/golang)
+  - 学习笔记13篇
+- [x] 学习acra:[acra](/acra)
+  - 学习笔记1篇
+- [x] 学习docker:[docker](/categories/docker)
+  - 学习笔记10篇
+- [x] 复习计算机网络:[计算机网络](/network)
+  - 学习笔记7篇
 
 ## 源码学习
+- [ ] squid
+- [ ] e2guardian
 - [ ] lua
 - [ ] nginx
 - [ ] redis
@@ -25,8 +36,9 @@
 - [ ] cocos creator
 
 ## 学习
-- [x] 《Vim实用技巧（第2版）》学习笔记
-- [ ] golang学习笔记
+- [x] [《Vim实用技巧（第2版）》学习笔记](/book/vim/)
+- [ ] [《计算网络（第5版）》学习笔记](/book/network-5)
+- [ ] [golang学习笔记](/book/golang)
 
 
 
