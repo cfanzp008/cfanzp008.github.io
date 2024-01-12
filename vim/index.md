@@ -12,7 +12,6 @@
 ```
 apt install bear
 bear make
-``````
 ```
 
 ### 显示
