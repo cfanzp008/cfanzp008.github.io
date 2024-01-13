@@ -6,6 +6,7 @@
 - mysql5.7: https://www.docs4dev.com/docs/zh/mysql/5.7/reference/
 - mysql5.6：https://dev.mysql.com/doc/refman/5.6/en/
 - redis命令手册: https://www.redis.net.cn/order/
+- nginx官网:[https://nginx.org/en/docs/](https://nginx.org/en/docs/)
 
 ### 语言
 - [golang](https://go.dev/doc/):https://go.dev/doc/ [在线运行golang程序](https://go.dev/play/)
@@ -14,6 +15,7 @@
 - rust: https://github.com/rust-lang/reference
 
 ### 工具
+- neovim：[https://neovim.io/](https://neovim.io/)
 - markdown-GFM: https://gfm.docschina.org/zh-hans/
 - 印记中文: https://docschina.org/
 - 正则表达式: https://github.com/any86/any-rule
