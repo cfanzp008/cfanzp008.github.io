@@ -1,0 +1,18 @@
+* lua 笔记
+** userdata
+*** userdata demo:https://www.jianshu.com/p/6c52a764c074
+** 元表 Metatable
+*** setmetatable(table,metatable)
+**** eg
+     mytable = {}
+     mymetatable = {}
+     setmetatable(mytable,mymetatable)
+*** getmetatable
+**** eg: getmetatable(mytable)
+** __index 元方法
+*** 查找元素步骤
+**** 1. 在表中查找，如果找到，返回该元素，找不到则继续
+**** 2. 判断该表是否有元表，如果没有返回 nil,有元表则继续
+**** 3. 判断元表是否有__index 方法，如果方法为 nil 则返回 nil
+**** 4. 如果__index 是一个表，重复 1,2,3
+**** 5. 如果__index 是一个函数，则返回该函数的返回值。

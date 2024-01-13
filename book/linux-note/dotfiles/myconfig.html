@@ -1,0 +1,853 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>我的配置 - linux note</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../os/os.html"><strong aria-hidden="true">1.</strong> 系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../os/manjaro.html"><strong aria-hidden="true">1.1.</strong> manjaro</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../os/manjaro/7z.html"><strong aria-hidden="true">1.1.1.</strong> 1. 7z</a></li><li class="chapter-item expanded "><a href="../os/manjaro/scrot.html"><strong aria-hidden="true">1.1.2.</strong> 2. scrot</a></li><li class="chapter-item expanded "><a href="../os/manjaro/swap.html"><strong aria-hidden="true">1.1.3.</strong> 3. swap</a></li></ol></li><li class="chapter-item expanded "><a href="../os/ubuntu.html"><strong aria-hidden="true">1.2.</strong> ubuntu</a></li><li class="chapter-item expanded "><a href="../os/centos.html"><strong aria-hidden="true">1.3.</strong> centos</a></li><li class="chapter-item expanded "><a href="../os/kali.html"><strong aria-hidden="true">1.4.</strong> kali</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../os/kali/install.html"><strong aria-hidden="true">1.4.1.</strong> install</a></li><li class="chapter-item expanded "><a href="../os/kali/msfconsole.html"><strong aria-hidden="true">1.4.2.</strong> msfconsole</a></li><li class="chapter-item expanded "><a href="../os/kali/dirbuster.html"><strong aria-hidden="true">1.4.3.</strong> dirbuster</a></li></ol></li><li class="chapter-item expanded "><a href="../os/windows.html"><strong aria-hidden="true">1.5.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../os/windows/windows_tools.html"><strong aria-hidden="true">1.5.1.</strong> windows tools</a></li><li class="chapter-item expanded "><a href="../os/windows/vmware.html"><strong aria-hidden="true">1.5.2.</strong> vmware</a></li><li class="chapter-item expanded "><a href="../os/windows/cmd.html"><strong aria-hidden="true">1.5.3.</strong> cmd</a></li><li class="chapter-item expanded "><a href="../os/windows/bug.html"><strong aria-hidden="true">1.5.4.</strong> bug</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/chat/expression.html"><strong aria-hidden="true">2.1.</strong> expression</a></li><li class="chapter-item expanded "><a href="../language/lua/lua.html"><strong aria-hidden="true">2.2.</strong> lua</a></li><li class="chapter-item expanded "><a href="../language/python/python.html"><strong aria-hidden="true">2.3.</strong> python</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/python/python_joinquant.html"><strong aria-hidden="true">2.3.1.</strong> python joinquant</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../dotfiles/myconfig.html" class="active"><strong aria-hidden="true">3.</strong> 我的配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/proxy/terminal_proxy.html"><strong aria-hidden="true">3.1.</strong> 命令行配置proxy</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工具</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/tools.html"><strong aria-hidden="true">4.1.</strong> tools</a></li><li class="chapter-item expanded "><a href="../tools/shell.html"><strong aria-hidden="true">4.2.</strong> shell</a></li><li class="chapter-item expanded "><a href="../tools/git.html"><strong aria-hidden="true">4.3.</strong> git</a></li><li class="chapter-item expanded "><a href="../tools/gitlab.html"><strong aria-hidden="true">4.4.</strong> gitlab</a></li><li class="chapter-item expanded "><a href="../tools/mermaid.html"><strong aria-hidden="true">4.5.</strong> mermaid</a></li><li class="chapter-item expanded "><a href="../tools/smb.html"><strong aria-hidden="true">4.6.</strong> smb</a></li><li class="chapter-item expanded "><a href="../tools/i3/i3wm.html"><strong aria-hidden="true">4.7.</strong> i3wm</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/i3/i3config.html"><strong aria-hidden="true">4.7.1.</strong> i3config</a></li><li class="chapter-item expanded "><a href="../tools/i3/i3lock.html"><strong aria-hidden="true">4.7.2.</strong> i3lock</a></li><li class="chapter-item expanded "><a href="../tools/i3/i3status.html"><strong aria-hidden="true">4.7.3.</strong> i3status</a></li><li class="chapter-item expanded "><a href="../tools/i3/screenkey.html"><strong aria-hidden="true">4.7.4.</strong> screenkey</a></li><li class="chapter-item expanded "><a href="../tools/i3/sound.html"><strong aria-hidden="true">4.7.5.</strong> sound</a></li><li class="chapter-item expanded "><a href="../tools/i3/polybar.html"><strong aria-hidden="true">4.7.6.</strong> polybar</a></li><li class="chapter-item expanded "><a href="../tools/i3/rofi.html"><strong aria-hidden="true">4.7.7.</strong> rofi</a></li></ol></li><li class="chapter-item expanded "><a href="../dotfiles/dotfiles.html"><strong aria-hidden="true">4.8.</strong> dotfiles</a></li><li class="chapter-item expanded "><a href="../tools/ftp.html"><strong aria-hidden="true">4.9.</strong> ftp</a></li><li class="chapter-item expanded "><a href="../tools/tmux.html"><strong aria-hidden="true">4.10.</strong> tmux</a></li><li class="chapter-item expanded "><a href="../tools/frp.html"><strong aria-hidden="true">4.11.</strong> frp</a></li><li class="chapter-item expanded "><a href="../tools/flameshot.html"><strong aria-hidden="true">4.12.</strong> flameshot截图</a></li><li class="chapter-item expanded "><a href="../tools/nginx/nginx.html"><strong aria-hidden="true">4.13.</strong> nginx</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/nginx/nginx_conf.html"><strong aria-hidden="true">4.13.1.</strong> nginx配置笔记</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tools/vim.html"><strong aria-hidden="true">5.</strong> vim</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> vim插件</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tools/vim/plug/vim-plug.html"><strong aria-hidden="true">5.1.1.</strong> vim-plug</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/ctrlp.html"><strong aria-hidden="true">5.1.2.</strong> ctrlp</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/nerdtree.html"><strong aria-hidden="true">5.1.3.</strong> nerdtree</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/ale.html"><strong aria-hidden="true">5.1.4.</strong> ale</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/vim-commentary.html"><strong aria-hidden="true">5.1.5.</strong> vim-commentary</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/vim-fugitive.html"><strong aria-hidden="true">5.1.6.</strong> vim-fugitive</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/fzf.html"><strong aria-hidden="true">5.1.7.</strong> fzf</a></li><li class="chapter-item expanded "><a href="../tools/vim/plug/coc.html"><strong aria-hidden="true">5.1.8.</strong> coc</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../docker/docker.html"><strong aria-hidden="true">6.</strong> docker</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../docker/docker_jenkins.html"><strong aria-hidden="true">6.1.</strong> jenkins</a></li><li class="chapter-item expanded "><a href="../docker/docker_nginx.html"><strong aria-hidden="true">6.2.</strong> nginx</a></li><li class="chapter-item expanded "><a href="../docker/docker_gitbook.html"><strong aria-hidden="true">6.3.</strong> gitbook</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 数据库</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mysql/mysql.html"><strong aria-hidden="true">7.1.</strong> mysql</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 开源</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opensource/github.html"><strong aria-hidden="true">8.1.</strong> github</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 开发框架</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opensource/nightingale.html"><strong aria-hidden="true">9.1.</strong> 运维监控:nightingale</a></li><li class="chapter-item expanded "><a href="../opensource/skynet.html"><strong aria-hidden="true">9.2.</strong> skynet</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../opensource/skynet/debug_console.html"><strong aria-hidden="true">9.2.1.</strong> debug_console</a></li><li class="chapter-item expanded "><a href="../server/skynet/clearcache.html"><strong aria-hidden="true">9.2.2.</strong> clearcache</a></li></ol></li><li class="chapter-item expanded "><a href="../opensource/tars.html"><strong aria-hidden="true">9.3.</strong> tars</a></li><li class="chapter-item expanded "><a href="../opensource/nodejs.html"><strong aria-hidden="true">9.4.</strong> nodejs</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">linux note</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="我的常用配置"><a class="header" href="#我的常用配置">我的常用配置</a></h1>
+<h2 id="vimrc"><a class="header" href="#vimrc">.vimrc</a></h2>
+<pre><code>&quot;set term=screen
+
+set ruler
+set laststatus=2                &quot; make the last line where the status is two lines deep so you can see status always
+set backspace=indent,eol,start  &quot; make that backspace key work the way it should
+set nocompatible                &quot; vi compatible is LAME
+set showmode                    &quot; show the current mode
+syntax on                       &quot; turn syntax highlighting on by default
+
+&quot;set fdm=indent
+&quot;
+&quot;&quot;行号{
+set nu!
+&quot;set relativenumber
+&quot;}
+&quot;
+
+&quot;set guifont=h12
+set hls
+&quot;set background=dark
+set t_Co=256
+&quot;设置配色方案{
+left g:molokai_original = 1
+let g:rehash256 = 1
+&quot;desert
+&quot;colorscheme solarized molokai github lucius desert
+&quot;}
+&quot; markdown theme
+&quot;let g:detorte_theme_mode = 'dark'
+
+&quot;tab{
+set tabstop=2
+set expandtab
+&quot;&quot;}
+
+filetype off
+
+call plug#begin('~/.vim/plugged')
+Plug 'git://github.com/tomasr/molokai.git'
+&quot;Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+&quot;Plug 'preservim/nerdtree' |
+&quot;        \ Plug 'xuyuanp/nerdtree-git-plugin'
+ Plug 'preservim/nerdtree' |
+         \ Plug 'xuyuanp/nerdtree-git-plugin' |
+         \ Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'michaelHL/awesome-vim-colorschemes'
+Plug 'majutsushi/tagbar'
+Plug 'godlygeek/tabular'
+Plug 'ctrlpvim/ctrlp.vim'
+&quot;Plug 'ack.vim'
+
+&quot;Plug 'vim-scripts/luainspect.vim'
+&quot;Plug 'xolox/vim-misc'
+&quot;Plug 'xolox/vim-lua-ftplugin'
+
+Plug 'Shougo/neocomplcache'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'git://github.com/rking/ag.vim.git'
+
+&quot; Multiple Plug commands can be written in a single line using | separators
+&quot;Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
+Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-commentary'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+&quot;Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'mg979/vim-visual-multi'
+&quot;Plug 'voldikss/vim-browser-search'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'uarun/vim-protobuf'
+Plug 'tpope/vim-abolish'
+Plug 'fatih/vim-go'
+&quot;Plug 'w0rp/ale'
+
+&quot;Plug 'tamlok/detorte'
+&quot;Plug 'tamlok/vim-markdown'
+&quot;Plug 'iamcco/mathjax-support-for-mkdp'
+&quot;Plug 'iamcco/markdown-preview.vim'
+&quot;Plug 'iamcco/markdown-preview.nvim', { 'do': { -&gt; mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+&quot;Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &amp;&amp; yarn install'  }
+&quot;Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+&quot; Initialize plugin system
+call plug#end()
+
+
+colorscheme molokai &quot;neon evening molokai solarized molokai github lucius
+
+filetype plugin indent on     &quot; required
+
+&quot;set runtimepath^=~/.vim/bundle/ag
+set runtimepath^=~/.vim/plugged/ag
+
+&quot;path{
+set path=./,../,
+&quot;set path=./,/usr/include,,..,../lualib,
+&quot;}
+&quot; vim-indent-guides {
+&quot;let g:indent_guides_enable_on_vim_startup = 1 &quot;添加行，vim启动时启用
+&quot;let g:indent_guides_start_level = 1           &quot;添加行，开始显示对齐线的缩进级别
+&quot;let g:indent_guides_guide_size = 1            &quot;添加行，对齐线的宽度，（1字符）
+&quot;let g:indent_guides_tab_guides = 0            &quot;添加行，对tab对齐的禁用
+&quot;}
+&quot;
+&quot;indentLine{
+&quot;let g:indentLine_char='|'
+let g:indentLine_char='|'
+let g:indentLine_enabled = 1
+&quot;}
+
+&quot;let g:mkdp_path_to_chrome = &quot;firefox&quot;
+&quot;let g:mkdp_path_to_chrome = &quot;google-chrome&quot;
+&quot;let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+&quot;let g:mkdp_auto_open = 1
+
+&quot; set to 1, nvim will open the preview window after entering the markdown buffer
+ &quot; default: 0
+let g:mkdp_auto_start = 0
+
+&quot; set to 1, the nvim will auto close current preview window when change
+&quot; from markdown buffer to another buffer
+&quot; default: 1
+let g:mkdp_auto_close = 0
+
+&quot; set to 1, the vim will refresh markdown when save the buffer or
+&quot; leave from insert mode, default 0 is auto refresh markdown as you edit or
+&quot; move the cursor
+&quot; default: 0
+let g:mkdp_refresh_slow = 0
+
+&quot; set to 1, the MarkdownPreview command can be use for all files,
+&quot; by default it can be use in markdown file
+&quot; default: 0
+let g:mkdp_command_for_global = 0
+
+&quot; set to 1, preview server available to others in your network
+&quot; by default, the server listens on localhost (127.0.0.1)
+&quot; default: 0
+let g:mkdp_open_to_the_world = 0
+
+&quot; use custom IP to open preview page
+&quot; useful when you work in remote vim and preview on local browser
+&quot; more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+&quot; default empty
+let g:mkdp_open_ip = ''
+
+&quot; specify browser to open preview page
+&quot; default: ''
+let g:mkdp_browser = 'firefox'
+
+&quot; set to 1, echo preview page url in command line when open preview page
+&quot; default is 0
+let g:mkdp_echo_preview_url = 1
+
+&quot; a custom vim function name to open preview page
+&quot; this function will receive url as param
+&quot; default is empty
+let g:mkdp_browserfunc = ''
+&quot;:MarkdownPreview
+&quot;:MarkdownPreviewStop
+
+&quot; options for markdown render
+&quot; mkit: markdown-it options for render
+&quot; katex: katex options for math
+&quot; uml: markdown-it-plantuml options
+&quot; maid: mermaid options
+&quot; disable_sync_scroll: if disable sync scroll, default 0
+&quot; sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+&quot;   middle: mean the cursor position alway show at the middle of the preview page
+&quot;  top: mean the vim top viewport alway show at the top of the preview page
+&quot;  relative: mean the cursor position alway show at the relative positon of the preview page
+&quot; hide_yaml_meta: if hide yaml metadata, default is 1
+&quot; sequence_diagrams: js-sequence-diagrams options
+&quot; content_editable: if enable content editable for preview page, default: v:false
+&quot; disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1,
+            \ 'sequence_diagrams': {},
+            \ 'flowchart_diagrams': {},
+            \ 'content_editable': v:false,
+            \ 'disable_filename': 0
+            \ }
+
+&quot; use a custom markdown style must be absolute path
+&quot; like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+&quot; use a custom highlight style must absolute path
+&quot; like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+&quot; use a custom port to start server or random for empty
+let g:mkdp_port = ''
+
+&quot; preview page title
+&quot; ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+&quot; recognized filetypes
+&quot; these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
+
+&quot;ctrlp{
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '&lt;c-p&gt;'
+set wildignore+=*.o,*.exe,*.git,*.pdb,*.bak,*.so,*.a
+let g:ctrlp_by_filename = 1 &quot; only lookup file name
+let g:ctrlp_max_height = 15
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.ctrlp/cache/'
+let g:ctrlp_working_path_mode = 'rw'
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|bak|gds|lib|suo|exp)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+&quot;}
+
+
+&quot;调用ag进行搜索提升速度，同时不使用缓存文件
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g &quot;&quot;'
+  let g:ctrlp_use_caching = 0
+endif
+
+
+&quot;ctags{
+set tags=tags;
+&quot;set autochdir
+nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+&quot;:set grepprg=grep\ -nri 
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; Tag list (ctags)
+&quot; &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+&quot;Tagbar
+let g:tagbar_ctags_bin = '/usr/bin/ctags'
+let Tlist_Show_One_File = 1
+&quot;不同时显示多个文件的tag，只显示当前文件的
+&quot;let Tlist_Exit_OnlyWindow = 1
+&quot;如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         &quot;在右侧窗口中显示taglist窗口
+let Tlist_File_Fold_Auto_Close=1
+&quot;让不被编辑的文件的方法列表自动折叠起来
+let Tlist_Show_Menu=1                  &quot;显示taglist菜单
+let Tlist_Auto_Open=0                  &quot;启动vim自动启动TagList
+
+let g:NERDTreeWinSize = 25
+let g:tagbar_width = 25
+let g:tagbar_type_lua = {
+  \ 'ctagstype' : 'lua',
+  \ 'kinds' : [
+    \ 'm:modules:0:0',
+    \ 'f:functions:0:1',
+    \ 'v:locals:0:0'
+  \ ],
+  \ 'sort' : 0
+\ }
+
+
+let g:lua_inspect_events = ''
+
+let mapleader=&quot; &quot;
+
+&quot; tips plug
+&quot;let g:pmenu_scheme = 'dark'
+&quot;let g:pmenu_scheme = 'macos'
+&quot;map &lt;Tab&gt;   &lt;Plug&gt;EasyCompTabTrigger
+&quot;imap &lt;S-Tab&gt; &lt;Plug&gt;EasyCompShiftTabTrigger
+&quot; easycompelte end============
+
+&quot; neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+&quot;let g:neocomplcache_enable_quick_match = 1
+
+let g:ag_prg='ag --column'
+let g:ag_working_path_mode='r'
+
+&quot;git gutter
+nmap ]c &lt;Plug&gt;GitGutterNextHunk
+nmap [c &lt;Plug&gt;GitGutterPrevHunk
+
+&quot; syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+&quot;设置error和warning的标志
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='►'
+
+&quot;no-unused-args 忽略不使用的参数
+&quot;no-redefined 忽略重定义
+&quot;no-max-line-length 忽略每行最长的检测
+&quot;ignore 542 551 忽略if条件的body为空(如...elseif ret == nil then end，then和end中间没有语句)；忽略空语句(如;)，如果用了;则成对出现该语法检测warning
+&quot;有语法错误的一行左侧栏会有S&amp;gt;标识，光标移动到改行，vim下发会给出提示。修改正确后保存，则该'S&amp;gt;'会消失。
+&quot;let g:syntastic_lua_checkers = [&quot;luac&quot;, &quot;luacheck&quot;]
+let g:syntastic_lua_checkers = [&quot;/use/bin/luac5.4.3&quot;, &quot;luacheck&quot;]
+&quot;let g:syntastic_lua_luacheck_args =
+&quot;&quot;--codes --no-max-comment-line-length --ignore 542 551&quot;
+let g:syntastic_lua_luacheck_args = &quot;--codes&quot;
+&quot;go checker
+let g:syntastic_go_checkers = [&quot;govet&quot;, &quot;errcheck&quot;,&quot;go&quot;]
+
+&quot;c
+&quot;let g:syntastic_c_compiler =['gcc', 'clang', 'make']
+&quot;let g:syntastic_c_compiler_options ='-Wpedantic -g'
+let g:syntastic_c_compiler_options ='-std=gnu99'
+let g:syntastic_c_include_dirs=['/usr/include/']
+let g:syntastic_c_config_file='.syntastic_c_config_file'
+
+&quot;cpp
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+&quot; syntastic end
+
+&quot; autoformat 操作符2边加空格
+let g:formatdef_allman = '&quot;astyle --style=allman --pad-oper&quot;'
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+&quot;map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q.&lt;CR&gt;
+map &lt;C-F12&gt; :!ctags -R --fields=+iaS --extra=+q.&lt;CR&gt;
+&quot;Press space twice to jump to the next '&lt;++&gt;' and edit it
+map &lt;LEADER&gt;&lt;LEADER&gt; &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4l
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+set expandtab
+set autoindent
+set cindent
+set cc=80
+set list
+set listchars=tab:&gt;-,trail:-
+
+set nocompatible
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+&quot; before vim 8.1 modellines bug
+set modelines=0
+set nomodeline
+&quot;inoremap :setl pastegi+:setl nopastegi
+&quot;
+inoremap jk &lt;ESC&gt;
+
+&quot; fzf_begin{
+map &lt;leader&gt;f :Rg&lt;CR&gt;
+map &lt;leader&gt;p :Files&lt;CR&gt;
+map &lt;leader&gt;b :Buffers&lt;CR&gt;
+&quot; Empty value to disable preview window altogether
+&quot; let g:fzf_preview_window = ''
+&quot;
+&quot; Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(&lt;q-args&gt;,
+  \                 &lt;bang&gt;0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 &lt;bang&gt;0)
+let g:fzf_layout = {'down':'40%'}
+map &lt;leader&gt;a :Ag&lt;CR&gt;
+nnoremap &lt;silent&gt; &lt;Leader&gt;A :Ag&lt;CR&gt;
+&quot; fzf_end}
+
+&quot;{ Leaderf_begin
+&quot;let g:Lf_ShortcutF = '&lt;C-P&gt;'
+let g:Lf_ShortcutF = '&lt;C-F&gt;'
+map &lt;leader&gt;F :Leaderf! rg&lt;CR&gt;
+&quot;{ Leaderf_end
+
+&quot;{ rainbow_begin
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+&quot;{ rainbow_end
+
+&quot;ale begin
+&quot;https://github.com/tvatter/ale#faq-quickfix
+&quot; Write this in your vimrc file
+&quot;let g:ale_set_loclist = 0
+&quot;let g:ale_set_quickfix = 1
+&quot;
+&quot;let g:ale_open_list = 1
+&quot; Set this if you want to.
+&quot; &quot; This can be useful if you are combining ALE with
+&quot; &quot; some other plugin which sets quickfix errors, etc.
+&quot;let g:ale_keep_list_window_open = 1
+&quot;nmap &lt;silent&gt; &lt;C-k&gt; &lt;Plug&gt;(ale_previous_wrap)
+&quot;nmap &lt;silent&gt; &lt;C-j&gt; &lt;Plug&gt;(ale_next_wrap)
+&quot;ale end
+
+&quot; 关闭json隐藏引号
+let g:vim_json_conceal = 0
+
+&quot;path指定查找的路径，详情help path
+&quot; includeexpr是尝试替换路径名中的.为/，详情help includeexpr
+set includeexpr=substitute(v:fname,'\\.','/','g')
+&quot; suffixesadd为尝试路径后缀，详情help suffixesadd
+set suffixesadd=.lua
+set suffixesadd+=.proto
+if filereadable(&quot;./.workspace.vim&quot;)
+    source ./.workspace.vim
+endif
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;NerdTree setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=chinese
+set fileencodings=ucs-bom,utf-8,chinese
+set langmenu=zh_CN.utf-8
+&quot;language messages zh_cn.utf-8
+
+&quot;Show line number.
+let g:NERDTreeShowlineNumber=1
+
+&quot;Show hide file.
+let g:NERDTreeHidden=1
+
+&quot;Show Node model.
+let NERDTreeDirArrows=0
+
+&quot;Delete help information at the top
+let NERDTreeMinimalUI=1
+
+let g:NERDTreeDirArrowExpandable = '|'
+let g:NERDTreeDirArrowCollapsible = '/'
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end NerdTree setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;nerdtree-git-plugin setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ &quot;Modified&quot;  : &quot;✹&quot;,
+    \ &quot;Staged&quot;    : &quot;✚&quot;,
+    \ &quot;Untracked&quot; : &quot;✭&quot;,
+    \ &quot;Renamed&quot;   : &quot;➜&quot;,
+    \ &quot;Unmerged&quot;  : &quot;═&quot;,
+    \ &quot;Deleted&quot;   : &quot;✖&quot;,
+    \ &quot;Dirty&quot;     : &quot;✗&quot;,
+    \ &quot;Clean&quot;     : &quot;✔︎&quot;,
+    \ &quot;Unknown&quot;   : &quot;?&quot;
+    \ }
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end nerdtree-git-plugin setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;vim-nerdtree-syntax-highlight settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+&quot;Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeHighlightFolders = 1
+
+&quot;highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+
+&quot;you can add these colors to your .vimrc to help customizing
+let s:brown = &quot;905532&quot;
+let s:aqua =  &quot;3AFFDB&quot;
+let s:blue = &quot;689FB6&quot;
+let s:darkBlue = &quot;44788E&quot;
+let s:purple = &quot;834F79&quot;
+let s:lightPurple = &quot;834F79&quot;
+let s:red = &quot;AE403F&quot;
+let s:beige = &quot;F5C06F&quot;
+let s:yellow = &quot;F09F17&quot;
+let s:orange = &quot;D4843E&quot;
+let s:darkOrange = &quot;F16529&quot;
+let s:pink = &quot;CB6F6F&quot;
+let s:salmon = &quot;EE6E73&quot;
+let s:green = &quot;8FAA54&quot;
+let s:Turquoise = &quot;40E0D0&quot;
+let s:lightGreen = &quot;31B53E&quot;
+let s:white = &quot;FFFFFF&quot;
+let s:rspec_red = &quot;FE405F&quot;
+let s:git_orange = &quot;F54D27&quot;
+let s:gray = &quot;808A87&quot;
+
+let g:NERDTreeExtensionHighlightColor = {} &quot; this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray &quot; sets the color of o files to blue
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue &quot; sets the color of h files to blue
+let g:NERDTreeExtensionHighlightColor['c'] = s:green &quot; sets the color of c files to blue
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green &quot; sets the color of cpp files to blue
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green &quot; sets the color of c++ files to blue
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end vim-nerdtree-syntax-highlight settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;vim-devicons settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;`
+set encoding=UTF-8
+
+&quot;Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+
+&quot;whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+&quot;adding to vim-airline's tabline
+let g:webdevicons_enable_airline_tabline = 1
+
+&quot;adding to vim-airline's statusline
+let g:webdevicons_enable_airline_statusline = 1
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end vim-devicons settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;`
+
+set incsearch
+</code></pre>
+<h2 id="tmuxconf"><a class="header" href="#tmuxconf">tmux.conf</a></h2>
+<pre><code>set -g default-terminal &quot;screen-256color&quot;
+set-option allow-rename off
+#-- base settings --#
+set -g mode-keys vi
+# prefix key (Ctrl+a)
+set -g prefix ^a
+unbind ^b
+bind ^a send-prefix
+
+#up
+bind-key k select-pane -U
+#down
+bind-key j select-pane -D
+#left
+bind-key h select-pane -L
+#right
+bind-key l select-pane -R
+</code></pre>
+<h2 id="gitconfig"><a class="header" href="#gitconfig">.gitconfig</a></h2>
+<pre><code>[user]
+    name = cfanzp
+    email = cfan.zp@qq.com
+[color]
+    interactive = auto
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = false
+
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    sh = stash
+    sa = stash apply
+    sp = stash pop
+    ap = add -p
+    br = branch
+    cp = checkout -p
+    cv = commit -v
+    dc = diff --cached
+    d = diff
+    pr = pull --rebase
+    ps = push
+    l = log --graph --pretty=format:'%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --date=short --all
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --all
+[hub]
+    protocol = https
+[diff]
+    tool = vimdiff
+[core]
+    editor = vim
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../language/python/python_joinquant.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../tools/proxy/terminal_proxy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../language/python/python_joinquant.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../tools/proxy/terminal_proxy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

