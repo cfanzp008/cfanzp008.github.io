@@ -11,6 +11,9 @@
 - [golang学习笔记](https://cfanzp.com/book/golang-note/)
 - [linux学习笔记](https://cfanzp.com/book/linux-note/)
 
+## 开发笔记
+- [游戏笔记](https://cfanzp.com/book/gamedev-note/)
+
 
 ---
 
