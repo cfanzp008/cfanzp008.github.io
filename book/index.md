@@ -12,7 +12,7 @@
 - [linux学习笔记](https://cfanzp.com/book/linux-note/)
 
 ## 开发笔记
-- [游戏笔记](https://cfanzp.com/book/gamedev-note/)
+- [游戏开发笔记](https://cfanzp.com/book/gamedev-note/)
 
 
 ---
