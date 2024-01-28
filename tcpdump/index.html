@@ -5,22 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>所有文章 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>tcpdump的基础用法 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Posts">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="Posts" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/posts/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='tcpdump' /><meta itemprop="name" content="tcpdump的基础用法">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-28T20:42:04+08:00" />
+<meta itemprop="dateModified" content="2024-01-28T20:42:04+08:00" />
+<meta itemprop="wordCount" content="188"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="tcpdump," /><meta property="og:title" content="tcpdump的基础用法" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/tcpdump/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-28T20:42:04+08:00" />
+<meta property="article:modified_time" content="2024-01-28T20:42:04+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="tcpdump的基础用法"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/" /><link rel="alternate" href="/posts/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/posts/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/tcpdump/" /><link rel="prev" href="https://cfanzp.com/nginx-forward-proxy/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "tcpdump的基础用法",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/tcpdump\/"
+    },"genre": "posts","keywords": "tcpdump","wordcount":  188 ,
+    "url": "https:\/\/cfanzp.com\/tcpdump\/","datePublished": "2024-01-28T20:42:04+08:00","dateModified": "2024-01-28T20:42:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -33,7 +54,7 @@
     alt="Linux开发"
     title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
     <nav>
-      <ul class="menu"><li class="menu-item active">
+      <ul class="menu"><li class="menu-item">
               <a
                 class="menu-link"
                 href="/posts/"
@@ -296,7 +317,7 @@
     </div>
     <nav>
       <ul class="menu" id="menu-mobile"><li
-              class="menu-item active"
+              class="menu-item"
             ><a
                   class="menu-link"
                   href="/posts/"
@@ -573,92 +594,258 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page archive">
-    <div class="header"><h1 class="single-title animate__animated animate__pulse animate__faster">所有文章
-        <sup>226</sup>
-      </h1><p class="single-subtitle total-word-count" title='总计约 31844 字'><i class="fa-regular fa-keyboard fa-fw" aria-hidden="true"></i> 总计约 31.84K 字</p></div><h2 class="group-title">2022</h2><article class="archive-item">
-            <a href="/skynet-debug_console-ag/" class="archive-item-link">skynet-给debug_console添加ag搜索</a>
-            <span class="archive-item-date" title='2022-08-01 12:46:18'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/git-ftp/" class="archive-item-link">git-ftp的使用</a>
-            <span class="archive-item-date" title='2022-07-31 22:30:00'>07-31</span>
-          </article><article class="archive-item">
-            <a href="/code-github/" class="archive-item-link">github资源整理</a>
-            <span class="archive-item-date" title='2022-07-31 18:53:09'>07-31</span>
-          </article><article class="archive-item">
-            <a href="/lua-man/" class="archive-item-link">Lua开发手册</a>
-            <span class="archive-item-date" title='2022-07-31 09:47:48'>07-31</span>
-          </article><article class="archive-item">
-            <a href="/language-rust/" class="archive-item-link">rust语言基础</a>
-            <span class="archive-item-date" title='2022-07-30 19:44:42'>07-30</span>
-          </article><article class="archive-item">
-            <a href="/devtools-flameshot/" class="archive-item-link">devtools-flameshot</a>
-            <span class="archive-item-date" title='2022-07-30 19:06:52'>07-30</span>
-          </article><article class="archive-item">
-            <a href="/linux-mysqldump/" class="archive-item-link">mysql-使用mysqldump来备份数据库</a>
-            <span class="archive-item-date" title='2022-07-30 17:49:44'>07-30</span>
-          </article><article class="archive-item">
-            <a href="/linux-ubuntu-remotedesktop/" class="archive-item-link">ubuntu-远程连接windows的几种方法</a>
-            <span class="archive-item-date" title='2022-07-30 17:45:02'>07-30</span>
-          </article><article class="archive-item">
-            <a href="/skynet_dir/" class="archive-item-link">skynet-skynet目录结构</a>
-            <span class="archive-item-date" title='2022-07-29 12:45:13'>07-29</span>
-          </article><article class="archive-item">
-            <a href="/i3wm-i3status-conf/" class="archive-item-link">i3wm-i3wm状态栏i3status如何配置显示星期？</a>
-            <span class="archive-item-date" title='2022-07-28 20:18:39'>07-28</span>
-          </article><article class="archive-item">
-            <a href="/mac-terminal-color/" class="archive-item-link">mac-如何让terminal中能够看到不同的颜色?</a>
-            <span class="archive-item-date" title='2022-07-28 19:23:26'>07-28</span>
-          </article><article class="archive-item">
-            <a href="/debug_console/" class="archive-item-link">skynet-debug_console 简介</a>
-            <span class="archive-item-date" title='2022-07-28 18:12:13'>07-28</span>
-          </article><article class="archive-item">
-            <a href="/skynet-traceid/" class="archive-item-link">skynet-给项目日志添加traceid</a>
-            <span class="archive-item-date" title='2022-07-25 20:00:29'>07-25</span>
-          </article><article class="archive-item">
-            <a href="/linux-xargs/" class="archive-item-link">linux-xargs用法简介</a>
-            <span class="archive-item-date" title='2022-07-20 23:02:03'>07-20</span>
-          </article><article class="archive-item">
-            <a href="/linux-ag/" class="archive-item-link">linux-ag命令</a>
-            <span class="archive-item-date" title='2022-07-20 23:00:19'>07-20</span>
-          </article><article class="archive-item">
-            <a href="/linux-du/" class="archive-item-link">linux-du命令</a>
-            <span class="archive-item-date" title='2022-07-20 22:30:30'>07-20</span>
-          </article><article class="archive-item">
-            <a href="/devtools-mdbook/" class="archive-item-link">mdbook-比gitbook更高效且简洁的markdown工具mdbook</a>
-            <span class="archive-item-date" title='2022-07-18 17:36:01'>07-18</span>
-          </article><article class="archive-item">
-            <a href="/vim-plug-tabular/" class="archive-item-link">Vim插件:对齐插件-Tabular</a>
-            <span class="archive-item-date" title='2022-07-06 22:26:19'>07-06</span>
-          </article><article class="archive-item">
-            <a href="/mysql-/" class="archive-item-link">mysql&#43;&#43;的使用</a>
-            <span class="archive-item-date" title='2022-06-14 22:06:55'>06-14</span>
-          </article><article class="archive-item">
-            <a href="/devtools-tmux/" class="archive-item-link">tmux基本配置及vim适配</a>
-            <span class="archive-item-date" title='2022-04-25 19:19:14'>04-25</span>
-          </article><ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/9/">9</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/10/">10</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/posts/page/11/">11</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/12/">12</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>tcpdump的基础用法</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2024-01-28&#32;20:42:04><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-28">2024-01-28</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 188 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="tcpdump的基础用法">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tcpdump简介">tcpdump简介</a></li>
+    <li><a href="#tcpdump用法举例">tcpdump用法举例</a>
+      <ul>
+        <li><a href="#将抓包结果保存到democap">将抓包结果保存到demo.cap</a></li>
+        <li><a href="#选择网卡抓包">选择网卡抓包</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="tcpdump的基础用法">tcpdump的基础用法</h1>
+<h2 id="tcpdump简介">tcpdump简介</h2>
+<ul>
+<li>tcpdump是一个抓包的命令工具，个人感觉还是十分好用的，能够分析目前的数据包情况。</li>
+</ul>
+<h2 id="tcpdump用法举例">tcpdump用法举例</h2>
+<h3 id="将抓包结果保存到democap">将抓包结果保存到demo.cap</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i any -w ~/demo.cap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="选择网卡抓包">选择网卡抓包</h3>
+<ul>
+<li>抓所有网卡的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i any -w ~/demo.cap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓lo网卡的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo -w ~/demo.cap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓lo网卡的端口为8080的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo port <span class="m">8080</span> -w ~/demo.cap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓lo网卡的源端口为8080目的端口为8081的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo src port <span class="m">8080</span> and dst port <span class="m">8081</span> -w ~/demo.cap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓10个包后退出</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -c <span class="m">10</span> -q
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓ip为192.168.1.33的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump host 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓源ip为192.168.1.33的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump src host 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓目的ip为192.168.1.33的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump dst host 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓tcp的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump tcp dst host 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓udp的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump udp dst host 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>抓除了192.168.1.33以外的包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump tcp and ! 192.168.1.33
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>组合抓包</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tcpdump tcp -i ens18 -v -nn -t -A -s 0 -c 50 and dst port ! 22 and src net 192.168.1.0/24 -w ./cby.cap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(1)tcp: ip icmp arp rarp 和 tcp、udp、icmp这些选项等都要放到第一个参数的位置，用来过滤数据报的类型
+</span></span><span class="line"><span class="cl">(2)-i eth1 : 只抓经过接口eth1的包
+</span></span><span class="line"><span class="cl">(3)-t : 不显示时间戳
+</span></span><span class="line"><span class="cl">(4)-s 0 : 抓取数据包时默认抓取长度为68字节。加上-S 0 后可以抓到完整的数据包
+</span></span><span class="line"><span class="cl">(5)-c 50 : 只抓取50个数据包
+</span></span><span class="line"><span class="cl">(6)dst port ! 22 : 不抓取目标端口是22的数据包
+</span></span><span class="line"><span class="cl">(7)src net 192.168.1.0/24 : 数据包的源网络地址为192.168.1.0/24
+</span></span><span class="line"><span class="cl">(8)-w ./cby.cap : 保存成cap文件，方便用ethereal(即wireshark)分析
+</span></span><span class="line"><span class="cl">(9)-v 使用 -v，-vv 和 -vvv 来显示更多的详细信息，通常会显示更多与特定协议相关的信息。
+</span></span><span class="line"><span class="cl">(10)-nn 单个 n 表示不解析域名，直接显示 IP；两个 n 表示不解析域名和端口。
+</span></span><span class="line"><span class="cl">(11)-A 表示使用 ASCII 字符串打印报文的全部数据
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://cloud.tencent.com/developer/article/1934416"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://cloud.tencent.com/developer/article/1934416</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-01-28&#32;20:42:04>更新于 2024-01-28&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/tcpdump/" data-title="tcpdump的基础用法"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tcpdump/">tcpdump</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/nginx-forward-proxy/" class="prev" rel="prev" title="nginx正向代理"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>nginx正向代理</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -686,5 +873,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
