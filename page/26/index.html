@@ -639,6 +639,12 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/terminal-color/">lua中给日志关键字加上颜色</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-09-06 17:05:35'>发布于 <time datetime="2022-09-06">2022-09-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a>&ensp;<a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/terminal-color/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/skynet/">skynet</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/hugo-theme-fixit/">Hugo主题FixIt简单介绍</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-09-04 22:08:08'>发布于 <time datetime="2022-09-04">2022-09-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content"></div><div class="post-footer">
@@ -748,17 +754,6 @@ lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
 1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
 参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.</div><div class="post-footer">
     <a href="/lua-pbc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/vim-swap/">vim交换文件是否应该开启？</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-29 09:16:04'>发布于 <time datetime="2022-08-29">2022-08-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim交换文件是否应该开启？ 在vim的使用过程中默认会产生交换文件。交换文件会记录文件修改的过程。如果不小心断电或者意外关闭了文件而没有保存，可以通过交换文件进行恢复。
-交换文件如何使用？ 启用交换文件 1 set swapfile 关闭交换文件 1 set noswapfile 上述设置方法只是针对当前文件生效，如果想对所有文件生效需要在.vimrc中进行设置。 .vimrc中的设置关闭交换文件的方法也很简单，只需要加上一行:
-1 set noswapfile 查看当前交换文件的名称 1 :swapname 查看交换文件的用法 1 :help swap-file 交换文件有哪些作用? 1. 恢复文件 在正常关闭情况下，交换文件会被删除，非正常关闭的情况下，交换文件不会被删除，下次你打开文件的时候，会提示你是否需要从交换文件恢复。
-2. 检测多处修改 交换文件还有一个作用，就是避免Vim的多个实例编译同一文件。
-总结 在我看来作为程序员应该是需要养成习惯，及时对修改的文件进行保存的。并且做好了一个功能，就应该即使提交到代码库进行保存。如果能保证做到及时保存，及时提交到代码仓库。交换文件是不需要开启的。
-如果你是一个Vim新手，建议还是开启swapfile 等你对vim熟悉了，并且有良好的保存习惯，完全可以关闭swapfile</div><div class="post-footer">
-    <a href="/vim-swap/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

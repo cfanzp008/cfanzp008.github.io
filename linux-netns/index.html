@@ -5,36 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>tcpdump的基础用法 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>linux network namespace用法 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='tcpdump' /><meta itemprop="name" content="tcpdump的基础用法">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-28T20:42:04+08:00" />
-<meta itemprop="dateModified" content="2024-01-28T20:42:04+08:00" />
-<meta itemprop="wordCount" content="188"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
-<meta itemprop="keywords" content="tcpdump," /><meta property="og:title" content="tcpdump的基础用法" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='namespace' /><meta itemprop="name" content="linux network namespace用法">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-30T21:44:07+08:00" />
+<meta itemprop="dateModified" content="2024-01-30T21:44:07+08:00" />
+<meta itemprop="wordCount" content="975"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="namespace," /><meta property="og:title" content="linux network namespace用法" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/tcpdump/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-01-28T20:42:04+08:00" />
-<meta property="article:modified_time" content="2024-01-28T20:42:04+08:00" />
+<meta property="og:url" content="https://cfanzp.com/linux-netns/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-30T21:44:07+08:00" />
+<meta property="article:modified_time" content="2024-01-30T21:44:07+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="tcpdump的基础用法"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="linux network namespace用法"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/tcpdump/" /><link rel="prev" href="https://cfanzp.com/nginx-forward-proxy/" /><link rel="next" href="https://cfanzp.com/linux-netns/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/linux-netns/" /><link rel="prev" href="https://cfanzp.com/tcpdump/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "tcpdump的基础用法",
+    "headline": "linux network namespace用法",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/cfanzp.com\/tcpdump\/"
-    },"genre": "posts","keywords": "tcpdump","wordcount":  188 ,
-    "url": "https:\/\/cfanzp.com\/tcpdump\/","datePublished": "2024-01-28T20:42:04+08:00","dateModified": "2024-01-28T20:42:04+08:00","publisher": {
+      "@id": "https:\/\/cfanzp.com\/linux-netns\/"
+    },"genre": "posts","keywords": "namespace","wordcount":  975 ,
+    "url": "https:\/\/cfanzp.com\/linux-netns\/","datePublished": "2024-01-30T21:44:07+08:00","dateModified": "2024-01-30T21:44:07+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -603,12 +603,12 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>tcpdump的基础用法</span>
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>linux network namespace用法</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
-          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-01-28&#32;20:42:04><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-28">2024-01-28</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 188 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="tcpdump的基础用法">
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2024-01-30&#32;21:44:07><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 975 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="linux network namespace用法">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -618,14 +618,15 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#tcpdump简介">tcpdump简介</a></li>
-    <li><a href="#tcpdump用法举例">tcpdump用法举例</a>
+    <li><a href="#linux-namespace简介">linux namespace简介</a></li>
+    <li><a href="#linux-network-namespace用法-1">linux network namespace用法</a>
       <ul>
-        <li><a href="#将抓包结果保存到democap">将抓包结果保存到demo.cap</a></li>
-        <li><a href="#选择网卡抓包">选择网卡抓包</a></li>
+        <li><a href="#配置network-namespace接口">配置network namespace接口</a></li>
+        <li><a href="#veth0设置ip">veth0设置ip</a></li>
+        <li><a href="#启动veth0">启动veth0</a></li>
+        <li><a href="#veth0与veth1互ping">veth0与veth1互ping</a></li>
       </ul>
     </li>
-    <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -633,145 +634,155 @@
       id="content"
       
       
-    ><h1 id="tcpdump的基础用法">tcpdump的基础用法</h1>
-<h2 id="tcpdump简介">tcpdump简介</h2>
+    ><h1 id="linux-network-namespace用法">linux network namespace用法</h1>
+<h2 id="linux-namespace简介">linux namespace简介</h2>
+<p>Linux namespace提供了一种内核级别的隔离系统资源的方法。通过将系统的全局资源放到不同的namespace中，来实现资源隔离的目的。</p>
 <ul>
-<li>tcpdump是一个抓包的命令工具，个人感觉还是十分好用的，能够分析目前的数据包情况。</li>
-</ul>
-<h2 id="tcpdump用法举例">tcpdump用法举例</h2>
-<h3 id="将抓包结果保存到democap">将抓包结果保存到demo.cap</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i any -w ~/demo.cap
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="选择网卡抓包">选择网卡抓包</h3>
+<li>目前linux提供了六类资源隔离机制分别是:
 <ul>
-<li>抓所有网卡的包</li>
+<li>Mount 隔离文件系统挂载点</li>
+<li>UTS 隔离主机名和域名信息</li>
+<li>IPC 隔离进程间通信</li>
+<li>PID 隔离进程ID</li>
+<li>Network 隔离网络资源</li>
+<li>User 隔离用户和用户组的ID</li>
+</ul>
+</li>
+</ul>
+<h2 id="linux-network-namespace用法-1">linux network namespace用法</h2>
+<ul>
+<li>常用命令</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#添加新的namespace ns_100</span>
+</span></span><span class="line"><span class="cl">ip netns add ns_100
+</span></span><span class="line"><span class="cl"><span class="c1">#查看当前的namespace</span>
+</span></span><span class="line"><span class="cl">ip netns list
+</span></span><span class="line"><span class="cl">ip link add veth0 <span class="nb">type</span> veth peer name veth1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>demo</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns list
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns add ns_100
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns list
+</span></span><span class="line"><span class="cl">ns_100
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip link add veth0 <span class="nb">type</span> veth peer name veth1
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip link list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 52:54:00:eb:30:e7 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN mode DEFAULT group default
+</span></span><span class="line"><span class="cl">    link/ether 02:42:d6:51:ba:52 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">4: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noop state DOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether a6:20:b1:58:9e:5a brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">5: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noop state DOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>修改veth1配置后</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip link <span class="nb">set</span> veth1 netns ns_100
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip link list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 52:54:00:eb:30:e7 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN mode DEFAULT group default
+</span></span><span class="line"><span class="cl">    link/ether 02:42:d6:51:ba:52 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">5: veth0@if4: &lt;BROADCAST,MULTICAST&gt; mtu <span class="m">1500</span> qdisc noop state DOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff link-netns ns_100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看ns_100内部配置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns <span class="nb">exec</span> ns_100 ip link list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop state DOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">4: veth1@if5: &lt;BROADCAST,MULTICAST&gt; mtu <span class="m">1500</span> qdisc noop state DOWN mode DEFAULT group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether a6:20:b1:58:9e:5a brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置network-namespace接口">配置network namespace接口</h3>
+<ul>
+<li>设置接口veth1的ip</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i any -w ~/demo.cap
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip netns exec ns_100 ip addr add 10.0.1.1/16 dev veth1
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>抓lo网卡的包</li>
+<li>启用veth1</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo -w ~/demo.cap
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip netns exec ns_100 ip link set dev veth1 up
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>抓lo网卡的端口为8080的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo port <span class="m">8080</span> -w ~/demo.cap
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓lo网卡的源端口为8080目的端口为8081的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -i lo src port <span class="m">8080</span> and dst port <span class="m">8081</span> -w ~/demo.cap
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓10个包后退出</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump -c <span class="m">10</span> -q
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓ip为192.168.1.33的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump host 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓源ip为192.168.1.33的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump src host 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓目的ip为192.168.1.33的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump dst host 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓tcp的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump tcp dst host 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓udp的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump udp dst host 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>抓除了192.168.1.33以外的包</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tcpdump tcp and ! 192.168.1.33
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>组合抓包</li>
+<li>查看结果</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -790,61 +801,199 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">tcpdump tcp -i ens18 -v -nn -t -A -s 0 -c 50 and dst port ! 22 and src net 192.168.1.0/24 -w ./cby.cap
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">(1)tcp: ip icmp arp rarp 和 tcp、udp、icmp这些选项等都要放到第一个参数的位置，用来过滤数据报的类型
-</span></span><span class="line"><span class="cl">(2)-i eth1 : 只抓经过接口eth1的包
-</span></span><span class="line"><span class="cl">(3)-t : 不显示时间戳
-</span></span><span class="line"><span class="cl">(4)-s 0 : 抓取数据包时默认抓取长度为68字节。加上-S 0 后可以抓到完整的数据包
-</span></span><span class="line"><span class="cl">(5)-c 50 : 只抓取50个数据包
-</span></span><span class="line"><span class="cl">(6)dst port ! 22 : 不抓取目标端口是22的数据包
-</span></span><span class="line"><span class="cl">(7)src net 192.168.1.0/24 : 数据包的源网络地址为192.168.1.0/24
-</span></span><span class="line"><span class="cl">(8)-w ./cby.cap : 保存成cap文件，方便用ethereal(即wireshark)分析
-</span></span><span class="line"><span class="cl">(9)-v 使用 -v，-vv 和 -vvv 来显示更多的详细信息，通常会显示更多与特定协议相关的信息。
-</span></span><span class="line"><span class="cl">(10)-nn 单个 n 表示不解析域名，直接显示 IP；两个 n 表示不解析域名和端口。
-</span></span><span class="line"><span class="cl">(11)-A 表示使用 ASCII 字符串打印报文的全部数据
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns <span class="nb">exec</span> ns_100 ip addr add 10.0.1.1/16 dev veth1
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns <span class="nb">exec</span> ns_100 ip link <span class="nb">set</span> dev veth1 up
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns <span class="nb">exec</span> ns_100 ip addr list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop state DOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">4: veth1@if5: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state LOWERLAYERDOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether a6:20:b1:58:9e:5a brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    inet 10.0.1.1/16 scope global veth1
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip route list
+</span></span><span class="line"><span class="cl">default via 10.0.8.1 dev eth0 proto dhcp src 10.0.8.10 metric <span class="m">100</span>
+</span></span><span class="line"><span class="cl">10.0.8.0/22 dev eth0 proto kernel scope link src 10.0.8.10
+</span></span><span class="line"><span class="cl">172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
-<li><a
-  href="https://cloud.tencent.com/developer/article/1934416"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer"
-  
-  
-  
->https://cloud.tencent.com/developer/article/1934416</a></li>
-</ul></div><div class="post-footer" id="post-footer">
+</div><h3 id="veth0设置ip">veth0设置ip</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip addr add 10.0.1.2/16 dev veth0
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip addr list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">    inet 127.0.0.1/8 scope host lo
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 52:54:00:eb:30:e7 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 10.0.8.10/22 brd 10.0.11.255 scope global eth0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::5054:ff:feeb:30e7/64 scope link
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN group default
+</span></span><span class="line"><span class="cl">    link/ether 02:42:d6:51:ba:52 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">5: veth0@if4: &lt;BROADCAST,MULTICAST&gt; mtu <span class="m">1500</span> qdisc noop state DOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff link-netns ns_100
+</span></span><span class="line"><span class="cl">    inet 10.0.1.2/16 scope global veth0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip route list
+</span></span><span class="line"><span class="cl">default via 10.0.8.1 dev eth0 proto dhcp src 10.0.8.10 metric <span class="m">100</span>
+</span></span><span class="line"><span class="cl">10.0.8.0/22 dev eth0 proto kernel scope link src 10.0.8.10
+</span></span><span class="line"><span class="cl">172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启动veth0">启动veth0</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip link <span class="nb">set</span> dev veth0 up
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip addr list
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">    inet 127.0.0.1/8 scope host lo
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc mq state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 52:54:00:eb:30:e7 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 10.0.8.10/22 brd 10.0.11.255 scope global eth0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::5054:ff:feeb:30e7/64 scope link
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN group default
+</span></span><span class="line"><span class="cl">    link/ether 02:42:d6:51:ba:52 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">5: veth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff link-netns ns_100
+</span></span><span class="line"><span class="cl">    inet 10.0.1.2/16 scope global veth0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::f430:bcff:fe89:e28c/64 scope link
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="veth0与veth1互ping">veth0与veth1互ping</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ping 10.0.1.1
+</span></span><span class="line"><span class="cl">PING 10.0.1.1 <span class="o">(</span>10.0.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.054 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.041 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.040 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- 10.0.1.1 ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">3</span> packets transmitted, <span class="m">3</span> received, 0% packet loss, <span class="nb">time</span> 2039ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 0.040/0.045/0.054/0.006 ms
+</span></span><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/linux_note# ip netns <span class="nb">exec</span> ns_100 ping 10.0.1.2
+</span></span><span class="line"><span class="cl">PING 10.0.1.2 <span class="o">(</span>10.0.1.2<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.1.2: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.039 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.1.2: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.043 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- 10.0.1.2 ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">2</span> packets transmitted, <span class="m">2</span> received, 0% packet loss, <span class="nb">time</span> 1007ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 0.039/0.041/0.043/0.002 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2024-01-28&#32;20:42:04>更新于 2024-01-28&nbsp;</span>
+        <span title=2024-01-30&#32;21:44:07>更新于 2024-01-30&nbsp;</span>
       </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/tcpdump/" data-title="tcpdump的基础用法"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/linux-netns/" data-title="linux network namespace用法"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tcpdump/">tcpdump</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/namespace/">namespace</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/nginx-forward-proxy/" class="prev" rel="prev" title="nginx正向代理"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>nginx正向代理</a>
-      <a href="/linux-netns/" class="next" rel="next" title="linux network namespace用法">linux network namespace用法<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/tcpdump/" class="prev" rel="prev" title="tcpdump的基础用法"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>tcpdump的基础用法</a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
