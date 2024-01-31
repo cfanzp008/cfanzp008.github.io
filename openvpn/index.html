@@ -5,22 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>计算机网络 - 分类 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>openvpn的使用入门 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="计算机网络">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="计算机网络" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/categories/net/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='openvpn' /><meta itemprop="name" content="openvpn的使用入门">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-31T22:27:55+08:00" />
+<meta itemprop="dateModified" content="2024-01-31T22:27:55+08:00" />
+<meta itemprop="wordCount" content="252"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="openvpn," /><meta property="og:title" content="openvpn的使用入门" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/openvpn/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-31T22:27:55+08:00" />
+<meta property="article:modified_time" content="2024-01-31T22:27:55+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="计算机网络"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="openvpn的使用入门"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/categories/net/" /><link rel="alternate" href="/categories/net/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/categories/net/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/openvpn/" /><link rel="prev" href="https://cfanzp.com/nginx-modsecurity/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "openvpn的使用入门",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/openvpn\/"
+    },"genre": "posts","keywords": "openvpn","wordcount":  252 ,
+    "url": "https:\/\/cfanzp.com\/openvpn\/","datePublished": "2024-01-31T22:27:55+08:00","dateModified": "2024-01-31T22:27:55+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -75,7 +96,7 @@
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
                       </li><li
-                        class="menu-item active"
+                        class="menu-item"
                       >
                         <a
                           class="menu-link"
@@ -342,7 +363,7 @@
                           
                         ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
                       </li><li
-                        class="menu-item active"
+                        class="menu-item"
                       >
                         <a
                           class="menu-link"
@@ -573,76 +594,333 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster"><i class="fa-regular fa-folder-open fa-fw" aria-hidden="true"></i>
-        计算机网络&nbsp;<sup>25</sup></h2><h3 class="group-title">2024</h3><article class="archive-item">
-            <a href="/openvpn/" class="archive-item-link">openvpn的使用入门</a>
-            <span class="archive-item-date" title=2024-01-31&#32;22:27:55>01-31</span>
-          </article><article class="archive-item">
-            <a href="/nginx-modsecurity/" class="archive-item-link">nginx集成ModSecurity(未完)</a>
-            <span class="archive-item-date" title=2024-01-30&#32;22:26:50>01-30</span>
-          </article><article class="archive-item">
-            <a href="/linux-netns/" class="archive-item-link">linux network namespace用法</a>
-            <span class="archive-item-date" title=2024-01-30&#32;21:44:07>01-30</span>
-          </article><article class="archive-item">
-            <a href="/tcpdump/" class="archive-item-link">tcpdump的基础用法</a>
-            <span class="archive-item-date" title=2024-01-28&#32;20:42:04>01-28</span>
-          </article><article class="archive-item">
-            <a href="/nginx-forward-proxy/" class="archive-item-link">nginx正向代理</a>
-            <span class="archive-item-date" title=2024-01-27&#32;14:43:21>01-27</span>
-          </article><article class="archive-item">
-            <a href="/squid-websocket/" class="archive-item-link">Squid代理Websocket的问题</a>
-            <span class="archive-item-date" title=2024-01-03&#32;21:32:58>01-03</span>
-          </article><h3 class="group-title">2023</h3><article class="archive-item">
-            <a href="/squid/" class="archive-item-link">squid</a>
-            <span class="archive-item-date" title=2023-12-25&#32;20:58:57>12-25</span>
-          </article><article class="archive-item">
-            <a href="/wireshark/" class="archive-item-link">wireshark的用法</a>
-            <span class="archive-item-date" title=2023-12-21&#32;22:19:01>12-21</span>
-          </article><article class="archive-item">
-            <a href="/e2guardian/" class="archive-item-link">e2guardian</a>
-            <span class="archive-item-date" title=2023-12-20&#32;22:12:02>12-20</span>
-          </article><article class="archive-item">
-            <a href="/mysql-packet/" class="archive-item-link">mysql数据包分析</a>
-            <span class="archive-item-date" title=2023-12-07&#32;21:06:57>12-07</span>
-          </article><article class="archive-item">
-            <a href="/ztna/" class="archive-item-link">零信任网络访问--ZTNA</a>
-            <span class="archive-item-date" title=2023-11-29&#32;22:42:30>11-29</span>
-          </article><article class="archive-item">
-            <a href="/sdwan/" class="archive-item-link">软件定义广域网--SDWAN</a>
-            <span class="archive-item-date" title=2023-11-29&#32;22:35:43>11-29</span>
-          </article><article class="archive-item">
-            <a href="/dlp/" class="archive-item-link">数据泄露防护--DLP</a>
-            <span class="archive-item-date" title=2023-11-29&#32;22:22:33>11-29</span>
-          </article><article class="archive-item">
-            <a href="/sase/" class="archive-item-link">安全访问服务边缘--SASE</a>
-            <span class="archive-item-date" title=2023-11-29&#32;22:10:14>11-29</span>
-          </article><article class="archive-item">
-            <a href="/saas/" class="archive-item-link">软件即服务--SaaS</a>
-            <span class="archive-item-date" title=2023-11-29&#32;22:02:52>11-29</span>
-          </article><article class="archive-item">
-            <a href="/dnsmasq/" class="archive-item-link">dnsmasq</a>
-            <span class="archive-item-date" title=2023-11-26&#32;19:37:26>11-26</span>
-          </article><article class="archive-item">
-            <a href="/casb/" class="archive-item-link">云访问安全代理--CASB</a>
-            <span class="archive-item-date" title=2023-11-26&#32;17:41:58>11-26</span>
-          </article><article class="archive-item">
-            <a href="/acra/" class="archive-item-link">开源的数据库加密解决方案--acra</a>
-            <span class="archive-item-date" title=2023-11-21&#32;21:11:30>11-21</span>
-          </article><article class="archive-item">
-            <a href="/aspf/" class="archive-item-link">应用层的特殊包过滤技术--ASPF</a>
-            <span class="archive-item-date" title=2023-08-19&#32;17:56:27>08-19</span>
-          </article><article class="archive-item">
-            <a href="/vpp/" class="archive-item-link">vpp</a>
-            <span class="archive-item-date" title=2023-07-30&#32;23:13:05>07-30</span>
-          </article><ul class="pagination"><li class="page-item active">
-          <span class="page-link">
-            <a href="/categories/net/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/categories/net/page/2/">2</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>openvpn的使用入门</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2024-01-31&#32;22:27:55><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-31">2024-01-31</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 252 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="openvpn的使用入门">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-简介">1. 简介</a></li>
+    <li><a href="#2-ubuntu2004安装openvpn">2. ubuntu20.04安装openvpn</a>
+      <ul>
+        <li><a href="#a-安装openvpn及依赖">a. 安装openvpn及依赖</a></li>
+        <li><a href="#b-安装easy-rsa">b. 安装easy-rsa</a></li>
+        <li><a href="#c-制作证书">c. 制作证书</a></li>
+        <li><a href="#d-修改服务端配置文件">d. 修改服务端配置文件</a></li>
+        <li><a href="#e-copy-证书文件到配置目录">e. copy 证书文件到配置目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-openvpn服务端启动">3. openvpn服务端启动</a></li>
+    <li><a href="#4-客户端安装">4. 客户端安装</a>
+      <ul>
+        <li><a href="#a-openvpn客户端下载">a. openvpn客户端下载</a></li>
+        <li><a href="#b-客户端配置文件aaaovpn">b. 客户端配置文件aaa.ovpn</a></li>
+        <li><a href="#c-客户端文件">c. 客户端文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-查看日志">5. 查看日志</a></li>
+    <li><a href="#6-参考">6. 参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="openvpn的使用入门">openvpn的使用入门</h1>
+<h2 id="1-简介">1. 简介</h2>
+<ul>
+<li>最近了解了一下隧道技术，openvpn就是使用了隧道技术。这里简单记录一下openvpn的一些基础使用方法。</li>
+</ul>
+<h2 id="2-ubuntu2004安装openvpn">2. ubuntu20.04安装openvpn</h2>
+<h3 id="a-安装openvpn及依赖">a. 安装openvpn及依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get -y install openvpn libssl-dev openssl
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看版本</span>
+</span></span><span class="line"><span class="cl">openvpn --version
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看安装产生的文件</span>
+</span></span><span class="line"><span class="cl">dpkg --list openvpn
+</span></span><span class="line"><span class="cl">dpkg -L openvpn <span class="p">|</span> more
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="b-安装easy-rsa">b. 安装easy-rsa</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt -y install easy-rsa
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="c-制作证书">c. 制作证书</h3>
+<ul>
+<li>制作ca证书</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp -r /usr/share/easy-rsa/* /etc/openvpn/easy-rsa/
+</span></span><span class="line"><span class="cl">cp vars.example vars
+</span></span><span class="line"><span class="cl">vim vars
+</span></span><span class="line"><span class="cl"><span class="c1">#修改COUNTRY,PROVINCE,CITY,ORG,EMAIL,OU等信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#添加</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KEY_NAME</span><span class="o">=</span><span class="s2">&#34;vpnaaa&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#查看安装文档</span>
+</span></span><span class="line"><span class="cl">cat /usr/share/doc/easy-rsa/README.Debian
+</span></span><span class="line"><span class="cl">./easyrsa init-pki
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">./easyrsa build-ca nopass
+</span></span><span class="line"><span class="cl">ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>制作server端证书</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./easyrsa build-server-full vpnaaa nopass
+</span></span><span class="line"><span class="cl"><span class="c1">#查看生成的server端证书</span>
+</span></span><span class="line"><span class="cl">ls pki/issued/
+</span></span><span class="line"><span class="cl">ls pki/private/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>制作client端证书</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./easyrsa build-client-full bbb nopass
+</span></span><span class="line"><span class="cl"><span class="c1">#查看生成的server端证书</span>
+</span></span><span class="line"><span class="cl">ls pki/issued/
+</span></span><span class="line"><span class="cl">ls pki/private/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>为服务器生成加密交换时的Diffie-Hellman文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./easyrsa gen-dh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="d-修改服务端配置文件">d. 修改服务端配置文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/openvpn/
+</span></span><span class="line"><span class="cl">cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/
+</span></span><span class="line"><span class="cl"><span class="c1">#vim /etc/openvpn/server.conf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#配置port</span>
+</span></span><span class="line"><span class="cl">port <span class="m">1194</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#tcp</span>
+</span></span><span class="line"><span class="cl">proto tcp
+</span></span><span class="line"><span class="cl"><span class="p">;</span>proto udp
+</span></span><span class="line"><span class="cl"><span class="c1">#修改密钥，key文件</span>
+</span></span><span class="line"><span class="cl">ca /etc/openvpn/ca.crt
+</span></span><span class="line"><span class="cl">cert /etc/openvpn/vpnaaa.crt
+</span></span><span class="line"><span class="cl">key /etc/openvpn/vpnaaa.key
+</span></span><span class="line"><span class="cl"><span class="c1">#打开log配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#关闭explicit-exit-notify</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span>explicit-exit-notify <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="e-copy-证书文件到配置目录">e. copy 证书文件到配置目录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cp easy-rsa/pki/ca.crt /etc/openvpn/
+</span></span><span class="line"><span class="cl">cp easy-rsa/pki/issued/vpnaaa.crt /etc/openvpn/
+</span></span><span class="line"><span class="cl">cp easy-rsa/pki/private/vpnaaa.key /etc/openvpn/
+</span></span><span class="line"><span class="cl">cp easy-rsa/pki/db.pem /etc/openvpn/
+</span></span><span class="line"><span class="cl">cp easy-rsa/pki/db.pem /etc/openvpn/db2048.pem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-openvpn服务端启动">3. openvpn服务端启动</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nohup /usr/sbin/openvpn --config /etc/openvpn/server.conf <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-客户端安装">4. 客户端安装</h2>
+<h3 id="a-openvpn客户端下载">a. openvpn客户端下载</h3>
+<ul>
+<li>openvpn下载,注意下载的客户端版本要与服务端版本一致。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://build.openvpn.net/downloads/releases/openvpn-install-2.4.12-I601-Win10.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="b-客户端配置文件aaaovpn">b. 客户端配置文件aaa.ovpn</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">client
+</span></span><span class="line"><span class="cl">dev tun
+</span></span><span class="line"><span class="cl">proto tcp
+</span></span><span class="line"><span class="cl">remote 100.128.27.230 <span class="m">1194</span>
+</span></span><span class="line"><span class="cl">resolv-retry infinite
+</span></span><span class="line"><span class="cl">nobind
+</span></span><span class="line"><span class="cl">persist-key
+</span></span><span class="line"><span class="cl">persist-tun
+</span></span><span class="line"><span class="cl">ca ca.crt
+</span></span><span class="line"><span class="cl">cert bbb.crt
+</span></span><span class="line"><span class="cl">key bbb.key
+</span></span><span class="line"><span class="cl">comp-lzo
+</span></span><span class="line"><span class="cl">verb <span class="m">3</span>
+</span></span><span class="line"><span class="cl">redirect-gateway def1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="c-客户端文件">c. 客户端文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bbb.crt
+</span></span><span class="line"><span class="cl">bbb.key
+</span></span><span class="line"><span class="cl">bbb.ovpn
+</span></span><span class="line"><span class="cl">ca.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-查看日志">5. 查看日志</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tail -f /var/log/openvpn/openvpn.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-参考">6. 参考</h2>
+<ul>
+<li>openvpn安装：https://blog.csdn.net/wfjdemmye/article/details/131486127</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-01-31&#32;22:27:55>更新于 2024-01-31&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/openvpn/" data-title="openvpn的使用入门"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openvpn/">openvpn</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/nginx-modsecurity/" class="prev" rel="prev" title="nginx集成ModSecurity(未完)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>nginx集成ModSecurity(未完)</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -670,5 +948,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>

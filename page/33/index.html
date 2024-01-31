@@ -639,6 +639,24 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lua-string-pack/">lua中string.pack,string.unpack的用法</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 08:34:18'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中string.pack,string.unpack的用法 lua string.pack的用法,查看lua5.4的官方帮助手册不难找到下面的解释:
+string.pack (fmt, v1, v2, ···)
+Returns a binary string containing the values v1, v2, etc. serialized in binary form (packed) according to the format string fmt (see §6.4.2).
+最近一个新项目要将brotobuf协议包裹在http协议内进行传输，刚好用到了这个函数,在pb数据包封包后，协议按3部分拼接:
+1 数据包长度(msgid + pb_data) + 协议ID + pb数据包体 封包过程如下:
+1 2 3 local pb_data = pb_helper.pb_encode(msgname, msg) local buf = string.pack(&#34;&gt;I4c&#34; .. #pb_data, msgid, pb_data) local send_buf = string.pack(&#34;&gt;s2&#34;, buf) 解包过程如下:
+1 2 3 local buf = msg --des_decode(secret, msg) local len = string.</div><div class="post-footer">
+    <a href="/lua-string-pack/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/nginx-https/">nginx配置https转发</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -703,18 +721,6 @@ uuid库初始化种子 相同时间初始化种子，后续产生的随机数是
 安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs.</div><div class="post-footer">
     <a href="/lua-luacheck/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/luacheck/">luacheck</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-bc/">linux-计算器命令bc</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 13:25:15'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux-计算器命令bc 基本用法 查看版本 1 2 3 $ bc -v bc 1.07.1 Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006, 2008, 2012-2017 Free Software Foundation, Inc. 查看帮助 1 2 3 4 5 6 7 8 9 $ bc -h usage: bc [options] [file ...] -h --help print this usage and exit -i --interactive force interactive mode -l --mathlib use the predefined math routines -q --quiet don&#39;t print initial banner -s --standard non-standard bc constructs are errors -w --warn warn about non-standard bc constructs -v --version print version information and exit 支持的运算 +:加 -:减 *:乘 /:除 ^:指数 %:求余数 sqrt:开方 ibase:输入进制 obase:输出进制 ;要计算多个结果用分号分隔 scale:小数部分位数 1.</div><div class="post-footer">
-    <a href="/linux-bc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/bc/">bc</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -745,7 +751,7 @@ uuid库初始化种子 相同时间初始化种子，后续产生的随机数是
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/38/">38</a>
+            <a href="/page/39/">39</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
