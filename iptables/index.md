@@ -23,7 +23,6 @@ graph LR
 ```
 {{< mermaid >}}
 graph LR
-  iptalbe_filter-->filter
   filter-->input
   filter-->forward
   filter-->output
@@ -35,7 +34,6 @@ graph LR
 ```
 {{< mermaid >}}
 graph LR
-  iptalbe_nat-->nat
   nat-->prerouting
   nat-->postrouting
   nat-->output
@@ -48,7 +46,6 @@ graph LR
 ```
 {{< mermaid >}}
 graph LR
-  iptalbe_mangle-->mangle
   mangle-->prerouting
   mangle-->postrouting
   mangle-->input
@@ -61,7 +58,6 @@ graph LR
 ```
 {{< mermaid >}}
 graph LR
-  iptalbe_raw-->raw
   raw-->prerouting
   raw-->output
 {{< /mermaid >}}
