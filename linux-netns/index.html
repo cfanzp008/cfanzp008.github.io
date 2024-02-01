@@ -636,8 +636,8 @@
       
     ><h1 id="linux-network-namespace用法">linux network namespace用法</h1>
 <h2 id="linux-namespace简介">linux namespace简介</h2>
-<p>Linux namespace提供了一种内核级别的隔离系统资源的方法。通过将系统的全局资源放到不同的namespace中，来实现资源隔离的目的。</p>
-<ul>
+<ol>
+<li>Linux namespace提供了一种内核级别的隔离系统资源的方法。通过将系统的全局资源放到不同的namespace中，来实现资源隔离的目的。</li>
 <li>目前linux提供了六类资源隔离机制分别是:
 <ul>
 <li>Mount 隔离文件系统挂载点</li>
@@ -648,11 +648,11 @@
 <li>User 隔离用户和用户组的ID</li>
 </ul>
 </li>
-</ul>
+</ol>
 <h2 id="linux-network-namespace用法-1">linux network namespace用法</h2>
-<ul>
+<ol>
 <li>常用命令</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -669,9 +669,9 @@
 </span></span><span class="line"><span class="cl">ip link add veth0 <span class="nb">type</span> veth peer name veth1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
+</div><ol start="2">
 <li>demo</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -710,9 +710,9 @@
 </span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
+</div><ol start="3">
 <li>修改veth1配置后</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -739,9 +739,9 @@
 </span></span><span class="line"><span class="cl">    link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff link-netns ns_100
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
+</div><ol start="4">
 <li>查看ns_100内部配置</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -759,9 +759,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="配置network-namespace接口">配置network namespace接口</h3>
-<ul>
+<ol>
 <li>设置接口veth1的ip</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -770,9 +770,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip netns exec ns_100 ip addr add 10.0.1.1/16 dev veth1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
+</div><ol start="2">
 <li>启用veth1</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -781,9 +781,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip netns exec ns_100 ip link set dev veth1 up
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
+</div><ol start="3">
 <li>查看结果</li>
-</ul>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1

@@ -4,17 +4,17 @@
 <!--more-->
 # linux network namespace用法
 ## linux namespace简介
-Linux namespace提供了一种内核级别的隔离系统资源的方法。通过将系统的全局资源放到不同的namespace中，来实现资源隔离的目的。
-- 目前linux提供了六类资源隔离机制分别是:
-  - Mount 隔离文件系统挂载点
-  - UTS 隔离主机名和域名信息
-  - IPC 隔离进程间通信
-  - PID 隔离进程ID
-  - Network 隔离网络资源
-  - User 隔离用户和用户组的ID
+1. Linux namespace提供了一种内核级别的隔离系统资源的方法。通过将系统的全局资源放到不同的namespace中，来实现资源隔离的目的。
+2. 目前linux提供了六类资源隔离机制分别是:
+    - Mount 隔离文件系统挂载点
+    - UTS 隔离主机名和域名信息
+    - IPC 隔离进程间通信
+    - PID 隔离进程ID
+    - Network 隔离网络资源
+    - User 隔离用户和用户组的ID
 
 ## linux network namespace用法
-- 常用命令
+1. 常用命令
 ```bash
 #添加新的namespace ns_100
 ip netns add ns_100
@@ -23,7 +23,7 @@ ip netns list
 ip link add veth0 type veth peer name veth1
 ```
 
-- demo
+2. demo
 ```bash
 root@VM-8-10-ubuntu:/opt/linux_note# ip netns list
 root@VM-8-10-ubuntu:/opt/linux_note# ip netns add ns_100
@@ -43,7 +43,7 @@ root@VM-8-10-ubuntu:/opt/linux_note# ip link list
     link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff
 ```
 
-- 修改veth1配置后
+3. 修改veth1配置后
 ```bash
 root@VM-8-10-ubuntu:/opt/linux_note# ip link set veth1 netns ns_100
 root@VM-8-10-ubuntu:/opt/linux_note# ip link list
@@ -57,7 +57,7 @@ root@VM-8-10-ubuntu:/opt/linux_note# ip link list
     link/ether f6:30:bc:89:e2:8c brd ff:ff:ff:ff:ff:ff link-netns ns_100
 ```
 
-- 查看ns_100内部配置
+4. 查看ns_100内部配置
 ```bash
 root@VM-8-10-ubuntu:/opt/linux_note# ip netns exec ns_100 ip link list
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
@@ -67,17 +67,17 @@ root@VM-8-10-ubuntu:/opt/linux_note# ip netns exec ns_100 ip link list
 ```
 
 ### 配置network namespace接口
-- 设置接口veth1的ip
+1. 设置接口veth1的ip
 ```
 ip netns exec ns_100 ip addr add 10.0.1.1/16 dev veth1
 ```
 
-- 启用veth1
+2. 启用veth1
 ```
 ip netns exec ns_100 ip link set dev veth1 up
 ```
 
-- 查看结果
+3. 查看结果
 ```bash
 root@VM-8-10-ubuntu:/opt/linux_note# ip netns exec ns_100 ip addr add 10.0.1.1/16 dev veth1
 root@VM-8-10-ubuntu:/opt/linux_note# ip netns exec ns_100 ip link set dev veth1 up
