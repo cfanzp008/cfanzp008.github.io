@@ -639,6 +639,15 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/git-tag-sort/">git tag排序,解决默认看到的最后一个不是最新的tag的问题</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-09 09:06:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span></div><div class="content">git tag排序,解决默认看到的最后一个不是最新的tag的问题 git tag的问题 在使用git tag查看标签的时候，默认是按tag的字符串排序的，只有命名的顺序与字符串排序相同的时候,显示在最后的tag才是最新的,例如,有下面几个标签:
+1 2 v0.9.0 v0.10.0 v0.10.0按字符串排序会默认显示在上面:
+1 2 v0.10.0 v0.9.0 git tag加上排序 让git按照打标签的时间进行排序，加上参数&ndash;sort=taggerdate
+1 git tag -n --sort=taggerdate 为了方便平时输入在.gitconfig上加上缩写 1 2 [alias] stag = tag -n --sort=taggerdate 1 git tag -n --sort=taggerdate </div><div class="post-footer">
+    <a href="/git-tag-sort/">阅读全文</a></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/hugo-note/">Hugo学习笔记</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-08 23:37:28'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">hugo学习笔记 hugo 下载 linux,ubuntu 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz 扩展版本
@@ -681,12 +690,6 @@ c-a+$:重命名当前的session</div><div class="post-footer">
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-08 15:27:52'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">常用的http请求分析工具 charles(收费) fiddler(windows免费) </div><div class="post-footer">
     <a href="/http-proxy-package/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/http/">http</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-new/">lua面向对象编程</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 09:18:02'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a>&ensp;<a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">lua面向对象编程 对象定义: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 local logger = require &#34;common.</div><div class="post-footer">
-    <a href="/lua-new/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
