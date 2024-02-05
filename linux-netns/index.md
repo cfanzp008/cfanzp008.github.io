@@ -20,7 +20,18 @@
 ip netns add ns_100
 #查看当前的namespace
 ip netns list
+#添加虚拟网卡对
 ip link add veth0 type veth peer name veth1
+#查看namespace中的进程id
+ip netns pids ns_100
+#查看namespace中的进程详情
+ip netns pids ns_100 | xargs ps
+#退出名字空间
+exit
+#删除名字空间
+ip netns delete ns_100
+#名字空间中启用本地lo回环网卡
+ip netns exec ns_100 ip link set dev lo up
 ```
 
 2. demo

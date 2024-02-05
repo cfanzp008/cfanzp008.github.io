@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='linux, net' /><meta itemprop="name" content="常见的路由命令">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-07-30T22:25:51+08:00" />
 <meta itemprop="dateModified" content="2023-07-30T22:25:51+08:00" />
-<meta itemprop="wordCount" content="18"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="145"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="linux,net," /><meta property="og:title" content="常见的路由命令" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/ip-route\/"
-    },"genre": "posts","keywords": "linux, net","wordcount":  18 ,
+    },"genre": "posts","keywords": "linux, net","wordcount":  145 ,
     "url": "https:\/\/cfanzp.com\/ip-route\/","datePublished": "2023-07-30T22:25:51+08:00","dateModified": "2023-07-30T22:25:51+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -608,7 +608,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2023-07-30&#32;22:25:51><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-30">2023-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 18 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="常见的路由命令">
+      <div class="post-meta-line"><span title=2023-07-30&#32;22:25:51><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-30">2023-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 145 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="常见的路由命令">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -618,12 +618,25 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#ubuntu2004">ubuntu20.04</a>
+    <li><a href="#ip-route">ip route</a>
       <ul>
         <li><a href="#查看路由信息">查看路由信息</a></li>
+        <li><a href="#查路由表">查路由表</a></li>
         <li><a href="#添加一条路默认路由">添加一条路默认路由</a></li>
+        <li><a href="#删除一条路默认路由">删除一条路默认路由</a></li>
       </ul>
     </li>
+    <li><a href="#ip-rule">ip rule</a>
+      <ul>
+        <li><a href="#设置路由策略被打标记1的数据使用table-100路由表">设置路由策略，被打标记1的数据使用table 100路由表</a></li>
+      </ul>
+    </li>
+    <li><a href="#实验">实验</a>
+      <ul>
+        <li><a href="#公司内网1921680100以内的ip使用1001网管上电信其它ip使用20001移动上网">公司内网192.168.0.100以内的ip使用10.0.1网管上（电信），其它ip使用20.0.0.1（移动）上网</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -632,14 +645,27 @@
       
       
     ><h1 id="常见的路由命令">常见的路由命令</h1>
-<h2 id="ubuntu2004">ubuntu20.04</h2>
+<h2 id="ip-route">ip route</h2>
 <h3 id="查看路由信息">查看路由信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route show
+</span></span><span class="line"><span class="cl"><span class="c1">#或</span>
+</span></span><span class="line"><span class="cl">ip r show
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查路由表">查路由表</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip route show
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route show table <span class="m">100</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="添加一条路默认路由">添加一条路默认路由</h3>
@@ -650,12 +676,110 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ip route add default via 192.168.1.1
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route add default via 192.168.1.1 dev eth0
+</span></span><span class="line"><span class="cl"><span class="c1">#或</span>
+</span></span><span class="line"><span class="cl">ip r add default via 192.168.1.1 dev eth0
+</span></span><span class="line"><span class="cl"><span class="c1">#在1号表中添加默认路由</span>
+</span></span><span class="line"><span class="cl">ip route add default via 192.168.1.1 table <span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h3 id="删除一条路默认路由">删除一条路默认路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route del default via 192.168.1.1 dev eth0
+</span></span><span class="line"><span class="cl"><span class="c1">#或</span>
+</span></span><span class="line"><span class="cl">ip r del default via 192.168.1.1 dev eth0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ip-rule">ip rule</h2>
+<ul>
+<li>使用ip rule来修改路由策略数据库</li>
+</ul>
+<h3 id="设置路由策略被打标记1的数据使用table-100路由表">设置路由策略，被打标记1的数据使用table 100路由表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip rule add fwmark <span class="m">1</span> lookup <span class="m">100</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实验">实验</h2>
+<h3 id="公司内网1921680100以内的ip使用1001网管上电信其它ip使用20001移动上网">公司内网192.168.0.100以内的ip使用10.0.1网管上（电信），其它ip使用20.0.0.1（移动）上网</h3>
+<ul>
+<li>在网管服务器上添加一个默认路由</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route add default gw 20.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>添加3号路由表</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># eth0 是10.0.0.1所在的网卡</span>
+</span></span><span class="line"><span class="cl">ip route add table <span class="m">3</span> via 10.0.0.1 dev eth1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>添加ip rule规则</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip rule add fwmark <span class="m">3</span> table <span class="m">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>给相应的数据包打标记</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iptables -A PREROUTING -t mangle -i eth0 -s 192.168.0.1 - 192.168.0.100 -j MARK  --set-mark <span class="m">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://www.cnblogs.com/sudochen/p/15992994.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.cnblogs.com/sudochen/p/15992994.html</a></li>
+</ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='iptables' /><meta itemprop="name" content="iptables SNAT的用法">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-01T21:49:41+08:00" />
 <meta itemprop="dateModified" content="2024-02-01T21:49:41+08:00" />
-<meta itemprop="wordCount" content="26"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="75"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="iptables," /><meta property="og:title" content="iptables SNAT的用法" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/iptables-snat\/"
-    },"genre": "posts","keywords": "iptables","wordcount":  26 ,
+    },"genre": "posts","keywords": "iptables","wordcount":  75 ,
     "url": "https:\/\/cfanzp.com\/iptables-snat\/","datePublished": "2024-02-01T21:49:41+08:00","dateModified": "2024-02-01T21:49:41+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -608,7 +608,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-02-01&#32;21:49:41><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-01">2024-02-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 26 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="iptables SNAT的用法">
+      <div class="post-meta-line"><span title=2024-02-01&#32;21:49:41><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-01">2024-02-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 75 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="iptables SNAT的用法">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -620,6 +620,7 @@
   <ul>
     <li><a href="#什么是snat">什么是SNAT?</a></li>
     <li><a href="#iptables设置snat">iptables设置SNAT</a></li>
+    <li><a href="#masquerade">MASQUERADE</a></li>
     <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
@@ -635,7 +636,7 @@
 </ol>
 <h2 id="iptables设置snat">iptables设置SNAT</h2>
 <ol>
-<li>demo 将从192.168.1.0/24网断的请求的源地址转换为10.168.26.155</li>
+<li>下面的例子将从192.168.1.0/24网段的请求的源地址转换为10.168.26.155</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -643,6 +644,26 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j SNAT --to-source 10.168.26.155
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="masquerade">MASQUERADE</h2>
+<ul>
+<li>MASQUERADE 是SNAT的一个特例,不用设置&ndash;to-source</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j MASQUERADE
+</span></span><span class="line"><span class="cl"><span class="c1">#对比MASQUERADE</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j SNAT --to-source 10.168.26.155
+</span></span><span class="line"><span class="cl"><span class="c1">#对比DNAT</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -i eth0 - p tcp -dport <span class="m">1194</span> -j DNAT --to-destination 192.168.1.5
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参考">参考</h2>
