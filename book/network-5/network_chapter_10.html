@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="network_chapter_1.html"><strong aria-hidden="true">1.</strong> 第1章 概述</a></li><li class="chapter-item expanded "><a href="network_chapter_2.html"><strong aria-hidden="true">2.</strong> 第2章 物理层</a></li><li class="chapter-item expanded "><a href="network_chapter_3.html"><strong aria-hidden="true">3.</strong> 第3章 数据链路层</a></li><li class="chapter-item expanded "><a href="network_chapter_4.html"><strong aria-hidden="true">4.</strong> 第4章 网络层</a></li><li class="chapter-item expanded "><a href="network_chapter_5.html"><strong aria-hidden="true">5.</strong> 第5章 运输层</a></li><li class="chapter-item expanded "><a href="network_chapter_6.html"><strong aria-hidden="true">6.</strong> 第6章 应用层</a></li><li class="chapter-item expanded "><a href="network_chapter_7.html"><strong aria-hidden="true">7.</strong> 第7章 网络安全</a></li><li class="chapter-item expanded "><a href="network_chapter_8.html"><strong aria-hidden="true">8.</strong> 第8章 因特网上的音频/视频服务</a></li><li class="chapter-item expanded "><a href="network_chapter_9.html"><strong aria-hidden="true">9.</strong> 第9章 无线网络</a></li><li class="chapter-item expanded "><a href="network_chapter_10.html" class="active"><strong aria-hidden="true">10.</strong> 第10章 下一代因特网</a></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="network_chapter_1.html"><strong aria-hidden="true">1.</strong> 第1章 概述</a></li><li class="chapter-item "><a href="network_chapter_2.html"><strong aria-hidden="true">2.</strong> 第2章 物理层</a></li><li class="chapter-item "><a href="network_chapter_3.html"><strong aria-hidden="true">3.</strong> 第3章 数据链路层</a></li><li class="chapter-item "><a href="network_chapter_4.html"><strong aria-hidden="true">4.</strong> 第4章 网络层</a></li><li class="chapter-item "><a href="network_chapter_5.html"><strong aria-hidden="true">5.</strong> 第5章 运输层</a></li><li class="chapter-item "><a href="network_chapter_6.html"><strong aria-hidden="true">6.</strong> 第6章 应用层</a></li><li class="chapter-item "><a href="network_chapter_7.html"><strong aria-hidden="true">7.</strong> 第7章 网络安全</a></li><li class="chapter-item "><a href="network_chapter_8.html"><strong aria-hidden="true">8.</strong> 第8章 因特网上的音频/视频服务</a></li><li class="chapter-item "><a href="network_chapter_9.html"><strong aria-hidden="true">9.</strong> 第9章 无线网络</a></li><li class="chapter-item expanded "><a href="network_chapter_10.html" class="active"><strong aria-hidden="true">10.</strong> 第10章 下一代因特网</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,6 +169,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

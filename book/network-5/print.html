@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="network_chapter_1.html"><strong aria-hidden="true">1.</strong> 第1章 概述</a></li><li class="chapter-item expanded "><a href="network_chapter_2.html"><strong aria-hidden="true">2.</strong> 第2章 物理层</a></li><li class="chapter-item expanded "><a href="network_chapter_3.html"><strong aria-hidden="true">3.</strong> 第3章 数据链路层</a></li><li class="chapter-item expanded "><a href="network_chapter_4.html"><strong aria-hidden="true">4.</strong> 第4章 网络层</a></li><li class="chapter-item expanded "><a href="network_chapter_5.html"><strong aria-hidden="true">5.</strong> 第5章 运输层</a></li><li class="chapter-item expanded "><a href="network_chapter_6.html"><strong aria-hidden="true">6.</strong> 第6章 应用层</a></li><li class="chapter-item expanded "><a href="network_chapter_7.html"><strong aria-hidden="true">7.</strong> 第7章 网络安全</a></li><li class="chapter-item expanded "><a href="network_chapter_8.html"><strong aria-hidden="true">8.</strong> 第8章 因特网上的音频/视频服务</a></li><li class="chapter-item expanded "><a href="network_chapter_9.html"><strong aria-hidden="true">9.</strong> 第9章 无线网络</a></li><li class="chapter-item expanded "><a href="network_chapter_10.html"><strong aria-hidden="true">10.</strong> 第10章 下一代因特网</a></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="network_chapter_1.html"><strong aria-hidden="true">1.</strong> 第1章 概述</a></li><li class="chapter-item "><a href="network_chapter_2.html"><strong aria-hidden="true">2.</strong> 第2章 物理层</a></li><li class="chapter-item "><a href="network_chapter_3.html"><strong aria-hidden="true">3.</strong> 第3章 数据链路层</a></li><li class="chapter-item "><a href="network_chapter_4.html"><strong aria-hidden="true">4.</strong> 第4章 网络层</a></li><li class="chapter-item "><a href="network_chapter_5.html"><strong aria-hidden="true">5.</strong> 第5章 运输层</a></li><li class="chapter-item "><a href="network_chapter_6.html"><strong aria-hidden="true">6.</strong> 第6章 应用层</a></li><li class="chapter-item "><a href="network_chapter_7.html"><strong aria-hidden="true">7.</strong> 第7章 网络安全</a></li><li class="chapter-item "><a href="network_chapter_8.html"><strong aria-hidden="true">8.</strong> 第8章 因特网上的音频/视频服务</a></li><li class="chapter-item "><a href="network_chapter_9.html"><strong aria-hidden="true">9.</strong> 第9章 无线网络</a></li><li class="chapter-item "><a href="network_chapter_10.html"><strong aria-hidden="true">10.</strong> 第10章 下一代因特网</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -227,8 +227,58 @@
 <h3 id="174-实体协议服务和服务访问点"><a class="header" href="#174-实体协议服务和服务访问点">1.7.4 实体、协议、服务和服务访问点</a></h3>
 <h3 id="175-tcpip的体系结构"><a class="header" href="#175-tcpip的体系结构">1.7.5 TCP/IP的体系结构</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第2章-物理层"><a class="header" href="#第2章-物理层">第2章 物理层</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="第3章-数据链路层"><a class="header" href="#第3章-数据链路层">第3章 数据链路层</a></h1>
+<h2 id="信道"><a class="header" href="#信道">信道</a></h2>
+<ol>
+<li>点对点信道</li>
+<li>广播信道</li>
+</ol>
+<h2 id="31-使用点对点信道的数据链路层"><a class="header" href="#31-使用点对点信道的数据链路层">3.1 使用点对点信道的数据链路层</a></h2>
+<h3 id="311-数据链路和帧"><a class="header" href="#311-数据链路和帧">3.1.1 数据链路和帧</a></h3>
+<ul>
+<li>链路：所谓链路就是从一个结点到相邻结点的一段物理线路。</li>
+<li>数据链路：是另一个概念。当需要在一条线路上传送数据时，处理必须有一条物理线路外，还必须有一些必要的通信协议来控制这些数据的传输。</li>
+<li>帧：是点对点信道的数据链路层的协议数据单元。</li>
+<li>数据链路层把网络层交下来的数据构成帧发送到链路上，以及把接收到的帧中的数据取出并交给网络层。</li>
+<li>在英特网中，网络层协议数据单元就是IP数据报（简称为数据报、分组或包）。</li>
+</ul>
+<h4 id="点对点信道的数据链路层再进行通信时的主要步骤"><a class="header" href="#点对点信道的数据链路层再进行通信时的主要步骤">点对点信道的数据链路层再进行通信时的主要步骤</a></h4>
+<ol>
+<li>结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部封装成帧。</li>
+<li>节点A把封装好的数据帧发送给结点B的数据链路层。</li>
+<li>若节点B的数据链路层接收到的帧无差错，则从收到的帧中提取出IP数据报上交给上面的网络层：否则丢弃这个帧。</li>
+</ol>
+<h3 id="312-三个基本问题"><a class="header" href="#312-三个基本问题">3.1.2 三个基本问题</a></h3>
+<h4 id="1-封装成帧"><a class="header" href="#1-封装成帧">1. 封装成帧</a></h4>
+<ul>
+<li>定界符SOH:Start Of Head</li>
+<li>定界符EOT:End Of Transmission</li>
+</ul>
+<h4 id="2-透明传输"><a class="header" href="#2-透明传输">2. 透明传输</a></h4>
+<ul>
+<li>通过插入转义字符“ESC”解决传输数据与界定符混淆的问题。</li>
+</ul>
+<h4 id="3-差错检测"><a class="header" href="#3-差错检测">3. 差错检测</a></h4>
+<ul>
+<li>误码率</li>
+<li>循环冗余检验CRC(Cyclic Redundancy Check)的检错的技术</li>
+<li>FCS：帧检验序列。</li>
+</ul>
+<h2 id="32-点对点协议ppp"><a class="header" href="#32-点对点协议ppp">3.2 点对点协议PPP</a></h2>
+<h3 id="321-ppp协议的特点"><a class="header" href="#321-ppp协议的特点">3.2.1 PPP协议的特点</a></h3>
+<h4 id="1-ppp协议应满足的需求"><a class="header" href="#1-ppp协议应满足的需求">1. PPP协议应满足的需求</a></h4>
+<h4 id="2-ppp协议不需要的功能"><a class="header" href="#2-ppp协议不需要的功能">2. PPP协议不需要的功能</a></h4>
+<h3 id="322-ppp协议的帧格式"><a class="header" href="#322-ppp协议的帧格式">3.2.2 PPP协议的帧格式</a></h3>
+<h4 id="1-字段的意义"><a class="header" href="#1-字段的意义">1. 字段的意义</a></h4>
+<h4 id="2-字节填充"><a class="header" href="#2-字节填充">2. 字节填充</a></h4>
+<h4 id="3-零比特填充"><a class="header" href="#3-零比特填充">3. 零比特填充</a></h4>
+<h3 id="323-ppp协议的工作状态"><a class="header" href="#323-ppp协议的工作状态">3.2.3 PPP协议的工作状态</a></h3>
+<h2 id="33-使用广播信道的数据链路层"><a class="header" href="#33-使用广播信道的数据链路层">3.3 使用广播信道的数据链路层</a></h2>
+<h3 id="331-局域网的数据链路层"><a class="header" href="#331-局域网的数据链路层">3.3.1 局域网的数据链路层</a></h3>
+<h4 id="1-以太网的两个标准"><a class="header" href="#1-以太网的两个标准">1. 以太网的两个标准</a></h4>
+<h4 id="2-适配器的作用"><a class="header" href="#2-适配器的作用">2. 适配器的作用</a></h4>
+<h3 id="332-csmacd-协议"><a class="header" href="#332-csmacd-协议">3.3.2 CSMA/CD 协议</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第4章-网络层"><a class="header" href="#第4章-网络层">第4章 网络层</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="第4章-网络层-1"><a class="header" href="#第4章-网络层-1">第4章 网络层</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第5章-运输层"><a class="header" href="#第5章-运输层">第5章 运输层</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第6章-应用层"><a class="header" href="#第6章-应用层">第6章 应用层</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第7章-网络安全"><a class="header" href="#第7章-网络安全">第7章 网络安全</a></h1>
@@ -253,6 +303,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
