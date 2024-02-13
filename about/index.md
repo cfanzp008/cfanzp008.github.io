@@ -18,7 +18,7 @@
 - [c](/categories/c)
   [c++](/categories/c++)
   [lua](/categories/lua)
-  [golang](/categories/go)
+  [golang](/categories/golang)
   [rust](/categories/rust)
   python,java,c#,php
 #### 操作系统
