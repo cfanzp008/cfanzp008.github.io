@@ -632,6 +632,18 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/skynet-traceid/">skynet-给项目日志添加traceid</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-25 20:00:29'>发布于 <time datetime="2022-07-25">2022-07-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">给项目日志加上traceid traceid是什么？ 这里所说的traceid是指在服务端收到客户端请求后到服务端返回给客户端结果的过程中给没一条日志添加一个相同的traceid来跟踪请求到返回的整个过程。 为什么要给服务的日志加上traceid? 最近准备给项目里的日志都加上traceid。这样方便服务端网关在收到请求后到返回给客户端之前追踪整个请求的链路。方便排查线上的bug以及统计查询请求的性能瓶颈。 添加一个traceid，对于一个新项目而言并不是什么难事，但是对于一个已经成熟上线的项目而言，还是有很多要注意的地方。 目前我们这个上线的项目采用的微服务的思想:项目里面把功能相对独立的部分单独成进程。方便服务的快速迭代，快速部署和部分更新。实际上这样的拆分作用相当明显，需要功能都不需要停服就可以一做到热更新，大大降低了维护成本，提高了用户的体验。 如何设计traceid? 这里把traceid分成4个部分: 用户相关的uid 消息相关的msgid 递增或唯一的tid 时间相关的时间戳timestamp 用户的uid不用说，方便识别这个业务和那个用户相关。 消息msgid就方便定位业务。 tid为了保证traceid的唯一性。 时间戳方便统计请求到返回消耗的时间，同时在每深入一步后可以计算出消耗的时间。 traceid是否可以做到对业务透传？ 目前对于线上业务结构，还做不到透传。只能通过在节点间、函数调用间传递参数traceid的方式来使用traceid,这是最简单也是最繁琐的方案了。不过还挺实用，能够解决问题。目前先让各节点支持traceid的链路追踪，后续再进行优化。 总结 traceid的添加还在进行中，目前已完成部分节点的链路日志打印。后续会添加链路时间消耗的统计。这里先行记录一下。后续会使用traceid来统计一下各个api的调用耗时。 </div><div class="post-footer">
+    <a href="/skynet-traceid/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/linux-xargs/">linux-xargs用法简介</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -690,12 +702,6 @@
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-06 22:26:19'>发布于 <time datetime="2022-07-06">2022-07-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim插件-对齐插件tabular 简单介绍 vim中怎么按&quot;=&quot;,&quot;+&quot; 等符号对齐代码呢？使用tabular插件可以轻松解决。 tabular英语单词，主要用作动词，意思是:列成表格的 安装 使用Plug管理插件的话，.vimrc中加入如下代码: 1 Plug &#39;godlygeek/tabular&#39; 使用其它管理工具的安装方法类似，这里就不介绍了。 不了解Plug管理插件的同学可以先了解一下相关方面的知识。 使用方法 例如按=号对齐代码 visual模式选中要对齐的行 进入底行模式输入Tabularize/= 单词太长记不住怎么办？按Tab键会有提示的。 1 :Tabularize/= 执行前 1 2 3 4 local a = 1 local hello = &#34;hello&#34; ```lua - 执行后 local a = 1 local hello = &ldquo;hello&rdquo;</div><div class="post-footer">
     <a href="/vim-plug-tabular/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/mysql-/">mysql&#43;&#43;的使用</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-06-14 22:06:55'>发布于 <time datetime="2022-06-14">2022-06-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/mysql/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mysql</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/mysql-/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a>,&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
