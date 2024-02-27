@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
-	<meta name="generator" content="Hugo 0.121.1">
-    
-      <meta name="theme" content='FixIt v0.2.16-RC'>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Linux开发</title><meta name="author" content="cfanzp">
+    <title>Nginx性能测试 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Linux开发">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="Linux开发" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='nginx' /><meta itemprop="name" content="Nginx性能测试">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-24T18:38:20+08:00" />
+<meta itemprop="dateModified" content="2024-02-24T18:38:20+08:00" />
+<meta itemprop="wordCount" content="169"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="nginx," /><meta property="og:title" content="Nginx性能测试" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/test-nginx/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-24T18:38:20+08:00" />
+<meta property="article:modified_time" content="2024-02-24T18:38:20+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Linux开发"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Nginx性能测试"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/test-nginx/" /><link rel="prev" href="https://cfanzp.com/test-ab/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "WebSite",
-    "url": "https:\/\/cfanzp.com\/","inLanguage": "zh-CN","author": {
+    "@type": "BlogPosting",
+    "headline": "Nginx性能测试",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/test-nginx\/"
+    },"genre": "posts","keywords": "nginx","wordcount":  169 ,
+    "url": "https:\/\/cfanzp.com\/test-nginx\/","datePublished": "2024-02-24T18:38:20+08:00","dateModified": "2024-02-24T18:38:20+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "cfanzp开发笔记","name": "Linux开发"
+      },"description": ""
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -578,18 +587,65 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page home posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="所有文章"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" /></a></div><h2 class="home-subtitle"><span class="d-none">开发笔记，个人生活随感</span>
-        <span id="typeit-profile-subtitle" class="typeit"></span></h2><div class="links"><a
-  href="https://www.zhihu.com/people/alex_hjkl"
-  
-    title="知乎"
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Nginx性能测试</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/test/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 测试</a></span></div>
+      <div class="post-meta-line"><span title=2024-02-24&#32;18:38:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-24">2024-02-24</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 169 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Nginx性能测试">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#faq">FAQ</a>
+      <ul>
+        <li><a href="#为什么nginx反向代理建立28231个连接就不能再创建连接了">为什么Nginx反向代理建立28231个连接就不能再创建连接了？</a></li>
+        <li><a href="#突破反向代理单机最多支持65535个端口的限制">突破反向代理单机最多支持65535个端口的限制</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用命令">常用命令</a></li>
+    <li><a href="#相关书籍">相关书籍</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="nginx性能测试">Nginx性能测试</h1>
+<h2 id="faq">FAQ</h2>
+<h3 id="为什么nginx反向代理建立28231个连接就不能再创建连接了">为什么Nginx反向代理建立28231个连接就不能再创建连接了？</h3>
+<ul>
+<li>默认能够分配的端口为28231个</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/# cat /proc/sys/net/ipv4/ip_local_port_range
+</span></span><span class="line"><span class="cl"><span class="m">32768</span>   <span class="m">60999</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="突破反向代理单机最多支持65535个端口的限制">突破反向代理单机最多支持65535个端口的限制</h3>
+<ul>
+<li><a
+  href="https://blog.csdn.net/weixin_40872468/article/details/105164127"
   
   
     
@@ -597,95 +653,143 @@
     target="_blank"
   
   
-    rel="external nofollow noopener noreferrer me"
+    rel="external nofollow noopener noreferrer"
   
   
   
-><i class="fa-brands fa-zhihu fa-fw" aria-hidden="true"></i>
-    </a><a
-  href="https://blog.csdn.net/cfanzp"
-  
-    title="CSDN"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer me"
-  
-  
-  
-><i data-svg-src="/svg/icons/csdn.min.svg" aria-hidden="true"></i>
-    </a><a
-  href="mailto:cfanzp@qq.com"
-  
-    title="Email"
-  
-  
-  
-    rel=" me"
-  
-  
-  
-><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
-    </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/test-nginx/">Nginx性能测试</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-24 18:38:20'>发布于 <time datetime="2024-02-24">2024-02-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/test/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 测试</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/test-nginx/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/test-ab/">使用ab做压力测试</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-23 21:55:55'>发布于 <time datetime="2024-02-23">2024-02-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/test/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 测试</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/test-ab/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ab/">ab</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/network-cable/">自己动手制作一根网线</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-23 21:35:07'>发布于 <time datetime="2024-02-23">2024-02-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a>&ensp;<a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/network-cable/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/net/">net</a>,&nbsp;<a href="/tags/diy/">diy</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/shell-test/">Shell单元测试框架Bach</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-19 21:14:36'>发布于 <time datetime="2024-02-19">2024-02-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/test/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 测试</a>&ensp;<a href="/categories/shell/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> shell</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/shell-test/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/test/">test</a>,&nbsp;<a href="/tags/bash/">bash</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/embedded-dev/">嵌入式开发</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-13 19:37:07'>发布于 <time datetime="2024-02-13">2024-02-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/embedded/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 嵌入式开发</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/embedded-dev/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/embedded/">embedded</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/victor-vc890c-voltage/">使用VC890C万用表测量直流电压实验</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2024-02-03 14:43:24'>发布于 <time datetime="2024-02-03">2024-02-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/device/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> device</a>&ensp;<a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a>&ensp;<a href="/categories/experiment/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 小实验</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/victor-vc890c-voltage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E4%B8%87%E7%94%A8%E8%A1%A8/">万用表</a></div></div>
-</article>
-<ul class="pagination"><li class="page-item active">
-          <span class="page-link">
-            <a href="/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/2/">2</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/3/">3</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/40/">40</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+>https://blog.csdn.net/weixin_40872468/article/details/105164127</a></li>
+<li>添加多个端口配置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ifconfig eth0:1 192.168.2.3 netmask 255.255.255.0 up
+</span></span><span class="line"><span class="cl">ifconfig eth0:2 192.168.2.4 netmask 255.255.255.0 up
+</span></span><span class="line"><span class="cl">ifconfig eth0:3 192.168.2.5 netmask 255.255.255.0 up
+</span></span><span class="line"><span class="cl">ifconfig eth0:4 192.168.2.6 netmask 255.255.255.0 up
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>nginx配置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1">#user  nobody;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">worker_processes</span>  <span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">error_log</span>  <span class="s">logs/error.log</span>  <span class="s">info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">pid</span>        <span class="s">logs/nginx.pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">events</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">use</span> <span class="s">epoll</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">worker_connections</span>  <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">stream</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">split_clients</span> <span class="s">&#34;</span><span class="nv">$remote_addr$remote_port&#34;</span> <span class="nv">$split_ip</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">50%</span> <span class="mi">192</span><span class="s">.168.2.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">*</span>   <span class="mi">192</span><span class="s">.168.2.4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">upstream</span> <span class="s">tcp_proxy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">server</span> <span class="n">192.168.1.100</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">listen</span> <span class="mi">10000</span><span class="p">;</span><span class="kn">//</span> <span class="s">监听8998端口</span>
+</span></span><span class="line"><span class="cl">        <span class="s">proxy_pass</span> <span class="s">tcp_proxy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_bind</span> <span class="nv">$split_ip</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用命令">常用命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#kill nginx</span>
+</span></span><span class="line"><span class="cl">:ahf5wapi001:root &gt; ps -ef <span class="p">|</span> grep nginx
+</span></span><span class="line"><span class="cl">root <span class="m">10800</span> <span class="m">1</span> <span class="m">0</span> 02:27 ? 00:00:00 nginx: master process ./nginx
+</span></span><span class="line"><span class="cl">root <span class="m">10801</span> <span class="m">10800</span> <span class="m">0</span> 02:27 ? 00:00:00 nginx: worker process
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -s SIGTERM <span class="m">10800</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#或者</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -s SIGINT <span class="m">10800</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#优雅地关闭Nginx</span>
+</span></span><span class="line"><span class="cl">/opt/nginx/sbin/nginx -s quit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="相关书籍">相关书籍</h2>
+<ul>
+<li>深入理解Nginx：模块开发与架构解析（第2版）</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-02-24&#32;18:38:20>更新于 2024-02-24&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/test-nginx/" data-title="Nginx性能测试"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/test-ab/" class="prev" rel="prev" title="使用ab做压力测试"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>使用ab做压力测试</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -713,5 +817,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/typeit.min.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"data":{"typeit-profile-subtitle":"开发笔记，个人生活随感"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00","typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-profile-subtitle":["typeit-profile-subtitle"]},"duration":-1,"speed":100}};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
