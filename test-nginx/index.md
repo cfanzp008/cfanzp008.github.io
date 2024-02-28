@@ -54,7 +54,7 @@ stream {
 ## 常用命令
 ```bash
 #kill nginx
-:ahf5wapi001:root > ps -ef | grep nginx
+ps -ef | grep nginx
 root 10800 1 0 02:27 ? 00:00:00 nginx: master process ./nginx
 root 10801 10800 0 02:27 ? 00:00:00 nginx: worker process
 kill -s SIGTERM 10800
@@ -64,6 +64,10 @@ kill -s SIGINT 10800
 /opt/nginx/sbin/nginx -s quit
 ```
 
+## 测试工具
+- ab
+- wrk
+- webbench
 
 ## 相关书籍
 - 深入理解Nginx：模块开发与架构解析（第2版）
