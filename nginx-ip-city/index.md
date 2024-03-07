@@ -1,0 +1,17 @@
+# Nginx实现日志打印IP对应的城市信息(qqwry)
+
+
+<!--more-->
+# Nginx实现日志打印IP对应的城市信息(qqwry)
+## github
+- https://github.com/anjuke/ngx_http_qqwry_module
+
+## 数据库自动更新
+- https://cloud.tencent.com/developer/article/1939767?areaId=106001
+
+
+---
+
+> 作者:   
+> URL: https://cfanzp.com/nginx-ip-city/  
+
