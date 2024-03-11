@@ -632,6 +632,19 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/tmux-shortcut-key/">tmux常用快捷键</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 20:06:22'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">tmux常用快捷键 注意 c-a:表示ctrl+a,我这里修改了默认的ctrl+b为ctrl+a 常用快捷键 c-a +z:在全屏和窗口之间切换
+c-a +c:创建一个新的窗口
+c-a+%:竖直创建一个新的pannel
+c-a+,:水平创建一个新的pannel
+c-a+(h,j,kl):在各个pannel间切换，需要在.tmux.conf配置文件中配置
+c-a+[:进入复制模式，q:退出复制模式
+c-a+w:查看所有窗口列表
+c-a+$:重命名当前的session</div><div class="post-footer">
+    <a href="/tmux-shortcut-key/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">快捷键</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/mac-shortcut-key/">mac快捷键汇总</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-08 19:51:35'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a></span></div><div class="content">mac快捷键汇总 注意 这里Win键对应mac键盘的Command键 常用快捷键 command + backspace: 删除文件
@@ -669,14 +682,6 @@
 1 cs&#34;&#39; 普通模式使用vim-surround-删除成对符号 普通模式删除单词2边双引号:
 1 ds&#34; 参考链接 https://github.com/tpope/vim-surround https://zhuanlan.zhihu.com/p/158604935/ 总结 上面列举的是个人觉得比较实用的几种用法，更多用法可以参考一下上面的参考链接。 </div><div class="post-footer">
     <a href="/vim-surround/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/nginx-config-check/">nginx如何检查配置文件是否正确？</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-05 08:56:20'>发布于 <time datetime="2022-08-05">2022-08-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div><div class="content">nginx如何检查配置文件是否正确？ nginx如何检查配置文件是否正确？当然是靠自己了，只有自己才知道自己想用nginx干啥，当然你还可叫上你的同事、朋友帮你看看配置是否有错。nginx其实可以帮助你检查一些基础的语法错误。命令很简单:
-1 nginx -t -c /etc/nginx/nginx.conf 有些情况线上需要修改配置文件怎么办？ 保险的做法是:
-先检查一下配置文件 1 nginx -t 然后热加载配置 1 nginx -s reload 最后去检查一下业务是否能够正常访问 </div><div class="post-footer">
-    <a href="/nginx-config-check/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
