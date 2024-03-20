@@ -1,0 +1,24 @@
+# Nginx切割日志后日志不正常写入？
+
+
+<!--more-->
+# Nginx切割日志后日志不正常写入？
+## 需求
+- 日志需要通过filebeat等日志收集工具进行收集后交给后端服务器处理。为了控制nginx单个日志的大小，现对单个日志进行切割。比如每隔10分钟切割一次。
+
+## 切割后日志会丢失
+- 1. 最开始的方案是切割后创建个access_log文件，nginx reload, 但是发现有时，日志不能正常写入。
+- 2. 后来测试切割后不创建文件，nginx reload, 但是发现有时，日志还是不能正常写入。
+
+## 目前的方案
+- 切割日志后执行以下操作
+```
+kill -USR1 `cat /path/nginx/logs/nginx.pid`
+```
+
+
+---
+
+> 作者:   
+> URL: https://cfanzp.com/nginx-logrotate/  
+
