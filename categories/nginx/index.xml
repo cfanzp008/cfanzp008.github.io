@@ -4,7 +4,15 @@
     <link>https://cfanzp.com/categories/nginx/</link>
     <description>nginx - 分类 - Linux开发</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 28 Mar 2024 22:52:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/nginx/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 28 Mar 2024 23:49:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/nginx/" rel="self" type="application/rss+xml" /><item>
+  <title>http一个端口如何配置多个域名？</title>
+  <link>https://cfanzp.com/nginx-http-muti-domain/</link>
+  <pubDate>Thu, 28 Mar 2024 23:49:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/nginx-http-muti-domain/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>nginx隧道模式使用SNI进行流量分流</title>
   <link>https://cfanzp.com/nginx-tunnel-https-proxy/</link>
   <pubDate>Thu, 28 Mar 2024 22:52:30 &#43;0800</pubDate>
@@ -77,14 +85,6 @@
   <description><![CDATA[nginx如何检查配置文件是否正确？ nginx如何检查配置文件是否正确？当然是靠自己了，只有自己才知道自己想用nginx干啥，当然你还可叫上你的同事、朋友帮你看看配置是否有错。nginx其实可以帮助你检查一些基础的语法错误。命令很简单:
 1 nginx -t -c /etc/nginx/nginx.conf 有些情况线上需要修改配置文件怎么办？ 保险的做法是:
 先检查一下配置文件 1 nginx -t 然后热加载配置 1 nginx -s reload 最后去检查一下业务是否能够正常访问 ]]></description>
-</item>
-<item>
-  <title>nginx配置https转发</title>
-  <link>https://cfanzp.com/nginx-https/</link>
-  <pubDate>Tue, 02 Aug 2022 22:43:20 &#43;0800</pubDate>
-  <author>cfanzp</author>
-  <guid>https://cfanzp.com/nginx-https/</guid>
-  <description><![CDATA[nginx配置https转发 下载nginx http://nginx.org/en/download.html 1 wget http://nginx.org/download/nginx-1.20.2.tar.gz 安装nginx 参考: https://www.cnblogs.com/-wei/p/15219624.html 1 2 3 4 tar -xzvf nginx-1.20.2.tar.gz cd nginx-1.20.2 ./configure --prefix=/opt/nginx --with-http_ssl_module make &amp;&amp; make install aliyun申请免费证书 这里以www.cfanzp.com为例子，具体申请流程这里就不赘述了。 申请成功后得到ngnix配置需要的证书和证书秘钥 1 2 3 4 #证书 5837690_www.cfanzp.com.pem #证书秘钥 5837690_www.cfanzp.com.key 将证书秘钥放到配置目录 1 2 3 4 #证书位置 etc/nginx/cert/5837690_www.cfanzp.com.pem #证书秘钥位置 /etc/nginx/cert/5837690_www.cfanzp.com.key nginx.conf demo: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 #user nobody; worker_processes 1; #error_log logs/error.]]></description>
 </item>
 </channel>
 </rss>

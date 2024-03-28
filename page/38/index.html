@@ -632,6 +632,18 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/git-ftp/">git-ftp的使用</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-31 22:30:00'>发布于 <time datetime="2022-07-31">2022-07-31</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">git-ftp的使用 git-ftp有什么用？ git-ftp 能够方便的帮助我们将自己管理的git项目相关代码或资源提交到自己的ftp服务器上 git-ftp命令 1 2 git ftp init git ftp push 安装 首次使用需要下载安装git-ftp并进行配置 ubuntu安装 1 sudo apt-get install git-ftp mac 安装 1 brew install git-ftp mac安装过程中相关依赖可能会报错，我安装的时候遇到了报错问题，这里记录一下: 1 Error: No such file or directory @ rb_sysopen - /Users/zp/Library/Caches/Homebrew/downloads/8687c3e085e812f09d11aeca541ef9cdefbc8f971d9dd3c407c8b18bb3954957--libnghttp2-1.47.0.monterey.bottle.tar.gz 报错解决方案:安装相关库即可 1 2 3 4 5 6 brew install libnghttp2 brew install openldap brew install brotli brew install zstd brew install curl brew install git-ftp 配置 简单配置,修改.git/config添加如下配置 1 2 3 4 5 6 [git-ftp] url = your-ftp-url user = your-ftp-user password = your_ftp_url syncroot = your-local-upload-fullpath remote-root= your-ftp-upload-path(eg:htdocs) 参考 官方文档:https://github.</div><div class="post-footer">
+    <a href="/git-ftp/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/git/">git</a>,&nbsp;<a href="/tags/ftp/">ftp</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/code-github/">github资源整理</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -693,18 +705,6 @@
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-30 17:49:44'>发布于 <time datetime="2022-07-30">2022-07-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">mysql-使用mysqldump来备份数据库 导出单个表 1 mysqldump -u root -p123456 testdb t_user &gt; t_user.sql 去掉注释 这个太重要了，方便保存后通过git等代码管理工具比较差异 1 --skip-comments 输出更少的信息 1 2 --compact 相当于 --skip-add-drop-table --skip-add-locks --skip-comments --skip-disable-keys 插入语句单行输出 这一点很重要，如果记录比较多的话，生成的sql没法看。 1 --extended-insert=FALSE 备份多个表 在all_base_table.txt中存放需要备份的表名 1 2 3 4 cat all_base_table.txt t_user_config t_login_config t_game_config 执行下面的脚本就可以批量备份表以及里面的数据 1 2 3 4 5 6 7 8 #!/bin/bash for tbname in $(cat all_base_table.txt) do echo tbname: $tbname mysqldump -h192.168.2.127 -P3306 -uroot -p123456 --opt testdb $tbname--skip-comments --extended-insert=FALSE &gt;./base_table/$tbname.sql echo basetable: $tbname done 备份整个数据库的结构: 1 2 des_file=testdb_no_data_v0.</div><div class="post-footer">
     <a href="/linux-mysqldump/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-ubuntu-remotedesktop/">ubuntu-远程连接windows的几种方法</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-30 17:45:02'>发布于 <time datetime="2022-07-30">2022-07-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">ubuntu 远程连接windows的几种方法 1. 使用rdesktop 安装 1 sudo apt install rdesktop 使用举例 1 rdesktop -g 1024x768 -a 16 -u Administrator -p your_password -0 192.168.2.189:3389 常用使用参数 1 2 3 4 5 6 7 8 9 -f 全屏 -g 桌面大小 -a 16 16位色深 -u 用户名 -p 密码 -r clipboard 表示允许在远程主机和本机之间共享剪切板，可以复制粘贴 -r clipboard:PRIMARYCLIPBOARD 共享剪贴板，连接到window7 -r disk:share=/home 共享/home目录 ctrl+alt+enter 退出全屏 使用rdesktop常见问题 1. 连接失败,提示如下: 1 2 3 4 5 6 7 Connecting to server using NLA... Core(warning): Certificate received from server is NOT trusted by this system, an exception has been added by the user to trust this specific certificate.</div><div class="post-footer">
-    <a href="/linux-ubuntu-remotedesktop/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/ubuntu/">ubuntu</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -732,8 +732,10 @@
             <a href="/page/40/">40</a>
           </span>
         </li><li class="page-item ">
+          <span class="page-link" aria-hidden="true">&hellip;</span>
+        </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/41/">41</a>
+            <a href="/page/42/">42</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

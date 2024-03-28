@@ -632,6 +632,22 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+      <a href="/ranger-config/" aria-label="ranger如何配置预览图片？"><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/blog/devtools/ranger/ranger_config.png"
+    data-srcset="/images/blog/devtools/ranger/ranger_config.png, /images/blog/devtools/ranger/ranger_config.png 1.5x, /images/blog/devtools/ranger/ranger_config.png 2x"
+    data-sizes="auto"
+    alt="/images/blog/devtools/ranger/ranger_config.png"
+    title="/images/blog/devtools/ranger/ranger_config.png" /></a>
+    </div><h1 class="single-title" itemprop="name headline">
+    <a href="/ranger-config/">ranger如何配置预览图片？</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-05 08:19:04'>发布于 <time datetime="2022-08-05">2022-08-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">ranger如何配置预览图片？ ranger的配置文件在目录~/.config/ranger/rc.conf中，配置预览只需要在配置文件中加入2项配置即可:
+1 2 set preview_images true set preview_images_method w3m 更多 其它ranger的使用技巧可以参考这篇文件: https://zhuanlan.zhihu.com/p/476289339 </div><div class="post-footer">
+    <a href="/ranger-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/ranger/">ranger</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
       <a href="/config-git/" aria-label="git配置文件.gitconfig"><img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -704,24 +720,6 @@
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 09:01:02'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua第三方开源库学习整理 skynet框架:https://github.com/cloudwu/skynet lua的protobuf工具-pbc:https://github.com/cloudwu/pbc lua-cjson库:https://github.com/mpx/lua-cjson 一个lua写的websocket库https://github.com/flaribbit/love2d-lua-websocket lua-protobuf库https://github.com/starwing/lua-protobuf/blob/master/README.zh.md </div><div class="post-footer">
     <a href="/lua-3rd/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-string-pack/">lua中string.pack,string.unpack的用法</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 08:34:18'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中string.pack,string.unpack的用法 lua string.pack的用法,查看lua5.4的官方帮助手册不难找到下面的解释:
-string.pack (fmt, v1, v2, ···)
-Returns a binary string containing the values v1, v2, etc. serialized in binary form (packed) according to the format string fmt (see §6.4.2).
-最近一个新项目要将brotobuf协议包裹在http协议内进行传输，刚好用到了这个函数,在pb数据包封包后，协议按3部分拼接:
-1 数据包长度(msgid + pb_data) + 协议ID + pb数据包体 封包过程如下:
-1 2 3 local pb_data = pb_helper.pb_encode(msgname, msg) local buf = string.pack(&#34;&gt;I4c&#34; .. #pb_data, msgid, pb_data) local send_buf = string.pack(&#34;&gt;s2&#34;, buf) 解包过程如下:
-1 2 3 local buf = msg --des_decode(secret, msg) local len = string.</div><div class="post-footer">
-    <a href="/lua-string-pack/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -752,7 +750,7 @@ Returns a binary string containing the values v1, v2, etc. serialized in binary 
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/41/">41</a>
+            <a href="/page/42/">42</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
