@@ -632,6 +632,39 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lua-pbc/">lua-pbc(lua的protobuf库)如何使用？</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 08:36:15'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
+lua-pbc github地址为: https://github.com/cloudwu/pbc
+关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
+lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
+编写protobuf的proto文件 User.proto
+1 2 3 4 package tutorial; message User { optional string name = 1; } 引入模块protobuf
+1 local pb = require &#34;protobuf&#34; 注册文件
+1 pb.register_file &#34;User.pb&#34; encode
+1 2 3 4 local msg_table = { name = &#34;test1&#34; } pb.encode(&#34;tutorial.User&#34;,msg_table}, decode
+1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
+参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.</div><div class="post-footer">
+    <a href="/lua-pbc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/vim-swap/">vim交换文件是否应该开启？</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-29 09:16:04'>发布于 <time datetime="2022-08-29">2022-08-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim交换文件是否应该开启？ 在vim的使用过程中默认会产生交换文件。交换文件会记录文件修改的过程。如果不小心断电或者意外关闭了文件而没有保存，可以通过交换文件进行恢复。
@@ -668,13 +701,6 @@ skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文�
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-24 09:00:12'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">在线工具 在线测速:https://www.ping.cn MD5加密:https://md5jiami.bmcx.com/ JSON在线格式化: https://www.bt.cn/tools/json.html https://www.bejson.com </div><div class="post-footer">
     <a href="/online-tools/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-jpg2png/">linux中jpg格式转化为png格式</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 23:17:00'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux中jpg格式转化为png格式 linux中将jpg与png进行转化可以用parallel和convert命令 安装方法:
-安装arallel 1 sudo apt-get install parallel 安装convert 1 sudo apt-get install imagemagick cfanzp.jpg转化为cfanzp.png 1 parallel convert &#39;{}&#39; &#39;{.}.png&#39; ::: cfanzp.jpg </div><div class="post-footer">
-    <a href="/linux-jpg2png/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/image/">image</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

@@ -4,7 +4,15 @@
     <link>https://cfanzp.com/tags/nginx/</link>
     <description>nginx - 标签 - Linux开发</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 20 Mar 2024 20:17:34 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/nginx/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 28 Mar 2024 22:52:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/nginx/" rel="self" type="application/rss+xml" /><item>
+  <title>nginx隧道模式使用SNI进行流量分流</title>
+  <link>https://cfanzp.com/nginx-tunnel-https-proxy/</link>
+  <pubDate>Thu, 28 Mar 2024 22:52:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp.com/nginx-tunnel-https-proxy/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Nginx切割日志后日志不正常写入？</title>
   <link>https://cfanzp.com/nginx-logrotate/</link>
   <pubDate>Wed, 20 Mar 2024 20:17:34 &#43;0800</pubDate>
@@ -75,16 +83,6 @@
   <author>作者</author>
   <guid>https://cfanzp.com/ubuntu-nginx/</guid>
   <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>nginx如何检查配置文件是否正确？</title>
-  <link>https://cfanzp.com/nginx-config-check/</link>
-  <pubDate>Fri, 05 Aug 2022 08:56:20 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp.com/nginx-config-check/</guid>
-  <description><![CDATA[nginx如何检查配置文件是否正确？ nginx如何检查配置文件是否正确？当然是靠自己了，只有自己才知道自己想用nginx干啥，当然你还可叫上你的同事、朋友帮你看看配置是否有错。nginx其实可以帮助你检查一些基础的语法错误。命令很简单:
-1 nginx -t -c /etc/nginx/nginx.conf 有些情况线上需要修改配置文件怎么办？ 保险的做法是:
-先检查一下配置文件 1 nginx -t 然后热加载配置 1 nginx -s reload 最后去检查一下业务是否能够正常访问 ]]></description>
 </item>
 </channel>
 </rss>
