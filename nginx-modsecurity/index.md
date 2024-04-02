@@ -18,6 +18,7 @@ git submodule update
 ```
 
 - coreruleset v3.3.2
+- [modsecurity中文手册](http://www.modsecurity.cn/chm/ConfigurationDirectives.html)
 
 ## ubuntu20.04下安装
 

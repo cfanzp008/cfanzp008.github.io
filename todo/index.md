@@ -10,6 +10,7 @@
 - [ ] 学习squid源码。
 - [ ] 学习nginx源码。
   - [nginx学习笔记](/categories/nginx)
+  - 使用tcmalloc优化nginx内存分配[参考](https://blog.csdn.net/qq_34556414/article/details/106959700)
 - [ ] 学习e2guardian源码。
 - [ ] 学习嵌入式--单片机。
   - [嵌入式知识结构图](/main-embedded)。
