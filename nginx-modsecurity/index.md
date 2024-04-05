@@ -150,6 +150,9 @@ https://github.com/owasp-modsecurity/ModSecurity-nginx
 ## 测试
 ```bash
 curl 'http://localhost/?search=<scritp>alert('xss');</script>' -I
+
+## 靶场
+- https://github.com/zhuifengshaonianhanlu/pikachu
 ```
 
 ## FAQ
@@ -161,6 +164,7 @@ curl 'http://localhost/?search=<scritp>alert('xss');</script>' -I
 - https://zhuanlan.zhihu.com/p/415862524
 - https://www.cnblogs.com/miracle-luna/p/17204007.html
 - https://blog.csdn.net/ilqgffvramusm2864/article/details/107663339
+- https://www.freebuf.com/sectool/274495.html
 
 
 ---
