@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>nginx集成ModSecurity(未完) - Linux开发</title><meta name="author" content="cfanzp">
+    <title>nginx集成ModSecurity - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='modsecurity, nginx' /><meta itemprop="name" content="nginx集成ModSecurity(未完)">
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='modsecurity, nginx' /><meta itemprop="name" content="nginx集成ModSecurity">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-30T22:26:50+08:00" />
 <meta itemprop="dateModified" content="2024-01-30T22:26:50+08:00" />
-<meta itemprop="wordCount" content="731"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
-<meta itemprop="keywords" content="modsecurity,nginx," /><meta property="og:title" content="nginx集成ModSecurity(未完)" />
+<meta itemprop="wordCount" content="728"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="modsecurity,nginx," /><meta property="og:title" content="nginx集成ModSecurity" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://cfanzp.com/nginx-modsecurity/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
@@ -19,7 +19,7 @@
 <meta property="article:modified_time" content="2024-01-30T22:26:50+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="nginx集成ModSecurity(未完)"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="nginx集成ModSecurity"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -28,12 +28,12 @@
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "nginx集成ModSecurity(未完)",
+    "headline": "nginx集成ModSecurity",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/nginx-modsecurity\/"
-    },"genre": "posts","keywords": "modsecurity, nginx","wordcount":  731 ,
+    },"genre": "posts","keywords": "modsecurity, nginx","wordcount":  728 ,
     "url": "https:\/\/cfanzp.com\/nginx-modsecurity\/","datePublished": "2024-01-30T22:26:50+08:00","dateModified": "2024-01-30T22:26:50+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -621,12 +621,12 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>nginx集成ModSecurity(未完)</span>
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>nginx集成ModSecurity</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
-          <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-01-30&#32;22:26:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 731 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="nginx集成ModSecurity(未完)">
+          <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a>&ensp;<a href="/categories/network-security/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 网络安全</a></span></div>
+      <div class="post-meta-line"><span title=2024-01-30&#32;22:26:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 728 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="nginx集成ModSecurity">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -640,6 +640,7 @@
     <li><a href="#ubuntu2004下安装">ubuntu20.04下安装</a></li>
     <li><a href="#centos7下安装">centos7下安装</a></li>
     <li><a href="#测试">测试</a></li>
+    <li><a href="#靶场">靶场</a></li>
     <li><a href="#faq">FAQ</a>
       <ul>
         <li><a href="#遇到curl链接错误">遇到curl链接错误</a></li>
@@ -653,7 +654,7 @@
       id="content"
       
       
-    ><h1 id="nginx集成modsecurity未完">nginx集成ModSecurity(未完)</h1>
+    ><h1 id="nginx集成modsecurity">nginx集成ModSecurity</h1>
 <h2 id="准备工作">准备工作</h2>
 <ul>
 <li>下载nginx:1.24.0</li>
@@ -945,11 +946,13 @@
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#add-dynamic-module</span>
 </span></span><span class="line"><span class="cl">https://github.com/owasp-modsecurity/ModSecurity-nginx
 </span></span><span class="line"><span class="cl">./configure --add-module<span class="o">=</span>/path/to/ModSecurity-nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#或</span>
 </span></span><span class="line"><span class="cl">./configure --add-dynamic-module<span class="o">=</span>/path/to/ModSecurity-nginx --with-compat
 </span></span></code></pre></td></tr></table>
 </div>
@@ -958,18 +961,29 @@
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl <span class="s1">&#39;http://localhost/?search=&lt;scritp&gt;alert(&#39;</span>xss<span class="s1">&#39;);&lt;/script&gt;&#39;</span> -I
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 靶场</span>
-</span></span><span class="line"><span class="cl">- https://github.com/zhuifengshaonianhanlu/pikachu
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="faq">FAQ</h2>
+</div><h2 id="靶场">靶场</h2>
+<ul>
+<li><a
+  href="https://github.com/zhuifengshaonianhanlu/pikachu"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/zhuifengshaonianhanlu/pikachu</a></li>
+</ul>
+<h2 id="faq">FAQ</h2>
 <h3 id="遇到curl链接错误">遇到curl链接错误</h3>
 <ul>
 <li>有多个curl版本，只保留一个。</li>
@@ -1041,7 +1055,7 @@
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/nginx-modsecurity/" data-title="nginx集成ModSecurity(未完)"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/nginx-modsecurity/" data-title="nginx集成ModSecurity"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>

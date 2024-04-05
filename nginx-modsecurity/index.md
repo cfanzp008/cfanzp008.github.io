@@ -1,8 +1,8 @@
-# nginx集成ModSecurity(未完)
+# nginx集成ModSecurity
 
 
 <!--more-->
-# nginx集成ModSecurity(未完)
+# nginx集成ModSecurity
 ## 准备工作
 - 下载nginx:1.24.0
 - 下载nginx-ModSecurity:v1.0.5
@@ -143,6 +143,7 @@ lrwxrwxrwx 1 root root      13 May 17  2023 libcurses.so -> libncurses.so
 #add-dynamic-module
 https://github.com/owasp-modsecurity/ModSecurity-nginx
 ./configure --add-module=/path/to/ModSecurity-nginx
+#或
 ./configure --add-dynamic-module=/path/to/ModSecurity-nginx --with-compat
 ```
 ## centos7下安装
@@ -150,10 +151,9 @@ https://github.com/owasp-modsecurity/ModSecurity-nginx
 ## 测试
 ```bash
 curl 'http://localhost/?search=<scritp>alert('xss');</script>' -I
-
+```
 ## 靶场
 - https://github.com/zhuifengshaonianhanlu/pikachu
-```
 
 ## FAQ
 ### 遇到curl链接错误
