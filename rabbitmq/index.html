@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
-	<meta name="generator" content="Hugo 0.121.1">
-    
-      <meta name="theme" content='FixIt v0.2.16-RC'>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Linux开发</title><meta name="author" content="cfanzp">
+    <title>Rabbitmq实战 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Linux开发">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="Linux开发" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='linux, python' /><meta itemprop="name" content="Rabbitmq实战">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-04-10T20:26:59+08:00" />
+<meta itemprop="dateModified" content="2024-04-10T20:26:59+08:00" />
+<meta itemprop="wordCount" content="289"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="linux,python," /><meta property="og:title" content="Rabbitmq实战" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/rabbitmq/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T20:26:59+08:00" />
+<meta property="article:modified_time" content="2024-04-10T20:26:59+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Linux开发"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Rabbitmq实战"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/rabbitmq/" /><link rel="prev" href="https://cfanzp.com/nginx-resolver/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "WebSite",
-    "url": "https:\/\/cfanzp.com\/","inLanguage": "zh-CN","author": {
+    "@type": "BlogPosting",
+    "headline": "Rabbitmq实战",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/rabbitmq\/"
+    },"genre": "posts","keywords": "linux, python","wordcount":  289 ,
+    "url": "https:\/\/cfanzp.com\/rabbitmq\/","datePublished": "2024-04-10T20:26:59+08:00","dateModified": "2024-04-10T20:26:59+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "cfanzp开发笔记","name": "Linux开发"
+      },"description": ""
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -603,18 +612,233 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page home posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="所有文章"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" /></a></div><h2 class="home-subtitle"><span class="d-none">开发笔记，个人生活随感</span>
-        <span id="typeit-profile-subtitle" class="typeit"></span></h2><div class="links"><a
-  href="https://www.zhihu.com/people/alex_hjkl"
-  
-    title="知乎"
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Rabbitmq实战</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/rabbitmq/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> rabbitmq</a></span></div>
+      <div class="post-meta-line"><span title=2024-04-10&#32;20:26:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 289 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Rabbitmq实战">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#测试消费端代码">测试消费端代码</a></li>
+    <li><a href="#测试生产者端代码">测试生产者端代码</a></li>
+    <li><a href="#rabbitmq-docker-安装">rabbitmq docker 安装</a></li>
+    <li><a href="#c中使用rabbitmq">c++中使用rabbitmq</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="rabbitmq实战">Rabbitmq实战</h1>
+<h2 id="背景">背景</h2>
+<ul>
+<li>最近有一个项目用到了rabbitmq,rabbbitmq的生产者由另外一批同学维护。我们这边负责消费端的业务逻辑。由于相关协议都是我们这边主导，为了测试方便，我自己尝试搭建了一套rabbitmq的测试环境。</li>
+</ul>
+<h2 id="测试消费端代码">测试消费端代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pika</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">credentials</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">PlainCredentials</span><span class="p">(</span><span class="s1">&#39;guest&#39;</span><span class="p">,</span> <span class="s1">&#39;guest&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parameters</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">ConnectionParameters</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">port</span><span class="o">=</span><span class="mi">5673</span><span class="p">,</span>  <span class="c1"># RabbitMQ 服务器的端口</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">virtual_host</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 RabbitMQ 服务器</span>
+</span></span><span class="line"><span class="cl"><span class="n">connection</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 RabbitMQ 服务器</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#connection = pika.BlockingConnection(pika.ConnectionParameters(&#39;localhost&#39;))</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 声明一个队列</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span><span class="n">auto_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x-message-ttl&#39;</span><span class="p">:</span> <span class="mi">10001</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34; [x] Received </span><span class="si">%r</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 告诉 RabbitMQ 使用 callback 来接收消息</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span><span class="o">.</span><span class="n">basic_consume</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="n">on_message_callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">auto_ack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39; [*] Waiting for messages. To exit press CTRL+C&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开始接收消息</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span><span class="o">.</span><span class="n">start_consuming</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="测试生产者端代码">测试生产者端代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pika</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 读取 JSON 文件内容</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data_str</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data_str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">credentials</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">PlainCredentials</span><span class="p">(</span><span class="s1">&#39;guest&#39;</span><span class="p">,</span> <span class="s1">&#39;guest&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parameters</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">ConnectionParameters</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">port</span><span class="o">=</span><span class="mi">5673</span><span class="p">,</span>  <span class="c1"># RabbitMQ 服务器的端口</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">virtual_host</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 RabbitMQ 服务器</span>
+</span></span><span class="line"><span class="cl"><span class="n">connection</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 RabbitMQ 服务器</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">channel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;channel:&#34;</span><span class="p">,</span><span class="n">channel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 声明一个队列</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span><span class="n">auto_delete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x-message-ttl&#39;</span><span class="p">:</span> <span class="mi">10001</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发送消息</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel_id</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 发布一条消息，指定 channel_id</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#curbody=&#39;{&#34;msgType&#34;:&#34;TestMessage&#34;,&#34;messageData&#34;:{&#34;messageTime&#34;:&#34;2024-04-10 11:24:22&#34;}}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">curbody_json</span><span class="o">=</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&#34;/tmp/test.json&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">curbody</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">curbody_json</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;curbody:&#34;</span><span class="p">,</span><span class="n">curbody</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">channel</span><span class="o">.</span><span class="n">basic_publish</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">routing_key</span><span class="o">=</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">curbody</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="n">pika</span><span class="o">.</span><span class="n">BasicProperties</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">delivery_mode</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># make message persistent</span>
+</span></span><span class="line"><span class="cl">        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;channel_id&#39;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">}))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34; [x] Sent &#39;Hello RabbitMQ!&#39;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rabbitmq-docker-安装">rabbitmq docker 安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker pull rabbitmq
+</span></span><span class="line"><span class="cl">docker run -d --hostname my-rabbit --name rabbit -p 15672:15672 -p 5673:5672 rabbitmq
+</span></span><span class="line"><span class="cl">docker ps
+</span></span><span class="line"><span class="cl"><span class="c1">#enter container</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it aeda0fc7b9b2 /bin/bash
+</span></span><span class="line"><span class="cl">rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
+</span></span><span class="line"><span class="cl"><span class="c1"># enter web</span>
+</span></span><span class="line"><span class="cl">http://10.168.27.133:15672/
+</span></span><span class="line"><span class="cl"><span class="c1"># pwd</span>
+</span></span><span class="line"><span class="cl">guest/guest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="c中使用rabbitmq">c++中使用rabbitmq</h2>
+<ul>
+<li><a
+  href="https://github.com/akalend/amqpcpp"
   
   
     
@@ -622,15 +846,13 @@
     target="_blank"
   
   
-    rel="external nofollow noopener noreferrer me"
+    rel="external nofollow noopener noreferrer"
   
   
   
-><i class="fa-brands fa-zhihu fa-fw" aria-hidden="true"></i>
-    </a><a
-  href="https://blog.csdn.net/cfanzp"
-  
-    title="CSDN"
+>https://github.com/akalend/amqpcpp</a></li>
+<li><a
+  href="https://github.com/bloomberg/rmqcpp"
   
   
     
@@ -638,93 +860,53 @@
     target="_blank"
   
   
-    rel="external nofollow noopener noreferrer me"
+    rel="external nofollow noopener noreferrer"
   
   
   
-><i data-svg-src="/svg/icons/csdn.min.svg" aria-hidden="true"></i>
-    </a><a
-  href="mailto:cfanzp@qq.com"
-  
-    title="Email"
-  
-  
-  
-    rel=" me"
+>https://github.com/bloomberg/rmqcpp</a></li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://blog.csdn.net/Relievedz/article/details/131081440"
   
   
+    
+    
+    target="_blank"
   
-><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
-    </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/shotcut/">视频剪辑软件shotcut基本用法</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-21 18:27:20'>发布于 <time datetime="2023-04-21">2023-04-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/shotcut/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%A7%86%E9%A2%91/">视频</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/go-pprof/">Go语言中pprof的使用</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-21 14:35:37'>发布于 <time datetime="2023-04-21">2023-04-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a>&ensp;<a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/go-pprof/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/unity3d-install/">mac m1 安装Unity</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-20 12:17:35'>发布于 <time datetime="2023-04-20">2023-04-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> unity</a>&ensp;<a href="/categories/game/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 游戏开发</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/unity3d-install/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unity/">unity</a>,&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/m1/">m1</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/chatgpt-baidu/">百度文心一言体验</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-17 20:37:15'>发布于 <time datetime="2023-04-17">2023-04-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/chatgpt-baidu/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/">文心一言</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/python_mail/">使用python开发一个简单的邮件发送脚本</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-17 17:32:19'>发布于 <time datetime="2023-04-17">2023-04-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/python_mail/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/mail/">mail</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/mac-vim-ctags/">mac中安ctags取代原有ctags解决Vim报错问题</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-04-15 22:06:46'>发布于 <time datetime="2023-04-15">2023-04-15</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/mac-vim-ctags/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/ctags/">ctags</a>,&nbsp;<a href="/tags/m1/">m1</a></div></div>
-</article>
-<ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/15/">15</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/16/">16</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/page/17/">17</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/18/">18</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/19/">19</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/42/">42</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>docker安装RabbitMQ教程</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-04-10&#32;20:26:59>更新于 2024-04-10&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/rabbitmq/" data-title="Rabbitmq实战"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/python/">python</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/nginx-resolver/" class="prev" rel="prev" title="nginx使用resolver"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>nginx使用resolver</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -752,5 +934,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/typeit.min.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"data":{"typeit-profile-subtitle":"开发笔记，个人生活随感"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00","typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-profile-subtitle":["typeit-profile-subtitle"]},"duration":-1,"speed":100}};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
