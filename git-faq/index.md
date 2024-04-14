@@ -106,6 +106,14 @@ File mode changed from 100755 to 100644
 git config --global --add core.filemode false
 ```
 
+### git 拉取代码提示：Permission denied
+- git 拉取代码提示：Permission denied (publickey,gssapi-with-mic,password)
+```
+ssh -vvv git@gitlab.com
+#更换密钥
+ssh-keygen -t ed25519
+```
+
 
 ## 参考
 - [git 删除历史已提交的大文件](https://blog.csdn.net/Eric_LH/article/details/103378283)
