@@ -78,7 +78,7 @@ channel.basic_publish(exchange='', routing_key='a1', body=curbody, properties=pi
         delivery_mode=2,  # make message persistent
         headers={'channel_id': channel_id}))
 
-print(" [x] Sent 'Hello RabbitMQ!'")
+print(" Sent 'RabbitMQ msg!'")
 
 # 关闭连接
 connection.close()
@@ -93,7 +93,7 @@ docker ps
 docker exec -it aeda0fc7b9b2 /bin/bash
 rabbitmq-plugins enable rabbitmq_management
 # enter web
-http://10.168.27.133:15672/
+http://192.168.2.100:15672/
 # pwd
 guest/guest
 ```

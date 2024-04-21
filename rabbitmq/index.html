@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='linux, python' /><meta itemprop="name" content="Rabbitmq实战">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-04-10T20:26:59+08:00" />
 <meta itemprop="dateModified" content="2024-04-10T20:26:59+08:00" />
-<meta itemprop="wordCount" content="289"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="288"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="linux,python," /><meta property="og:title" content="Rabbitmq实战" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/rabbitmq\/"
-    },"genre": "posts","keywords": "linux, python","wordcount":  289 ,
+    },"genre": "posts","keywords": "linux, python","wordcount":  288 ,
     "url": "https:\/\/cfanzp.com\/rabbitmq\/","datePublished": "2024-04-10T20:26:59+08:00","dateModified": "2024-04-10T20:26:59+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -626,7 +626,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/rabbitmq/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> rabbitmq</a></span></div>
-      <div class="post-meta-line"><span title=2024-04-10&#32;20:26:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 289 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Rabbitmq实战">
+      <div class="post-meta-line"><span title=2024-04-10&#32;20:26:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 288 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Rabbitmq实战">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -802,7 +802,7 @@
 </span></span><span class="line"><span class="cl">        <span class="n">delivery_mode</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># make message persistent</span>
 </span></span><span class="line"><span class="cl">        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;channel_id&#39;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">}))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34; [x] Sent &#39;Hello RabbitMQ!&#39;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34; Sent &#39;RabbitMQ msg!&#39;&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 关闭连接</span>
 </span></span><span class="line"><span class="cl"><span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -830,7 +830,7 @@
 </span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it aeda0fc7b9b2 /bin/bash
 </span></span><span class="line"><span class="cl">rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
 </span></span><span class="line"><span class="cl"><span class="c1"># enter web</span>
-</span></span><span class="line"><span class="cl">http://10.168.27.133:15672/
+</span></span><span class="line"><span class="cl">http://192.168.2.100:15672/
 </span></span><span class="line"><span class="cl"><span class="c1"># pwd</span>
 </span></span><span class="line"><span class="cl">guest/guest
 </span></span></code></pre></td></tr></table>

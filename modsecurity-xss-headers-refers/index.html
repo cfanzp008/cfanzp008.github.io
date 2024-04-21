@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
-	<meta name="generator" content="Hugo 0.121.1">
-    
-      <meta name="theme" content='FixIt v0.2.16-RC'>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Linux开发</title><meta name="author" content="cfanzp">
+    <title>Modsecurity防护Headers Referer XSS攻击 - Linux开发</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Linux开发">
-<meta itemprop="description" content="cfanzp开发笔记"><meta property="og:title" content="Linux开发" />
-<meta property="og:description" content="cfanzp开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzp开发笔记" /><meta name="keywords" content='modsecurity' /><meta itemprop="name" content="Modsecurity防护Headers Referer XSS攻击">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-04-19T21:17:11+08:00" />
+<meta itemprop="dateModified" content="2023-04-19T21:17:11+08:00" />
+<meta itemprop="wordCount" content="12"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="modsecurity," /><meta property="og:title" content="Modsecurity防护Headers Referer XSS攻击" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/modsecurity-xss-headers-refers/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-19T21:17:11+08:00" />
+<meta property="article:modified_time" content="2023-04-19T21:17:11+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Linux开发"/>
-<meta name="twitter:description" content="cfanzp开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Modsecurity防护Headers Referer XSS攻击"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="Linux开发">
 <meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Linux开发">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Linux开发"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/modsecurity-xss-headers-refers/" /><link rel="prev" href="https://cfanzp.com/chatgpt-baidu/" /><link rel="next" href="https://cfanzp.com/unity3d-install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "WebSite",
-    "url": "https:\/\/cfanzp.com\/","inLanguage": "zh-CN","author": {
+    "@type": "BlogPosting",
+    "headline": "Modsecurity防护Headers Referer XSS攻击",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/modsecurity-xss-headers-refers\/"
+    },"genre": "posts","keywords": "modsecurity","wordcount":  12 ,
+    "url": "https:\/\/cfanzp.com\/modsecurity-xss-headers-refers\/","datePublished": "2023-04-19T21:17:11+08:00","dateModified": "2023-04-19T21:17:11+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "cfanzp开发笔记","name": "Linux开发"
+      },"description": ""
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -603,128 +612,79 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page home posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="所有文章"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" /></a></div><h2 class="home-subtitle"><span class="d-none">Linux开发笔记</span>
-        <span id="typeit-profile-subtitle" class="typeit"></span></h2><div class="links"><a
-  href="https://www.zhihu.com/people/alex_hjkl"
-  
-    title="知乎"
-  
-  
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
     
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer me"
-  
-  
-  
-><i class="fa-brands fa-zhihu fa-fw" aria-hidden="true"></i>
-    </a><a
-  href="https://blog.csdn.net/cfanzp"
-  
-    title="CSDN"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer me"
-  
-  
-  
-><i data-svg-src="/svg/icons/csdn.min.svg" aria-hidden="true"></i>
-    </a><a
-  href="mailto:cfanzp@qq.com"
-  
-    title="Email"
-  
-  
-  
-    rel=" me"
-  
-  
-  
-><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
-    </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/xiaomi-box-4se/">小米盒子4se精简笔记</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-01-11 09:22:19'>发布于 <time datetime="2023-01-11">2023-01-11</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a>&ensp;<a href="/categories/android/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> android</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/xiaomi-box-4se/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/">电视盒子</a>,&nbsp;<a href="/tags/android/">android</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/huawei-ec6108v9/">华为悦盒Ec6108v9刷机笔记</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2023-01-06 15:28:52'>发布于 <time datetime="2023-01-06">2023-01-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a>&ensp;<a href="/categories/android/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> android</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/huawei-ec6108v9/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90/">电视盒子</a>,&nbsp;<a href="/tags/android/">android</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/nvim/">nvim的安装与使用</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-12-29 09:14:43'>发布于 <time datetime="2022-12-29">2022-12-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/nvim/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/nvim/">nvim</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/ubuntu-password/">ubuntu 禁用密码登录</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-12-28 11:08:41'>发布于 <time datetime="2022-12-28">2022-12-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/ubuntu-password/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ubuntu/">ubuntu</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/linux-homebrew/">Linux如何安装Homebrew?</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-12-27 15:23:18'>发布于 <time datetime="2022-12-27">2022-12-27</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/centos/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> centos</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/linux-homebrew/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/homebrew/">homebrew</a>,&nbsp;<a href="/tags/brew/">brew</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/skynet-ubuntu/">在ubuntu环境下搭建skynet运行环境</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-12-23 18:23:48'>发布于 <time datetime="2022-12-23">2022-12-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/skynet-ubuntu/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
-</article>
-<ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/24/">24</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/25/">25</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/page/26/">26</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/27/">27</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/28/">28</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/page/42/">42</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Modsecurity防护Headers Referer XSS攻击</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/modsecurity/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> modsecurity</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a>&ensp;<a href="/categories/network-security/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 网络安全</a></span></div>
+      <div class="post-meta-line"><span title=2023-04-19&#32;21:17:11><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-19">2023-04-19</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 12 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Modsecurity防护Headers Referer XSS攻击">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#modsecurity防护xss攻击">modsecurity防护XSS攻击</a></li>
+    <li><a href="#测试">测试</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="modsecurity防护headers-referer-xss攻击">Modsecurity防护Headers Referer XSS攻击</h1>
+<h2 id="modsecurity防护xss攻击">modsecurity防护XSS攻击</h2>
+<ul>
+<li>modsecurity可以防护请求中Referer字段中包含XSS攻击。</li>
+</ul>
+<h2 id="测试">测试</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl &#39;http://localhost/&#39; -H &#39;Referer:http://localhost/?search=&lt;scritp&gt;alert(&#39;xss&#39;);&lt;/script&gt;&#39; -I
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-04-19&#32;21:17:11>更新于 2023-04-19&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/modsecurity-xss-headers-refers/" data-title="Modsecurity防护Headers Referer XSS攻击"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/modsecurity/">modsecurity</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/chatgpt-baidu/" class="prev" rel="prev" title="百度文心一言体验"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>百度文心一言体验</a>
+      <a href="/unity3d-install/" class="next" rel="next" title="mac m1 安装Unity">mac m1 安装Unity<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -752,5 +712,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/typeit/typeit.min.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"data":{"typeit-profile-subtitle":"Linux开发笔记"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00","typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"typeit-profile-subtitle":["typeit-profile-subtitle"]},"duration":-1,"speed":100}};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
