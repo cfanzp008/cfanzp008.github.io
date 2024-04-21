@@ -147,6 +147,10 @@ https://github.com/owasp-modsecurity/ModSecurity-nginx
 ./configure --add-dynamic-module=/path/to/ModSecurity-nginx --with-compat
 ```
 ## centos7下安装
+- http://www.modsecurity.cn/practice/post/11.html
+
+## docker安装modsecurity
+- https://www.cnblogs.com/netcore3/p/17315736.html
 
 ## 测试
 ```bash
