@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>tmux基本配置及vim适配 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>tmux基本配置及vim适配 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
 下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !" /><meta name="keywords" content='linux, tmux, terminal, vim' /><meta itemprop="name" content="tmux基本配置及vim适配">
@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="tmux基本配置及vim适配"/>
 <meta name="twitter:description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
 下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !"/>
-<meta name="application-name" content="Linux开发">
-<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="个人Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/devtools-tmux/" /><link rel="prev" href="https://cfanzp.com/git-base/" /><link rel="next" href="https://cfanzp.com/mysql-/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -49,14 +49,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发"><img
+      <a href="/" title="个人Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发"
-    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    alt="个人Linux开发笔记"
+    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发"><img
+        <a href="/" title="个人Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

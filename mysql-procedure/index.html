@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>mysql存储过程 - Linux开发</title><meta name="author" content="cfanzp">
+    <title>mysql存储过程 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
 存储过程名为:p_login 存储过程有3个参数:a_platform,a_account,a_password 1 2 3 4 5 6 7 8 9 10 CREATE DEFINER=`root`@`%` PROCEDURE `p_login`(in a_platform int, in a_account varchar(64), in a_password varchar(32)) begin SELECT *,userid as uid FROM tb_account WHERE account=a_account AND platform=a_platform AND `password`=a_password AND nullity = &#39;0&#39; AND android = &#39;0&#39;; end 如何调用存储过程? 1 CALL p_login(1,&#34;aaa&#34;,&#34;password&#34;); 存储过程中常用的函数有哪些？ 获取当前时间搓 1 current_timestamp() 获取时间 1 NOW() 获取当前日期 1 curdate() 获取最后一个标识值 在一条 INSERT、SELECT INTO 或大容量复制语句完成后，@@IDENTITY 中包含语句生成的最后一个标识值 1 select @@IDENTITY 获取今天，昨天，前天的当前时间 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 CREATE DEFINER=`root`@`%` PROCEDURE `p_demo_get_daily_login_report`(IN `a_step` int) BEGIN DECLARE start_day TIMESTAMP; DECLARE end_day TIMESTAMP; # a_step=0 今天 # a_step=1 昨天 # a_step=2 前天 SET start_day = (CAST(SYSDATE()AS DATE) - INTERVAL a_step DAY); SET end_day = (CAST(SYSDATE()AS DATE) &#43; INTERVAL 1 DAY - INTERVAL a_step DAY); select a." /><meta name="keywords" content='mysql' /><meta itemprop="name" content="mysql存储过程">
@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="mysql存储过程"/>
 <meta name="twitter:description" content="mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
 存储过程名为:p_login 存储过程有3个参数:a_platform,a_account,a_password 1 2 3 4 5 6 7 8 9 10 CREATE DEFINER=`root`@`%` PROCEDURE `p_login`(in a_platform int, in a_account varchar(64), in a_password varchar(32)) begin SELECT *,userid as uid FROM tb_account WHERE account=a_account AND platform=a_platform AND `password`=a_password AND nullity = &#39;0&#39; AND android = &#39;0&#39;; end 如何调用存储过程? 1 CALL p_login(1,&#34;aaa&#34;,&#34;password&#34;); 存储过程中常用的函数有哪些？ 获取当前时间搓 1 current_timestamp() 获取时间 1 NOW() 获取当前日期 1 curdate() 获取最后一个标识值 在一条 INSERT、SELECT INTO 或大容量复制语句完成后，@@IDENTITY 中包含语句生成的最后一个标识值 1 select @@IDENTITY 获取今天，昨天，前天的当前时间 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 CREATE DEFINER=`root`@`%` PROCEDURE `p_demo_get_daily_login_report`(IN `a_step` int) BEGIN DECLARE start_day TIMESTAMP; DECLARE end_day TIMESTAMP; # a_step=0 今天 # a_step=1 昨天 # a_step=2 前天 SET start_day = (CAST(SYSDATE()AS DATE) - INTERVAL a_step DAY); SET end_day = (CAST(SYSDATE()AS DATE) &#43; INTERVAL 1 DAY - INTERVAL a_step DAY); select a."/>
-<meta name="application-name" content="Linux开发">
-<meta name="apple-mobile-web-app-title" content="Linux开发"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="个人Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/mysql-procedure/" /><link rel="prev" href="https://cfanzp.com/edit-vscode/" /><link rel="next" href="https://cfanzp.com/lua-debug/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -49,14 +49,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发"><img
+      <a href="/" title="个人Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发"
-    title="Linux开发" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    alt="个人Linux开发笔记"
+    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发"><img
+        <a href="/" title="个人Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
