@@ -7,6 +7,7 @@
 - 下载nginx:1.24.0
 - 下载nginx-ModSecurity:v1.0.5
 - 下载ModSecurity:v3
+- 下载ModSecurity核心规则集
 ```
 git clone https://github.com/SpiderLabs/ModSecurity
 cd ModSecurity
@@ -15,6 +16,7 @@ git submodule init
 git submodule update
 ./build.sh
 ./configure && make && make install
+git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git /usr/local/nginx/conf/owasp-crs
 ```
 
 - coreruleset v3.3.2
