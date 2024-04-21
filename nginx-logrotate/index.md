@@ -16,6 +16,10 @@
 kill -USR1 `cat /path/nginx/logs/nginx.pid`
 ```
 
+## 日志还有哪些存储方案？
+- 最近查资料的时候了解到一个轻量级的日志存储方案PLG(Promtail+Loki+Grafana)
+- 参考：https://blog.csdn.net/AndCo/article/details/128949093
+
 
 ---
 

@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='nginx' /><meta itemprop="name" content="Nginx切割日志后日志不正常写入？">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-03-20T20:17:34+08:00" />
 <meta itemprop="dateModified" content="2024-03-20T20:17:34+08:00" />
-<meta itemprop="wordCount" content="17"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="20"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="nginx," /><meta property="og:title" content="Nginx切割日志后日志不正常写入？" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/nginx-logrotate\/"
-    },"genre": "posts","keywords": "nginx","wordcount":  17 ,
+    },"genre": "posts","keywords": "nginx","wordcount":  20 ,
     "url": "https:\/\/cfanzp.com\/nginx-logrotate\/","datePublished": "2024-03-20T20:17:34+08:00","dateModified": "2024-03-20T20:17:34+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -626,7 +626,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/log/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> log</a></span></div>
-      <div class="post-meta-line"><span title=2024-03-20&#32;20:17:34><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-20">2024-03-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 17 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Nginx切割日志后日志不正常写入？">
+      <div class="post-meta-line"><span title=2024-03-20&#32;20:17:34><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-20">2024-03-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 20 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Nginx切割日志后日志不正常写入？">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -639,6 +639,7 @@
     <li><a href="#需求">需求</a></li>
     <li><a href="#切割后日志会丢失">切割后日志会丢失</a></li>
     <li><a href="#目前的方案">目前的方案</a></li>
+    <li><a href="#日志还有哪些存储方案">日志还有哪些存储方案？</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -676,7 +677,11 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kill -USR1 `cat /path/nginx/logs/nginx.pid`
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="日志还有哪些存储方案">日志还有哪些存储方案？</h2>
+<ul>
+<li>最近查资料的时候了解到一个轻量级的日志存储方案PLG(Promtail+Loki+Grafana)</li>
+<li>参考：https://blog.csdn.net/AndCo/article/details/128949093</li>
+</ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
