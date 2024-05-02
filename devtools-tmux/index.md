@@ -83,6 +83,7 @@ root@vpps:~/.tmux/plugins# cat ~/.tmux.conf
 set -g default-terminal "screen-256color"
 #-- base settings --#
 set -g mode-keys vi
+set-option -g escape-time 50
 
 set-environment -g EDITOR nvim
 
