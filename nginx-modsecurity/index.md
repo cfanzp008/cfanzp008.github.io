@@ -3,7 +3,7 @@
 
 <!--more-->
 # nginx集成ModSecurity
-## 准备工作
+## 1. 准备工作
 - 下载nginx:1.24.0
 - 下载nginx-ModSecurity:v1.0.5
 - 下载ModSecurity:v3
@@ -22,7 +22,7 @@ git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git /usr/local/ngi
 - coreruleset v3.3.2
 - [modsecurity中文手册](http://www.modsecurity.cn/chm/ConfigurationDirectives.html)
 
-## ubuntu20.04下安装
+## 2. ubuntu20.04下安装
 - 下载
 ```bash
 git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity /usr/local/src/ModSecurity/
@@ -148,29 +148,67 @@ https://github.com/owasp-modsecurity/ModSecurity-nginx
 #或
 ./configure --add-dynamic-module=/path/to/ModSecurity-nginx --with-compat
 ```
-## centos7下安装
+## 3. centos7下安装
 - http://www.modsecurity.cn/practice/post/11.html
 
-## docker安装modsecurity
+## 4. docker安装modsecurity
 - https://www.cnblogs.com/netcore3/p/17315736.html
 
-## 测试
+## 5. 测试
 ```bash
 curl 'http://localhost/?search=<scritp>alert('xss');</script>' -I
 ```
-## 靶场
+
+## 6. 审计日志配置
+- 日志打印到/var/log/nginx/modsecurity中
+- 日志打印到多个文件
+```bash
+SecAuditEngine RelevantOnly
+#SecAuditLogRelevantStatus "^(?:5|4(?!04))"
+SecAuditLogRelevantStatus "^(?:6(?!04))"
+
+# Log everything we know about a transaction.
+#SecAuditLogParts ABIJDEFHZ
+#SecAuditLogParts ABCDEFHZ
+SecAuditLogParts ABCDEFGHIJKZ
+
+# Use a single file for logging. This is much easier to look at, but
+# assumes that you will use the audit log only ocassionally.
+#
+#SecAuditLogType Serial
+SecAuditLogType Concurrent
+#SecAuditLog /var/log/modsec_audit.log
+#SecAuditLog /var/log/nginx/modsecurity/modsec_audit.log
+SecAuditLogFormat JSON
+
+# Specify the path for concurrent audit logging.
+#SecAuditLogStorageDir /opt/modsecurity/var/audit/
+SecAuditLogStorageDir /var/log/nginx/modsecurity/
+```
+
+## 7. 靶场
 - https://github.com/zhuifengshaonianhanlu/pikachu
 
-## FAQ
+## 8. FAQ
 ### 遇到curl链接错误
 - 有多个curl版本，只保留一个。
 
+### modsecurity配置的审计日志不打印。
+- 配置了modsecurity审计日志后， 如果不创建目录，modsecurity会自动创建目录。
+- 但是modsecurity创建的目录可能没有权限，这点有点坑。
+- 解决方法是手动给创建的目录设置权限，例如：
+```bash
+mkdir /var/log/nginx/modsecurity
+chmod +777 /var/log/nginx/modsecurity
+```
 
-## 参考
+
+## 9. 参考
 - https://zhuanlan.zhihu.com/p/415862524
 - https://www.cnblogs.com/miracle-luna/p/17204007.html
 - https://blog.csdn.net/ilqgffvramusm2864/article/details/107663339
 - https://www.freebuf.com/sectool/274495.html
+- http://www.modsecurity.cn/practice/post/4.html
 
 
 ---

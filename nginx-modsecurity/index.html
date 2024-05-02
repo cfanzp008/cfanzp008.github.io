@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='modsecurity, nginx' /><meta itemprop="name" content="nginx集成ModSecurity">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-01-30T22:26:50+08:00" />
 <meta itemprop="dateModified" content="2024-01-30T22:26:50+08:00" />
-<meta itemprop="wordCount" content="737"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="852"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="modsecurity,nginx," /><meta property="og:title" content="nginx集成ModSecurity" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/nginx-modsecurity\/"
-    },"genre": "posts","keywords": "modsecurity, nginx","wordcount":  737 ,
+    },"genre": "posts","keywords": "modsecurity, nginx","wordcount":  852 ,
     "url": "https:\/\/cfanzp.com\/nginx-modsecurity\/","datePublished": "2024-01-30T22:26:50+08:00","dateModified": "2024-01-30T22:26:50+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a>&ensp;<a href="/categories/network-security/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 网络安全</a></span></div>
-      <div class="post-meta-line"><span title=2024-01-30&#32;22:26:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 737 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="nginx集成ModSecurity">
+      <div class="post-meta-line"><span title=2024-01-30&#32;22:26:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-30">2024-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 852 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="nginx集成ModSecurity">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -639,18 +639,20 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#准备工作">准备工作</a></li>
-    <li><a href="#ubuntu2004下安装">ubuntu20.04下安装</a></li>
-    <li><a href="#centos7下安装">centos7下安装</a></li>
-    <li><a href="#docker安装modsecurity">docker安装modsecurity</a></li>
-    <li><a href="#测试">测试</a></li>
-    <li><a href="#靶场">靶场</a></li>
-    <li><a href="#faq">FAQ</a>
+    <li><a href="#1-准备工作">1. 准备工作</a></li>
+    <li><a href="#2-ubuntu2004下安装">2. ubuntu20.04下安装</a></li>
+    <li><a href="#3-centos7下安装">3. centos7下安装</a></li>
+    <li><a href="#4-docker安装modsecurity">4. docker安装modsecurity</a></li>
+    <li><a href="#5-测试">5. 测试</a></li>
+    <li><a href="#6-审计日志配置">6. 审计日志配置</a></li>
+    <li><a href="#7-靶场">7. 靶场</a></li>
+    <li><a href="#8-faq">8. FAQ</a>
       <ul>
         <li><a href="#遇到curl链接错误">遇到curl链接错误</a></li>
+        <li><a href="#modsecurity配置的审计日志不打印">modsecurity配置的审计日志不打印。</a></li>
       </ul>
     </li>
-    <li><a href="#参考">参考</a></li>
+    <li><a href="#9-参考">9. 参考</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -659,7 +661,7 @@
       
       
     ><h1 id="nginx集成modsecurity">nginx集成ModSecurity</h1>
-<h2 id="准备工作">准备工作</h2>
+<h2 id="1-准备工作">1. 准备工作</h2>
 <ul>
 <li>下载nginx:1.24.0</li>
 <li>下载nginx-ModSecurity:v1.0.5</li>
@@ -705,7 +707,7 @@
   
 >modsecurity中文手册</a></li>
 </ul>
-<h2 id="ubuntu2004下安装">ubuntu20.04下安装</h2>
+<h2 id="2-ubuntu2004下安装">2. ubuntu20.04下安装</h2>
 <ul>
 <li>下载</li>
 </ul>
@@ -963,7 +965,7 @@
 </span></span><span class="line"><span class="cl">./configure --add-dynamic-module<span class="o">=</span>/path/to/ModSecurity-nginx --with-compat
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="centos7下安装">centos7下安装</h2>
+</div><h2 id="3-centos7下安装">3. centos7下安装</h2>
 <ul>
 <li><a
   href="http://www.modsecurity.cn/practice/post/11.html"
@@ -980,7 +982,7 @@
   
 >http://www.modsecurity.cn/practice/post/11.html</a></li>
 </ul>
-<h2 id="docker安装modsecurity">docker安装modsecurity</h2>
+<h2 id="4-docker安装modsecurity">4. docker安装modsecurity</h2>
 <ul>
 <li><a
   href="https://www.cnblogs.com/netcore3/p/17315736.html"
@@ -997,7 +999,7 @@
   
 >https://www.cnblogs.com/netcore3/p/17315736.html</a></li>
 </ul>
-<h2 id="测试">测试</h2>
+<h2 id="5-测试">5. 测试</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1006,7 +1008,60 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl <span class="s1">&#39;http://localhost/?search=&lt;scritp&gt;alert(&#39;</span>xss<span class="s1">&#39;);&lt;/script&gt;&#39;</span> -I
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="靶场">靶场</h2>
+</div><h2 id="6-审计日志配置">6. 审计日志配置</h2>
+<ul>
+<li>日志打印到/var/log/nginx/modsecurity中</li>
+<li>日志打印到多个文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SecAuditEngine RelevantOnly
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLogRelevantStatus &#34;^(?:5|4(?!04))&#34;</span>
+</span></span><span class="line"><span class="cl">SecAuditLogRelevantStatus <span class="s2">&#34;^(?:6(?!04))&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Log everything we know about a transaction.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLogParts ABIJDEFHZ</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLogParts ABCDEFHZ</span>
+</span></span><span class="line"><span class="cl">SecAuditLogParts ABCDEFGHIJKZ
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Use a single file for logging. This is much easier to look at, but</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># assumes that you will use the audit log only ocassionally.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLogType Serial</span>
+</span></span><span class="line"><span class="cl">SecAuditLogType Concurrent
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLog /var/log/modsec_audit.log</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLog /var/log/nginx/modsecurity/modsec_audit.log</span>
+</span></span><span class="line"><span class="cl">SecAuditLogFormat JSON
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Specify the path for concurrent audit logging.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SecAuditLogStorageDir /opt/modsecurity/var/audit/</span>
+</span></span><span class="line"><span class="cl">SecAuditLogStorageDir /var/log/nginx/modsecurity/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-靶场">7. 靶场</h2>
 <ul>
 <li><a
   href="https://github.com/zhuifengshaonianhanlu/pikachu"
@@ -1023,12 +1078,28 @@
   
 >https://github.com/zhuifengshaonianhanlu/pikachu</a></li>
 </ul>
-<h2 id="faq">FAQ</h2>
+<h2 id="8-faq">8. FAQ</h2>
 <h3 id="遇到curl链接错误">遇到curl链接错误</h3>
 <ul>
 <li>有多个curl版本，只保留一个。</li>
 </ul>
-<h2 id="参考">参考</h2>
+<h3 id="modsecurity配置的审计日志不打印">modsecurity配置的审计日志不打印。</h3>
+<ul>
+<li>配置了modsecurity审计日志后， 如果不创建目录，modsecurity会自动创建目录。</li>
+<li>但是modsecurity创建的目录可能没有权限，这点有点坑。</li>
+<li>解决方法是手动给创建的目录设置权限，例如：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir /var/log/nginx/modsecurity
+</span></span><span class="line"><span class="cl">chmod +777 /var/log/nginx/modsecurity
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-参考">9. 参考</h2>
 <ul>
 <li><a
   href="https://zhuanlan.zhihu.com/p/415862524"
@@ -1086,6 +1157,20 @@
   
   
 >https://www.freebuf.com/sectool/274495.html</a></li>
+<li><a
+  href="http://www.modsecurity.cn/practice/post/4.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>http://www.modsecurity.cn/practice/post/4.html</a></li>
 </ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">

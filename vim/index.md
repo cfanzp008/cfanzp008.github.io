@@ -46,7 +46,7 @@ graph LR
   lazy.nvim-->nvim-lspconfig
   lazy.nvim-->neo-tree
   lazy.nvim-->telescope
-  lazy.nvim-->tagbar
+  lazy.nvim-->Vista-替代tagbar
   lazy.nvim-->molokai
   lazy.nvim-->tabular
   lazy.nvim-->vim-surround

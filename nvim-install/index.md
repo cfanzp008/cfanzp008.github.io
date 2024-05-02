@@ -125,11 +125,11 @@ diagnostics = {
     -- Get the language server to recognize the `vim` global
         globals = {'vim'},
 },
-    ```
+```
 
 - GLIB NOT FOUND
-- 打开nvim提示:
-- 这个问题需要安装对应的GLIBC库，安装过程中可能又会遇到其它问题。如果遇到这个问题建议更换安装方法。
+  - 打开nvim提示:
+  - 这个问题需要安装对应的GLIBC库，安装过程中可能又会遇到其它问题。如果遇到这个问题建议更换安装方法。
 ```bash
 #./nvim: /lib64/libc.so.6: version GLIBC_2.28 not found
 #./nvim: /lib64/libm.so.6: version GLIBC_2.29 not found
