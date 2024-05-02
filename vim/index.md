@@ -80,7 +80,7 @@ graph LR
 ## Vim学习笔记
 - [vim实用技巧学习笔记](/book/vim/)
 - [vim使用笔记](/categories/vim/)
-- [nvim安装与使用](/nvim/)
+- [nvim安装与使用](/nvim-install/)
 
 
 ## Vim资源

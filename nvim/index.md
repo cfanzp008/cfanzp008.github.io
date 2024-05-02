@@ -128,6 +128,15 @@ yum install python3-devel
 shift + 鼠标是一种解决方案
 ```
 
+- vim配置文件提示：undefiend global 'vim'
+```bash
+vim /root/.config/nvim/lua/plugins/plugin-nvim-lspconfig.lua
+diagnostics = {
+    -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+},
+    ```
+
 
 ---
 
