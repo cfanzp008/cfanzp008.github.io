@@ -16,6 +16,11 @@ dnsmasq是一个轻量级的、易于配置的DNS（Domain Name System）和DHCP
 sudo apt-get install dnsmasq
 ```
 
+## dnsmasq配置文件
+```bash
+/etc/dnsmasq.conf
+```
+
 ### 源码下载地址
 - https://thekelleys.org.uk/dnsmasq/
 
