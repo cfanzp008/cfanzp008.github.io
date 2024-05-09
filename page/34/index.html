@@ -660,6 +660,21 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/git-faq/">git常见问题</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 08:44:11'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/git/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> git</a></span></div><div class="content">git常见问题 FAQ git如何清除提交记录？ 项目如果走过了一个很长的开发周期以后，提交历史会很长，如果提交记录不重要，这种情况下可以删除掉历时记录。
+创建一个干净的分支 使用--orphan参数 添加当前的所有文件 提交注释 删除原来的分支master 把当前分支重命名为master 把当前分支强行推送到远端 1 2 3 4 5 6 git checkout --orphan test git add . git commit -m &#34;init&#34; git branch -D master git branch -m master git push -f origin master git如何查看空间占用? 1 2 git count-objects -v # 查看 git 相关文件占用的空间 du -sh .git # 查看 .git 文件夹占用磁盘空间 如何查找git提交中涉及的大文件? 1 git rev-list --objects --all | grep &#34;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk &#39;{print$1}&#39;)&#34; 如何删除大文件?</div><div class="post-footer">
+    <a href="/git-faq/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/gitlab-config/">解决gitlab占用内存太大的问题</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-22 14:06:24'>发布于 <time datetime="2022-08-22">2022-08-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">解决gitlab占用内存太大的问题 最近gitlab服务器出现了占用内存太大的问题。虚拟机里的linux系统内存&gt;4G都被几乎用完了。
+网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
+配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 </div><div class="post-footer">
+    <a href="/gitlab-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gitlab/">gitlab</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/cpu_ttt/">cpu天梯图</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-20 16:45:20'>发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content">cpu天梯图 在购买电脑的时候不知道怎么选电脑? 选电脑选好主要的cpu,显卡，主板等就不会吃大亏。这里给大家展示一下本人在百度贴吧找到的今年7月分最新的cpu天梯图。
@@ -688,29 +703,6 @@ cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-19 13:54:38'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">常用工具下载地址汇总 在线工具 tool.lu: https://tool.lu 智能命名工具 CODELF: https://unbug.github.io/codelf ssh远程连接 WindTerm: https://github.com/kingToolbox/WindTerm/releases git: https://git-scm.com/download/ windows版本的安装后会自带ssh客户端，配合.ssh/文件夹下的config文件使用也是非常方便的。 Xshell: https://www.xshell.com/zh/xshell/ git git: https://git-scm.com/download/ linux常用软件 截图工具flameshot: https://github.com/flameshot-org/flameshot wechat: https://www.ubuntukylin.com/applications/106-cn.html 飞书: https://www.feishu.cn/download 有道云笔记: https://note.youdao.com/download.html 流程图软件Dia: https://zhuanlan.zhihu.com/p/366116011 wps: https://www.wps.cn/product/wpslinux 安装:sudo apt install ./wps-office_11.1.0.11664_amd64.deb 字体问题: https://zhuanlan.zhihu.com/p/145114644 字体下载,链接: https://pan.baidu.com/s/18PWLr_t6Lub9PoEg9zUSzg 提取码: isiz linux开发工具 httpperf: https://github.com/httperf/httperf 教程: https://www.cnblogs.com/cllovewxq/p/5533487.html 搜索资源工具 Bing: https://cn.bing.com/ DuckDuckGo: https://duckduckgo.com/ 不搜集用户信息，没有广告 Stack Overflow: https://stackoverflow.com/ 技术问题可以直接查这个网站 Gitlogs: https://www.gitlogs.com/ 搜索GitHub项目的搜索引擎 jiumo search: https://www.jiumodiary.com/ 文档搜索引擎 鸠摩搜书 pexels: https://www.pexels.com/ 高质量的图片网站。 在线画图,ProcessOn: https://www.processon.com/ draw.io: https://app.</div><div class="post-footer">
     <a href="/tools_download/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/markdown/">Markdown需要掌握的基础</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-17 08:22:14'>发布于 <time datetime="2022-08-17">2022-08-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
-标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
-1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
-del line
-图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
-公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
-cfanzp主页1
-列表 无序列表 1 2 - item1 - item2 效果:
-item1 item2 有序列表 1 2 1.</div><div class="post-footer">
-    <a href="/markdown/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/markdown/">markdown</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/weak-net/">弱网测试环境的搭建</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-12 08:46:30'>发布于 <time datetime="2022-08-12">2022-08-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">弱网测试环境的搭建 最近有一个线上项目反馈在弱网环境下，容易掉线。我们自己测试的时候网络环境都还比较好，想模拟一下弱网环境，这里介绍一下几个方案。
-路由器限速 路由器可以直接对某个设备进行限速，这个登录路由器就可以配置了，方法比较简单，这里就不赘述了。
-chrome开发者工具 chrome开发者工具自带网络限速功能，可以限制速度,可以自定义各种网络带宽，使用比较方便。
-使用Charles设置代理限速 这种方法配置起来相比前面2种情况，稍微麻烦一些,另外有一个缺点，websockt限速好像没办法设置(Charles 4.6.2)。</div><div class="post-footer">
-    <a href="/weak-net/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -742,7 +734,7 @@ chrome开发者工具 chrome开发者工具自带网络限速功能，可以限�
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/43/">43</a>
+            <a href="/page/44/">44</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
