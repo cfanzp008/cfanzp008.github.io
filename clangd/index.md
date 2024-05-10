@@ -83,7 +83,7 @@ sudo apt install clang
 clang --version
 ```
 
-# clangd vim插件vim-lsp
+## clangd vim插件vim-lsp
 ```
 Plug 'prabirshrestha/vim-lsp'
 " 启用 vim-lsp
@@ -106,6 +106,24 @@ autocmd FileType python setlocal omnifunc=lsp#complete
 autocmd FileType nvim setlocal omnifunc=lsp#complete
 autocmd FileType lua setlocal omnifunc=lsp#complete
 ```
+
+## nvim-clangd
+- https://www.cnblogs.com/yann-qu/p/17639175.html
+
+## 如何配置.clangd?
+- 参考：https://zhuanlan.zhihu.com/p/520720943
+
+```bash
+# .clangd
+CompileFlags:
+  Add:
+    - "-isystem"
+    - "./test_include/"
+```
+
+
+## 常见问题
+- 最近在一台电脑上安装的nvim代码诊断报错,还没定位原因，大概是配置原因clangd找不到头文件的位置,这里先记录一下。
 
 
 ---
