@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='gdb, c&#43;&#43;' /><meta itemprop="name" content="gdb">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2020-01-30T13:22:35+08:00" />
 <meta itemprop="dateModified" content="2020-01-30T13:22:35+08:00" />
-<meta itemprop="wordCount" content="437"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="545"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="gdb,c&#43;&#43;," /><meta property="og:title" content="gdb" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/gdb\/"
-    },"genre": "posts","keywords": "gdb, c\u002b\u002b","wordcount":  437 ,
+    },"genre": "posts","keywords": "gdb, c\u002b\u002b","wordcount":  545 ,
     "url": "https:\/\/cfanzp.com\/gdb\/","datePublished": "2020-01-30T13:22:35+08:00","dateModified": "2020-01-30T13:22:35+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/code/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程</a></span></div>
-      <div class="post-meta-line"><span title=2020-01-30&#32;13:22:35><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-01-30">2020-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 437 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="gdb">
+      <div class="post-meta-line"><span title=2020-01-30&#32;13:22:35><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-01-30">2020-01-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 545 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="gdb">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -639,12 +639,18 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#添加调试信息-g">添加调试信息-g</a>
+    <li><a href="#添加调试信息-g">添加调试信息-g</a></li>
+    <li><a href="#基本操作">基本操作</a>
       <ul>
+        <li><a href="#启用gui界面">启用gui界面</a></li>
         <li><a href="#设置断点">设置断点</a></li>
-        <li><a href="#gdb调试core文件">gdb调试core文件</a></li>
+        <li><a href="#调试流程">调试流程</a></li>
+        <li><a href="#打印变量">打印变量</a></li>
       </ul>
     </li>
+    <li><a href="#gdb调试core文件">gdb调试core文件</a></li>
+    <li><a href="#调试so文件">调试.so文件</a></li>
+    <li><a href="#多线程调试">多线程调试</a></li>
     <li><a href="#更多gdb调试技巧">更多gdb调试技巧</a></li>
   </ul>
 </nav></div>
@@ -763,6 +769,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="添加调试信息-g">添加调试信息-g</h2>
+<h2 id="基本操作">基本操作</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -819,6 +826,15 @@
 </span></span><span class="line"><span class="cl">show args	show args	查看设置的命令行参数
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="启用gui界面">启用gui界面</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tui <span class="nb">enable</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h3 id="设置断点">设置断点</h3>
 <ul>
 <li>在gdb启动程序后可以使用b + 文件绝对路径+文件名:行号来设置断点</li>
@@ -828,19 +844,134 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">b /data/code/test.cpp:66
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">b /data/code/test.cpp:66
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="gdb调试core文件">gdb调试core文件</h3>
+</div><ul>
+<li>在函数上打断点</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gcc -c /tmp/core.server ./server
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">b main
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="更多gdb调试技巧">更多gdb调试技巧</h2>
+</div><h3 id="调试流程">调试流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 编译程序添加-g参数，添加调试信息</span>
+</span></span><span class="line"><span class="cl">gcc -g main.c -o main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动gdb</span>
+</span></span><span class="line"><span class="cl">gdb ./main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置启动参数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> args -R
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行</span>
+</span></span><span class="line"><span class="cl">run/r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用gui</span>
+</span></span><span class="line"><span class="cl">gui <span class="nb">enable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置断点</span>
+</span></span><span class="line"><span class="cl">break/b main
+</span></span><span class="line"><span class="cl">break/b main.c:25
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下一行</span>
+</span></span><span class="line"><span class="cl">next/n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入函数</span>
+</span></span><span class="line"><span class="cl">step/s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行到下一个断点</span>
+</span></span><span class="line"><span class="cl"><span class="k">continue</span>/c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 跳出循环</span>
+</span></span><span class="line"><span class="cl">util/u
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行到56行停下来</span>
+</span></span><span class="line"><span class="cl">util/u <span class="m">56</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行完当前函数</span>
+</span></span><span class="line"><span class="cl">finish/fi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="打印变量">打印变量</h3>
+<ul>
+<li>打印变量a的值</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">p a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>取消打印的字符串长度限制</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> print elements <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="gdb调试core文件">gdb调试core文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcc -c /tmp/core.server ./server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="调试so文件">调试.so文件</h2>
+<h2 id="多线程调试">多线程调试</h2>
+<h2 id="更多gdb调试技巧">更多gdb调试技巧</h2>
 <ul>
 <li><a
   href="https://www.yanbinghu.com/2019/04/20/41283.html"
@@ -870,6 +1001,7 @@
   
   
 >gdb调试1000招</a></li>
+<li>参考：https://zhuanlan.zhihu.com/p/162164942</li>
 </ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">

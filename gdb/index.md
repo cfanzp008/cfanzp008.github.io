@@ -58,6 +58,7 @@ Operating modes:
 ```
 
 ## 添加调试信息-g
+## 基本操作
 ```
 命令名称	命令缩写	命令说明
 run	r	运行一个待调试的程序
@@ -85,20 +86,85 @@ disassemble	dis	查看汇编代码
 set args	set args	设置程序启动命令行参数
 show args	show args	查看设置的命令行参数
 ```
-### 设置断点
-- 在gdb启动程序后可以使用b + 文件绝对路径+文件名:行号来设置断点
-```
-b /data/code/test.cpp:66
+
+### 启用gui界面
+```bash
+tui enable
 ```
 
-### gdb调试core文件
-```shell
+### 设置断点
+- 在gdb启动程序后可以使用b + 文件绝对路径+文件名:行号来设置断点
+```bash
+b /data/code/test.cpp:66
+```
+- 在函数上打断点
+```bash
+b main
+```
+### 调试流程
+```bash
+# 编译程序添加-g参数，添加调试信息
+gcc -g main.c -o main
+
+# 启动gdb
+gdb ./main
+
+# 设置启动参数
+set args -R
+
+# 运行
+run/r
+
+# 启用gui
+gui enable
+
+# 设置断点
+break/b main
+break/b main.c:25
+
+# 下一行
+next/n
+
+# 进入函数
+step/s
+
+# 运行到下一个断点
+continue/c
+
+# 跳出循环
+util/u
+
+# 运行到56行停下来
+util/u 56
+
+# 执行完当前函数
+finish/fi
+```
+
+### 打印变量
+- 打印变量a的值
+```bash
+p a
+```
+
+- 取消打印的字符串长度限制
+```bash
+set print elements 0
+```
+
+## gdb调试core文件
+```bash
 gcc -c /tmp/core.server ./server
 ```
+
+## 调试.so文件
+
+## 多线程调试
 
 ## 更多gdb调试技巧
 - https://www.yanbinghu.com/2019/04/20/41283.html
 - [gdb调试1000招](https://zhuanlan.zhihu.com/p/563678056)
+- 参考：https://zhuanlan.zhihu.com/p/162164942
 
 
 ---
