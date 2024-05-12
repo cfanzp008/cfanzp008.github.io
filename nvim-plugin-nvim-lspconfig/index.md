@@ -1,8 +1,8 @@
-# nvim插件:nvim-lspconfig
+# [nvim插件]nvim-lspconfig用法
 
 
 <!--more-->
-# nvim插件:nvim-lspconfig
+# [nvim插件]nvim-lspconfig用法
 ## github下载地址
 - https://github.com/neovim/nvim-lspconfig
 
@@ -96,6 +96,21 @@ return {
     }
 }
 ```
+
+## 常用命令
+1. 查看当前加载了什么language server
+```bash
+:LspInfo
+```
+
+## 常见问题
+- 插件报错,使用checkhealth查看问题，需要安装更高版本的nvim(nvim>0.94)
+```bash
+Error executing lua: ...-linux64/share/nvim/runtime/lua/vim/treesitter/query.lua:
+```
+
+## 参考
+- https://gohalo.github.io/cn/blog/neovim-lsp-usage/
 
 
 ---

@@ -5,6 +5,7 @@
 # ubuntu20.04安装最新版本的clangd
 ## 官方文档
 - https://clangd.llvm.org/
+
 ## 添加LLVM官方存储库
 ```
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
