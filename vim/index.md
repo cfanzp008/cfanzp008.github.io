@@ -50,11 +50,14 @@ graph LR
   lazy.nvim-->molokai
   lazy.nvim-->tabular
   lazy.nvim-->vim-surround
+  lazy.nvim-->bufferline
+  lazy.nvim-->lspsaga
 {{</ mermaid >}}
 
 ### neovim 插件
 - code_runner.vim - https://github.com/CRAG666/code_runner.nvim
 - vista:liuchengxu/vista.vim https://github.com/liuchengxu/vista.vim
+- lspsaga:https://github.com/nvimdev/lspsaga.nvim
 
 ## vim 之前常用插件
 {{< mermaid >}}
@@ -82,6 +85,10 @@ graph LR
 - [vim使用笔记](/categories/vim/)
 - [nvim安装与使用](/nvim-install/)
 
+## Nvim Lsp配置
+### c++配置
+- https://www.cnblogs.com/lanuage/p/16664221.html
+- https://zhuanlan.zhihu.com/p/444836713
 
 ## Vim资源
 ### Vim插件
@@ -93,6 +100,7 @@ graph LR
 
 ## 参考
 - https://www.cnblogs.com/viiv/p/15729383.html
+- https://gohalo.github.io/cn/blog/neovim-lsp-usage/
 
 
 ---
