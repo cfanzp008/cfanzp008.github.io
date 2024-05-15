@@ -42,6 +42,19 @@ return {
 }
 ```
 ## 用法
+- 配合map-key插件
+```bash
+<leader> + c + b Build database (生成数据库文件)
+<leader> + c + a Find places where this symbo is assigned
+<leader> + c + c Find functions calling this function(查找引用)
+<leader> + c + d Find functions called by this function(查找被当前函数调用的函数)
+<leader> + c + e Find this egrep pattern
+<leader> + c + f Find this file
+<leader> + c + g Find this global definition
+<leader> + c + i Find files #including this file
+<leader> + c + s Find this symbol
+<leader> + c + t Find this text string
+```
 
 
 ---
