@@ -1,4 +1,4 @@
-# Nvim Plugin Bufferline
+# [nvim插件]Bufferline
 
 <!--more-->
 

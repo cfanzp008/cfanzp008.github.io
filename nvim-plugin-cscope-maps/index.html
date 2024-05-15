@@ -5,22 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>所有文章 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>[nvim插件]cscope_maps.nvim - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='cfanzp, linux开发' /><meta itemprop="name" content="Posts">
-<meta itemprop="description" content="cfanzpLinux开发笔记"><meta property="og:title" content="Posts" />
-<meta property="og:description" content="cfanzpLinux开发笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp.com/posts/" /><meta property="og:image" content="https://cfanzp.com/logo.png" />
+<meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='vim, cscope, nvim' /><meta itemprop="name" content="[nvim插件]cscope_maps.nvim">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-15T08:21:16+08:00" />
+<meta itemprop="dateModified" content="2024-05-15T08:21:16+08:00" />
+<meta itemprop="wordCount" content="86"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="vim,cscope,nvim," /><meta property="og:title" content="[nvim插件]cscope_maps.nvim" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/nvim-plugin-cscope-maps/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-15T08:21:16+08:00" />
+<meta property="article:modified_time" content="2024-05-15T08:21:16+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="cfanzpLinux开发笔记"/>
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="[nvim插件]cscope_maps.nvim"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="个人Linux开发笔记">
 <meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/posts/" /><link rel="alternate" href="/posts/index.xml" type="application/rss+xml" title="个人Linux开发笔记">
-  <link rel="feed" href="/posts/index.xml" type="application/rss+xml" title="个人Linux开发笔记"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/nvim-plugin-cscope-maps/" /><link rel="prev" href="https://cfanzp.com/nvim-plugin-bufferline/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[nvim插件]cscope_maps.nvim",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/nvim-plugin-cscope-maps\/"
+    },"genre": "posts","keywords": "vim, cscope, nvim","wordcount":  86 ,
+    "url": "https:\/\/cfanzp.com\/nvim-plugin-cscope-maps\/","datePublished": "2024-05-15T08:21:16+08:00","dateModified": "2024-05-15T08:21:16+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -33,7 +54,7 @@
     alt="个人Linux开发笔记"
     title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
-      <ul class="menu"><li class="menu-item active">
+      <ul class="menu"><li class="menu-item">
               <a
                 class="menu-link"
                 href="/posts/"
@@ -309,7 +330,7 @@
     </div>
     <nav>
       <ul class="menu" id="menu-mobile"><li
-              class="menu-item active"
+              class="menu-item"
             ><a
                   class="menu-link"
                   href="/posts/"
@@ -594,96 +615,140 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page archive">
-    <div class="header"><h1 class="single-title animate__animated animate__pulse animate__faster">所有文章
-        <sup>263</sup>
-      </h1><p class="single-subtitle total-word-count" title='总计约 36863 字'><i class="fa-regular fa-keyboard fa-fw" aria-hidden="true"></i> 总计约 36.86K 字</p></div><h2 class="group-title">2022</h2><article class="archive-item">
-            <a href="/ranger-config/" class="archive-item-link">ranger如何配置预览图片？</a>
-            <span class="archive-item-date" title='2022-08-05 08:19:04'>08-05</span>
-          </article><article class="archive-item">
-            <a href="/config-git/" class="archive-item-link">git配置文件.gitconfig</a>
-            <span class="archive-item-date" title='2022-08-03 21:25:41'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/config-vimrc/" class="archive-item-link">vim配置文件.vimrc</a>
-            <span class="archive-item-date" title='2022-08-03 21:20:23'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/redis/" class="archive-item-link">redis基础入门</a>
-            <span class="archive-item-date" title='2022-08-03 20:56:09'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/linux-process-port/" class="archive-item-link">linux查看哪个进程占用了端口?</a>
-            <span class="archive-item-date" title='2022-08-03 15:51:56'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/lua-3rd/" class="archive-item-link">lua第三方开源库学习整理</a>
-            <span class="archive-item-date" title='2022-08-03 09:01:02'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/lua-string-pack/" class="archive-item-link">lua中string.pack,string.unpack的用法</a>
-            <span class="archive-item-date" title='2022-08-03 08:34:18'>08-03</span>
-          </article><article class="archive-item">
-            <a href="/nginx-https/" class="archive-item-link">nginx配置https转发</a>
-            <span class="archive-item-date" title='2022-08-02 22:43:20'>08-02</span>
-          </article><article class="archive-item">
-            <a href="/nginx-web-balance/" class="archive-item-link">nginx web负载均衡配置</a>
-            <span class="archive-item-date" title='2022-08-02 22:32:54'>08-02</span>
-          </article><article class="archive-item">
-            <a href="/nginx-config/" class="archive-item-link">nginx基本用法与配置笔记</a>
-            <span class="archive-item-date" title='2022-08-02 22:26:04'>08-02</span>
-          </article><article class="archive-item">
-            <a href="/skynet-uuid/" class="archive-item-link">skynet中使用uuid库</a>
-            <span class="archive-item-date" title='2022-08-02 19:37:59'>08-02</span>
-          </article><article class="archive-item">
-            <a href="/lua-luacheck/" class="archive-item-link">lua-luacheck</a>
-            <span class="archive-item-date" title='2022-08-01 18:16:43'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/linux-bc/" class="archive-item-link">linux-计算器命令bc</a>
-            <span class="archive-item-date" title='2022-08-01 13:25:15'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/linux-xfreerdp/" class="archive-item-link">linux-xfreerdp</a>
-            <span class="archive-item-date" title='2022-08-01 13:20:20'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/dev-manual/" class="archive-item-link">开发手册汇总</a>
-            <span class="archive-item-date" title='2022-08-01 13:04:31'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/skynet-update-log/" class="archive-item-link">skynet 更新记录</a>
-            <span class="archive-item-date" title='2022-08-01 12:56:50'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/skynet-clearcache/" class="archive-item-link">skynet-clearcache</a>
-            <span class="archive-item-date" title='2022-08-01 12:52:33'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/skynet-debug_console-ag/" class="archive-item-link">skynet-给debug_console添加ag搜索</a>
-            <span class="archive-item-date" title='2022-08-01 12:46:18'>08-01</span>
-          </article><article class="archive-item">
-            <a href="/git-ftp/" class="archive-item-link">git-ftp的使用</a>
-            <span class="archive-item-date" title='2022-07-31 22:30:00'>07-31</span>
-          </article><article class="archive-item">
-            <a href="/code-github/" class="archive-item-link">github资源整理</a>
-            <span class="archive-item-date" title='2022-07-31 18:53:09'>07-31</span>
-          </article><ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/10/">10</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/11/">11</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/posts/page/12/">12</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/13/">13</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/14/">14</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>[nvim插件]cscope_maps.nvim</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/nvim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nvim</a></span></div>
+      <div class="post-meta-line"><span title=2024-05-15&#32;08:21:16><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 86 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="[nvim插件]cscope_maps.nvim">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#cscope_mapsnvim插件是什么">cscope_maps.nvim插件是什么？</a></li>
+    <li><a href="#cscope_maps插件的原理是什么">cscope_maps插件的原理是什么？</a></li>
+    <li><a href="#cscope_maps插件有什么作用">cscope_maps插件有什么作用？</a></li>
+    <li><a href="#cscope插件如何安装">cscope插件如何安装</a></li>
+    <li><a href="#用法">用法</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="nvim插件cscope_mapsnvim">[nvim插件]cscope_maps.nvim</h1>
+<h2 id="cscope_mapsnvim插件是什么">cscope_maps.nvim插件是什么？</h2>
+<ul>
+<li>cscope_maps.nvim是一个nvim的代码跳转插件，之前尝试在vim中使用过，后来使用nvim比较多，安装类似插件没有配置成功，原因是nvim某个版本开始不支持了。</li>
+<li>在nvim0.9.5+版本后cscope可以使用了。安装cscope_maps插件就可以了。</li>
+</ul>
+<h2 id="cscope_maps插件的原理是什么">cscope_maps插件的原理是什么？</h2>
+<ul>
+<li>cscope_maps的原理是使用cscope生成代码数据库，cscope_maps调用对应的cscope命令实现相应的跳转功能。</li>
+</ul>
+<h2 id="cscope_maps插件有什么作用">cscope_maps插件有什么作用？</h2>
+<ul>
+<li>cscope_maps.nvim插件能帮助我们实现代码的跳转
+<ul>
+<li>能够跳转到代码的实现(implement)</li>
+<li>能够跳转到代码的声明</li>
+<li>能够跳转到函数被那些函数引用了(reference)</li>
+</ul>
+</li>
+</ul>
+<h2 id="cscope插件如何安装">cscope插件如何安装</h2>
+<ul>
+<li>这里仅仅演示一下lazy.nvim的安装方式，其它插件管理工具安装方式这里不再赘述。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">touch ~/.config/nvim/lua/plugins/plugin-nvim-cscope-maps.lua
+</span></span><span class="line"><span class="cl">nvim ~/.config/nvim/lua/plugins/plugin-nvim-cscope-maps.lua
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>添加插件配置代码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;dhananjaylatkar/cscope_maps.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;folke/which-key.nvim&#34;</span><span class="p">,</span> <span class="c1">-- optional [for whichkey hints]</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;nvim-telescope/telescope.nvim&#34;</span><span class="p">,</span> <span class="c1">-- optional [for picker=&#34;telescope&#34;]</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ibhagwan/fzf-lua&#34;</span><span class="p">,</span> <span class="c1">-- optional [for picker=&#34;fzf-lua&#34;]</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;nvim-tree/nvim-web-devicons&#34;</span><span class="p">,</span> <span class="c1">-- optional [for devicons in telescope or fzf]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- USE EMPTY FOR DEFAULT OPTIONS</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- DEFAULTS ARE LISTED BELOW</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="用法">用法</h2></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-05-15&#32;08:21:16>更新于 2024-05-15&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/nvim-plugin-cscope-maps/" data-title="[nvim插件]cscope_maps.nvim"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/cscope/">cscope</a>,&nbsp;<a href="/tags/nvim/">nvim</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/nvim-plugin-bufferline/" class="prev" rel="prev" title="[nvim插件]Bufferline"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>[nvim插件]Bufferline</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -711,5 +776,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>
