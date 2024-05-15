@@ -37,10 +37,13 @@ return {
   opts = {
     -- USE EMPTY FOR DEFAULT OPTIONS
     -- DEFAULTS ARE LISTED BELOW
+    -- 不显示询问
+    skip_input_prompt = true, -- "true" doesn't ask for input
   },
 }
 }
 ```
+
 ## 用法
 - 配合map-key插件
 ```bash
@@ -55,6 +58,21 @@ return {
 <leader> + c + s Find this symbol
 <leader> + c + t Find this text string
 ```
+
+- 配置cscope自动生成数据库
+```lua
+local group = vim.api.nvim_create_augroup("CscopeBuild", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "*.c", "*.h","*.cc","*.cpp"},
+  callback = function ()
+    vim.cmd("Cscope db build")
+  end,
+  group = group,
+})
+```
+
+## 参考
+- https://github.com/dhananjaylatkar/cscope_maps.nvim
 
 
 ---
