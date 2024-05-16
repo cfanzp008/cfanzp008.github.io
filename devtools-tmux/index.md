@@ -137,9 +137,10 @@ tmux source-file ~/.tmux.conf
 ```
 
 ### 解决vim在tmux中显示颜色异常
+- 设置session保存路径为~/.config/session.tmux,防止默认保存在/tmp/tmux-0/default的session被删掉。
 ```bash
 # vim ~/.bashrc
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color-bce tmux -S ~/.config/session.tmux"
 ```
 
 ### tmux中复制
