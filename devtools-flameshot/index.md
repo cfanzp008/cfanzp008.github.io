@@ -40,6 +40,7 @@ wget https://github.com/flameshot-org/flameshot/releases/download/v11.0.rc1/Flam
 - Ubuntu 18.04+
 ```
 apt install flameshot
+# https://github.com/flameshot-org/flameshot/releases
 ```
 - Ubuntu 20.04+ 下载deb包安装
 ```
@@ -65,6 +66,11 @@ Ctrl + c 拷贝到剪贴版
 Ctrl + s 保存到文件
 Ctrl + z 撤销
 ```
+
+## 贴图功能
+今天同事跟我show了一把截图软件的贴图功能，用的是一款收费的软件，我平时不怎么用，但是感觉比较好用也用flameshot设置了一下，快捷键F3
+- 使用PrintScreen截图
+- 使用F3贴图,贴图在屏幕上是置顶的，所以在写代码或者对照功能的时候是非常有用的。
 
 ## 常见问题
 - 运行时提示 linux下提示/usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.14' not found 解决办法
