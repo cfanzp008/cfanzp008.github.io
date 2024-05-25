@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='bgp' /><meta itemprop="name" content="BGP协议">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-18T16:50:27+08:00" />
 <meta itemprop="dateModified" content="2024-05-18T16:50:27+08:00" />
-<meta itemprop="wordCount" content="52"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="279"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="bgp," /><meta property="og:title" content="BGP协议" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/net-bgp\/"
-    },"genre": "posts","keywords": "bgp","wordcount":  52 ,
+    },"genre": "posts","keywords": "bgp","wordcount":  279 ,
     "url": "https:\/\/cfanzp.com\/net-bgp\/","datePublished": "2024-05-18T16:50:27+08:00","dateModified": "2024-05-18T16:50:27+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-18&#32;16:50:27><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-18">2024-05-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 52 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="BGP协议">
+      <div class="post-meta-line"><span title=2024-05-18&#32;16:50:27><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-18">2024-05-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 279 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="BGP协议">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -656,6 +656,15 @@
     </li>
     <li><a href="#bgp安全保护">BGP安全保护</a></li>
     <li><a href="#as号">AS号</a></li>
+    <li><a href="#过滤器">过滤器</a>
+      <ul>
+        <li><a href="#ip-access-list">IP Access List</a></li>
+        <li><a href="#ip-prefix-list">IP Prefix List</a></li>
+        <li><a href="#community-list">Community-list</a></li>
+        <li><a href="#as-path-access-list">as-path access-list</a></li>
+      </ul>
+    </li>
+    <li><a href="#路由策略">路由策略</a></li>
     <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
@@ -720,6 +729,146 @@
 <li>为了防止AS间产生环路，当BGP设备接收EBGP对等体发送的路由时，会将带有本地AS号的路由丢弃。</li>
 <li>为了防止AS内产生环路，BGP设备不将从IBGP对等体学到的路由通告给其他IBGP对等体，并与所有IBGP对等体建立全连接。</li>
 </ul>
+<h2 id="过滤器">过滤器</h2>
+<p>FRR提供了基于IP，基于Community和基于AS-PATH的三种过滤器来匹配路由。</p>
+<h3 id="ip-access-list">IP Access List</h3>
+<ul>
+<li>基于IP的路由ACL规则，比较少使用，通常是用IP Prefix List来设置策略。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">access-list NAME <span class="o">[</span>seq <span class="o">(</span>1-4294967295<span class="o">)]</span> permit IPV4-NETWORK
+</span></span><span class="line"><span class="cl">access-list NAME <span class="o">[</span>seq <span class="o">(</span>1-4294967295<span class="o">)]</span> deny IPV4-NETWORK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#NAME：规则名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#seq：规则序列号，不填则在上一个规则序列号基础上加5，若存在则加10，以此类推</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#permit(deny)：允许通过还是拒绝通过</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#IPV4-NETWORK： ipv4网络</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#example</span>
+</span></span><span class="line"><span class="cl">access-list filter deny 10.0.0.0/9
+</span></span><span class="line"><span class="cl">access-list filter permit 10.0.0.0/8
+</span></span><span class="line"><span class="cl">access-list filter seq <span class="m">13</span> permit 10.0.0.0/7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ip-prefix-list">IP Prefix List</h3>
+<p>IP Prefix List提供了强大的基于IP前缀的过滤机制，除了access list之外，还能够基于ip掩码和ip掩码区间进行过滤。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip prefix-list NAME <span class="o">(</span>permit<span class="p">|</span>deny<span class="o">)</span> PREFIX <span class="o">[</span>le LEN<span class="o">]</span> <span class="o">[</span>ge LEN<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ip prefix-list NAME seq NUMBER <span class="o">(</span>permit<span class="p">|</span>deny<span class="o">)</span> PREFIX <span class="o">[</span>le LEN<span class="o">]</span> <span class="o">[</span>ge LEN<span class="o">]</span>
+</span></span><span class="line"><span class="cl">no ip prefix-list NAME <span class="c1">#取消io前缀规则</span>
+</span></span><span class="line"><span class="cl">show ip prefix-list NAME <span class="c1">#显示ip前缀规则</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#NAME：规则名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#seq：规则序列号，不填则在上一个规则序列号基础上加5，若存在则加10，以此类推</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#permit(deny)：允许通过还是拒绝通过</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#PREFIX： ip前缀</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#le LEN：匹配小于LEN的ip前缀</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#ge LEN：匹配大于LEN的ip前缀</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#example</span>
+</span></span><span class="line"><span class="cl">ip prefix-list pl-allowed-adv seq <span class="m">5</span> permit 82.195.133.0/25
+</span></span><span class="line"><span class="cl">ip prefix-list pl-allowed-adv seq <span class="m">10</span> deny any
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="community-list">Community-list</h3>
+<p>Community属性值是一种路由标记 ，FRR提供了基于Community的路由过滤方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bgp community-list <span class="o">[</span>standard<span class="p">|</span>expanded<span class="o">]</span> NAME permit<span class="p">|</span>deny COMMUNITY
+</span></span><span class="line"><span class="cl">no bgp community-list <span class="o">[</span>standard<span class="p">|</span>expanded<span class="o">]</span> NAME
+</span></span><span class="line"><span class="cl">show bgp community-list <span class="o">[</span>NAME detail<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#standard：COMMUNITY是一个确切值</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#expanded：COMMUNITY可为正则表达式，都不填则由系统自动识别</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#permit|deny：过滤规则</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#example</span>
+</span></span><span class="line"><span class="cl">bgp community-list <span class="m">70</span> permit 7675:70
+</span></span><span class="line"><span class="cl">bgp community-list <span class="m">70</span> deny
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="as-path-access-list">as-path access-list</h3>
+<p>as-path access-list是基于as-path的过滤规则，能够使用正则表达式对as-path进行过滤。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bgp as-path access-list WORD permit<span class="p">|</span>deny LINE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#WORD：列表号</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#LINE：正则表达式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#example</span>
+</span></span><span class="line"><span class="cl">bgp as-path access-list <span class="m">99</span> permit _0_
+</span></span><span class="line"><span class="cl">bgp as-path access-list <span class="m">99</span> permit _23456_
+</span></span><span class="line"><span class="cl">bgp as-path access-list <span class="m">99</span> permit _1310<span class="o">[</span>0-6<span class="o">][</span>0-9<span class="o">]</span>_<span class="p">|</span>_13107<span class="o">[</span>0-1<span class="o">]</span>_
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="路由策略">路由策略</h2>
+<p>BGP的路由策略由
+FRR的路由策略通过设置Route Maps来实现。Route Maps一共可分为五个模块，分别是</p>
+<ul>
+<li>Matching Conditions（条件匹配）</li>
+<li>Set Actions（策略设置）</li>
+<li>Matching Policy（条件策略）</li>
+<li>Call Action（跳转）</li>
+<li>Exit Policy（结束策略）</li>
+</ul>
 <h2 id="参考">参考</h2>
 <ul>
 <li><a
@@ -750,6 +899,20 @@
   
   
 >https://blog.csdn.net/qq_38265137/article/details/80439561</a></li>
+<li><a
+  href="https://blog.csdn.net/m0_48594855/article/details/106763166"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://blog.csdn.net/m0_48594855/article/details/106763166</a></li>
 </ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">

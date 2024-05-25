@@ -660,6 +660,45 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/nginx-web-balance/">nginx web负载均衡配置</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-02 22:32:54'>发布于 <time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div><div class="content">nginx web负载均衡配置 下载nginx http://nginx.org/en/download.html 1 wget http://nginx.org/download/nginx-1.20.2.tar.gz 安装nginx 参考: https://www.cnblogs.com/-wei/p/15219624.html 1 2 3 4 5 ./configure --prefix=/opt/nginx 或 ./configure --prefix=/opt/nginx --with-http_ssl_module make make install 报错 ./configure: error: the HTTP rewrite module requires the PCRE library 1 yum -y install pcre-devel ./configure: error: the HTTP gzip module requires the zlib library. 1 yum -y install zlib-devel ./configure: error: SSL modules require the OpenSSL library. 1 yum -y install openssl openssl-devel nginx限制请求数据包大小 1 client_max_body_size 1000m; 负载均衡配置 参考: https://www.</div><div class="post-footer">
+    <a href="/nginx-web-balance/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/nginx-config/">nginx基本用法与配置笔记</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-02 22:26:04'>发布于 <time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nginx</a></span></div><div class="content">nginx配置笔记 基本概念 惊群现象：一个网路连接到来，多个睡眠的进程被同时叫醒，但只有一个进程能获得链接，这样会影响系统性能。 全局块 nginx服务器用户组 nginx进程pid 日志存放路径 配置文件引入 允许生成worker process数 event块 配置影响nginx服务器或与用户的网络连接。包括: 每个进程的最大连接数 选取那种事件驱动模型处理连接请求 是否允许同时接受多个网路连接 开启多个网络连接序列化等。 http块 可以嵌套多个server 配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。 文件引入 mime-type定义 日志定义 是否使用sendfile传输文件 连接超时时间 单连接请求数 server块 配置虚拟主机的相关参数，一个http中可以有多个server块 location 块 配置请求的路由，以及各种页面的请求情况 nginx文件结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 ... #全局块 events { #events块 ... } http #http块 { ... #http全局块 server #server块 { .</div><div class="post-footer">
+    <a href="/nginx-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/skynet-uuid/">skynet中使用uuid库</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-02 19:37:59'>发布于 <time datetime="2022-08-02">2022-08-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet中使用uuid库 最近在使用之前一位同学写的uuid库时发现了uuid在不通的skynet虚拟机中可能会产生相同的值的现象，这里记录一下。产生的原因是，这2个虚拟机是在服务启动的时候创建的，间隔时间很短，随机种子估计是一样的。后面产生的随机序列都是一样的。
+uuid库初始化种子 相同时间初始化种子，后续产生的随机数是相同的,随机种子初始化代码如下:
+1 2 local uuid = require &#34;uuid&#34; uuid.seed() -- 初始化uuid种子 不同lua虚拟机中使用uuid可能生成相同的uuid,下面就是2个skynet服务在相同时间创建并初始化uuid种子的例子,不难看出，2个服务轮询接受请求，依次产生的uuid是相同的。
+1 2 3 4 [:0000001a] [2022-07-29 11:36:36.561] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001b] [2022-07-29 11:36:44.059] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: 40a1bbf6-2e44-4b4a-cb9d-7a383472184b [:0000001a] [2022-07-29 11:36:55.069] [W] [login_web_agent1] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 [:0000001b] [2022-07-29 11:41:13.213] [W] [login_web_agent2] service/login/platform/account_login.lua:111: req: bc96f82f-c94c-4398-c346-e956a92dcc11 总结 这个uuid库的使用需要保证uuid的使用是在一个虚拟机内。如果想uuid不重复，又要保证唯一性，可以创建一个专有的skynet虚拟机来提供uuid的分配工作。</div><div class="post-footer">
+    <a href="/skynet-uuid/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/lua-luacheck/">lua-luacheck</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -696,53 +735,6 @@
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 13:20:20'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">xfreerdp 使用举例 远程192.168.2.3这台机器并挂载/home/admin/share目录 1 xfreerdp +clipboard /w:1920 /h:1050 /u:Administrator /p:admin1234567890 /v:192.168.2.3:3389 /drive:share,/home/admin/share 使用帮助 xfreerdp &ndash;help 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 [zp@zp-pc dev]$ xfreerdp --help FreeRDP - A Free Remote Desktop Protocol Implementation See www.</div><div class="post-footer">
     <a href="/linux-xfreerdp/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xfreerdp/">xfreerdp</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/dev-manual/">开发手册汇总</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 13:04:31'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/development-manual/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发手册</a></span></div><div class="content">开发手册汇总 mysql8.0中文参考手册: https://mysql.bookhub.tech/#/README mysql5.7: https://www.docs4dev.com/docs/zh/mysql/5.7/reference/ mysql5.6：https://dev.mysql.com/doc/refman/5.6/en/ redis命令手册: https://www.redis.net.cn/order/ nginx官网:https://nginx.org/en/docs/ 语言 golang:https://go.dev/doc/ 在线运行golang程序 lua5.3开发手册: https://cloud.tencent.com/developer/doc/1141 lua5.4 官网英文版: http://www.lua.org/manual/5.4/manual.html rust: https://github.com/rust-lang/reference 工具 neovim：https://neovim.io/ markdown-GFM: https://gfm.docschina.org/zh-hans/ 印记中文: https://docschina.org/ 正则表达式: https://github.com/any86/any-rule </div><div class="post-footer">
-    <a href="/dev-manual/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/manual/">manual</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/skynet-update-log/">skynet 更新记录</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 12:56:50'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet升级到1.5.0 skynet升级到1.5.0 对应lua版本:lua5.4.3 skynet地址 https://github.com/cloudwu/skynet/releases/tag/v1.5.0 下载地址:https://github.com/cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 加速地址:https://github.91chi.fun//https://github.com//cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 升级步骤 创建分支skynet1.5 删除skynet目录的所有文件，解压或同步skynet1.5.0的代码到skynet目录 1 rm ./skynet/* -rf 初始化skynet 1 git submodule update --init jemalloc库若未初始化成功,可手动克隆到3rd/jemalloc目录中 1 git clone https://gitee.com/mirrors/jemalloc.git 编译报错 1 2 skynet-src/spinlock.h:50:23: fatal error: stdatomic.h: No such file or directory 升级Gcc值4.9及以上版本 gcc多版本共存。 devtoolset对应gcc版本 1 2 3 4 5 6 7 devtoolset-3对应gcc4.x.x版本 devtoolset-4对应gcc5.x.x版本 devtoolset-6对应gcc6.x.x版本 devtoolset-7对应gcc7.x.x版本 devtoolset-8对应gcc8.x.x版本 devtoolset-9对应gcc9.x.x版本 devtoolset-10对应gcc10.x.x版本 https://www.cnblogs.com/jixiaohua/p/11732225.html 1 sudo yum install centos-release-scl 安装devtoolset，注意，如果想安装11.版本的，就改成devtoolset-11-gcc 1 sudo yum install devtoolset-11-gcc* 激活对应的devtoolset，可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本 这仅仅在当前bash生效，如果需要永久生效，可以请自行添加环境变量。 1 2 3 scl enable devtoolset-11 bash #或 source /opt/rh/devtoolset-8/enable gcc版本永久生效 1 echo &#34;source /opt/rh/devtoolset-11/enable&#34; &gt;&gt;/etc/profile 查看gcc版本号 1 gcc -v gcc安装报错 报错问题: 1 2 3 4 Transaction check error: file /usr/lib/debug/usr/lib64/libitm.</div><div class="post-footer">
-    <a href="/skynet-update-log/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/skynet-clearcache/">skynet-clearcache</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-01 12:52:33'>发布于 <time datetime="2022-08-01">2022-08-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content">skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
-方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
-方法2: 当然，还有一种方式就是采用轮服的机制解决。从进程级别解决问题。但是这个代价又太大了，比clearcache的成本还高。
-这里我们还有一个思路就是可以在业务服前加一个管理调度服务。例如A1 skynet服务需要发消息给B1 skynet服务来实现某个功能。消息流为：
-1 A1 ---&gt; B1 我们可以在B1前加一个B_manager服务，A服务通过B_manager服来传递消息给B1服务， 消息流为： 1 A1 ---&gt; B_Manager ---&gt; B1 这个时候如果B1的业务有大量需要修改的。只需要clearcache一下，然后创建一个新的B1服务，这里称为B2,B_Manager再将A1的请求转发到B2即可，这个时候的消息流为: 1 A1 ---&gt; B_Manager ---&gt; B2 这个时候B1就不会接收到新的消息了。介意B1的存在可以销毁它，如果资源占用不大，也可以不销毁。
-当然这里有几个必须要注意的问题:
-如果B1服务是有状态的，那么这个方法是有很大限制的，需要把B1服务的数据通过消息或共享内存，缓存等方式转移到B2服务上。
-如果B1服务上有定时器等可能会影响业务的逻辑时时，必须要关闭定时器或销毁B2服务。
-如果B1是无状态的那就简单多了，创建新的服务B2后，B_mananger将所有需要转发给B1的请求全都转发给B2即可。
-消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
-上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
-总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ </div><div class="post-footer">
-    <a href="/skynet-clearcache/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
