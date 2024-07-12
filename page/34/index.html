@@ -660,49 +660,121 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/vim-swap/">vim交换文件是否应该开启？</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/terminal-color/">lua中给日志关键字加上颜色</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-29 09:16:04'>发布于 <time datetime="2022-08-29">2022-08-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim交换文件是否应该开启？ 在vim的使用过程中默认会产生交换文件。交换文件会记录文件修改的过程。如果不小心断电或者意外关闭了文件而没有保存，可以通过交换文件进行恢复。
-交换文件如何使用？ 启用交换文件 1 set swapfile 关闭交换文件 1 set noswapfile 上述设置方法只是针对当前文件生效，如果想对所有文件生效需要在.vimrc中进行设置。 .vimrc中的设置关闭交换文件的方法也很简单，只需要加上一行:
-1 set noswapfile 查看当前交换文件的名称 1 :swapname 查看交换文件的用法 1 :help swap-file 交换文件有哪些作用? 1. 恢复文件 在正常关闭情况下，交换文件会被删除，非正常关闭的情况下，交换文件不会被删除，下次你打开文件的时候，会提示你是否需要从交换文件恢复。
-2. 检测多处修改 交换文件还有一个作用，就是避免Vim的多个实例编译同一文件。
-总结 在我看来作为程序员应该是需要养成习惯，及时对修改的文件进行保存的。并且做好了一个功能，就应该即使提交到代码库进行保存。如果能保证做到及时保存，及时提交到代码仓库。交换文件是不需要开启的。
-如果你是一个Vim新手，建议还是开启swapfile 等你对vim熟悉了，并且有良好的保存习惯，完全可以关闭swapfile</div><div class="post-footer">
-    <a href="/vim-swap/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-09-06 17:05:35'>发布于 <time datetime="2022-09-06">2022-09-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a>&ensp;<a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/terminal-color/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/skynet/">skynet</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/vim-plug-in/">Vim常用插件有哪些?</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/hugo-theme-fixit/">Hugo主题FixIt简单介绍</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-26 10:25:44'>发布于 <time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
-molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
-更多vim用发可以浏览: https://cfanzp.com/categories/vim/</div><div class="post-footer">
-    <a href="/vim-plug-in/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-09-04 22:08:08'>发布于 <time datetime="2022-09-04">2022-09-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a>&ensp;<a href="/categories/blog/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> blog</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/hugo-theme-fixit/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/fixit/">fixit</a>,&nbsp;<a href="/tags/blog/">blog</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/skynet-res/">skynet学习资源汇总</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-26 09:01:44'>发布于 <time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a>&ensp;<a href="/categories/opensource/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开源</a></span></div><div class="content">skynet学习资源汇总 学习使用skynet已经有一段时间了，最初学习skynet是直接拿着skynet的源码已经官方例子，一点点地自己看，自己跑demo,慢慢才熟悉了skynet。这过程中就踩了不少坑，这里收集了一些skynet的学习资源，在此记录一下。
-skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文档: https://github.com/cloudwu/skynet/wiki skynet作者博客: https://blog.codingnow.com/ skynet sample: https://github.com/cloudwu/skynet_sample skynet pbc: https://github.com/cloudwu/pbc 我的skynet学习笔记: https://cfanzp.com/categories/skynet/ skynet资源：http://forthxu.com/blog/skynet.html skynet视频教程 4小时玩转skynet: https://www.bilibili.com/video/BV1AV411r71g </div><div class="post-footer">
-    <a href="/skynet-res/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/skynet/">skynet</a></div></div>
+    <a href="/linux-stop-process/">linux中使用脚本关闭进程</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-09-01 11:15:18'>发布于 <time datetime="2022-09-01">2022-09-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/code/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程</a>&ensp;<a href="/categories/deploy/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维部署</a></span></div><div class="content">linux中使用脚本关闭进程 关闭进程脚本 通过ps命令，grep命令以及awk命令找到进程的pid 使用kill命令关闭进程 脚本demo: 1 2 3 4 5 6 7 8 9 10 11 12 13 rootot@dev doc]# cat stop_mdbook_doc.sh #!/bin/bash kill_pid=`ps -ef | grep mdbook | grep 4001 | grep -v grep | awk &#39;{print $2}&#39;` echo &#34;pid = &#34;${kill_pid} if [ -n &#34;${kill_pid}&#34; ] then kill -9 ${kill_pid} echo &#34;mdbook 4001 pid:&#34;${kill_pid}&#34;进程已kill成功&#34; else echo &#34;mdbook 4001 进程已不存在&#34; fi [root@dev doc]# </div><div class="post-footer">
+    <a href="/linux-stop-process/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/go-env/">Go基本环境配置</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-24 20:25:24'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div><div class="content">Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 初始化项目 gin demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 package main import &#34;github.com/gin-gonic/gin&#34; func main() { // 创建一个默认的Gin引擎 r := gin.Default() // 定义一个简单的GET请求路由 r.GET(&#34;/&#34;, func(c *gin.Context) { c.String(200, &#34;Hello, Gin!&#34;) }) // 启动HTTP服务器，监听在 8080 端口 r.</div><div class="post-footer">
-    <a href="/go-env/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
+    <a href="/joplin-terminal/">如何在terminal中使用Joplin并像vim一样移动?</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-08-31 19:06:00'>发布于 <time datetime="2022-08-31">2022-08-31</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
+进入
+1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
+1 2 :config sync.</div><div class="post-footer">
+    <a href="/joplin-terminal/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/joplin/">joplin</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/online-tools/">在线工具</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-24 09:00:12'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">在线工具 在线测速:https://www.ping.cn MD5加密:https://md5jiami.bmcx.com/ JSON在线格式化: https://www.bt.cn/tools/json.html https://www.bejson.com </div><div class="post-footer">
-    <a href="/online-tools/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
+    <a href="/health-ls/">开发者需要注意健康饮食习惯之一</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 11:43:25'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/others/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 杂谈</a></span></div><div class="content">开发者注意健康饮食习惯 图片来源:腾讯医典,如有侵权，请联系本站删除。</div><div class="post-footer">
+    <a href="/health-ls/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/health/">health</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-jpg2png/">linux中jpg格式转化为png格式</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 23:17:00'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux中jpg格式转化为png格式 linux中将jpg与png进行转化可以用parallel和convert命令 安装方法:
-安装arallel 1 sudo apt-get install parallel 安装convert 1 sudo apt-get install imagemagick cfanzp.jpg转化为cfanzp.png 1 parallel convert &#39;{}&#39; &#39;{.}.png&#39; ::: cfanzp.jpg </div><div class="post-footer">
-    <a href="/linux-jpg2png/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/image/">image</a></div></div>
+    <a href="/lua-pbc/">lua-pbc(lua的protobuf库)如何使用？</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp.com/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2022-08-30 08:36:15'>发布于 <time datetime="2022-08-30">2022-08-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
+lua-pbc github地址为: https://github.com/cloudwu/pbc
+关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
+lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
+编写protobuf的proto文件 User.proto
+1 2 3 4 package tutorial; message User { optional string name = 1; } 引入模块protobuf
+1 local pb = require &#34;protobuf&#34; 注册文件
+1 pb.register_file &#34;User.pb&#34; encode
+1 2 3 4 local msg_table = { name = &#34;test1&#34; } pb.encode(&#34;tutorial.User&#34;,msg_table}, decode
+1 local msg_table = pb.decode(&#34;tutorial.Person&#34;, buf) 使用感受 lua-pbc使用了很长一段时间，官方skynte升级支持lua5.4以后，pbc还是可以正常工作的。 pbc的接口设计是比较简洁的，用起来也非常方便。想深入了解的同学，建议去看看源码。
+参考 pbc: https://github.com/cloudwu/pbc pbc binding lua: https://github.</div><div class="post-footer">
+    <a href="/lua-pbc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a>,&nbsp;<a href="/tags/protobuf/">protobuf</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -734,7 +806,7 @@ skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文�
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/46/">46</a>
+            <a href="/page/47/">47</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

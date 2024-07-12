@@ -15,8 +15,15 @@
 ### 切换应用
 - win/command+tab:切换应用
 
+## mac chrome快捷键
 ### 刷新chrome网页
 - win+r:刷新chrome网页
+- command + option + i: 打开/关闭开发者工具
+- command + l: 选中地址栏
+
+### mac chrome+ surfingkeys
+- control + i:在编辑框中进入vim编辑模式
+- G:进入最底行
 
 ### terminal
 #### 新建一个terminal

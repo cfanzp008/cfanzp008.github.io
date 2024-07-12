@@ -12,6 +12,7 @@
 内存存储：1 GB RAM，8GB Flash；
 视频：支持 1080p ，4K；
 接口：1 × USB 2.0，1× 10/100 Mbit/s Base-T RJ45 Ethernet port，1 × DC power input port，1 × power switch for power on/off
+电源：12V;1.0A
 ```
 
 ## 刷机过程

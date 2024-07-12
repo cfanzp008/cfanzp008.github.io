@@ -34,6 +34,9 @@ int main() {
 }
 ```
 
+## 参考
+- m1 c++环境搭建：https://blog.csdn.net/qq_42678864/article/details/115560757
+
 
 ---
 

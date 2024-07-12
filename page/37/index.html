@@ -660,58 +660,57 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-self/">lua中的self</a>
+    <a href="/cpu_ttt/">cpu天梯图</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-09 22:40:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中的self self的用法 使用:定义的函数默认接收第一个参数是self 使用:调用函数默认传入第一个参数是调用者 使用.定义和调用函数不会接受或传入self :为我们省下了一个参数，下面例子中的A:Add()与A.Add(t)是等价的
-1 2 3 4 5 6 7 local A = {x = 1, y = 2} function t:Add() return (self.x + self.y) end print(A:Add()) print(A.Add(A)) </div><div class="post-footer">
-    <a href="/lua-self/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-20 16:45:20'>发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content">cpu天梯图 在购买电脑的时候不知道怎么选电脑? 选电脑选好主要的cpu,显卡，主板等就不会吃大亏。这里给大家展示一下本人在百度贴吧找到的今年7月分最新的cpu天梯图。
+天梯图 图片原址:https://tieba.baidu.com/p/5005825360?pn=19 (在这里感谢原作者分享，图片如有侵权，请联系本站删除。)
+cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu总地来说会更好，但是进步是需要踩坑的，也需要时间一代一代地迭代，中间版本过渡过程中，新的一代不一定就比旧的强。
+本人家里的旧电脑cpu是i5-4590,公司用的旧电脑cpu是i5-6400,直观地看公司的电脑cpu似乎更好，但是看看天梯图，却发现其实i5-4590性能更强一些。
+再去多查一些资料，根据网友的反馈来看，总体来看:
+从性能上来说,4590比6400还要稍微强一点点 6代的6400比4代的4590功耗更低 6400是14nm工艺，4590是22nm工艺 对于现在而言都是很差的cpu了。不过平时办公日常需求也够用了。平时选购cpu时参考一下天梯图，再查查网友的使用对比，会比较 稳妥一些。
+参考 2个cpu参数对比:https://cpu.bmcx.com/1537_1506_1496__cpu/ B站2个cpu的对比视频:https://www.bilibili.com/video/av5101266 </div><div class="post-footer">
+    <a href="/cpu_ttt/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/git-tag-sort/">git tag排序,解决默认看到的最后一个不是最新的tag的问题</a>
+    <a href="/httperf/">Httperf</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-09 09:06:06'>发布于 <time datetime="2022-08-09">2022-08-09</time></span></div><div class="content">git tag排序,解决默认看到的最后一个不是最新的tag的问题 git tag的问题 在使用git tag查看标签的时候，默认是按tag的字符串排序的，只有命名的顺序与字符串排序相同的时候,显示在最后的tag才是最新的,例如,有下面几个标签:
-1 2 v0.9.0 v0.10.0 v0.10.0按字符串排序会默认显示在上面:
-1 2 v0.10.0 v0.9.0 git tag加上排序 让git按照打标签的时间进行排序，加上参数&ndash;sort=taggerdate
-1 git tag -n --sort=taggerdate 为了方便平时输入在.gitconfig上加上缩写 1 2 [alias] stag = tag -n --sort=taggerdate 1 git tag -n --sort=taggerdate </div><div class="post-footer">
-    <a href="/git-tag-sort/">阅读全文</a></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 16:13:57'>发布于 <time datetime="2022-08-19">2022-08-19</time></span></div><div class="content">web压力测试工具:httperf 下载地址: 使用demo: 1 httperf --client=0/1 --server 192.168.2.127 --port 7100 --uri /loginReq --num-conns 30000 --rate 30000 --hog 教程: https://blog.csdn.net/qq_33391644/article/details/103794115 https://www.cnblogs.com/cllovewxq/p/5533487.html </div><div class="post-footer">
+    <a href="/httperf/">阅读全文</a></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/hugo-note/">Hugo学习笔记</a>
+    <a href="/lsof/">linux查看打开文件情况</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 23:37:28'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">hugo学习笔记 hugo 下载 linux,ubuntu 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz 扩展版本
-1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_extended_0.101.0_Linux-64bit.tar.gz macos 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_macOS-64bit.tar.gz 如果是需要使用custom.scss配置需要使用扩展版本:
-1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_extended_0.101.0_macOS-64bit.tar.gz m1 https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_extended_0.111.3_darwin-universal.tar.gz hugo集成搜索 hugo在集成搜索的时候还是有多种方案的，LoveIt默认的方案个人不太喜欢。这里个人测试了hugo-search-fuse-js的方案和gcse的方案，目前在使用的是hugo-search-fuse-js的方案。
-注意 hugo-search-fuse-js 在配置搜索时，默认显示有点不正常,需要添加一点自定义的css样式到_custom.scss中。 这里的hugo需要安装扩展版本的。 hugo集成hugo-search-fuse-js hugo-search-fuse-js:https://github.com/kaushalmodi/hugo-search-fuse-js 添加站内搜索(gcse) mac m1 hugo-search-fuse-js报错 1 Error: Error building site: failed to render pages: render of &#34;page&#34; failed: &#34;/linux_dev_blog/themes/hugo-search-fuse-js/layouts/_default/search.html:124:66&#34;: execute of template failed: template: _default/search.html:124:66: executing &#34;footer&#34; at &lt;fingerprint&gt;: error calling fingerprint: &lt;nil&gt; can not be transformed 默认启动端口 1313 hugo推荐主题LoveIt LoveIt LoveIt主题使用demo网站 https://hugoloveit.</div><div class="post-footer">
-    <a href="/hugo-note/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">hugo</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 15:57:01'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/os/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 操作系统</a>&ensp;<a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux查看打开文件情况 查看进程skynet(config.login)的pid 1 2 3 4 5 [root@dev127 login]# ps -ef | grep login root 657 1 0 6月20 ? 00:00:49 /usr/lib/systemd/systemd-logind root 113262 1 8 15:27 ? 00:02:19 /data/myb/sh/../skynet/skynet /data/myb/sh/login/config.login root 113983 107342 0 15:42 pts/4 00:00:02 tail login.20220819.log -f root 114702 112029 0 15:55 pts/2 00:00:00 grep --color=auto login 查看进程能打开的最大文件数目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [root@dev127 login]# cat /proc/113262/limits Limit Soft Limit Hard Limit Units Max cpu time unlimited unlimited seconds Max file size unlimited unlimited bytes Max data size unlimited unlimited bytes Max stack size 8388608 unlimited bytes Max core file size unlimited unlimited bytes Max resident set unlimited unlimited bytes Max processes 26047 26047 processes Max open files 1024 4096 files Max locked memory 65536 65536 bytes Max address space unlimited unlimited bytes Max file locks unlimited unlimited locks Max pending signals 26047 26047 signals Max msgqueue size 819200 819200 bytes Max nice priority 0 0 Max realtime priority 0 0 Max realtime timeout unlimited unlimited us [root@dev127 login]# 参考链接 https://blog.</div><div class="post-footer">
+    <a href="/lsof/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lsof/">lsof</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/tmux-shortcut-key/">tmux常用快捷键</a>
+    <a href="/tools_download/">常用工具下载地址汇总</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 20:06:22'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">tmux常用快捷键 注意 c-a:表示ctrl+a,我这里修改了默认的ctrl+b为ctrl+a 常用快捷键 c-a +z:在全屏和窗口之间切换
-c-a +c:创建一个新的窗口
-c-a+%:竖直创建一个新的pannel
-c-a+,:水平创建一个新的pannel
-c-a+(h,j,kl):在各个pannel间切换，需要在.tmux.conf配置文件中配置
-c-a+[:进入复制模式，q:退出复制模式
-c-a+w:查看所有窗口列表
-c-a+$:重命名当前的session</div><div class="post-footer">
-    <a href="/tmux-shortcut-key/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">快捷键</a>,&nbsp;<a href="/tags/terminal/">terminal</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 13:54:38'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">常用工具下载地址汇总 在线工具 tool.lu: https://tool.lu 智能命名工具 CODELF: https://unbug.github.io/codelf ssh远程连接 WindTerm: https://github.com/kingToolbox/WindTerm/releases git: https://git-scm.com/download/ windows版本的安装后会自带ssh客户端，配合.ssh/文件夹下的config文件使用也是非常方便的。 Xshell: https://www.xshell.com/zh/xshell/ git git: https://git-scm.com/download/ linux常用软件 截图工具flameshot: https://github.com/flameshot-org/flameshot wechat: https://www.ubuntukylin.com/applications/106-cn.html 飞书: https://www.feishu.cn/download 有道云笔记: https://note.youdao.com/download.html 流程图软件Dia: https://zhuanlan.zhihu.com/p/366116011 wps: https://www.wps.cn/product/wpslinux 安装:sudo apt install ./wps-office_11.1.0.11664_amd64.deb 字体问题: https://zhuanlan.zhihu.com/p/145114644 字体下载,链接: https://pan.baidu.com/s/18PWLr_t6Lub9PoEg9zUSzg 提取码: isiz linux开发工具 httpperf: https://github.com/httperf/httperf 教程: https://www.cnblogs.com/cllovewxq/p/5533487.html 搜索资源工具 Bing: https://cn.bing.com/ DuckDuckGo: https://duckduckgo.com/ 不搜集用户信息，没有广告 Stack Overflow: https://stackoverflow.com/ 技术问题可以直接查这个网站 Gitlogs: https://www.gitlogs.com/ 搜索GitHub项目的搜索引擎 jiumo search: https://www.jiumodiary.com/ 文档搜索引擎 鸠摩搜书 pexels: https://www.pexels.com/ 高质量的图片网站。 在线画图,ProcessOn: https://www.processon.com/ draw.io: https://app.</div><div class="post-footer">
+    <a href="/tools_download/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/mac-shortcut-key/">mac快捷键汇总</a>
+    <a href="/markdown/">Markdown需要掌握的基础</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 19:51:35'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a></span></div><div class="content">mac快捷键汇总 注意 这里Win键对应mac键盘的Command键 常用快捷键 command + backspace: 删除文件
-选中文件+enter: 重命名文件
-打开搜索 win/command+space：打开搜索 切换应用 win/command+tab:切换应用 刷新chrome网页 win+r:刷新chrome网页 terminal 新建一个terminal command+N:新建一个terminal 多个terminal之间切换 command+`:在多个terminal之间切换
-这个时非常实用的，但是每次想用的时候都不记得快捷键了，相当尴尬。。。
-切换输入法 ctrl+space:切换输入法 在全屏和窗口模式间相互切换 ctrl+command+F:在全屏和窗口模式间相互切换 mac要进入窗口最大化的方式就是双击标题栏，而没有键盘快捷键，这个有点不太友好。 取而代之的时mac推荐用command + control + F进入全屏模式专注于当前的工作 </div><div class="post-footer">
-    <a href="/mac-shortcut-key/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a>,&nbsp;<a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/">快捷键</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-17 08:22:14'>发布于 <time datetime="2022-08-17">2022-08-17</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">markdown 基础 标题 1 2 3 4 5 6 # 标题1 ## 标题2 ### 标题3 #### 标题4 ##### 标题5 ###### 标题6 效果:
+标题1 标题2 标题3 标题4 标题5 标题6 分割线 可以使用三个及以上的星号、减号、下划线来表示一条分割线
+1 2 3 --- *** ___ 效果: 删除线 1 ~~ del line ~~ 效果:
+del line
+图片链接 1 ![公众号二维码](/images/gzh.jpeg#pic_center &#34;公众号&#34;) 效果:
+公众号 脚注 1 2 cfanzp主页[^cfanzp] [^cfanzp]: 主页地址:[https://cfanzp.com](https://cfanzp.com) 效果:
+cfanzp主页1
+列表 无序列表 1 2 - item1 - item2 效果:
+item1 item2 有序列表 1 2 1.</div><div class="post-footer">
+    <a href="/markdown/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/markdown/">markdown</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/http-req/">http测试工具</a>
+    <a href="/weak-net/">弱网测试环境的搭建</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-08 16:27:24'>发布于 <time datetime="2022-08-08">2022-08-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">http测试工具 curl 官网:https://curl.se/ Postman 官网:https://www.postman.com/ Apifox 官网:https://www.apifox.cn/ VSCode插件Thunder Client 用法:https://github.com/rangav/thunder-client-support#usage </div><div class="post-footer">
-    <a href="/http-req/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-12 08:46:30'>发布于 <time datetime="2022-08-12">2022-08-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">弱网测试环境的搭建 最近有一个线上项目反馈在弱网环境下，容易掉线。我们自己测试的时候网络环境都还比较好，想模拟一下弱网环境，这里介绍一下几个方案。
+路由器限速 路由器可以直接对某个设备进行限速，这个登录路由器就可以配置了，方法比较简单，这里就不赘述了。
+chrome开发者工具 chrome开发者工具自带网络限速功能，可以限制速度,可以自定义各种网络带宽，使用比较方便。
+使用Charles设置代理限速 这种方法配置起来相比前面2种情况，稍微麻烦一些,另外有一个缺点，websockt限速好像没办法设置(Charles 4.6.2)。</div><div class="post-footer">
+    <a href="/weak-net/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -743,7 +742,7 @@ c-a+$:重命名当前的session</div><div class="post-footer">
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/46/">46</a>
+            <a href="/page/47/">47</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

@@ -73,7 +73,7 @@ git clone https://git.suckless.org/dwm
 
 ## 参考
 - Ubuntu DWM安装配置文档: https://zhuanlan.zhihu.com/p/262067759
-- 入坑dwm——原来窗口管理器还可以这样用？https://zhuanlan.zhihu.com/p/183861786
+- 入坑dwm——原来窗口管理器还可以这样用？ https://zhuanlan.zhihu.com/p/183861786
 
 
 ---

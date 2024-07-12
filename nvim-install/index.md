@@ -11,6 +11,14 @@ nvim 是vim的一个分支
 
 ## 2. 安装
 ### 2.1. centos安装Neovim
+#### 依赖
+- ag
+- rg
+- ctags
+- cscope
+- neovim
+- fd
+
 #### 安装官方编译的程序
 - 先下载nvim-linux64.tar.gz:https://github.com/neovim/neovim/releases/tag/stable
 ```bash
@@ -137,6 +145,7 @@ diagnostics = {
 
 ## 参考
 - 参考：https://github.bnblogs.cc/centos%E5%AE%89%E8%A3%85nvim/#%E5%AE%89%E8%A3%85cocnvim
+- mac neovim安装：https://www.cnblogs.com/youngxhui/p/17730417.html
 
 
 ---

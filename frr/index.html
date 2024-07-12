@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='frr' /><meta itemprop="name" content="frr学习笔记">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-21T22:37:59+08:00" />
 <meta itemprop="dateModified" content="2024-05-21T22:37:59+08:00" />
-<meta itemprop="wordCount" content="16"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="63"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="frr," /><meta property="og:title" content="frr学习笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/frr\/"
-    },"genre": "posts","keywords": "frr","wordcount":  16 ,
+    },"genre": "posts","keywords": "frr","wordcount":  63 ,
     "url": "https:\/\/cfanzp.com\/frr\/","datePublished": "2024-05-21T22:37:59+08:00","dateModified": "2024-05-21T22:37:59+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/frr/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> frr</a>&ensp;<a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-21&#32;22:37:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-21">2024-05-21</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 16 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="frr学习笔记">
+      <div class="post-meta-line"><span title=2024-05-21&#32;22:37:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-21">2024-05-21</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 63 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="frr学习笔记">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -641,6 +641,13 @@
   <ul>
     <li><a href="#frr的安装">frr的安装</a></li>
     <li><a href="#frr的使用">frr的使用</a></li>
+    <li><a href="#frr命令">frr命令</a>
+      <ul>
+        <li><a href="#bgp命令">bgp命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#同步静态路由到frr">同步静态路由到frr</a></li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -676,7 +683,51 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl start frr
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="frr命令">frr命令</h2>
+<h3 id="bgp命令">bgp命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">show ip bgp <span class="o">[</span>x.x.x.x<span class="o">](</span>longer<span class="o">)</span>
+</span></span><span class="line"><span class="cl">show ip bgp summary
+</span></span><span class="line"><span class="cl">show ip route <span class="o">[</span>x.x.x.x<span class="o">](</span>longer<span class="o">)</span>
+</span></span><span class="line"><span class="cl">show ip bgp neighbor <span class="o">[</span>x.x.x.x<span class="o">]</span>
+</span></span><span class="line"><span class="cl">show ip bgp neighbor <span class="o">[</span>x.x.x.x<span class="o">]</span> advertised-routes
+</span></span><span class="line"><span class="cl">show ip bgp neighbor <span class="o">[</span>x.x.x.x<span class="o">]</span> received-routes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="同步静态路由到frr">同步静态路由到frr</h2>
+<p>在使用frr的时候我们发现，如果静态路由不驾到frr里的话，使用frr的bgp,邻居就学习不到路由信息。
+开始我在内核和frr中分别加了一遍，测试发现这样有些路由frr学习不到。
+后来发现了原因是frr本身会把路由信息添加到内核中去。
+但是我们又遇到了新的问题就是frr不支持路由的优先级设置。
+用的版本是frr7.5.1查看官网的命令手册也不支持。
+后来我们通过修改frr7.2.1的源码。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>frr官网：https://docs.frrouting.org/en/latest/static.html</li>
+<li><a
+  href="https://blog.csdn.net/turbock/article/details/103869047"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>FRR搭建简单BGP网络环境</a></li>
+</ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">

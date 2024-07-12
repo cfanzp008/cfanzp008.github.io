@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='shell' /><meta itemprop="name" content="shell脚本基础">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-23T22:48:45+08:00" />
 <meta itemprop="dateModified" content="2024-05-23T22:48:45+08:00" />
-<meta itemprop="wordCount" content="33"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="40"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="shell," /><meta property="og:title" content="shell脚本基础" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/shell\/"
-    },"genre": "posts","keywords": "shell","wordcount":  33 ,
+    },"genre": "posts","keywords": "shell","wordcount":  40 ,
     "url": "https:\/\/cfanzp.com\/shell\/","datePublished": "2024-05-23T22:48:45+08:00","dateModified": "2024-05-23T22:48:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/shell/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> shell</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-23&#32;22:48:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-23">2024-05-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 33 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="shell脚本基础">
+      <div class="post-meta-line"><span title=2024-05-23&#32;22:48:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-23">2024-05-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 40 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="shell脚本基础">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -644,6 +644,7 @@
         <li><a href="#变量">变量</a></li>
       </ul>
     </li>
+    <li><a href="#shell调试">shell调试</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -684,6 +685,18 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 删除变量</span>
 </span></span><span class="line"><span class="cl"><span class="nb">unset</span> a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="shell调试">shell调试</h2>
+<ul>
+<li>在运行bash脚本的时候想看看bash脚本运行的具体情况可以使用bash -x</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash -x test.sh
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">

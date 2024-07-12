@@ -660,7 +660,7 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/git-base/">git学习笔记</a>
+    <a href="/linux-du/">linux-du命令</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
     src="/svg/loading.min.svg"
@@ -668,29 +668,11 @@
     data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
     data-sizes="auto"
     alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2021-10-10 18:36:16'>发布于 <time datetime="2021-10-10">2021-10-10</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/git/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> git</a></span></div><div class="content">git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee.</div><div class="post-footer">
-    <a href="/git-base/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-20 22:30:30'>发布于 <time datetime="2022-07-20">2022-07-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">du命令 du命令简介 du命令是linux系统里的文件大小查看的命令。 du命令的应用场景十分广泛： 需要查看单个目录里面多个文件总大小。 需要查看目录中每个文件的大小以及每个子文件夹中文件的大小。 查看日志文件的大小。 查看文件大小并排序，找出最大的或最小的文件。 其它需要统计文件大小的场景。 ls,df也有类似的功能，但是du更侧重于文件大小，并且更灵活好用。是运维人员、服务端开发人员以及其他linux用户很好的工具。掌握du命令的用法十分有必要。 du命令的使用 查看帮助 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 用法：du [选项].</div><div class="post-footer">
+    <a href="/linux-du/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/du/">du</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/gtest/">ubuntu20.04配置gtest环境</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2021-06-11 18:58:57'>发布于 <time datetime="2021-06-11">2021-06-11</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/gtest/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ubuntu/">ubuntu</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/golang-lib/">Golang库</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2020-11-25 21:24:13'>发布于 <time datetime="2020-11-25">2020-11-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/golang-lib/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a>,&nbsp;<a href="/tags/golang/">golang</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/habbit/">养成好的习惯</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2020-06-01 23:00:18'>发布于 <time datetime="2020-06-01">2020-06-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/others/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 杂谈</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/habbit/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/others/">others</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/i3wm-shortkey/">i3wm-基础快捷键</a>
+    <a href="/devtools-mdbook/">mdbook-比gitbook更高效且简洁的markdown工具mdbook</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
     src="/svg/loading.min.svg"
@@ -698,14 +680,45 @@
     data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
     data-sizes="auto"
     alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2020-04-23 18:09:17'>发布于 <time datetime="2020-04-23">2020-04-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/i3wm/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> i3wm</a></span></div><div class="content">i3wm-基础快捷键 多屏显示 1 xrandr --output HDMI2 --auto --right-of HDMI-3 mod 1 ctrl: $mod config 1 2 alt :Mod1 Win键:Mod4 打开一个虚拟终端 1 mod+enter 拆分 1 2 3 mod+enter mod+v ++ mod+enter;水平分割 mod+n ++ mod+enter;竖指分割 聚焦到父窗口 1 mod+a 进入工作区 1 mod+1,2,3... 移动窗口到其他工作区 1 mod+shift+1,2,3 全屏模式： 1 mod+f 三种模式： 1 2 splith/splitv: mod + e mod+h tacking: mod + s modhift+q 重启i3 1 mod+shift+r 退出i3 1 mod+shift+e 浮动i3 1 mod+shift+space 打开应用 1 mod+d </div><div class="post-footer">
-    <a href="/i3wm-shortkey/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/i3wm/">i3wm</a></div></div>
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-18 17:36:01'>发布于 <time datetime="2022-07-18">2022-07-18</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; 参考 文档: https://rust-lang.</div><div class="post-footer">
+    <a href="/devtools-mdbook/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/mdbook/">mdbook</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/gdb/">gdb</a>
+    <a href="/vim-plug-tabular/">Vim插件:对齐插件-Tabular</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-07-06 22:26:19'>发布于 <time datetime="2022-07-06">2022-07-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vim插件-对齐插件tabular 简单介绍 vim中怎么按&quot;=&quot;,&quot;+&quot; 等符号对齐代码呢？使用tabular插件可以轻松解决。 tabular英语单词，主要用作动词，意思是:列成表格的 安装 使用Plug管理插件的话，.vimrc中加入如下代码: 1 Plug &#39;godlygeek/tabular&#39; 使用其它管理工具的安装方法类似，这里就不介绍了。 不了解Plug管理插件的同学可以先了解一下相关方面的知识。 使用方法 例如按=号对齐代码 visual模式选中要对齐的行 进入底行模式输入Tabularize/= 单词太长记不住怎么办？按Tab键会有提示的。 1 :Tabularize/= 执行前 1 2 3 4 local a = 1 local hello = &#34;hello&#34; ```lua - 执行后 local a = 1 local hello = &ldquo;hello&rdquo;</div><div class="post-footer">
+    <a href="/vim-plug-tabular/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/mysql-/">mysql&#43;&#43;的使用</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2020-01-30 13:22:35'>发布于 <time datetime="2020-01-30">2020-01-30</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/code/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程</a></span></div><div class="content"></div><div class="post-footer">
-    <a href="/gdb/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gdb/">gdb</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-06-14 22:06:55'>发布于 <time datetime="2022-06-14">2022-06-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/mysql/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mysql</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/mysql-/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a>,&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/pc-price/">二手笔记本价格记录表</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-05-25 22:01:56'>发布于 <time datetime="2022-05-25">2022-05-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/pc-price/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pc/">pc</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/devtools-tmux/">tmux基本配置及vim适配</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="cfanzp"
+    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-04-25 19:19:14'>发布于 <time datetime="2022-04-25">2022-04-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
+下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !</div><div class="post-footer">
+    <a href="/devtools-tmux/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/terminal/">terminal</a>,&nbsp;<a href="/tags/vim/">vim</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -728,6 +741,10 @@
         </li><li class="page-item ">
           <span class="page-link">
             <a href="/page/46/">46</a>
+          </span>
+        </li><li class="page-item ">
+          <span class="page-link">
+            <a href="/page/47/">47</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

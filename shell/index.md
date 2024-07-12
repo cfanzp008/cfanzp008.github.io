@@ -21,6 +21,12 @@ echo $a
 unset a
 ```
 
+## shell调试
+- 在运行bash脚本的时候想看看bash脚本运行的具体情况可以使用bash -x
+```bash
+bash -x test.sh
+```
+
 
 
 ---

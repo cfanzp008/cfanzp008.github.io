@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='IPsec' /><meta itemprop="name" content="IPsec协议框架">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-24T23:00:31+08:00" />
 <meta itemprop="dateModified" content="2024-05-24T23:00:31+08:00" />
-<meta itemprop="wordCount" content="47"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="263"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="IPsec," /><meta property="og:title" content="IPsec协议框架" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -24,7 +24,7 @@
 <meta name="application-name" content="个人Linux开发笔记">
 <meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/nat-ipsec/" /><link rel="prev" href="https://cfanzp.com/network-gre/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/nat-ipsec/" /><link rel="prev" href="https://cfanzp.com/network-gre/" /><link rel="next" href="https://cfanzp.com/ec6108v9-linux/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/nat-ipsec\/"
-    },"genre": "posts","keywords": "IPsec","wordcount":  47 ,
+    },"genre": "posts","keywords": "IPsec","wordcount":  263 ,
     "url": "https:\/\/cfanzp.com\/nat-ipsec\/","datePublished": "2024-05-24T23:00:31+08:00","dateModified": "2024-05-24T23:00:31+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-24&#32;23:00:31><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-24">2024-05-24</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 47 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="IPsec协议框架">
+      <div class="post-meta-line"><span title=2024-05-24&#32;23:00:31><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-24">2024-05-24</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 263 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="IPsec协议框架">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -664,6 +664,13 @@
         <li><a href="#路由方式">路由方式</a></li>
       </ul>
     </li>
+    <li><a href="#ipsec安装配置">ipsec安装配置</a>
+      <ul>
+        <li><a href="#ipsec安装">ipsec安装</a></li>
+        <li><a href="#配置文件demo">配置文件demo</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -739,7 +746,210 @@ IPsec协议框架包含安全协议、算法、封装模式等</p>
 <h3 id="acl方式">ACL方式</h3>
 <p>ACL方式功能丰富灵活使用</p>
 <h3 id="路由方式">路由方式</h3>
-<p>路由方式配置简单，组播流量，动态路由</p></div><div class="post-footer" id="post-footer">
+<p>路由方式配置简单，组播流量，动态路由</p>
+<h2 id="ipsec安装配置">ipsec安装配置</h2>
+<h3 id="ipsec安装">ipsec安装</h3>
+<ul>
+<li><a
+  href="https://github.com/matfabia/strongswan"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/matfabia/strongswan</a></li>
+</ul>
+<h3 id="配置文件demo">配置文件demo</h3>
+<ul>
+<li>官网https://wiki.strongswan.org/projects/strongswan/wiki/ConnSection</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ipsec.conf - strongSwan IPsec configuration file</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># basic configuration</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">config setup
+</span></span><span class="line"><span class="cl">	<span class="c1"># strictcrlpolicy=yes</span>
+</span></span><span class="line"><span class="cl"> 	<span class="c1"># uniqueids = no</span>
+</span></span><span class="line"><span class="cl"> 	
+</span></span><span class="line"><span class="cl"><span class="c1"># Add connections here.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sample VPN connections</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#conn sample-self-signed           //ipsec隧道名 一条ipsec配置的起始处</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      leftsubnet=10.1.0.0/16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      leftcert=selfCert.der</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      leftsendcert=never</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      right=192.168.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      rightsubnet=10.2.0.0/16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      rightcert=peerCert.der</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      auto=start</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#conn sample-with-ca-cert</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      leftsubnet=10.1.0.0/16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      leftcert=myCert.pem</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      right=192.168.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      rightsubnet=10.2.0.0/16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      rightid=&#34;C=CH, O=Linux strongSwan CN=peer name&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      auto=start</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>服务端demo</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">config setup
+</span></span><span class="line"><span class="cl">        <span class="nv">charondebug</span><span class="o">=</span><span class="s2">&#34;cfg 4, dmn 4, ike 4, net 4, knl 4&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">uniqueids</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">        <span class="nv">strictcrlpolicy</span><span class="o">=</span>no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conn %default
+</span></span><span class="line"><span class="cl">        <span class="nv">ikelifetime</span><span class="o">=</span>24h       //在重新协商之前应该持续多长时间
+</span></span><span class="line"><span class="cl">        <span class="nv">keylife</span><span class="o">=</span>8h             //从成功协商到期应该持续多长时间
+</span></span><span class="line"><span class="cl">        <span class="nv">rekeymargin</span><span class="o">=</span>30m
+</span></span><span class="line"><span class="cl">        <span class="nv">keyingtries</span><span class="o">=</span><span class="m">3</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">keyexchange</span><span class="o">=</span>ikev2
+</span></span><span class="line"><span class="cl">        <span class="nv">authby</span><span class="o">=</span>psk
+</span></span><span class="line"><span class="cl">        <span class="nv">dpddelay</span><span class="o">=</span>180s
+</span></span><span class="line"><span class="cl">        <span class="nv">ike</span><span class="o">=</span>aes256-sha1-modp2048!
+</span></span><span class="line"><span class="cl">        <span class="nv">esp</span><span class="o">=</span>aes192-sha1-esn!    //用于连接ESP加密认证算法
+</span></span><span class="line"><span class="cl">        <span class="nv">mobike</span><span class="o">=</span>no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conn <span class="nb">test</span>                       //隧道名称，一条ipsec的起始处
+</span></span><span class="line"><span class="cl">        <span class="nv">left</span><span class="o">=</span>%any               //ipsec协商公网IP 填写IP或者%defaultroute
+</span></span><span class="line"><span class="cl">        <span class="nv">leftcert</span><span class="o">=</span>vrf_0.pem      //公钥证书
+</span></span><span class="line"><span class="cl">        <span class="nv">leftsubnet</span><span class="o">=</span>192.168.0.1/32   //本段保护子网
+</span></span><span class="line"><span class="cl">        <span class="nv">leftid</span><span class="o">=</span>198.18.0.1           //本端id
+</span></span><span class="line"><span class="cl">        <span class="nv">leftfirewall</span><span class="o">=</span>yes            //关闭防火
+</span></span><span class="line"><span class="cl">        <span class="nv">right</span><span class="o">=</span>%any                  //ipsec对端IP  %any表示任意，服务端配置为%any
+</span></span><span class="line"><span class="cl">        <span class="nv">rightid</span><span class="o">=</span>198.18.0.2          //对端id
+</span></span><span class="line"><span class="cl">        <span class="nv">rightsubnet</span><span class="o">=</span>0.0.0.0/0       //对端保护子网
+</span></span><span class="line"><span class="cl">        <span class="nv">rightdns</span><span class="o">=</span>114.114.114.114 
+</span></span><span class="line"><span class="cl">        <span class="nv">auto</span><span class="o">=</span>add                   //不发起ipsec连接
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>客户端demo</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conn %default
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>tunnel
+</span></span><span class="line"><span class="cl"><span class="nv">dpddelay</span><span class="o">=</span>180s
+</span></span><span class="line"><span class="cl"><span class="nv">apdaction</span><span class="o">=</span>restart   //dpd检测失败后重新连接
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conn test-cli
+</span></span><span class="line"><span class="cl">    <span class="nv">left</span><span class="o">=</span>192.168.100.180
+</span></span><span class="line"><span class="cl">    <span class="nv">auto</span><span class="o">=</span>start               //主动发起连接
+</span></span><span class="line"><span class="cl">    <span class="nv">keyingtries</span><span class="o">=</span>%forever     //直到协商成功
+</span></span><span class="line"><span class="cl">    <span class="nv">letfsubnet</span><span class="o">=</span>192.18.0.2    //保护子网
+</span></span><span class="line"><span class="cl">    <span class="nv">right</span><span class="o">=</span>192.168.100.161    //服务端IP
+</span></span><span class="line"><span class="cl">    <span class="nv">leftid</span><span class="o">=</span>198.18.0.2        //移动端ios作为标识要用
+</span></span><span class="line"><span class="cl">    <span class="nv">reghtid</span><span class="o">=</span>198.18.0.1       //对端
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考">参考</h2>
+<ul>
+<li><a
+  href="https://blog.csdn.net/jkwanga/article/details/109621684"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>ipsec配置</a></li>
+</ul></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
@@ -761,7 +971,8 @@ IPsec协议框架包含安全协议、算法、封装模式等</p>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/network-gre/" class="prev" rel="prev" title="网络GRE协议"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>网络GRE协议</a></div>
+  <div class="post-nav"><a href="/network-gre/" class="prev" rel="prev" title="网络GRE协议"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>网络GRE协议</a>
+      <a href="/ec6108v9-linux/" class="next" rel="next" title="ec6108v9刷成linux笔记">ec6108v9刷成linux笔记<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
