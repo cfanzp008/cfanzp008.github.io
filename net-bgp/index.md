@@ -124,7 +124,6 @@ bgp as-path access-list 99 permit _1310[0-6][0-9]_|_13107[0-1]_
 ```
 
 ## 路由策略
-BGP的路由策略由
 FRR的路由策略通过设置Route Maps来实现。Route Maps一共可分为五个模块，分别是
 - Matching Conditions（条件匹配）
 - Set Actions（策略设置）

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu NetworkManager配置 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='nmcli, NetworkManager' /><meta itemprop="name" content="ubuntu NetworkManager配置">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-07-13T22:24:23+08:00" />
+<meta itemprop="dateModified" content="2024-07-13T22:24:23+08:00" />
+<meta itemprop="wordCount" content="704"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="nmcli,NetworkManager," /><meta property="og:title" content="ubuntu NetworkManager配置" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/network-manager/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-13T22:24:23+08:00" />
+<meta property="article:modified_time" content="2024-07-13T22:24:23+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="ubuntu NetworkManager配置"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="个人Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/network-manager/" /><link rel="prev" href="https://cfanzp.com/ubuntu-dns/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu NetworkManager配置",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/network-manager\/"
+    },"genre": "posts","keywords": "nmcli, NetworkManager","wordcount":  704 ,
+    "url": "https:\/\/cfanzp.com\/network-manager\/","datePublished": "2024-07-13T22:24:23+08:00","dateModified": "2024-07-13T22:24:23+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="个人Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="个人Linux开发笔记"
+    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="个人Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>ubuntu NetworkManager配置</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a>&ensp;<a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-13&#32;22:24:23><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-13">2024-07-13</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 704 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu NetworkManager配置">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#networkmanager">NetworkManager</a>
+      <ul>
+        <li><a href="#networkmanager-nmcli安装">NetworkManager nmcli安装</a></li>
+        <li><a href="#networkmanager-nmcli命令">NetworkManager nmcli命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#systemd-networkd">systemd-networkd</a>
+      <ul>
+        <li><a href="#查看服务状态">查看服务状态</a></li>
+        <li><a href="#使用system-networkd配置网络">使用system-networkd配置网络</a></li>
+      </ul>
+    </li>
+    <li><a href="#netplan">netplan</a>
+      <ul>
+        <li><a href="#netplan配置文件">netplan配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关命令">相关命令</a>
+      <ul>
+        <li><a href="#networkmanager-nmcli命令-1">NetworkManager nmcli命令</a></li>
+        <li><a href="#netplan命令">netplan命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#netplansystemd-networkd-networkmanager之间的关系">netplan、systemd-networkd、 NetworkManager之间的关系</a>
+      <ul>
+        <li><a href="#netplan-1">netplan</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="ubuntu-networkmanager配置">ubuntu NetworkManager配置</h1>
+<h2 id="networkmanager">NetworkManager</h2>
+<ol>
+<li>NetworkManager可以直接配置网络，也可以作为netplan的渲染器。</li>
+<li>NetworkManager配置文件目录为/etc/NetworkManager/。</li>
+<li>NetworkManager可以使用nmcli配置网络，或直接在界面配置网络。</li>
+<li>配置保存在/etc/NetworkManager/system-connections下</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netplan-ens33.nmconnection  test192.nmconnection
+</span></span><span class="line"><span class="cl">root@ubuntu:/etc/NetworkManager/system-connections# ls
+</span></span><span class="line"><span class="cl">netplan-ens33.nmconnection  test192.nmconnection
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="networkmanager-nmcli安装">NetworkManager nmcli安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/blog# nmcli
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Command <span class="s1">&#39;nmcli&#39;</span> not found, but can be installed with:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt install network-manager
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="networkmanager-nmcli命令">NetworkManager nmcli命令</h3>
+<ul>
+<li>mncli可以看到当前管理的网络配置包括netplan中使用NetworkManager作为渲染器的配置和自己mncli的配置以及界面上的配置。</li>
+</ul>
+<h2 id="systemd-networkd">systemd-networkd</h2>
+<h3 id="查看服务状态">查看服务状态</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/etc/netplan# systemctl status systemd-networkd
+</span></span><span class="line"><span class="cl">● systemd-networkd.service - Network Service
+</span></span><span class="line"><span class="cl">Loaded: loaded <span class="o">(</span>/lib/systemd/system/systemd-networkd.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Active: active <span class="o">(</span>running<span class="o">)</span> since Wed 2024-05-15 21:46:03 CST<span class="p">;</span> <span class="m">1</span> months <span class="m">28</span> days ago
+</span></span><span class="line"><span class="cl">TriggeredBy: ● systemd-networkd.socket
+</span></span><span class="line"><span class="cl">Docs: man:systemd-networkd.service<span class="o">(</span>8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Main PID: <span class="m">625</span> <span class="o">(</span>systemd-network<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Status: <span class="s2">&#34;Processing requests...&#34;</span>
+</span></span><span class="line"><span class="cl">Tasks: <span class="m">1</span> <span class="o">(</span>limit: 2267<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Memory: 1.9M
+</span></span><span class="line"><span class="cl">CGroup: /system.slice/systemd-networkd.service
+</span></span><span class="line"><span class="cl">└─625 /lib/systemd/systemd-networkd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd<span class="o">[</span>1<span class="o">]</span>: Starting Network Service...
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: Enumeration completed
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd<span class="o">[</span>1<span class="o">]</span>: Started Network Service.
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: eth0: IPv6 successfully enabled
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: eth0: Link UP
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: eth0: Gained carrier
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:03 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: eth0: DHCPv4 address 10.0.8.10/22 via 10.0.8.1
+</span></span><span class="line"><span class="cl">May <span class="m">15</span> 21:46:05 VM-8-10-ubuntu systemd-networkd<span class="o">[</span>625<span class="o">]</span>: eth0: Gained IPv6LL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用system-networkd配置网络">使用system-networkd配置网络</h3>
+<ol>
+<li>查看接口情况</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:~# ip addr
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">inet 127.0.0.1/8 scope host lo
+</span></span><span class="line"><span class="cl">valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">inet6 ::1/128 scope host 
+</span></span><span class="line"><span class="cl">valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">link/ether 00:0c:29:59:ea:9d brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">altname enp2s1
+</span></span><span class="line"><span class="cl">inet 192.168.0.113/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">inet6 fe80::1b10:e933:90ce:b8aa/64 scope link noprefixroute 
+</span></span><span class="line"><span class="cl">valid_lft forever preferred_lft forever
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>在/etc/systemd/network/创建配置文件,文件扩展名为.network,并添加配置项</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">sudo vim /etc/systemd/network/10-ens33.network</span>
+</span></span><span class="line"><span class="cl"><span class="k">[Match]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Name</span><span class="o">=</span><span class="s">ens33</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Network]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Address</span><span class="o">=</span><span class="s">192.168.0.114/24</span>
+</span></span><span class="line"><span class="cl"><span class="na">Gateway</span><span class="o">=</span><span class="s">192.168.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">DNS</span><span class="o">=</span><span class="s">8.8.8.8</span>
+</span></span><span class="line"><span class="cl"><span class="na">DNS</span><span class="o">=</span><span class="s">223.5.5.5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>应用配置</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart systemd-networkd
+</span></span><span class="line"><span class="cl"><span class="c1">#查看状态</span>
+</span></span><span class="line"><span class="cl">sudo systemctl status systemd-networkd
+</span></span><span class="line"><span class="cl"><span class="c1">#查看日志</span>
+</span></span><span class="line"><span class="cl">sudo journalctl -u systemd-networkd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="netplan">netplan</h2>
+<h3 id="netplan配置文件">netplan配置文件</h3>
+<ol>
+<li>配置文件文件的默认目录是/etc/netplan/50-cloud-init.yaml</li>
+<li>配置文件的扩展名为yaml</li>
+<li>配置文件使用systemd举例：
+<ul>
+<li>配置文件种render如果没设置，默认为netwokd(即systemd-networkd)</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">network:
+</span></span><span class="line"><span class="cl">  version: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    renderer: networkd
+</span></span><span class="line"><span class="cl">      ethernets:
+</span></span><span class="line"><span class="cl">          eth0:
+</span></span><span class="line"><span class="cl">                dhcp4: <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>netplan使用NetworkManager举例</li>
+</ol>
+<ul>
+<li>如下配置网络接口</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:/etc/netplan# cat 01-network-manager-all.yaml
+</span></span><span class="line"><span class="cl"><span class="c1"># Let NetworkManager manage all devices on this system</span>
+</span></span><span class="line"><span class="cl">network:
+</span></span><span class="line"><span class="cl">  version: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">  renderer: NetworkManager
+</span></span><span class="line"><span class="cl">  ethernets:
+</span></span><span class="line"><span class="cl">      ens33:
+</span></span><span class="line"><span class="cl">         addresses: <span class="o">[</span>10.168.27.200/24<span class="o">]</span>
+</span></span><span class="line"><span class="cl">         dhcp4: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">         gateway4: 10.168.27.1
+</span></span><span class="line"><span class="cl">         nameservers:
+</span></span><span class="line"><span class="cl">             addresses: <span class="o">[</span>10.168.27.1, 8.8.8.8<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使配置生效</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:~# sudo netplan apply
+</span></span><span class="line"><span class="cl">root@ubuntu:~# nmcli connection show
+</span></span><span class="line"><span class="cl">NAME                UUID                                  TYPE      DEVICE 
+</span></span><span class="line"><span class="cl">test192             fabbd313-93aa-4ee6-be9a-da35c2dbebb1  ethernet  ens33  
+</span></span><span class="line"><span class="cl">netplan-ens33       14f59568-5076-387a-aef6-10adfcca2e26  ethernet  -- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="相关命令">相关命令</h2>
+<h3 id="networkmanager-nmcli命令-1">NetworkManager nmcli命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:/etc/NetworkManager/system-connections# nmcli -s c
+</span></span><span class="line"><span class="cl">NAME                UUID                                  TYPE      DEVICE 
+</span></span><span class="line"><span class="cl">netplan-ens33       14f59568-5076-387a-aef6-10adfcca2e26  ethernet  ens33  
+</span></span><span class="line"><span class="cl">Wired connection <span class="m">1</span>  abfb0c61-44d3-30df-aa51-13d8cd13a904  ethernet  --     
+</span></span><span class="line"><span class="cl">root@ubuntu:/etc/NetworkManager/system-connections# nmcli connection show
+</span></span><span class="line"><span class="cl">NAME                UUID                                  TYPE      DEVICE 
+</span></span><span class="line"><span class="cl">netplan-ens33       14f59568-5076-387a-aef6-10adfcca2e26  ethernet  ens33  
+</span></span><span class="line"><span class="cl">Wired connection <span class="m">1</span>  abfb0c61-44d3-30df-aa51-13d8cd13a904  ethernet  -- 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>添加一个连接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:/etc/NetworkManager/system-connections# nmcli connection add con-name test192 ipv4.method manual autoconnect no <span class="nb">type</span> ethernet ifname ens33 ipv4.addresses 192.168.0.113/24 ipv4.gateway 192.168.0.1 ipv4.dns <span class="s2">&#34;114.114.114.114 8.8.8.8&#34;</span>
+</span></span><span class="line"><span class="cl">Connection <span class="s1">&#39;test192&#39;</span> <span class="o">(</span>fabbd313-93aa-4ee6-be9a-da35c3dbebb1<span class="o">)</span> successfully added.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>启用连接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netplan-ens33.nmconnection  test192.nmconnection
+</span></span><span class="line"><span class="cl">root@ubuntu:/etc/NetworkManager/system-connections# ls
+</span></span><span class="line"><span class="cl">netplan-ens33.nmconnection  test192.nmconnection
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>删除一个连接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nmcli connection delete uuid
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看连接信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:/etc/netplan# nmcli connection show
+</span></span><span class="line"><span class="cl">NAME           UUID                                  TYPE      DEVICE 
+</span></span><span class="line"><span class="cl">netplan-ens33  14f59568-5076-387a-aef6-10adfcca2e26  ethernet  ens33  
+</span></span><span class="line"><span class="cl">test192        fabbd313-93aa-4ee6-be9a-da35c2dbebb1  ethernet  --     
+</span></span><span class="line"><span class="cl">root@ubuntu:/etc/netplan# nmcli connection show netplan-ens33
+</span></span><span class="line"><span class="cl">connection.id:                          netplan-ens33
+</span></span><span class="line"><span class="cl">connection.uuid:                        14f59568-5076-387a-aef6-10adfcca2e26
+</span></span><span class="line"><span class="cl">connection.stable-id:                   --
+</span></span><span class="line"><span class="cl">connection.type:                        802-3-ethernet
+</span></span><span class="line"><span class="cl">connection.interface-name:              ens33
+</span></span><span class="line"><span class="cl">connection.autoconnect:                 yes
+</span></span><span class="line"><span class="cl">connection.autoconnect-priority:        <span class="m">0</span>
+</span></span><span class="line"><span class="cl">connection.autoconnect-retries:         -1 <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">connection.multi-connect:               <span class="m">0</span> <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">connection.auth-retries:                -1
+</span></span><span class="line"><span class="cl">connection.timestamp:                   <span class="m">1720886878</span>
+</span></span><span class="line"><span class="cl">connection.read-only:                   no
+</span></span><span class="line"><span class="cl">connection.permissions:                 --
+</span></span><span class="line"><span class="cl">connection.zone:                        --
+</span></span><span class="line"><span class="cl">connection.master:                      --
+</span></span><span class="line"><span class="cl">connection.slave-type:                  --
+</span></span><span class="line"><span class="cl">connection.autoconnect-slaves:          -1 <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">connection.secondaries:                 --
+</span></span><span class="line"><span class="cl">connection.gateway-ping-timeout:        <span class="m">0</span>
+</span></span><span class="line"><span class="cl">connection.metered:                     unknown
+</span></span><span class="line"><span class="cl">connection.lldp:                        default
+</span></span><span class="line"><span class="cl">connection.mdns:                        -1 <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">connection.llmnr:                       -1 <span class="o">(</span>default<span class="o">)</span>
+</span></span><span class="line"><span class="cl">connection.wait-device-timeout:         -1
+</span></span><span class="line"><span class="cl">802-3-ethernet.port:                    --
+</span></span><span class="line"><span class="cl">802-3-ethernet.speed:                   <span class="m">0</span>
+</span></span><span class="line"><span class="cl">802-3-ethernet.duplex:                  --
+</span></span><span class="line"><span class="cl">802-3-ethernet.auto-negotiate:          no
+</span></span><span class="line"><span class="cl">802-3-ethernet.mac-address:             --
+</span></span><span class="line"><span class="cl">802-3-ethernet.cloned-mac-address:      --
+</span></span><span class="line"><span class="cl">802-3-ethernet.generate-mac-address-mask:--
+</span></span><span class="line"><span class="cl">802-3-ethernet.mac-address-blacklist:   --
+</span></span><span class="line"><span class="cl">802-3-ethernet.mtu:                     auto
+</span></span><span class="line"><span class="cl">802-3-ethernet.s390-subchannels:        --
+</span></span><span class="line"><span class="cl">802-3-ethernet.s390-nettype:            --
+</span></span><span class="line"><span class="cl">802-3-ethernet.s390-options:            --
+</span></span><span class="line"><span class="cl">802-3-ethernet.wake-on-lan:             --
+</span></span><span class="line"><span class="cl">802-3-ethernet.wake-on-lan-password:    --
+</span></span><span class="line"><span class="cl">ipv4.method:                            manual
+</span></span><span class="line"><span class="cl">ipv4.dns:                               192.168.0.1,8.8.8.8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="netplan命令">netplan命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#应用配置</span>
+</span></span><span class="line"><span class="cl">sudo netplan apply
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#验证配置</span>
+</span></span><span class="line"><span class="cl">sudo netplan generate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#尝试应用配置</span>
+</span></span><span class="line"><span class="cl">sudo netplan try
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#调试配置</span>
+</span></span><span class="line"><span class="cl">sudo netplan --debug generate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="netplansystemd-networkd-networkmanager之间的关系">netplan、systemd-networkd、 NetworkManager之间的关系</h2>
+<h3 id="netplan-1">netplan</h3>
+<ul>
+<li>netplan是在ubuntu 17.10版本开始引入</li>
+<li>工作原理：读取/etc/netplan/下yaml格式配置文件(定义网络接口、IP、路由、DNS设置)</li>
+<li>渲染器（renderer)可以选择networkd和NetworkManager</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ol>
+<li>重点是要理清netplan、systemd-networkd、NetworkManager之间的关系</li>
+<li>如果你使用 nmcli 直接配置 IP 地址，这将绕过 Netplan 和 systemd-networkd 的配配置。因此不建议使用nmcli直接配置网络。</li>
+<li>使用 nmcli 的直接操作可能会导致配置的不一致性和管理上的混淆，特别是在需要多种网络配置（例如静态 IP 和 DHCP 混合）时更容易出现问题。</li>
+<li>桌面环境建议使用NetworkManager,方便直观。</li>
+<li>使用netplan服务器环境建议使用networkd作为randerer性能搞，对于桌面环境建议使用NetworkManger渲染环境，有界面友好。</li>
+</ol></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-13&#32;22:24:23>更新于 2024-07-13&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/network-manager/" data-title="ubuntu NetworkManager配置"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nmcli/">nmcli</a>,&nbsp;<a href="/tags/networkmanager/">NetworkManager</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-dns/" class="prev" rel="prev" title="ubuntu dns"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu dns</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

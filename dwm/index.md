@@ -67,13 +67,15 @@ git clone https://git.suckless.org/dwm
 ### 快捷键
 - Mod1表示:Alt,Mod4表示Windows键
 ```
+快捷键可以自己设置
 ```
 
 - dwm问题汇总: https://blog.csdn.net/qq_34548075/article/details/106941934
 
 ## 参考
 - Ubuntu DWM安装配置文档: https://zhuanlan.zhihu.com/p/262067759
-- 入坑dwm——原来窗口管理器还可以这样用？ https://zhuanlan.zhihu.com/p/183861786
+- [入坑dwm——原来窗口管理器还可以这样用？](https://zhuanlan.zhihu.com/p/183861786)
+- [dwm使用帮助](https://blog.csdn.net/LSJ944830401/article/details/106010401)
 
 
 ---

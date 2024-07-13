@@ -3,6 +3,17 @@
 
 <!--more-->
 # chrome安装后基本配置
+## 安装插件
+- surfingkeys
+- OneTab
+
+
+## chrome常用命令
+```bash
+刷新：Ctrl + R
+创建新的Tab: Ctrl + T
+```
+
 
 ## 常见问题
 ### ubuntu如何2条命令快速更新chrome?
