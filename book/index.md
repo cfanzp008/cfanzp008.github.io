@@ -2,6 +2,9 @@
 
 
 # 笔记列表
+## 书单
+- [认知觉醒](https://book.douban.com/review/15933920/)
+
 ## 读书笔记
 - [<<Vim实用技巧第2版>>学习笔记](https://cfanzp.com/book/vim/)
 - [<<计算机网络第5版>>学习笔记](https://cfanzp.com/book/network-5/)

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>linux ping命令的用法 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='ping' /><meta itemprop="name" content="linux ping命令的用法">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-07-15T23:23:38+08:00" />
+<meta itemprop="dateModified" content="2024-07-15T23:23:38+08:00" />
+<meta itemprop="wordCount" content="501"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="keywords" content="ping," /><meta property="og:title" content="linux ping命令的用法" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp.com/linux-cmd-ping/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-15T23:23:38+08:00" />
+<meta property="article:modified_time" content="2024-07-15T23:23:38+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="linux ping命令的用法"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="个人Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/linux-cmd-ping/" /><link rel="prev" href="https://cfanzp.com/linux-cmd-lsof/" /><link rel="next" href="https://cfanzp.com/video-tools-sharex/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "linux ping命令的用法",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp.com\/linux-cmd-ping\/"
+    },"genre": "posts","keywords": "ping","wordcount":  501 ,
+    "url": "https:\/\/cfanzp.com\/linux-cmd-ping\/","datePublished": "2024-07-15T23:23:38+08:00","dateModified": "2024-07-15T23:23:38+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="个人Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="个人Linux开发笔记"
+    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="个人Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>linux ping命令的用法</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-15&#32;23:23:38><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-15">2024-07-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 501 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="linux ping命令的用法">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#查看帮助">查看帮助</a></li>
+    <li><a href="#检查某个域名是否能够ping通">检查某个域名是否能够ping通</a></li>
+    <li><a href="#收到2个ping包后结束">收到2个ping包后结束</a></li>
+    <li><a href="#每间隔3s发送一个大小为1001的数据包ttl为200">每间隔3s发送一个大小为1001的数据包,ttl为200</a></li>
+    <li><a href="#ping的复杂使用场景">ping的复杂使用场景</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="linux-ping命令的用法">linux ping命令的用法</h1>
+<p>linux ping命令虽然简单，但是平日里用得多的是直接ping，其实还有很多其它的用法，这里简单记录一下。</p>
+<h2 id="查看帮助">查看帮助</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/# ping -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Usage
+</span></span><span class="line"><span class="cl">  ping <span class="o">[</span>options<span class="o">]</span> &lt;destination&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Options:
+</span></span><span class="line"><span class="cl">  &lt;destination&gt;      dns name or ip address
+</span></span><span class="line"><span class="cl">  -a                 use audible ping
+</span></span><span class="line"><span class="cl">  -A                 use adaptive ping
+</span></span><span class="line"><span class="cl">  -B                 sticky <span class="nb">source</span> address
+</span></span><span class="line"><span class="cl">  -c &lt;count&gt;         stop after &lt;count&gt; replies
+</span></span><span class="line"><span class="cl">  -D                 print timestamps
+</span></span><span class="line"><span class="cl">  -d                 use SO_DEBUG socket option
+</span></span><span class="line"><span class="cl">  -f                 flood ping
+</span></span><span class="line"><span class="cl">  -h                 print <span class="nb">help</span> and <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">  -I &lt;interface&gt;     either interface name or address
+</span></span><span class="line"><span class="cl">  -i &lt;interval&gt;      seconds between sending each packet
+</span></span><span class="line"><span class="cl">  -L                 suppress loopback of multicast packets
+</span></span><span class="line"><span class="cl">  -l &lt;preload&gt;       send &lt;preload&gt; number of packages <span class="k">while</span> waiting replies
+</span></span><span class="line"><span class="cl">  -m &lt;mark&gt;          tag the packets going out
+</span></span><span class="line"><span class="cl">  -M &lt;pmtud opt&gt;     define mtu discovery, can be one of &lt;<span class="k">do</span><span class="p">|</span>dont<span class="p">|</span>want&gt;
+</span></span><span class="line"><span class="cl">  -n                 no dns name resolution
+</span></span><span class="line"><span class="cl">  -O                 report outstanding replies
+</span></span><span class="line"><span class="cl">  -p &lt;pattern&gt;       contents of padding byte
+</span></span><span class="line"><span class="cl">  -q                 quiet output
+</span></span><span class="line"><span class="cl">  -Q &lt;tclass&gt;        use quality of service &lt;tclass&gt; bits
+</span></span><span class="line"><span class="cl">  -s &lt;size&gt;          use &lt;size&gt; as number of data bytes to be sent
+</span></span><span class="line"><span class="cl">  -S &lt;size&gt;          use &lt;size&gt; as SO_SNDBUF socket option value
+</span></span><span class="line"><span class="cl">  -t &lt;ttl&gt;           define <span class="nb">time</span> to live
+</span></span><span class="line"><span class="cl">  -U                 print user-to-user latency
+</span></span><span class="line"><span class="cl">  -v                 verbose output
+</span></span><span class="line"><span class="cl">  -V                 print version and <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">  -w &lt;deadline&gt;      reply <span class="nb">wait</span> &lt;deadline&gt; in seconds
+</span></span><span class="line"><span class="cl">  -W &lt;timeout&gt;       <span class="nb">time</span> to <span class="nb">wait</span> <span class="k">for</span> response
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">IPv4 options:
+</span></span><span class="line"><span class="cl">  -4                 use IPv4
+</span></span><span class="line"><span class="cl">  -b                 allow pinging broadcast
+</span></span><span class="line"><span class="cl">  -R                 record route
+</span></span><span class="line"><span class="cl">  -T &lt;timestamp&gt;     define timestamp, can be one of &lt;tsonly<span class="p">|</span>tsandaddr<span class="p">|</span>tsprespec&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">IPv6 options:
+</span></span><span class="line"><span class="cl">  -6                 use IPv6
+</span></span><span class="line"><span class="cl">  -F &lt;flowlabel&gt;     define flow label, default is random
+</span></span><span class="line"><span class="cl">  -N &lt;nodeinfo opt&gt;  use icmp6 node info query, try &lt;help&gt; as argument
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For more details see ping<span class="o">(</span>8<span class="o">)</span>.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="检查某个域名是否能够ping通">检查某个域名是否能够ping通</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:~# ping www.baidu.com
+</span></span><span class="line"><span class="cl">PING www.a.shifen.com <span class="o">(</span>183.2.172.185<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 183.2.172.185 <span class="o">(</span>183.2.172.185<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>2.73 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 183.2.172.185 <span class="o">(</span>183.2.172.185<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>2.72 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 183.2.172.185 <span class="o">(</span>183.2.172.185<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>2.75 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- www.a.shifen.com ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">3</span> packets transmitted, <span class="m">3</span> received, 0% packet loss, <span class="nb">time</span> 2004ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 2.724/2.733/2.751/0.012 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="收到2个ping包后结束">收到2个ping包后结束</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/# ping -c <span class="m">2</span> www.baidu.com
+</span></span><span class="line"><span class="cl">PING www.a.shifen.com <span class="o">(</span>183.2.172.42<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 183.2.172.42 <span class="o">(</span>183.2.172.42<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.26 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 183.2.172.42 <span class="o">(</span>183.2.172.42<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.28 ms
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--- www.a.shifen.com ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">2</span> packets transmitted, <span class="m">2</span> received, 0% packet loss, <span class="nb">time</span> 1002ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 3.264/3.269/3.275/0.005 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="每间隔3s发送一个大小为1001的数据包ttl为200">每间隔3s发送一个大小为1001的数据包,ttl为200</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:~# ping -i <span class="m">3</span> -s <span class="m">1001</span> -t <span class="m">200</span> www.baidu.com
+</span></span><span class="line"><span class="cl">PING www.a.shifen.com <span class="o">(</span>157.148.69.74<span class="o">)</span> 1001<span class="o">(</span>1029<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">1009</span> bytes from 157.148.69.74 <span class="o">(</span>157.148.69.74<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.15 ms
+</span></span><span class="line"><span class="cl"><span class="m">1009</span> bytes from 157.148.69.74 <span class="o">(</span>157.148.69.74<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.15 ms
+</span></span><span class="line"><span class="cl"><span class="m">1009</span> bytes from 157.148.69.74 <span class="o">(</span>157.148.69.74<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.15 ms
+</span></span><span class="line"><span class="cl"><span class="m">1009</span> bytes from 157.148.69.74 <span class="o">(</span>157.148.69.74<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.16 ms
+</span></span><span class="line"><span class="cl"><span class="m">1009</span> bytes from 157.148.69.74 <span class="o">(</span>157.148.69.74<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">5</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">52</span> <span class="nv">time</span><span class="o">=</span>3.16 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- www.a.shifen.com ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">5</span> packets transmitted, <span class="m">5</span> received, 0% packet loss, <span class="nb">time</span> 12012ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 3.149/3.152/3.157/0.003 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ping的复杂使用场景">ping的复杂使用场景</h2>
+<ul>
+<li>后续补充。。。</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-15&#32;23:23:38>更新于 2024-07-15&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/linux-cmd-ping/" data-title="linux ping命令的用法"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ping/">ping</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/linux-cmd-lsof/" class="prev" rel="prev" title="[linux命令]lsof"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>[linux命令]lsof</a>
+      <a href="/video-tools-sharex/" class="next" rel="next" title="录屏工具ShareX">录屏工具ShareX<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

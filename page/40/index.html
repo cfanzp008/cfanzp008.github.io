@@ -659,96 +659,45 @@
   
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-      <a href="/ranger-config/" aria-label="ranger如何配置预览图片？"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/blog/devtools/ranger/ranger_config.png"
-    data-srcset="/images/blog/devtools/ranger/ranger_config.png, /images/blog/devtools/ranger/ranger_config.png 1.5x, /images/blog/devtools/ranger/ranger_config.png 2x"
-    data-sizes="auto"
-    alt="/images/blog/devtools/ranger/ranger_config.png"
-    title="/images/blog/devtools/ranger/ranger_config.png" /></a>
-    </div><h1 class="single-title" itemprop="name headline">
-    <a href="/ranger-config/">ranger如何配置预览图片？</a>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/go-env/">Go基本环境配置</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-05 08:19:04'>发布于 <time datetime="2022-08-05">2022-08-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">ranger如何配置预览图片？ ranger的配置文件在目录~/.config/ranger/rc.conf中，配置预览只需要在配置文件中加入2项配置即可:
-1 2 set preview_images true set preview_images_method w3m ranger替代品 fff 对ubuntu不是很友好，不能直接安装，需要源码安装
-安装 1 2 3 4 5 6 7 KISS Linux (based): kiss b fff FreeBSD: pkg install fff Haiku: pkgman install fff macOS: brew install fff Nix: nix-env -iA fff Void Linux: xbps-install -S fff Arch Linux: pacman -S fff github: https://github.com/dylanaraps/fff vim/neovim中使用fff: https://github.com/dylanaraps/fff nnn lf 使用go语言编写，跨平台，非常友好。
-下载地址：https://github.com/gokcehan/lf/releases 更多 其它ranger的使用技巧可以参考这篇文件: https://zhuanlan.zhihu.com/p/476289339 </div><div class="post-footer">
-    <a href="/ranger-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/ranger/">ranger</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-      <a href="/config-git/" aria-label="git配置文件.gitconfig"><img
-    class="lazyload"
-    src="/svg/loading.min.svg"
-    data-src="/images/sky.jpg"
-    data-srcset="/images/sky.jpg, /images/sky.jpg 1.5x, /images/sky.jpg 2x"
-    data-sizes="auto"
-    alt="/images/sky.jpg"
-    title="git配置文件" /></a>
-    </div><h1 class="single-title" itemprop="name headline">
-    <a href="/config-git/">git配置文件.gitconfig</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 21:25:41'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> git</a></span></div><div class="content">git配置文件.gitconfig .gitconfig 配置
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = difftool pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all lgfile = log --name-status --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [user] email = cfanzp@qq.</div><div class="post-footer">
-    <a href="/config-git/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">git</a>,&nbsp;<a href="/tags/config/">config</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-24 20:25:24'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a></span></div><div class="content">Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 初始化项目 gin demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 package main import &#34;github.com/gin-gonic/gin&#34; func main() { // 创建一个默认的Gin引擎 r := gin.Default() // 定义一个简单的GET请求路由 r.GET(&#34;/&#34;, func(c *gin.Context) { c.String(200, &#34;Hello, Gin!&#34;) }) // 启动HTTP服务器，监听在 8080 端口 r.</div><div class="post-footer">
+    <a href="/go-env/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/config-vimrc/">vim配置文件.vimrc</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 21:20:23'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content">vimrc配置文件.vimrc 下面是我的vim配置，这里记录一下
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 &#34;set term=screen set ruler set laststatus=2 &#34; make the last line where the status is two lines deep so you can see status always set backspace=indent,eol,start &#34; make that backspace key work the way it should set nocompatible &#34; vi compatible is LAME set showmode &#34; show the current mode syntax on &#34; turn syntax highlighting on by default &#34;set fdm=indent &#34; &#34;&#34;行号{ set nu!</div><div class="post-footer">
-    <a href="/config-vimrc/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/config/">config</a></div></div>
+    <a href="/online-tools/">在线工具</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-24 09:00:12'>发布于 <time datetime="2022-08-24">2022-08-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">在线工具 在线测速:https://www.ping.cn MD5加密:https://md5jiami.bmcx.com/ JSON在线格式化: https://www.bt.cn/tools/json.html https://www.bejson.com </div><div class="post-footer">
+    <a href="/online-tools/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/redis/">redis基础入门</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 20:56:09'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> redis</a></span></div><div class="content">redis基础入门 redis是什么? Redis 是一个高性能的 key-value 数据库。 Redis 是完全开源的，遵守 BSD 协议。 Redis支持数据的持久化，即写入文件保存。 Redis 支持简单的key-value类型的数据，提供list，set，zset，hash等数据结构的存储。 Redis 支持数据的备份，即master-slave模式的数据备份。 如何下载？ 例如:下载版本5.0.4 1 wget http://download.redis.io/releases/redis-5.0.4.tar.gz 其它版本下载，访问下面地址获取: 1 http://download.redis.io/releases/ redis相关资源地址有哪些？ 官网:https://redis.io/ 官方文档:https://redis.io/documentation 中文官方网站:http://redis.cn/ github地址:https://github.com/redis/redis 如何安装？ 1 2 3 tar -xzvf redis-5.0.4.tar.gz cd redis-5.0.4 make &amp;&amp; make test &amp;&amp; make install 如何配置开机启动？ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 [root@dev127 redis-5.</div><div class="post-footer">
-    <a href="/redis/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/redis/">redis</a></div></div>
+    <a href="/linux-jpg2png/">linux中jpg格式转化为png格式</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 23:17:00'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux中jpg格式转化为png格式 linux中将jpg与png进行转化可以用parallel和convert命令 安装方法:
+安装arallel 1 sudo apt-get install parallel 安装convert 1 sudo apt-get install imagemagick cfanzp.jpg转化为cfanzp.png 1 parallel convert &#39;{}&#39; &#39;{.}.png&#39; ::: cfanzp.jpg </div><div class="post-footer">
+    <a href="/linux-jpg2png/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/image/">image</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-process-port/">linux查看哪个进程占用了端口?</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 15:51:56'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux查看哪个进程占用了端口? 方法1:使用lsof命令
-1 2 3 [root@dev127 paoshang]# lsof -i:8201 COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME skynet 110379 root 6u IPv4 7563011 0t0 TCP localhost:trivnet2 (LISTEN) 方法2:使用netstat命令
-1 2 [root@dev127 paoshang]# netstat -tunlp | grep 8201 tcp 0 0 127.0.0.1:8201 0.0.0.0:* LISTEN 110379/skynet </div><div class="post-footer">
-    <a href="/linux-process-port/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a></div></div>
+    <a href="/goproxy/">GOPROXY配置</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 19:50:28'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a>&ensp;<a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">GOPROXY配置 最近在使用hugo时需要依赖go环境在安装依赖包的时候，速度很慢，之前都是配置外网环境解决的。其实go环境有国内的替代域名资源可以使用。 在go环境下，需要下载依赖包的时候，如果没有外网环境的话，很多包默认是无法下载下来的，解决办法就是修改一下GOPROXY的配置
+1 go env -w GOPROXY=https://goproxy.io,direct </div><div class="post-footer">
+    <a href="/goproxy/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-3rd/">lua第三方开源库学习整理</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="cfanzp"
-    title="cfanzp" />&nbsp;cfanzp</span></span>&nbsp;<span class="post-publish" title='2022-08-03 09:01:02'>发布于 <time datetime="2022-08-03">2022-08-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua第三方开源库学习整理 skynet框架:https://github.com/cloudwu/skynet lua的protobuf工具-pbc:https://github.com/cloudwu/pbc lua-cjson库:https://github.com/mpx/lua-cjson 一个lua写的websocket库https://github.com/flaribbit/love2d-lua-websocket lua-protobuf库https://github.com/starwing/lua-protobuf/blob/master/README.zh.md </div><div class="post-footer">
-    <a href="/lua-3rd/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+    <a href="/lua-debug/">lua中如何实现打印行号和当前函数名？</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 11:28:13'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:</div><div class="post-footer">
+    <a href="/lua-debug/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/mysql-procedure/">mysql存储过程</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 09:22:30'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mysql</a></span></div><div class="content">mysql存储过程 FAQ 如何创建存储过程? 下面是一个创建存储过程的demo:
+存储过程名为:p_login 存储过程有3个参数:a_platform,a_account,a_password 1 2 3 4 5 6 7 8 9 10 CREATE DEFINER=`root`@`%` PROCEDURE `p_login`(in a_platform int, in a_account varchar(64), in a_password varchar(32)) begin SELECT *,userid as uid FROM tb_account WHERE account=a_account AND platform=a_platform AND `password`=a_password AND nullity = &#39;0&#39; AND android = &#39;0&#39;; end 如何调用存储过程? 1 CALL p_login(1,&#34;aaa&#34;,&#34;password&#34;); 存储过程中常用的函数有哪些？ 获取当前时间搓 1 current_timestamp() 获取时间 1 NOW() 获取当前日期 1 curdate() 获取最后一个标识值 在一条 INSERT、SELECT INTO 或大容量复制语句完成后，@@IDENTITY 中包含语句生成的最后一个标识值 1 select @@IDENTITY 获取今天，昨天，前天的当前时间 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 CREATE DEFINER=`root`@`%` PROCEDURE `p_demo_get_daily_login_report`(IN `a_step` int) BEGIN DECLARE start_day TIMESTAMP; DECLARE end_day TIMESTAMP; # a_step=0 今天 # a_step=1 昨天 # a_step=2 前天 SET start_day = (CAST(SYSDATE()AS DATE) - INTERVAL a_step DAY); SET end_day = (CAST(SYSDATE()AS DATE) + INTERVAL 1 DAY - INTERVAL a_step DAY); select a.</div><div class="post-footer">
+    <a href="/mysql-procedure/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -780,7 +729,7 @@
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/47/">47</a>
+            <a href="/page/51/">51</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

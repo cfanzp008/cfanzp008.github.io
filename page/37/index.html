@@ -660,49 +660,40 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/git-faq/">git常见问题</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/oss-core-error/">解决Oss跨域问题</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 08:44:11'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/git/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> git</a></span></div><div class="content">git常见问题 FAQ git如何清除提交记录？ 项目如果走过了一个很长的开发周期以后，提交历史会很长，如果提交记录不重要，这种情况下可以删除掉历时记录。
-创建一个干净的分支 使用--orphan参数 添加当前的所有文件 提交注释 删除原来的分支master 把当前分支重命名为master 把当前分支强行推送到远端 1 2 3 4 5 6 git checkout --orphan test git add . git commit -m &#34;init&#34; git branch -D master git branch -m master git push -f origin master git如何查看空间占用? 1 2 git count-objects -v # 查看 git 相关文件占用的空间 du -sh .git # 查看 .git 文件夹占用磁盘空间 如何查找git提交中涉及的大文件? 1 git rev-list --objects --all | grep &#34;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk &#39;{print$1}&#39;)&#34; 如何删除大文件?</div><div class="post-footer">
-    <a href="/git-faq/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-28 12:31:58'>发布于 <time datetime="2022-11-28">2022-11-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/deploy/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维部署</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/oss-core-error/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/oss/">oss</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/gitlab-config/">解决gitlab占用内存太大的问题</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/mac-windows/">Mac如何远程连接Windows</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-22 14:06:24'>发布于 <time datetime="2022-08-22">2022-08-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">解决gitlab占用内存太大的问题 最近gitlab服务器出现了占用内存太大的问题。虚拟机里的linux系统内存&gt;4G都被几乎用完了。
-网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
-配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 </div><div class="post-footer">
-    <a href="/gitlab-config/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gitlab/">gitlab</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-27 16:09:10'>发布于 <time datetime="2022-11-27">2022-11-27</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mac/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> mac</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/mac-windows/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mac/">mac</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/cpu_ttt/">cpu天梯图</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/install-vim8/">如何在centos7.6中源码安装Vim8?</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-20 16:45:20'>发布于 <time datetime="2022-08-20">2022-08-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A1%AC%E4%BB%B6/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 硬件</a></span></div><div class="content">cpu天梯图 在购买电脑的时候不知道怎么选电脑? 选电脑选好主要的cpu,显卡，主板等就不会吃大亏。这里给大家展示一下本人在百度贴吧找到的今年7月分最新的cpu天梯图。
-天梯图 图片原址:https://tieba.baidu.com/p/5005825360?pn=19 (在这里感谢原作者分享，图片如有侵权，请联系本站删除。)
-cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu总地来说会更好，但是进步是需要踩坑的，也需要时间一代一代地迭代，中间版本过渡过程中，新的一代不一定就比旧的强。
-本人家里的旧电脑cpu是i5-4590,公司用的旧电脑cpu是i5-6400,直观地看公司的电脑cpu似乎更好，但是看看天梯图，却发现其实i5-4590性能更强一些。
-再去多查一些资料，根据网友的反馈来看，总体来看:
-从性能上来说,4590比6400还要稍微强一点点 6代的6400比4代的4590功耗更低 6400是14nm工艺，4590是22nm工艺 对于现在而言都是很差的cpu了。不过平时办公日常需求也够用了。平时选购cpu时参考一下天梯图，再查查网友的使用对比，会比较 稳妥一些。
-参考 2个cpu参数对比:https://cpu.bmcx.com/1537_1506_1496__cpu/ B站2个cpu的对比视频:https://www.bilibili.com/video/av5101266 </div><div class="post-footer">
-    <a href="/cpu_ttt/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%A1%AC%E4%BB%B6/">硬件</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-25 18:45:01'>发布于 <time datetime="2022-11-25">2022-11-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/install-vim8/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/centos/">centos</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/httperf/">Httperf</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/watch/">watch命令的用法</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 16:13:57'>发布于 <time datetime="2022-08-19">2022-08-19</time></span></div><div class="content">web压力测试工具:httperf 下载地址: 使用demo: 1 httperf --client=0/1 --server 192.168.2.127 --port 7100 --uri /loginReq --num-conns 30000 --rate 30000 --hog 教程: https://blog.csdn.net/qq_33391644/article/details/103794115 https://www.cnblogs.com/cllovewxq/p/5533487.html </div><div class="post-footer">
-    <a href="/httperf/">阅读全文</a></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-24 10:16:05'>发布于 <time datetime="2022-11-24">2022-11-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/watch/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/watch/">watch</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lsof/">linux查看打开文件情况</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/ubuntu_sougou/">ubuntu如何安装sougou?</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 15:57:01'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/os/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 操作系统</a>&ensp;<a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content">linux查看打开文件情况 查看进程skynet(config.login)的pid 1 2 3 4 5 [root@dev127 login]# ps -ef | grep login root 657 1 0 6月20 ? 00:00:49 /usr/lib/systemd/systemd-logind root 113262 1 8 15:27 ? 00:02:19 /data/myb/sh/../skynet/skynet /data/myb/sh/login/config.login root 113983 107342 0 15:42 pts/4 00:00:02 tail login.20220819.log -f root 114702 112029 0 15:55 pts/2 00:00:00 grep --color=auto login 查看进程能打开的最大文件数目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [root@dev127 login]# cat /proc/113262/limits Limit Soft Limit Hard Limit Units Max cpu time unlimited unlimited seconds Max file size unlimited unlimited bytes Max data size unlimited unlimited bytes Max stack size 8388608 unlimited bytes Max core file size unlimited unlimited bytes Max resident set unlimited unlimited bytes Max processes 26047 26047 processes Max open files 1024 4096 files Max locked memory 65536 65536 bytes Max address space unlimited unlimited bytes Max file locks unlimited unlimited locks Max pending signals 26047 26047 signals Max msgqueue size 819200 819200 bytes Max nice priority 0 0 Max realtime priority 0 0 Max realtime timeout unlimited unlimited us [root@dev127 login]# 参考链接 https://blog.</div><div class="post-footer">
-    <a href="/lsof/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lsof/">lsof</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-22 09:59:23'>发布于 <time datetime="2022-11-22">2022-11-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/ubuntu_sougou/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/sougou/">sougou</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/tools_download/">常用工具下载地址汇总</a>
+    <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><a href="/ubuntu-chrome/">chrome安装后基本配置</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-19 13:54:38'>发布于 <time datetime="2022-08-19">2022-08-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">常用工具下载地址汇总 在线工具 tool.lu: https://tool.lu 智能命名工具 CODELF: https://unbug.github.io/codelf ssh远程连接 WindTerm: https://github.com/kingToolbox/WindTerm/releases git: https://git-scm.com/download/ windows版本的安装后会自带ssh客户端，配合.ssh/文件夹下的config文件使用也是非常方便的。 Xshell: https://www.xshell.com/zh/xshell/ git git: https://git-scm.com/download/ linux常用软件 截图工具flameshot: https://github.com/flameshot-org/flameshot wechat: https://www.ubuntukylin.com/applications/106-cn.html 飞书: https://www.feishu.cn/download 有道云笔记: https://note.youdao.com/download.html 流程图软件Dia: https://zhuanlan.zhihu.com/p/366116011 wps: https://www.wps.cn/product/wpslinux 安装:sudo apt install ./wps-office_11.1.0.11664_amd64.deb 字体问题: https://zhuanlan.zhihu.com/p/145114644 字体下载,链接: https://pan.baidu.com/s/18PWLr_t6Lub9PoEg9zUSzg 提取码: isiz linux开发工具 httpperf: https://github.com/httperf/httperf 教程: https://www.cnblogs.com/cllovewxq/p/5533487.html 搜索资源工具 Bing: https://cn.bing.com/ DuckDuckGo: https://duckduckgo.com/ 不搜集用户信息，没有广告 Stack Overflow: https://stackoverflow.com/ 技术问题可以直接查这个网站 Gitlogs: https://www.gitlogs.com/ 搜索GitHub项目的搜索引擎 jiumo search: https://www.jiumodiary.com/ 文档搜索引擎 鸠摩搜书 pexels: https://www.pexels.com/ 高质量的图片网站。 在线画图,ProcessOn: https://www.processon.com/ draw.io: https://app.</div><div class="post-footer">
-    <a href="/tools_download/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/devtools/">devtools</a></div></div>
+      </span></span>&nbsp;<span class="post-publish" title='2022-11-01 15:31:41'>发布于 <time datetime="2022-11-01">2022-11-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content"></div><div class="post-footer">
+    <a href="/ubuntu-chrome/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/chrome/">chrome</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -734,7 +725,7 @@ cpu代数越高就越好吗？ 大的趋势是技术在进步，后面 出的cpu
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/47/">47</a>
+            <a href="/page/51/">51</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

@@ -58,11 +58,23 @@ mdbook serve  --port 8000
 mdbook serve  --port 8000 &
 ```
 
+## mdbook-pdf
+### install
+1. 方法1
+```bash
+cargo install mdbook-pdf
+```
+
+2. 方法2下载可执行文件
+- https://github.com/HollowMan6/mdbook-pdf/releases
+
 ## 参考
 - 文档: https://rust-lang.github.io/mdBook/
 - 文档2: https://www.wenjiangs.com/doc/5ljx1ugy
 - 文档3: https://llever.com/mdBook-zh/README.zh.html
 - 中文手册: https://hellowac.github.io/mdbook_doc/index.html
+- https://juejin.cn/post/7201787862236823608
+- https://github.com/HollowMan6/mdbook-pdf/blob/main/README_CN.md
 
 
 ---

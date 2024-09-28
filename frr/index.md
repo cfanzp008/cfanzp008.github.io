@@ -19,6 +19,12 @@ systemctl start frr
 ```
 
 ## frr命令
+### 基本命令
+```bash
+show running-config #查看配置文件
+vtysh -c "show ip route" # 直接在命令行查看配置
+```
+
 ### bgp命令
 ```bash
 show ip bgp [x.x.x.x](longer)

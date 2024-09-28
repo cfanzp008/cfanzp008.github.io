@@ -6,7 +6,7 @@
 ## nvim配置
 - [https://gitee.com/cfanzp/nvim-config.git](https://gitee.com/cfanzp/nvim-config.git)
 
-### 代码跳转
+## 代码跳转
 - c++使用bear生成compile_commands.json,解决clangd代码跳转找不到头文件的问题。
 - 在项目根目录如果有makefile文件运行bear make就会生成对应的compile_commands.json文件。
 ```
@@ -14,8 +14,13 @@ apt install bear
 bear make
 ```
 
-### 显示
-#### 字体
+## 显示
+### 配色方案
+之前一直在使用molokai,最近在尝试使用onedark
+- molokai
+- onedark
+
+### 字体
 下载太大太慢了,建议使用国内镜像
 - https://github.com/ryanoasis/nerd-fonts.git
 - https://gitee.com/keyboardkiller/nerd-fonts

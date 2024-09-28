@@ -233,12 +233,21 @@ sudo netplan --debug generate
 - 工作原理：读取/etc/netplan/下yaml格式配置文件(定义网络接口、IP、路由、DNS设置)
 - 渲染器（renderer)可以选择networkd和NetworkManager
 
+### systemd-networkd
+- 可以自己配，也可以用netplan配置
+- 自己配置放在/etc/system/network目录下
+
+### NetworkManager
+- 可以自己配，也可以netplan配
+- 自己配可以命令配置或界面配置
+
 ## 总结
 1. 重点是要理清netplan、systemd-networkd、NetworkManager之间的关系
 2. 如果你使用 nmcli 直接配置 IP 地址，这将绕过 Netplan 和 systemd-networkd 的配配置。因此不建议使用nmcli直接配置网络。
 3. 使用 nmcli 的直接操作可能会导致配置的不一致性和管理上的混淆，特别是在需要多种网络配置（例如静态 IP 和 DHCP 混合）时更容易出现问题。
 4. 桌面环境建议使用NetworkManager,方便直观。
 5. 使用netplan服务器环境建议使用networkd作为randerer性能搞，对于桌面环境建议使用NetworkManger渲染环境，有界面友好。
+6. 推荐使用netplan配置，桌面环境randerer选择NetworkManager,服务器环境randerer选择networkd
 
 
 ---

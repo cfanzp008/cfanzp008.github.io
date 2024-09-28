@@ -24,6 +24,10 @@ docker run -d -p 9000:9000 --restart=always \
  --name portainerTV portainer/portainer-ce
 ```
 
+### 常见问题
+1. 盒子ip不知道是什么了怎么办？
+解决方法是：用键盘和显示器连接盒子，登录后查看ip
+
 ## 参考
 - https://www.right.com.cn/forum/thread-8246642-1-1.html
 

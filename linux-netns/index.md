@@ -183,6 +183,11 @@ PING 10.0.1.2 (10.0.1.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.039/0.041/0.043/0.002 ms
 ```
 
+## netns中启动进程
+
+## 常用命令
+- ip netns help 查看netns帮助
+
 
 ---
 

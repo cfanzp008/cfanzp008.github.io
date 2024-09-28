@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='libuv' /><meta itemprop="name" content="libuv">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-06-25T23:51:10+08:00" />
 <meta itemprop="dateModified" content="2024-06-25T23:51:10+08:00" />
-<meta itemprop="wordCount" content="8"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="13"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="libuv," /><meta property="og:title" content="libuv" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/libuv\/"
-    },"genre": "posts","keywords": "libuv","wordcount":  8 ,
+    },"genre": "posts","keywords": "libuv","wordcount":  13 ,
     "url": "https:\/\/cfanzp.com\/libuv\/","datePublished": "2024-06-25T23:51:10+08:00","dateModified": "2024-06-25T23:51:10+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/c/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c</a></span></div>
-      <div class="post-meta-line"><span title=2024-06-25&#32;23:51:10><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-06-25">2024-06-25</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 8 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="libuv">
+      <div class="post-meta-line"><span title=2024-06-25&#32;23:51:10><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-06-25">2024-06-25</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 13 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="libuv">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -639,6 +639,7 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#参考文档">参考文档</a></li>
     <li><a href="#libuv-websocket">libuv websocket</a></li>
   </ul>
 </nav></div>
@@ -650,6 +651,51 @@
     ><h1 id="libuv">libuv</h1>
 <p>最近自己在做的一个项目的部分逻辑是从一个老项目中移植过来的，移植过来后发现了其中的websocket模块会经常crash掉，原来的项目也是如此。而websocket模块用到了libuv库，这个库我大概查了点资料，总的来说，还是有些坑的。这里记录一下。
 后续解决了问题，再来补充。</p>
+<h2 id="参考文档">参考文档</h2>
+<ul>
+<li><a
+  href="https://libuv-docs-chinese.readthedocs.io/zh/latest/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>libuv中文文档</a></li>
+<li><a
+  href="https://github.com/libuv/libuv"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>libuv Github</a></li>
+<li><a
+  href="https://libuv-docs-chinese.readthedocs.io/zh/latest/guide/utilities.html#timers"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>libuv定时器用法</a></li>
+</ul>
 <h2 id="libuv-websocket">libuv websocket</h2>
 <p>这里找到了一个libuv的websocket库，先记录一下</p>
 <ul>

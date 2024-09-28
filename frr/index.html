@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='frr' /><meta itemprop="name" content="frr学习笔记">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-21T22:37:59+08:00" />
 <meta itemprop="dateModified" content="2024-05-21T22:37:59+08:00" />
-<meta itemprop="wordCount" content="63"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="76"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="frr," /><meta property="og:title" content="frr学习笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/frr\/"
-    },"genre": "posts","keywords": "frr","wordcount":  63 ,
+    },"genre": "posts","keywords": "frr","wordcount":  76 ,
     "url": "https:\/\/cfanzp.com\/frr\/","datePublished": "2024-05-21T22:37:59+08:00","dateModified": "2024-05-21T22:37:59+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/frr/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> frr</a>&ensp;<a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a>&ensp;<a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-21&#32;22:37:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-21">2024-05-21</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 63 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="frr学习笔记">
+      <div class="post-meta-line"><span title=2024-05-21&#32;22:37:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-21">2024-05-21</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 76 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="frr学习笔记">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -643,6 +643,7 @@
     <li><a href="#frr的使用">frr的使用</a></li>
     <li><a href="#frr命令">frr命令</a>
       <ul>
+        <li><a href="#基本命令">基本命令</a></li>
         <li><a href="#bgp命令">bgp命令</a></li>
       </ul>
     </li>
@@ -684,7 +685,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="frr命令">frr命令</h2>
-<h3 id="bgp命令">bgp命令</h3>
+<h3 id="基本命令">基本命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">show running-config <span class="c1">#查看配置文件</span>
+</span></span><span class="line"><span class="cl">vtysh -c <span class="s2">&#34;show ip route&#34;</span> <span class="c1"># 直接在命令行查看配置</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="bgp命令">bgp命令</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1

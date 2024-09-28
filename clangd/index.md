@@ -124,6 +124,71 @@ CompileFlags:
     - "./test_include/"
 ```
 
+## nvim插件lspconfig配置clangd
+- 配置c/c++项目生产compile_commands.json文件
+```bash
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+```
+- 文件格式DCMAKE_EXPORT_COMPILE_COMMANDS
+```json
+[
+    {
+        "arguments": [
+            "g++",
+            "-c",
+            "-std=c++17",
+            "-DHAVE_CONFIG_H",
+            "-DDEFAULT_CONFIG_FILE=\"/usr/local/squid/etc/squid.conf\"",
+            "-DDEFAULT_SQUID_DATA_DIR=\"/usr/local/squid/share\"",
+            "-DDEFAULT_SQUID_CONFIG_DIR=\"/usr/local/squid/etc\"",
+            "-I../..",
+            "-I../../include",
+            "-I../../lib",
+            "-I../../src",
+            "-I../../include",
+            "-I/usr/include/libxml2",
+            "-Wall",
+            "-Wextra",
+            "-Wimplicit-fallthrough=5",
+            "-Wpointer-arith",
+            "-Wwrite-strings",
+            "-Wcomments",
+            "-Wshadow",
+            "-Wmissing-declarations",
+            "-Woverloaded-virtual",
+            "-Werror",
+            "-pipe",
+            "-D_REENTRANT",
+            "-g",
+            "-O2",
+            "-march=native",
+            "-o",
+            "AccessRule.o",
+            "AccessRule.cc"
+        ],
+        "directory": "/opt/proj/squid/squid-SQUID_6_6/src/adaptation",
+        "file": "AccessRule.cc"
+    }
+]
+```
+
+- 查看lsp日志
+```bash
+tail ~/.local/state/nvim/lsp.log
+```
+
+- 我这里nvim用到的clangd的路径为
+```bash
+/root/.local/share/nvim/mason/bin/clangd
+```
+
+- 查看版本号
+```bash
+root@VM-8-10-ubuntu:/# /root/.local/share/nvim/mason/bin/clangd --version
+clangd version 17.0.3 (https://github.com/llvm/llvm-project 888437e1b60011b8a375dd30928ec925b448da57)
+Features: linux+grpc
+Platform: x86_64-unknown-linux-gnu
+```
 
 ## 常见问题
 - 最近在一台电脑上安装的nvim代码诊断报错,还没定位原因，大概是配置原因clangd找不到头文件的位置,这里先记录一下。

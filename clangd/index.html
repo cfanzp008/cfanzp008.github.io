@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='clangd' /><meta itemprop="name" content="clangd如何使用？">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-07-12T21:47:16+08:00" />
 <meta itemprop="dateModified" content="2023-07-12T21:47:16+08:00" />
-<meta itemprop="wordCount" content="355"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="466"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="clangd," /><meta property="og:title" content="clangd如何使用？" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/clangd\/"
-    },"genre": "posts","keywords": "clangd","wordcount":  355 ,
+    },"genre": "posts","keywords": "clangd","wordcount":  466 ,
     "url": "https:\/\/cfanzp.com\/clangd\/","datePublished": "2023-07-12T21:47:16+08:00","dateModified": "2023-07-12T21:47:16+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -628,8 +628,8 @@
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
-          <span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a></span></div>
-      <div class="post-meta-line"><span title=2023-07-12&#32;21:47:16><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-12">2023-07-12</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 355 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="clangd如何使用？">
+          <span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> ubuntu</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/nvim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nvim</a></span></div>
+      <div class="post-meta-line"><span title=2023-07-12&#32;21:47:16><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-12">2023-07-12</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 466 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="clangd如何使用？">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -652,6 +652,7 @@
     <li><a href="#clangd-vim插件vim-lsp">clangd vim插件vim-lsp</a></li>
     <li><a href="#nvim-clangd">nvim-clangd</a></li>
     <li><a href="#如何配置clangd">如何配置.clangd?</a></li>
+    <li><a href="#nvim插件lspconfig配置clangd">nvim插件lspconfig配置clangd</a></li>
     <li><a href="#常见问题">常见问题</a></li>
   </ul>
 </nav></div>
@@ -905,6 +906,144 @@
 </span></span><span class="line"><span class="cl">  Add:
 </span></span><span class="line"><span class="cl">    - <span class="s2">&#34;-isystem&#34;</span>
 </span></span><span class="line"><span class="cl">    - <span class="s2">&#34;./test_include/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="nvim插件lspconfig配置clangd">nvim插件lspconfig配置clangd</h2>
+<ul>
+<li>配置c/c++项目生产compile_commands.json文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cmake -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>文件格式DCMAKE_EXPORT_COMPILE_COMMANDS</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;arguments&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;g++&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-std=c++17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-DHAVE_CONFIG_H&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-DDEFAULT_CONFIG_FILE=\&#34;/usr/local/squid/etc/squid.conf\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-DDEFAULT_SQUID_DATA_DIR=\&#34;/usr/local/squid/share\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-DDEFAULT_SQUID_CONFIG_DIR=\&#34;/usr/local/squid/etc\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I../..&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I../../include&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I../../lib&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I../../src&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I../../include&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-I/usr/include/libxml2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wall&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wextra&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wimplicit-fallthrough=5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wpointer-arith&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wwrite-strings&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wcomments&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wshadow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Wmissing-declarations&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Woverloaded-virtual&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-Werror&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-pipe&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-D_REENTRANT&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-g&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-O2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-march=native&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;-o&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;AccessRule.o&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;AccessRule.cc&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;directory&#34;</span><span class="p">:</span> <span class="s2">&#34;/opt/proj/squid/squid-SQUID_6_6/src/adaptation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;AccessRule.cc&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看lsp日志</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tail ~/.local/state/nvim/lsp.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>我这里nvim用到的clangd的路径为</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/root/.local/share/nvim/mason/bin/clangd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看版本号</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/# /root/.local/share/nvim/mason/bin/clangd --version
+</span></span><span class="line"><span class="cl">clangd version 17.0.3 <span class="o">(</span>https://github.com/llvm/llvm-project 888437e1b60011b8a375dd30928ec925b448da57<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Features: linux+grpc
+</span></span><span class="line"><span class="cl">Platform: x86_64-unknown-linux-gnu
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="常见问题">常见问题</h2>

@@ -10,7 +10,7 @@
 <meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='shell' /><meta itemprop="name" content="shell脚本基础">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-05-23T22:48:45+08:00" />
 <meta itemprop="dateModified" content="2024-05-23T22:48:45+08:00" />
-<meta itemprop="wordCount" content="40"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="432"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
 <meta itemprop="keywords" content="shell," /><meta property="og:title" content="shell脚本基础" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp.com\/shell\/"
-    },"genre": "posts","keywords": "shell","wordcount":  40 ,
+    },"genre": "posts","keywords": "shell","wordcount":  432 ,
     "url": "https:\/\/cfanzp.com\/shell\/","datePublished": "2024-05-23T22:48:45+08:00","dateModified": "2024-05-23T22:48:45+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -629,7 +629,7 @@
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>
           <span class="post-category">收录于 <a href="/categories/shell/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> shell</a></span></div>
-      <div class="post-meta-line"><span title=2024-05-23&#32;22:48:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-23">2024-05-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 40 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="shell脚本基础">
+      <div class="post-meta-line"><span title=2024-05-23&#32;22:48:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-23">2024-05-23</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 432 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="shell脚本基础">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -644,7 +644,20 @@
         <li><a href="#变量">变量</a></li>
       </ul>
     </li>
+    <li><a href="#shell条件判断">shell条件判断</a>
+      <ul>
+        <li><a href="#判断是否为空">判断是否为空</a></li>
+        <li><a href="#判断是否匹配">判断是否匹配</a></li>
+      </ul>
+    </li>
     <li><a href="#shell调试">shell调试</a></li>
+    <li><a href="#shell中循环读取文件">shell中循环读取文件</a></li>
+    <li><a href="#使用shell实时监控网络地址变化">使用shell实时监控网络地址变化</a></li>
+    <li><a href="#shell中与awk结合使用">shell中与awk结合使用</a>
+      <ul>
+        <li><a href="#获取dns">获取dns</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
       </div><div
@@ -687,6 +700,35 @@
 </span></span><span class="line"><span class="cl"><span class="nb">unset</span> a
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="shell条件判断">shell条件判断</h2>
+<h3 id="判断是否为空">判断是否为空</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#如果变量a为空 continue</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$a</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">continue</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断是否匹配">判断是否匹配</h3>
+<ul>
+<li>=~ 是一个用于正则表达式匹配的操作符。它用于测试一个字符串是否匹配一个给定的正则表达式。</li>
+<li>如何$a为a0,a1,a2,a3则输出$a</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[[</span> <span class="nv">$a</span><span class="o">=</span>~ a<span class="o">[</span>0123<span class="o">]</span>$ <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">echo</span> <span class="nv">$a</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h2 id="shell调试">shell调试</h2>
 <ul>
 <li>在运行bash脚本的时候想看看bash脚本运行的具体情况可以使用bash -x</li>
@@ -697,6 +739,149 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash -x test.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="shell中循环读取文件">shell中循环读取文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/shell# cat test_while.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">read</span> line
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$line</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span> &lt; ./demo_while_file.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用shell实时监控网络地址变化">使用shell实时监控网络地址变化</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip -4 monitor address <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Address change detected: </span><span class="nv">$line</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 在这里添加你希望执行的动作，例如重新加载网络配置</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@ubuntu:/opt/shell# ./test_address_monitor.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># ip 192.168.0.108改为192.168.0.109</span>
+</span></span><span class="line"><span class="cl">Address change detected: Deleted 2: ens33    inet 192.168.0.108/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.109/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.109/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.109/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ip 192.168.0.109改为192.168.0.108</span>
+</span></span><span class="line"><span class="cl">Address change detected: Deleted 2: ens33    inet 192.168.0.108/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: Deleted 2: ens33    inet 192.168.0.109/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.108/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.108/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">Address change detected: 2: ens33    inet 192.168.0.108/24 brd 192.168.0.255 scope global noprefixroute ens33
+</span></span><span class="line"><span class="cl">Address change detected: valid_lft forever preferred_lft forever
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="shell中与awk结合使用">shell中与awk结合使用</h2>
+<h3 id="获取dns">获取dns</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#获取接口信息</span>
+</span></span><span class="line"><span class="cl">root@ubuntu:/tmp# nmcli device show ens33 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">GENERAL.DEVICE:                         ens33
+</span></span><span class="line"><span class="cl">GENERAL.TYPE:                           ethernet
+</span></span><span class="line"><span class="cl">GENERAL.HWADDR:                         00:0C:29:59:EA:9D
+</span></span><span class="line"><span class="cl">GENERAL.MTU:                            <span class="m">1500</span>
+</span></span><span class="line"><span class="cl">GENERAL.STATE:                          <span class="m">100</span> <span class="o">(</span>connected<span class="o">)</span>
+</span></span><span class="line"><span class="cl">GENERAL.CONNECTION:                     netplan-ens33
+</span></span><span class="line"><span class="cl">GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/1
+</span></span><span class="line"><span class="cl">WIRED-PROPERTIES.CARRIER:               on
+</span></span><span class="line"><span class="cl">IP4.ADDRESS<span class="o">[</span>1<span class="o">]</span>:                         192.168.0.108/24
+</span></span><span class="line"><span class="cl">IP4.GATEWAY:                            192.168.0.1
+</span></span><span class="line"><span class="cl">IP4.ROUTE<span class="o">[</span>1<span class="o">]</span>:                           <span class="nv">dst</span> <span class="o">=</span> 192.168.0.0/24, <span class="nv">nh</span> <span class="o">=</span> 0.0.0.0, <span class="nv">mt</span> <span class="o">=</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl">IP4.ROUTE<span class="o">[</span>2<span class="o">]</span>:                           <span class="nv">dst</span> <span class="o">=</span> 169.254.0.0/16, <span class="nv">nh</span> <span class="o">=</span> 0.0.0.0, <span class="nv">mt</span> <span class="o">=</span> <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">IP4.ROUTE<span class="o">[</span>3<span class="o">]</span>:                           <span class="nv">dst</span> <span class="o">=</span> 0.0.0.0/0, <span class="nv">nh</span> <span class="o">=</span> 192.168.0.1, <span class="nv">mt</span> <span class="o">=</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl">IP4.DNS<span class="o">[</span>1<span class="o">]</span>:                             192.168.0.1
+</span></span><span class="line"><span class="cl">IP4.DNS<span class="o">[</span>2<span class="o">]</span>:                             8.8.8.8
+</span></span><span class="line"><span class="cl">IP6.ADDRESS<span class="o">[</span>1<span class="o">]</span>:                         fe80::20c:29ff:fe59:ea9d/64
+</span></span><span class="line"><span class="cl">IP6.GATEWAY:                            --
+</span></span><span class="line"><span class="cl">IP6.ROUTE<span class="o">[</span>1<span class="o">]</span>:                           <span class="nv">dst</span> <span class="o">=</span> fe80::/64, <span class="nv">nh</span> <span class="o">=</span> ::, <span class="nv">mt</span> <span class="o">=</span> <span class="m">256</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#获取dns</span>
+</span></span><span class="line"><span class="cl">root@ubuntu:/tmp# nmcli device show ens33 2&gt;/dev/null <span class="p">|</span> awk <span class="s1">&#39;$1~&#34;^IP4.DNS&#34;{print $2}&#39;</span>
+</span></span><span class="line"><span class="cl">192.168.0.1
+</span></span><span class="line"><span class="cl">8.8.8.8
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
