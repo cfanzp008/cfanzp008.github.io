@@ -85,5 +85,5 @@ sed '/INTO `record_round` VALUES/d;/INTO `record_game` VALUES/d' testdb.sql >tes
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/linux-mysqldump/  
+> URL: http://111.230.8.71:8889/linux-mysqldump/  
 

@@ -28,6 +28,15 @@
 华为悦盒ec6108v9 hi3798mv100 1G emmc4G mdmo1d 短接点 J15
 ```
 
+## 安装脚本
+在/usr/bin/目录下有一些内置脚本比如`install-gitweb.sh` 可以安装自己需要的服务
+```bash
+ll /usr/bin/install-*
+```
+
+## 功耗
+3W左右，很低了。
+
 ## 其它
 家里还有一个Hi3798MV300这里记录一下刷机包地址
 -  芯片Hi3798MV300刷机固件包 https://download.csdn.net/download/zdy1006/88905133
@@ -41,5 +50,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ec6108v9-linux/  
+> URL: http://111.230.8.71:8889/ec6108v9-linux/  
 

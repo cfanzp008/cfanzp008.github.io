@@ -23,5 +23,5 @@ wget https://www.fosshub.com/Shotcut.html?dwl=shotcut-macos-ARM64-221221.dmg
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/shotcut/  
+> URL: http://111.230.8.71:8889/shotcut/  
 

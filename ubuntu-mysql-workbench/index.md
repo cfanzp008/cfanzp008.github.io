@@ -44,5 +44,5 @@ sudo apt-get  -f install
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu-mysql-workbench/  
+> URL: http://111.230.8.71:8889/ubuntu-mysql-workbench/  
 

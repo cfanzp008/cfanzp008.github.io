@@ -5,26 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>skynet-给项目日志添加traceid - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>skynet-给项目日志添加traceid - Linux开发笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="给项目日志加上traceid traceid是什么？ 这里所说的traceid是指在服务端收到客户端请求后到服务端返回给客户端结果的过程中给没一条日志添加一个相同的traceid来跟踪请求到返回的整个过程。 为什么要给服务的日志加上traceid? 最近准备给项目里的日志都加上traceid。这样方便服务端网关在收到请求后到返回给客户端之前追踪整个请求的链路。方便排查线上的bug以及统计查询请求的性能瓶颈。 添加一个traceid，对于一个新项目而言并不是什么难事，但是对于一个已经成熟上线的项目而言，还是有很多要注意的地方。 目前我们这个上线的项目采用的微服务的思想:项目里面把功能相对独立的部分单独成进程。方便服务的快速迭代，快速部署和部分更新。实际上这样的拆分作用相当明显，需要功能都不需要停服就可以一做到热更新，大大降低了维护成本，提高了用户的体验。 如何设计traceid? 这里把traceid分成4个部分: 用户相关的uid 消息相关的msgid 递增或唯一的tid 时间相关的时间戳timestamp 用户的uid不用说，方便识别这个业务和那个用户相关。 消息msgid就方便定位业务。 tid为了保证traceid的唯一性。 时间戳方便统计请求到返回消耗的时间，同时在每深入一步后可以计算出消耗的时间。 traceid是否可以做到对业务透传？ 目前对于线上业务结构，还做不到透传。只能通过在节点间、函数调用间传递参数traceid的方式来使用traceid,这是最简单也是最繁琐的方案了。不过还挺实用，能够解决问题。目前先让各节点支持traceid的链路追踪，后续再进行优化。 总结 traceid的添加还在进行中，目前已完成部分节点的链路日志打印。后续会添加链路时间消耗的统计。这里先行记录一下。后续会使用traceid来统计一下各个api的调用耗时。 " /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-给项目日志添加traceid">
 <meta itemprop="description" content="给项目日志加上traceid traceid是什么？ 这里所说的traceid是指在服务端收到客户端请求后到服务端返回给客户端结果的过程中给没一条日志添加一个相同的traceid来跟踪请求到返回的整个过程。 为什么要给服务的日志加上traceid? 最近准备给项目里的日志都加上traceid。这样方便服务端网关在收到请求后到返回给客户端之前追踪整个请求的链路。方便排查线上的bug以及统计查询请求的性能瓶颈。 添加一个traceid，对于一个新项目而言并不是什么难事，但是对于一个已经成熟上线的项目而言，还是有很多要注意的地方。 目前我们这个上线的项目采用的微服务的思想:项目里面把功能相对独立的部分单独成进程。方便服务的快速迭代，快速部署和部分更新。实际上这样的拆分作用相当明显，需要功能都不需要停服就可以一做到热更新，大大降低了维护成本，提高了用户的体验。 如何设计traceid? 这里把traceid分成4个部分: 用户相关的uid 消息相关的msgid 递增或唯一的tid 时间相关的时间戳timestamp 用户的uid不用说，方便识别这个业务和那个用户相关。 消息msgid就方便定位业务。 tid为了保证traceid的唯一性。 时间戳方便统计请求到返回消耗的时间，同时在每深入一步后可以计算出消耗的时间。 traceid是否可以做到对业务透传？ 目前对于线上业务结构，还做不到透传。只能通过在节点间、函数调用间传递参数traceid的方式来使用traceid,这是最简单也是最繁琐的方案了。不过还挺实用，能够解决问题。目前先让各节点支持traceid的链路追踪，后续再进行优化。 总结 traceid的添加还在进行中，目前已完成部分节点的链路日志打印。后续会添加链路时间消耗的统计。这里先行记录一下。后续会使用traceid来统计一下各个api的调用耗时。 "><meta itemprop="datePublished" content="2022-07-25T20:00:29+08:00" />
 <meta itemprop="dateModified" content="2022-07-25T20:00:29+08:00" />
-<meta itemprop="wordCount" content="21"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
+<meta itemprop="wordCount" content="21"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
 <meta itemprop="keywords" content="skynet," /><meta property="og:title" content="skynet-给项目日志添加traceid" />
 <meta property="og:description" content="给项目日志加上traceid traceid是什么？ 这里所说的traceid是指在服务端收到客户端请求后到服务端返回给客户端结果的过程中给没一条日志添加一个相同的traceid来跟踪请求到返回的整个过程。 为什么要给服务的日志加上traceid? 最近准备给项目里的日志都加上traceid。这样方便服务端网关在收到请求后到返回给客户端之前追踪整个请求的链路。方便排查线上的bug以及统计查询请求的性能瓶颈。 添加一个traceid，对于一个新项目而言并不是什么难事，但是对于一个已经成熟上线的项目而言，还是有很多要注意的地方。 目前我们这个上线的项目采用的微服务的思想:项目里面把功能相对独立的部分单独成进程。方便服务的快速迭代，快速部署和部分更新。实际上这样的拆分作用相当明显，需要功能都不需要停服就可以一做到热更新，大大降低了维护成本，提高了用户的体验。 如何设计traceid? 这里把traceid分成4个部分: 用户相关的uid 消息相关的msgid 递增或唯一的tid 时间相关的时间戳timestamp 用户的uid不用说，方便识别这个业务和那个用户相关。 消息msgid就方便定位业务。 tid为了保证traceid的唯一性。 时间戳方便统计请求到返回消耗的时间，同时在每深入一步后可以计算出消耗的时间。 traceid是否可以做到对业务透传？ 目前对于线上业务结构，还做不到透传。只能通过在节点间、函数调用间传递参数traceid的方式来使用traceid,这是最简单也是最繁琐的方案了。不过还挺实用，能够解决问题。目前先让各节点支持traceid的链路追踪，后续再进行优化。 总结 traceid的添加还在进行中，目前已完成部分节点的链路日志打印。后续会添加链路时间消耗的统计。这里先行记录一下。后续会使用traceid来统计一下各个api的调用耗时。 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/skynet-traceid/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://111.230.8.71:8889/skynet-traceid/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-25T20:00:29+08:00" />
 <meta property="article:modified_time" content="2022-07-25T20:00:29+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="skynet-给项目日志添加traceid"/>
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="skynet-给项目日志添加traceid"/>
 <meta name="twitter:description" content="给项目日志加上traceid traceid是什么？ 这里所说的traceid是指在服务端收到客户端请求后到服务端返回给客户端结果的过程中给没一条日志添加一个相同的traceid来跟踪请求到返回的整个过程。 为什么要给服务的日志加上traceid? 最近准备给项目里的日志都加上traceid。这样方便服务端网关在收到请求后到返回给客户端之前追踪整个请求的链路。方便排查线上的bug以及统计查询请求的性能瓶颈。 添加一个traceid，对于一个新项目而言并不是什么难事，但是对于一个已经成熟上线的项目而言，还是有很多要注意的地方。 目前我们这个上线的项目采用的微服务的思想:项目里面把功能相对独立的部分单独成进程。方便服务的快速迭代，快速部署和部分更新。实际上这样的拆分作用相当明显，需要功能都不需要停服就可以一做到热更新，大大降低了维护成本，提高了用户的体验。 如何设计traceid? 这里把traceid分成4个部分: 用户相关的uid 消息相关的msgid 递增或唯一的tid 时间相关的时间戳timestamp 用户的uid不用说，方便识别这个业务和那个用户相关。 消息msgid就方便定位业务。 tid为了保证traceid的唯一性。 时间戳方便统计请求到返回消耗的时间，同时在每深入一步后可以计算出消耗的时间。 traceid是否可以做到对业务透传？ 目前对于线上业务结构，还做不到透传。只能通过在节点间、函数调用间传递参数traceid的方式来使用traceid,这是最简单也是最繁琐的方案了。不过还挺实用，能够解决问题。目前先让各节点支持traceid的链路追踪，后续再进行优化。 总结 traceid的添加还在进行中，目前已完成部分节点的链路日志打印。后续会添加链路时间消耗的统计。这里先行记录一下。后续会使用traceid来统计一下各个api的调用耗时。 "/>
-<meta name="application-name" content="个人Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/skynet-traceid/" /><link rel="prev" href="https://cfanzp.com/linux-xargs/" /><link rel="next" href="https://cfanzp.com/debug_console/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/skynet-traceid/" /><link rel="prev" href="http://111.230.8.71:8889/linux-xargs/" /><link rel="next" href="http://111.230.8.71:8889/debug_console/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -32,9 +32,9 @@
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/cfanzp.com\/skynet-traceid\/"
+      "@id": "http:\/\/111.230.8.71:8889\/skynet-traceid\/"
     },"genre": "posts","keywords": "skynet","wordcount":  21 ,
-    "url": "https:\/\/cfanzp.com\/skynet-traceid\/","datePublished": "2022-07-25T20:00:29+08:00","dateModified": "2022-07-25T20:00:29+08:00","publisher": {
+    "url": "http:\/\/111.230.8.71:8889\/skynet-traceid\/","datePublished": "2022-07-25T20:00:29+08:00","dateModified": "2022-07-25T20:00:29+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="个人Linux开发笔记"><img
+      <a href="/" title="Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="个人Linux开发笔记"
-    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="Linux开发笔记"
+    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="个人Linux开发笔记"><img
+        <a href="/" title="Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
@@ -699,7 +699,7 @@
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/skynet-traceid/" data-title="skynet-给项目日志添加traceid"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/skynet-traceid/" data-title="skynet-给项目日志添加traceid"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
@@ -717,7 +717,7 @@
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a
   href="/"
   
@@ -727,7 +727,7 @@
   
 >cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
           <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
-        </div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        </div><script>
         var _hmt = _hmt || [];
 (function() {
       var hm = document.createElement("script");

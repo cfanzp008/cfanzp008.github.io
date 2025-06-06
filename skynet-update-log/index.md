@@ -124,5 +124,5 @@ skynet/Makefile                          | * 添加 wsnetpack.so等库
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/skynet-update-log/  
+> URL: http://111.230.8.71:8889/skynet-update-log/  
 

@@ -10,5 +10,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-hardwware-disk/  
+> URL: http://111.230.8.71:8889/mac-hardwware-disk/  
 

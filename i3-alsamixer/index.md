@@ -24,5 +24,5 @@ amixer set Master 50%
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/i3-alsamixer/  
+> URL: http://111.230.8.71:8889/i3-alsamixer/  
 

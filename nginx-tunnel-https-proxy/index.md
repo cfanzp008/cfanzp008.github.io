@@ -61,5 +61,5 @@ stream {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-tunnel-https-proxy/  
+> URL: http://111.230.8.71:8889/nginx-tunnel-https-proxy/  
 

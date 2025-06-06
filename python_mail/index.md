@@ -78,5 +78,5 @@ if __name__ == "__main__":
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/python_mail/  
+> URL: http://111.230.8.71:8889/python_mail/  
 

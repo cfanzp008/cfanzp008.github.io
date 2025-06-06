@@ -18,5 +18,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/acer-n22c6-i5-1235u-16g-512gb-2022/  
+> URL: http://111.230.8.71:8889/acer-n22c6-i5-1235u-16g-512gb-2022/  
 

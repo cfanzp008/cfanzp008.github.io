@@ -27,5 +27,5 @@ slmgr -ato
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/windows-server-2022/  
+> URL: http://111.230.8.71:8889/windows-server-2022/  
 

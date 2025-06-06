@@ -31,5 +31,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/net-ip-addr/  
+> URL: http://111.230.8.71:8889/net-ip-addr/  
 

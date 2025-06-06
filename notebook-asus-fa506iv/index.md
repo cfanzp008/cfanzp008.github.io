@@ -292,5 +292,5 @@ Fn + down:关
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/notebook-asus-fa506iv/  
+> URL: http://111.230.8.71:8889/notebook-asus-fa506iv/  
 

@@ -24,5 +24,5 @@ root/路由器管理密码
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/router-360-r2/  
+> URL: http://111.230.8.71:8889/router-360-r2/  
 

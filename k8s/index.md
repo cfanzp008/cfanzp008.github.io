@@ -152,5 +152,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/k8s/  
+> URL: http://111.230.8.71:8889/k8s/  
 

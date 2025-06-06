@@ -28,5 +28,5 @@ sudo sh -c 'echo "alias vim=nvim" >> /etc/profile'
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/sudo-echo-file-permmition-denied/  
+> URL: http://111.230.8.71:8889/sudo-echo-file-permmition-denied/  
 

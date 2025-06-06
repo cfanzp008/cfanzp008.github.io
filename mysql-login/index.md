@@ -28,5 +28,5 @@ mysql> flush privileges;
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mysql-login/  
+> URL: http://111.230.8.71:8889/mysql-login/  
 

@@ -24,5 +24,5 @@ resolver 114.114.114.114 8.8.8.8 valid=30s ipv6=off;
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-resolver/  
+> URL: http://111.230.8.71:8889/nginx-resolver/  
 

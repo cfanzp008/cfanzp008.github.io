@@ -28,5 +28,5 @@ fi
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/tmux-source-bashrc-invalid/  
+> URL: http://111.230.8.71:8889/tmux-source-bashrc-invalid/  
 

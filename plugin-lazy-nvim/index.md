@@ -66,5 +66,5 @@ require("lazy").setup({})
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/plugin-lazy-nvim/  
+> URL: http://111.230.8.71:8889/plugin-lazy-nvim/  
 

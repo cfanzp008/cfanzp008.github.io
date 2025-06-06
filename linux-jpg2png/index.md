@@ -21,5 +21,5 @@ parallel convert '{}' '{.}.png' ::: cfanzp.jpg
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/linux-jpg2png/  
+> URL: http://111.230.8.71:8889/linux-jpg2png/  
 

@@ -27,5 +27,5 @@ sudo dpkg -i ./google-chrome-stable_current_amd64.deb
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu-chrome/  
+> URL: http://111.230.8.71:8889/ubuntu-chrome/  
 

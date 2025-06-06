@@ -38,5 +38,5 @@ filetype *.vim,*.vimrc,*.gvimrc !nvim %
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/vifm/  
+> URL: http://111.230.8.71:8889/vifm/  
 

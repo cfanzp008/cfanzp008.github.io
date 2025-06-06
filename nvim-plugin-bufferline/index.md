@@ -64,5 +64,5 @@ vim.api.nvim_set_keymap('n', '<C-l>', ':BufferLineCycleNext<CR>', {noremap = tru
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-plugin-bufferline/  
+> URL: http://111.230.8.71:8889/nvim-plugin-bufferline/  
 

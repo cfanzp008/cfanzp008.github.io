@@ -61,5 +61,5 @@ Error: Error building site: failed to render pages: render of "page" failed: "/l
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/hugo-note/  
+> URL: http://111.230.8.71:8889/hugo-note/  
 

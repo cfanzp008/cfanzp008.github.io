@@ -24,5 +24,5 @@ golang的web框架也有不少选择,下面是其中的一些:
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/gf/  
+> URL: http://111.230.8.71:8889/gf/  
 

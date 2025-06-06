@@ -36,5 +36,5 @@ Install media now available at "/Volumes/Install macOS Catalina"
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/install-old-macos/  
+> URL: http://111.230.8.71:8889/install-old-macos/  
 

@@ -54,5 +54,5 @@ git:x:1001:1001:git-user,,,:/home/git:/user/bin/git-shell
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/git-server/  
+> URL: http://111.230.8.71:8889/git-server/  
 

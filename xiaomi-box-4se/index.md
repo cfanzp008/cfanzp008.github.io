@@ -83,5 +83,5 @@ adb shell pm uninstall --user 0 com.miui.systemAdSolution
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/xiaomi-box-4se/  
+> URL: http://111.230.8.71:8889/xiaomi-box-4se/  
 

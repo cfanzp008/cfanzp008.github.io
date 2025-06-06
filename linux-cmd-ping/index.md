@@ -103,5 +103,5 @@ rtt min/avg/max/mdev = 3.149/3.152/3.157/0.003 ms
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/linux-cmd-ping/  
+> URL: http://111.230.8.71:8889/linux-cmd-ping/  
 

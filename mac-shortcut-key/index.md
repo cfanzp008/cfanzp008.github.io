@@ -46,5 +46,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-shortcut-key/  
+> URL: http://111.230.8.71:8889/mac-shortcut-key/  
 

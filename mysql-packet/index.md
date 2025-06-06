@@ -22,5 +22,5 @@ func (packet *Packet) GetDBUser() string {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mysql-packet/  
+> URL: http://111.230.8.71:8889/mysql-packet/  
 

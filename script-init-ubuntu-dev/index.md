@@ -41,5 +41,5 @@ echo "inoremap jk <ESC>" >> ~/.vimrc
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/script-init-ubuntu-dev/  
+> URL: http://111.230.8.71:8889/script-init-ubuntu-dev/  
 

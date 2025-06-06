@@ -34,5 +34,5 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 20
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/cpp-ubuntu2004-gcc11/  
+> URL: http://111.230.8.71:8889/cpp-ubuntu2004-gcc11/  
 

@@ -14,5 +14,5 @@ curl -voa 'https://cfanzp.com/test/test.png' -H 'Origin:http://test.cfanzp.com/'
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/oss-core-error/  
+> URL: http://111.230.8.71:8889/oss-core-error/  
 

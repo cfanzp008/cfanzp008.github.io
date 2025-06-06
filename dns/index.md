@@ -37,5 +37,5 @@ proxy_pass http://$backend;
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/dns/  
+> URL: http://111.230.8.71:8889/dns/  
 

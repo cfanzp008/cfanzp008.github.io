@@ -73,5 +73,5 @@ CTRL+R+0
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/vim-skill-normal/  
+> URL: http://111.230.8.71:8889/vim-skill-normal/  
 

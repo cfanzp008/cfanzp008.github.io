@@ -96,5 +96,5 @@ let g:syntastic_lua_luacheck_args = "--codes"
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/lua-luacheck/  
+> URL: http://111.230.8.71:8889/lua-luacheck/  
 

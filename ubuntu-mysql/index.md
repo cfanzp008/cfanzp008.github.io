@@ -32,5 +32,5 @@ sudo dpkg -i mysql-testsuite_5.6.51-1debian9_amd64.deb
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu-mysql/  
+> URL: http://111.230.8.71:8889/ubuntu-mysql/  
 

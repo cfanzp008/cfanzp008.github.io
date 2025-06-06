@@ -55,5 +55,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/huawei-ec6108v9/  
+> URL: http://111.230.8.71:8889/huawei-ec6108v9/  
 

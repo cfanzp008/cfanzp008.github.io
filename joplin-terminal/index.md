@@ -137,5 +137,5 @@ joplin config editor "/usr/bin/vim"
 ---
 
 > 作者: [](https://cfanzp.com/about/)  
-> URL: https://cfanzp.com/joplin-terminal/  
+> URL: http://111.230.8.71:8889/joplin-terminal/  
 

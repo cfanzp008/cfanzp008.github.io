@@ -23,5 +23,5 @@ CASB云访问安全代理 是介于企业用户和云服务提供商之间的安
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/casb/  
+> URL: http://111.230.8.71:8889/casb/  
 

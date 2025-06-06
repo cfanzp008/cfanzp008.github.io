@@ -59,5 +59,5 @@ https://note.drvsky.com/bootcamp/bootcamp_6.0.6136.7z?key=825d87c1df336a4c986e5e
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-mini-2014-win10/  
+> URL: http://111.230.8.71:8889/mac-mini-2014-win10/  
 

@@ -144,5 +144,5 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "aaabbb";
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/skynet-centos/  
+> URL: http://111.230.8.71:8889/skynet-centos/  
 

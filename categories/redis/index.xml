@@ -1,47 +1,47 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>redis - 分类 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/categories/redis/</link>
-    <description>redis - 分类 - 个人Linux开发笔记</description>
+    <title>redis - 分类 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/categories/redis/</link>
+    <description>redis - 分类 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 11 Jun 2023 20:41:16 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/redis/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 11 Jun 2023 20:41:16 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/categories/redis/" rel="self" type="application/rss+xml" /><item>
   <title>ubuntu20.04中使用redis-plus-plus-1.3.8</title>
-  <link>https://cfanzp.com/redis-plus-plus/</link>
+  <link>http://111.230.8.71:8889/redis-plus-plus/</link>
   <pubDate>Sun, 11 Jun 2023 20:41:16 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/redis-plus-plus/</guid>
+  <guid>http://111.230.8.71:8889/redis-plus-plus/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>redis缓存击穿,缓存穿透以及缓存雪崩问题</title>
-  <link>https://cfanzp.com/redis-nocache/</link>
+  <link>http://111.230.8.71:8889/redis-nocache/</link>
   <pubDate>Mon, 24 Apr 2023 17:44:10 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/redis-nocache/</guid>
+  <guid>http://111.230.8.71:8889/redis-nocache/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>redis基础</title>
-  <link>https://cfanzp.com/redis-question/</link>
+  <link>http://111.230.8.71:8889/redis-question/</link>
   <pubDate>Sat, 01 Apr 2023 16:40:58 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/redis-question/</guid>
+  <guid>http://111.230.8.71:8889/redis-question/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>RedisBloom安装与使用</title>
-  <link>https://cfanzp.com/redis-bloom/</link>
+  <link>http://111.230.8.71:8889/redis-bloom/</link>
   <pubDate>Mon, 05 Dec 2022 17:08:19 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/redis-bloom/</guid>
+  <guid>http://111.230.8.71:8889/redis-bloom/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>redis基础入门</title>
-  <link>https://cfanzp.com/redis/</link>
+  <link>http://111.230.8.71:8889/redis/</link>
   <pubDate>Wed, 03 Aug 2022 20:56:09 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/redis/</guid>
+  <guid>http://111.230.8.71:8889/redis/</guid>
   <description><![CDATA[redis基础入门 redis是什么? Redis 是一个高性能的 key-value 数据库。 Redis 是完全开源的，遵守 BSD 协议。 Redis支持数据的持久化，即写入文件保存。 Redis 支持简单的key-value类型的数据，提供list，set，zset，hash等数据结构的存储。 Redis 支持数据的备份，即master-slave模式的数据备份。 如何下载？ 例如:下载版本5.0.4 1 wget http://download.redis.io/releases/redis-5.0.4.tar.gz 其它版本下载，访问下面地址获取: 1 http://download.redis.io/releases/ redis相关资源地址有哪些？ 官网:https://redis.io/ 官方文档:https://redis.io/documentation 中文官方网站:http://redis.cn/ github地址:https://github.com/redis/redis 如何安装？ 1 2 3 tar -xzvf redis-5.0.4.tar.gz cd redis-5.0.4 make &amp;&amp; make test &amp;&amp; make install 如何配置开机启动？ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 [root@dev127 redis-5.]]></description>
 </item>
 </channel>

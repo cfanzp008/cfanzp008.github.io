@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境 - Linux开发笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="cfanzpLinux开发笔记" /><meta name="keywords" content='c&#43;&#43;, nvim, lsp' /><meta itemprop="name" content="[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-10-18T22:52:00+08:00" />
+<meta itemprop="dateModified" content="2024-10-18T22:52:00+08:00" />
+<meta itemprop="wordCount" content="710"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
+<meta itemprop="keywords" content="c&#43;&#43;,nvim,lsp," /><meta property="og:title" content="[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://111.230.8.71:8889/nvim-lspconfig-cpp/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-18T22:52:00+08:00" />
+<meta property="article:modified_time" content="2024-10-18T22:52:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/nvim-lspconfig-cpp/" /><link rel="prev" href="http://111.230.8.71:8889/router-360-r2/" /><link rel="next" href="http://111.230.8.71:8889/vrf/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[nvim|c++]nvim-lspconfig配置c++开发环境",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/111.230.8.71:8889\/nvim-lspconfig-cpp\/"
+    },"genre": "posts","keywords": "c\u002b\u002b, nvim, lsp","wordcount":  710 ,
+    "url": "http:\/\/111.230.8.71:8889\/nvim-lspconfig-cpp\/","datePublished": "2024-10-18T22:52:00+08:00","dateModified": "2024-10-18T22:52:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="Linux开发笔记"
+    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="Linux开发笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>
+          <span class="post-category">收录于 <a href="/categories/nvim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nvim</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/c++/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> c++</a></span></div>
+      <div class="post-meta-line"><span title=2024-10-18&#32;22:52:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-18">2024-10-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 710 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#常用配置">常用配置</a>
+      <ul>
+        <li><a href="#gegq使用lsp诊断错误输出到quickfix列表中"><code>ge</code>,<code>gq</code>使用lsp诊断错误输出到quickfix列表中</a></li>
+        <li><a href="#gr查找所有的引用"><code>gr</code>查找所有的引用</a></li>
+        <li><a href="#k显示悬浮信息"><code>K</code>显示悬浮信息</a></li>
+        <li><a href="#go以浮窗形式显示错误"><code>go</code>以浮窗形式显示错误</a></li>
+        <li><a href="#gp转到上一个诊断信息"><code>gp</code>转到上一个诊断信息</a></li>
+        <li><a href="#gn转到下一个诊断信息"><code>gn</code>转到下一个诊断信息</a></li>
+        <li><a href="#完整配置">完整配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#更强配置搭配telescope的配置">更强配置，搭配telescope的配置</a>
+      <ul>
+        <li><a href="#leaderff查找文件同ctrlp通过telescope插件来查找文件"><code>&lt;leader&gt;ff</code>查找文件,同Ctrl+p：通过Telescope插件来查找文件</a></li>
+        <li><a href="#leaderfg很强大查找代码中的关键字"><code>&lt;leader&gt;fg</code>很强大查找代码中的关键字</a></li>
+        <li><a href="#leaderfb在buffer打开的文件中查找文件-很实用"><code>&lt;leader&gt;fb</code>在buffer(打开的文件中查找文件) 很实用</a></li>
+        <li><a href="#leaderfhhelp_tags"><code>&lt;leader&gt;fh</code>help_tags</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关的vim接口">相关的vim接口</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="nvimcnvim-lspconfig配置c开发环境">[nvim|c++]nvim-lspconfig配置c++开发环境</h1>
+<p>很多人觉得使用vim开发c++比较麻烦那是因为对应的插件没有配置好，比如说lsp的插件nvim-lspconfig。配置好nvim-lspconfig插件能够极大地提供工作效率</p>
+<h2 id="常用配置">常用配置</h2>
+<h3 id="gegq使用lsp诊断错误输出到quickfix列表中"><code>ge</code>,<code>gq</code>使用lsp诊断错误输出到quickfix列表中</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;ge&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.setloclist()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gq&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.setqflist()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="gr查找所有的引用"><code>gr</code>查找所有的引用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gr&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="k显示悬浮信息"><code>K</code>显示悬浮信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Cmd&gt;lua vim.lsp.buf.hover()&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="go以浮窗形式显示错误"><code>go</code>以浮窗形式显示错误</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.open_float()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="gp转到上一个诊断信息"><code>gp</code>转到上一个诊断信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gp&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_prev()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="gn转到下一个诊断信息"><code>gn</code>转到下一个诊断信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gn&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_next()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="完整配置">完整配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">--plugin-nvim-lspconfig.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;neovim/nvim-lspconfig&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lazy</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.lsp</span><span class="p">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="s2">&#34;debug&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">nvim_lsp</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;lspconfig&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nvim_lsp.clangd</span><span class="p">.</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                <span class="n">enure_installed</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;lua_ls&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--cmd = {</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    &#34;clangd&#34;,</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    --&#34;--query-driver=*arm-none-eabi*&#34;,</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    -- NOTE：使用如下绝对路径时反而无效</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    -- &#34;--query-driver=${path_to_compiler}\\gcc-arm-none-eabi\\12.2.rel1\\bin\\arm-none-eabi*&#34;,</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;clangd&#34;</span><span class="p">,</span> <span class="s2">&#34;--log=verbose&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 将标准输出和标准错误重定向到日志文件</span>
+</span></span><span class="line"><span class="cl">                <span class="n">filetypes</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;cpp&#34;</span><span class="p">,</span> <span class="s2">&#34;objc&#34;</span><span class="p">,</span> <span class="s2">&#34;objcpp&#34;</span><span class="p">,</span> <span class="s2">&#34;cuda&#34;</span><span class="p">,</span> <span class="s2">&#34;proto&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 可选：配置 `on_attach` 函数来绑定 LSP 功能</span>
+</span></span><span class="line"><span class="cl">                <span class="n">on_attach</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">bufnr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 绑定快捷键</span>
+</span></span><span class="line"><span class="cl">                    <span class="kd">local</span> <span class="n">buf_set_keymap</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span>
+</span></span><span class="line"><span class="cl">                    <span class="kd">local</span> <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span> <span class="n">noremap</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">true</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到声明</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- buf_set_keymap(bufnr, &#34;n&#34;, &#34;gd&#34;, &#34;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#34;, opts)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- buf_set_keymap(bufnr, &#34;n&#34;, &#34;gD&#34;, &#34;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#34;, opts)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 绑定跳转到定义</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--buf_set_keymap(bufnr, &#39;n&#39;, &#39;gd&#39;, &#39;&lt;Cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#39;, opts)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gD&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 绑定查找所有引用</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gr&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 绑定显示悬停信息</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Cmd&gt;lua vim.lsp.buf.hover()&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到实现</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gi&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.implementation()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 以浮窗形式显示错误</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.open_float()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gp&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_prev()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gn&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_next()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gq&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.setqflist()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;ge&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.setloclist()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">nvim_lsp.lua_ls</span><span class="p">.</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lua-language-server&#39;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">                <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--settings = {</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">Lua</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">runtime</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1">-- Tell the language server which version of Lua you&#39;re using (most likely LuaJIT in the case of Neovim)</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;LuaJIT&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1">-- Setup your lua path</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">path</span> <span class="o">=</span> <span class="n">vim.split</span><span class="p">(</span><span class="n">package.path</span><span class="p">,</span> <span class="s1">&#39;;&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">diagnostics</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1">-- Get the language server to recognize the `vim` global</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">globals</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;vim&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--workspace = {</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--    -- Make the server aware of Neovim runtime files</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--    library = {</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--        [vim.fn.expand(&#39;$VIMRUNTIME/lua&#39;)] = true,</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--        [vim.fn.expand(&#39;$VIMRUNTIME/lua/vim/lsp&#39;)] = true,</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--    },</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">--},</span>
+</span></span><span class="line"><span class="cl">                            <span class="c1">-- Do not send telemetry data containing a randomized but unique identifier</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">telemetry</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">enable</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 定义快捷键</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 根据官方的提示，这里我们使用 on_attach 表示当前缓冲加载服务端完成之后调用</span>
+</span></span><span class="line"><span class="cl">                <span class="n">on_attach</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">bufnr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到声明</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--vim.api.nvim_buf_set_keymap(bufnr, &#34;n&#34;, &#34;gd&#34;, &#34;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#34;, {silent = true, noremap = true})</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gD&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到定义</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--vim.api.nvim_buf_set_keymap(bufnr, &#34;n&#34;, &#34;gD&#34;, &#34;&lt;cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#34;, {silent = true, noremap = true})</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gd&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 显示注释文档</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gh&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.hover()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到实现</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gi&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.implementation()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 跳转到引用位置</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gr&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- 以浮窗形式显示错误</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.open_float()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gp&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_prev()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_set_keymap</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;gn&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;lua vim.diagnostic.goto_next()&lt;CR&gt;&#34;</span><span class="p">,</span> <span class="p">{</span><span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">--gopls for go</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nvim_lsp.gopls</span><span class="p">.</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;gopls&#39;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--settings = {</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    gopls = {</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--        --ui = {</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--        --    completion = {</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--        --        usePlaceholders = true,</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--        --    },</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--        --},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--    },</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">--}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="更强配置搭配telescope的配置">更强配置，搭配telescope的配置</h2>
+<p>在keybandings.lua中配置快捷键</p>
+<h3 id="leaderff查找文件同ctrlp通过telescope插件来查找文件"><code>&lt;leader&gt;ff</code>查找文件,同Ctrl+p：通过Telescope插件来查找文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;leader&gt;ff&#39;</span><span class="p">,</span> <span class="s1">&#39;:Telescope find_files&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="leaderfg很强大查找代码中的关键字"><code>&lt;leader&gt;fg</code>很强大查找代码中的关键字</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;leader&gt;fg&#39;</span><span class="p">,</span> <span class="s1">&#39;:Telescope live_grep&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="leaderfb在buffer打开的文件中查找文件-很实用"><code>&lt;leader&gt;fb</code>在buffer(打开的文件中查找文件) 很实用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;leader&gt;fb&#39;</span><span class="p">,</span> <span class="s1">&#39;:Telescope buffers&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="leaderfhhelp_tags"><code>&lt;leader&gt;fh</code>help_tags</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;leader&gt;fh&#39;</span><span class="p">,</span> <span class="s1">&#39;:Telescope help_tags&lt;CR&gt;&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="相关的vim接口">相关的vim接口</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 跳转到声明</span>
+</span></span><span class="line"><span class="cl"><span class="n">lua</span> <span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf.declaration</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 跳转到定义</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf.definition</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 显示注释文档</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf.hover</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 跳转到实现</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf.implementation</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 跳转到引用位置</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.lsp</span><span class="p">.</span><span class="n">buf.references</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 以浮窗形式显示错误</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.diagnostic</span><span class="p">.</span><span class="n">open_float</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.diagnostic</span><span class="p">.</span><span class="n">goto_prev</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.diagnostic</span><span class="p">.</span><span class="n">goto_next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.diagnostic</span><span class="p">.</span><span class="n">setloclist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.diagnostic</span><span class="p">.</span><span class="n">setqflist</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-10-18&#32;22:52:00>更新于 2024-10-18&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/nvim-lspconfig-cpp/" data-title="[nvim|c&#43;&#43;]nvim-lspconfig配置c&#43;&#43;开发环境"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a>,&nbsp;<a href="/tags/nvim/">nvim</a>,&nbsp;<a href="/tags/lsp/">lsp</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/router-360-r2/" class="prev" rel="prev" title="360 r2更换固件流程"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>360 r2更换固件流程</a>
+      <a href="/vrf/" class="next" rel="next" title="vrf">vrf<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{},"enablePWA":true,"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

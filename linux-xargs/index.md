@@ -151,5 +151,5 @@ data/log/server/gate/gate.20220117.log
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/linux-xargs/  
+> URL: http://111.230.8.71:8889/linux-xargs/  
 

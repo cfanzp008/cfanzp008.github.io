@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>luacheck - 标签 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/tags/luacheck/</link>
-    <description>luacheck - 标签 - 个人Linux开发笔记</description>
+    <title>luacheck - 标签 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/tags/luacheck/</link>
+    <description>luacheck - 标签 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 01 Aug 2022 18:16:43 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/luacheck/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 01 Aug 2022 18:16:43 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/luacheck/" rel="self" type="application/rss+xml" /><item>
   <title>lua-luacheck</title>
-  <link>https://cfanzp.com/lua-luacheck/</link>
+  <link>http://111.230.8.71:8889/lua-luacheck/</link>
   <pubDate>Mon, 01 Aug 2022 18:16:43 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/lua-luacheck/</guid>
+  <guid>http://111.230.8.71:8889/lua-luacheck/</guid>
   <description><![CDATA[luacheck luacheck 是一个lua代码的静态检查工具，可以用来发现lua代码中的一些缺陷，规范lua代码的书写。lua是一们解释型语言，很多错误只有在运行时才会暴露出来。借助静态检查工具能够方便我们在前期就发现一些低级错误并及时修正。
 安装 ubuntu 1 sudo apt install lua-check centos 1 yum install luarocks 这里使用luarocks来安装luacheck,安装过程中可能遇到报错的问题。
 安装报错信息: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 root@mybonline1 mybonline]# luarocks install luacheck Installing https://luarocks.org/luacheck-0.25.0-1.src.rock... Using https://luarocks.org/luacheck-0.25.0-1.src.rock... switching to &#39;build&#39; mode Missing dependencies for luacheck: luafilesystem &gt;= 1.6.3 argparse &gt;= 0.6.0 Using https://luarocks.org/luafilesystem-1.8.0-1.src.rock... switching to &#39;build&#39; mode gcc -O2 -fPIC -I/usr/include -c src/lfs.c -o src/lfs.o src/lfs.]]></description>

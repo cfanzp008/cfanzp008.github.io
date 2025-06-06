@@ -21,5 +21,5 @@ print(A.Add(A))
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/lua-self/  
+> URL: http://111.230.8.71:8889/lua-self/  
 

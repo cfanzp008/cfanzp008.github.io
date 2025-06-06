@@ -28,5 +28,5 @@ $ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/vscode-vim-key-fix/  
+> URL: http://111.230.8.71:8889/vscode-vim-key-fix/  
 

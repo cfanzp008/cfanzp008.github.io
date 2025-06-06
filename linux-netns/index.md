@@ -192,5 +192,5 @@ rtt min/avg/max/mdev = 0.039/0.041/0.043/0.002 ms
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/linux-netns/  
+> URL: http://111.230.8.71:8889/linux-netns/  
 

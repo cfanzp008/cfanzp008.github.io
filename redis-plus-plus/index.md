@@ -62,5 +62,5 @@ g++ -std=c++17 -o demo_share_lib.exe demo.cpp -lredis++ -lhiredis -pthread
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/redis-plus-plus/  
+> URL: http://111.230.8.71:8889/redis-plus-plus/  
 

@@ -25,5 +25,5 @@ Upload: 100.72 Mbit/s
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/net-speedtest/  
+> URL: http://111.230.8.71:8889/net-speedtest/  
 

@@ -15,5 +15,5 @@ curl 'http://localhost/' -H 'Referer:http://localhost/?search=<scritp>alert('xss
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/modsecurity-xss-headers-refers/  
+> URL: http://111.230.8.71:8889/modsecurity-xss-headers-refers/  
 

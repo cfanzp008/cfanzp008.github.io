@@ -27,5 +27,5 @@ server {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-http-muti-domain/  
+> URL: http://111.230.8.71:8889/nginx-http-muti-domain/  
 

@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>joplin - 标签 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/tags/joplin/</link>
-    <description>joplin - 标签 - 个人Linux开发笔记</description>
+    <title>joplin - 标签 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/tags/joplin/</link>
+    <description>joplin - 标签 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/joplin/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/joplin/" rel="self" type="application/rss+xml" /><item>
   <title>如何在terminal中使用Joplin并像vim一样移动?</title>
-  <link>https://cfanzp.com/joplin-terminal/</link>
+  <link>http://111.230.8.71:8889/joplin-terminal/</link>
   <pubDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/joplin-terminal/</guid>
+  <guid>http://111.230.8.71:8889/joplin-terminal/</guid>
   <description><![CDATA[如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
 进入
 1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。

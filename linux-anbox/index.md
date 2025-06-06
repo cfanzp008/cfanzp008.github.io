@@ -31,5 +31,5 @@ anbox failed to extract native libraries, res=-113]
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/linux-anbox/  
+> URL: http://111.230.8.71:8889/linux-anbox/  
 

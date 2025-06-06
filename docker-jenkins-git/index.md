@@ -17,5 +17,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/docker-jenkins-git/  
+> URL: http://111.230.8.71:8889/docker-jenkins-git/  
 

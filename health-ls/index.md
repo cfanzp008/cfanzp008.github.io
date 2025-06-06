@@ -11,5 +11,5 @@
 ---
 
 > 作者: [](https://cfanzp.com/about/)  
-> URL: https://cfanzp.com/health-ls/  
+> URL: http://111.230.8.71:8889/health-ls/  
 

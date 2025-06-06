@@ -1,4 +1,4 @@
-# tmux基本配置及vim适配
+# [vim-tmux]tmux基本配置及vim适配
 
 
 # tmux基本配置
@@ -10,7 +10,7 @@ tmux是一个终端复用工具。对于服务端开发的程序员或运维人�
 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz
 ```
 
-##  安装
+## 安装
 - centos安装
 ```bash
 yum install libevent-devel ncurses-devel
@@ -58,14 +58,25 @@ C-b pageup/pagedo
 ### 一个实用的tmux配置文件分享
 - 存放路径~/.tmux.conf
 - 配置贴出来很简单：
-```
-set -g default-terminal "screen-256color"
+- 2024-10-16日更新配置
+```bash
+root@VM-8-10-ubuntu:/opt/blog/tools/vim_tools# cat ~/.tmux.conf 
+set -g default-terminal "tmux-256color"
+set-option -a terminal-overrides '*256col*:Tc'
+
+#支持 OSC52 ssh copy to local clipboard
+set -g set-clipboard on
+
+set-option allow-rename off
+#for nvim
+set-option -sg escape-time 10
+set-option -g focus-events on
 #-- base settings --#
 set -g mode-keys vi
 # prefix key (Ctrl+a)
-set -g prefix ^x
+set -g prefix ^a
 unbind ^b
-bind x send-prefix
+bind ^a send-prefix
 
 #up
 bind-key k select-pane -U
@@ -78,7 +89,7 @@ bind-key l select-pane -R
 ```
 
 ### tmux插件配置文件分享
-```
+```bash
 root@vpps:~/.tmux/plugins# cat ~/.tmux.conf 
 set -g default-terminal "screen-256color"
 #-- base settings --#
@@ -151,6 +162,13 @@ HJKL:选择需要复制的文本
 Enter:复制并结束
 Ctrl-a + ]:粘贴
 ```
+### tmux支持多个prefix
+在实际使用过程中会发现，有时和其它同事公用一台机器时，各人习惯不一致，有的喜欢用C-b,有的喜欢用C-a，这样会有冲突，解决方案是
+在配置文件中加入同时支持2种方式的配置
+```bash
+set-option -g prefix C-a
+set-option -g prefix2 C-b
+```
 
 ### tmux插件
 - [tmux-yank](https://github.com/tmux-plugins/tmux-yank)
@@ -163,5 +181,5 @@ Ctrl-a + ]:粘贴
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/devtools-tmux/  
+> URL: http://111.230.8.71:8889/devtools-tmux/  
 

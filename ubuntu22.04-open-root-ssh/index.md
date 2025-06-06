@@ -21,5 +21,5 @@ PermitRootLogin yes
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu22.04-open-root-ssh/  
+> URL: http://111.230.8.71:8889/ubuntu22.04-open-root-ssh/  
 

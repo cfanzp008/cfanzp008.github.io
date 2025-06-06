@@ -11,5 +11,5 @@
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/lua-3rd/  
+> URL: http://111.230.8.71:8889/lua-3rd/  
 

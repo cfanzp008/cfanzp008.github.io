@@ -52,5 +52,5 @@ brew install git-ftp
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/git-ftp/  
+> URL: http://111.230.8.71:8889/git-ftp/  
 

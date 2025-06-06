@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>image - 标签 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/tags/image/</link>
-    <description>image - 标签 - 个人Linux开发笔记</description>
+    <title>image - 标签 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/tags/image/</link>
+    <description>image - 标签 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 23 Aug 2022 23:17:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/image/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 23 Aug 2022 23:17:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/image/" rel="self" type="application/rss+xml" /><item>
   <title>linux中jpg格式转化为png格式</title>
-  <link>https://cfanzp.com/linux-jpg2png/</link>
+  <link>http://111.230.8.71:8889/linux-jpg2png/</link>
   <pubDate>Tue, 23 Aug 2022 23:17:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/linux-jpg2png/</guid>
+  <guid>http://111.230.8.71:8889/linux-jpg2png/</guid>
   <description><![CDATA[linux中jpg格式转化为png格式 linux中将jpg与png进行转化可以用parallel和convert命令 安装方法:
 安装arallel 1 sudo apt-get install parallel 安装convert 1 sudo apt-get install imagemagick cfanzp.jpg转化为cfanzp.png 1 parallel convert &#39;{}&#39; &#39;{.}.png&#39; ::: cfanzp.jpg ]]></description>
 </item>

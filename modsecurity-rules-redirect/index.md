@@ -17,5 +17,5 @@ SecDefaultAction "phase:2,deny,log,noauditlog,status:302,redirect:http://www.mod
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/modsecurity-rules-redirect/  
+> URL: http://111.230.8.71:8889/modsecurity-rules-redirect/  
 

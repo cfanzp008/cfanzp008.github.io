@@ -40,5 +40,5 @@ docker stop dev127_mysql
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/docker-mysql/  
+> URL: http://111.230.8.71:8889/docker-mysql/  
 

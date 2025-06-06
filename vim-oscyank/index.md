@@ -18,5 +18,5 @@ Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/vim-oscyank/  
+> URL: http://111.230.8.71:8889/vim-oscyank/  
 

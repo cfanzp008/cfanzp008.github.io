@@ -37,5 +37,5 @@ gitlab-ctl restart
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/gitlab-config/  
+> URL: http://111.230.8.71:8889/gitlab-config/  
 

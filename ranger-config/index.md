@@ -37,5 +37,5 @@ Arch Linux: pacman -S fff
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ranger-config/  
+> URL: http://111.230.8.71:8889/ranger-config/  
 

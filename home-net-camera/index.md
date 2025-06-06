@@ -28,5 +28,5 @@ PoE++ 802.3bt Type4 单端口最大100w
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/home-net-camera/  
+> URL: http://111.230.8.71:8889/home-net-camera/  
 

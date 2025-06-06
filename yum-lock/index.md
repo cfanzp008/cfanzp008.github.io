@@ -15,5 +15,5 @@ rm -f /var/run/yum.pid
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/yum-lock/  
+> URL: http://111.230.8.71:8889/yum-lock/  
 

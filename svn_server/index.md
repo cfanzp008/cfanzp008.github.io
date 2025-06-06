@@ -75,5 +75,5 @@ svn checkout git@xxx/doc --username aaa --password bbb
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/svn_server/  
+> URL: http://111.230.8.71:8889/svn_server/  
 

@@ -13,5 +13,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-ip-city/  
+> URL: http://111.230.8.71:8889/nginx-ip-city/  
 

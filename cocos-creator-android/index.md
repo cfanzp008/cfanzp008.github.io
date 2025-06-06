@@ -100,5 +100,5 @@ echo 'PATH=$(pyenv root)/shims:$PATH' >> ~/.zshrc
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/cocos-creator-android/  
+> URL: http://111.230.8.71:8889/cocos-creator-android/  
 

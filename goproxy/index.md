@@ -11,5 +11,5 @@ go env -w GOPROXY=https://goproxy.io,direct
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/goproxy/  
+> URL: http://111.230.8.71:8889/goproxy/  
 

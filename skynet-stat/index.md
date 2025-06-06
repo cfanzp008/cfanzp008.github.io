@@ -28,5 +28,5 @@ skynet的控制台中有一个命令为stat可以查看当前的某个skynet服�
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/skynet-stat/  
+> URL: http://111.230.8.71:8889/skynet-stat/  
 

@@ -17,5 +17,5 @@ sudo dpkg -i ./m7206wlpr-3.0.1-1.i386.deb
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu_printer/  
+> URL: http://111.230.8.71:8889/ubuntu_printer/  
 

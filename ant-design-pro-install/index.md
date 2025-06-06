@@ -49,5 +49,5 @@ info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this 
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ant-design-pro-install/  
+> URL: http://111.230.8.71:8889/ant-design-pro-install/  
 

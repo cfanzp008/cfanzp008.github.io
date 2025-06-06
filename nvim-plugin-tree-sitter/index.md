@@ -33,5 +33,5 @@ wget https://github.com/tree-sitter/tree-sitter/releases/download/v0.22.6/tree-s
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-plugin-tree-sitter/  
+> URL: http://111.230.8.71:8889/nvim-plugin-tree-sitter/  
 

@@ -31,5 +31,5 @@
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/game/  
+> URL: http://111.230.8.71:8889/game/  
 

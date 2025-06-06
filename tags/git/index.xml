@@ -1,56 +1,56 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>git - 标签 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/tags/git/</link>
-    <description>git - 标签 - 个人Linux开发笔记</description>
+    <title>git - 标签 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/tags/git/</link>
+    <description>git - 标签 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 May 2024 21:42:33 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/git/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 May 2024 21:42:33 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/git/" rel="self" type="application/rss+xml" /><item>
   <title>Tig</title>
-  <link>https://cfanzp.com/tig/</link>
+  <link>http://111.230.8.71:8889/tig/</link>
   <pubDate>Thu, 02 May 2024 21:42:33 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/tig/</guid>
+  <guid>http://111.230.8.71:8889/tig/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Unity gitignore模板</title>
-  <link>https://cfanzp.com/unity-gitignore/</link>
+  <link>http://111.230.8.71:8889/unity-gitignore/</link>
   <pubDate>Fri, 05 May 2023 23:23:54 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/unity-gitignore/</guid>
+  <guid>http://111.230.8.71:8889/unity-gitignore/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Git如何使用.gitignore文件删除掉已经提交的文件</title>
-  <link>https://cfanzp.com/git-gitignore/</link>
+  <link>http://111.230.8.71:8889/git-gitignore/</link>
   <pubDate>Fri, 05 May 2023 23:10:10 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/git-gitignore/</guid>
+  <guid>http://111.230.8.71:8889/git-gitignore/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>简单git服务器的搭建</title>
-  <link>https://cfanzp.com/git-server/</link>
+  <link>http://111.230.8.71:8889/git-server/</link>
   <pubDate>Wed, 12 Apr 2023 23:32:19 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/git-server/</guid>
+  <guid>http://111.230.8.71:8889/git-server/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>git常见问题</title>
-  <link>https://cfanzp.com/git-faq/</link>
+  <link>http://111.230.8.71:8889/git-faq/</link>
   <pubDate>Tue, 23 Aug 2022 08:44:11 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/git-faq/</guid>
+  <guid>http://111.230.8.71:8889/git-faq/</guid>
   <description><![CDATA[git常见问题 FAQ git如何清除提交记录？ 项目如果走过了一个很长的开发周期以后，提交历史会很长，如果提交记录不重要，这种情况下可以删除掉历时记录。
 创建一个干净的分支 使用--orphan参数 添加当前的所有文件 提交注释 删除原来的分支master 把当前分支重命名为master 把当前分支强行推送到远端 1 2 3 4 5 6 git checkout --orphan test git add . git commit -m &#34;init&#34; git branch -D master git branch -m master git push -f origin master git如何查看空间占用? 1 2 git count-objects -v # 查看 git 相关文件占用的空间 du -sh .git # 查看 .git 文件夹占用磁盘空间 如何查找git提交中涉及的大文件? 1 git rev-list --objects --all | grep &#34;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk &#39;{print$1}&#39;)&#34; 如何删除大文件?]]></description>
 </item>
 <item>
   <title>git配置文件.gitconfig</title>
-  <link>https://cfanzp.com/config-git/</link>
+  <link>http://111.230.8.71:8889/config-git/</link>
   <pubDate>Wed, 03 Aug 2022 21:25:41 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/config-git/</guid>
+  <guid>http://111.230.8.71:8889/config-git/</guid>
   <description><![CDATA[<div class="featured-image">
         <img src="/images/sky.jpg" referrerpolicy="no-referrer">
       </div>git配置文件.gitconfig .gitconfig 配置
@@ -58,18 +58,18 @@
 </item>
 <item>
   <title>git-ftp的使用</title>
-  <link>https://cfanzp.com/git-ftp/</link>
+  <link>http://111.230.8.71:8889/git-ftp/</link>
   <pubDate>Sun, 31 Jul 2022 22:30:00 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/git-ftp/</guid>
+  <guid>http://111.230.8.71:8889/git-ftp/</guid>
   <description><![CDATA[git-ftp的使用 git-ftp有什么用？ git-ftp 能够方便的帮助我们将自己管理的git项目相关代码或资源提交到自己的ftp服务器上 git-ftp命令 1 2 git ftp init git ftp push 安装 首次使用需要下载安装git-ftp并进行配置 ubuntu安装 1 sudo apt-get install git-ftp mac 安装 1 brew install git-ftp mac安装过程中相关依赖可能会报错，我安装的时候遇到了报错问题，这里记录一下: 1 Error: No such file or directory @ rb_sysopen - /Users/zp/Library/Caches/Homebrew/downloads/8687c3e085e812f09d11aeca541ef9cdefbc8f971d9dd3c407c8b18bb3954957--libnghttp2-1.47.0.monterey.bottle.tar.gz 报错解决方案:安装相关库即可 1 2 3 4 5 6 brew install libnghttp2 brew install openldap brew install brotli brew install zstd brew install curl brew install git-ftp 配置 简单配置,修改.git/config添加如下配置 1 2 3 4 5 6 [git-ftp] url = your-ftp-url user = your-ftp-user password = your_ftp_url syncroot = your-local-upload-fullpath remote-root= your-ftp-upload-path(eg:htdocs) 参考 官方文档:https://github.]]></description>
 </item>
 <item>
   <title>git学习笔记</title>
-  <link>https://cfanzp.com/git-base/</link>
+  <link>http://111.230.8.71:8889/git-base/</link>
   <pubDate>Sun, 10 Oct 2021 18:36:16 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/git-base/</guid>
+  <guid>http://111.230.8.71:8889/git-base/</guid>
   <description><![CDATA[git学习笔记 git 缩写配置 在home目录创建.gitconfig文件复制粘贴以下配置并保存退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 [user] name = xx email = xx@qq.com [color] interactive = auto diff = auto status = auto branch = auto ui = true repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true precomposeunicode = false [alias] co = checkout ci = commit st = status sh = stash sa = stash apply sp = stash pop ap = add -p br = branch cp = checkout -p cv = commit -v dc = diff --cached d = diff pr = pull --rebase ps = push l = log --graph --pretty=format:&#39;%C(yellow)%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=short --all lg = log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --all [hub] protocol = https [diff] tool = vimdiff [core] editor = vim 常用缩写 git co git br git st git lg 工作流 开发新功能a 1 2 3 4 5 sequenceDiagram participant proj1 participant a proj1-&gt;&gt;a:基于proj1分支创建一个a分支(step1) a-&gt;&gt;proj1:a分支开发完后合并入proj1分支,并删除a分支(step2) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 step1: git br a proj1 git push origin a step2: git co proj1 git pull git co a git merge proj1 git push git co proj1 git merge a git push git br -D a 常用命令 删除远程分支a: 切换到本地其它分支,如master 1 git co master 删除远程分支 1 git push origin --delete a 修改远程分支地址 1 2 3 git remote -v git remote rm origin git remote add origin git@gitee.]]></description>
 </item>
 </channel>

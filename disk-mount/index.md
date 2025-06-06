@@ -19,5 +19,5 @@ sudo mount -a
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/disk-mount/  
+> URL: http://111.230.8.71:8889/disk-mount/  
 

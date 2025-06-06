@@ -83,5 +83,5 @@ sudo pacman -S core/gcc
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/devtools-flameshot/  
+> URL: http://111.230.8.71:8889/devtools-flameshot/  
 

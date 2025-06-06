@@ -25,5 +25,5 @@ vim.api.nvim_create_autocmd({"BufEnter", "FileType"}, {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-config-close-auto-commentary/  
+> URL: http://111.230.8.71:8889/nvim-config-close-auto-commentary/  
 

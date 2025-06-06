@@ -116,5 +116,5 @@ Error executing lua: ...-linux64/share/nvim/runtime/lua/vim/treesitter/query.lua
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-plugin-nvim-lspconfig/  
+> URL: http://111.230.8.71:8889/nvim-plugin-nvim-lspconfig/  
 

@@ -76,5 +76,5 @@ kill -s SIGINT 10800
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/test-nginx/  
+> URL: http://111.230.8.71:8889/test-nginx/  
 

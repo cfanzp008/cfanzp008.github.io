@@ -28,5 +28,5 @@ git config --global --add safe.directory /opt/homebrew/Library/Taps/homebrew/hom
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-install-brew/  
+> URL: http://111.230.8.71:8889/mac-install-brew/  
 

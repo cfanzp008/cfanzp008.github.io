@@ -196,5 +196,5 @@ memory：16G 海力士
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/pc-price/  
+> URL: http://111.230.8.71:8889/pc-price/  
 

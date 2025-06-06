@@ -20,5 +20,5 @@ rename 's/abc/def/'  *.txt
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-rename/  
+> URL: http://111.230.8.71:8889/mac-rename/  
 

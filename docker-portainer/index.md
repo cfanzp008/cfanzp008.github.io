@@ -135,5 +135,5 @@ sudo docker-compose -f docker-compose-nginx.yml up -d
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/docker-portainer/  
+> URL: http://111.230.8.71:8889/docker-portainer/  
 

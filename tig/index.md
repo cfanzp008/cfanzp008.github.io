@@ -34,5 +34,5 @@ m:进入main view
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/tig/  
+> URL: http://111.230.8.71:8889/tig/  
 

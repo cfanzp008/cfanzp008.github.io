@@ -21,5 +21,5 @@ tztime local {
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/i3wm-i3status-conf/  
+> URL: http://111.230.8.71:8889/i3wm-i3status-conf/  
 

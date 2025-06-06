@@ -37,5 +37,5 @@ return {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-plugin-nvim-gdb/  
+> URL: http://111.230.8.71:8889/nvim-plugin-nvim-gdb/  
 

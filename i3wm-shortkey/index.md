@@ -79,5 +79,5 @@ mod+d
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/i3wm-shortkey/  
+> URL: http://111.230.8.71:8889/i3wm-shortkey/  
 

@@ -75,5 +75,5 @@ sudo apt-get install remmina remmina-plugin-*
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/linux-ubuntu-remotedesktop/  
+> URL: http://111.230.8.71:8889/linux-ubuntu-remotedesktop/  
 

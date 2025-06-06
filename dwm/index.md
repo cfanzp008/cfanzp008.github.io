@@ -81,5 +81,5 @@ git clone https://git.suckless.org/dwm
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/dwm/  
+> URL: http://111.230.8.71:8889/dwm/  
 

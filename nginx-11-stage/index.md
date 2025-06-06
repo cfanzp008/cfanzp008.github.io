@@ -54,5 +54,5 @@ log_by_lua*
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-11-stage/  
+> URL: http://111.230.8.71:8889/nginx-11-stage/  
 

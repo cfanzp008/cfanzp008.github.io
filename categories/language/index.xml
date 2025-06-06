@@ -1,39 +1,39 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>编程语言 - 分类 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/categories/language/</link>
-    <description>编程语言 - 分类 - 个人Linux开发笔记</description>
+    <title>编程语言 - 分类 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/categories/language/</link>
+    <description>编程语言 - 分类 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/language/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/categories/language/" rel="self" type="application/rss+xml" /><item>
   <title>go build提示timeout如何解决？</title>
-  <link>https://cfanzp.com/go-build-timeout/</link>
+  <link>http://111.230.8.71:8889/go-build-timeout/</link>
   <pubDate>Thu, 15 Jun 2023 22:30:44 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/go-build-timeout/</guid>
+  <guid>http://111.230.8.71:8889/go-build-timeout/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Go语言中pprof的使用</title>
-  <link>https://cfanzp.com/go-pprof/</link>
+  <link>http://111.230.8.71:8889/go-pprof/</link>
   <pubDate>Fri, 21 Apr 2023 14:35:37 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/go-pprof/</guid>
+  <guid>http://111.230.8.71:8889/go-pprof/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>使用python开发一个简单的邮件发送脚本</title>
-  <link>https://cfanzp.com/python_mail/</link>
+  <link>http://111.230.8.71:8889/python_mail/</link>
   <pubDate>Mon, 17 Apr 2023 17:32:19 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/python_mail/</guid>
+  <guid>http://111.230.8.71:8889/python_mail/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>lua-pbc(lua的protobuf库)如何使用？</title>
-  <link>https://cfanzp.com/lua-pbc/</link>
+  <link>http://111.230.8.71:8889/lua-pbc/</link>
   <pubDate>Tue, 30 Aug 2022 08:36:15 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/lua-pbc/</guid>
+  <guid>http://111.230.8.71:8889/lua-pbc/</guid>
   <description><![CDATA[lua-pbc(lua的protobuf库)如何使用？ lua-pbc是什么? lua-pbc,即lua protocol buffer fro c,是云风写的一个给lua使用的protobuf封包解包的库,如果你想用skynet来写游戏等服务端应用，lua-pbc是不错的选择。
 lua-pbc github地址为: https://github.com/cloudwu/pbc
 关于pbc的设计，大家可以看一下云风的博客: https://blog.codingnow.com/2011/12/protocol_buffers_for_c.html
@@ -48,35 +48,35 @@ lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
 </item>
 <item>
   <title>GOPROXY配置</title>
-  <link>https://cfanzp.com/goproxy/</link>
+  <link>http://111.230.8.71:8889/goproxy/</link>
   <pubDate>Tue, 23 Aug 2022 19:50:28 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/goproxy/</guid>
+  <guid>http://111.230.8.71:8889/goproxy/</guid>
   <description><![CDATA[GOPROXY配置 最近在使用hugo时需要依赖go环境在安装依赖包的时候，速度很慢，之前都是配置外网环境解决的。其实go环境有国内的替代域名资源可以使用。 在go环境下，需要下载依赖包的时候，如果没有外网环境的话，很多包默认是无法下载下来的，解决办法就是修改一下GOPROXY的配置
 1 go env -w GOPROXY=https://goproxy.io,direct ]]></description>
 </item>
 <item>
   <title>lua面向对象编程</title>
-  <link>https://cfanzp.com/lua-new/</link>
+  <link>http://111.230.8.71:8889/lua-new/</link>
   <pubDate>Mon, 08 Aug 2022 09:18:02 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/lua-new/</guid>
+  <guid>http://111.230.8.71:8889/lua-new/</guid>
   <description><![CDATA[lua面向对象编程 对象定义: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 local logger = require &#34;common.]]></description>
 </item>
 <item>
   <title>Lua开发手册</title>
-  <link>https://cfanzp.com/lua-man/</link>
+  <link>http://111.230.8.71:8889/lua-man/</link>
   <pubDate>Sun, 31 Jul 2022 09:47:48 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/lua-man/</guid>
+  <guid>http://111.230.8.71:8889/lua-man/</guid>
   <description><![CDATA[lua5.3开发手册 https://cloud.tencent.com/developer/doc/1141 云风翻译:http://cloudwu.github.io/lua53doc/manual.html lua5.4开发手册 官网英文版:http://www.lua.org/manual/5.4/manual.html lua匹配库Lpeg 官网: http://www.inf.puc-rio.br/~roberto/lpeg/ 帮助: https://www.jianshu.com/p/e8e1c5abfdbb tutorial: https://lua-users.org/wiki/LpegTutorial luasocket github: https://github.com/lunarmodules/luasocket 使用demo: https://blog.csdn.net/h1023417614/article/details/52297408 lua md5 github: https://github.com/keplerproject/md5 jemalloc http://jemalloc.net/ ]]></description>
 </item>
 <item>
   <title>rust语言基础</title>
-  <link>https://cfanzp.com/language-rust/</link>
+  <link>http://111.230.8.71:8889/language-rust/</link>
   <pubDate>Sat, 30 Jul 2022 19:44:42 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/language-rust/</guid>
+  <guid>http://111.230.8.71:8889/language-rust/</guid>
   <description><![CDATA[rust语言基础 rust语言的优点 c/c++ 性能好，但是类型系统和内存都不太安全。 java/c#, 有GC,内存安全有很多优秀的特性，但性能不行。 Rust:安全，无需GC,易于维护 rust的缺点 难学 Rust特别擅长的领域 高性能Web Service WebAssemble 命令行工具 网络编程 嵌入式设备 系统编程 Rust的用户和案例 Google:新操作系统Fuschia,Rust:30% Amazon：基于Linux开发的直接可以在裸机、虚拟机上运行容器的操作系统 System76：纯Rust开发了下一代安全操作系统Redox 蚂蚁金服:库操作系统Occlum 斯坦福和密歇根大学:嵌入式实时操作系统，应用于Google的加密产品。 微软:Rust重写Windows系统中的一些低级组件 微软:WinRT/Rust项目 Dropbox、Yelp、LINE、npm、百度、华为、Deno等 注意 Rust有很多独有的概念，他们和现在大多主流语言都不通。 学习Rust必须从基础概念一步一步学，否则会懵。 参考教材 Rust权威指南(The rust programming language) Rust安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 curl --proto &#39;=https&#39; --tlsv1.]]></description>
 </item>
 </channel>

@@ -69,5 +69,5 @@ ip rule add fwmark 1 lookup 100
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-forward-proxy/  
+> URL: http://111.230.8.71:8889/nginx-forward-proxy/  
 

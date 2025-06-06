@@ -140,5 +140,5 @@ FRR的路由策略通过设置Route Maps来实现。Route Maps一共可分为五
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/net-bgp/  
+> URL: http://111.230.8.71:8889/net-bgp/  
 

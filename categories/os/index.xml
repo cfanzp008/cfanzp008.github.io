@@ -1,47 +1,47 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>操作系统 - 分类 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/categories/os/</link>
-    <description>操作系统 - 分类 - 个人Linux开发笔记</description>
+    <title>操作系统 - 分类 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/categories/os/</link>
+    <description>操作系统 - 分类 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 24 Jul 2023 22:11:49 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/os/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 24 Jul 2023 22:11:49 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/categories/os/" rel="self" type="application/rss+xml" /><item>
   <title>linux消息队列的使用</title>
-  <link>https://cfanzp.com/linux_queue/</link>
+  <link>http://111.230.8.71:8889/linux_queue/</link>
   <pubDate>Mon, 24 Jul 2023 22:11:49 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/linux_queue/</guid>
+  <guid>http://111.230.8.71:8889/linux_queue/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>操作系统基础</title>
-  <link>https://cfanzp.com/os-question/</link>
+  <link>http://111.230.8.71:8889/os-question/</link>
   <pubDate>Sat, 01 Apr 2023 16:42:07 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/os-question/</guid>
+  <guid>http://111.230.8.71:8889/os-question/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Windows Server 2022安装体验</title>
-  <link>https://cfanzp.com/windows-server-2022/</link>
+  <link>http://111.230.8.71:8889/windows-server-2022/</link>
   <pubDate>Thu, 12 Jan 2023 17:56:12 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/windows-server-2022/</guid>
+  <guid>http://111.230.8.71:8889/windows-server-2022/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Windows如何写一个脚本定时删除日志？</title>
-  <link>https://cfanzp.com/windows-del-log/</link>
+  <link>http://111.230.8.71:8889/windows-del-log/</link>
   <pubDate>Wed, 07 Dec 2022 14:27:50 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/windows-del-log/</guid>
+  <guid>http://111.230.8.71:8889/windows-del-log/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>linux查看打开文件情况</title>
-  <link>https://cfanzp.com/lsof/</link>
+  <link>http://111.230.8.71:8889/lsof/</link>
   <pubDate>Fri, 19 Aug 2022 15:57:01 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/lsof/</guid>
+  <guid>http://111.230.8.71:8889/lsof/</guid>
   <description><![CDATA[linux查看打开文件情况 查看进程skynet(config.login)的pid 1 2 3 4 5 [root@dev127 login]# ps -ef | grep login root 657 1 0 6月20 ? 00:00:49 /usr/lib/systemd/systemd-logind root 113262 1 8 15:27 ? 00:02:19 /data/myb/sh/../skynet/skynet /data/myb/sh/login/config.login root 113983 107342 0 15:42 pts/4 00:00:02 tail login.20220819.log -f root 114702 112029 0 15:55 pts/2 00:00:00 grep --color=auto login 查看进程能打开的最大文件数目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 [root@dev127 login]# cat /proc/113262/limits Limit Soft Limit Hard Limit Units Max cpu time unlimited unlimited seconds Max file size unlimited unlimited bytes Max data size unlimited unlimited bytes Max stack size 8388608 unlimited bytes Max core file size unlimited unlimited bytes Max resident set unlimited unlimited bytes Max processes 26047 26047 processes Max open files 1024 4096 files Max locked memory 65536 65536 bytes Max address space unlimited unlimited bytes Max file locks unlimited unlimited locks Max pending signals 26047 26047 signals Max msgqueue size 819200 819200 bytes Max nice priority 0 0 Max realtime priority 0 0 Max realtime timeout unlimited unlimited us [root@dev127 login]# 参考链接 https://blog.]]></description>
 </item>
 </channel>

@@ -20,5 +20,5 @@ git commit -m "rm laji"
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/git-gitignore/  
+> URL: http://111.230.8.71:8889/git-gitignore/  
 

@@ -43,5 +43,5 @@ A1 ---> B_Manager ---> B2
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/skynet-clearcache/  
+> URL: http://111.230.8.71:8889/skynet-clearcache/  
 

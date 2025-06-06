@@ -17,5 +17,5 @@ ssh连接工具很多但是能够选择的真不多。之前用过putty,securtyc
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ssh-tools/  
+> URL: http://111.230.8.71:8889/ssh-tools/  
 

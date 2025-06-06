@@ -37,5 +37,5 @@ local hello = "hello"
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/vim-plug-tabular/  
+> URL: http://111.230.8.71:8889/vim-plug-tabular/  
 

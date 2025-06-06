@@ -62,5 +62,5 @@ export FZF_DEFAULT_OPTS="--ansi"
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/fd/  
+> URL: http://111.230.8.71:8889/fd/  
 

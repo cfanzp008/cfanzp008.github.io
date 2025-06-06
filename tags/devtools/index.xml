@@ -1,39 +1,39 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>devtools - 标签 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/tags/devtools/</link>
-    <description>devtools - 标签 - 个人Linux开发笔记</description>
+    <title>devtools - 标签 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/tags/devtools/</link>
+    <description>devtools - 标签 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 04 May 2023 11:45:42 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/tags/devtools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 04 May 2023 11:45:42 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/devtools/" rel="self" type="application/rss+xml" /><item>
   <title>解决mac系统中vscode中使用vim插件，按下某个键不连续输入的问题</title>
-  <link>https://cfanzp.com/vscode-vim-key-fix/</link>
+  <link>http://111.230.8.71:8889/vscode-vim-key-fix/</link>
   <pubDate>Thu, 04 May 2023 11:45:42 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/vscode-vim-key-fix/</guid>
+  <guid>http://111.230.8.71:8889/vscode-vim-key-fix/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>几款免费好用的思维导图软件</title>
-  <link>https://cfanzp.com/freemind/</link>
+  <link>http://111.230.8.71:8889/freemind/</link>
   <pubDate>Wed, 22 Mar 2023 08:54:10 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/freemind/</guid>
+  <guid>http://111.230.8.71:8889/freemind/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>ubuntu好用的pdf阅读器Evince</title>
-  <link>https://cfanzp.com/evince/</link>
+  <link>http://111.230.8.71:8889/evince/</link>
   <pubDate>Fri, 02 Dec 2022 09:38:25 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/evince/</guid>
+  <guid>http://111.230.8.71:8889/evince/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>如何在terminal中使用Joplin并像vim一样移动?</title>
-  <link>https://cfanzp.com/joplin-terminal/</link>
+  <link>http://111.230.8.71:8889/joplin-terminal/</link>
   <pubDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/joplin-terminal/</guid>
+  <guid>http://111.230.8.71:8889/joplin-terminal/</guid>
   <description><![CDATA[如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
 进入
 1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
@@ -41,26 +41,26 @@
 </item>
 <item>
   <title>在线工具</title>
-  <link>https://cfanzp.com/online-tools/</link>
+  <link>http://111.230.8.71:8889/online-tools/</link>
   <pubDate>Wed, 24 Aug 2022 09:00:12 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/online-tools/</guid>
+  <guid>http://111.230.8.71:8889/online-tools/</guid>
   <description><![CDATA[在线工具 在线测速:https://www.ping.cn MD5加密:https://md5jiami.bmcx.com/ JSON在线格式化: https://www.bt.cn/tools/json.html https://www.bejson.com ]]></description>
 </item>
 <item>
   <title>常用工具下载地址汇总</title>
-  <link>https://cfanzp.com/tools_download/</link>
+  <link>http://111.230.8.71:8889/tools_download/</link>
   <pubDate>Fri, 19 Aug 2022 13:54:38 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/tools_download/</guid>
+  <guid>http://111.230.8.71:8889/tools_download/</guid>
   <description><![CDATA[常用工具下载地址汇总 在线工具 tool.lu: https://tool.lu 智能命名工具 CODELF: https://unbug.github.io/codelf ssh远程连接 WindTerm: https://github.com/kingToolbox/WindTerm/releases git: https://git-scm.com/download/ windows版本的安装后会自带ssh客户端，配合.ssh/文件夹下的config文件使用也是非常方便的。 Xshell: https://www.xshell.com/zh/xshell/ git git: https://git-scm.com/download/ linux常用软件 截图工具flameshot: https://github.com/flameshot-org/flameshot wechat: https://www.ubuntukylin.com/applications/106-cn.html 飞书: https://www.feishu.cn/download 有道云笔记: https://note.youdao.com/download.html 流程图软件Dia: https://zhuanlan.zhihu.com/p/366116011 wps: https://www.wps.cn/product/wpslinux 安装:sudo apt install ./wps-office_11.1.0.11664_amd64.deb 字体问题: https://zhuanlan.zhihu.com/p/145114644 字体下载,链接: https://pan.baidu.com/s/18PWLr_t6Lub9PoEg9zUSzg 提取码: isiz linux开发工具 httpperf: https://github.com/httperf/httperf 教程: https://www.cnblogs.com/cllovewxq/p/5533487.html 搜索资源工具 Bing: https://cn.bing.com/ DuckDuckGo: https://duckduckgo.com/ 不搜集用户信息，没有广告 Stack Overflow: https://stackoverflow.com/ 技术问题可以直接查这个网站 Gitlogs: https://www.gitlogs.com/ 搜索GitHub项目的搜索引擎 jiumo search: https://www.jiumodiary.com/ 文档搜索引擎 鸠摩搜书 pexels: https://www.pexels.com/ 高质量的图片网站。 在线画图,ProcessOn: https://www.processon.com/ draw.io: https://app.]]></description>
 </item>
 <item>
   <title>弱网测试环境的搭建</title>
-  <link>https://cfanzp.com/weak-net/</link>
+  <link>http://111.230.8.71:8889/weak-net/</link>
   <pubDate>Fri, 12 Aug 2022 08:46:30 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/weak-net/</guid>
+  <guid>http://111.230.8.71:8889/weak-net/</guid>
   <description><![CDATA[弱网测试环境的搭建 最近有一个线上项目反馈在弱网环境下，容易掉线。我们自己测试的时候网络环境都还比较好，想模拟一下弱网环境，这里介绍一下几个方案。
 路由器限速 路由器可以直接对某个设备进行限速，这个登录路由器就可以配置了，方法比较简单，这里就不赘述了。
 chrome开发者工具 chrome开发者工具自带网络限速功能，可以限制速度,可以自定义各种网络带宽，使用比较方便。
@@ -68,26 +68,26 @@ chrome开发者工具 chrome开发者工具自带网络限速功能，可以限�
 </item>
 <item>
   <title>http测试工具</title>
-  <link>https://cfanzp.com/http-req/</link>
+  <link>http://111.230.8.71:8889/http-req/</link>
   <pubDate>Mon, 08 Aug 2022 16:27:24 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/http-req/</guid>
+  <guid>http://111.230.8.71:8889/http-req/</guid>
   <description><![CDATA[http测试工具 curl 官网:https://curl.se/ Postman 官网:https://www.postman.com/ Apifox 官网:https://www.apifox.cn/ VSCode插件Thunder Client 用法:https://github.com/rangav/thunder-client-support#usage ]]></description>
 </item>
 <item>
   <title>常用的http请求分析工具</title>
-  <link>https://cfanzp.com/http-proxy-package/</link>
+  <link>http://111.230.8.71:8889/http-proxy-package/</link>
   <pubDate>Mon, 08 Aug 2022 15:27:52 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/http-proxy-package/</guid>
+  <guid>http://111.230.8.71:8889/http-proxy-package/</guid>
   <description><![CDATA[常用的http请求分析工具 charles(收费) fiddler(windows免费) ]]></description>
 </item>
 <item>
   <title>mdbook-比gitbook更高效且简洁的markdown工具mdbook</title>
-  <link>https://cfanzp.com/devtools-mdbook/</link>
+  <link>http://111.230.8.71:8889/devtools-mdbook/</link>
   <pubDate>Mon, 18 Jul 2022 17:36:01 &#43;0800</pubDate>
   <author>cfanzp</author>
-  <guid>https://cfanzp.com/devtools-mdbook/</guid>
+  <guid>http://111.230.8.71:8889/devtools-mdbook/</guid>
   <description><![CDATA[比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; mdbook-pdf install 方法1 1 cargo install mdbook-pdf 方法2下载可执行文件 https://github.]]></description>
 </item>
 </channel>

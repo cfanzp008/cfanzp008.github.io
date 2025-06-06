@@ -80,6 +80,40 @@ RUN \
 #CMD /usr/sbin/init
 ```
 
+- Dockerfile demo2
+```bash
+# 基础镜像，这里选用centos
+FROM centos:7.9.2009
+# 镜像所有者
+MAINTAINER cfanzp "cfan.zp@qq.com"
+# 1.准备工作创建文件夹
+RUN \
+    mkdir -p /data/tools \
+    && mkdir /data/log
+
+# 复制文件，将要安装的jdk、redis及nginx安装包复制到镜像内
+ADD CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+
+RUN yum makecache
+
+RUN yum -y install epel-release
+RUN yum -y install htop
+#安装vim编辑器
+RUN yum -y install vim
+
+# 安装 sshd 修改密码
+RUN \
+    yum install passwd openssl openssh-server -y \
+    && ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' \
+    && ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
+    && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key  -N '' \
+    && sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
+    && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config \
+    && echo 123456 | passwd --stdin root \
+    && echo root:123456|chpasswd \
+    && rm -rf /var/cache/yum/**
+```
+
 ## 构建镜像
 ```bash
 docker build -t centos_dev:latest .
@@ -90,9 +124,33 @@ docker build -t centos_dev:latest .
 docker run -idt --name centos_dev1 centos_dev:latest /bin/bash
 ```
 
+## 常见问题
+### 如何给docker内的centos更换镜像源?
+- 思路，先在宿主机器上下载最新的镜像源，再在Dockerfile中使用COPY或ADD命令更换镜像源
+```bash
+#获取国内源
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+#到/etc/yum.repos.d/目录下查找源
+cd /etc/yum.repos.d/
+#将源拷贝到你Dockerfile所在目录
+```
+- Dockerfile修改
+```bash
+#使用 ADD 命令将 CentOS-Base.repo 拷贝到目标基础镜像的目录下
+ADD  CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+#更新yum源|如果你不需要更新版本，可以不执行此命令（升级后的版本太高可能导致原有软件不能运行）
+#RUN yum -y update
+#运行yum makecache生成缓存，便于查找
+RUN yum makecache
+```
+
+
+## 参考
+- [Dockerfile更换centos7yum源](https://blog.csdn.net/jiangjing0623/article/details/108245879)
+
 
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/docker-configfile/  
+> URL: http://111.230.8.71:8889/docker-configfile/  
 

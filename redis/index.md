@@ -148,5 +148,5 @@ activerehashing yes | 是否激活重置哈希
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/redis/  
+> URL: http://111.230.8.71:8889/redis/  
 

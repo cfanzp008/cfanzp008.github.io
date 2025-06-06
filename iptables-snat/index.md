@@ -30,5 +30,5 @@ iptables -t nat -A PREROUTING -i eth0 - p tcp -dport 1194 -j DNAT --to-destinati
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/iptables-snat/  
+> URL: http://111.230.8.71:8889/iptables-snat/  
 

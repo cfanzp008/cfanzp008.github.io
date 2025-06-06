@@ -34,5 +34,5 @@ xrandr平时都使用不到，主要是在使用平铺式桌面管理器如i3wm,
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/linux-xrandr/  
+> URL: http://111.230.8.71:8889/linux-xrandr/  
 

@@ -71,5 +71,5 @@ chown mysql:mysql /var/log/mysql/
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mysql-faq/  
+> URL: http://111.230.8.71:8889/mysql-faq/  
 

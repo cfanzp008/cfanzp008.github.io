@@ -22,5 +22,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/casio-3198-ae-1000/  
+> URL: http://111.230.8.71:8889/casio-3198-ae-1000/  
 

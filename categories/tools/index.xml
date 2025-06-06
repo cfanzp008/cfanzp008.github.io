@@ -1,63 +1,63 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>工具 - 分类 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/categories/tools/</link>
-    <description>工具 - 分类 - 个人Linux开发笔记</description>
+    <title>工具 - 分类 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/categories/tools/</link>
+    <description>工具 - 分类 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 10 Jun 2024 00:32:27 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 10 Jun 2024 00:32:27 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/categories/tools/" rel="self" type="application/rss+xml" /><item>
   <title>常用的ssh tools推荐</title>
-  <link>https://cfanzp.com/ssh-tools/</link>
+  <link>http://111.230.8.71:8889/ssh-tools/</link>
   <pubDate>Mon, 10 Jun 2024 00:32:27 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/ssh-tools/</guid>
+  <guid>http://111.230.8.71:8889/ssh-tools/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Tig</title>
-  <link>https://cfanzp.com/tig/</link>
+  <link>http://111.230.8.71:8889/tig/</link>
   <pubDate>Thu, 02 May 2024 21:42:33 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/tig/</guid>
+  <guid>http://111.230.8.71:8889/tig/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>电烙铁</title>
-  <link>https://cfanzp.com/electric-iron/</link>
+  <link>http://111.230.8.71:8889/electric-iron/</link>
   <pubDate>Mon, 11 Mar 2024 22:58:28 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/electric-iron/</guid>
+  <guid>http://111.230.8.71:8889/electric-iron/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>视频剪辑软件shotcut基本用法</title>
-  <link>https://cfanzp.com/shotcut/</link>
+  <link>http://111.230.8.71:8889/shotcut/</link>
   <pubDate>Fri, 21 Apr 2023 18:27:20 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/shotcut/</guid>
+  <guid>http://111.230.8.71:8889/shotcut/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>在线音频格式化网站</title>
-  <link>https://cfanzp.com/music-format/</link>
+  <link>http://111.230.8.71:8889/music-format/</link>
   <pubDate>Sun, 02 Apr 2023 11:02:57 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/music-format/</guid>
+  <guid>http://111.230.8.71:8889/music-format/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Hugo主题FixIt简单介绍</title>
-  <link>https://cfanzp.com/hugo-theme-fixit/</link>
+  <link>http://111.230.8.71:8889/hugo-theme-fixit/</link>
   <pubDate>Sun, 04 Sep 2022 22:08:08 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/hugo-theme-fixit/</guid>
+  <guid>http://111.230.8.71:8889/hugo-theme-fixit/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Hugo学习笔记</title>
-  <link>https://cfanzp.com/hugo-note/</link>
+  <link>http://111.230.8.71:8889/hugo-note/</link>
   <pubDate>Mon, 08 Aug 2022 23:37:28 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/hugo-note/</guid>
+  <guid>http://111.230.8.71:8889/hugo-note/</guid>
   <description><![CDATA[hugo学习笔记 hugo 下载 linux,ubuntu 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_Linux-64bit.tar.gz 扩展版本
 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_extended_0.101.0_Linux-64bit.tar.gz macos 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_0.101.0_macOS-64bit.tar.gz 如果是需要使用custom.scss配置需要使用扩展版本:
 1 wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_extended_0.101.0_macOS-64bit.tar.gz m1 https://github.com/gohugoio/hugo/releases/download/v0.111.3/hugo_extended_0.111.3_darwin-universal.tar.gz hugo集成搜索 hugo在集成搜索的时候还是有多种方案的，LoveIt默认的方案个人不太喜欢。这里个人测试了hugo-search-fuse-js的方案和gcse的方案，目前在使用的是hugo-search-fuse-js的方案。

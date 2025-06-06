@@ -69,5 +69,5 @@ iptables -A PREROUTING -t mangle -i eth0 -s 192.168.0.1 - 192.168.0.100 -j MARK 
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ip-route/  
+> URL: http://111.230.8.71:8889/ip-route/  
 

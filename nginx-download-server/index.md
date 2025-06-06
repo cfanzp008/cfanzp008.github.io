@@ -35,5 +35,5 @@ nginx -s reload
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-download-server/  
+> URL: http://111.230.8.71:8889/nginx-download-server/  
 

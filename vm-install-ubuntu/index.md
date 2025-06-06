@@ -62,5 +62,5 @@ exec --no-startup-id vmware-user-suid-wrapper
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/vm-install-ubuntu/  
+> URL: http://111.230.8.71:8889/vm-install-ubuntu/  
 

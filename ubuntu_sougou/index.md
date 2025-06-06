@@ -25,5 +25,5 @@ sudo apt install libgsettings-qt1
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/ubuntu_sougou/  
+> URL: http://111.230.8.71:8889/ubuntu_sougou/  
 

@@ -21,5 +21,5 @@ wget https://github.com/squid-cache/squid/archive/refs/tags/SQUID_6_6.tar.gz
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/squid/  
+> URL: http://111.230.8.71:8889/squid/  
 

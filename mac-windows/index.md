@@ -52,5 +52,5 @@ sudo ln -s /usr/local/bin/xfreerdp /opt/local/bin/xfreerdp
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-windows/  
+> URL: http://111.230.8.71:8889/mac-windows/  
 

@@ -1,47 +1,47 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>开发工具 - 分类 - 个人Linux开发笔记</title>
-    <link>https://cfanzp.com/categories/devtools/</link>
-    <description>开发工具 - 分类 - 个人Linux开发笔记</description>
+    <title>开发工具 - 分类 - Linux开发笔记</title>
+    <link>http://111.230.8.71:8889/categories/devtools/</link>
+    <description>开发工具 - 分类 - Linux开发笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 17 Apr 2023 20:37:15 &#43;0800</lastBuildDate><atom:link href="https://cfanzp.com/categories/devtools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 17 Apr 2023 20:37:15 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/categories/devtools/" rel="self" type="application/rss+xml" /><item>
   <title>百度文心一言体验</title>
-  <link>https://cfanzp.com/chatgpt-baidu/</link>
+  <link>http://111.230.8.71:8889/chatgpt-baidu/</link>
   <pubDate>Mon, 17 Apr 2023 20:37:15 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/chatgpt-baidu/</guid>
+  <guid>http://111.230.8.71:8889/chatgpt-baidu/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Mac M1中使用lldb调试c&#43;&#43;</title>
-  <link>https://cfanzp.com/mac-m1-lldb/</link>
+  <link>http://111.230.8.71:8889/mac-m1-lldb/</link>
   <pubDate>Tue, 11 Apr 2023 18:33:49 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/mac-m1-lldb/</guid>
+  <guid>http://111.230.8.71:8889/mac-m1-lldb/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>几款免费好用的思维导图软件</title>
-  <link>https://cfanzp.com/freemind/</link>
+  <link>http://111.230.8.71:8889/freemind/</link>
   <pubDate>Wed, 22 Mar 2023 08:54:10 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/freemind/</guid>
+  <guid>http://111.230.8.71:8889/freemind/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>ubuntu好用的pdf阅读器Evince</title>
-  <link>https://cfanzp.com/evince/</link>
+  <link>http://111.230.8.71:8889/evince/</link>
   <pubDate>Fri, 02 Dec 2022 09:38:25 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/evince/</guid>
+  <guid>http://111.230.8.71:8889/evince/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>如何在terminal中使用Joplin并像vim一样移动?</title>
-  <link>https://cfanzp.com/joplin-terminal/</link>
+  <link>http://111.230.8.71:8889/joplin-terminal/</link>
   <pubDate>Wed, 31 Aug 2022 19:06:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/joplin-terminal/</guid>
+  <guid>http://111.230.8.71:8889/joplin-terminal/</guid>
   <description><![CDATA[如何在terminal中使用Joplin并像vim一样移动? 安装 mac 安装方法 1 2 3 4 5 6 brew install node NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin [zp@localhost bin]$ sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin ln: /usr/bin/joplin: Read-only file system sudo ln -s ~/.joplin-bin/bin/joplin /usr/local/bin/joplin ubuntu 安装方法 1 2 3 #Important: First, install Node 12+. NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin 我安装的时候nodejs版本是:v10.19.0,建议按官方要求使用Node 12+
 进入
 1 joplin 配置文件同步 同步方式建议用文件同步，尝试了用坚果云的WebDav同步效果不是很好，手机可以采用WebDav,电脑还是用文件同步更稳定些。
@@ -49,46 +49,46 @@
 </item>
 <item>
   <title>在线工具</title>
-  <link>https://cfanzp.com/online-tools/</link>
+  <link>http://111.230.8.71:8889/online-tools/</link>
   <pubDate>Wed, 24 Aug 2022 09:00:12 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/online-tools/</guid>
+  <guid>http://111.230.8.71:8889/online-tools/</guid>
   <description><![CDATA[在线工具 在线测速:https://www.ping.cn MD5加密:https://md5jiami.bmcx.com/ JSON在线格式化: https://www.bt.cn/tools/json.html https://www.bejson.com ]]></description>
 </item>
 <item>
   <title>vscode的使用</title>
-  <link>https://cfanzp.com/edit-vscode/</link>
+  <link>http://111.230.8.71:8889/edit-vscode/</link>
   <pubDate>Tue, 23 Aug 2022 08:58:53 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/edit-vscode/</guid>
+  <guid>http://111.230.8.71:8889/edit-vscode/</guid>
   <description><![CDATA[vscode使用笔记 FAQ vscode必备插件有哪些？ vim Lua Vscode-lua Go Rainbow Brackets Thunder Client 如何给vscode添加ruler? 按语言添加:
 1 2 3 &#34;[lua]&#34;:{ &#34;editor.rulers&#34;:[80], } vscode配置vim插件jk退出插入模式 https://www.cnblogs.com/YunyaSir/p/15522565.html 1 2 3 4 5 6 7 8 9 10 11 &#34;vim.insertModeKeyBindings&#34;: [ { &#34;before&#34;: [ &#34;j&#34;, &#34;k&#34; ], &#34;after&#34;: [ &#34;&lt;Esc&gt;&#34; ] }, ], vscode 在mac上无法连续输入k如何解决？ 1 2 3 4 5 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false # For VS Code defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider defaults write com.]]></description>
 </item>
 <item>
   <title>git常见问题</title>
-  <link>https://cfanzp.com/git-faq/</link>
+  <link>http://111.230.8.71:8889/git-faq/</link>
   <pubDate>Tue, 23 Aug 2022 08:44:11 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/git-faq/</guid>
+  <guid>http://111.230.8.71:8889/git-faq/</guid>
   <description><![CDATA[git常见问题 FAQ git如何清除提交记录？ 项目如果走过了一个很长的开发周期以后，提交历史会很长，如果提交记录不重要，这种情况下可以删除掉历时记录。
 创建一个干净的分支 使用--orphan参数 添加当前的所有文件 提交注释 删除原来的分支master 把当前分支重命名为master 把当前分支强行推送到远端 1 2 3 4 5 6 git checkout --orphan test git add . git commit -m &#34;init&#34; git branch -D master git branch -m master git push -f origin master git如何查看空间占用? 1 2 git count-objects -v # 查看 git 相关文件占用的空间 du -sh .git # 查看 .git 文件夹占用磁盘空间 如何查找git提交中涉及的大文件? 1 git rev-list --objects --all | grep &#34;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk &#39;{print$1}&#39;)&#34; 如何删除大文件?]]></description>
 </item>
 <item>
   <title>解决gitlab占用内存太大的问题</title>
-  <link>https://cfanzp.com/gitlab-config/</link>
+  <link>http://111.230.8.71:8889/gitlab-config/</link>
   <pubDate>Mon, 22 Aug 2022 14:06:24 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/gitlab-config/</guid>
+  <guid>http://111.230.8.71:8889/gitlab-config/</guid>
   <description><![CDATA[解决gitlab占用内存太大的问题 最近gitlab服务器出现了占用内存太大的问题。虚拟机里的linux系统内存&gt;4G都被几乎用完了。
 网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
 配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 ]]></description>
 </item>
 <item>
   <title>常用工具下载地址汇总</title>
-  <link>https://cfanzp.com/tools_download/</link>
+  <link>http://111.230.8.71:8889/tools_download/</link>
   <pubDate>Fri, 19 Aug 2022 13:54:38 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp.com/tools_download/</guid>
+  <guid>http://111.230.8.71:8889/tools_download/</guid>
   <description><![CDATA[常用工具下载地址汇总 在线工具 tool.lu: https://tool.lu 智能命名工具 CODELF: https://unbug.github.io/codelf ssh远程连接 WindTerm: https://github.com/kingToolbox/WindTerm/releases git: https://git-scm.com/download/ windows版本的安装后会自带ssh客户端，配合.ssh/文件夹下的config文件使用也是非常方便的。 Xshell: https://www.xshell.com/zh/xshell/ git git: https://git-scm.com/download/ linux常用软件 截图工具flameshot: https://github.com/flameshot-org/flameshot wechat: https://www.ubuntukylin.com/applications/106-cn.html 飞书: https://www.feishu.cn/download 有道云笔记: https://note.youdao.com/download.html 流程图软件Dia: https://zhuanlan.zhihu.com/p/366116011 wps: https://www.wps.cn/product/wpslinux 安装:sudo apt install ./wps-office_11.1.0.11664_amd64.deb 字体问题: https://zhuanlan.zhihu.com/p/145114644 字体下载,链接: https://pan.baidu.com/s/18PWLr_t6Lub9PoEg9zUSzg 提取码: isiz linux开发工具 httpperf: https://github.com/httperf/httperf 教程: https://www.cnblogs.com/cllovewxq/p/5533487.html 搜索资源工具 Bing: https://cn.bing.com/ DuckDuckGo: https://duckduckgo.com/ 不搜集用户信息，没有广告 Stack Overflow: https://stackoverflow.com/ 技术问题可以直接查这个网站 Gitlogs: https://www.gitlogs.com/ 搜索GitHub项目的搜索引擎 jiumo search: https://www.jiumodiary.com/ 文档搜索引擎 鸠摩搜书 pexels: https://www.pexels.com/ 高质量的图片网站。 在线画图,ProcessOn: https://www.processon.com/ draw.io: https://app.]]></description>
 </item>
 </channel>

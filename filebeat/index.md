@@ -83,6 +83,21 @@ sudo systemctl daemon-reload
 sudo systemctl enable filebeat
 ```
 
+## filebeat配置
+### filebeat配置kafka后端 ssl加密
+```yml
+    ssl.enabled: true
+    ssl.certificate_authorities: ["/etc/filebeat/ca.crt"]
+    ssl.verification_mode: full
+```
+
+### filebeat配置kafka鉴权
+```yml
+    sasl.mechanism: "PLAIN"
+    username: "abc"
+    password: "12345"
+```
+
 ## 注意事项
 1. `/etc/systemd/system`目录中的服务优先比`/lib/systemd/system`目录中的服务优先级高。
 2. 一般自己创建的服务放在/etc/systemd/system目录中。
@@ -91,5 +106,5 @@ sudo systemctl enable filebeat
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/filebeat/  
+> URL: http://111.230.8.71:8889/filebeat/  
 

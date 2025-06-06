@@ -24,5 +24,5 @@ kill -USR1 `cat /path/nginx/logs/nginx.pid`
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-logrotate/  
+> URL: http://111.230.8.71:8889/nginx-logrotate/  
 

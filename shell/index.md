@@ -119,5 +119,5 @@ root@ubuntu:/tmp# nmcli device show ens33 2>/dev/null | awk '$1~"^IP4.DNS"{print
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/shell/  
+> URL: http://111.230.8.71:8889/shell/  
 

@@ -27,5 +27,5 @@ fi
 ---
 
 > 作者: [](https://cfanzp.com/about/)  
-> URL: https://cfanzp.com/linux-stop-process/  
+> URL: http://111.230.8.71:8889/linux-stop-process/  
 

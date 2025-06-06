@@ -5,40 +5,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>tmux基本配置及vim适配 - 个人Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>[vim-tmux]tmux基本配置及vim适配 - Linux开发笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
-下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !" /><meta name="keywords" content='linux, tmux, terminal, vim' /><meta itemprop="name" content="tmux基本配置及vim适配">
+下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !" /><meta name="keywords" content='linux, tmux, terminal, vim, nvim' /><meta itemprop="name" content="[vim-tmux]tmux基本配置及vim适配">
 <meta itemprop="description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
 下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !"><meta itemprop="datePublished" content="2022-04-25T19:19:14+08:00" />
 <meta itemprop="dateModified" content="2022-04-25T19:19:14+08:00" />
-<meta itemprop="wordCount" content="411"><meta itemprop="image" content="https://cfanzp.com/logo.png" />
-<meta itemprop="keywords" content="linux,tmux,terminal,vim," /><meta property="og:title" content="tmux基本配置及vim适配" />
+<meta itemprop="wordCount" content="466"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
+<meta itemprop="keywords" content="linux,tmux,terminal,vim,nvim," /><meta property="og:title" content="[vim-tmux]tmux基本配置及vim适配" />
 <meta property="og:description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
 下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp.com/devtools-tmux/" /><meta property="og:image" content="https://cfanzp.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://111.230.8.71:8889/devtools-tmux/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-25T19:19:14+08:00" />
 <meta property="article:modified_time" content="2022-04-25T19:19:14+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp.com/logo.png" /><meta name="twitter:title" content="tmux基本配置及vim适配"/>
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="[vim-tmux]tmux基本配置及vim适配"/>
 <meta name="twitter:description" content="tmux基本配置 tmux是什么？ tmux是一个终端复用工具。对于服务端开发的程序员或运维人员而言用处十分大。大大提高了工作效率。
 下载 1 wget http://cznic.dl.sourceforge.net/project/tmux/tmux/tmux-1.9/tmux-1.9a.tar.gz 安装 centos安装 1 2 3 4 5 6 yum install libevent-devel ncurses-devel tar -zxvf tmux-1.9.tar.gz cd tmux-1.9 ./configure make make install ubuntu 1 sudo apt install tmux 查看版本号 1 tmux -V 使用 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 tmux #开启tmux tmux ls #显示已有tmux列表（C-b s） tmux attach-session -t 数字 #选择tmux C-b c 创建一个新的窗口 C-b n 切换到下一个窗口 C-b p 切换到上一个窗口 C-b l 最后一个窗口,和上一个窗口的概念不一样哟,谁试谁知道 c-b w 通过上下键选择当前窗口中打开的会话 C-b 数字 直接跳到你按的数字所在的窗口 C-b &amp; 退出当前窗口 C-b d 临时断开会话 断开以后,还可以连上的哟:) C-b &#34; 分割出来一个窗口 C-b % 分割出来一个窗口 C-b o 在小窗口中切换 C-b (方向键) C-b !"/>
-<meta name="application-name" content="个人Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="个人Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="Linux开发笔记">
+<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp.com/devtools-tmux/" /><link rel="prev" href="https://cfanzp.com/git-base/" /><link rel="next" href="https://cfanzp.com/pc-price/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/devtools-tmux/" /><link rel="prev" href="http://111.230.8.71:8889/centos7/" /><link rel="next" href="http://111.230.8.71:8889/pc-price/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "tmux基本配置及vim适配",
+    "headline": "[vim-tmux]tmux基本配置及vim适配",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/cfanzp.com\/devtools-tmux\/"
-    },"genre": "posts","keywords": "linux, tmux, terminal, vim","wordcount":  411 ,
-    "url": "https:\/\/cfanzp.com\/devtools-tmux\/","datePublished": "2022-04-25T19:19:14+08:00","dateModified": "2022-04-25T19:19:14+08:00","publisher": {
+      "@id": "http:\/\/111.230.8.71:8889\/devtools-tmux\/"
+    },"genre": "posts","keywords": "linux, tmux, terminal, vim, nvim","wordcount":  466 ,
+    "url": "http:\/\/111.230.8.71:8889\/devtools-tmux\/","datePublished": "2022-04-25T19:19:14+08:00","dateModified": "2022-04-25T19:19:14+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -49,14 +49,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="个人Linux开发笔记"><img
+      <a href="/" title="Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="个人Linux开发笔记"
-    title="个人Linux开发笔记" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="Linux开发笔记"
+    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -320,14 +320,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="个人Linux开发笔记"><img
+        <a href="/" title="Linux开发笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">个人Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
@@ -628,7 +628,7 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span>tmux基本配置及vim适配</span>
+        <span>[vim-tmux]tmux基本配置及vim适配</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><img
     class="lazyload avatar"
@@ -638,8 +638,8 @@
     data-sizes="auto"
     alt="cfanzp"
     title="cfanzp" />&nbsp;cfanzp</span></span>
-          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div>
-      <div class="post-meta-line"><span title=2022-04-25&#32;19:19:14><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-25">2022-04-25</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 411 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="tmux基本配置及vim适配">
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a>&ensp;<a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/nvim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nvim</a></span></div>
+      <div class="post-meta-line"><span title=2022-04-25&#32;19:19:14><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-25">2022-04-25</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 466 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="[vim-tmux]tmux基本配置及vim适配">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -660,6 +660,7 @@
         <li><a href="#更新配置文件">更新配置文件</a></li>
         <li><a href="#解决vim在tmux中显示颜色异常">解决vim在tmux中显示颜色异常</a></li>
         <li><a href="#tmux中复制">tmux中复制</a></li>
+        <li><a href="#tmux支持多个prefix">tmux支持多个prefix</a></li>
         <li><a href="#tmux插件">tmux插件</a></li>
       </ul>
     </li>
@@ -776,6 +777,7 @@
 <ul>
 <li>存放路径~/.tmux.conf</li>
 <li>配置贴出来很简单：</li>
+<li>2024-10-16日更新配置</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -795,24 +797,44 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set -g default-terminal &#34;screen-256color&#34;
-</span></span><span class="line"><span class="cl">#-- base settings --#
-</span></span><span class="line"><span class="cl">set -g mode-keys vi
-</span></span><span class="line"><span class="cl"># prefix key (Ctrl+a)
-</span></span><span class="line"><span class="cl">set -g prefix ^x
-</span></span><span class="line"><span class="cl">unbind ^b
-</span></span><span class="line"><span class="cl">bind x send-prefix
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@VM-8-10-ubuntu:/opt/blog/tools/vim_tools# cat ~/.tmux.conf 
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g default-terminal <span class="s2">&#34;tmux-256color&#34;</span>
+</span></span><span class="line"><span class="cl">set-option -a terminal-overrides <span class="s1">&#39;*256col*:Tc&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">#up
-</span></span><span class="line"><span class="cl">bind-key k select-pane -U
-</span></span><span class="line"><span class="cl">#down
-</span></span><span class="line"><span class="cl">bind-key j select-pane -D
-</span></span><span class="line"><span class="cl">#left
-</span></span><span class="line"><span class="cl">bind-key h select-pane -L
-</span></span><span class="line"><span class="cl">#right
-</span></span><span class="line"><span class="cl">bind-key l select-pane -R
+</span></span><span class="line"><span class="cl"><span class="c1">#支持 OSC52 ssh copy to local clipboard</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g set-clipboard on
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set-option allow-rename off
+</span></span><span class="line"><span class="cl"><span class="c1">#for nvim</span>
+</span></span><span class="line"><span class="cl">set-option -sg escape-time <span class="m">10</span>
+</span></span><span class="line"><span class="cl">set-option -g focus-events on
+</span></span><span class="line"><span class="cl"><span class="c1">#-- base settings --#</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g mode-keys vi
+</span></span><span class="line"><span class="cl"><span class="c1"># prefix key (Ctrl+a)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g prefix ^a
+</span></span><span class="line"><span class="cl">unbind ^b
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> ^a send-prefix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#up</span>
+</span></span><span class="line"><span class="cl">bind-key k <span class="k">select</span>-pane -U
+</span></span><span class="line"><span class="cl"><span class="c1">#down</span>
+</span></span><span class="line"><span class="cl">bind-key j <span class="k">select</span>-pane -D
+</span></span><span class="line"><span class="cl"><span class="c1">#left</span>
+</span></span><span class="line"><span class="cl">bind-key h <span class="k">select</span>-pane -L
+</span></span><span class="line"><span class="cl"><span class="c1">#right</span>
+</span></span><span class="line"><span class="cl">bind-key l <span class="k">select</span>-pane -R
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="tmux插件配置文件分享">tmux插件配置文件分享</h3>
@@ -867,53 +889,53 @@
 </span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">root@vpps:~/.tmux/plugins# cat ~/.tmux.conf 
-</span></span><span class="line"><span class="cl">set -g default-terminal &#34;screen-256color&#34;
-</span></span><span class="line"><span class="cl">#-- base settings --#
-</span></span><span class="line"><span class="cl">set -g mode-keys vi
-</span></span><span class="line"><span class="cl">set-option -g escape-time 50
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root@vpps:~/.tmux/plugins# cat ~/.tmux.conf 
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g default-terminal <span class="s2">&#34;screen-256color&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-- base settings --#</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g mode-keys vi
+</span></span><span class="line"><span class="cl">set-option -g escape-time <span class="m">50</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">set-environment -g EDITOR nvim
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># prefix key (Ctrl+a)
-</span></span><span class="line"><span class="cl">set -g prefix ^a
+</span></span><span class="line"><span class="cl"><span class="c1"># prefix key (Ctrl+a)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g prefix ^a
 </span></span><span class="line"><span class="cl">unbind ^b
-</span></span><span class="line"><span class="cl">bind a send-prefix
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> a send-prefix
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">#up
-</span></span><span class="line"><span class="cl">bind-key k select-pane -U
-</span></span><span class="line"><span class="cl">#down
-</span></span><span class="line"><span class="cl">bind-key j select-pane -D
-</span></span><span class="line"><span class="cl">#left
-</span></span><span class="line"><span class="cl">bind-key h select-pane -L
-</span></span><span class="line"><span class="cl">#right
-</span></span><span class="line"><span class="cl">bind-key l select-pane -R
+</span></span><span class="line"><span class="cl"><span class="c1">#up</span>
+</span></span><span class="line"><span class="cl">bind-key k <span class="k">select</span>-pane -U
+</span></span><span class="line"><span class="cl"><span class="c1">#down</span>
+</span></span><span class="line"><span class="cl">bind-key j <span class="k">select</span>-pane -D
+</span></span><span class="line"><span class="cl"><span class="c1">#left</span>
+</span></span><span class="line"><span class="cl">bind-key h <span class="k">select</span>-pane -L
+</span></span><span class="line"><span class="cl"><span class="c1">#right</span>
+</span></span><span class="line"><span class="cl">bind-key l <span class="k">select</span>-pane -R
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">unbind-key -Troot Enter
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># List of plugins
-</span></span><span class="line"><span class="cl">set -g @plugin &#39;tmux-plugins/tpm&#39;
-</span></span><span class="line"><span class="cl">#set -g @plugin &#39;tmux-plugins/tmux-sensible&#39;
-</span></span><span class="line"><span class="cl">set -g @plugin &#39;tmux-plugins/tmux-open&#39;
-</span></span><span class="line"><span class="cl">set -g @plugin &#39;tmux-plugins/tmux-urlview&#39;
-</span></span><span class="line"><span class="cl">set -g @plugin &#39;tmux-plugins/tmux-yank&#39;
-</span></span><span class="line"><span class="cl">set -g @plugin &#39;tmux-plugins/tmux-copycat&#39;
+</span></span><span class="line"><span class="cl"><span class="c1"># List of plugins</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tpm&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#set -g @plugin &#39;tmux-plugins/tmux-sensible&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tmux-open&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tmux-urlview&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tmux-yank&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @plugin <span class="s1">&#39;tmux-plugins/tmux-copycat&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">set-option -g @urlview-command &#34;nvim {}&#34;
-</span></span><span class="line"><span class="cl">set -g @shell_mode &#39;vi&#39;
+</span></span><span class="line"><span class="cl">set-option -g @urlview-command <span class="s2">&#34;nvim {}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g @shell_mode <span class="s1">&#39;vi&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># Other examples:
-</span></span><span class="line"><span class="cl"># set -g @plugin &#39;github_username/plugin_name&#39;
-</span></span><span class="line"><span class="cl"># set -g @plugin &#39;github_username/plugin_name#branch&#39;
-</span></span><span class="line"><span class="cl"># set -g @plugin &#39;git@github.com:user/plugin&#39;
-</span></span><span class="line"><span class="cl"># set -g @plugin &#39;git@bitbucket.com:user/plugin&#39;
+</span></span><span class="line"><span class="cl"><span class="c1"># Other examples:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># set -g @plugin &#39;github_username/plugin_name&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># set -g @plugin &#39;github_username/plugin_name#branch&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># set -g @plugin &#39;git@github.com:user/plugin&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># set -g @plugin &#39;git@bitbucket.com:user/plugin&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-</span></span><span class="line"><span class="cl">run &#39;~/.tmux/plugins/tpm/tpm&#39;
-</span></span><span class="line"><span class="cl">run-shell  &#39;~/.tmux/plugins/tmux-urlview/urlview.tmux&#39;
-</span></span><span class="line"><span class="cl">run-shell &#39;~/.tmux/plugins/tmux-open/open.tmux&#39;
-</span></span><span class="line"><span class="cl">run-shell &#39;~/.tmux/plugins/tmux-yank/yank.tmux&#39;
-</span></span><span class="line"><span class="cl">run-shell &#39;~/.tmux/plugins/tmux-copycat/copycat.tmux&#39;
+</span></span><span class="line"><span class="cl"><span class="c1"># Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)</span>
+</span></span><span class="line"><span class="cl">run <span class="s1">&#39;~/.tmux/plugins/tpm/tpm&#39;</span>
+</span></span><span class="line"><span class="cl">run-shell  <span class="s1">&#39;~/.tmux/plugins/tmux-urlview/urlview.tmux&#39;</span>
+</span></span><span class="line"><span class="cl">run-shell <span class="s1">&#39;~/.tmux/plugins/tmux-open/open.tmux&#39;</span>
+</span></span><span class="line"><span class="cl">run-shell <span class="s1">&#39;~/.tmux/plugins/tmux-yank/yank.tmux&#39;</span>
+</span></span><span class="line"><span class="cl">run-shell <span class="s1">&#39;~/.tmux/plugins/tmux-copycat/copycat.tmux&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -959,6 +981,19 @@
 </span></span><span class="line"><span class="cl">HJKL:选择需要复制的文本
 </span></span><span class="line"><span class="cl">Enter:复制并结束
 </span></span><span class="line"><span class="cl">Ctrl-a + ]:粘贴
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="tmux支持多个prefix">tmux支持多个prefix</h3>
+<p>在实际使用过程中会发现，有时和其它同事公用一台机器时，各人习惯不一致，有的喜欢用C-b,有的喜欢用C-a，这样会有冲突，解决方案是
+在配置文件中加入同时支持2种方式的配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">set-option -g prefix C-a
+</span></span><span class="line"><span class="cl">set-option -g prefix2 C-b
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="tmux插件">tmux插件</h3>
@@ -1045,25 +1080,25 @@
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp.com/devtools-tmux/" data-title="tmux基本配置及vim适配"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/devtools-tmux/" data-title="[vim-tmux]tmux基本配置及vim适配"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/terminal/">terminal</a>,&nbsp;<a href="/tags/vim/">vim</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/terminal/">terminal</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/nvim/">nvim</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/git-base/" class="prev" rel="prev" title="git学习笔记"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>git学习笔记</a>
+  <div class="post-nav"><a href="/centos7/" class="prev" rel="prev" title="centos7基础用法"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>centos7基础用法</a>
       <a href="/pc-price/" class="next" rel="next" title="二手笔记本价格记录表">二手笔记本价格记录表<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a
   href="/"
   
@@ -1073,7 +1108,7 @@
   
 >cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
           <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
-        </div><div class="footer-line beian"><span class="gov"><img src="/images/ga_beian_icon.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502006095" rel="noopener" target="_blank">鄂公网安备 42018502006095号 </a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鄂ICP备2022012087号-1 </a></span></div><script>
+        </div><script>
         var _hmt = _hmt || [];
 (function() {
       var hm = document.createElement("script");

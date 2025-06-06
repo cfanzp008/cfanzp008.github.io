@@ -14,5 +14,5 @@ forfiles -p F:\log\ -s -m *.log* -d -7 -c "cmd /c del @path"
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/windows-del-log/  
+> URL: http://111.230.8.71:8889/windows-del-log/  
 

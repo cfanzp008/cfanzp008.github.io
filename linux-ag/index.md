@@ -48,5 +48,5 @@ git clone https://github.com/ggreer/the_silver_searcher.git
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/linux-ag/  
+> URL: http://111.230.8.71:8889/linux-ag/  
 

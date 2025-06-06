@@ -151,5 +151,5 @@ rustup self uninstall
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/language-rust/  
+> URL: http://111.230.8.71:8889/language-rust/  
 

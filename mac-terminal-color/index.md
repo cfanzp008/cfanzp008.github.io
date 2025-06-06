@@ -25,5 +25,5 @@ source ~/.bash_profile
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/mac-terminal-color/  
+> URL: http://111.230.8.71:8889/mac-terminal-color/  
 

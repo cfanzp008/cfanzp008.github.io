@@ -97,5 +97,5 @@ mysqldbcompare --server1=myb:123456@localhost --server2=myb:'123456'@127.0.0.1:8
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mysqldiff/  
+> URL: http://111.230.8.71:8889/mysqldiff/  
 

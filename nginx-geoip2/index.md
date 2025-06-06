@@ -55,5 +55,5 @@ log_format  main escape=json '$remote_addr - $remote_user [$time_local] '
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nginx-geoip2/  
+> URL: http://111.230.8.71:8889/nginx-geoip2/  
 

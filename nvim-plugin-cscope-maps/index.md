@@ -78,5 +78,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/nvim-plugin-cscope-maps/  
+> URL: http://111.230.8.71:8889/nvim-plugin-cscope-maps/  
 

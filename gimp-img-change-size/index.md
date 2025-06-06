@@ -19,5 +19,5 @@
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/gimp-img-change-size/  
+> URL: http://111.230.8.71:8889/gimp-img-change-size/  
 

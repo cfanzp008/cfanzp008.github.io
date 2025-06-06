@@ -173,5 +173,5 @@ $ du -ahd1 | sort -hr
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/linux-du/  
+> URL: http://111.230.8.71:8889/linux-du/  
 

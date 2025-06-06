@@ -23,5 +23,5 @@ uuid.seed() -- 初始化uuid种子
 ---
 
 > 作者: cfanzp  
-> URL: https://cfanzp.com/skynet-uuid/  
+> URL: http://111.230.8.71:8889/skynet-uuid/  
 

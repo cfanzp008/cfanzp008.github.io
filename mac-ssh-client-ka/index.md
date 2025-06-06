@@ -15,6 +15,13 @@ ServerAliveInterval 60 #每隔60秒就向服务器发送一个请求
 ServerAliveCountMax 3  #允许超时的次数，一般都会响应
 ```
 
+- mac m1配置如下
+```bash
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3  #允许超时的次数，一般都会响应
+```
+
 - 抓包查看情况，可以看到每间隔1分钟就有ssh请求
 ```bash
 sudo tcpdump -i any port 22
@@ -24,5 +31,5 @@ sudo tcpdump -i any port 22
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/mac-ssh-client-ka/  
+> URL: http://111.230.8.71:8889/mac-ssh-client-ka/  
 

@@ -28,5 +28,5 @@ sudo apt-get install dnsmasq
 ---
 
 > 作者:   
-> URL: https://cfanzp.com/dnsmasq/  
+> URL: http://111.230.8.71:8889/dnsmasq/  
 
