@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>skynet-clearcache - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>skynet-clearcache - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="skynet热更新-clearcache的使用体会 skynet 热更新主要有2种方法 第一种：使用clearcache 第二种：使用console inject lua脚本 动态创建的服务的热更新 如果一个skynet服务是在业务流程中动态创建的，那么在修改代码后，使用clearcache就可以保证下次再创建的新的服务是使用的新的代码。 创建后长期不销毁重建的服务，如何热更新？ 如果是在进程启动时创建，或创建后就一直存在的服务需要热更新怎么办呢？
 方法1: 对于这种情况目前inject是首选。但是有时候需要修改的代码量比较大，inject 脚本的方式就非常复杂且容易出错。
@@ -65,8 +65,8 @@
 消息中间多了一层B_Manager会不会损失性能，这个需要视业务要求来具体分析，大部分情况，这点性能损失都可以忽略不计的；当然如果你很介意的话，还是建议业务刚上线时使用B_Manager，业务稳定后，可以在某次更新时将这层转发层去掉。
 上面的方法也是一种折中的方法，个人感觉还是比较好用的，但也是不完美的。
 总结 关于skynet的热更新，如果你有什么更好的方案，希望能够指点一二！ 个人的一点想法，分享给大家！如果你也在使用skynet，关注我，一起学习，交流一下！ "/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/skynet-clearcache/" /><link rel="prev" href="http://111.230.8.71:8889/skynet-debug_console-ag/" /><link rel="next" href="http://111.230.8.71:8889/skynet-update-log/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -89,14 +89,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -360,14 +360,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

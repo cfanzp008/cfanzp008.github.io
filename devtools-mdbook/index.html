@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>mdbook-比gitbook更高效且简洁的markdown工具mdbook - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>mdbook-比gitbook更高效且简洁的markdown工具mdbook - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; mdbook-pdf install 方法1 1 cargo install mdbook-pdf 方法2下载可执行文件 https://github." /><meta name="keywords" content='devtools, mdbook' /><meta itemprop="name" content="mdbook-比gitbook更高效且简洁的markdown工具mdbook">
 <meta itemprop="description" content="比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; mdbook-pdf install 方法1 1 cargo install mdbook-pdf 方法2下载可执行文件 https://github."><meta itemprop="datePublished" content="2022-07-18T17:36:01+08:00" />
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="mdbook-比gitbook更高效且简洁的markdown工具mdbook"/>
 <meta name="twitter:description" content="比gitbook更高效且简洁的markdown工具mdbook mdbook简介 mdbook是一个用rust语言编写的md文档转换为html文档的工具。 mdbook与gitbook功能十分相似。 使用后直观感觉是mdbook速度比gitbook快不少。 mdbook与gitbook相比功能要少很多，但是速度快就是最大的优势。 mdbook只有一个可执行文件。相比gitbook不用安装一大堆的依赖库。 github地址 https://github.com/rust-lang/mdBook mdbook安装 安装方法1 先安装rust 1 curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh 1 cargo install mdbook 显示如下提示说明安装成功了 1 2 3 4 5 6 7 Compiling hyper v0.14.20 Compiling warp v0.3.2 Compiling ammonia v3.2.0 Compiling mdbook v0.4.20 Finished release [optimized] target(s) in 12m 24s Installing /Users/zp/.cargo/bin/mdbook Installed package `mdbook v0.4.20` (executable `mdbook`) 安装方法2 直接下载二进制:https://github.com/rust-lang/mdBook/releases 1 wget https://github.com/rust-lang/mdBook/releases/download/v0.4.20/mdbook-v0.4.20-x86_64-unknown-linux-gnu.tar.gz 使用 初始化一本书或一个笔记项目 1 mdbook init 初始化后会在当前目录生成src文件夹 启动mdbook 监听8000端口 1 mdbook serve --port 8000 后台启动mdbook 1 mdbook serve --port 8000 &amp; mdbook-pdf install 方法1 1 cargo install mdbook-pdf 方法2下载可执行文件 https://github."/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/devtools-mdbook/" /><link rel="prev" href="http://111.230.8.71:8889/vim-plug-tabular/" /><link rel="next" href="http://111.230.8.71:8889/linux-du/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

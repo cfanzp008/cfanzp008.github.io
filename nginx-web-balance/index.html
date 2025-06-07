@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>nginx web负载均衡配置 - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>nginx web负载均衡配置 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="nginx web负载均衡配置 下载nginx http://nginx.org/en/download.html 1 wget http://nginx.org/download/nginx-1.20.2.tar.gz 安装nginx 参考: https://www.cnblogs.com/-wei/p/15219624.html 1 2 3 4 5 ./configure --prefix=/opt/nginx 或 ./configure --prefix=/opt/nginx --with-http_ssl_module make make install 报错 ./configure: error: the HTTP rewrite module requires the PCRE library 1 yum -y install pcre-devel ./configure: error: the HTTP gzip module requires the zlib library. 1 yum -y install zlib-devel ./configure: error: SSL modules require the OpenSSL library. 1 yum -y install openssl openssl-devel nginx限制请求数据包大小 1 client_max_body_size 1000m; 负载均衡配置 参考: https://www." /><meta name="keywords" content='nginx' /><meta itemprop="name" content="nginx web负载均衡配置">
 <meta itemprop="description" content="nginx web负载均衡配置 下载nginx http://nginx.org/en/download.html 1 wget http://nginx.org/download/nginx-1.20.2.tar.gz 安装nginx 参考: https://www.cnblogs.com/-wei/p/15219624.html 1 2 3 4 5 ./configure --prefix=/opt/nginx 或 ./configure --prefix=/opt/nginx --with-http_ssl_module make make install 报错 ./configure: error: the HTTP rewrite module requires the PCRE library 1 yum -y install pcre-devel ./configure: error: the HTTP gzip module requires the zlib library. 1 yum -y install zlib-devel ./configure: error: SSL modules require the OpenSSL library. 1 yum -y install openssl openssl-devel nginx限制请求数据包大小 1 client_max_body_size 1000m; 负载均衡配置 参考: https://www."><meta itemprop="datePublished" content="2022-08-02T22:32:54+08:00" />
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="nginx web负载均衡配置"/>
 <meta name="twitter:description" content="nginx web负载均衡配置 下载nginx http://nginx.org/en/download.html 1 wget http://nginx.org/download/nginx-1.20.2.tar.gz 安装nginx 参考: https://www.cnblogs.com/-wei/p/15219624.html 1 2 3 4 5 ./configure --prefix=/opt/nginx 或 ./configure --prefix=/opt/nginx --with-http_ssl_module make make install 报错 ./configure: error: the HTTP rewrite module requires the PCRE library 1 yum -y install pcre-devel ./configure: error: the HTTP gzip module requires the zlib library. 1 yum -y install zlib-devel ./configure: error: SSL modules require the OpenSSL library. 1 yum -y install openssl openssl-devel nginx限制请求数据包大小 1 client_max_body_size 1000m; 负载均衡配置 参考: https://www."/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/nginx-web-balance/" /><link rel="prev" href="http://111.230.8.71:8889/nginx-config/" /><link rel="next" href="http://111.230.8.71:8889/nginx-https/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

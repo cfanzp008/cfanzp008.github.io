@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>skynet 更新记录 - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>skynet 更新记录 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="skynet升级到1.5.0 skynet升级到1.5.0 对应lua版本:lua5.4.3 skynet地址 https://github.com/cloudwu/skynet/releases/tag/v1.5.0 下载地址:https://github.com/cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 加速地址:https://github.91chi.fun//https://github.com//cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 升级步骤 创建分支skynet1.5 删除skynet目录的所有文件，解压或同步skynet1.5.0的代码到skynet目录 1 rm ./skynet/* -rf 初始化skynet 1 git submodule update --init jemalloc库若未初始化成功,可手动克隆到3rd/jemalloc目录中 1 git clone https://gitee.com/mirrors/jemalloc.git 编译报错 1 2 skynet-src/spinlock.h:50:23: fatal error: stdatomic.h: No such file or directory 升级Gcc值4.9及以上版本 gcc多版本共存。 devtoolset对应gcc版本 1 2 3 4 5 6 7 devtoolset-3对应gcc4.x.x版本 devtoolset-4对应gcc5.x.x版本 devtoolset-6对应gcc6.x.x版本 devtoolset-7对应gcc7.x.x版本 devtoolset-8对应gcc8.x.x版本 devtoolset-9对应gcc9.x.x版本 devtoolset-10对应gcc10.x.x版本 https://www.cnblogs.com/jixiaohua/p/11732225.html 1 sudo yum install centos-release-scl 安装devtoolset，注意，如果想安装11.版本的，就改成devtoolset-11-gcc 1 sudo yum install devtoolset-11-gcc* 激活对应的devtoolset，可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本 这仅仅在当前bash生效，如果需要永久生效，可以请自行添加环境变量。 1 2 3 scl enable devtoolset-11 bash #或 source /opt/rh/devtoolset-8/enable gcc版本永久生效 1 echo &#34;source /opt/rh/devtoolset-11/enable&#34; &gt;&gt;/etc/profile 查看gcc版本号 1 gcc -v gcc安装报错 报错问题: 1 2 3 4 Transaction check error: file /usr/lib/debug/usr/lib64/libitm." /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet 更新记录">
 <meta itemprop="description" content="skynet升级到1.5.0 skynet升级到1.5.0 对应lua版本:lua5.4.3 skynet地址 https://github.com/cloudwu/skynet/releases/tag/v1.5.0 下载地址:https://github.com/cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 加速地址:https://github.91chi.fun//https://github.com//cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 升级步骤 创建分支skynet1.5 删除skynet目录的所有文件，解压或同步skynet1.5.0的代码到skynet目录 1 rm ./skynet/* -rf 初始化skynet 1 git submodule update --init jemalloc库若未初始化成功,可手动克隆到3rd/jemalloc目录中 1 git clone https://gitee.com/mirrors/jemalloc.git 编译报错 1 2 skynet-src/spinlock.h:50:23: fatal error: stdatomic.h: No such file or directory 升级Gcc值4.9及以上版本 gcc多版本共存。 devtoolset对应gcc版本 1 2 3 4 5 6 7 devtoolset-3对应gcc4.x.x版本 devtoolset-4对应gcc5.x.x版本 devtoolset-6对应gcc6.x.x版本 devtoolset-7对应gcc7.x.x版本 devtoolset-8对应gcc8.x.x版本 devtoolset-9对应gcc9.x.x版本 devtoolset-10对应gcc10.x.x版本 https://www.cnblogs.com/jixiaohua/p/11732225.html 1 sudo yum install centos-release-scl 安装devtoolset，注意，如果想安装11.版本的，就改成devtoolset-11-gcc 1 sudo yum install devtoolset-11-gcc* 激活对应的devtoolset，可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本 这仅仅在当前bash生效，如果需要永久生效，可以请自行添加环境变量。 1 2 3 scl enable devtoolset-11 bash #或 source /opt/rh/devtoolset-8/enable gcc版本永久生效 1 echo &#34;source /opt/rh/devtoolset-11/enable&#34; &gt;&gt;/etc/profile 查看gcc版本号 1 gcc -v gcc安装报错 报错问题: 1 2 3 4 Transaction check error: file /usr/lib/debug/usr/lib64/libitm."><meta itemprop="datePublished" content="2022-08-01T12:56:50+08:00" />
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="skynet 更新记录"/>
 <meta name="twitter:description" content="skynet升级到1.5.0 skynet升级到1.5.0 对应lua版本:lua5.4.3 skynet地址 https://github.com/cloudwu/skynet/releases/tag/v1.5.0 下载地址:https://github.com/cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 加速地址:https://github.91chi.fun//https://github.com//cloudwu/skynet/archive/refs/tags/v1.5.0.tar.gz 升级步骤 创建分支skynet1.5 删除skynet目录的所有文件，解压或同步skynet1.5.0的代码到skynet目录 1 rm ./skynet/* -rf 初始化skynet 1 git submodule update --init jemalloc库若未初始化成功,可手动克隆到3rd/jemalloc目录中 1 git clone https://gitee.com/mirrors/jemalloc.git 编译报错 1 2 skynet-src/spinlock.h:50:23: fatal error: stdatomic.h: No such file or directory 升级Gcc值4.9及以上版本 gcc多版本共存。 devtoolset对应gcc版本 1 2 3 4 5 6 7 devtoolset-3对应gcc4.x.x版本 devtoolset-4对应gcc5.x.x版本 devtoolset-6对应gcc6.x.x版本 devtoolset-7对应gcc7.x.x版本 devtoolset-8对应gcc8.x.x版本 devtoolset-9对应gcc9.x.x版本 devtoolset-10对应gcc10.x.x版本 https://www.cnblogs.com/jixiaohua/p/11732225.html 1 sudo yum install centos-release-scl 安装devtoolset，注意，如果想安装11.版本的，就改成devtoolset-11-gcc 1 sudo yum install devtoolset-11-gcc* 激活对应的devtoolset，可以一次安装多个版本的devtoolset，需要的时候用下面这条命令切换到对应的版本 这仅仅在当前bash生效，如果需要永久生效，可以请自行添加环境变量。 1 2 3 scl enable devtoolset-11 bash #或 source /opt/rh/devtoolset-8/enable gcc版本永久生效 1 echo &#34;source /opt/rh/devtoolset-11/enable&#34; &gt;&gt;/etc/profile 查看gcc版本号 1 gcc -v gcc安装报错 报错问题: 1 2 3 4 Transaction check error: file /usr/lib/debug/usr/lib64/libitm."/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/skynet-update-log/" /><link rel="prev" href="http://111.230.8.71:8889/skynet-clearcache/" /><link rel="next" href="http://111.230.8.71:8889/dev-manual/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

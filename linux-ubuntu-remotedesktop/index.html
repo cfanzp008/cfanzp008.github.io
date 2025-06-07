@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>ubuntu-远程连接windows的几种方法 - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>ubuntu-远程连接windows的几种方法 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="ubuntu 远程连接windows的几种方法 1. 使用rdesktop 安装 1 sudo apt install rdesktop 使用举例 1 rdesktop -g 1024x768 -a 16 -u Administrator -p your_password -0 192.168.2.189:3389 常用使用参数 1 2 3 4 5 6 7 8 9 -f 全屏 -g 桌面大小 -a 16 16位色深 -u 用户名 -p 密码 -r clipboard 表示允许在远程主机和本机之间共享剪切板，可以复制粘贴 -r clipboard:PRIMARYCLIPBOARD 共享剪贴板，连接到window7 -r disk:share=/home 共享/home目录 ctrl&#43;alt&#43;enter 退出全屏 使用rdesktop常见问题 1. 连接失败,提示如下: 1 2 3 4 5 6 7 Connecting to server using NLA... Core(warning): Certificate received from server is NOT trusted by this system, an exception has been added by the user to trust this specific certificate." /><meta name="keywords" content='linux, ubuntu' /><meta itemprop="name" content="ubuntu-远程连接windows的几种方法">
 <meta itemprop="description" content="ubuntu 远程连接windows的几种方法 1. 使用rdesktop 安装 1 sudo apt install rdesktop 使用举例 1 rdesktop -g 1024x768 -a 16 -u Administrator -p your_password -0 192.168.2.189:3389 常用使用参数 1 2 3 4 5 6 7 8 9 -f 全屏 -g 桌面大小 -a 16 16位色深 -u 用户名 -p 密码 -r clipboard 表示允许在远程主机和本机之间共享剪切板，可以复制粘贴 -r clipboard:PRIMARYCLIPBOARD 共享剪贴板，连接到window7 -r disk:share=/home 共享/home目录 ctrl&#43;alt&#43;enter 退出全屏 使用rdesktop常见问题 1. 连接失败,提示如下: 1 2 3 4 5 6 7 Connecting to server using NLA... Core(warning): Certificate received from server is NOT trusted by this system, an exception has been added by the user to trust this specific certificate."><meta itemprop="datePublished" content="2022-07-30T17:45:02+08:00" />
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="ubuntu-远程连接windows的几种方法"/>
 <meta name="twitter:description" content="ubuntu 远程连接windows的几种方法 1. 使用rdesktop 安装 1 sudo apt install rdesktop 使用举例 1 rdesktop -g 1024x768 -a 16 -u Administrator -p your_password -0 192.168.2.189:3389 常用使用参数 1 2 3 4 5 6 7 8 9 -f 全屏 -g 桌面大小 -a 16 16位色深 -u 用户名 -p 密码 -r clipboard 表示允许在远程主机和本机之间共享剪切板，可以复制粘贴 -r clipboard:PRIMARYCLIPBOARD 共享剪贴板，连接到window7 -r disk:share=/home 共享/home目录 ctrl&#43;alt&#43;enter 退出全屏 使用rdesktop常见问题 1. 连接失败,提示如下: 1 2 3 4 5 6 7 Connecting to server using NLA... Core(warning): Certificate received from server is NOT trusted by this system, an exception has been added by the user to trust this specific certificate."/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/linux-ubuntu-remotedesktop/" /><link rel="prev" href="http://111.230.8.71:8889/skynet_dir/" /><link rel="next" href="http://111.230.8.71:8889/linux-mysqldump/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>

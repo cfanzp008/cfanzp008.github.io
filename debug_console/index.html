@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>skynet-debug_console 简介 - Linux开发笔记</title><meta name="author" content="cfanzp">
+    <title>skynet-debug_console 简介 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
 <meta name="description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog." /><meta name="keywords" content='skynet' /><meta itemprop="name" content="skynet-debug_console 简介">
 <meta itemprop="description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog."><meta itemprop="datePublished" content="2022-07-28T18:12:13+08:00" />
@@ -21,8 +21,8 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="skynet-debug_console 简介"/>
 <meta name="twitter:description" content="skynet debug_console 简介 skynet 自带了一个调试控制台服务。 1 skynet.newservice(&#34;debug_console&#34;,8000) 这里的示例是监听 8000 端口，你可以修改成别的端口。 出于安全考虑，调试控制台只能监听本地地址 127.0.0.1。 所以如果需要远程使用，需要先登录到本机，然后再连接。 可以用 telnet 或 nc 登录调试控制台。启动后会显示 Welcome to skynet console 表示连接成功。 由于 skynet 使用自己的 IO 库，所以很难把 libreadline 接入（不能在 readline 的 hook 中 yield）。 如果你希望在控制台中使用 readline 的 history 等特性，可以自己使用 rlwrap 。 输入 help 可以列出目前支持的所有指令。 这份文档可能落后于实际版本，所以应以 help 列出的指令为准。 命令的一般格式是 命令 地址 ，有些命令不带地址，会针对所有的服务。 当输入地址时，可以使用 :00000001 这样的格式指代一个服务地址. 服务地址：由冒号开头的8位16进制数字， 前面两个数字的 harbor id， 01000001 可以简写为 1 。 所有活动的服务可以输入 list 列出。 常用的针对所有 lua 服务的指令有： 命令 作用 list 列出所有服务，以及启动服务的命令参数。 gc 强制让所有 lua 服务都执行一次垃圾回收，并报告回收后的内存。 mem 让所有 lua 服务汇报自己占用的内存。（注：它只能获取 lua 服务的 lua vm 内存占用情况，如果需要 C 模块中内存使用报告，请参考 MemoryHook 。 stat 列出所有 lua 服务的消息队列长度，以及被挂起的请求数量，处理的消息总数。如果在 Config 里设置 profile 为 true ，还会报告服务使用的 cpu 时间。 service 列出所有的唯一 lua 服务。并显示出请求还不存在的服务被挂起的请求。 netstat 列出网络连接的概况。 注意，由于这些指令是挨个向每个服务发送消息并等待回应，所以当某个 lua 服务过载时，可能需要等待很长时间才有返回。 针对单个 lua 服务的指令有： 命令 作用 exit address 让一个 lua 服务退出。 kill address 强制中止一个 lua 服务。 info address 让一个 lua 服务汇报自己的内部信息，参见 Profile 。 signal address sig 向服务发送一个信号，sig 默认为 0 。 当一个服务陷入死循环时，默认信号会打断正在执行的 lua 字节码，并抛出 error 显示调用栈。这是针对 endless loop 的 log 的有效调试方法。注：这里的信号并非系统信号。 task address 显示一个服务中所有被挂起的请求的调用栈。 debug address 针对一个 lua 服务启动内置的单步调试器。http://blog."/>
-<meta name="application-name" content="Linux开发笔记">
-<meta name="apple-mobile-web-app-title" content="Linux开发笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/debug_console/" /><link rel="prev" href="http://111.230.8.71:8889/skynet-traceid/" /><link rel="next" href="http://111.230.8.71:8889/mac-terminal-color/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -45,14 +45,14 @@
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
-      <a href="/" title="Linux开发笔记"><img
+      <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
-    alt="Linux开发笔记"
-    title="Linux开发笔记" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
       <ul class="menu"><li class="menu-item">
               <a
@@ -316,14 +316,14 @@
   <div class="header-container">
     <div class="header-wrapper">
       <div class="header-title">
-        <a href="/" title="Linux开发笔记"><img
+        <a href="/" title="cfanzp学习笔记"><img
     class="lazyload logo"
     src="/svg/loading.min.svg"
     data-src="/logo.png"
     data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
     data-sizes="auto"
     alt="/logo.png"
-    title="/logo.png" /><span class="header-title-text">Linux开发笔记</span></a><span class="header-subtitle"></span></div>
+    title="/logo.png" /><span class="header-title-text">cfanzp学习笔记</span></a><span class="header-subtitle"></span></div>
       <div class="menu-toggle" id="menu-toggle-mobile">
         <span></span><span></span><span></span>
       </div>
