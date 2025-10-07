@@ -1,4 +1,7 @@
 # 笔记列表
+
+
+# 笔记列表
 ## 书单
 - [认知觉醒](https://book.douban.com/review/15933920/)
 
@@ -13,3 +16,10 @@
 
 ## 开发笔记
 - [游戏开发笔记](https://cfanzp.com/book/gamedev-note/)
+
+
+---
+
+> 作者: cfanzp  
+> URL: http://111.230.8.71:8889/book/  
+
