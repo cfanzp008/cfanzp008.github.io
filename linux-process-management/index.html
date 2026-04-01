@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Linux 系统进程管理详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="深入理解 Linux 进程管理机制，涵盖进程状态转换、ps 和 top 命令详解，以及常见问题排查方法" /><meta name="keywords" content='linux, process-management, ps, top, troubleshooting' /><meta itemprop="name" content="Linux 系统进程管理详解">
+<meta itemprop="description" content="深入理解 Linux 进程管理机制，涵盖进程状态转换、ps 和 top 命令详解，以及常见问题排查方法"><meta itemprop="datePublished" content="2026-04-01T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-01T10:00:00+08:00" />
+<meta itemprop="wordCount" content="1200"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
+<meta itemprop="keywords" content="linux,process-management,ps,top,troubleshooting," /><meta property="og:title" content="Linux 系统进程管理详解" />
+<meta property="og:description" content="深入理解 Linux 进程管理机制，涵盖进程状态转换、ps 和 top 命令详解，以及常见问题排查方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://111.230.8.71:8889/linux-process-management/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-01T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-01T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="Linux 系统进程管理详解"/>
+<meta name="twitter:description" content="深入理解 Linux 进程管理机制，涵盖进程状态转换、ps 和 top 命令详解，以及常见问题排查方法"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/linux-process-management/" /><link rel="prev" href="http://111.230.8.71:8889/opencode-install-guide/" /><link rel="next" href="http://111.230.8.71:8889/golang-concurrent-programming/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux 系统进程管理详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/111.230.8.71:8889\/linux-process-management\/"
+    },"genre": "posts","keywords": "linux, process-management, ps, top, troubleshooting","wordcount":  1200 ,
+    "url": "http:\/\/111.230.8.71:8889\/linux-process-management\/","datePublished": "2026-04-01T10:00:00+08:00","dateModified": "2026-04-01T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "深入理解 Linux 进程管理机制，涵盖进程状态转换、ps 和 top 命令详解，以及常见问题排查方法"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Linux 系统进程管理详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-01&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-01">2026-04-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1200 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux 系统进程管理详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#一进程基础概念">一、进程基础概念</a>
+      <ul>
+        <li><a href="#11-什么是进程">1.1 什么是进程</a></li>
+        <li><a href="#12-进程与程序的区别">1.2 进程与程序的区别</a></li>
+        <li><a href="#13-进程的结构">1.3 进程的结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#二进程状态详解">二、进程状态详解</a>
+      <ul>
+        <li><a href="#21-linux-进程状态码">2.1 Linux 进程状态码</a></li>
+        <li><a href="#22-进程状态转换图">2.2 进程状态转换图</a></li>
+        <li><a href="#23-各状态详解">2.3 各状态详解</a></li>
+      </ul>
+    </li>
+    <li><a href="#三ps-命令详解">三、ps 命令详解</a>
+      <ul>
+        <li><a href="#31-ps-命令基础">3.1 ps 命令基础</a></li>
+        <li><a href="#32-ps-aux-输出详解">3.2 ps aux 输出详解</a></li>
+        <li><a href="#33-stat-状态码详解">3.3 STAT 状态码详解</a></li>
+        <li><a href="#34-常用-ps-命令示例">3.4 常用 ps 命令示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#四top-命令详解">四、top 命令详解</a>
+      <ul>
+        <li><a href="#41-top-命令基础">4.1 top 命令基础</a></li>
+        <li><a href="#42-top-界面解读">4.2 top 界面解读</a></li>
+        <li><a href="#43-top-常用操作">4.3 top 常用操作</a></li>
+        <li><a href="#44-top-高级用法">4.4 top 高级用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#五进程管理命令">五、进程管理命令</a>
+      <ul>
+        <li><a href="#51-进程启动与终止">5.1 进程启动与终止</a></li>
+        <li><a href="#52-进程优先级">5.2 进程优先级</a></li>
+        <li><a href="#53-后台与前台控制">5.3 后台与前台控制</a></li>
+        <li><a href="#54-信号与进程控制">5.4 信号与进程控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#六常见问题排查">六、常见问题排查</a>
+      <ul>
+        <li><a href="#61-cpu-使用率过高">6.1 CPU 使用率过高</a></li>
+        <li><a href="#62-内存使用过高">6.2 内存使用过高</a></li>
+        <li><a href="#63-僵死进程处理">6.3 僵死进程处理</a></li>
+        <li><a href="#64-进程不可终止">6.4 进程不可终止</a></li>
+        <li><a href="#65-负载过高">6.5 负载过高</a></li>
+        <li><a href="#66-systemd-服务管理">6.6 systemd 服务管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#七高级工具">七、高级工具</a>
+      <ul>
+        <li><a href="#71-htop">7.1 htop</a></li>
+        <li><a href="#72-atop">7.2 atop</a></li>
+        <li><a href="#73-proc-文件系统">7.3 /proc 文件系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#八最佳实践">八、最佳实践</a>
+      <ul>
+        <li><a href="#81-监控建议">8.1 监控建议</a></li>
+        <li><a href="#82-进程优化建议">8.2 进程优化建议</a></li>
+        <li><a href="#83-安全建议">8.3 安全建议</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h2 id="前言">前言</h2>
+<p>进程是 Linux 系统中程序执行的最小单元，理解进程管理对于系统管理员和开发人员至关重要。本文将详细介绍 Linux 进程的管理机制，包括进程状态、常用监控命令以及常见问题的排查方法。</p>
+<h2 id="一进程基础概念">一、进程基础概念</h2>
+<h3 id="11-什么是进程">1.1 什么是进程</h3>
+<p>进程是程序在系统中的一次执行过程，是系统进行资源分配和调度的基本单位。每个进程都有唯一的进程 ID（PID），这是系统在创建进程时分配的唯一标识符。</p>
+<h3 id="12-进程与程序的区别">1.2 进程与程序的区别</h3>
+<ul>
+<li><strong>程序</strong>：存储在磁盘上的可执行文件，是静态的</li>
+<li><strong>进程</strong>：程序加载到内存并执行时的实例，是动态的</li>
+<li>一个程序可以对应多个进程（例如多个终端窗口运行同一个 bash 程序）</li>
+</ul>
+<h3 id="13-进程的结构">1.3 进程的结构</h3>
+<p>每个进程在内核中都由一个 <code>task_struct</code> 结构体表示，主要包含：</p>
+<ul>
+<li>进程标识符（PID、PPID、UID 等）</li>
+<li>进程状态</li>
+<li>优先级信息</li>
+<li>内存地址空间指针</li>
+<li>文件描述符表</li>
+<li>信号处理信息</li>
+<li>调度信息</li>
+</ul>
+<h2 id="二进程状态详解">二、进程状态详解</h2>
+<h3 id="21-linux-进程状态码">2.1 Linux 进程状态码</h3>
+<p>Linux 系统中，进程可能处于以下几种状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>状态名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>Running/Runable</td>
+<td>运行状态，进程正在 CPU 上执行或等待被调度</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Sleeping</td>
+<td>可中断睡眠状态，进程等待某个事件完成</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Disk Sleep</td>
+<td>不可中断睡眠状态，通常等待 I/O 操作完成</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Stopped</td>
+<td>停止状态，进程被暂停（收到 SIGSTOP 信号）</td>
+</tr>
+<tr>
+<td>t</td>
+<td>Tracing</td>
+<td>追踪状态，进程被调试器暂停</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>Zombie</td>
+<td>僵死状态，进程已终止但父进程未回收</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Dead</td>
+<td>死亡状态，进程已完全终止（很少见）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-进程状态转换图">2.2 进程状态转换图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">     [创建]
+</span></span><span class="line"><span class="cl">        ↓
+</span></span><span class="line"><span class="cl">    [就绪/等待] ←→ [运行] → [终止] → [僵死] → [回收]
+</span></span><span class="line"><span class="cl">        ↑              ↓
+</span></span><span class="line"><span class="cl">        │           [睡眠]
+</span></span><span class="line"><span class="cl">        │              ↓
+</span></span><span class="line"><span class="cl">        └─────────[可中断睡眠]
+</span></span><span class="line"><span class="cl">                       ↓
+</span></span><span class="line"><span class="cl">               [不可中断睡眠]
+</span></span><span class="line"><span class="cl">                    (等待I/O)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="23-各状态详解">2.3 各状态详解</h3>
+<p><strong>R（运行）状态</strong>：</p>
+<ul>
+<li>进程正在 CPU 上执行，或在运行队列中等待 CPU 调度</li>
+<li>在 <code>ps</code> 命令中，只有运行中的进程显示为 R</li>
+</ul>
+<p><strong>S（可中断睡眠）状态</strong>：</p>
+<ul>
+<li>进程在等待某个事件，如系统调用完成、信号、资源就绪</li>
+<li>可以被信号唤醒</li>
+<li>这是最常见的睡眠状态</li>
+</ul>
+<p><strong>D（不可中断睡眠）状态</strong>：</p>
+<ul>
+<li>进程正在等待 I/O 操作完成</li>
+<li>不能被信号唤醒</li>
+<li>如果大量进程处于此状态，通常表示磁盘 I/O 问题</li>
+</ul>
+<p><strong>T（停止）状态</strong>：</p>
+<ul>
+<li>进程收到 SIGSTOP 信号被暂停</li>
+<li>可通过 SIGCONT 信号恢复执行</li>
+<li>常见于调试场景</li>
+</ul>
+<p><strong>Z（僵死）状态</strong>：</p>
+<ul>
+<li>进程已终止，但其退出状态未被父进程读取</li>
+<li>僵死进程占用内核进程表项，如果不清理会耗尽 PID</li>
+<li>解决方案是终止或重启父进程</li>
+</ul>
+<h2 id="三ps-命令详解">三、ps 命令详解</h2>
+<h3 id="31-ps-命令基础">3.1 ps 命令基础</h3>
+<p><code>ps</code>（Process Status）用于报告当前系统的进程状态，是最常用的进程查看工具。</p>
+<p><strong>基本语法</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps <span class="o">[</span>选项<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用选项组合</strong>：</p>
+<ul>
+<li><code>ps aux</code>：显示所有进程（a）、包括其他用户（u）、无控制终端（x）</li>
+<li><code>ps -ef</code>：完整格式显示所有进程（-e）、全格式（-f）</li>
+<li><code>ps -ely</code>：长格式显示，包括内存和 CPU 使用率</li>
+</ul>
+<h3 id="32-ps-aux-输出详解">3.2 ps aux 输出详解</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ps aux
+</span></span><span class="line"><span class="cl">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class="line"><span class="cl">root      <span class="m">1234</span>  0.1  0.5  <span class="m">12345</span>  <span class="m">5678</span> ?       Ss   10:00   0:01 /usr/sbin/sshd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>各列含义：</p>
+<ul>
+<li><strong>USER</strong>：进程所有者</li>
+<li><strong>PID</strong>：进程 ID</li>
+<li><strong>%CPU</strong>：CPU 使用百分比</li>
+<li><strong>%MEM</strong>：内存使用百分比</li>
+<li><strong>VSZ</strong>：虚拟内存大小（KB）</li>
+<li><strong>RSS</strong>：实际物理内存大小（KB）</li>
+<li><strong>TTY</strong>：关联的终端</li>
+<li><strong>STAT</strong>：进程状态</li>
+<li><strong>START</strong>：启动时间</li>
+<li><strong>TIME</strong>：累计 CPU 时间</li>
+<li><strong>COMMAND</strong>：执行的命令</li>
+</ul>
+<h3 id="33-stat-状态码详解">3.3 STAT 状态码详解</h3>
+<p>ps 命令输出的 STAT 列包含多个字符：</p>
+<p><strong>第一列（基本状态）</strong>：</p>
+<ul>
+<li><code>R</code>：运行</li>
+<li><code>S</code>：可中断睡眠</li>
+<li><code>D</code>：不可中断睡眠</li>
+<li><code>T</code>：已停止</li>
+<li><code>Z</code>：僵死</li>
+</ul>
+<p><strong>附加标记</strong>：</p>
+<ul>
+<li><code>&lt;</code>：高优先级</li>
+<li><code>N</code>：低优先级</li>
+<li><code>L</code>：有锁定的内存页</li>
+<li><code>s</code>：会话首进程</li>
+<li><code>l</code>：多线程进程</li>
+<li><code>+</code>：前台进程组中的进程</li>
+</ul>
+<h3 id="34-常用-ps-命令示例">3.4 常用 ps 命令示例</h3>
+<p><strong>查看特定进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 sshd 进程</span>
+</span></span><span class="line"><span class="cl">ps aux <span class="p">|</span> grep sshd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 ps 直接查找</span>
+</span></span><span class="line"><span class="cl">ps -C sshd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看进程树</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示进程树关系</span>
+</span></span><span class="line"><span class="cl">ps -ef --forest
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 pstree 命令</span>
+</span></span><span class="line"><span class="cl">pstree -p
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>查看线程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看进程的所有线程</span>
+</span></span><span class="line"><span class="cl">ps -eLf
+</span></span><span class="line"><span class="cl">ps -T -p &lt;PID&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>自定义输出格式</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示 PID、PPID、命令</span>
+</span></span><span class="line"><span class="cl">ps -eo pid,ppid,cmd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示所有列</span>
+</span></span><span class="line"><span class="cl">ps -eo pid,ppid,uid,gid,stat,pcpu,pmem,vsz,rss,tty,etime,time,comm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="四top-命令详解">四、top 命令详解</h2>
+<h3 id="41-top-命令基础">4.1 top 命令基础</h3>
+<p><code>top</code> 是动态实时显示系统进程状态的工具，比 <code>ps</code> 更适合实时监控。</p>
+<p><strong>基本语法</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top <span class="o">[</span>选项<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-d &lt;秒&gt;</code>：指定刷新间隔</li>
+<li><code>-p &lt;PID&gt;</code>：只监控指定 PID</li>
+<li><code>-u &lt;用户名&gt;</code>：只显示指定用户的进程</li>
+<li><code>-n &lt;次数&gt;</code>：指定刷新次数后退出</li>
+</ul>
+<h3 id="42-top-界面解读">4.2 top 界面解读</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">top</span> <span class="o">-</span> <span class="mi">10</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span> <span class="n">up</span> <span class="mi">30</span> <span class="n">days</span><span class="p">,</span>  <span class="mi">5</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span>  <span class="mi">1</span> <span class="n">user</span><span class="p">,</span>  <span class="nb">load</span> <span class="n">average</span><span class="p">:</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.59</span>
+</span></span><span class="line"><span class="cl"><span class="n">Tasks</span><span class="p">:</span> <span class="mi">245</span> <span class="n">total</span><span class="p">,</span>   <span class="mi">1</span> <span class="n">running</span><span class="p">,</span> <span class="mi">244</span> <span class="n">sleeping</span><span class="p">,</span>   <span class="mi">0</span> <span class="n">stopped</span><span class="p">,</span>   <span class="mi">0</span> <span class="n">zombie</span>
+</span></span><span class="line"><span class="cl"><span class="o">%</span><span class="n">Cpu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>  <span class="mf">5.2</span> <span class="n">us</span><span class="p">,</span>  <span class="mf">1.3</span> <span class="n">sy</span><span class="p">,</span>  <span class="mf">0.0</span> <span class="n">ni</span><span class="p">,</span> <span class="mf">93.0</span> <span class="n">id</span><span class="p">,</span>  <span class="mf">0.0</span> <span class="n">wa</span><span class="p">,</span>  <span class="mf">0.0</span> <span class="n">hi</span><span class="p">,</span>  <span class="mf">0.5</span> <span class="n">si</span><span class="p">,</span>  <span class="mf">0.0</span> <span class="n">st</span>
+</span></span><span class="line"><span class="cl"><span class="n">MiB</span> <span class="n">Mem</span> <span class="p">:</span>  <span class="mf">16384.0</span> <span class="n">total</span><span class="p">,</span>   <span class="mf">4096.0</span> <span class="n">free</span><span class="p">,</span>   <span class="mf">8192.0</span> <span class="n">used</span><span class="p">,</span>   <span class="mf">4096.0</span> <span class="n">buff</span><span class="o">/</span><span class="n">cache</span>
+</span></span><span class="line"><span class="cl"><span class="n">MiB</span> <span class="n">Swap</span><span class="p">:</span>   <span class="mf">2048.0</span> <span class="n">total</span><span class="p">,</span>   <span class="mf">1024.0</span> <span class="n">free</span><span class="p">,</span>   <span class="mf">1024.0</span> <span class="n">used</span><span class="p">,</span>   <span class="mf">2048.0</span> <span class="n">avail</span> <span class="n">Mem</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">PID</span> <span class="n">USER</span>      <span class="n">PR</span>  <span class="n">NI</span>    <span class="n">VIRT</span>    <span class="n">RES</span>    <span class="n">SHR</span> <span class="n">S</span>  <span class="o">%</span><span class="n">CPU</span>  <span class="o">%</span><span class="n">MEM</span>     <span class="n">TIME</span><span class="o">+</span> <span class="n">COMMAND</span>
+</span></span><span class="line"><span class="cl"><span class="mi">12345</span> <span class="n">root</span>      <span class="mi">20</span>   <span class="mi">0</span>  <span class="mi">123456</span>   <span class="mi">5678</span>   <span class="mi">1234</span> <span class="n">S</span>   <span class="mf">2.0</span>   <span class="mf">0.3</span>   <span class="mi">5</span><span class="p">:</span><span class="mf">30.45</span> <span class="n">sshd</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>头部信息解读</strong>：</p>
+<ul>
+<li><strong>load average</strong>：系统负载，3 个数字分别表示 1/5/15 分钟的平均负载</li>
+<li><strong>Tasks</strong>：进程统计（总数、运行、睡眠、停止、僵死）</li>
+<li><strong>%Cpu(s)</strong>：CPU 使用率分解
+<ul>
+<li><code>us</code>：用户空间占用</li>
+<li><code>sy</code>：内核空间占用</li>
+<li><code>id</code>：空闲</li>
+<li><code>wa</code>：等待 I/O</li>
+</ul>
+</li>
+</ul>
+<p><strong>进程列说明</strong>：</p>
+<ul>
+<li><strong>PR</strong>：优先级（数值越小优先级越高）</li>
+<li><strong>NI</strong>：Nice 值（-20 到 19，正值表示低优先级）</li>
+<li><strong>VIRT</strong>：虚拟内存大小</li>
+<li><strong>RES</strong>：实际物理内存大小</li>
+<li><strong>SHR</strong>：共享内存大小</li>
+<li><strong>S</strong>：进程状态</li>
+</ul>
+<h3 id="43-top-常用操作">4.3 top 常用操作</h3>
+<p>在 top 运行界面中：</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code></td>
+<td>退出 top</td>
+</tr>
+<tr>
+<td><code>h</code> 或 <code>?</code></td>
+<td>显示帮助</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>按 CPU 使用率排序</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>按内存使用排序</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>按 PID 排序</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>按累计时间排序</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>终止进程（输入 PID 和信号）</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>重新设置 Nice 值</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>设置显示字段</td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>保存配置</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>显示每个 CPU 核心的详细信息</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>显示指定用户的进程</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-top-高级用法">4.4 top 高级用法</h3>
+<p><strong>实时监控特定进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 每 2 秒刷新一次，监控 PID 12345</span>
+</span></span><span class="line"><span class="cl">top -d <span class="m">2</span> -p <span class="m">12345</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 监控多个进程</span>
+</span></span><span class="line"><span class="cl">top -p <span class="m">12345</span> -p <span class="m">67890</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>批量模式</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 输出 5 次后退出，保存到文件</span>
+</span></span><span class="line"><span class="cl">top -b -n <span class="m">5</span> -d <span class="m">1</span> &gt; top_output.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>监控特定用户</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top -u www-data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="五进程管理命令">五、进程管理命令</h2>
+<h3 id="51-进程启动与终止">5.1 进程启动与终止</h3>
+<p><strong>启动进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 前台启动</span>
+</span></span><span class="line"><span class="cl">./myprogram
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 后台启动</span>
+</span></span><span class="line"><span class="cl">./myprogram <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># nohup 后台运行（忽略挂起信号）</span>
+</span></span><span class="line"><span class="cl">nohup ./myprogram <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>终止进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 发送 TERM 信号（优雅终止）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发送 KILL 信号（强制终止）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -9 &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 按进程名终止</span>
+</span></span><span class="line"><span class="cl">killall &lt;进程名&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 按进程名强制终止</span>
+</span></span><span class="line"><span class="cl">killall -9 &lt;进程名&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pkill 支持正则匹配</span>
+</span></span><span class="line"><span class="cl">pkill -f <span class="s2">&#34;python.*script&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-进程优先级">5.2 进程优先级</h3>
+<p><strong>Nice 值</strong>：</p>
+<ul>
+<li>范围：-20（最高优先级）到 19（最低优先级）</li>
+<li>默认值：0</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动时设置 Nice 值</span>
+</span></span><span class="line"><span class="cl">nice -n <span class="m">10</span> ./myprogram
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整运行中的进程 Nice 值</span>
+</span></span><span class="line"><span class="cl">renice -n <span class="m">5</span> -p &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整指定用户所有进程的优先级</span>
+</span></span><span class="line"><span class="cl">renice -n <span class="m">10</span> -u www-data
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="53-后台与前台控制">5.3 后台与前台控制</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将进程放到后台</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在前台进程按 Ctrl+Z 挂起</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 bg 恢复后台运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将后台进程放到前台</span>
+</span></span><span class="line"><span class="cl"><span class="nb">fg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看后台任务</span>
+</span></span><span class="line"><span class="cl"><span class="nb">jobs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 后台进程与终端分离</span>
+</span></span><span class="line"><span class="cl"><span class="nb">disown</span> &lt;PID&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="54-信号与进程控制">5.4 信号与进程控制</h3>
+<p>常用信号：</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>编号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>优雅终止，请求进程正常退出</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>强制终止，不可捕获</td>
+</tr>
+<tr>
+<td>SIGSTOP</td>
+<td>19</td>
+<td>暂停进程</td>
+</tr>
+<tr>
+<td>SIGCONT</td>
+<td>18</td>
+<td>继续运行已暂停的进程</td>
+</tr>
+<tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>挂起，通常用于重新读取配置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="六常见问题排查">六、常见问题排查</h2>
+<h3 id="61-cpu-使用率过高">6.1 CPU 使用率过高</h3>
+<p><strong>排查步骤</strong>：</p>
+<ol>
+<li>使用 <code>top</code> 查看占用 CPU 最高的进程</li>
+<li>按 <code>P</code> 排序查看</li>
+<li>使用 <code>pidstat</code> 分析 CPU 使用详情</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 sysstat 包</span>
+</span></span><span class="line"><span class="cl">apt install sysstat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每秒报告一次 CPU 使用</span>
+</span></span><span class="line"><span class="cl">pidstat -p &lt;PID&gt; <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看每个 CPU 核心使用</span>
+</span></span><span class="line"><span class="cl">pidstat -p ALL <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>使用 <code>strace</code> 分析系统调用</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">strace -p &lt;PID&gt;
+</span></span><span class="line"><span class="cl">strace -c -p &lt;PID&gt;  <span class="c1"># 统计系统调用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>使用 <code>perf</code> 进行性能分析</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">perf top
+</span></span><span class="line"><span class="cl">perf record -p &lt;PID&gt;
+</span></span><span class="line"><span class="cl">perf report
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="62-内存使用过高">6.2 内存使用过高</h3>
+<p><strong>排查步骤</strong>：</p>
+<ol>
+<li>使用 <code>free</code> 查看内存概况</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">free -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>使用 <code>top</code> 按内存排序查看</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top -o %MEM
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>分析进程内存使用</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看进程内存映射</span>
+</span></span><span class="line"><span class="cl">pmap -x &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 详细内存统计</span>
+</span></span><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>检查内存泄漏</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 多次执行，对比内存变化</span>
+</span></span><span class="line"><span class="cl">ps -eo pid,vsz,rss,comm <span class="p">|</span> grep &lt;进程名&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 valgrind 检测内存泄漏</span>
+</span></span><span class="line"><span class="cl">valgrind --leak-check<span class="o">=</span>full ./myprogram
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="63-僵死进程处理">6.3 僵死进程处理</h3>
+<p><strong>识别僵死进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 方法一：ps 查看</span>
+</span></span><span class="line"><span class="cl">ps aux <span class="p">|</span> grep Z
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方法二：top 查看 zombie 数量</span>
+</span></span><span class="line"><span class="cl">top
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方法三：查看状态</span>
+</span></span><span class="line"><span class="cl">ps -eo pid,stat,comm <span class="p">|</span> grep ^Z
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>处理僵死进程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 找到僵死进程的父进程</span>
+</span></span><span class="line"><span class="cl">ps -eo pid,ppid,stat,comm <span class="p">|</span> grep Z
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 尝试终止父进程</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -15 &lt;父进程PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 如果父进程无法终止，杀掉僵死进程（通常无效，但可以尝试）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> -9 &lt;僵死进程PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 重启系统或通过其他方式终止父进程</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>预防僵死进程</strong>：</p>
+<ul>
+<li>父进程要及时回收子进程（使用 wait() 系统调用）</li>
+<li>使用信号处理机制处理子进程退出</li>
+<li>编写健壮的守护进程代码</li>
+</ul>
+<h3 id="64-进程不可终止">6.4 进程不可终止</h3>
+<p><strong>排查步骤</strong>：</p>
+<ol>
+<li>检查进程状态</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>检查进程在等待什么</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看进程系统调用</span>
+</span></span><span class="line"><span class="cl">strace -p &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看进程打开的文件</span>
+</span></span><span class="line"><span class="cl">lsof -p &lt;PID&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看进程等待的锁</span>
+</span></span><span class="line"><span class="cl">lsof -n <span class="p">|</span> grep &lt;PID&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>检查 D 状态进程（不可中断睡眠）</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有 D 状态进程</span>
+</span></span><span class="line"><span class="cl">ps aux <span class="p">|</span> awk <span class="s1">&#39;$8 ~ /D/ {print}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 I/O 统计</span>
+</span></span><span class="line"><span class="cl">iostat -x <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>如果是 D 状态，可能需要等待 I/O 完成或重启</li>
+</ol>
+<h3 id="65-负载过高">6.5 负载过高</h3>
+<p><strong>判断标准</strong>：</p>
+<ul>
+<li>负载平均值 &gt; CPU 核心数，表示系统负载过高</li>
+<li>持续高于核心数，需要优化或升级</li>
+</ul>
+<p><strong>排查步骤</strong>：</p>
+<ol>
+<li>查看系统负载</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uptime
+</span></span><span class="line"><span class="cl">top
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>识别高负载原因</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CPU 密集型：检查 %cpu 占用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># I/O 密集型：检查 %wa（等待 I/O）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程数过多：检查进程数量</span>
+</span></span><span class="line"><span class="cl">ps aux <span class="p">|</span> wc -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>查看 I/O 等待</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iostat -x <span class="m">1</span>
+</span></span><span class="line"><span class="cl">iotop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>查看网络负载</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iftop
+</span></span><span class="line"><span class="cl">netstat -s
+</span></span><span class="line"><span class="cl">ss -s
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="66-systemd-服务管理">6.6 systemd 服务管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看服务状态</span>
+</span></span><span class="line"><span class="cl">systemctl status &lt;服务名&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有失败的服务</span>
+</span></span><span class="line"><span class="cl">systemctl list-units --state<span class="o">=</span>failed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">systemctl restart &lt;服务名&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看服务日志</span>
+</span></span><span class="line"><span class="cl">journalctl -u &lt;服务名&gt; -n <span class="m">50</span>
+</span></span><span class="line"><span class="cl">journalctl -u &lt;服务名&gt; --since <span class="s2">&#34;1 hour ago&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="七高级工具">七、高级工具</h2>
+<h3 id="71-htop">7.1 htop</h3>
+<p>比 <code>top</code> 更友好的进程监控工具：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">apt install htop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行</span>
+</span></span><span class="line"><span class="cl">htop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持鼠标操作、树形视图、颜色主题</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="72-atop">7.2 atop</h3>
+<p>高级系统性能监控工具：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install atop
+</span></span><span class="line"><span class="cl">atop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="73-proc-文件系统">7.3 /proc 文件系统</h3>
+<p>Linux 通过 <code>/proc</code> 文件系统提供进程信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进程命令行</span>
+</span></span><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/cmdline
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程环境变量</span>
+</span></span><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/environ
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程状态</span>
+</span></span><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程_maps</span>
+</span></span><span class="line"><span class="cl">cat /proc/&lt;PID&gt;/maps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程 fd 目录（打开的文件描述符）</span>
+</span></span><span class="line"><span class="cl">ls -la /proc/&lt;PID&gt;/fd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="八最佳实践">八、最佳实践</h2>
+<h3 id="81-监控建议">8.1 监控建议</h3>
+<ol>
+<li><strong>定期监控关键指标</strong>：CPU、内存、磁盘 I/O、网络</li>
+<li><strong>建立基准</strong>：了解正常状态下的系统资源使用</li>
+<li><strong>设置告警</strong>：阈值触发时及时通知</li>
+<li><strong>日志分析</strong>：结合日志进行问题定位</li>
+</ol>
+<h3 id="82-进程优化建议">8.2 进程优化建议</h3>
+<ol>
+<li><strong>资源限制</strong>：使用 <code>cgroups</code> 限制进程资源</li>
+<li><strong>优先级调整</strong>：根据业务需求合理设置 Nice 值</li>
+<li><strong>进程池</strong>：复用进程减少创建销毁开销</li>
+<li><strong>监控工具</strong>：使用 <code>monit</code>、<code>supervisord</code> 等管理服务</li>
+</ol>
+<h3 id="83-安全建议">8.3 安全建议</h3>
+<ol>
+<li><strong>最小权限</strong>：以最小权限运行服务</li>
+<li><strong>进程隔离</strong>：使用容器或虚拟机隔离服务</li>
+<li><strong>监控异常</strong>：检测异常进程行为</li>
+<li><strong>日志审计</strong>：记录进程相关操作</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>Linux 进程管理是系统管理的核心技能。通过本文的学习，你应该能够：</p>
+<ul>
+<li>理解 Linux 进程的各种状态及其转换关系</li>
+<li>熟练使用 <code>ps</code> 和 <code>top</code> 命令查看进程信息</li>
+<li>掌握进程优先级管理和信号控制</li>
+<li>能够排查常见的 CPU、内存、僵死进程等问题</li>
+<li>了解 <code>/proc</code> 文件系统在进程管理中的作用</li>
+</ul>
+<p>持续监控和及时响应是保持系统稳定运行的关键。建议在实际环境中多加练习，积累经验。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li>Linux Manual Pages: <code>ps(1)</code>, <code>top(1)</code>, <code>kill(1)</code>, <code>nice(1)</code></li>
+<li><code>/usr/share/doc/procps/examples/</code> 目录下的示例文件</li>
+<li>《Linux 高性能服务器编程》</li>
+<li>《Linux 内核设计与实现》</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-01&#32;10:00:00>更新于 2026-04-01&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/linux-process-management/" data-title="Linux 系统进程管理详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/process-management/">process-management</a>,&nbsp;<a href="/tags/ps/">ps</a>,&nbsp;<a href="/tags/top/">top</a>,&nbsp;<a href="/tags/troubleshooting/">troubleshooting</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/opencode-install-guide/" class="prev" rel="prev" title="OpenCode AI 编程助手安装指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>OpenCode AI 编程助手安装指南</a>
+      <a href="/golang-concurrent-programming/" class="next" rel="next" title="Go语言并发编程指南">Go语言并发编程指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

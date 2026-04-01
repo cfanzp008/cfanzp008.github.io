@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>工具 - 标签 - cfanzp学习笔记</title>
+    <link>http://111.230.8.71:8889/tags/%E5%B7%A5%E5%85%B7/</link>
+    <description>工具 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCode AI 编程助手安装指南</title>
+  <link>http://111.230.8.71:8889/opencode-install-guide/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/opencode-install-guide/</guid>
+  <description><![CDATA[OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
+OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
+本文将详细介绍 OpenCode 在不同操作系统上的安装方法。
+系统要求 前置条件 使用 OpenCode 终端版本需要满足以下条件：
+终端模拟器：推荐使用现代终端，如：
+WezTerm - 跨平台 Alacritty - 跨平台 Ghostty - Linux 和 macOS Kitty - Linux 和 macOS LLM 提供商的 API Key：根据你选择的模型提供商，需要准备相应的 API Key
+Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的安装方式，运行以下命令即可：
+1 curl -fsSL https://opencode.ai/install | bash 方式二：使用 Node.js 包管理器 如果你已经安装了 Node.]]></description>
+</item>
+</channel>
+</rss>

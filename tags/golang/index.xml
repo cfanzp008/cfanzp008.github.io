@@ -4,7 +4,15 @@
     <link>http://111.230.8.71:8889/tags/golang/</link>
     <description>golang - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 05 Dec 2023 21:52:19 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/golang/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/golang/" rel="self" type="application/rss+xml" /><item>
+  <title>Go语言并发编程指南</title>
+  <link>http://111.230.8.71:8889/golang-concurrent-programming/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/golang-concurrent-programming/</guid>
+  <description><![CDATA[深入理解Go语言并发编程：Goroutine、Channel和常见并发模式的基本用法与实践]]></description>
+</item>
+<item>
   <title>Vim配置vim-go</title>
   <link>http://111.230.8.71:8889/vim-go/</link>
   <pubDate>Tue, 05 Dec 2023 21:52:19 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <author>作者</author>
   <guid>http://111.230.8.71:8889/go-question/</guid>
   <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Go基本环境配置</title>
-  <link>http://111.230.8.71:8889/go-env/</link>
-  <pubDate>Wed, 24 Aug 2022 20:25:24 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/go-env/</guid>
-  <description><![CDATA[Go基本环境配置 下载 https://dl.google.com/go/go1.18.1.linux-amd64.tar.gz 环境变量配置 https://blog.csdn.net/Deronn/article/details/108364612 1 2 3 4 5 export GO111MODULE=on export GOPROXY=https://goproxy.cn export GOROOT=/usr/local/go export GOPATH=~/go/path export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 环境变量生效 1 2 source /etc/profile ##在当前bash环境下读取并执行profile中的命令。 go env 初始化项目 gin demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 package main import &#34;github.com/gin-gonic/gin&#34; func main() { // 创建一个默认的Gin引擎 r := gin.Default() // 定义一个简单的GET请求路由 r.GET(&#34;/&#34;, func(c *gin.Context) { c.String(200, &#34;Hello, Gin!&#34;) }) // 启动HTTP服务器，监听在 8080 端口 r.]]></description>
 </item>
 </channel>
 </rss>

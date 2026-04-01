@@ -4,9 +4,50 @@
     <link>http://111.230.8.71:8889/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 02 Sep 2025 00:39:58 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</lastBuildDate>
       <atom:link href="http://111.230.8.71:8889/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Docker 容器化入门完全指南</title>
+  <link>http://111.230.8.71:8889/docker-container-basics/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/docker-container-basics/</guid>
+  <description><![CDATA[<h2 id="前言">前言</h2>
+<p>在现代软件开发和部署中，Docker 已成为不可或缺的核心技术。它通过容器化技术，让应用程序的打包、分发和运行变得前所未有的简单。本文将带你从零开始，系统学习 Docker 的安装、基础命令和实战应用。</p>]]></description>
+</item>
+<item>
+  <title>Go语言并发编程指南</title>
+  <link>http://111.230.8.71:8889/golang-concurrent-programming/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/golang-concurrent-programming/</guid>
+  <description><![CDATA[深入理解Go语言并发编程：Goroutine、Channel和常见并发模式的基本用法与实践]]></description>
+</item>
+<item>
+  <title>Linux 系统进程管理详解</title>
+  <link>http://111.230.8.71:8889/linux-process-management/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/linux-process-management/</guid>
+  <description><![CDATA[<h2 id="前言">前言</h2>
+<p>进程是 Linux 系统中程序执行的最小单元，理解进程管理对于系统管理员和开发人员至关重要。本文将详细介绍 Linux 进程的管理机制，包括进程状态、常用监控命令以及常见问题的排查方法。</p>]]></description>
+</item>
+<item>
+  <title>OpenCode AI 编程助手安装指南</title>
+  <link>http://111.230.8.71:8889/opencode-install-guide/</link>
+  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/opencode-install-guide/</guid>
+  <description><![CDATA[OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
+OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
+本文将详细介绍 OpenCode 在不同操作系统上的安装方法。
+系统要求 前置条件 使用 OpenCode 终端版本需要满足以下条件：
+终端模拟器：推荐使用现代终端，如：
+WezTerm - 跨平台 Alacritty - 跨平台 Ghostty - Linux 和 macOS Kitty - Linux 和 macOS LLM 提供商的 API Key：根据你选择的模型提供商，需要准备相应的 API Key
+Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的安装方式，运行以下命令即可：
+1 curl -fsSL https://opencode.ai/install | bash 方式二：使用 Node.js 包管理器 如果你已经安装了 Node.]]></description>
+</item>
+<item>
   <title>如何使用命令查看ip地址归属地？</title>
   <link>http://111.230.8.71:8889/ip-search/</link>
   <pubDate>Tue, 02 Sep 2025 00:39:58 &#43;0800</pubDate>
@@ -52,38 +93,6 @@
   <pubDate>Wed, 11 Dec 2024 04:43:53 &#43;0800</pubDate>
   <author>作者</author>
   <guid>http://111.230.8.71:8889/ai-codegeex/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>neovim配置使用Terminal</title>
-  <link>http://111.230.8.71:8889/neovim-terminal/</link>
-  <pubDate>Fri, 29 Nov 2024 20:01:03 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/neovim-terminal/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>[nvim[nvim配置AI插件vim-ai-doubao</title>
-  <link>http://111.230.8.71:8889/nvim-plugin-vim-ai-doubao/</link>
-  <pubDate>Thu, 14 Nov 2024 00:11:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/nvim-plugin-vim-ai-doubao/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>[nas][ubuntu][32bit] ubuntu32位如何安装ag命令</title>
-  <link>http://111.230.8.71:8889/nas-ubuntu-32bit/</link>
-  <pubDate>Sun, 03 Nov 2024 16:25:06 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/nas-ubuntu-32bit/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>vrf</title>
-  <link>http://111.230.8.71:8889/vrf/</link>
-  <pubDate>Mon, 21 Oct 2024 22:16:42 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/vrf/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
