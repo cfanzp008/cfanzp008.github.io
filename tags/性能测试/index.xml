@@ -12,8 +12,8 @@
   <guid>http://111.230.8.71:8889/iperf3-usage-and-scenarios/</guid>
   <description><![CDATA[iperf3 网络带宽测试工具用法及使用场景 什么是 iperf3 iperf3 是一个用于测量网络带宽的开源工具，支持 TCP、UDP 和 SCTP 协议。它可以测试网络的最大可实现带宽、延迟抖动和数据包丢失等指标，是网络性能测试和故障诊断的常用工具。
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
-1 2 # 使用 Chocolatey choco install iperf3 基本用法 iperf3 采用客户端/服务器模式工作，需要在两台机器上分别运行。
-1. 启动服务器端 1 2 3 4 5 6 7 8 9 10 11 # 默认监听 5201 端口 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 后台运行 iperf3 -s -D # 绑定特定 IP iperf3 -s -B 192.]]></description>
+1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
+方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
 </item>
 </channel>
 </rss>
