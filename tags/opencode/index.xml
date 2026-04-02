@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>opencode - 标签 - cfanzp学习笔记</title>
-    <link>http://111.230.8.71:8889/tags/opencode/</link>
+    <link>https://cfanzp008.github.io/tags/opencode/</link>
     <description>opencode - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/opencode/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/opencode/" rel="self" type="application/rss+xml" /><item>
   <title>Tmux &#43; OpenCode 安装使用教程</title>
-  <link>http://111.230.8.71:8889/tmux-opencode-tutorial/</link>
+  <link>https://cfanzp008.github.io/tmux-opencode-tutorial/</link>
   <pubDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/tmux-opencode-tutorial/</guid>
+  <guid>https://cfanzp008.github.io/tmux-opencode-tutorial/</guid>
   <description><![CDATA[Tmux + OpenCode 安装使用教程 背景与简介 在日常开发和运维工作中，我们经常需要同时管理多个终端会话：
 远程服务器上运行多个服务 同时查看日志、编辑代码、运行测试 临时断开连接后希望保持任务继续运行 Tmux（Terminal Multiplexer）正是为解决这些痛点而设计的终端复用器。而 OpenCode 作为一个开源的 AI 编程助手，可以大幅提升编码效率。
 本文将详细介绍两者的安装与基本使用方法。
@@ -19,10 +19,10 @@
 </item>
 <item>
   <title>MiniMax 模型接入 OpenCode 教程</title>
-  <link>http://111.230.8.71:8889/minimax-model-opencode-tutorial/</link>
+  <link>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</link>
   <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/minimax-model-opencode-tutorial/</guid>
+  <guid>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</guid>
   <description><![CDATA[MiniMax 模型接入 OpenCode 教程 背景介绍 OpenCode 是一个强大的 AI 编程助手，支持多种大语言模型提供商。MiniMax 作为国内领先的 AI 平台，提供了性能优异的编程模型 M2 系列。本教程将详细介绍如何将 MiniMax 模型接入 OpenCode，实现本地 AI 辅助编程。
 什么是 MiniMax MiniMax 是专注于多语言编程能力的 AI 平台，提供以下优势：
 强大的代码理解能力：深度理解多种编程语言和框架 长上下文窗口：支持高达 204,800 tokens 的上下文 高速输出：M2.5-highspeed 模型可达 100 tps 输出速度 多模型选择：支持 M2.5、M2.1、M2 等多个版本 支持的模型列表：
@@ -31,10 +31,10 @@
 </item>
 <item>
   <title>OpenCode AI 编程助手安装指南</title>
-  <link>http://111.230.8.71:8889/opencode-install-guide/</link>
+  <link>https://cfanzp008.github.io/opencode-install-guide/</link>
   <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/opencode-install-guide/</guid>
+  <guid>https://cfanzp008.github.io/opencode-install-guide/</guid>
   <description><![CDATA[OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
 OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
 本文将详细介绍 OpenCode 在不同操作系统上的安装方法。

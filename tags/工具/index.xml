@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>工具 - 标签 - cfanzp学习笔记</title>
-    <link>http://111.230.8.71:8889/tags/%E5%B7%A5%E5%85%B7/</link>
+    <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
   <title>iperf3 网络带宽测试工具用法及使用场景</title>
-  <link>http://111.230.8.71:8889/iperf3-usage-and-scenarios/</link>
+  <link>https://cfanzp008.github.io/iperf3-usage-and-scenarios/</link>
   <pubDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/iperf3-usage-and-scenarios/</guid>
+  <guid>https://cfanzp008.github.io/iperf3-usage-and-scenarios/</guid>
   <description><![CDATA[iperf3 网络带宽测试工具用法及使用场景 什么是 iperf3 iperf3 是一个用于测量网络带宽的开源工具，支持 TCP、UDP 和 SCTP 协议。它可以测试网络的最大可实现带宽、延迟抖动和数据包丢失等指标，是网络性能测试和故障诊断的常用工具。
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
@@ -17,10 +17,10 @@
 </item>
 <item>
   <title>Everything Claude Code：最完整的 Claude Code 配置集合</title>
-  <link>http://111.230.8.71:8889/everything-claude-code-introduction/</link>
+  <link>https://cfanzp008.github.io/everything-claude-code-introduction/</link>
   <pubDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/everything-claude-code-introduction/</guid>
+  <guid>https://cfanzp008.github.io/everything-claude-code-introduction/</guid>
   <description><![CDATA[Everything Claude Code：最完整的 Claude Code 配置集合 背景介绍 Claude Code 是 Anthropic 推出的 AI 编程助手，能够在终端中帮助开发者完成代码编写、调试和 Git 工作流。然而，要充分发挥 Claude Code 的潜力，需要合理的配置和扩展。
 Everything Claude Code 是一个由 Anthropic hackathon 获奖者开发的综合配置集合，在 GitHub 上已获得超过 130K 颗星，成为 Claude Code 生态中最受欢迎的配置项目。
 什么是 Everything Claude Code Everything Claude Code（简称 ECC）是一个经过实战检验的 Claude Code 插件配置集合，包含：
@@ -29,10 +29,10 @@ continuous-learning-v2：持续学习技能，记录对话上下文 strategic-co
 </item>
 <item>
   <title>MiniMax 模型接入 OpenCode 教程</title>
-  <link>http://111.230.8.71:8889/minimax-model-opencode-tutorial/</link>
+  <link>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</link>
   <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/minimax-model-opencode-tutorial/</guid>
+  <guid>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</guid>
   <description><![CDATA[MiniMax 模型接入 OpenCode 教程 背景介绍 OpenCode 是一个强大的 AI 编程助手，支持多种大语言模型提供商。MiniMax 作为国内领先的 AI 平台，提供了性能优异的编程模型 M2 系列。本教程将详细介绍如何将 MiniMax 模型接入 OpenCode，实现本地 AI 辅助编程。
 什么是 MiniMax MiniMax 是专注于多语言编程能力的 AI 平台，提供以下优势：
 强大的代码理解能力：深度理解多种编程语言和框架 长上下文窗口：支持高达 204,800 tokens 的上下文 高速输出：M2.5-highspeed 模型可达 100 tps 输出速度 多模型选择：支持 M2.5、M2.1、M2 等多个版本 支持的模型列表：
@@ -41,10 +41,10 @@ continuous-learning-v2：持续学习技能，记录对话上下文 strategic-co
 </item>
 <item>
   <title>OpenCode AI 编程助手安装指南</title>
-  <link>http://111.230.8.71:8889/opencode-install-guide/</link>
+  <link>https://cfanzp008.github.io/opencode-install-guide/</link>
   <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/opencode-install-guide/</guid>
+  <guid>https://cfanzp008.github.io/opencode-install-guide/</guid>
   <description><![CDATA[OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
 OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
 本文将详细介绍 OpenCode 在不同操作系统上的安装方法。

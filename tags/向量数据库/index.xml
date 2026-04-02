@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>向量数据库 - 标签 - cfanzp学习笔记</title>
-    <link>http://111.230.8.71:8889/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <link>https://cfanzp008.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
     <description>向量数据库 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
   <title>RAG 深度解读：检索增强生成技术原理与实践</title>
-  <link>http://111.230.8.71:8889/rag-deep-analysis/</link>
+  <link>https://cfanzp008.github.io/rag-deep-analysis/</link>
   <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/rag-deep-analysis/</guid>
+  <guid>https://cfanzp008.github.io/rag-deep-analysis/</guid>
   <description><![CDATA[RAG 深度解读：检索增强生成技术原理与实践 背景与问题 大型语言模型（LLM）在生成代码、总结文章、回答问题等方面表现出色，但存在一个根本性限制：它们只知道训练数据中的信息。
 训练数据是有限的，且存在以下问题：
 知识截止日期（Knowledge Cutoff）：模型的知识停留在训练数据收集的时间点，无法获取实时信息 领域知识缺失：通用模型缺乏特定领域的专业知识，如企业内部文档、产品规格等 幻觉问题（Hallucination）：模型可能生成看似合理但实际错误的内容 训练成本高昂：想让模型学习新知识，需要重新训练或微调，成本巨大 RAG（Retrieval-Augmented Generation，检索增强生成）正是为解决这些问题而设计的架构。

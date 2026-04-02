@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>bandwidth - 标签 - cfanzp学习笔记</title>
-    <link>http://111.230.8.71:8889/tags/bandwidth/</link>
+    <link>https://cfanzp008.github.io/tags/bandwidth/</link>
     <description>bandwidth - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/tags/bandwidth/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/bandwidth/" rel="self" type="application/rss+xml" /><item>
   <title>iperf3 网络带宽测试工具用法及使用场景</title>
-  <link>http://111.230.8.71:8889/iperf3-usage-and-scenarios/</link>
+  <link>https://cfanzp008.github.io/iperf3-usage-and-scenarios/</link>
   <pubDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>http://111.230.8.71:8889/iperf3-usage-and-scenarios/</guid>
+  <guid>https://cfanzp008.github.io/iperf3-usage-and-scenarios/</guid>
   <description><![CDATA[iperf3 网络带宽测试工具用法及使用场景 什么是 iperf3 iperf3 是一个用于测量网络带宽的开源工具，支持 TCP、UDP 和 SCTP 协议。它可以测试网络的最大可实现带宽、延迟抖动和数据包丢失等指标，是网络性能测试和故障诊断的常用工具。
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
