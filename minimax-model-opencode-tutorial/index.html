@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>MiniMax 模型接入 OpenCode 教程 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍如何将 MiniMax AI 模型接入 OpenCode AI 编程助手，实现高效智能编码" /><meta name="keywords" content='opencode, minimax, AI, 教程, 工具' /><meta itemprop="name" content="MiniMax 模型接入 OpenCode 教程">
+<meta itemprop="description" content="详细介绍如何将 MiniMax AI 模型接入 OpenCode AI 编程助手，实现高效智能编码"><meta itemprop="datePublished" content="2026-04-02T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-02T10:00:00+08:00" />
+<meta itemprop="wordCount" content="411"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
+<meta itemprop="keywords" content="opencode,minimax,AI,教程,工具," /><meta property="og:title" content="MiniMax 模型接入 OpenCode 教程" />
+<meta property="og:description" content="详细介绍如何将 MiniMax AI 模型接入 OpenCode AI 编程助手，实现高效智能编码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://111.230.8.71:8889/minimax-model-opencode-tutorial/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-02T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-02T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="MiniMax 模型接入 OpenCode 教程"/>
+<meta name="twitter:description" content="详细介绍如何将 MiniMax AI 模型接入 OpenCode AI 编程助手，实现高效智能编码"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/minimax-model-opencode-tutorial/" /><link rel="prev" href="http://111.230.8.71:8889/rag-deep-analysis/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "MiniMax 模型接入 OpenCode 教程",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/111.230.8.71:8889\/minimax-model-opencode-tutorial\/"
+    },"genre": "posts","keywords": "opencode, minimax, AI, 教程, 工具","wordcount":  411 ,
+    "url": "http:\/\/111.230.8.71:8889\/minimax-model-opencode-tutorial\/","datePublished": "2026-04-02T10:00:00+08:00","dateModified": "2026-04-02T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍如何将 MiniMax AI 模型接入 OpenCode AI 编程助手，实现高效智能编码"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>MiniMax 模型接入 OpenCode 教程</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-02&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 411 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="MiniMax 模型接入 OpenCode 教程">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景介绍">背景介绍</a></li>
+    <li><a href="#什么是-minimax">什么是 MiniMax</a></li>
+    <li><a href="#前置条件">前置条件</a>
+      <ul>
+        <li><a href="#获取-minimax-api-key">获取 MiniMax API Key</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置步骤">配置步骤</a>
+      <ul>
+        <li><a href="#方法一环境变量配置">方法一：环境变量配置</a></li>
+        <li><a href="#方法二配置文件配置">方法二：配置文件配置</a>
+          <ul>
+            <li><a href="#配置文件位置">配置文件位置</a></li>
+            <li><a href="#配置示例">配置示例</a></li>
+            <li><a href="#使用-jsonc-格式支持注释">使用 JSONC 格式（支持注释）</a></li>
+          </ul>
+        </li>
+        <li><a href="#方法三使用-connect-命令">方法三：使用 /connect 命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#验证配置">验证配置</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#api-调用失败">API 调用失败</a></li>
+        <li><a href="#模型名称错误">模型名称错误</a></li>
+        <li><a href="#base-url-配置错误">Base URL 配置错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能优化建议">性能优化建议</a>
+      <ul>
+        <li><a href="#选择合适的模型">选择合适的模型</a></li>
+        <li><a href="#使用缓存">使用缓存</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="minimax-模型接入-opencode-教程">MiniMax 模型接入 OpenCode 教程</h1>
+<h2 id="背景介绍">背景介绍</h2>
+<p>OpenCode 是一个强大的 AI 编程助手，支持多种大语言模型提供商。MiniMax 作为国内领先的 AI 平台，提供了性能优异的编程模型 M2 系列。本教程将详细介绍如何将 MiniMax 模型接入 OpenCode，实现本地 AI 辅助编程。</p>
+<h2 id="什么是-minimax">什么是 MiniMax</h2>
+<p>MiniMax 是专注于多语言编程能力的 AI 平台，提供以下优势：</p>
+<ul>
+<li><strong>强大的代码理解能力</strong>：深度理解多种编程语言和框架</li>
+<li><strong>长上下文窗口</strong>：支持高达 204,800 tokens 的上下文</li>
+<li><strong>高速输出</strong>：M2.5-highspeed 模型可达 100 tps 输出速度</li>
+<li><strong>多模型选择</strong>：支持 M2.5、M2.1、M2 等多个版本</li>
+</ul>
+<p>支持的模型列表：</p>
+<table>
+<thead>
+<tr>
+<th>模型名称</th>
+<th>上下文窗口</th>
+<th>输出速度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MiniMax-M2.5</td>
+<td>204,800</td>
+<td>~60 tps</td>
+</tr>
+<tr>
+<td>MiniMax-M2.5-highspeed</td>
+<td>204,800</td>
+<td>~100 tps</td>
+</tr>
+<tr>
+<td>MiniMax-M2.1</td>
+<td>204,800</td>
+<td>~60 tps</td>
+</tr>
+<tr>
+<td>MiniMax-M2.1-highspeed</td>
+<td>204,800</td>
+<td>~100 tps</td>
+</tr>
+</tbody>
+</table>
+<h2 id="前置条件">前置条件</h2>
+<p>在开始配置之前，请确保：</p>
+<ol>
+<li>已安装 OpenCode（如果没有安装，可参考官方文档）</li>
+<li>已注册 MiniMax 平台账号并获取 API Key</li>
+<li>具备基本的命令行操作能力</li>
+</ol>
+<h3 id="获取-minimax-api-key">获取 MiniMax API Key</h3>
+<ol>
+<li>访问 <a
+  href="https://platform.minimax.io/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>MiniMax 开放平台</a></li>
+<li>注册并登录账号</li>
+<li>在个人中心或开发者设置中获取 API Key</li>
+<li>确保账户有足够的 API 调用额度</li>
+</ol>
+<h2 id="配置步骤">配置步骤</h2>
+<h3 id="方法一环境变量配置">方法一：环境变量配置</h3>
+<p>最简单的方式是通过环境变量配置 MiniMax：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置 MiniMax API Key</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&#34;your-minimax-api-key&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置 API 端点（可选，某些版本需要）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_BASE_URL</span><span class="o">=</span><span class="s2">&#34;https://api.minimax.io/anthropic&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法二配置文件配置">方法二：配置文件配置</h3>
+<p>OpenCode 支持通过 <code>config.json</code> 或 <code>config.jsonc</code> 文件进行配置。</p>
+<h4 id="配置文件位置">配置文件位置</h4>
+<p>配置文件可以放在以下位置（按优先级排序）：</p>
+<ol>
+<li>当前目录：<code>./config.json</code> 或 <code>./config.jsonc</code></li>
+<li>主目录：<code>~/.config/opencode/config.json</code></li>
+<li>XDG 标准目录：<code>~/.config/opencode/config.json</code></li>
+</ol>
+<h4 id="配置示例">配置示例</h4>
+<p>创建或编辑配置文件，添加 MiniMax provider：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://opencode.ai/config.json&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;provider&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;minimax&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;npm&#34;</span><span class="p">:</span> <span class="s2">&#34;@ai-sdk/anthropic&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;options&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;baseURL&#34;</span><span class="p">:</span> <span class="s2">&#34;https://api.minimax.io/anthropic/v1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;apiKey&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;YOUR_MINIMAX_API_KEY&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;models&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;MiniMax-M2.5&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;MiniMax-M2.5&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;model&#34;</span><span class="p">:</span> <span class="s2">&#34;minimax/MiniMax-M2.5&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用-jsonc-格式支持注释">使用 JSONC 格式（支持注释）</h4>
+<p>如果你想使用带注释的配置，可以使用 JSONC 格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">  &#34;$schema&#34;: &#34;https://opencode.ai/config.json&#34;,
+</span></span><span class="line"><span class="cl">  // 选择使用哪个模型
+</span></span><span class="line"><span class="cl">  &#34;model&#34;: &#34;minimax/MiniMax-M2.5&#34;,
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  // 自动更新配置
+</span></span><span class="line"><span class="cl">  &#34;autoupdate&#34;: true,
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  // Provider 配置
+</span></span><span class="line"><span class="cl">  &#34;provider&#34;: {
+</span></span><span class="line"><span class="cl">    &#34;minimax&#34;: {
+</span></span><span class="line"><span class="cl">      // 使用 Anthropic SDK 兼容接口
+</span></span><span class="line"><span class="cl">      &#34;npm&#34;: &#34;@ai-sdk/anthropic&#34;,
+</span></span><span class="line"><span class="cl">      &#34;options&#34;: {
+</span></span><span class="line"><span class="cl">        // MiniMax Anthropic 兼容 API 端点
+</span></span><span class="line"><span class="cl">        &#34;baseURL&#34;: &#34;https://api.minimax.io/anthropic/v1&#34;,
+</span></span><span class="line"><span class="cl">        // 你的 API Key（也可以通过环境变量 ANTHROPIC_API_KEY 设置）
+</span></span><span class="line"><span class="cl">        &#34;apiKey&#34;: &#34;your-api-key-here&#34;
+</span></span><span class="line"><span class="cl">      },
+</span></span><span class="line"><span class="cl">      &#34;models&#34;: {
+</span></span><span class="line"><span class="cl">        // 配置可用的模型
+</span></span><span class="line"><span class="cl">        &#34;MiniMax-M2.5&#34;: {
+</span></span><span class="line"><span class="cl">          &#34;name&#34;: &#34;MiniMax-M2.5&#34;
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        &#34;MiniMax-M2.5-highspeed&#34;: {
+</span></span><span class="line"><span class="cl">          &#34;name&#34;: &#34;MiniMax-M2.5-highspeed&#34;
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        &#34;MiniMax-M2.1&#34;: {
+</span></span><span class="line"><span class="cl">          &#34;name&#34;: &#34;MiniMax-M2.1&#34;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法三使用-connect-命令">方法三：使用 /connect 命令</h3>
+<p>OpenCode 提供了交互式配置方式：</p>
+<ol>
+<li>在终端中运行 <code>opencode</code></li>
+<li>使用 <code>/connect</code> 命令</li>
+<li>选择 MiniMax 作为 provider</li>
+<li>输入 API Key</li>
+</ol>
+<h2 id="验证配置">验证配置</h2>
+<p>配置完成后，可以通过以下方式验证：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查配置是否正确加载</span>
+</span></span><span class="line"><span class="cl">opencode --doctor
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接启动并询问模型</span>
+</span></span><span class="line"><span class="cl">opencode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 OpenCode 中输入测试问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">你好，请介绍一下你的能力
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果配置正确，模型应该能正常响应。</p>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="api-调用失败">API 调用失败</h3>
+<p>如果遇到 API 调用错误：</p>
+<ol>
+<li><strong>检查 API Key</strong>：确认 API Key 正确且未过期</li>
+<li><strong>检查网络</strong>：确保能访问 <code>api.minimax.io</code></li>
+<li><strong>检查额度</strong>：确认 MiniMax 账户有足够余额</li>
+</ol>
+<h3 id="模型名称错误">模型名称错误</h3>
+<p>确保使用正确的模型名称：</p>
+<ul>
+<li><code>MiniMax-M2.5</code></li>
+<li><code>MiniMax-M2.5-highspeed</code></li>
+<li><code>MiniMax-M2.1</code></li>
+<li><code>MiniMax-M2.1-highspeed</code></li>
+<li><code>MiniMax-M2</code></li>
+</ul>
+<h3 id="base-url-配置错误">Base URL 配置错误</h3>
+<p>确认 baseURL 配置为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://api.minimax.io/anthropic/v1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意末尾的 <code>/v1</code>，这是 Anthropic 兼容接口的版本路径。</p>
+<h2 id="性能优化建议">性能优化建议</h2>
+<h3 id="选择合适的模型">选择合适的模型</h3>
+<ul>
+<li><strong>日常编程辅助</strong>：使用 <code>MiniMax-M2.5-highspeed</code>，速度快</li>
+<li><strong>复杂问题处理</strong>：使用 <code>MiniMax-M2.5</code>，性能更强</li>
+<li><strong>调试和推理</strong>：使用 <code>MiniMax-M2.1</code>，专注于编程能力</li>
+</ul>
+<h3 id="使用缓存">使用缓存</h3>
+<p>MiniMax 支持 Prompt Caching，可以显著降低长对话的成本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 首次请求会建立缓存</span>
+</span></span><span class="line"><span class="cl"><span class="n">response1</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">=</span><span class="s2">&#34;MiniMax-M2.5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 后续请求自动使用缓存，大幅降低延迟和成本</span>
+</span></span><span class="line"><span class="cl"><span class="n">response2</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">=</span><span class="s2">&#34;MiniMax-M2.5&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>通过以上配置，你就可以在 OpenCode 中使用 MiniMax 模型进行 AI 编程辅助。MiniMax 模型在代码理解、多轮对话和复杂推理方面表现出色，是一个值得尝试的选择。</p>
+<p>如果你在配置过程中遇到问题，可以参考：</p>
+<ul>
+<li><a
+  href="https://platform.minimax.io/docs/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>MiniMax 官方文档</a></li>
+<li><a
+  href="https://opencode.ai/docs/config/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenCode 官方文档</a></li>
+</ul>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>MiniMax 平台：https://platform.minimax.io/</li>
+<li>OpenCode 官方文档：https://opencode.ai/docs/</li>
+<li>GitHub Issue：https://github.com/code-yeongyu/oh-my-opencode/issues/1331</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-02&#32;10:00:00>更新于 2026-04-02&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/minimax-model-opencode-tutorial/" data-title="MiniMax 模型接入 OpenCode 教程"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/minimax/">minimax</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/rag-deep-analysis/" class="prev" rel="prev" title="RAG 深度解读：检索增强生成技术原理与实践"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>RAG 深度解读：检索增强生成技术原理与实践</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
