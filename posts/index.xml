@@ -4,7 +4,25 @@
     <link>http://111.230.8.71:8889/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="http://111.230.8.71:8889/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>RAG 深度解读：检索增强生成技术原理与实践</title>
+  <link>http://111.230.8.71:8889/rag-deep-analysis/</link>
+  <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>http://111.230.8.71:8889/rag-deep-analysis/</guid>
+  <description><![CDATA[RAG 深度解读：检索增强生成技术原理与实践 背景与问题 大型语言模型（LLM）在生成代码、总结文章、回答问题等方面表现出色，但存在一个根本性限制：它们只知道训练数据中的信息。
+训练数据是有限的，且存在以下问题：
+知识截止日期（Knowledge Cutoff）：模型的知识停留在训练数据收集的时间点，无法获取实时信息 领域知识缺失：通用模型缺乏特定领域的专业知识，如企业内部文档、产品规格等 幻觉问题（Hallucination）：模型可能生成看似合理但实际错误的内容 训练成本高昂：想让模型学习新知识，需要重新训练或微调，成本巨大 RAG（Retrieval-Augmented Generation，检索增强生成）正是为解决这些问题而设计的架构。
+什么是 RAG RAG 是一种优化 LLM 性能的架构，通过连接外部知识库，让模型在生成响应时能够访问最新的、领域特定的、权威的数据。
+RAG 这个名称本身就描述了它的工作流程：
+Retrieval（检索）：从外部知识库查询相关信息 Augmented（增强）：将检索到的信息添加到提示中作为上下文 Generation（生成）：基于增强后的提示生成最终响应 RAG 核心流程 RAG 系统遵循五阶段流程：
+1 用户提交问题 → 检索知识库 → 返回相关信息 → 构建增强提示 → LLM生成响应 阶段详解 用户提交提示（Prompt）：用户提出问题或请求 信息检索（Retrieval）：检索模型查询知识库，获取相关数据 信息返回：从知识库返回相关信息到集成层 提示增强（Augmentation）：RAG 系统将原始用户提示与检索到的上下文结合，构建增强提示 生成响应（Generation）：LLM 基于增强后的提示生成最终响应，返回给用户 RAG 系统核心组件 RAG 系统包含四个主要组件：
+1. 知识库（Knowledge Base） 知识库是 RAG 系统的外部数据仓库，可以包含多种数据源：
+PDF 文档 文本文件、指南 网站内容 音频文件 数据库记录 知识库中的数据需要经过**向量化（Embedding）**处理，转换为数值向量表示，才能进行语义搜索。
+2. 检索器（Retriever） 检索器是执行语义搜索的 AI 模型，其工作流程：
+将用户查询转换为向量表示（使用相同的嵌入模型） 在知识库中搜索相似的向量 返回最相关的文档片段 3.]]></description>
+</item>
+<item>
   <title>Docker 容器化入门完全指南</title>
   <link>http://111.230.8.71:8889/docker-container-basics/</link>
   <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
@@ -83,14 +101,6 @@ Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的
   <pubDate>Fri, 03 Jan 2025 20:30:27 &#43;0800</pubDate>
   <author>作者</author>
   <guid>http://111.230.8.71:8889/centos-install-docker/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Vim中使用CodeGeex AI助手辅助写代码</title>
-  <link>http://111.230.8.71:8889/ai-codegeex/</link>
-  <pubDate>Wed, 11 Dec 2024 04:43:53 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>http://111.230.8.71:8889/ai-codegeex/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

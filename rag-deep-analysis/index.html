@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>RAG 深度解读：检索增强生成技术原理与实践 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="深度解读 RAG（Retrieval-Augmented Generation）检索增强生成技术的核心原理、架构组件、技术实现细节，帮助开发者全面理解 RAG 工作机制" /><meta name="keywords" content='AI, RAG, LLM, 检索增强生成, 原理, 向量数据库' /><meta itemprop="name" content="RAG 深度解读：检索增强生成技术原理与实践">
+<meta itemprop="description" content="深度解读 RAG（Retrieval-Augmented Generation）检索增强生成技术的核心原理、架构组件、技术实现细节，帮助开发者全面理解 RAG 工作机制"><meta itemprop="datePublished" content="2026-04-02T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-02T10:00:00+08:00" />
+<meta itemprop="wordCount" content="208"><meta itemprop="image" content="http://111.230.8.71:8889/logo.png" />
+<meta itemprop="keywords" content="AI,RAG,LLM,检索增强生成,原理,向量数据库," /><meta property="og:title" content="RAG 深度解读：检索增强生成技术原理与实践" />
+<meta property="og:description" content="深度解读 RAG（Retrieval-Augmented Generation）检索增强生成技术的核心原理、架构组件、技术实现细节，帮助开发者全面理解 RAG 工作机制" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://111.230.8.71:8889/rag-deep-analysis/" /><meta property="og:image" content="http://111.230.8.71:8889/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-02T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-02T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="http://111.230.8.71:8889/logo.png" /><meta name="twitter:title" content="RAG 深度解读：检索增强生成技术原理与实践"/>
+<meta name="twitter:description" content="深度解读 RAG（Retrieval-Augmented Generation）检索增强生成技术的核心原理、架构组件、技术实现细节，帮助开发者全面理解 RAG 工作机制"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://111.230.8.71:8889/rag-deep-analysis/" /><link rel="prev" href="http://111.230.8.71:8889/docker-container-basics/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "RAG 深度解读：检索增强生成技术原理与实践",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/111.230.8.71:8889\/rag-deep-analysis\/"
+    },"genre": "posts","keywords": "AI, RAG, LLM, 检索增强生成, 原理, 向量数据库","wordcount":  208 ,
+    "url": "http:\/\/111.230.8.71:8889\/rag-deep-analysis\/","datePublished": "2026-04-02T10:00:00+08:00","dateModified": "2026-04-02T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "深度解读 RAG（Retrieval-Augmented Generation）检索增强生成技术的核心原理、架构组件、技术实现细节，帮助开发者全面理解 RAG 工作机制"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>RAG 深度解读：检索增强生成技术原理与实践</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-02&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 208 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="RAG 深度解读：检索增强生成技术原理与实践">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景与问题">背景与问题</a></li>
+    <li><a href="#什么是-rag">什么是 RAG</a></li>
+    <li><a href="#rag-核心流程">RAG 核心流程</a>
+      <ul>
+        <li><a href="#阶段详解">阶段详解</a></li>
+      </ul>
+    </li>
+    <li><a href="#rag-系统核心组件">RAG 系统核心组件</a>
+      <ul>
+        <li><a href="#1-知识库knowledge-base">1. 知识库（Knowledge Base）</a></li>
+        <li><a href="#2-检索器retriever">2. 检索器（Retriever）</a></li>
+        <li><a href="#3-集成层integration-layer">3. 集成层（Integration Layer）</a></li>
+        <li><a href="#4-生成器generator">4. 生成器（Generator）</a></li>
+      </ul>
+    </li>
+    <li><a href="#关键技术细节">关键技术细节</a>
+      <ul>
+        <li><a href="#向量化与嵌入">向量化与嵌入</a></li>
+        <li><a href="#分块策略chunking">分块策略（Chunking）</a></li>
+        <li><a href="#语义搜索">语义搜索</a></li>
+      </ul>
+    </li>
+    <li><a href="#rag-vs-微调fine-tuning">RAG vs 微调（Fine-tuning）</a></li>
+    <li><a href="#rag-的优势">RAG 的优势</a></li>
+    <li><a href="#常见应用场景">常见应用场景</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="rag-深度解读检索增强生成技术原理与实践">RAG 深度解读：检索增强生成技术原理与实践</h1>
+<h2 id="背景与问题">背景与问题</h2>
+<p>大型语言模型（LLM）在生成代码、总结文章、回答问题等方面表现出色，但存在一个根本性限制：<strong>它们只知道训练数据中的信息</strong>。</p>
+<p>训练数据是有限的，且存在以下问题：</p>
+<ol>
+<li><strong>知识截止日期（Knowledge Cutoff）</strong>：模型的知识停留在训练数据收集的时间点，无法获取实时信息</li>
+<li><strong>领域知识缺失</strong>：通用模型缺乏特定领域的专业知识，如企业内部文档、产品规格等</li>
+<li><strong>幻觉问题（Hallucination）</strong>：模型可能生成看似合理但实际错误的内容</li>
+<li><strong>训练成本高昂</strong>：想让模型学习新知识，需要重新训练或微调，成本巨大</li>
+</ol>
+<p>RAG（Retrieval-Augmented Generation，检索增强生成）正是为解决这些问题而设计的架构。</p>
+<h2 id="什么是-rag">什么是 RAG</h2>
+<p>RAG 是一种优化 LLM 性能的架构，通过连接外部知识库，让模型在生成响应时能够访问最新的、领域特定的、权威的数据。</p>
+<p>RAG 这个名称本身就描述了它的工作流程：</p>
+<ul>
+<li><strong>Retrieval（检索）</strong>：从外部知识库查询相关信息</li>
+<li><strong>Augmented（增强）</strong>：将检索到的信息添加到提示中作为上下文</li>
+<li><strong>Generation（生成）</strong>：基于增强后的提示生成最终响应</li>
+</ul>
+<h2 id="rag-核心流程">RAG 核心流程</h2>
+<p>RAG 系统遵循五阶段流程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户提交问题 → 检索知识库 → 返回相关信息 → 构建增强提示 → LLM生成响应
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="阶段详解">阶段详解</h3>
+<ol>
+<li><strong>用户提交提示（Prompt）</strong>：用户提出问题或请求</li>
+<li><strong>信息检索（Retrieval）</strong>：检索模型查询知识库，获取相关数据</li>
+<li><strong>信息返回</strong>：从知识库返回相关信息到集成层</li>
+<li><strong>提示增强（Augmentation）</strong>：RAG 系统将原始用户提示与检索到的上下文结合，构建增强提示</li>
+<li><strong>生成响应（Generation）</strong>：LLM 基于增强后的提示生成最终响应，返回给用户</li>
+</ol>
+<h2 id="rag-系统核心组件">RAG 系统核心组件</h2>
+<p>RAG 系统包含四个主要组件：</p>
+<h3 id="1-知识库knowledge-base">1. 知识库（Knowledge Base）</h3>
+<p>知识库是 RAG 系统的外部数据仓库，可以包含多种数据源：</p>
+<ul>
+<li>PDF 文档</li>
+<li>文本文件、指南</li>
+<li>网站内容</li>
+<li>音频文件</li>
+<li>数据库记录</li>
+</ul>
+<p>知识库中的数据需要经过**向量化（Embedding）**处理，转换为数值向量表示，才能进行语义搜索。</p>
+<h3 id="2-检索器retriever">2. 检索器（Retriever）</h3>
+<p>检索器是执行语义搜索的 AI 模型，其工作流程：</p>
+<ol>
+<li>将用户查询转换为向量表示（使用相同的嵌入模型）</li>
+<li>在知识库中搜索相似的向量</li>
+<li>返回最相关的文档片段</li>
+</ol>
+<h3 id="3-集成层integration-layer">3. 集成层（Integration Layer）</h3>
+<p>集成层是 RAG 架构的中心协调器，负责：</p>
+<ul>
+<li>协调各组件之间的数据流动</li>
+<li>构建增强提示（原始查询 + 检索到的上下文）</li>
+<li>提示工程优化</li>
+</ul>
+<p>常用框架：LangChain、LlamaIndex、IBM watsonx Orchestrate</p>
+<h3 id="4-生成器generator">4. 生成器（Generator）</h3>
+<p>生成器通常是预训练的语言模型，如 GPT、Claude、Llama 等。它基于增强后的提示生成输出。</p>
+<h2 id="关键技术细节">关键技术细节</h2>
+<h3 id="向量化与嵌入">向量化与嵌入</h3>
+<p>**向量嵌入（Embedding）**是 RAG 的核心技术之一：</p>
+<ul>
+<li>将文本转换为高维空间中的数值向量</li>
+<li>语义相近的文本在向量空间中距离更近</li>
+<li>支持语义搜索，而非简单的关键词匹配</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">文本 → 嵌入模型 → 向量 → 存储到向量数据库
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分块策略chunking">分块策略（Chunking）</h3>
+<p>由于 LLM 有上下文窗口限制，需要将长文档分割成较小的片段：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定大小分块</td>
+<td>按固定字符数或 token 数分割</td>
+<td>简单文档、初步尝试</td>
+</tr>
+<tr>
+<td>递归字符分割</td>
+<td>按层级分隔符（段落、句子）递归分割</td>
+<td>通用场景</td>
+</tr>
+<tr>
+<td>基于文档结构</td>
+<td>按章节、标题等结构分割</td>
+<td>格式规范的文档</td>
+</tr>
+<tr>
+<td>语义分块</td>
+<td>根据语义边界分割</td>
+<td>追求精度的场景</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分块大小的权衡</strong>：</p>
+<ul>
+<li>分块过大：信息太宽泛，可能无法精确匹配查询</li>
+<li>分块过小：可能丢失语义完整性</li>
+</ul>
+<h3 id="语义搜索">语义搜索</h3>
+<p>语义搜索利用机器学习算法：</p>
+<ul>
+<li>支持海量数据库快速检索</li>
+<li>理解查询意图而非简单关键词匹配</li>
+<li>降低延迟，提升用户体验</li>
+</ul>
+<h2 id="rag-vs-微调fine-tuning">RAG vs 微调（Fine-tuning）</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>RAG</th>
+<th>微调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>知识来源</td>
+<td>外部知识库</td>
+<td>模型参数</td>
+</tr>
+<tr>
+<td>更新方式</td>
+<td>更新知识库</td>
+<td>重新训练模型</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>较低</td>
+<td>较高</td>
+</tr>
+<tr>
+<td>实时性</td>
+<td>支持实时数据</td>
+<td>需要重新训练</td>
+</tr>
+<tr>
+<td>幻觉风险</td>
+<td>可引用源材料验证</td>
+<td>依赖训练数据质量</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>需要最新知识、多种数据源</td>
+<td>需要特定输出风格、模式</td>
+</tr>
+</tbody>
+</table>
+<p>两者可以结合使用：微调提升模型对领域的熟悉程度，RAG 提供实时、权威的参考资料。</p>
+<h2 id="rag-的优势">RAG 的优势</h2>
+<ol>
+<li><strong>成本效益</strong>：无需重新训练模型即可获取新知识</li>
+<li><strong>实时性</strong>：可以访问最新的领域数据</li>
+<li><strong>减少幻觉</strong>：响应基于事实性、权威性的数据</li>
+<li><strong>可引用来源</strong>：用户可以验证和追溯信息来源</li>
+<li><strong>增强开发者控制</strong>：调整数据源比重新训练更灵活</li>
+<li><strong>数据安全</strong>：外部数据与模型分离，可精细控制访问权限</li>
+</ol>
+<h2 id="常见应用场景">常见应用场景</h2>
+<ul>
+<li><strong>专业聊天机器人</strong>：客服机器人访问产品文档、服务政策</li>
+<li><strong>研究助手</strong>：分析文献、整合研究成果</li>
+<li><strong>内容生成</strong>：引用权威来源生成可靠内容</li>
+<li><strong>市场分析</strong>：分析社交媒体趋势、竞品动态</li>
+<li><strong>知识引擎</strong>：企业知识管理、内部文档检索</li>
+<li><strong>推荐系统</strong>：基于用户历史行为推荐商品或内容</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>RAG 是当前 AI 应用中最重要的架构模式之一，它通过将信息检索与语言生成相结合，有效解决了 LLM 的知识时效性、领域专业性和幻觉问题。</p>
+<p>理解 RAG 的核心原理——向量化、分块策略、语义搜索、提示增强——是构建高质量 AI 应用的基础。随着技术的演进，RAG 也在不断发展，从简单的 Naive RAG 到 Advanced RAG 再到 Agentic RAG，能力越来越强大。</p>
+<hr>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a
+  href="https://www.ibm.com/think/topics/retrieval-augmented-generation"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>IBM: What is RAG</a></li>
+<li><a
+  href="https://glyphsignal.com/guides/rag-guide"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>RAG Explained Guide</a></li>
+<li><a
+  href="https://medium.com/@pswaraj0614/a-comprehensive-guide-to-retrieval-augmented-generation-rag-from-naive-pipelines-to-agentic-e26106249eb2"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Comprehensive Guide to RAG</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-02&#32;10:00:00>更新于 2026-04-02&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://111.230.8.71:8889/rag-deep-analysis/" data-title="RAG 深度解读：检索增强生成技术原理与实践"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/rag/">RAG</a>,&nbsp;<a href="/tags/llm/">LLM</a>,&nbsp;<a href="/tags/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">检索增强生成</a>,&nbsp;<a href="/tags/%E5%8E%9F%E7%90%86/">原理</a>,&nbsp;<a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">向量数据库</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/docker-container-basics/" class="prev" rel="prev" title="Docker 容器化入门完全指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Docker 容器化入门完全指南</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
