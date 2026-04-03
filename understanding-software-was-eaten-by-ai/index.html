@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>如何理解纳瓦尔说的 Software was eaten by AI？ - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="深入解析纳瓦尔提出的「Software was eaten by AI」这一深刻洞察，从三个维度理解 AI 如何重塑软件行业" /><meta name="keywords" content='AI, 软件开发, 行业趋势, 纳瓦尔, LLM' /><meta itemprop="name" content="如何理解纳瓦尔说的 Software was eaten by AI？">
+<meta itemprop="description" content="深入解析纳瓦尔提出的「Software was eaten by AI」这一深刻洞察，从三个维度理解 AI 如何重塑软件行业"><meta itemprop="datePublished" content="2026-04-03T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T10:00:00+08:00" />
+<meta itemprop="wordCount" content="167"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="AI,软件开发,行业趋势,纳瓦尔,LLM," /><meta property="og:title" content="如何理解纳瓦尔说的 Software was eaten by AI？" />
+<meta property="og:description" content="深入解析纳瓦尔提出的「Software was eaten by AI」这一深刻洞察，从三个维度理解 AI 如何重塑软件行业" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="如何理解纳瓦尔说的 Software was eaten by AI？"/>
+<meta name="twitter:description" content="深入解析纳瓦尔提出的「Software was eaten by AI」这一深刻洞察，从三个维度理解 AI 如何重塑软件行业"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><link rel="prev" href="https://cfanzp008.github.io/iperf3-usage-and-scenarios/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "如何理解纳瓦尔说的 Software was eaten by AI？",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/understanding-software-was-eaten-by-ai\/"
+    },"genre": "posts","keywords": "AI, 软件开发, 行业趋势, 纳瓦尔, LLM","wordcount":  167 ,
+    "url": "https:\/\/cfanzp008.github.io\/understanding-software-was-eaten-by-ai\/","datePublished": "2026-04-03T10:00:00+08:00","dateModified": "2026-04-03T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "深入解析纳瓦尔提出的「Software was eaten by AI」这一深刻洞察，从三个维度理解 AI 如何重塑软件行业"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>如何理解纳瓦尔说的 Software was eaten by AI？</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 167 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="如何理解纳瓦尔说的 Software was eaten by AI？">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景一场跨越十三年的范式升级">背景：一场跨越十三年的范式升级</a></li>
+    <li><a href="#一从确定性逻辑到概率性生成">一、从确定性逻辑到概率性生成</a>
+      <ul>
+        <li><a href="#旧世界软件是规则的集合">旧世界：软件是规则的集合</a></li>
+        <li><a href="#新世界ai-是生长出来的">新世界：AI 是&quot;生长&quot;出来的</a></li>
+      </ul>
+    </li>
+    <li><a href="#二软件的边际成本从低变为零">二、软件的边际成本：从&quot;低&quot;变为&quot;零&quot;</a>
+      <ul>
+        <li><a href="#以前的困境">以前的困境</a></li>
+        <li><a href="#ai-带来的变革">AI 带来的变革</a></li>
+      </ul>
+    </li>
+    <li><a href="#三编程语言的终极演变英语是新的编程语言">三、编程语言的终极演变：英语是新的编程语言</a>
+      <ul>
+        <li><a href="#软件时代人适应机器">软件时代：人适应机器</a></li>
+        <li><a href="#ai-时代机器适应人">AI 时代：机器适应人</a></li>
+      </ul>
+    </li>
+    <li><a href="#四对行业格局的重塑">四、对行业格局的重塑</a>
+      <ul>
+        <li><a href="#从-saas-到-service-as-a-software">从 SaaS 到 Service-as-a-Software</a></li>
+        <li><a href="#一人公司的兴起">一人公司的兴起</a></li>
+        <li><a href="#代码的平民化">代码的平民化</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结被吞噬的不是软件而是软件作为壁垒的价值">总结：被吞噬的，不是软件，而是软件作为壁垒的价值</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="如何理解纳瓦尔说的-software-was-eaten-by-ai">如何理解纳瓦尔说的 Software was eaten by AI？</h1>
+<h2 id="背景一场跨越十三年的范式升级">背景：一场跨越十三年的范式升级</h2>
+<p>2011年，马克·安德森（Marc Andreessen）提出了那句著名的论断——&ldquo;Software is eating the world&rdquo;（软件正在吞噬世界）。十三年后，纳瓦尔·拉维坎特（Naval Ravikant）给出了他的回应：&ldquo;Software was eaten by AI&rdquo;（软件被 AI 吞噬了）。</p>
+<p>这不仅仅是一句话的更新，而是整个时代范式的升级。安德森说的是软件作为一种商业模式如何征服世界，而纳瓦尔说的是软件作为一门生意的根基如何被彻底动摇。</p>
+<p>理解这句话，需要从三个维度来看：生产逻辑、交付逻辑、以及价值中心的转移。</p>
+<h2 id="一从确定性逻辑到概率性生成">一、从确定性逻辑到概率性生成</h2>
+<h3 id="旧世界软件是规则的集合">旧世界：软件是规则的集合</h3>
+<p>传统的软件开发本质上是规则的集合。程序员编写 if-else 语句，编译器将这些规则转化为机器可执行的指令。整个过程是确定性的——相同的输入必然产生相同的输出。</p>
+<p>在那个世界里，软件是昂贵的&quot;复杂建筑&quot;：</p>
+<ul>
+<li>你需要雇佣高薪的程序员</li>
+<li>需要花费数月时间敲代码、Debug</li>
+<li>构建出一个僵硬的系统</li>
+<li>任何需求变更都意味着重新编写代码</li>
+</ul>
+<p>软件工程师就像传统的手工艺人，每一行代码都是精心雕琢的作品。</p>
+<h3 id="新世界ai-是生长出来的">新世界：AI 是&quot;生长&quot;出来的</h3>
+<p>当 AI 介入后，一切都变了。我们不再通过编写规则来解决问题，而是通过数据训练模型，让它自己生成结果。</p>
+<p>这种转变是根本性的：</p>
+<ul>
+<li><strong>不再需要明确的规则</strong>：AI 通过海量数据学习模式，能够处理从未见过的场景</li>
+<li><strong>结果是概率性的</strong>：同样的输入可能产生不同的输出，但质量往往更高</li>
+<li><strong>系统是弹性的</strong>：模型可以自适应，而不需要手动修改代码</li>
+</ul>
+<p>当纳瓦尔说&quot;AI 吞噬了软件&quot;，他意味着软件的构建块正在发生质变。未来的软件不再是由数百万行手写代码组成的，而是由几个核心算法（AI）和海量推理构成的。</p>
+<h2 id="二软件的边际成本从低变为零">二、软件的边际成本：从&quot;低&quot;变为&quot;零&quot;</h2>
+<p>安德森说&quot;软件吞噬世界&quot;，是因为软件的复制成本几乎为零——一份软件可以无限复制而不需要额外成本。这是 SaaS（软件即服务）商业模式成立的基础。</p>
+<p>但纳瓦尔看到了更深层的变革：<strong>定制化软件的生产成本正在归零。</strong></p>
+<h3 id="以前的困境">以前的困境</h3>
+<p>以前，如果你需要一个特定的功能，你有两个选择：</p>
+<ol>
+<li><strong>购买通用软件</strong>：承担高昂的许可费用，接受固定的功能集合</li>
+<li><strong>雇人开发</strong>：等待数周甚至数月，承担巨大的开发成本</li>
+</ol>
+<p>软件产品本质上是一种&quot;刚性&quot;商品——你想要灵活性，就要付出额外代价。</p>
+<h3 id="ai-带来的变革">AI 带来的变革</h3>
+<p>现在，AI（如 LLM）可以根据你的自然语言需求：</p>
+<ul>
+<li>实时生成代码</li>
+<li>直接提供解决方案</li>
+<li>动态调整输出以匹配你的意图</li>
+</ul>
+<p>这意味着：</p>
+<ul>
+<li><strong>软件产品正在贬值</strong>：用户不再需要一个固定的界面和功能列表</li>
+<li><strong>推理能力正在升值</strong>：真正值钱的变成了&quot;解决问题的能力&quot;</li>
+</ul>
+<p>这解释了为什么传统的 SaaS 面临巨大的挑战——用户不再需要一个固定的软件产品，而是需要一个能随时理解意图并交付结果的智能体（Agent）。</p>
+<h2 id="三编程语言的终极演变英语是新的编程语言">三、编程语言的终极演变：英语是新的编程语言</h2>
+<h3 id="软件时代人适应机器">软件时代：人适应机器</h3>
+<p>在过去五十年里，学习编程意味着要适应机器的思维方式：</p>
+<ul>
+<li>学习 Java、Python、C++ 的语法</li>
+<li>理解数据结构、算法、面向对象</li>
+<li>掌握编译原理、操作系统、计算机网络</li>
+</ul>
+<p>编程是一项需要长时间训练的专业技能。程序员和非程序员之间有一条清晰的鸿沟。</p>
+<h3 id="ai-时代机器适应人">AI 时代：机器适应人</h3>
+<p>纳瓦尔认为，当 AI 可以理解自然语言并自主生成逻辑时，传统的&quot;软件开发&quot;作为一种壁垒就消失了。</p>
+<p>核心逻辑是：<strong>如果 AI 可以比人类更快、更好、更便宜地写出软件，那么&quot;写软件&quot;这个行为本身就不再具有稀缺性。</strong></p>
+<p>这意味着：</p>
+<ul>
+<li><strong>英语成为新的编程语言</strong>：用自然语言描述需求，AI 帮你实现</li>
+<li><strong>Prompt Engineering 取代编码</strong>：如何向 AI 提问变得比如何写代码更重要</li>
+<li><strong>人人都是开发者</strong>：不需要十年寒窗，也能构建软件</li>
+</ul>
+<h2 id="四对行业格局的重塑">四、对行业格局的重塑</h2>
+<p>纳瓦尔的这句话预示了以下几个重大转变：</p>
+<h3 id="从-saas-到-service-as-a-software">从 SaaS 到 Service-as-a-Software</h3>
+<p>以前是卖软件，用户需要安装、学习、使用一个完整的产品。</p>
+<p>未来是利用 AI 直接交付结果：</p>
+<ul>
+<li>不再卖翻译软件，而是直接提供精准的翻译服务</li>
+<li>不再卖图像处理软件，而是直接帮你完成修图</li>
+<li>不再卖数据分析软件，而是直接给你 insights</li>
+</ul>
+<p>软件从&quot;产品&quot;变成了&quot;服务&quot;——用户要的是结果，不是工具。</p>
+<h3 id="一人公司的兴起">一人公司的兴起</h3>
+<p>由于 AI 承担了原本需要几十个程序员完成的&quot;软件构建&quot;工作，一个有想法的个体可以凭借 AI 撬动巨大的生产力。</p>
+<p>这不再是梦想，而是正在发生的事情：</p>
+<ul>
+<li>一个产品经理可以用 AI 完成原型设计和开发</li>
+<li>一个运营可以自己搭建数据看板</li>
+<li>一个创业者可以独自完成整个产品的构建</li>
+</ul>
+<h3 id="代码的平民化">代码的平民化</h3>
+<p>软件不再是程序员的特权，而是像电力一样随处可见、随手可得的底层资源。</p>
+<p>每个人都可以成为自己领域的&quot;开发者&quot;，用自然语言指挥 AI 完成以前需要专业技能才能完成的工作。</p>
+<h2 id="总结被吞噬的不是软件而是软件作为壁垒的价值">总结：被吞噬的，不是软件，而是软件作为壁垒的价值</h2>
+<p>&ldquo;Software was eaten by AI&rdquo; 并不是说软件消失了，而是说软件作为一种独立的竞争优势消失了。</p>
+<p>就像当年工业革命中，&ldquo;体力&quot;被&quot;机器&quot;吞噬了一样——体力依然存在，但它不再是核心竞争力。</p>
+<p>现在的软件正在变成 AI 的&quot;外壳&quot;或&quot;载体&rdquo;，真正的灵魂和价值已经转移到了模型、数据和算力所驱动的智能推理中。</p>
+<blockquote>
+<p>你现在看那些传统的、只有简单增删改查功能的工具软件，是不是已经觉得它们像上个世纪的产物了？这就是被&quot;吞噬&quot;的感知。</p>
+</blockquote>
+<p>当 AI 可以帮你写代码、调试程序、设计架构时，程序员的核心价值不再是&quot;写代码&quot;本身，而是：</p>
+<ul>
+<li>如何定义问题</li>
+<li>如何设计解决方案</li>
+<li>如何与 AI 协作</li>
+</ul>
+<p>这是最好的时代，也是最坏的时代——取决于你站在哪一边。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li>Naval Ravikant 的 Twitter/X 原话和相关访谈</li>
+<li>Marc Andreessen 的 &ldquo;Why Software Is Eating the World&rdquo; 文章</li>
+<li>Andreessen Horowitz 关于 AI 时代的分析</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;10:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" data-title="如何理解纳瓦尔说的 Software was eaten by AI？"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>,&nbsp;<a href="/tags/%E8%A1%8C%E4%B8%9A%E8%B6%8B%E5%8A%BF/">行业趋势</a>,&nbsp;<a href="/tags/%E7%BA%B3%E7%93%A6%E5%B0%94/">纳瓦尔</a>,&nbsp;<a href="/tags/llm/">LLM</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/iperf3-usage-and-scenarios/" class="prev" rel="prev" title="iperf3 网络带宽测试工具用法及使用场景"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>iperf3 网络带宽测试工具用法及使用场景</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
