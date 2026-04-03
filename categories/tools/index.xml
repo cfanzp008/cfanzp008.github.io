@@ -4,7 +4,29 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 17:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>RustDesk：开源远程桌面解决方案</title>
+  <link>https://cfanzp008.github.io/rustdesk-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 17:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/rustdesk-introduction/</guid>
+  <description><![CDATA[RustDesk：开源远程桌面解决方案 什么是 RustDesk RustDesk 是一个用 Rust 语言编写的开源远程桌面软件，旨在为用户提供一个安全、可靠且可自托管的远程访问解决方案。它可以完美替代 TeamViewer、AnyDesk、Splashtop 等商业远程桌面工具。
+该项目在 GitHub 上已获得 106,000+ 颗星，拥有超过 3000 万次客户端下载和 1000 万次 Docker 下载，是目前最受欢迎的开源远程桌面项目之一。
+核心特性 1. 开源免费 完全开源，可以免费使用 代码透明，无后门 社区活跃，持续更新 2. 自托管部署 可以部署自己的服务器 数据完全可控 无需依赖第三方服务 3. 跨平台支持 Windows macOS Linux Android iOS（通过 Web 客户端） 4. 高性能 使用 Rust 编写，性能优异 低延迟、高帧率 支持多种编码器 5. 企业级功能（Pro 版本） 用户级 ACL 设备分组管理 自定义品牌 90+ 配置选项 快速开始 方式一：直接使用（无需自托管） 如果你只是需要远程访问，可以直接下载客户端：
+访问 GitHub Releases 下载对应平台的安装包 安装并运行 客户端会自动连接到 RustDesk 的公共服务器，可以直接通过 ID 进行连接。
+方式二：自托管服务器 如果你需要更好的隐私和可控性，可以部署自己的服务器。]]></description>
+</item>
+<item>
+  <title>MiniMax AI 平台全面介绍</title>
+  <link>https://cfanzp008.github.io/minimax-platform-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 16:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/minimax-platform-introduction/</guid>
+  <description><![CDATA[MiniMax AI 平台全面介绍 什么是 MiniMax MiniMax 是由稀宇科技开发的 AI 平台，提供从文本到语音、视频、音乐的全模态 AI 能力。该平台在编程、多模态理解、Agent 能力等方面表现出色，是国内领先的 AI 大模型提供商之一。
+MiniMax 的核心理念是&quot;让 AI 能力触手可及&quot;，通过提供高性价比的 API 服务，让开发者能够轻松构建 AI 应用。
+模型矩阵 文本模型 模型 上下文窗口 特点 MiniMax-M2.7 200K 最新旗舰模型，编程和 Agent 能力 SOTA MiniMax-M2.5 200K 编程能力突出，SWE-Bench 得分 80.2% MiniMax-M2.5-Lightlight 200K 轻量版本，性价比更高 MiniMax-M2.1 200K 多语言编程大师 MiniMax-M2 200K Agent 能力，先进推理 语音模型 MiniMax Speech 2.6：最新语音合成模型 MiniMax Speech 2.5：高质量语音输出 视频模型 MiniMax Hailuo 2.3：视频生成模型 MiniMax Hailuo 2.3 Fast：快速生成版本 其他模态 图片生成 音乐生成 核心能力 1. 编程能力 MiniMax-M2.5 在编程领域表现突出：]]></description>
+</item>
+<item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -105,22 +127,6 @@ Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的
   <pubDate>Mon, 10 Jun 2024 00:32:27 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp008.github.io/ssh-tools/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Tig</title>
-  <link>https://cfanzp008.github.io/tig/</link>
-  <pubDate>Thu, 02 May 2024 21:42:33 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/tig/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>电烙铁</title>
-  <link>https://cfanzp008.github.io/electric-iron/</link>
-  <pubDate>Mon, 11 Mar 2024 22:58:28 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/electric-iron/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

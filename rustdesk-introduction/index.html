@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>RustDesk：开源远程桌面解决方案 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 RustDesk 开源远程桌面软件的功能特性、安装配置和使用方法" /><meta name="keywords" content='RustDesk, 远程桌面, 开源, Rust, 远程办公' /><meta itemprop="name" content="RustDesk：开源远程桌面解决方案">
+<meta itemprop="description" content="详细介绍 RustDesk 开源远程桌面软件的功能特性、安装配置和使用方法"><meta itemprop="datePublished" content="2026-04-03T17:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T17:00:00+08:00" />
+<meta itemprop="wordCount" content="329"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="RustDesk,远程桌面,开源,Rust,远程办公," /><meta property="og:title" content="RustDesk：开源远程桌面解决方案" />
+<meta property="og:description" content="详细介绍 RustDesk 开源远程桌面软件的功能特性、安装配置和使用方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/rustdesk-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T17:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T17:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="RustDesk：开源远程桌面解决方案"/>
+<meta name="twitter:description" content="详细介绍 RustDesk 开源远程桌面软件的功能特性、安装配置和使用方法"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/rustdesk-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/minimax-platform-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "RustDesk：开源远程桌面解决方案",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/rustdesk-introduction\/"
+    },"genre": "posts","keywords": "RustDesk, 远程桌面, 开源, Rust, 远程办公","wordcount":  329 ,
+    "url": "https:\/\/cfanzp008.github.io\/rustdesk-introduction\/","datePublished": "2026-04-03T17:00:00+08:00","dateModified": "2026-04-03T17:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 RustDesk 开源远程桌面软件的功能特性、安装配置和使用方法"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>RustDesk：开源远程桌面解决方案</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;17:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 329 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="RustDesk：开源远程桌面解决方案">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-rustdesk">什么是 RustDesk</a></li>
+    <li><a href="#核心特性">核心特性</a>
+      <ul>
+        <li><a href="#1-开源免费">1. 开源免费</a></li>
+        <li><a href="#2-自托管部署">2. 自托管部署</a></li>
+        <li><a href="#3-跨平台支持">3. 跨平台支持</a></li>
+        <li><a href="#4-高性能">4. 高性能</a></li>
+        <li><a href="#5-企业级功能pro-版本">5. 企业级功能（Pro 版本）</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速开始">快速开始</a>
+      <ul>
+        <li><a href="#方式一直接使用无需自托管">方式一：直接使用（无需自托管）</a></li>
+        <li><a href="#方式二自托管服务器">方式二：自托管服务器</a>
+          <ul>
+            <li><a href="#步骤-1安装-docker">步骤 1：安装 Docker</a></li>
+            <li><a href="#步骤-2下载配置文件">步骤 2：下载配置文件</a></li>
+            <li><a href="#步骤-3启动服务">步骤 3：启动服务</a></li>
+          </ul>
+        </li>
+        <li><a href="#客户端配置">客户端配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#基本使用方法">基本使用方法</a>
+      <ul>
+        <li><a href="#1-获取设备-id">1. 获取设备 ID</a></li>
+        <li><a href="#2-远程连接">2. 远程连接</a></li>
+        <li><a href="#3-传输文件">3. 传输文件</a></li>
+        <li><a href="#4-远程打印">4. 远程打印</a></li>
+        <li><a href="#5-语音通话">5. 语音通话</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令行参数">命令行参数</a></li>
+    <li><a href="#安全配置">安全配置</a>
+      <ul>
+        <li><a href="#1-设置密码">1. 设置密码</a></li>
+        <li><a href="#2-ip-白名单">2. IP 白名单</a></li>
+        <li><a href="#3-加密连接">3. 加密连接</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能优化">性能优化</a>
+      <ul>
+        <li><a href="#1-编码器选择">1. 编码器选择</a></li>
+        <li><a href="#2-帧率设置">2. 帧率设置</a></li>
+        <li><a href="#3-分辨率">3. 分辨率</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#1-连接不上">1. 连接不上</a></li>
+        <li><a href="#2-延迟高">2. 延迟高</a></li>
+        <li><a href="#3-无法发现设备">3. 无法发现设备</a></li>
+        <li><a href="#4-需要获得管理员权限">4. 需要获得管理员权限</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用场景">使用场景</a></li>
+    <li><a href="#对比商业方案">对比商业方案</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="rustdesk开源远程桌面解决方案">RustDesk：开源远程桌面解决方案</h1>
+<h2 id="什么是-rustdesk">什么是 RustDesk</h2>
+<p>RustDesk 是一个用 Rust 语言编写的开源远程桌面软件，旨在为用户提供一个安全、可靠且可自托管的远程访问解决方案。它可以完美替代 TeamViewer、AnyDesk、Splashtop 等商业远程桌面工具。</p>
+<p>该项目在 GitHub 上已获得 106,000+ 颗星，拥有超过 3000 万次客户端下载和 1000 万次 Docker 下载，是目前最受欢迎的开源远程桌面项目之一。</p>
+<h2 id="核心特性">核心特性</h2>
+<h3 id="1-开源免费">1. 开源免费</h3>
+<ul>
+<li>完全开源，可以免费使用</li>
+<li>代码透明，无后门</li>
+<li>社区活跃，持续更新</li>
+</ul>
+<h3 id="2-自托管部署">2. 自托管部署</h3>
+<ul>
+<li>可以部署自己的服务器</li>
+<li>数据完全可控</li>
+<li>无需依赖第三方服务</li>
+</ul>
+<h3 id="3-跨平台支持">3. 跨平台支持</h3>
+<ul>
+<li>Windows</li>
+<li>macOS</li>
+<li>Linux</li>
+<li>Android</li>
+<li>iOS（通过 Web 客户端）</li>
+</ul>
+<h3 id="4-高性能">4. 高性能</h3>
+<ul>
+<li>使用 Rust 编写，性能优异</li>
+<li>低延迟、高帧率</li>
+<li>支持多种编码器</li>
+</ul>
+<h3 id="5-企业级功能pro-版本">5. 企业级功能（Pro 版本）</h3>
+<ul>
+<li>用户级 ACL</li>
+<li>设备分组管理</li>
+<li>自定义品牌</li>
+<li>90+ 配置选项</li>
+</ul>
+<h2 id="快速开始">快速开始</h2>
+<h3 id="方式一直接使用无需自托管">方式一：直接使用（无需自托管）</h3>
+<p>如果你只是需要远程访问，可以直接下载客户端：</p>
+<ol>
+<li>访问 <a
+  href="https://github.com/rustdesk/rustdesk/releases/latest"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>GitHub Releases</a></li>
+<li>下载对应平台的安装包</li>
+<li>安装并运行</li>
+</ol>
+<p>客户端会自动连接到 RustDesk 的公共服务器，可以直接通过 ID 进行连接。</p>
+<h3 id="方式二自托管服务器">方式二：自托管服务器</h3>
+<p>如果你需要更好的隐私和可控性，可以部署自己的服务器。</p>
+<h4 id="步骤-1安装-docker">步骤 1：安装 Docker</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bash &lt;<span class="o">(</span>wget -qO- https://get.docker.com<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="步骤-2下载配置文件">步骤 2：下载配置文件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 开源版</span>
+</span></span><span class="line"><span class="cl">wget rustdesk.com/oss.yml -O compose.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Pro 版</span>
+</span></span><span class="line"><span class="cl">wget rustdesk.com/pro.yml -O compose.yml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="步骤-3启动服务">步骤 3：启动服务</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务器默认监听以下端口：</p>
+<ul>
+<li>21116：TCP - ID/Rendezvous 服务器</li>
+<li>21117：TCP - NAT 类型测试</li>
+<li>21118：TCP - 中继服务器</li>
+<li>21119：TCP - WebSocket</li>
+<li>21115：UDP - 局域网发现</li>
+</ul>
+<h3 id="客户端配置">客户端配置</h3>
+<p>修改客户端的设置，指向你的自托管服务器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设置 → 网络 → 自定义服务器
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输入你的服务器地址即可。</p>
+<h2 id="基本使用方法">基本使用方法</h2>
+<h3 id="1-获取设备-id">1. 获取设备 ID</h3>
+<p>安装并运行 RustDesk 后，每个设备都有一个唯一的 ID。</p>
+<h3 id="2-远程连接">2. 远程连接</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 方式一：使用 ID 直接连接</span>
+</span></span><span class="line"><span class="cl">rustdesk://123456789
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方式二：通过客户端界面</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入对方 ID → 点击连接 → 输入密码</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-传输文件">3. 传输文件</h3>
+<ul>
+<li>左侧菜单点击&quot;文件&quot;</li>
+<li>选择要传输的文件</li>
+<li>支持拖拽上传</li>
+</ul>
+<h3 id="4-远程打印">4. 远程打印</h3>
+<p>配置后可以直接使用本地打印机。</p>
+<h3 id="5-语音通话">5. 语音通话</h3>
+<p>支持低延迟语音通话。</p>
+<h2 id="命令行参数">命令行参数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 指定自定义服务器</span>
+</span></span><span class="line"><span class="cl">rustdesk --server 192.168.1.100:21116
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定中继服务器</span>
+</span></span><span class="line"><span class="cl">rustdesk --relay 192.168.1.100:21118
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 静默启动</span>
+</span></span><span class="line"><span class="cl">rustdesk --silent
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看帮助</span>
+</span></span><span class="line"><span class="cl">rustdesk --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安全配置">安全配置</h2>
+<h3 id="1-设置密码">1. 设置密码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">设置 → 安全 → 设备密码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-ip-白名单">2. IP 白名单</h3>
+<p>在服务器配置中设置允许的 IP 列表。</p>
+<h3 id="3-加密连接">3. 加密连接</h3>
+<p>RustDesk 默认使用加密传输，确保数据安全。</p>
+<h2 id="性能优化">性能优化</h2>
+<h3 id="1-编码器选择">1. 编码器选择</h3>
+<ul>
+<li><strong>AV1</strong>：最高画质，最低带宽（推荐）</li>
+<li><strong>H.264</strong>：兼容性最好</li>
+<li><strong>RAW</strong>：最低延迟</li>
+</ul>
+<h3 id="2-帧率设置">2. 帧率设置</h3>
+<p>根据网络状况调整帧率：</p>
+<ul>
+<li>网络良好：60 FPS</li>
+<li>网络一般：30 FPS</li>
+<li>网络较差：15 FPS</li>
+</ul>
+<h3 id="3-分辨率">3. 分辨率</h3>
+<p>可以手动调整远程桌面分辨率以优化性能。</p>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="1-连接不上">1. 连接不上</h3>
+<ul>
+<li>检查防火墙是否放行相应端口</li>
+<li>确认服务器是否正常运行</li>
+<li>检查网络是否可达</li>
+</ul>
+<h3 id="2-延迟高">2. 延迟高</h3>
+<ul>
+<li>尝试使用中继服务器</li>
+<li>选择更靠近的服务器</li>
+<li>检查网络质量</li>
+</ul>
+<h3 id="3-无法发现设备">3. 无法发现设备</h3>
+<ul>
+<li>确保在同一网络或通过 ID 连接</li>
+<li>检查 NAT 类型</li>
+</ul>
+<h3 id="4-需要获得管理员权限">4. 需要获得管理员权限</h3>
+<p>Linux 上运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo rustdesk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用场景">使用场景</h2>
+<p>根据 RustDesk 官方调查，自托管用户的使用场景分布：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IT 支持</td>
+<td>37%</td>
+</tr>
+<tr>
+<td>远程办公</td>
+<td>29%</td>
+</tr>
+<tr>
+<td>IT 运维</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>工业及其他</td>
+<td>9%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="对比商业方案">对比商业方案</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>RustDesk</th>
+<th>TeamViewer</th>
+<th>AnyDesk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格</td>
+<td>免费/开源</td>
+<td>昂贵</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>自托管</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>跨平台</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>开源</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>隐私</td>
+<td>✅</td>
+<td>⚠️</td>
+<td>⚠️</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>RustDesk 是一个功能强大且完全免费的开源远程桌面解决方案。它适合：</p>
+<ul>
+<li><strong>个人用户</strong>：需要远程协助或远程办公</li>
+<li><strong>中小企业</strong>：需要安全可控的远程支持方案</li>
+<li><strong>IT 专业人员</strong>：需要灵活的工具进行远程维护</li>
+</ul>
+<p>如果你厌倦了商业远程桌面软件的各种限制和高昂费用，RustDesk 是一个值得尝试的选择。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>GitHub：https://github.com/rustdesk/rustdesk</li>
+<li>官网：https://rustdesk.com/</li>
+<li>官方文档：https://rustdesk.com/docs/</li>
+<li>论坛：https://github.com/rustdesk/rustdesk/discussions</li>
+<li>Discord：https://discord.gg/nDceKgxnkV</li>
+<li>Reddit：https://www.reddit.com/r/rustdesk/</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：请仅从 rustdesk.com 和 GitHub 官方仓库下载软件，谨防仿冒站点。</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;17:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/rustdesk-introduction/" data-title="RustDesk：开源远程桌面解决方案"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rustdesk/">RustDesk</a>,&nbsp;<a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">远程桌面</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/rust/">rust</a>,&nbsp;<a href="/tags/%E8%BF%9C%E7%A8%8B%E5%8A%9E%E5%85%AC/">远程办公</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/minimax-platform-introduction/" class="prev" rel="prev" title="MiniMax AI 平台全面介绍"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>MiniMax AI 平台全面介绍</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

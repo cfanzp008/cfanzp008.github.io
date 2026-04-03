@@ -4,7 +4,19 @@
     <link>https://cfanzp008.github.io/tags/rust/</link>
     <description>rust - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/rust/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 17:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/rust/" rel="self" type="application/rss+xml" /><item>
+  <title>RustDesk：开源远程桌面解决方案</title>
+  <link>https://cfanzp008.github.io/rustdesk-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 17:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/rustdesk-introduction/</guid>
+  <description><![CDATA[RustDesk：开源远程桌面解决方案 什么是 RustDesk RustDesk 是一个用 Rust 语言编写的开源远程桌面软件，旨在为用户提供一个安全、可靠且可自托管的远程访问解决方案。它可以完美替代 TeamViewer、AnyDesk、Splashtop 等商业远程桌面工具。
+该项目在 GitHub 上已获得 106,000+ 颗星，拥有超过 3000 万次客户端下载和 1000 万次 Docker 下载，是目前最受欢迎的开源远程桌面项目之一。
+核心特性 1. 开源免费 完全开源，可以免费使用 代码透明，无后门 社区活跃，持续更新 2. 自托管部署 可以部署自己的服务器 数据完全可控 无需依赖第三方服务 3. 跨平台支持 Windows macOS Linux Android iOS（通过 Web 客户端） 4. 高性能 使用 Rust 编写，性能优异 低延迟、高帧率 支持多种编码器 5. 企业级功能（Pro 版本） 用户级 ACL 设备分组管理 自定义品牌 90+ 配置选项 快速开始 方式一：直接使用（无需自托管） 如果你只是需要远程访问，可以直接下载客户端：
+访问 GitHub Releases 下载对应平台的安装包 安装并运行 客户端会自动连接到 RustDesk 的公共服务器，可以直接通过 ID 进行连接。
+方式二：自托管服务器 如果你需要更好的隐私和可控性，可以部署自己的服务器。]]></description>
+</item>
+<item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
