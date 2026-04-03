@@ -4,7 +4,18 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>AI - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
+  <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/zeroclaw-introduction/</guid>
+  <description><![CDATA[ZeroClaw：超轻量级 AI 助手基础设施 什么是 ZeroClaw ZeroClaw 是一个用 Rust 编写的下一代 AI 助手框架，致力于提供&quot;零开销、零妥协&quot;的解决方案。它可以在仅 10 美元的硬件上运行，内存占用少于 5MB，比同类产品节省 99% 的资源。
+该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。
+核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
+核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
+</item>
+<item>
   <title>如何理解纳瓦尔说的 Software was eaten by AI？</title>
   <link>https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/</link>
   <pubDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</pubDate>

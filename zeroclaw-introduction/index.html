@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ZeroClaw：超轻量级 AI 助手基础设施 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点" /><meta name="keywords" content='ZeroClaw, AI, Rust, 助手, 开源' /><meta itemprop="name" content="ZeroClaw：超轻量级 AI 助手基础设施">
+<meta itemprop="description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点"><meta itemprop="datePublished" content="2026-04-03T14:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T14:00:00+08:00" />
+<meta itemprop="wordCount" content="359"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="ZeroClaw,AI,Rust,助手,开源," /><meta property="og:title" content="ZeroClaw：超轻量级 AI 助手基础设施" />
+<meta property="og:description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/zeroclaw-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T14:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T14:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="ZeroClaw：超轻量级 AI 助手基础设施"/>
+<meta name="twitter:description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/zeroclaw-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ZeroClaw：超轻量级 AI 助手基础设施",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/zeroclaw-introduction\/"
+    },"genre": "posts","keywords": "ZeroClaw, AI, Rust, 助手, 开源","wordcount":  359 ,
+    "url": "https:\/\/cfanzp008.github.io\/zeroclaw-introduction\/","datePublished": "2026-04-03T14:00:00+08:00","dateModified": "2026-04-03T14:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ZeroClaw：超轻量级 AI 助手基础设施</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;14:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 359 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ZeroClaw：超轻量级 AI 助手基础设施">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-zeroclaw">什么是 ZeroClaw</a></li>
+    <li><a href="#核心特性">核心特性</a>
+      <ul>
+        <li><a href="#-极致性能">🚀 极致性能</a></li>
+        <li><a href="#-超轻量级">📦 超轻量级</a></li>
+        <li><a href="#-可插拔架构">🔌 可插拔架构</a></li>
+        <li><a href="#-广泛的平台支持">🌐 广泛的平台支持</a></li>
+        <li><a href="#-内存安全">🔒 内存安全</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速开始">快速开始</a>
+      <ul>
+        <li><a href="#安装推荐">安装（推荐）</a>
+          <ul>
+            <li><a href="#homebrewmacoslinux">Homebrew（macOS/Linux）</a></li>
+            <li><a href="#一键引导">一键引导</a></li>
+          </ul>
+        </li>
+        <li><a href="#基本命令">基本命令</a></li>
+        <li><a href="#配置示例">配置示例</a></li>
+      </ul>
+    </li>
+    <li><a href="#架构设计">架构设计</a>
+      <ul>
+        <li><a href="#核心组件">核心组件</a></li>
+        <li><a href="#工具系统">工具系统</a></li>
+      </ul>
+    </li>
+    <li><a href="#安全特性">安全特性</a>
+      <ul>
+        <li><a href="#自主级别">自主级别</a></li>
+        <li><a href="#安全机制">安全机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-控制台">Web 控制台</a></li>
+    <li><a href="#从-openclaw-迁移">从 OpenClaw 迁移</a></li>
+    <li><a href="#适用场景">适用场景</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="zeroclaw超轻量级-ai-助手基础设施">ZeroClaw：超轻量级 AI 助手基础设施</h1>
+<h2 id="什么是-zeroclaw">什么是 ZeroClaw</h2>
+<p>ZeroClaw 是一个用 Rust 编写的下一代 AI 助手框架，致力于提供&quot;零开销、零妥协&quot;的解决方案。它可以在仅 10 美元的硬件上运行，内存占用少于 5MB，比同类产品节省 99% 的资源。</p>
+<p>该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。</p>
+<h2 id="核心特性">核心特性</h2>
+<h3 id="-极致性能">🚀 极致性能</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>ZeroClaw</th>
+<th>OpenClaw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动时间</td>
+<td>&lt; 10ms</td>
+<td>~500ms</td>
+</tr>
+<tr>
+<td>二进制大小</td>
+<td>3.4MB</td>
+<td>~150MB</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>&lt; 5MB</td>
+<td>&gt; 1GB</td>
+</tr>
+<tr>
+<td>安全保证</td>
+<td>Rust 内存安全</td>
+<td>运行时检查</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-超轻量级">📦 超轻量级</h3>
+<ul>
+<li>单一二进制文件，支持 ARM、x86 和 RISC-V 架构</li>
+<li>无运行时依赖，部署简单</li>
+<li>设计目标：10 美元的开发板也能运行</li>
+</ul>
+<h3 id="-可插拔架构">🔌 可插拔架构</h3>
+<p>基于 Rust trait 系统的灵活组件扩展：</p>
+<ul>
+<li><strong>核心层</strong>：基于 trait 的架构、内存安全保证、异步运行时</li>
+<li><strong>AI 适配层</strong>：统一 API 抽象、22+ AI 提供商、灵活切换</li>
+<li><strong>渠道层</strong>：多平台支持、消息路由、事件处理</li>
+</ul>
+<h3 id="-广泛的平台支持">🌐 广泛的平台支持</h3>
+<p><strong>AI 提供商</strong>：</p>
+<ul>
+<li>OpenAI (GPT-4o, o1, o3)</li>
+<li>Anthropic (Claude)</li>
+<li>Google Gemini</li>
+<li>Mistral</li>
+<li>Ollama（本地部署）</li>
+<li>22+ 其他提供商</li>
+</ul>
+<p><strong>通讯平台</strong>：</p>
+<ul>
+<li>WhatsApp、Telegram、Slack、Discord、Signal</li>
+<li>iMessage、Matrix、IRC、Email</li>
+<li>Bluesky、Nostr、Reddit、LinkedIn、Twitter</li>
+<li>DingTalk、Lark、QQ、WeChat Work</li>
+<li>MQTT、WebSocket</li>
+</ul>
+<h3 id="-内存安全">🔒 内存安全</h3>
+<ul>
+<li>由 Rust 语言保证，无数据竞争，无内存泄漏</li>
+<li>129+ 安全测试集成在 CI 中</li>
+<li>沙箱隔离、路径遍历阻断、命令白名单</li>
+</ul>
+<h2 id="快速开始">快速开始</h2>
+<h3 id="安装推荐">安装（推荐）</h3>
+<h4 id="homebrewmacoslinux">Homebrew（macOS/Linux）</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install zeroclaw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="一键引导">一键引导</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zeroclaw-labs/zeroclaw.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> zeroclaw
+</span></span><span class="line"><span class="cl">./install.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装后会自动运行 <code>zeroclaw onboard</code> 进行配置。</p>
+<h3 id="基本命令">基本命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动网关（Web 服务器 + Web 控制台）</span>
+</span></span><span class="line"><span class="cl">zeroclaw gateway                <span class="c1"># 默认: 127.0.0.1:42617</span>
+</span></span><span class="line"><span class="cl">zeroclaw gateway --port <span class="m">0</span>       <span class="c1"># 随机端口（安全加固）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 与助手对话</span>
+</span></span><span class="line"><span class="cl">zeroclaw agent -m <span class="s2">&#34;Hello, ZeroClaw!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 交互模式</span>
+</span></span><span class="line"><span class="cl">zeroclaw agent
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动完整守护进程</span>
+</span></span><span class="line"><span class="cl">zeroclaw daemon
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看状态</span>
+</span></span><span class="line"><span class="cl">zeroclaw status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行诊断</span>
+</span></span><span class="line"><span class="cl">zeroclaw doctor
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置示例">配置示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 API key 快速配置</span>
+</span></span><span class="line"><span class="cl">./install.sh --api-key <span class="s2">&#34;sk-...&#34;</span> --provider openrouter
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="架构设计">架构设计</h2>
+<h3 id="核心组件">核心组件</h3>
+<ol>
+<li>
+<p><strong>Gateway</strong>：HTTP/WS/SSE 控制平面</p>
+<ul>
+<li>会话管理</li>
+<li>配置管理</li>
+<li>Cron 定时任务</li>
+<li>Webhook</li>
+<li>Web 控制台</li>
+<li>设备配对</li>
+</ul>
+</li>
+<li>
+<p><strong>Agent</strong>：代理编排循环</p>
+<ul>
+<li>工具调度</li>
+<li>提示构建</li>
+<li>消息分类</li>
+<li>内存加载</li>
+</ul>
+</li>
+<li>
+<p><strong>Provider</strong>：AI 提供商适配</p>
+<ul>
+<li>20+ LLM 后端</li>
+<li>故障转移</li>
+<li>重试机制</li>
+</ul>
+</li>
+<li>
+<p><strong>Channel</strong>：消息渠道</p>
+<ul>
+<li>多平台消息接收</li>
+<li>消息路由</li>
+<li>事件处理</li>
+</ul>
+</li>
+</ol>
+<h3 id="工具系统">工具系统</h3>
+<p>内置丰富的工具集：</p>
+<ul>
+<li><strong>核心工具</strong>：shell、文件读写、git 操作、glob 搜索、内容搜索</li>
+<li><strong>Web 工具</strong>：浏览器控制、网页抓取、网页搜索、截图</li>
+<li><strong>集成工具</strong>：Jira、Notion、Google Workspace、Microsoft 365</li>
+<li><strong>MCP</strong>：Model Context Protocol 工具包装器</li>
+<li><strong>调度工具</strong>：cron 定时任务管理</li>
+<li><strong>记忆工具</strong>：recall、store、forget、knowledge</li>
+<li><strong>硬件工具</strong>：ESP32、STM32、Arduino、Raspberry Pi GPIO</li>
+</ul>
+<h2 id="安全特性">安全特性</h2>
+<h3 id="自主级别">自主级别</h3>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReadOnly</td>
+<td>代理只能观察，不能行动</td>
+</tr>
+<tr>
+<td>Supervised（默认）</td>
+<td>代理行动需要中/高风险操作审批</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>代理在策略范围内自主行动</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安全机制">安全机制</h3>
+<ul>
+<li><strong>DM 配对</strong>：默认情况下，未知发送者收到配对码，机器人不处理其消息</li>
+<li><strong>沙箱隔离</strong>：工作区隔离、路径遍历阻断、命令白名单</li>
+<li><strong>禁止路径</strong>：<code>/etc</code>、<code>/root</code>、<code>~/.ssh</code> 等</li>
+<li><strong>速率限制</strong>：最大操作次数/小时，最大成本/天</li>
+<li><strong>审批门控</strong>：中/高风险操作需要交互式审批</li>
+<li><strong>紧急停止</strong>：一键紧急关闭能力</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：请务必从官方仓库（zeroclaw-labs/zeroclaw）获取信息，zeroclaw.org 和 zeroclaw.net 是模仿者站点。</p>
+</blockquote>
+<h2 id="web-控制台">Web 控制台</h2>
+<p>ZeroClaw 内置 React 19 + Vite 6 + Tailwind CSS 4 Web 控制台：</p>
+<ul>
+<li><strong>Dashboard</strong>——系统概览、健康状态、正常运行时间、成本跟踪</li>
+<li><strong>Agent Chat</strong>——与代理交互式聊天</li>
+<li><strong>Memory</strong>——浏览和管理记忆条目</li>
+<li><strong>Config</strong>——查看和编辑配置</li>
+<li><strong>Cron</strong>——管理定时任务</li>
+<li><strong>Tools</strong>——浏览可用工具</li>
+<li><strong>Logs</strong>——查看代理活动日志</li>
+<li><strong>Cost</strong>——令牌使用和成本跟踪</li>
+<li><strong>Doctor</strong>——系统健康诊断</li>
+<li><strong>Pairing</strong>——设备配对管理</li>
+</ul>
+<h2 id="从-openclaw-迁移">从 OpenClaw 迁移</h2>
+<p>ZeroClaw 可以导入 OpenClaw 的工作区、记忆和配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 预览迁移内容（安全，只读）</span>
+</span></span><span class="line"><span class="cl">zeroclaw migrate openclaw --dry-run
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行迁移</span>
+</span></span><span class="line"><span class="cl">zeroclaw migrate openclaw
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这会将记忆条目、工作区文件和配置从 <code>~/.openclaw/</code> 迁移到 <code>~/.zeroclaw/</code>，配置会自动从 JSON 转换为 TOML。</p>
+<h2 id="适用场景">适用场景</h2>
+<ol>
+<li><strong>个人 AI 助手</strong>：在本地设备上运行，保护隐私</li>
+<li><strong>嵌入式 AI</strong>：10 美元的开发板即可部署</li>
+<li><strong>企业集成</strong>：多渠道接入，统一管理</li>
+<li><strong>硬件控制</strong>：连接 ESP32、Arduino 等微控制器</li>
+<li><strong>自动化工作流</strong>：SOP 自动化、事件驱动</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>ZeroClaw 是一个极具创新性的 AI 助手框架，通过 Rust 实现了极致的性能和资源效率。它适合：</p>
+<ul>
+<li>追求隐私的用户（本地运行）</li>
+<li>资源受限的部署环境</li>
+<li>需要快速启动的场景</li>
+<li>多平台集成的需求</li>
+</ul>
+<p>如果你正在寻找一个轻量、安全、可扩展的 AI 助手解决方案，ZeroClaw 值得一试。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>GitHub：https://github.com/zeroclaw-labs/zeroclaw</li>
+<li>官网：https://zeroclawlabs.ai</li>
+<li>官方文档：https://github.com/zeroclaw-labs/zeroclaw/blob/master/docs/README.md</li>
+<li>Discord：https://discord.com/invite/wDshRVqRjx</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;14:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/zeroclaw-introduction/" data-title="ZeroClaw：超轻量级 AI 助手基础设施"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/zeroclaw/">ZeroClaw</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/rust/">rust</a>,&nbsp;<a href="/tags/%E5%8A%A9%E6%89%8B/">助手</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/understanding-software-was-eaten-by-ai/" class="prev" rel="prev" title="如何理解纳瓦尔说的 Software was eaten by AI？"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>如何理解纳瓦尔说的 Software was eaten by AI？</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
