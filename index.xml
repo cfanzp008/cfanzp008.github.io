@@ -4,9 +4,18 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Apr 2026 22:30:00 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 00:10:30 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>OpenScreen：免费开源的屏幕录制神器</title>
+  <link>https://cfanzp008.github.io/openscreen-introduction/</link>
+  <pubDate>Sun, 05 Apr 2026 00:10:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openscreen-introduction/</guid>
+  <description><![CDATA[OpenScreen：免费开源的屏幕录制神器 什么是 OpenScreen OpenScreen 是一款免费、开源的屏幕录制和演示视频制作工具，旨在帮助用户创建专业级别的产品演示视频。该项目在 GitHub 上已获得 18,400+ 颗星，是 Screen Studio 的优秀开源替代品。
+核心理念 完全免费：无需订阅，无广告，无水印 开源透明：代码完全开放，可自由修改 商业可用：MIT 许可证，允许商业使用 核心特性 1. 高质量屏幕录制 支持全屏录制 支持单个应用窗口录制 录制时显示光标追踪 高清视频输出 2. 智能缩放效果 自动缩放：跟随鼠标移动自动缩放 手动缩放：通过快捷键控制缩放 平滑过渡：缩放效果流畅自然 3. 标注功能 添加文本注释 绘制箭头和形状 插入图片标注 高亮重要内容 4. 后期编辑 时间轴编辑 关键帧动画 裁剪和拼接 背景自定义 5. 导出选项 多种视频格式 自定义分辨率 质量调节 GIF 导出 支持平台 平台 状态 macOS ✅ 支持 Windows ✅ 支持 Linux ✅ 支持 安装方法 macOS 1 2 # 使用 Homebrew 安装 brew install --cask openscreen 或直接下载 DMG 文件从 GitHub Releases。]]></description>
+</item>
+<item>
   <title>《富爸爸穷爸爸》：改变你金钱观的经典之作</title>
   <link>https://cfanzp008.github.io/rich-dad-poor-dad-summary/</link>
   <pubDate>Sat, 04 Apr 2026 22:30:00 &#43;0800</pubDate>
@@ -121,30 +130,6 @@ DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHu
 核心特性 1. 沙箱执行（Sandbox） DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：
 1 2 3 4 5 6 7 # Docker 沙箱配置示例 sandbox: use: src.community.aio_sandbox:AioSandboxProvider image: enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest port: 8080 auto_start: true container_prefix: deer-flow-sandbox 隔离执行环境 支持代码运行 网络请求转发 文件系统访问 2. 持久记忆（Memory） DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：
 1 2 3 4 5 6 7 8 9 10 11 12 13 class MemoryMiddleware: def before_model(self, state, runtime): # 注入记忆上下文 memory_content = format_memory_for_injection( memory_data, max_tokens=config.]]></description>
-</item>
-<item>
-  <title>如何理解纳瓦尔说的 Software was eaten by AI？</title>
-  <link>https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/</link>
-  <pubDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/</guid>
-  <description><![CDATA[如何理解纳瓦尔说的 Software was eaten by AI？ 背景：一场跨越十三年的范式升级 2011年，马克·安德森（Marc Andreessen）提出了那句著名的论断——&ldquo;Software is eating the world&rdquo;（软件正在吞噬世界）。十三年后，纳瓦尔·拉维坎特（Naval Ravikant）给出了他的回应：&ldquo;Software was eaten by AI&rdquo;（软件被 AI 吞噬了）。
-这不仅仅是一句话的更新，而是整个时代范式的升级。安德森说的是软件作为一种商业模式如何征服世界，而纳瓦尔说的是软件作为一门生意的根基如何被彻底动摇。
-理解这句话，需要从三个维度来看：生产逻辑、交付逻辑、以及价值中心的转移。
-一、从确定性逻辑到概率性生成 旧世界：软件是规则的集合 传统的软件开发本质上是规则的集合。程序员编写 if-else 语句，编译器将这些规则转化为机器可执行的指令。整个过程是确定性的——相同的输入必然产生相同的输出。
-在那个世界里，软件是昂贵的&quot;复杂建筑&quot;：
-你需要雇佣高薪的程序员 需要花费数月时间敲代码、Debug 构建出一个僵硬的系统 任何需求变更都意味着重新编写代码 软件工程师就像传统的手工艺人，每一行代码都是精心雕琢的作品。
-新世界：AI 是&quot;生长&quot;出来的 当 AI 介入后，一切都变了。我们不再通过编写规则来解决问题，而是通过数据训练模型，让它自己生成结果。
-这种转变是根本性的：
-不再需要明确的规则：AI 通过海量数据学习模式，能够处理从未见过的场景 结果是概率性的：同样的输入可能产生不同的输出，但质量往往更高 系统是弹性的：模型可以自适应，而不需要手动修改代码 当纳瓦尔说&quot;AI 吞噬了软件&quot;，他意味着软件的构建块正在发生质变。未来的软件不再是由数百万行手写代码组成的，而是由几个核心算法（AI）和海量推理构成的。
-二、软件的边际成本：从&quot;低&quot;变为&quot;零&quot; 安德森说&quot;软件吞噬世界&quot;，是因为软件的复制成本几乎为零——一份软件可以无限复制而不需要额外成本。这是 SaaS（软件即服务）商业模式成立的基础。
-但纳瓦尔看到了更深层的变革：定制化软件的生产成本正在归零。
-以前的困境 以前，如果你需要一个特定的功能，你有两个选择：
-购买通用软件：承担高昂的许可费用，接受固定的功能集合 雇人开发：等待数周甚至数月，承担巨大的开发成本 软件产品本质上是一种&quot;刚性&quot;商品——你想要灵活性，就要付出额外代价。
-AI 带来的变革 现在，AI（如 LLM）可以根据你的自然语言需求：
-实时生成代码 直接提供解决方案 动态调整输出以匹配你的意图 这意味着：
-软件产品正在贬值：用户不再需要一个固定的界面和功能列表 推理能力正在升值：真正值钱的变成了&quot;解决问题的能力&quot; 这解释了为什么传统的 SaaS 面临巨大的挑战——用户不再需要一个固定的软件产品，而是需要一个能随时理解意图并交付结果的智能体（Agent）。
-三、编程语言的终极演变：英语是新的编程语言 软件时代：人适应机器 在过去五十年里，学习编程意味着要适应机器的思维方式：]]></description>
 </item>
 </channel>
 </rss>
