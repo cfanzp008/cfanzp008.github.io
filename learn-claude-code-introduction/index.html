@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Learn Claude Code：从零理解 Agent Harness 工程 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 learn-claude-code 开源项目，通过12个渐进式课程理解 Agent Harness 工程的核心理念和实现" /><meta name="keywords" content='learn-claude-code, Agent, Harness, Claude Code, AI, 智能体' /><meta itemprop="name" content="Learn Claude Code：从零理解 Agent Harness 工程">
+<meta itemprop="description" content="详细介绍 learn-claude-code 开源项目，通过12个渐进式课程理解 Agent Harness 工程的核心理念和实现"><meta itemprop="datePublished" content="2026-04-03T11:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T11:00:00+08:00" />
+<meta itemprop="wordCount" content="489"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="learn-claude-code,Agent,Harness,Claude Code,AI,智能体," /><meta property="og:title" content="Learn Claude Code：从零理解 Agent Harness 工程" />
+<meta property="og:description" content="详细介绍 learn-claude-code 开源项目，通过12个渐进式课程理解 Agent Harness 工程的核心理念和实现" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/learn-claude-code-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T11:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T11:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Learn Claude Code：从零理解 Agent Harness 工程"/>
+<meta name="twitter:description" content="详细介绍 learn-claude-code 开源项目，通过12个渐进式课程理解 Agent Harness 工程的核心理念和实现"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/learn-claude-code-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/deerflow-2-introduction/" /><link rel="next" href="https://cfanzp008.github.io/zeroclaw-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Learn Claude Code：从零理解 Agent Harness 工程",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/learn-claude-code-introduction\/"
+    },"genre": "posts","keywords": "learn-claude-code, Agent, Harness, Claude Code, AI, 智能体","wordcount":  489 ,
+    "url": "https:\/\/cfanzp008.github.io\/learn-claude-code-introduction\/","datePublished": "2026-04-03T11:00:00+08:00","dateModified": "2026-04-03T11:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 learn-claude-code 开源项目，通过12个渐进式课程理解 Agent Harness 工程的核心理念和实现"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Learn Claude Code：从零理解 Agent Harness 工程</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;11:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 489 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Learn Claude Code：从零理解 Agent Harness 工程">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-learn-claude-code">什么是 Learn Claude Code</a></li>
+    <li><a href="#核心观点模型即智能体">核心观点：模型即智能体</a>
+      <ul>
+        <li><a href="#传统理解的误区">传统理解的误区</a></li>
+        <li><a href="#真正的智能体定义">真正的智能体定义</a></li>
+        <li><a href="#harness-的定义">Harness 的定义</a></li>
+      </ul>
+    </li>
+    <li><a href="#十二个渐进式课程">十二个渐进式课程</a>
+      <ul>
+        <li><a href="#phase-1基础循环">Phase 1：基础循环</a></li>
+        <li><a href="#phase-2规划与知识">Phase 2：规划与知识</a></li>
+        <li><a href="#phase-3持久化">Phase 3：持久化</a></li>
+        <li><a href="#phase-4团队协作">Phase 4：团队协作</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心代码模式">核心代码模式</a></li>
+    <li><a href="#项目结构">项目结构</a></li>
+    <li><a href="#快速开始">快速开始</a>
+      <ul>
+        <li><a href="#web-平台">Web 平台</a></li>
+      </ul>
+    </li>
+    <li><a href="#相关项目">相关项目</a>
+      <ul>
+        <li><a href="#kode-agent-cli">Kode Agent CLI</a></li>
+        <li><a href="#kode-agent-sdk">Kode Agent SDK</a></li>
+        <li><a href="#claw0姐妹项目">claw0（姐妹项目）</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么选择-claude-code-教学">为什么选择 Claude Code 教学</a></li>
+    <li><a href="#哲学总结">哲学总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="learn-claude-code从零理解-agent-harness-工程">Learn Claude Code：从零理解 Agent Harness 工程</h1>
+<h2 id="什么是-learn-claude-code">什么是 Learn Claude Code</h2>
+<p>Learn Claude Code 是一个开源的学习项目，旨在从零开始教学 Agent Harness（智能体 harness）的构建方法。该项目在 GitHub 上已获得 47,700+ 颗星，专注于帮助开发者理解 Claude Code 背后的设计原理。</p>
+<p>项目的核心理念是：<strong>模型本身才是智能体，代码只是构建智能体所处的环境（Harness）</strong>。</p>
+<h2 id="核心观点模型即智能体">核心观点：模型即智能体</h2>
+<h3 id="传统理解的误区">传统理解的误区</h3>
+<p>很多人认为&quot;构建智能体&quot;就是写代码——使用工作流引擎、提示链、拖拽式编排工具来&quot;组装&quot;一个智能体。但作者认为这种做法本质上是一个&quot;过度工程的 Rube Goldberg 机器&quot;——一个充满 if-else 分支和硬编码路由逻辑的脆弱管道，中间塞了一个 LLM 作为&quot;文本补全节点&quot;。</p>
+<p>这并不是真正的智能体。</p>
+<h3 id="真正的智能体定义">真正的智能体定义</h3>
+<p>真正的智能体是：</p>
+<ul>
+<li>一个神经网络（Transformer、RNN、学习函数）</li>
+<li>通过数十亿次梯度更新在动作序列数据上训练</li>
+<li>能够感知环境、推理目标、执行动作以达成目标</li>
+</ul>
+<p>从 DeepMind DQN（2013）玩 Atari，到 OpenAI Five（2019）征服 Dota 2，再到 AlphaStar（2019）掌握星际争霸，每个里程碑的&quot;智能体&quot;都是<strong>模型</strong>，而不是周围的代码。</p>
+<h3 id="harness-的定义">Harness 的定义</h3>
+<p>Harness 是智能体在特定领域运作所需的一切：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Harness = Tools + Knowledge + Observation + Action Interfaces + Permissions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Tools：文件读写、shell 执行、网络请求、数据库、浏览器
+</span></span><span class="line"><span class="cl">- Knowledge：产品文档、领域知识、API 规范、风格指南
+</span></span><span class="line"><span class="cl">- Observation：git diff、错误日志、浏览器状态、传感器数据
+</span></span><span class="line"><span class="cl">- Action：CLI 命令、API 调用、UI 交互
+</span></span><span class="line"><span class="cl">- Permissions：沙箱、审批工作流、信任边界
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>模型决定，Harness 执行。模型推理，Harness 提供上下文。模型是驾驶员，Harness 是车辆。</strong></p>
+<h2 id="十二个渐进式课程">十二个渐进式课程</h2>
+<p>项目包含 12 个逐步递进的课程（s01-s12），每个课程添加一个 harness 机制：</p>
+<h3 id="phase-1基础循环">Phase 1：基础循环</h3>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>主题</th>
+<th>核心理念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s01</td>
+<td>Agent Loop</td>
+<td>一个 while 循环 + stop_reason = 一个智能体</td>
+</tr>
+<tr>
+<td>s02</td>
+<td>Tool Use</td>
+<td>添加一个工具只需添加一个 handler</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-2规划与知识">Phase 2：规划与知识</h3>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>主题</th>
+<th>核心理念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s03</td>
+<td>TodoWrite</td>
+<td>智能体没有计划会迷失——先列步骤再执行</td>
+</tr>
+<tr>
+<td>s04</td>
+<td>Subagents</td>
+<td>拆分大任务，每个子任务独立上下文</td>
+</tr>
+<tr>
+<td>s05</td>
+<td>Skills</td>
+<td>按需加载知识，而非预先加载</td>
+</tr>
+<tr>
+<td>s06</td>
+<td>Context Compact</td>
+<td>上下文会满，需要压缩策略</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-3持久化">Phase 3：持久化</h3>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>主题</th>
+<th>核心理念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s07</td>
+<td>Tasks</td>
+<td>大目标拆分为小任务，持久化到磁盘</td>
+</tr>
+<tr>
+<td>s08</td>
+<td>Background Tasks</td>
+<td>后台运行慢操作，智能体继续思考</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-4团队协作">Phase 4：团队协作</h3>
+<table>
+<thead>
+<tr>
+<th>课程</th>
+<th>主题</th>
+<th>核心理念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s09</td>
+<td>Agent Teams</td>
+<td>任务太大时委托给队友</td>
+</tr>
+<tr>
+<td>s10</td>
+<td>Team Protocols</td>
+<td>队友需要共享通信规则</td>
+</tr>
+<tr>
+<td>s11</td>
+<td>Autonomous Agents</td>
+<td>队友扫描任务板并自动认领</td>
+</tr>
+<tr>
+<td>s12</td>
+<td>Worktree Isolation</td>
+<td>每个工作在独立目录，无干扰</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心代码模式">核心代码模式</h2>
+<p>项目的核心代码非常简洁：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">agent_loop</span><span class="p">(</span><span class="n">messages</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="n">SYSTEM</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;assistant&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                         <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">stop_reason</span> <span class="o">!=</span> <span class="s2">&#34;tool_use&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">block</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&#34;tool_use&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">output</span> <span class="o">=</span> <span class="n">TOOL_HANDLERS</span><span class="p">[</span><span class="n">block</span><span class="o">.</span><span class="n">name</span><span class="p">](</span><span class="o">**</span><span class="n">block</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;tool_result&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;tool_use_id&#34;</span><span class="p">:</span> <span class="n">block</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">output</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">results</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这就是最小的 Agent 循环。每个课程都是在这个循环上叠加一个 harness 机制——而不改变循环本身。</p>
+<h2 id="项目结构">项目结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">learn-claude-code/
+</span></span><span class="line"><span class="cl">|
+</span></span><span class="line"><span class="cl">|-- agents/           # Python 参考实现（s01-s12 + s_full）
+</span></span><span class="line"><span class="cl">|-- docs/{en,zh,ja}/  # 思维模型优先的文档（3种语言）
+</span></span><span class="line"><span class="cl">|-- web/              # 交互式学习平台（Next.js）
+</span></span><span class="line"><span class="cl">|-- skills/           # s05 所需的技能文件
+</span></span><span class="line"><span class="cl">+-- .github/workflows/ci.yml  # CI: 类型检查 + 构建
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="快速开始">快速开始</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 克隆仓库</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/shareAI-lab/learn-claude-code
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> learn-claude-code
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装依赖</span>
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 复制环境配置</span>
+</span></span><span class="line"><span class="cl">cp .env.example .env
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 .env 填入你的 ANTHROPIC_API_KEY</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行第一个课程</span>
+</span></span><span class="line"><span class="cl">python agents/s01_agent_loop.py
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行完整版本</span>
+</span></span><span class="line"><span class="cl">python agents/s_full.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="web-平台">Web 平台</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> web <span class="o">&amp;&amp;</span> npm install <span class="o">&amp;&amp;</span> npm run dev
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问 http://localhost:3000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="相关项目">相关项目</h2>
+<h3 id="kode-agent-cli">Kode Agent CLI</h3>
+<p>开源的编码智能体 CLI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm i -g @shareai-lab/kode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持技能和 LSP 支持、Windows 兼容，可插拔使用 GLM / MiniMax / DeepSeek 等模型。</p>
+<p>GitHub: <a
+  href="https://github.com/shareAI-lab/Kode-cli"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>shareAI-lab/Kode-cli</a></p>
+<h3 id="kode-agent-sdk">Kode Agent SDK</h3>
+<p>嵌入到应用中的智能体 SDK，无 per-user 进程开销，可嵌入后端、浏览器扩展、嵌入式设备等。</p>
+<p>GitHub: <a
+  href="https://github.com/shareAI-lab/Kode-agent-sdk"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>shareAI-lab/Kode-agent-sdk</a></p>
+<h3 id="claw0姐妹项目">claw0（姐妹项目）</h3>
+<p>从&quot;按需会话&quot;到&quot;常驻助手&quot;：</p>
+<ul>
+<li><strong>Heartbeat</strong>：每 30 秒发送消息检查是否有任务</li>
+<li><strong>Cron</strong>：智能体可以调度未来任务</li>
+<li>多渠道 IM 路由（WhatsApp/Telegram/Slack/Discord 等 13+ 平台）</li>
+<li>持久上下文记忆</li>
+<li>Soul 个性系统</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">learn-claude-code:  核心 harness（循环、工具、规划、团队、工作树隔离）
+</span></span><span class="line"><span class="cl">claw0:              主动常驻 harness（心跳、cron、IM 渠道、记忆、灵魂）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="为什么选择-claude-code-教学">为什么选择 Claude Code 教学</h2>
+<p>因为 Claude Code 是&quot;最优雅且完全实现的&quot;智能体 harness：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Claude Code = 一个 agent 循环
+</span></span><span class="line"><span class="cl">            + 工具（bash, read, write, edit, glob, grep, browser...）
+</span></span><span class="line"><span class="cl">            + 按需技能加载
+</span></span><span class="line"><span class="cl">            + 上下文压缩
+</span></span><span class="line"><span class="cl">            + 子智能体生成
+</span></span><span class="line"><span class="cl">            + 带依赖图的任务系统
+</span></span><span class="line"><span class="cl">            + 团队协调与异步邮箱
+</span></span><span class="line"><span class="cl">            + 并行执行的工作树隔离
+</span></span><span class="line"><span class="cl">            + 权限治理
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它不试图成为智能体，不施加刚性工作流，不通过复杂的决策树&quot;二阶猜测&quot;模型。它给模型工具、知识、上下文管理和权限边界——然后让开。</p>
+<h2 id="哲学总结">哲学总结</h2>
+<blockquote>
+<p><strong>&ldquo;The model IS the agent. The code is the harness. Build great harnesses. The agent will do the rest.&rdquo;</strong></p>
+<p>模型就是智能体。代码只是 harness。构建出色的 harness，智能体会完成剩下的工作。</p>
+</blockquote>
+<p>项目标题&quot;Bash is all you need&quot;表达的是：不需要复杂的工作流引擎，只需要基础的 shell 能力加上正确的 harness 机制，就能构建真正有效的智能体。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>GitHub：https://github.com/shareAI-lab/learn-claude-code</li>
+<li>Kode CLI：https://github.com/shareAI-lab/Kode-cli</li>
+<li>Kode SDK：https://github.com/shareAI-lab/Kode-agent-sdk</li>
+<li>claw0：https://github.com/shareAI-lab/claw0</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;11:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/learn-claude-code-introduction/" data-title="Learn Claude Code：从零理解 Agent Harness 工程"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/learn-claude-code/">learn-claude-code</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/harness/">Harness</a>,&nbsp;<a href="/tags/claude-code/">claude-code</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/">智能体</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/deerflow-2-introduction/" class="prev" rel="prev" title="DeerFlow 2.0：字节跳动的开源超级智能体框架"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>DeerFlow 2.0：字节跳动的开源超级智能体框架</a>
+      <a href="/zeroclaw-introduction/" class="next" rel="next" title="ZeroClaw：超轻量级 AI 助手基础设施">ZeroClaw：超轻量级 AI 助手基础设施<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

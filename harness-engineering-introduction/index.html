@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Harness Engineering：AI 原生 DevOps 自动化平台 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 Harness Engineering——Harness 公司的 AI 原生 DevOps 自动化平台，包括 AI Agent、Pipeline 智能化和自动化能力" /><meta name="keywords" content='Harness, DevOps, AI, CI/CD, 自动化, 平台工程' /><meta itemprop="name" content="Harness Engineering：AI 原生 DevOps 自动化平台">
+<meta itemprop="description" content="详细介绍 Harness Engineering——Harness 公司的 AI 原生 DevOps 自动化平台，包括 AI Agent、Pipeline 智能化和自动化能力"><meta itemprop="datePublished" content="2026-04-03T09:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T09:00:00+08:00" />
+<meta itemprop="wordCount" content="510"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="Harness,DevOps,AI,CI/CD,自动化,平台工程," /><meta property="og:title" content="Harness Engineering：AI 原生 DevOps 自动化平台" />
+<meta property="og:description" content="详细介绍 Harness Engineering——Harness 公司的 AI 原生 DevOps 自动化平台，包括 AI Agent、Pipeline 智能化和自动化能力" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/harness-engineering-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T09:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T09:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Harness Engineering：AI 原生 DevOps 自动化平台"/>
+<meta name="twitter:description" content="详细介绍 Harness Engineering——Harness 公司的 AI 原生 DevOps 自动化平台，包括 AI Agent、Pipeline 智能化和自动化能力"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/harness-engineering-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/iperf3-usage-and-scenarios/" /><link rel="next" href="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Harness Engineering：AI 原生 DevOps 自动化平台",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/harness-engineering-introduction\/"
+    },"genre": "posts","keywords": "Harness, DevOps, AI, CI\/CD, 自动化, 平台工程","wordcount":  510 ,
+    "url": "https:\/\/cfanzp008.github.io\/harness-engineering-introduction\/","datePublished": "2026-04-03T09:00:00+08:00","dateModified": "2026-04-03T09:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 Harness Engineering——Harness 公司的 AI 原生 DevOps 自动化平台，包括 AI Agent、Pipeline 智能化和自动化能力"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Harness Engineering：AI 原生 DevOps 自动化平台</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;09:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 510 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Harness Engineering：AI 原生 DevOps 自动化平台">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-harness">什么是 Harness</a></li>
+    <li><a href="#什么是-harness-engineering">什么是 Harness Engineering</a>
+      <ul>
+        <li><a href="#核心理念">核心理念</a></li>
+      </ul>
+    </li>
+    <li><a href="#harness-ai-核心组件">Harness AI 核心组件</a>
+      <ul>
+        <li><a href="#1-harness-ai-code-agent">1. Harness AI Code Agent</a></li>
+        <li><a href="#2-harness-ai-devops-agent">2. Harness AI DevOps Agent</a></li>
+        <li><a href="#3-harness-agents">3. Harness Agents</a></li>
+        <li><a href="#4-harness-ai-pr-agents">4. Harness AI PR Agents</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心功能">核心功能</a>
+      <ul>
+        <li><a href="#create-with-harness-ai">Create with Harness AI</a></li>
+        <li><a href="#ai-troubleshooting">AI Troubleshooting</a></li>
+        <li><a href="#ai-driven-optimization">AI-Driven Optimization</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用场景">使用场景</a>
+      <ul>
+        <li><a href="#场景一智能代码审查">场景一：智能代码审查</a></li>
+        <li><a href="#场景二自动化故障修复">场景二：自动化故障修复</a></li>
+        <li><a href="#场景三智能部署">场景三：智能部署</a></li>
+        <li><a href="#场景四成本优化">场景四：成本优化</a></li>
+      </ul>
+    </li>
+    <li><a href="#技术架构">技术架构</a>
+      <ul>
+        <li><a href="#agent-运行机制">Agent 运行机制</a></li>
+        <li><a href="#核心能力">核心能力</a></li>
+      </ul>
+    </li>
+    <li><a href="#优势对比">优势对比</a></li>
+    <li><a href="#集成生态">集成生态</a></li>
+    <li><a href="#开始使用">开始使用</a>
+      <ul>
+        <li><a href="#1-注册账号">1. 注册账号</a></li>
+        <li><a href="#2-创建第一个-pipeline">2. 创建第一个 Pipeline</a></li>
+        <li><a href="#3-使用自然语言创建资源">3. 使用自然语言创建资源</a></li>
+        <li><a href="#4-配置-ai-agent">4. 配置 AI Agent</a></li>
+      </ul>
+    </li>
+    <li><a href="#定价">定价</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="harness-engineeringai-原生-devops-自动化平台">Harness Engineering：AI 原生 DevOps 自动化平台</h1>
+<h2 id="什么是-harness">什么是 Harness</h2>
+<p>Harness 是全球领先的 SaaS 开发平台公司，专注于通过 AI 能力革新软件交付流程。其核心产品是一个统一的软件交付平台，涵盖持续集成（CI）、持续部署（CD）、功能标志、云成本管理等功能。</p>
+<p>近年来，Harness 推出了 <strong>Harness AI</strong>，将大语言模型能力引入 DevOps 领域，形成了所谓的 &ldquo;Harness Engineering&rdquo;——一种 AI 原生的软件工程实践。</p>
+<h2 id="什么是-harness-engineering">什么是 Harness Engineering</h2>
+<p>Harness Engineering 是指在 Harness 平台上构建和运行 AI 驱动的工作流程的方法论。它不仅仅是简单的 AI 辅助，而是将 AI Agent 深度集成到软件交付生命周期的每个阶段。</p>
+<h3 id="核心理念">核心理念</h3>
+<ul>
+<li><strong>Pipeline-Native</strong>：AI Agent 运行在 Pipeline 内部，而非外部工具</li>
+<li><strong>Autonomous</strong>：Agent 可以自主执行 DevOps 任务</li>
+<li><strong>End-to-End</strong>：覆盖代码生成之后的所有阶段</li>
+</ul>
+<h2 id="harness-ai-核心组件">Harness AI 核心组件</h2>
+<h3 id="1-harness-ai-code-agent">1. Harness AI Code Agent</h3>
+<p>代码代理是专门为开发者设计的 AI 助手，提供以下能力：</p>
+<ul>
+<li><strong>智能代码生成</strong>：根据自然语言描述生成代码</li>
+<li><strong>实时代码建议</strong>：在编写过程中提供上下文建议</li>
+<li><strong>自动化测试生成</strong>：自动生成单元测试和集成测试</li>
+<li><strong>代码解释</strong>：对现有代码进行语义解释</li>
+<li><strong>代码审查</strong>：自动审查代码并提供改进建议</li>
+</ul>
+<h3 id="2-harness-ai-devops-agent">2. Harness AI DevOps Agent</h3>
+<p>DevOps 代理专注于自动化运维任务：</p>
+<ul>
+<li><strong>Pipeline 创建和编辑</strong>：通过自然语言创建和修改 Pipeline</li>
+<li><strong>步骤建议</strong>：智能推荐最优的步骤配置</li>
+<li><strong>自动化故障排查</strong>：分析和解决构建/部署问题</li>
+<li><strong>配置优化</strong>：自动优化 Pipeline 性能</li>
+</ul>
+<h3 id="3-harness-agents">3. Harness Agents</h3>
+<p>Harness Agents 是 AI 驱动的自主工作者，可以在 Pipeline 中执行各种 DevOps 任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Agent 示例配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">step</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Agent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build Agent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l">build_agent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">agent</span><span class="p">:</span><span class="w"> </span><span class="l">code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l">build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;构建当前代码库并生成制品&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主要特点：</strong></p>
+<ul>
+<li>在 Pipeline 内运行</li>
+<li>可以执行构建、部署、测试、修复、优化等任务</li>
+<li>支持自定义 Agent 模板</li>
+<li>开源可用（GitHub 上有 Agent 模板）</li>
+</ul>
+<h3 id="4-harness-ai-pr-agents">4. Harness AI PR Agents</h3>
+<p>自动化的代码审查和问题修复代理：</p>
+<ul>
+<li><strong>自动代码审查</strong>：分析 PR 内容，提供审查意见</li>
+<li><strong>CI 故障修复</strong>：自动诊断和修复 CI 失败</li>
+<li><strong>改进建议</strong>：通过 PR 提出优化建议</li>
+<li><strong>自动化工作流</strong>：减少人工重复劳动</li>
+</ul>
+<h2 id="核心功能">核心功能</h2>
+<h3 id="create-with-harness-ai">Create with Harness AI</h3>
+<p>通过自然语言提示快速创建 Harness 平台资源：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 示例提示
+</span></span><span class="line"><span class="cl">&#34;Create a CI pipeline that builds a Node.js app and runs tests&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持的资源类型：</p>
+<ul>
+<li>Pipeline</li>
+<li>Cloud Cost 配置</li>
+<li>CD (持续部署) 实体</li>
+<li>其他 Harness 资源</li>
+</ul>
+<h3 id="ai-troubleshooting">AI Troubleshooting</h3>
+<p>智能故障排查：</p>
+<ul>
+<li>分析构建失败原因</li>
+<li>提供修复建议</li>
+<li>自动执行修复操作</li>
+<li>学习历史故障模式</li>
+</ul>
+<h3 id="ai-driven-optimization">AI-Driven Optimization</h3>
+<p>自动优化建议：</p>
+<ul>
+<li>Pipeline 性能优化</li>
+<li>成本优化建议</li>
+<li>资源使用分析</li>
+</ul>
+<h2 id="使用场景">使用场景</h2>
+<h3 id="场景一智能代码审查">场景一：智能代码审查</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AI 自动审查 PR</span>
+</span></span><span class="line"><span class="cl">1. 开发者提交 PR
+</span></span><span class="line"><span class="cl">2. PR Agent 分析代码变更
+</span></span><span class="line"><span class="cl">3. 识别潜在问题
+</span></span><span class="line"><span class="cl">4. 生成审查报告和修复建议
+</span></span><span class="line"><span class="cl">5. 通过 PR 提交建议
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="场景二自动化故障修复">场景二：自动化故障修复</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">构建失败 → Agent 分析日志 → 识别根因 → 应用修复 → 重新构建
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="场景三智能部署">场景三：智能部署</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用户请求部署 → DevOps Agent 评估影响 → 自动执行部署 → 监控结果 → 报告状态
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="场景四成本优化">场景四：成本优化</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">分析云资源使用 → 识别优化机会 → 生成优化建议 → 自动应用或人工审批
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="技术架构">技术架构</h2>
+<h3 id="agent-运行机制">Agent 运行机制</h3>
+<p>Harness Agents 运行在 Pipeline 内部，架构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│            Harness Platform             │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  ┌─────────────────────────────────┐    │
+</span></span><span class="line"><span class="cl">│  │         Pipeline Engine          │    │
+</span></span><span class="line"><span class="cl">│  ├─────────────────────────────────┤    │
+</span></span><span class="line"><span class="cl">│  │  ┌─────────┐  ┌─────────┐      │    │
+</span></span><span class="line"><span class="cl">│  │  │  Agent  │  │  Agent  │      │    │
+</span></span><span class="line"><span class="cl">│  │  │  Step   │  │  Step   │      │    │
+</span></span><span class="line"><span class="cl">│  │  └─────────┘  └─────────┘      │    │
+</span></span><span class="line"><span class="cl">│  └─────────────────────────────────┘    │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│           AI Model Layer                 │
+</span></span><span class="line"><span class="cl">│    (LLM: Claude, GPT, Gemini, etc.)      │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│         Tool Integration Layer           │
+</span></span><span class="line"><span class="cl">│   (Git, K8s, Cloud, Security, etc.)      │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="核心能力">核心能力</h3>
+<ul>
+<li><strong>工具调用</strong>：Agent 可以调用各种 DevOps 工具</li>
+<li><strong>上下文感知</strong>：理解 Pipeline 状态和环境</li>
+<li><strong>安全隔离</strong>：在受控环境中执行操作</li>
+<li><strong>审计追踪</strong>：所有操作可追溯</li>
+</ul>
+<h2 id="优势对比">优势对比</h2>
+<table>
+<thead>
+<tr>
+<th>传统方式</th>
+<th>Harness Engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手动编写 Pipeline</td>
+<td>AI 自然语言生成</td>
+</tr>
+<tr>
+<td>人工排查故障</td>
+<td>Agent 自动诊断修复</td>
+</tr>
+<tr>
+<td>被动监控</td>
+<td>主动预测和优化</td>
+</tr>
+<tr>
+<td>重复性人工操作</td>
+<td>自动化自主执行</td>
+</tr>
+<tr>
+<td>依赖经验积累</td>
+<td>AI 学习历史模式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="集成生态">集成生态</h2>
+<p>Harness 支持广泛的集成：</p>
+<ul>
+<li><strong>代码仓库</strong>：GitHub, GitLab, Bitbucket</li>
+<li><strong>云平台</strong>：AWS, GCP, Azure</li>
+<li><strong>容器编排</strong>：Kubernetes, Docker</li>
+<li><strong>监控系统</strong>：Prometheus, Datadog</li>
+<li><strong>安全工具</strong>：Checkmarx, Snyk</li>
+<li><strong>Slack/Teams</strong>：通知和交互</li>
+</ul>
+<h2 id="开始使用">开始使用</h2>
+<h3 id="1-注册账号">1. 注册账号</h3>
+<p>访问 <a
+  href="https://harness.io/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Harness 官网</a> 注册免费账号。</p>
+<h3 id="2-创建第一个-pipeline">2. 创建第一个 Pipeline</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">pipeline</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">My First AI Pipeline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stages</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">stage</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">step</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Agent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">AI Build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">agent</span><span class="p">:</span><span class="w"> </span><span class="l">code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">prompt</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Build the current codebase&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-使用自然语言创建资源">3. 使用自然语言创建资源</h3>
+<p>在 Harness 平台中，可以通过自然语言描述来创建各种资源。</p>
+<h3 id="4-配置-ai-agent">4. 配置 AI Agent</h3>
+<p>在 Pipeline 中添加 Agent 步骤，配置所需的 AI 能力。</p>
+<h2 id="定价">定价</h2>
+<p>Harness 提供多种定价方案：</p>
+<ul>
+<li><strong>免费版</strong>：基础 CI/CD 功能</li>
+<li><strong>团队版</strong>：更多功能和协作工具</li>
+<li><strong>企业版</strong>：完整的 AI 能力和支持</li>
+</ul>
+<p>具体定价请访问 <a
+  href="https://harness.io/pricing/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Harness 定价页面</a>。</p>
+<h2 id="总结">总结</h2>
+<p>Harness Engineering 代表了 DevOps 自动化的新范式。通过将 AI 深度集成到软件交付流程中，它能够：</p>
+<ul>
+<li><strong>提升效率</strong>：自动化重复性任务</li>
+<li><strong>降低错误</strong>：智能检查和验证</li>
+<li><strong>加速交付</strong>：快速创建和修改 Pipeline</li>
+<li><strong>优化成本</strong>：智能资源管理</li>
+</ul>
+<p>对于追求软件交付效率和质量提升的团队来说，Harness Engineering 是一个值得探索的方向。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>官网：https://harness.io/</li>
+<li>文档：https://developer.harness.io/</li>
+<li>GitHub：https://github.com/harness</li>
+<li>Harness AI 博客：https://www.harness.io/blog/announcing-harness-ai</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;09:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/harness-engineering-introduction/" data-title="Harness Engineering：AI 原生 DevOps 自动化平台"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/harness/">Harness</a>,&nbsp;<a href="/tags/devops/">devops</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/ci/cd/">CI/CD</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a>,&nbsp;<a href="/tags/%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B/">平台工程</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/iperf3-usage-and-scenarios/" class="prev" rel="prev" title="iperf3 网络带宽测试工具用法及使用场景"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>iperf3 网络带宽测试工具用法及使用场景</a>
+      <a href="/understanding-software-was-eaten-by-ai/" class="next" rel="next" title="如何理解纳瓦尔说的 Software was eaten by AI？">如何理解纳瓦尔说的 Software was eaten by AI？<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -27,5 +27,18 @@
 核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
 核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
 </item>
+<item>
+  <title>DeerFlow 2.0：字节跳动的开源超级智能体框架</title>
+  <link>https://cfanzp008.github.io/deerflow-2-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/deerflow-2-introduction/</guid>
+  <description><![CDATA[DeerFlow 2.0：字节跳动的开源超级智能体框架 什么是 DeerFlow DeerFlow（Deep Exploration and Efficient Research Flow）是字节跳动开源的超级智能体（SuperAgent）框架。它能够研究、编码和创造，通过沙箱、记忆、工具、技能和子智能体的协作，处理从几分钟到几小时不等的多层次任务。
+DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHub Trending 第一名，24 小时内获得 35,300+ 颗星，目前累计已超过 45,000 颗星。
+⚠️ 注意：DeerFlow 2.0 是完全重写的版本，与 1.0 版本没有共享代码。
+核心特性 1. 沙箱执行（Sandbox） DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：
+1 2 3 4 5 6 7 # Docker 沙箱配置示例 sandbox: use: src.community.aio_sandbox:AioSandboxProvider image: enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest port: 8080 auto_start: true container_prefix: deer-flow-sandbox 隔离执行环境 支持代码运行 网络请求转发 文件系统访问 2. 持久记忆（Memory） DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：
+1 2 3 4 5 6 7 8 9 10 11 12 13 class MemoryMiddleware: def before_model(self, state, runtime): # 注入记忆上下文 memory_content = format_memory_for_injection( memory_data, max_tokens=config.]]></description>
+</item>
 </channel>
 </rss>

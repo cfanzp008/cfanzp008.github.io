@@ -9,14 +9,14 @@
 <meta name="author-link" content="">
 <meta name="description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点" /><meta name="keywords" content='ZeroClaw, AI, Rust, 助手, 开源' /><meta itemprop="name" content="ZeroClaw：超轻量级 AI 助手基础设施">
 <meta itemprop="description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点"><meta itemprop="datePublished" content="2026-04-03T14:00:00+08:00" />
-<meta itemprop="dateModified" content="2026-04-03T14:00:00+08:00" />
-<meta itemprop="wordCount" content="359"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="dateModified" content="2026-04-04T12:00:00+08:00" />
+<meta itemprop="wordCount" content="439"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
 <meta itemprop="keywords" content="ZeroClaw,AI,Rust,助手,开源," /><meta property="og:title" content="ZeroClaw：超轻量级 AI 助手基础设施" />
 <meta property="og:description" content="详细介绍 ZeroClaw——用 Rust 编写的超轻量级 AI 助手框架，具有毫秒级启动、极低内存占用的特点" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://cfanzp008.github.io/zeroclaw-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2026-04-03T14:00:00+08:00" />
-<meta property="article:modified_time" content="2026-04-03T14:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-04T12:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="ZeroClaw：超轻量级 AI 助手基础设施"/>
@@ -24,7 +24,7 @@
 <meta name="application-name" content="cfanzp学习笔记">
 <meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/zeroclaw-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><link rel="next" href="https://cfanzp008.github.io/minimax-platform-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/zeroclaw-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/learn-claude-code-introduction/" /><link rel="next" href="https://cfanzp008.github.io/minimax-platform-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -33,8 +33,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/cfanzp008.github.io\/zeroclaw-introduction\/"
-    },"genre": "posts","keywords": "ZeroClaw, AI, Rust, 助手, 开源","wordcount":  359 ,
-    "url": "https:\/\/cfanzp008.github.io\/zeroclaw-introduction\/","datePublished": "2026-04-03T14:00:00+08:00","dateModified": "2026-04-03T14:00:00+08:00","publisher": {
+    },"genre": "posts","keywords": "ZeroClaw, AI, Rust, 助手, 开源","wordcount":  439 ,
+    "url": "https:\/\/cfanzp008.github.io\/zeroclaw-introduction\/","datePublished": "2026-04-03T14:00:00+08:00","dateModified": "2026-04-04T12:00:00+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -646,7 +646,7 @@
 ><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
     </a></span>
           <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
-      <div class="post-meta-line"><span title=2026-04-03&#32;14:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 359 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ZeroClaw：超轻量级 AI 助手基础设施">
+      <div class="post-meta-line"><span title=2026-04-03&#32;14:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 439 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ZeroClaw：超轻量级 AI 助手基础设施">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -675,6 +675,7 @@
           </ul>
         </li>
         <li><a href="#基本命令">基本命令</a></li>
+        <li><a href="#-重要channel-start-的坑">⚠️ 重要：channel start 的坑</a></li>
         <li><a href="#配置示例">配置示例</a></li>
       </ul>
     </li>
@@ -822,6 +823,9 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动网关（Web 服务器 + Web 控制台）</span>
@@ -842,9 +846,48 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 运行诊断</span>
 </span></span><span class="line"><span class="cl">zeroclaw doctor
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动频道服务器（重要！）</span>
+</span></span><span class="line"><span class="cl">zeroclaw channel start
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="配置示例">配置示例</h3>
+</div><h3 id="-重要channel-start-的坑">⚠️ 重要：channel start 的坑</h3>
+<p><code>zeroclaw channel start</code> 是启动频道服务器的关键命令，但很多人会忽略它：</p>
+<ul>
+<li><strong>不启动 channel start 的后果</strong>：即使配置了 Telegram、Discord 等频道，ZeroClaw 也无法接收和响应消息</li>
+<li><strong>正确流程</strong>：
+<ol>
+<li>先运行 <code>zeroclaw onboard</code> 完成初始配置</li>
+<li>然后运行 <code>zeroclaw channel start</code> 启动频道监听</li>
+<li>或者直接运行 <code>zeroclaw daemon</code>（包含 channel start）</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 完整启动流程</span>
+</span></span><span class="line"><span class="cl">zeroclaw onboard                    <span class="c1"># 初始化配置</span>
+</span></span><span class="line"><span class="cl">zeroclaw channel start              <span class="c1"># 启动频道服务器（常驻）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者一键启动所有服务</span>
+</span></span><span class="line"><span class="cl">zeroclaw daemon                      <span class="c1"># 启动完整守护进程（包含 gateway + channel）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常见问题</strong>：</p>
+<ul>
+<li>配置了频道但收不到消息 → 检查是否运行了 <code>channel start</code></li>
+<li>Telegram/Discord 机器人无响应 → 确保 channel 服务已启动</li>
+<li>生产环境建议使用 <code>zeroclaw daemon</code> 保持服务持续运行</li>
+</ul>
+<h3 id="配置示例">配置示例</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1003,7 +1046,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2026-04-03&#32;14:00:00>更新于 2026-04-03&nbsp;</span>
+        <span title=2026-04-04&#32;12:00:00>更新于 2026-04-04&nbsp;</span>
       </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
@@ -1021,7 +1064,7 @@
     </section>
   </div>
 
-  <div class="post-nav"><a href="/understanding-software-was-eaten-by-ai/" class="prev" rel="prev" title="如何理解纳瓦尔说的 Software was eaten by AI？"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>如何理解纳瓦尔说的 Software was eaten by AI？</a>
+  <div class="post-nav"><a href="/learn-claude-code-introduction/" class="prev" rel="prev" title="Learn Claude Code：从零理解 Agent Harness 工程"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Learn Claude Code：从零理解 Agent Harness 工程</a>
       <a href="/minimax-platform-introduction/" class="next" rel="next" title="MiniMax AI 平台全面介绍">MiniMax AI 平台全面介绍<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></main><footer class="footer">

@@ -1,10 +1,38 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>ai - 分类 - cfanzp学习笔记</title>
+    <title>AI - 分类 - cfanzp学习笔记</title>
     <link>https://cfanzp008.github.io/categories/ai/</link>
-    <description>ai - 分类 - cfanzp学习笔记</description>
+    <description>AI - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 11 Dec 2024 04:43:53 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 11:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>Learn Claude Code：从零理解 Agent Harness 工程</title>
+  <link>https://cfanzp008.github.io/learn-claude-code-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 11:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/learn-claude-code-introduction/</guid>
+  <description><![CDATA[Learn Claude Code：从零理解 Agent Harness 工程 什么是 Learn Claude Code Learn Claude Code 是一个开源的学习项目，旨在从零开始教学 Agent Harness（智能体 harness）的构建方法。该项目在 GitHub 上已获得 47,700+ 颗星，专注于帮助开发者理解 Claude Code 背后的设计原理。
+项目的核心理念是：模型本身才是智能体，代码只是构建智能体所处的环境（Harness）。
+核心观点：模型即智能体 传统理解的误区 很多人认为&quot;构建智能体&quot;就是写代码——使用工作流引擎、提示链、拖拽式编排工具来&quot;组装&quot;一个智能体。但作者认为这种做法本质上是一个&quot;过度工程的 Rube Goldberg 机器&quot;——一个充满 if-else 分支和硬编码路由逻辑的脆弱管道，中间塞了一个 LLM 作为&quot;文本补全节点&quot;。
+这并不是真正的智能体。
+真正的智能体定义 真正的智能体是：
+一个神经网络（Transformer、RNN、学习函数） 通过数十亿次梯度更新在动作序列数据上训练 能够感知环境、推理目标、执行动作以达成目标 从 DeepMind DQN（2013）玩 Atari，到 OpenAI Five（2019）征服 Dota 2，再到 AlphaStar（2019）掌握星际争霸，每个里程碑的&quot;智能体&quot;都是模型，而不是周围的代码。
+Harness 的定义 Harness 是智能体在特定领域运作所需的一切：
+1 2 3 4 5 6 7 Harness = Tools + Knowledge + Observation + Action Interfaces + Permissions - Tools：文件读写、shell 执行、网络请求、数据库、浏览器 - Knowledge：产品文档、领域知识、API 规范、风格指南 - Observation：git diff、错误日志、浏览器状态、传感器数据 - Action：CLI 命令、API 调用、UI 交互 - Permissions：沙箱、审批工作流、信任边界 模型决定，Harness 执行。模型推理，Harness 提供上下文。模型是驾驶员，Harness 是车辆。]]></description>
+</item>
+<item>
+  <title>DeerFlow 2.0：字节跳动的开源超级智能体框架</title>
+  <link>https://cfanzp008.github.io/deerflow-2-introduction/</link>
+  <pubDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/deerflow-2-introduction/</guid>
+  <description><![CDATA[DeerFlow 2.0：字节跳动的开源超级智能体框架 什么是 DeerFlow DeerFlow（Deep Exploration and Efficient Research Flow）是字节跳动开源的超级智能体（SuperAgent）框架。它能够研究、编码和创造，通过沙箱、记忆、工具、技能和子智能体的协作，处理从几分钟到几小时不等的多层次任务。
+DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHub Trending 第一名，24 小时内获得 35,300+ 颗星，目前累计已超过 45,000 颗星。
+⚠️ 注意：DeerFlow 2.0 是完全重写的版本，与 1.0 版本没有共享代码。
+核心特性 1. 沙箱执行（Sandbox） DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：
+1 2 3 4 5 6 7 # Docker 沙箱配置示例 sandbox: use: src.community.aio_sandbox:AioSandboxProvider image: enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest port: 8080 auto_start: true container_prefix: deer-flow-sandbox 隔离执行环境 支持代码运行 网络请求转发 文件系统访问 2. 持久记忆（Memory） DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：
+1 2 3 4 5 6 7 8 9 10 11 12 13 class MemoryMiddleware: def before_model(self, state, runtime): # 注入记忆上下文 memory_content = format_memory_for_injection( memory_data, max_tokens=config.]]></description>
+</item>
+<item>
   <title>Vim中使用CodeGeex AI助手辅助写代码</title>
   <link>https://cfanzp008.github.io/ai-codegeex/</link>
   <pubDate>Wed, 11 Dec 2024 04:43:53 &#43;0800</pubDate>

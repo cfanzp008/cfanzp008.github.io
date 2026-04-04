@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>DeerFlow 2.0：字节跳动的开源超级智能体框架 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍字节跳动开源的 DeerFlow 2.0 超级智能体框架，包括其架构设计、核心组件和使用方法" /><meta name="keywords" content='DeerFlow, AI, Agent, 字节跳动, 开源, LangGraph' /><meta itemprop="name" content="DeerFlow 2.0：字节跳动的开源超级智能体框架">
+<meta itemprop="description" content="详细介绍字节跳动开源的 DeerFlow 2.0 超级智能体框架，包括其架构设计、核心组件和使用方法"><meta itemprop="datePublished" content="2026-04-03T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-03T10:00:00+08:00" />
+<meta itemprop="wordCount" content="476"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="DeerFlow,AI,Agent,字节跳动,开源,LangGraph," /><meta property="og:title" content="DeerFlow 2.0：字节跳动的开源超级智能体框架" />
+<meta property="og:description" content="详细介绍字节跳动开源的 DeerFlow 2.0 超级智能体框架，包括其架构设计、核心组件和使用方法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/deerflow-2-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-03T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-03T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="DeerFlow 2.0：字节跳动的开源超级智能体框架"/>
+<meta name="twitter:description" content="详细介绍字节跳动开源的 DeerFlow 2.0 超级智能体框架，包括其架构设计、核心组件和使用方法"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/deerflow-2-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/understanding-software-was-eaten-by-ai/" /><link rel="next" href="https://cfanzp008.github.io/learn-claude-code-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "DeerFlow 2.0：字节跳动的开源超级智能体框架",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/deerflow-2-introduction\/"
+    },"genre": "posts","keywords": "DeerFlow, AI, Agent, 字节跳动, 开源, LangGraph","wordcount":  476 ,
+    "url": "https:\/\/cfanzp008.github.io\/deerflow-2-introduction\/","datePublished": "2026-04-03T10:00:00+08:00","dateModified": "2026-04-03T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍字节跳动开源的 DeerFlow 2.0 超级智能体框架，包括其架构设计、核心组件和使用方法"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>DeerFlow 2.0：字节跳动的开源超级智能体框架</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-03&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 476 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="DeerFlow 2.0：字节跳动的开源超级智能体框架">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-deerflow">什么是 DeerFlow</a></li>
+    <li><a href="#核心特性">核心特性</a>
+      <ul>
+        <li><a href="#1-沙箱执行sandbox">1. 沙箱执行（Sandbox）</a></li>
+        <li><a href="#2-持久记忆memory">2. 持久记忆（Memory）</a></li>
+        <li><a href="#3-子智能体sub-agents">3. 子智能体（Sub-Agents）</a></li>
+        <li><a href="#4-可扩展工具tools">4. 可扩展工具（Tools）</a></li>
+        <li><a href="#5-消息网关message-gateway">5. 消息网关（Message Gateway）</a></li>
+        <li><a href="#6-技能系统skills">6. 技能系统（Skills）</a></li>
+      </ul>
+    </li>
+    <li><a href="#架构设计">架构设计</a>
+      <ul>
+        <li><a href="#技术栈">技术栈</a></li>
+        <li><a href="#核心架构">核心架构</a></li>
+        <li><a href="#线程隔离">线程隔离</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装部署">安装部署</a>
+      <ul>
+        <li><a href="#前置要求">前置要求</a></li>
+        <li><a href="#安装步骤">安装步骤</a></li>
+        <li><a href="#docker-部署">Docker 部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用方法">使用方法</a>
+      <ul>
+        <li><a href="#基本使用流程">基本使用流程</a></li>
+        <li><a href="#配置-llm">配置 LLM</a></li>
+        <li><a href="#示例任务">示例任务</a></li>
+      </ul>
+    </li>
+    <li><a href="#与-10-版本对比">与 1.0 版本对比</a></li>
+    <li><a href="#应用场景">应用场景</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="deerflow-20字节跳动的开源超级智能体框架">DeerFlow 2.0：字节跳动的开源超级智能体框架</h1>
+<h2 id="什么是-deerflow">什么是 DeerFlow</h2>
+<p>DeerFlow（Deep Exploration and Efficient Research Flow）是字节跳动开源的超级智能体（SuperAgent）框架。它能够研究、编码和创造，通过沙箱、记忆、工具、技能和子智能体的协作，处理从几分钟到几小时不等的多层次任务。</p>
+<p>DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHub Trending 第一名，24 小时内获得 35,300+ 颗星，目前累计已超过 45,000 颗星。</p>
+<blockquote>
+<p>⚠️ 注意：DeerFlow 2.0 是完全重写的版本，与 1.0 版本没有共享代码。</p>
+</blockquote>
+<h2 id="核心特性">核心特性</h2>
+<h3 id="1-沙箱执行sandbox">1. 沙箱执行（Sandbox）</h3>
+<p>DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Docker 沙箱配置示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">sandbox</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">use</span><span class="p">:</span><span class="w"> </span><span class="l">src.community.aio_sandbox:AioSandboxProvider</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">auto_start</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">container_prefix</span><span class="p">:</span><span class="w"> </span><span class="l">deer-flow-sandbox</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>隔离执行环境</li>
+<li>支持代码运行</li>
+<li>网络请求转发</li>
+<li>文件系统访问</li>
+</ul>
+<h3 id="2-持久记忆memory">2. 持久记忆（Memory）</h3>
+<p>DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MemoryMiddleware</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">before_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">runtime</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 注入记忆上下文</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memory_content</span> <span class="o">=</span> <span class="n">format_memory_for_injection</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">memory_data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_tokens</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">max_injection_tokens</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current_context</span><span class="o">=</span><span class="n">conversation_context</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 注入为系统消息</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memory_message</span> <span class="o">=</span> <span class="n">SystemMessage</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&#34;&lt;memory&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">memory_content</span><span class="si">}</span><span class="se">\n</span><span class="s2">&lt;/memory&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">name</span><span class="o">=</span><span class="s2">&#34;memory_context&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>长期记忆存储</li>
+<li>上下文感知检索</li>
+<li>自动事实提取</li>
+</ul>
+<h3 id="3-子智能体sub-agents">3. 子智能体（Sub-Agents）</h3>
+<p>支持将任务委托给专门的子智能体处理：</p>
+<ul>
+<li><strong>研究子智能体</strong>：负责信息收集和整理</li>
+<li><strong>编码子智能体</strong>：负责代码编写和调试</li>
+<li><strong>创建子智能体</strong>：负责内容生成</li>
+</ul>
+<h3 id="4-可扩展工具tools">4. 可扩展工具（Tools）</h3>
+<p>内置丰富的工具集：</p>
+<ul>
+<li><strong>网络搜索</strong>：获取最新信息</li>
+<li><strong>内容抓取</strong>：爬取网页内容</li>
+<li><strong>代码执行</strong>：运行 Python 代码</li>
+<li><strong>文件管理</strong>：读写文件</li>
+<li><strong>知识检索</strong>：RAG 知识库查询</li>
+</ul>
+<h3 id="5-消息网关message-gateway">5. 消息网关（Message Gateway）</h3>
+<p>支持多渠道消息接入和分发。</p>
+<h3 id="6-技能系统skills">6. 技能系统（Skills）</h3>
+<p>通过技能扩展框架能力：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 技能配置示例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">skills</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">web_search</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">search</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">tavily</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">code_executor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">sandbox</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l">python</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="架构设计">架构设计</h2>
+<p>DeerFlow 2.0 采用现代化的全栈架构：</p>
+<h3 id="技术栈">技术栈</h3>
+<ul>
+<li><strong>后端</strong>：Python + LangGraph</li>
+<li><strong>前端</strong>：React + TypeScript</li>
+<li><strong>数据库</strong>：SQLite（本地存储）</li>
+<li><strong>执行环境</strong>：Docker 沙箱</li>
+</ul>
+<h3 id="核心架构">核心架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│                    User Interface                        │
+</span></span><span class="line"><span class="cl">│         (React + TypeScript Web App)                      │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│                    Backend API Layer                      │
+</span></span><span class="line"><span class="cl">│         (FastAPI + WebSocket)                             │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│                   LangGraph Core                         │
+</span></span><span class="line"><span class="cl">│  ┌─────────────┬─────────────┬─────────────┐           │
+</span></span><span class="line"><span class="cl">│  │   Planner   │   Executor  │   Memory    │           │
+</span></span><span class="line"><span class="cl">│  │   Agent     │   Agent     │   Manager   │           │
+</span></span><span class="line"><span class="cl">│  └─────────────┴─────────────┴─────────────┘           │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│                   Tool Integration                        │
+</span></span><span class="line"><span class="cl">│  ┌─────────┬─────────┬─────────┬─────────┐              │
+</span></span><span class="line"><span class="cl">│  │ Search  │ Crawl  │  Code   │  File   │              │
+</span></span><span class="line"><span class="cl">│  └─────────┴─────────┴─────────┴─────────┘              │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│              Sandboxed Execution                         │
+</span></span><span class="line"><span class="cl">│         (Docker Container per Thread)                    │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="线程隔离">线程隔离</h3>
+<p>每个对话/任务运行在独立的线程环境中：</p>
+<ul>
+<li>独立的内存空间</li>
+<li>独立的文件系统</li>
+<li>独立的网络访问</li>
+</ul>
+<h2 id="安装部署">安装部署</h2>
+<h3 id="前置要求">前置要求</h3>
+<ul>
+<li>Python 3.10+</li>
+<li>Docker</li>
+<li>Node.js 18+（前端开发）</li>
+<li>OpenAI API Key 或其他 LLM 提供商</li>
+</ul>
+<h3 id="安装步骤">安装步骤</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 克隆仓库</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/bytedance/deer-flow.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> deer-flow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 安装后端依赖</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> backend
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 配置环境变量</span>
+</span></span><span class="line"><span class="cl">cp .env.example .env
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 .env 文件，填入 API Key</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 启动后端</span>
+</span></span><span class="line"><span class="cl">python -m src.main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. 启动前端（另一个终端）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> frontend
+</span></span><span class="line"><span class="cl">npm install
+</span></span><span class="line"><span class="cl">npm run dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-部署">Docker 部署</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 Docker Compose</span>
+</span></span><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用方法">使用方法</h2>
+<h3 id="基本使用流程">基本使用流程</h3>
+<ol>
+<li><strong>创建任务</strong>：在 Web 界面输入任务描述</li>
+<li><strong>智能规划</strong>：Agent 自动规划执行步骤</li>
+<li><strong>执行任务</strong>：按计划执行各步骤</li>
+<li><strong>返回结果</strong>：汇总并展示结果</li>
+</ol>
+<h3 id="配置-llm">配置 LLM</h3>
+<p>编辑 <code>backend/.env</code> 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># OpenAI</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或使用其他提供商</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LLM_PROVIDER</span><span class="o">=</span>anthropic
+</span></span><span class="line"><span class="cl"><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="示例任务">示例任务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 研究任务</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;帮我调研一下最新的 AI Agent 框架发展趋势&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编码任务</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;写一个 Python 脚本来分析 CSV 文件并生成图表&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建任务</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;写一篇关于 Rust 编程语言的文章&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="与-10-版本对比">与 1.0 版本对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>DeerFlow 1.0</th>
+<th>DeerFlow 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>架构</td>
+<td>基础架构</td>
+<td>LangGraph 重构</td>
+</tr>
+<tr>
+<td>代码共享</td>
+<td>-</td>
+<td>零共享，完全重写</td>
+</tr>
+<tr>
+<td>沙箱</td>
+<td>基础隔离</td>
+<td>Docker 隔离</td>
+</tr>
+<tr>
+<td>记忆</td>
+<td>简单存储</td>
+<td>TF-IDF 上下文感知</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>有限</td>
+<td>技能系统</td>
+</tr>
+<tr>
+<td>活跃状态</td>
+<td>维护中</td>
+<td>活跃开发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="应用场景">应用场景</h2>
+<ol>
+<li><strong>深度研究</strong>：自动化信息收集和报告生成</li>
+<li><strong>代码开发</strong>：辅助编程和调试</li>
+<li><strong>数据分析</strong>：执行分析脚本和可视化</li>
+<li><strong>内容创作</strong>：生成文章、文档</li>
+<li><strong>知识管理</strong>：构建私人知识库</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>DeerFlow 2.0 是一个功能强大的开源超级智能体框架。它通过 LangGraph 实现了灵活的编排能力，结合沙箱执行、持久记忆和可扩展工具，能够处理复杂的多步骤任务。</p>
+<p>对于需要构建 AI 助手、研究自动化工具或知识管理系统的开发者来说，DeerFlow 2.0 是一个值得关注的选项。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>GitHub：https://github.com/bytedance/deer-flow</li>
+<li>官方文档：https://github.com/bytedance/deer-flow/blob/main/README.md</li>
+<li>社区讨论：https://github.com/bytedance/deer-flow/discussions</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-03&#32;10:00:00>更新于 2026-04-03&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/deerflow-2-introduction/" data-title="DeerFlow 2.0：字节跳动的开源超级智能体框架"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/deerflow/">DeerFlow</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/">字节跳动</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/langgraph/">LangGraph</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/understanding-software-was-eaten-by-ai/" class="prev" rel="prev" title="如何理解纳瓦尔说的 Software was eaten by AI？"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>如何理解纳瓦尔说的 Software was eaten by AI？</a>
+      <a href="/learn-claude-code-introduction/" class="next" rel="next" title="Learn Claude Code：从零理解 Agent Harness 工程">Learn Claude Code：从零理解 Agent Harness 工程<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
