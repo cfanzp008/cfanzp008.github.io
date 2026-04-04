@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Google Gemma 4 全面介绍：开源最强模型如何使用 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 Google 最新开源模型 Gemma 4 的特性、四大版本、本地部署方法及应用场景" /><meta name="keywords" content='Gemma, Google, AI, LLM, 开源, 本地部署' /><meta itemprop="name" content="Google Gemma 4 全面介绍：开源最强模型如何使用">
+<meta itemprop="description" content="详细介绍 Google 最新开源模型 Gemma 4 的特性、四大版本、本地部署方法及应用场景"><meta itemprop="datePublished" content="2026-04-04T10:00:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-04T10:00:00+08:00" />
+<meta itemprop="wordCount" content="365"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="Gemma,Google,AI,LLM,开源,本地部署," /><meta property="og:title" content="Google Gemma 4 全面介绍：开源最强模型如何使用" />
+<meta property="og:description" content="详细介绍 Google 最新开源模型 Gemma 4 的特性、四大版本、本地部署方法及应用场景" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/gemma-4-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-04T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-04-04T10:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Google Gemma 4 全面介绍：开源最强模型如何使用"/>
+<meta name="twitter:description" content="详细介绍 Google 最新开源模型 Gemma 4 的特性、四大版本、本地部署方法及应用场景"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/gemma-4-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/rustdesk-introduction/" /><link rel="next" href="https://cfanzp008.github.io/openai-codex-cli-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Google Gemma 4 全面介绍：开源最强模型如何使用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/gemma-4-introduction\/"
+    },"genre": "posts","keywords": "Gemma, Google, AI, LLM, 开源, 本地部署","wordcount":  365 ,
+    "url": "https:\/\/cfanzp008.github.io\/gemma-4-introduction\/","datePublished": "2026-04-04T10:00:00+08:00","dateModified": "2026-04-04T10:00:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 Google 最新开源模型 Gemma 4 的特性、四大版本、本地部署方法及应用场景"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/dev-manual/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/network/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/proj/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/dev-manual/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/network/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/proj/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Google Gemma 4 全面介绍：开源最强模型如何使用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-04&#32;10:00:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 365 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Google Gemma 4 全面介绍：开源最强模型如何使用">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-gemma-4">什么是 Gemma 4</a>
+      <ul>
+        <li><a href="#核心理念">核心理念</a></li>
+      </ul>
+    </li>
+    <li><a href="#gemma-4-四大版本">Gemma 4 四大版本</a></li>
+    <li><a href="#核心特性">核心特性</a>
+      <ul>
+        <li><a href="#1-多模态能力">1. 多模态能力</a></li>
+        <li><a href="#2-agent-原生">2. Agent 原生</a></li>
+        <li><a href="#3-编程能力">3. 编程能力</a></li>
+        <li><a href="#4-推理能力">4. 推理能力</a></li>
+        <li><a href="#5-完全开源">5. 完全开源</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何使用">如何使用</a>
+      <ul>
+        <li><a href="#方法一ollama推荐最简单">方法一：Ollama（推荐，最简单）</a></li>
+        <li><a href="#方法二hugging-face">方法二：Hugging Face</a></li>
+        <li><a href="#方法三google-ai-studio">方法三：Google AI Studio</a></li>
+        <li><a href="#方法四本地-gpu-部署">方法四：本地 GPU 部署</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用场景">应用场景</a>
+      <ul>
+        <li><a href="#1-本地-ai-助手">1. 本地 AI 助手</a></li>
+        <li><a href="#2-企业私有部署">2. 企业私有部署</a></li>
+        <li><a href="#3-嵌入式应用">3. 嵌入式应用</a></li>
+        <li><a href="#4-开发与研究">4. 开发与研究</a></li>
+      </ul>
+    </li>
+    <li><a href="#与其他开源模型对比">与其他开源模型对比</a></li>
+    <li><a href="#系统要求">系统要求</a>
+      <ul>
+        <li><a href="#最低配置2b-版本">最低配置（2B 版本）</a></li>
+        <li><a href="#推荐配置9b-版本">推荐配置（9B 版本）</a></li>
+        <li><a href="#高性能配置27b-版本">高性能配置（27B 版本）</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="google-gemma-4-全面介绍开源最强模型如何使用">Google Gemma 4 全面介绍：开源最强模型如何使用</h1>
+<h2 id="什么是-gemma-4">什么是 Gemma 4</h2>
+<p>Gemma 4 是 Google DeepMind 于 2026 年 4 月 2 日发布的最新开源模型系列，被誉为&quot;字节对字节&quot;最强大的开源模型。该模型基于与 Gemini 3 相同的研究构建，在推理、Agent 工作流、编程和多模态理解方面表现出色。</p>
+<h3 id="核心理念">核心理念</h3>
+<p>Gemma 这个名字来源于拉丁语&quot;gemma&quot;，意为&quot;宝石&quot;。Google 希望通过这个轻量级但强大的模型系列，让 AI 能力像宝石一样珍贵且易于获取。</p>
+<h2 id="gemma-4-四大版本">Gemma 4 四大版本</h2>
+<p>Gemma 4 提供四个规模的模型，满足不同场景需求：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>参数规模</th>
+<th>适用场景</th>
+<th>硬件要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gemma 4 2B</strong></td>
+<td>20亿</td>
+<td>手机/嵌入式设备</td>
+<td>普通 CPU 即可</td>
+</tr>
+<tr>
+<td><strong>Gemma 4 4B</strong></td>
+<td>40亿</td>
+<td>笔记本电脑</td>
+<td>8GB+ RAM</td>
+</tr>
+<tr>
+<td><strong>Gemma 4 9B</strong></td>
+<td>90亿</td>
+<td>台式机/服务器</td>
+<td>16GB+ VRAM</td>
+</tr>
+<tr>
+<td><strong>Gemma 4 27B</strong></td>
+<td>270亿</td>
+<td>高性能服务器</td>
+<td>显存 80GB+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心特性">核心特性</h2>
+<h3 id="1-多模态能力">1. 多模态能力</h3>
+<p>Gemma 4 支持文本和图像输入，可以：</p>
+<ul>
+<li>分析图片内容</li>
+<li>理解图表和截图</li>
+<li>结合文本和图像进行推理</li>
+</ul>
+<h3 id="2-agent-原生">2. Agent 原生</h3>
+<p>专为 Agent 工作流设计：</p>
+<ul>
+<li>强大的工具调用能力</li>
+<li>多步骤推理</li>
+<li>自主规划能力</li>
+</ul>
+<h3 id="3-编程能力">3. 编程能力</h3>
+<p>在编程任务上表现优异：</p>
+<ul>
+<li>代码生成和补全</li>
+<li>Bug 修复</li>
+<li>代码审查</li>
+</ul>
+<h3 id="4-推理能力">4. 推理能力</h3>
+<p>先进的 Chain-of-Thought 推理，适合：</p>
+<ul>
+<li>数学问题求解</li>
+<li>逻辑推理</li>
+<li>复杂分析任务</li>
+</ul>
+<h3 id="5-完全开源">5. 完全开源</h3>
+<ul>
+<li><strong>Apache 2.0 许可证</strong> - 可免费商用</li>
+<li><strong>完全开放权重</strong> - 可自行部署和微调</li>
+<li><strong>无使用限制</strong> - 商业和个人项目均可</li>
+</ul>
+<h2 id="如何使用">如何使用</h2>
+<h3 id="方法一ollama推荐最简单">方法一：Ollama（推荐，最简单）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 Ollama</span>
+</span></span><span class="line"><span class="cl">brew install ollama
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载并运行 Gemma 4</span>
+</span></span><span class="line"><span class="cl">ollama run gemma4:e4b
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法二hugging-face">方法二：Hugging Face</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&#34;google/gemma-4-9b-it&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">input_text</span> <span class="o">=</span> <span class="s2">&#34;Explain quantum computing in simple terms&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">input_text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&#34;pt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法三google-ai-studio">方法三：Google AI Studio</h3>
+<ol>
+<li>访问 <a
+  href="https://aistudio.google.com/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Google AI Studio</a></li>
+<li>选择 Gemma 4 模型</li>
+<li>直接在浏览器中体验</li>
+</ol>
+<h3 id="方法四本地-gpu-部署">方法四：本地 GPU 部署</h3>
+<p>使用 transformers + GPU：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install torch transformers accelerate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python -c <span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">from transformers import AutoModelForCausalLM, AutoTokenizer
+</span></span></span><span class="line"><span class="cl"><span class="s2">model = AutoModelForCausalLM.from_pretrained(
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;google/gemma-4-9b-it&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    device_map=&#39;auto&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    torch_dtype=&#39;auto&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">)
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#39;Model loaded!&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="应用场景">应用场景</h2>
+<h3 id="1-本地-ai-助手">1. 本地 AI 助手</h3>
+<p>通过 Ollama 在本地运行，保护隐私：</p>
+<ul>
+<li>个人知识库问答</li>
+<li>代码助手</li>
+<li>文档处理</li>
+</ul>
+<h3 id="2-企业私有部署">2. 企业私有部署</h3>
+<ul>
+<li>数据不出本地</li>
+<li>定制化微调</li>
+<li>成本可控</li>
+</ul>
+<h3 id="3-嵌入式应用">3. 嵌入式应用</h3>
+<ul>
+<li>2B 版本可在手机运行</li>
+<li>IoT 设备 AI 能力</li>
+<li>离线语音助手</li>
+</ul>
+<h3 id="4-开发与研究">4. 开发与研究</h3>
+<ul>
+<li>AI 应用开发</li>
+<li>模型微调实验</li>
+<li>教育学习</li>
+</ul>
+<h2 id="与其他开源模型对比">与其他开源模型对比</h2>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数量</th>
+<th>开源协议</th>
+<th>多模态</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemma 4</td>
+<td>2B-27B</td>
+<td>Apache 2.0</td>
+<td>✅</td>
+<td>Google 品质，Agent 原生</td>
+</tr>
+<tr>
+<td>Llama 3</td>
+<td>8B-70B</td>
+<td>Llama License</td>
+<td>✅</td>
+<td>Meta 开源生态</td>
+</tr>
+<tr>
+<td>Qwen 2</td>
+<td>0.5B-72B</td>
+<td>Apache 2.0</td>
+<td>✅</td>
+<td>阿里出品，中文优化</td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td>7B-123B</td>
+<td>Apache 2.0</td>
+<td>❌</td>
+<td>欧洲开源新星</td>
+</tr>
+</tbody>
+</table>
+<h2 id="系统要求">系统要求</h2>
+<h3 id="最低配置2b-版本">最低配置（2B 版本）</h3>
+<ul>
+<li>CPU: 任意现代处理器</li>
+<li>RAM: 4GB+</li>
+<li>存储: 2GB</li>
+</ul>
+<h3 id="推荐配置9b-版本">推荐配置（9B 版本）</h3>
+<ul>
+<li>GPU: NVIDIA RTX 3090+ 或同等性能</li>
+<li>VRAM: 16GB+</li>
+<li>RAM: 32GB+</li>
+</ul>
+<h3 id="高性能配置27b-版本">高性能配置（27B 版本）</h3>
+<ul>
+<li>GPU: 多卡 A100/H100</li>
+<li>VRAM: 80GB+</li>
+<li>RAM: 64GB+</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>Gemma 4 是 Google 迄今为止最强大的开源模型，具有：</p>
+<ul>
+<li>✅ <strong>四种规模</strong> - 从手机到服务器</li>
+<li>✅ <strong>多模态</strong> - 支持图像理解</li>
+<li>✅ <strong>完全开源</strong> - Apache 2.0 许可</li>
+<li>✅ <strong>本地部署</strong> - 保护隐私</li>
+<li>✅ <strong>高性能</strong> - 接近闭源大模型</li>
+</ul>
+<p>无论你是个人开发者、企业用户还是研究人员，Gemma 4 都值得一试。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>官方博客：https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/</li>
+<li>模型卡：https://ai.google.dev/gemma/docs/core/model_card_4</li>
+<li>Hugging Face：https://huggingface.co/google/gemma-4</li>
+<li>Ollama：https://ollama.com/library/gemma4</li>
+<li>文档：https://ai.google.dev/gemma/docs</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-04&#32;10:00:00>更新于 2026-04-04&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/gemma-4-introduction/" data-title="Google Gemma 4 全面介绍：开源最强模型如何使用"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gemma/">Gemma</a>,&nbsp;<a href="/tags/google/">Google</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/">本地部署</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/rustdesk-introduction/" class="prev" rel="prev" title="RustDesk：开源远程桌面解决方案"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>RustDesk：开源远程桌面解决方案</a>
+      <a href="/openai-codex-cli-introduction/" class="next" rel="next" title="OpenAI Codex CLI 全面介绍：开源的终端编程助手">OpenAI Codex CLI 全面介绍：开源的终端编程助手<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

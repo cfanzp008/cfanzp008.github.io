@@ -4,7 +4,27 @@
     <link>https://cfanzp008.github.io/tags/github/</link>
     <description>github - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 31 Jul 2022 18:53:09 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/github/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/github/" rel="self" type="application/rss+xml" /><item>
+  <title>VibeVoice：Microsoft 开源的前沿语音 AI</title>
+  <link>https://cfanzp008.github.io/vibevoice-introduction/</link>
+  <pubDate>Sat, 04 Apr 2026 14:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/vibevoice-introduction/</guid>
+  <description><![CDATA[VibeVoice：Microsoft 开源的前沿语音 AI 什么是 VibeVoice VibeVoice 是 Microsoft 于 2025 年 8 月发布的开源语音 AI 项目，可以生成长达 90 分钟的多说话者播客内容。该项目在 GitHub 上已获得 35,900+ 颗星，是当前最受欢迎的开源语音合成项目之一。
+VibeVoice 的核心能力是表达性长文本对话语音合成，能够生成自然流畅的多人对话播客。
+核心特性 1. 超长语音生成 支持生成长达 90 分钟的连续语音内容 适合播客、有声书、长对话场景 保持一致的语音质量 2. 多说话者支持 支持多个说话者同时对话 区分不同角色的声音和情感 自然的对话节奏 3. 表达性语音 情感丰富的语音输出 自然的语调变化 支持多种说话风格 4. 开源免费 MIT 许可证 - 完全开源 免费商用 社区活跃（社区 fork 版本有 1000+ 星） 5. Python 实现 纯 Python 实现 易于集成和扩展 丰富的 API 接口 安装配置 环境要求 Python 3.8+ CUDA（推荐用于 GPU 加速） 16GB+ RAM 安装步骤 1 2 3 4 5 6 7 8 9 # 克隆仓库 git clone https://github.]]></description>
+</item>
+<item>
+  <title>OpenAI Codex CLI 全面介绍：开源的终端编程助手</title>
+  <link>https://cfanzp008.github.io/openai-codex-cli-introduction/</link>
+  <pubDate>Sat, 04 Apr 2026 12:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openai-codex-cli-introduction/</guid>
+  <description><![CDATA[OpenAI Codex CLI 全面介绍：开源的终端编程助手 什么是 Codex CLI Codex CLI 是 OpenAI 于 2025 年开源的轻量级编程助手，完全运行在你的终端中。它可以读取代码库、进行编辑、运行命令，帮助开发者完成各种编程任务。
+该项目在 GitHub 上已获得 72,900+ 颗星，是 Rust 编写的开源项目。
+核心特性 1. 终端集成 完整的终端 UI 直接读取和编辑代码 运行终端命令 支持图像输入（截图分析） 2. 多种使用模式 交互模式：全屏终端 UI，实时协作 非交互模式：适合 CI/CD 集成 Exec 模式：脚本化调用 3. 强大的命令支持 /test：生成测试代码 /edit：代码编辑 /shell：执行 shell 命令 /review：代码审查 /diff：查看变更 4. 沙箱安全 安全的代码执行环境 防止恶意操作 可配置的安全级别 5. 多模型支持 支持多种 AI 模型 可自定义模型选择 支持本地模型 安装配置 安装方式 1 2 3 4 5 6 7 8 # 方法一：npm npm i -g @openai/codex # 方法二：Homebrew brew install --cask codex # 方法三：下载二进制 # 访问 GitHub Releases 页面 验证安装 1 2 3 4 5 # 查看版本 codex --version # 启动交互模式 codex 认证配置 1 2 3 4 5 # 登录 OpenAI 账号 codex auth login # 或设置 API Key export OPENAI_API_KEY=&#34;sk-.]]></description>
+</item>
+<item>
   <title>github资源整理</title>
   <link>https://cfanzp008.github.io/code-github/</link>
   <pubDate>Sun, 31 Jul 2022 18:53:09 &#43;0800</pubDate>

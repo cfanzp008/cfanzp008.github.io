@@ -660,6 +660,86 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/everything-claude-code-introduction/">Everything Claude Code：最完整的 Claude Code 配置集合</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-02 14:00:00'>发布于 <time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">Everything Claude Code：最完整的 Claude Code 配置集合 背景介绍 Claude Code 是 Anthropic 推出的 AI 编程助手，能够在终端中帮助开发者完成代码编写、调试和 Git 工作流。然而，要充分发挥 Claude Code 的潜力，需要合理的配置和扩展。
+Everything Claude Code 是一个由 Anthropic hackathon 获奖者开发的综合配置集合，在 GitHub 上已获得超过 130K 颗星，成为 Claude Code 生态中最受欢迎的配置项目。
+什么是 Everything Claude Code Everything Claude Code（简称 ECC）是一个经过实战检验的 Claude Code 插件配置集合，包含：
+9 个专业 Agent：针对不同开发场景的专用代理 14 个命令：扩展 Claude Code 的功能 8+ 个技能（Skills）：扩展 Claude 的专业能力 Hooks：自动化工作流程 安全规则：保护开发环境 核心功能特性 1. 专业技能（Skills） ECC 提供了多个专业技能来增强 Claude Code：
+continuous-learning-v2：持续学习技能，记录对话上下文 strategic-compact：智能压缩技能，优化 token 使用 项目特定技能：针对不同项目类型的定制技能 2.</div><div class="post-footer">
+    <a href="/everything-claude-code-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/claude-code/">claude-code</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/">开发效率</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/tmux-opencode-tutorial/">Tmux &#43; OpenCode 安装使用教程</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-02 14:00:00'>发布于 <time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content">Tmux + OpenCode 安装使用教程 背景与简介 在日常开发和运维工作中，我们经常需要同时管理多个终端会话：
+远程服务器上运行多个服务 同时查看日志、编辑代码、运行测试 临时断开连接后希望保持任务继续运行 Tmux（Terminal Multiplexer）正是为解决这些痛点而设计的终端复用器。而 OpenCode 作为一个开源的 AI 编程助手，可以大幅提升编码效率。
+本文将详细介绍两者的安装与基本使用方法。
+什么是 Tmux Tmux 是一个终端复用器，允许在一个终端中运行多个会话、窗口和窗格。它的主要功能包括：
+会话管理：保持后台任务运行，即使 SSH 断开也不会中断 分屏功能：将终端分割成多个窗格，同时查看多个任务 会话共享：允许其他人加入到同一个终端会话中 标签式操作：通过快捷键快速切换不同窗口 什么是 OpenCode OpenCode 是一个开源的 AI 编程助手，支持：
+代码补全与生成 代码审查与重构 自然语言编程 多模型支持 Tmux 安装 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install tmux CentOS/RHEL 1 sudo yum install tmux macOS 1 2 # 使用 Homebrew brew install tmux 验证安装 1 tmux -V Tmux 基本使用 启动与退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 启动新会话 tmux # 指定会话名称启动 tmux new -s mysession # 退出 tmux（会话保留） Ctrl+b 然后按 d # 列出所有会话 tmux ls # 重新接入会话 tmux attach -t mysession # 杀死会话 tmux kill-session -t mysession 快捷键前缀 Tmux 的所有快捷键都需要先按下 前缀键（默认是 Ctrl+b），然后再按功能键。</div><div class="post-footer">
+    <a href="/tmux-opencode-tutorial/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/carbonyl-brow6el-terminal-browser/">终端浏览器 Carbonyl 与 Brow6el 介绍</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-02 11:00:00'>发布于 <time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">终端浏览器 Carbonyl 与 Brow6el 介绍 背景 在终端环境中浏览网页通常意味着只能访问纯文本内容，放弃所有的图片、视频和交互式 Web 应用。但随着 Carbonyl 和 Brow6el 这两款终端浏览器的出现，开发者可以在终端中体验完整的 Web 内容，包括视频播放、WebGL 游戏等。
+Carbonyl 什么是 Carbonyl Carbonyl 是一个基于 Chromium 的终端浏览器，由 Fathy Boundjadj 开发。它可以在终端中运行完整的 Chromium 浏览器，支持几乎所有现代 Web API。
+主要特性 60 FPS 流畅渲染：高性能图形渲染 完整 Web API 支持：包括 WebGL、WebGPU、音频视频播放 无需图形界面：不依赖 X Server，可在纯终端环境运行 SSH 远程支持：可以通过 SSH 远程访问 Rust 实现：使用 Rust 编写，性能优异 安装方法 1 2 3 4 5 # 使用 cargo 安装 cargo install carbonyl # 或者下载预编译版本 # 访问 https://github.com/fathyb/carbonyl/releases 使用方法 1 2 3 4 5 # 基本用法 carbonyl https://www.</div><div class="post-footer">
+    <a href="/carbonyl-brow6el-terminal-browser/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/carbonyl/">carbonyl</a>,&nbsp;<a href="/tags/brow6el/">brow6el</a>,&nbsp;<a href="/tags/terminal/">terminal</a>,&nbsp;<a href="/tags/browser/">browser</a>,&nbsp;<a href="/tags/%E7%BB%88%E7%AB%AF/">终端</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/minimax-model-opencode-tutorial/">MiniMax 模型接入 OpenCode 教程</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -743,66 +823,6 @@ PDF 文档 文本文件、指南 网站内容 音频文件 数据库记录 知�
 <p>在现代软件开发和部署中，Docker 已成为不可或缺的核心技术。它通过容器化技术，让应用程序的打包、分发和运行变得前所未有的简单。本文将带你从零开始，系统学习 Docker 的安装、基础命令和实战应用。</p></div><div class="post-footer">
     <a href="/docker-container-basics/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/">容器化</a>,&nbsp;<a href="/tags/devops/">devops</a>,&nbsp;<a href="/tags/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/">容器技术</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/golang-concurrent-programming/">Go语言并发编程指南</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2026-04-01 10:00:00'>发布于 <time datetime="2026-04-01">2026-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/golang/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> golang</a>&ensp;<a href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 并发编程</a></span></div><div class="content">深入理解Go语言并发编程：Goroutine、Channel和常见并发模式的基本用法与实践</div><div class="post-footer">
-    <a href="/golang-concurrent-programming/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a>,&nbsp;<a href="/tags/goroutine/">goroutine</a>,&nbsp;<a href="/tags/channel/">channel</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-process-management/">Linux 系统进程管理详解</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-01 10:00:00'>发布于 <time datetime="2026-04-01">2026-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> linux</a></span></div><div class="content"><h2 id="前言">前言</h2>
-<p>进程是 Linux 系统中程序执行的最小单元，理解进程管理对于系统管理员和开发人员至关重要。本文将详细介绍 Linux 进程的管理机制，包括进程状态、常用监控命令以及常见问题的排查方法。</p></div><div class="post-footer">
-    <a href="/linux-process-management/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/process-management/">process-management</a>,&nbsp;<a href="/tags/ps/">ps</a>,&nbsp;<a href="/tags/top/">top</a>,&nbsp;<a href="/tags/troubleshooting/">troubleshooting</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/opencode-install-guide/">OpenCode AI 编程助手安装指南</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-01 10:00:00'>发布于 <time datetime="2026-04-01">2026-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
-OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
-本文将详细介绍 OpenCode 在不同操作系统上的安装方法。
-系统要求 前置条件 使用 OpenCode 终端版本需要满足以下条件：
-终端模拟器：推荐使用现代终端，如：
-WezTerm - 跨平台 Alacritty - 跨平台 Ghostty - Linux 和 macOS Kitty - Linux 和 macOS LLM 提供商的 API Key：根据你选择的模型提供商，需要准备相应的 API Key
-Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的安装方式，运行以下命令即可：
-1 curl -fsSL https://opencode.ai/install | bash 方式二：使用 Node.js 包管理器 如果你已经安装了 Node.</div><div class="post-footer">
-    <a href="/opencode-install-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/%E5%85%A5%E9%97%A8/">入门</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -827,7 +847,7 @@ Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/56/">56</a>
+            <a href="/page/57/">57</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

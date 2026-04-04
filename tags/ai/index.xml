@@ -4,7 +4,38 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>AI - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Fri, 03 Apr 2026 16:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>VibeVoice：Microsoft 开源的前沿语音 AI</title>
+  <link>https://cfanzp008.github.io/vibevoice-introduction/</link>
+  <pubDate>Sat, 04 Apr 2026 14:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/vibevoice-introduction/</guid>
+  <description><![CDATA[VibeVoice：Microsoft 开源的前沿语音 AI 什么是 VibeVoice VibeVoice 是 Microsoft 于 2025 年 8 月发布的开源语音 AI 项目，可以生成长达 90 分钟的多说话者播客内容。该项目在 GitHub 上已获得 35,900+ 颗星，是当前最受欢迎的开源语音合成项目之一。
+VibeVoice 的核心能力是表达性长文本对话语音合成，能够生成自然流畅的多人对话播客。
+核心特性 1. 超长语音生成 支持生成长达 90 分钟的连续语音内容 适合播客、有声书、长对话场景 保持一致的语音质量 2. 多说话者支持 支持多个说话者同时对话 区分不同角色的声音和情感 自然的对话节奏 3. 表达性语音 情感丰富的语音输出 自然的语调变化 支持多种说话风格 4. 开源免费 MIT 许可证 - 完全开源 免费商用 社区活跃（社区 fork 版本有 1000+ 星） 5. Python 实现 纯 Python 实现 易于集成和扩展 丰富的 API 接口 安装配置 环境要求 Python 3.8+ CUDA（推荐用于 GPU 加速） 16GB+ RAM 安装步骤 1 2 3 4 5 6 7 8 9 # 克隆仓库 git clone https://github.]]></description>
+</item>
+<item>
+  <title>OpenAI Codex CLI 全面介绍：开源的终端编程助手</title>
+  <link>https://cfanzp008.github.io/openai-codex-cli-introduction/</link>
+  <pubDate>Sat, 04 Apr 2026 12:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openai-codex-cli-introduction/</guid>
+  <description><![CDATA[OpenAI Codex CLI 全面介绍：开源的终端编程助手 什么是 Codex CLI Codex CLI 是 OpenAI 于 2025 年开源的轻量级编程助手，完全运行在你的终端中。它可以读取代码库、进行编辑、运行命令，帮助开发者完成各种编程任务。
+该项目在 GitHub 上已获得 72,900+ 颗星，是 Rust 编写的开源项目。
+核心特性 1. 终端集成 完整的终端 UI 直接读取和编辑代码 运行终端命令 支持图像输入（截图分析） 2. 多种使用模式 交互模式：全屏终端 UI，实时协作 非交互模式：适合 CI/CD 集成 Exec 模式：脚本化调用 3. 强大的命令支持 /test：生成测试代码 /edit：代码编辑 /shell：执行 shell 命令 /review：代码审查 /diff：查看变更 4. 沙箱安全 安全的代码执行环境 防止恶意操作 可配置的安全级别 5. 多模型支持 支持多种 AI 模型 可自定义模型选择 支持本地模型 安装配置 安装方式 1 2 3 4 5 6 7 8 # 方法一：npm npm i -g @openai/codex # 方法二：Homebrew brew install --cask codex # 方法三：下载二进制 # 访问 GitHub Releases 页面 验证安装 1 2 3 4 5 # 查看版本 codex --version # 启动交互模式 codex 认证配置 1 2 3 4 5 # 登录 OpenAI 账号 codex auth login # 或设置 API Key export OPENAI_API_KEY=&#34;sk-.]]></description>
+</item>
+<item>
+  <title>Google Gemma 4 全面介绍：开源最强模型如何使用</title>
+  <link>https://cfanzp008.github.io/gemma-4-introduction/</link>
+  <pubDate>Sat, 04 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/gemma-4-introduction/</guid>
+  <description><![CDATA[Google Gemma 4 全面介绍：开源最强模型如何使用 什么是 Gemma 4 Gemma 4 是 Google DeepMind 于 2026 年 4 月 2 日发布的最新开源模型系列，被誉为&quot;字节对字节&quot;最强大的开源模型。该模型基于与 Gemini 3 相同的研究构建，在推理、Agent 工作流、编程和多模态理解方面表现出色。
+核心理念 Gemma 这个名字来源于拉丁语&quot;gemma&quot;，意为&quot;宝石&quot;。Google 希望通过这个轻量级但强大的模型系列，让 AI 能力像宝石一样珍贵且易于获取。
+Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需求：
+版本 参数规模 适用场景 硬件要求 Gemma 4 2B 20亿 手机/嵌入式设备 普通 CPU 即可 Gemma 4 4B 40亿 笔记本电脑 8GB+ RAM Gemma 4 9B 90亿 台式机/服务器 16GB+ VRAM Gemma 4 27B 270亿 高性能服务器 显存 80GB+ 核心特性 1. 多模态能力 Gemma 4 支持文本和图像输入，可以：]]></description>
+</item>
+<item>
   <title>MiniMax AI 平台全面介绍</title>
   <link>https://cfanzp008.github.io/minimax-platform-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 16:00:00 &#43;0800</pubDate>
@@ -100,51 +131,6 @@ Everything Claude Code 是一个由 Anthropic hackathon 获奖者开发的综合
 什么是 Everything Claude Code Everything Claude Code（简称 ECC）是一个经过实战检验的 Claude Code 插件配置集合，包含：
 9 个专业 Agent：针对不同开发场景的专用代理 14 个命令：扩展 Claude Code 的功能 8+ 个技能（Skills）：扩展 Claude 的专业能力 Hooks：自动化工作流程 安全规则：保护开发环境 核心功能特性 1. 专业技能（Skills） ECC 提供了多个专业技能来增强 Claude Code：
 continuous-learning-v2：持续学习技能，记录对话上下文 strategic-compact：智能压缩技能，优化 token 使用 项目特定技能：针对不同项目类型的定制技能 2.]]></description>
-</item>
-<item>
-  <title>MiniMax 模型接入 OpenCode 教程</title>
-  <link>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</link>
-  <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</guid>
-  <description><![CDATA[MiniMax 模型接入 OpenCode 教程 背景介绍 OpenCode 是一个强大的 AI 编程助手，支持多种大语言模型提供商。MiniMax 作为国内领先的 AI 平台，提供了性能优异的编程模型 M2 系列。本教程将详细介绍如何将 MiniMax 模型接入 OpenCode，实现本地 AI 辅助编程。
-什么是 MiniMax MiniMax 是专注于多语言编程能力的 AI 平台，提供以下优势：
-强大的代码理解能力：深度理解多种编程语言和框架 长上下文窗口：支持高达 204,800 tokens 的上下文 高速输出：M2.5-highspeed 模型可达 100 tps 输出速度 多模型选择：支持 M2.5、M2.1、M2 等多个版本 支持的模型列表：
-模型名称 上下文窗口 输出速度 MiniMax-M2.5 204,800 ~60 tps MiniMax-M2.5-highspeed 204,800 ~100 tps MiniMax-M2.1 204,800 ~60 tps MiniMax-M2.1-highspeed 204,800 ~100 tps 前置条件 在开始配置之前，请确保：
-已安装 OpenCode（如果没有安装，可参考官方文档） 已注册 MiniMax 平台账号并获取 API Key 具备基本的命令行操作能力 获取 MiniMax API Key 访问 MiniMax 开放平台 注册并登录账号 在个人中心或开发者设置中获取 API Key 确保账户有足够的 API 调用额度 配置步骤 方法一：环境变量配置 最简单的方式是通过环境变量配置 MiniMax：]]></description>
-</item>
-<item>
-  <title>RAG 深度解读：检索增强生成技术原理与实践</title>
-  <link>https://cfanzp008.github.io/rag-deep-analysis/</link>
-  <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/rag-deep-analysis/</guid>
-  <description><![CDATA[RAG 深度解读：检索增强生成技术原理与实践 背景与问题 大型语言模型（LLM）在生成代码、总结文章、回答问题等方面表现出色，但存在一个根本性限制：它们只知道训练数据中的信息。
-训练数据是有限的，且存在以下问题：
-知识截止日期（Knowledge Cutoff）：模型的知识停留在训练数据收集的时间点，无法获取实时信息 领域知识缺失：通用模型缺乏特定领域的专业知识，如企业内部文档、产品规格等 幻觉问题（Hallucination）：模型可能生成看似合理但实际错误的内容 训练成本高昂：想让模型学习新知识，需要重新训练或微调，成本巨大 RAG（Retrieval-Augmented Generation，检索增强生成）正是为解决这些问题而设计的架构。
-什么是 RAG RAG 是一种优化 LLM 性能的架构，通过连接外部知识库，让模型在生成响应时能够访问最新的、领域特定的、权威的数据。
-RAG 这个名称本身就描述了它的工作流程：
-Retrieval（检索）：从外部知识库查询相关信息 Augmented（增强）：将检索到的信息添加到提示中作为上下文 Generation（生成）：基于增强后的提示生成最终响应 RAG 核心流程 RAG 系统遵循五阶段流程：
-1 用户提交问题 → 检索知识库 → 返回相关信息 → 构建增强提示 → LLM生成响应 阶段详解 用户提交提示（Prompt）：用户提出问题或请求 信息检索（Retrieval）：检索模型查询知识库，获取相关数据 信息返回：从知识库返回相关信息到集成层 提示增强（Augmentation）：RAG 系统将原始用户提示与检索到的上下文结合，构建增强提示 生成响应（Generation）：LLM 基于增强后的提示生成最终响应，返回给用户 RAG 系统核心组件 RAG 系统包含四个主要组件：
-1. 知识库（Knowledge Base） 知识库是 RAG 系统的外部数据仓库，可以包含多种数据源：
-PDF 文档 文本文件、指南 网站内容 音频文件 数据库记录 知识库中的数据需要经过**向量化（Embedding）**处理，转换为数值向量表示，才能进行语义搜索。
-2. 检索器（Retriever） 检索器是执行语义搜索的 AI 模型，其工作流程：
-将用户查询转换为向量表示（使用相同的嵌入模型） 在知识库中搜索相似的向量 返回最相关的文档片段 3.]]></description>
-</item>
-<item>
-  <title>OpenCode AI 编程助手安装指南</title>
-  <link>https://cfanzp008.github.io/opencode-install-guide/</link>
-  <pubDate>Wed, 01 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/opencode-install-guide/</guid>
-  <description><![CDATA[OpenCode AI 编程助手安装指南 背景 OpenCode 是一个开源的 AI 编程助手，可以在终端、桌面应用或 IDE 扩展中使用。它支持多种 LLM 提供商，包括 Claude、GPT、Gemini 等，也可以使用免费的内置模型。
-OpenCode 拥有超过 12 万 GitHub Star、800 位贡献者和超过 1 万次提交，每月被超过 500 万开发者使用。
-本文将详细介绍 OpenCode 在不同操作系统上的安装方法。
-系统要求 前置条件 使用 OpenCode 终端版本需要满足以下条件：
-终端模拟器：推荐使用现代终端，如：
-WezTerm - 跨平台 Alacritty - 跨平台 Ghostty - Linux 和 macOS Kitty - Linux 和 macOS LLM 提供商的 API Key：根据你选择的模型提供商，需要准备相应的 API Key
-Linux/macOS 安装 方式一：一键安装脚本（推荐） 这是最简单的安装方式，运行以下命令即可：
-1 curl -fsSL https://opencode.ai/install | bash 方式二：使用 Node.js 包管理器 如果你已经安装了 Node.]]></description>
 </item>
 </channel>
 </rss>
