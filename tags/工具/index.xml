@@ -4,7 +4,21 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>飞书 lark-cli 命令行工具使用指南</title>
+  <link>https://cfanzp008.github.io/lark-cli-usage-guide/</link>
+  <pubDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/lark-cli-usage-guide/</guid>
+  <description><![CDATA[飞书 lark-cli 命令行工具使用指南 背景简介 在企业协作场景中，飞书（Lark/Feishu）作为新一代办公平台，已经深入到日程管理、文档协作、项目推进等各个环节。然而，如何高效地与飞书平台进行自动化交互，一直是开发者和AI Agent面临的核心挑战。
+2026年3月，飞书官方正式开源了 lark-cli 命令行工具，为开发者和AI Agent提供了统一的命令行接口。该工具支持200+命令，覆盖12个业务领域，包括即时通讯、日历、文档、云盘、多维表格、邮件、任务、会议、知识库、审批等，更重要的是提供了20个开箱即用的AI Agent技能，让AI能够直接操作飞书平台。
+截至目前，lark-cli 在 GitHub 上已获得超过6700个Star，成为企业协作自动化领域的标杆工具。
+安装与配置 环境要求 在开始安装之前，请确保你的开发环境满足以下要求：
+Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用源码编译时需要 安装方式 lark-cli 提供两种安装方式，推荐使用 npm 安装：
+1 2 3 4 5 6 7 # 方式一：使用 npm 安装（推荐） npm install -g @larksuite/cli # 方式二：从源码编译安装 git clone https://github.com/larksuite/cli.git cd cli make install 安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：
+1 npx skills add larksuite/cli -y -g 初始化配置 安装完成后，需要进行一次性配置：]]></description>
+</item>
+<item>
   <title>iperf3 网络带宽测试工具用法及使用场景</title>
   <link>https://cfanzp008.github.io/iperf3-usage-and-scenarios/</link>
   <pubDate>Thu, 02 Apr 2026 15:00:00 &#43;0800</pubDate>

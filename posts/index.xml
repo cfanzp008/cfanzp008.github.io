@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 00:26:20 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,20 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>飞书 lark-cli 命令行工具使用指南</title>
+  <link>https://cfanzp008.github.io/lark-cli-usage-guide/</link>
+  <pubDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/lark-cli-usage-guide/</guid>
+  <description><![CDATA[飞书 lark-cli 命令行工具使用指南 背景简介 在企业协作场景中，飞书（Lark/Feishu）作为新一代办公平台，已经深入到日程管理、文档协作、项目推进等各个环节。然而，如何高效地与飞书平台进行自动化交互，一直是开发者和AI Agent面临的核心挑战。
+2026年3月，飞书官方正式开源了 lark-cli 命令行工具，为开发者和AI Agent提供了统一的命令行接口。该工具支持200+命令，覆盖12个业务领域，包括即时通讯、日历、文档、云盘、多维表格、邮件、任务、会议、知识库、审批等，更重要的是提供了20个开箱即用的AI Agent技能，让AI能够直接操作飞书平台。
+截至目前，lark-cli 在 GitHub 上已获得超过6700个Star，成为企业协作自动化领域的标杆工具。
+安装与配置 环境要求 在开始安装之前，请确保你的开发环境满足以下要求：
+Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用源码编译时需要 安装方式 lark-cli 提供两种安装方式，推荐使用 npm 安装：
+1 2 3 4 5 6 7 # 方式一：使用 npm 安装（推荐） npm install -g @larksuite/cli # 方式二：从源码编译安装 git clone https://github.com/larksuite/cli.git cd cli make install 安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：
+1 npx skills add larksuite/cli -y -g 初始化配置 安装完成后，需要进行一次性配置：]]></description>
 </item>
 <item>
   <title>Hermes Agent：会自我进化的 AI 智能体</title>
@@ -130,17 +144,6 @@ Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需
   <description><![CDATA[MiniMax AI 平台全面介绍 什么是 MiniMax MiniMax 是由稀宇科技开发的 AI 平台，提供从文本到语音、视频、音乐的全模态 AI 能力。该平台在编程、多模态理解、Agent 能力等方面表现出色，是国内领先的 AI 大模型提供商之一。
 MiniMax 的核心理念是&quot;让 AI 能力触手可及&quot;，通过提供高性价比的 API 服务，让开发者能够轻松构建 AI 应用。
 模型矩阵 文本模型 模型 上下文窗口 特点 MiniMax-M2.7 200K 最新旗舰模型，编程和 Agent 能力 SOTA MiniMax-M2.5 200K 编程能力突出，SWE-Bench 得分 80.2% MiniMax-M2.5-Lightlight 200K 轻量版本，性价比更高 MiniMax-M2.1 200K 多语言编程大师 MiniMax-M2 200K Agent 能力，先进推理 语音模型 MiniMax Speech 2.6：最新语音合成模型 MiniMax Speech 2.5：高质量语音输出 视频模型 MiniMax Hailuo 2.3：视频生成模型 MiniMax Hailuo 2.3 Fast：快速生成版本 其他模态 图片生成 音乐生成 核心能力 1. 编程能力 MiniMax-M2.5 在编程领域表现突出：]]></description>
-</item>
-<item>
-  <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
-  <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
-  <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/zeroclaw-introduction/</guid>
-  <description><![CDATA[ZeroClaw：超轻量级 AI 助手基础设施 什么是 ZeroClaw ZeroClaw 是一个用 Rust 编写的下一代 AI 助手框架，致力于提供&quot;零开销、零妥协&quot;的解决方案。它可以在仅 10 美元的硬件上运行，内存占用少于 5MB，比同类产品节省 99% 的资源。
-该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。
-核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
-核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
 </item>
 </channel>
 </rss>

@@ -5,41 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Hermes Agent：会自我进化的 AI 智能体 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+    <title>飞书 lark-cli 命令行工具使用指南 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="详细介绍 Hermes Agent——由 Nous Research 开发的开源 AI 智能体，具有长期记忆、自我进化、多平台运行等特性" /><meta name="keywords" content='Hermes Agent, AI, Agent, Nous Research, GitHub, 开源' /><meta itemprop="name" content="Hermes Agent：会自我进化的 AI 智能体">
-<meta itemprop="description" content="详细介绍 Hermes Agent——由 Nous Research 开发的开源 AI 智能体，具有长期记忆、自我进化、多平台运行等特性"><meta itemprop="datePublished" content="2026-04-05T00:26:20+08:00" />
-<meta itemprop="dateModified" content="2026-04-05T00:26:20+08:00" />
-<meta itemprop="wordCount" content="291"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
-<meta itemprop="keywords" content="Hermes Agent,AI,Agent,Nous Research,GitHub,开源," /><meta property="og:title" content="Hermes Agent：会自我进化的 AI 智能体" />
-<meta property="og:description" content="详细介绍 Hermes Agent——由 Nous Research 开发的开源 AI 智能体，具有长期记忆、自我进化、多平台运行等特性" />
+<meta name="description" content="飞书官方 lark-cli 命令行工具详解，200&#43;命令支持日历、消息、文档、云盘、多维表格等12个业务域，20个AI Agent技能，开源免费" /><meta name="keywords" content='飞书, cli, 工具, ai, 自动化' /><meta itemprop="name" content="飞书 lark-cli 命令行工具使用指南">
+<meta itemprop="description" content="飞书官方 lark-cli 命令行工具详解，200&#43;命令支持日历、消息、文档、云盘、多维表格等12个业务域，20个AI Agent技能，开源免费"><meta itemprop="datePublished" content="2026-04-05T21:13:14+08:00" />
+<meta itemprop="dateModified" content="2026-04-05T21:13:14+08:00" />
+<meta itemprop="wordCount" content="571"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="飞书,cli,工具,ai,自动化," /><meta property="og:title" content="飞书 lark-cli 命令行工具使用指南" />
+<meta property="og:description" content="飞书官方 lark-cli 命令行工具详解，200&#43;命令支持日历、消息、文档、云盘、多维表格等12个业务域，20个AI Agent技能，开源免费" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp008.github.io/hermes-agent-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2026-04-05T00:26:20+08:00" />
-<meta property="article:modified_time" content="2026-04-05T00:26:20+08:00" />
+<meta property="og:url" content="https://cfanzp008.github.io/lark-cli-usage-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-05T21:13:14+08:00" />
+<meta property="article:modified_time" content="2026-04-05T21:13:14+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Hermes Agent：会自我进化的 AI 智能体"/>
-<meta name="twitter:description" content="详细介绍 Hermes Agent——由 Nous Research 开发的开源 AI 智能体，具有长期记忆、自我进化、多平台运行等特性"/>
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="飞书 lark-cli 命令行工具使用指南"/>
+<meta name="twitter:description" content="飞书官方 lark-cli 命令行工具详解，200&#43;命令支持日历、消息、文档、云盘、多维表格等12个业务域，20个AI Agent技能，开源免费"/>
 <meta name="application-name" content="cfanzp学习笔记">
 <meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/hermes-agent-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/last30days-skill-introduction/" /><link rel="next" href="https://cfanzp008.github.io/lark-cli-usage-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/lark-cli-usage-guide/" /><link rel="prev" href="https://cfanzp008.github.io/hermes-agent-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "Hermes Agent：会自我进化的 AI 智能体",
+    "headline": "飞书 lark-cli 命令行工具使用指南",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/cfanzp008.github.io\/hermes-agent-introduction\/"
-    },"genre": "posts","keywords": "Hermes Agent, AI, Agent, Nous Research, GitHub, 开源","wordcount":  291 ,
-    "url": "https:\/\/cfanzp008.github.io\/hermes-agent-introduction\/","datePublished": "2026-04-05T00:26:20+08:00","dateModified": "2026-04-05T00:26:20+08:00","publisher": {
+      "@id": "https:\/\/cfanzp008.github.io\/lark-cli-usage-guide\/"
+    },"genre": "posts","keywords": "飞书, cli, 工具, ai, 自动化","wordcount":  571 ,
+    "url": "https:\/\/cfanzp008.github.io\/lark-cli-usage-guide\/","datePublished": "2026-04-05T21:13:14+08:00","dateModified": "2026-04-05T21:13:14+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "详细介绍 Hermes Agent——由 Nous Research 开发的开源 AI 智能体，具有长期记忆、自我进化、多平台运行等特性"
+      },"description": "飞书官方 lark-cli 命令行工具详解，200+命令支持日历、消息、文档、云盘、多维表格等12个业务域，20个AI Agent技能，开源免费"
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -649,7 +649,7 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span>Hermes Agent：会自我进化的 AI 智能体</span>
+        <span>飞书 lark-cli 命令行工具使用指南</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -671,7 +671,7 @@
 ><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
     </a></span>
           <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
-      <div class="post-meta-line"><span title=2026-04-05&#32;00:26:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 291 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Hermes Agent：会自我进化的 AI 智能体">
+      <div class="post-meta-line"><span title=2026-04-05&#32;21:13:14><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 571 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="飞书 lark-cli 命令行工具使用指南">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -681,45 +681,39 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是-hermes-agent">什么是 Hermes Agent</a>
+    <li><a href="#背景简介">背景简介</a></li>
+    <li><a href="#安装与配置">安装与配置</a>
       <ul>
-        <li><a href="#核心理念">核心理念</a></li>
+        <li><a href="#环境要求">环境要求</a></li>
+        <li><a href="#安装方式">安装方式</a></li>
+        <li><a href="#初始化配置">初始化配置</a></li>
       </ul>
     </li>
-    <li><a href="#核心特性">核心特性</a>
+    <li><a href="#核心功能详解">核心功能详解</a>
       <ul>
-        <li><a href="#1-持久记忆系统">1. 持久记忆系统</a></li>
-        <li><a href="#2-自我进化能力">2. 自我进化能力</a></li>
-        <li><a href="#3-多平台运行">3. 多平台运行</a></li>
-        <li><a href="#4-agent-工作流">4. Agent 工作流</a></li>
-        <li><a href="#5-开源免费">5. 开源免费</a></li>
+        <li><a href="#1-快捷命令shortcuts">1. 快捷命令（Shortcuts）</a></li>
+        <li><a href="#2-api-命令">2. API 命令</a></li>
+        <li><a href="#3-原始-api-调用">3. 原始 API 调用</a></li>
       </ul>
     </li>
-    <li><a href="#安装配置">安装配置</a>
+    <li><a href="#ai-agent-技能">AI Agent 技能</a>
       <ul>
-        <li><a href="#前置要求">前置要求</a></li>
-        <li><a href="#安装步骤">安装步骤</a></li>
-        <li><a href="#使用-ollama-本地运行">使用 Ollama 本地运行</a></li>
+        <li><a href="#技能分类">技能分类</a></li>
+        <li><a href="#工作流技能">工作流技能</a></li>
       </ul>
     </li>
-    <li><a href="#使用方法">使用方法</a>
+    <li><a href="#高级用法">高级用法</a>
       <ul>
-        <li><a href="#基本使用">基本使用</a></li>
-        <li><a href="#配置自定义工具">配置自定义工具</a></li>
-        <li><a href="#记忆管理">记忆管理</a></li>
+        <li><a href="#输出格式控制">输出格式控制</a></li>
+        <li><a href="#分页处理">分页处理</a></li>
+        <li><a href="#模拟运行">模拟运行</a></li>
+        <li><a href="#schema-自省">Schema 自省</a></li>
+        <li><a href="#身份切换">身份切换</a></li>
       </ul>
     </li>
-    <li><a href="#与其他-agent-对比">与其他 Agent 对比</a></li>
-    <li><a href="#应用场景">应用场景</a>
-      <ul>
-        <li><a href="#1-个人助理">1. 个人助理</a></li>
-        <li><a href="#2-开发助手">2. 开发助手</a></li>
-        <li><a href="#3-研究工具">3. 研究工具</a></li>
-        <li><a href="#4-自动化工作流">4. 自动化工作流</a></li>
-      </ul>
-    </li>
+    <li><a href="#安全注意事项">安全注意事项</a></li>
     <li><a href="#总结">总结</a></li>
-    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#参考资源">参考资源</a></li>
   </ul>
 </nav></div>
       </div><div
@@ -727,55 +721,321 @@
       id="content"
       
       
-    ><h1 id="hermes-agent会自我进化的-ai-智能体">Hermes Agent：会自我进化的 AI 智能体</h1>
-<h2 id="什么是-hermes-agent">什么是 Hermes Agent</h2>
-<p>Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是&quot;The agent that grows with you&quot;（与你共同成长的智能体）。该项目在 GitHub 上已获得 <strong>24,500+ 颗星</strong>，是当前最受欢迎的自进化 AI 智能体之一。</p>
-<h3 id="核心理念">核心理念</h3>
-<p>大多数 AI 智能体本质上只是&quot;带有额外步骤的聊天机器人&quot;——你与它们对话，它们忘记一切，下次重新开始。Hermes Agent 采取了不同的方式：</p>
+    ><h1 id="飞书-lark-cli-命令行工具使用指南">飞书 lark-cli 命令行工具使用指南</h1>
+<h2 id="背景简介">背景简介</h2>
+<p>在企业协作场景中，飞书（Lark/Feishu）作为新一代办公平台，已经深入到日程管理、文档协作、项目推进等各个环节。然而，如何高效地与飞书平台进行自动化交互，一直是开发者和AI Agent面临的核心挑战。</p>
+<p>2026年3月，飞书官方正式开源了 <strong>lark-cli</strong> 命令行工具，为开发者和AI Agent提供了统一的命令行接口。该工具支持200+命令，覆盖12个业务领域，包括即时通讯、日历、文档、云盘、多维表格、邮件、任务、会议、知识库、审批等，更重要的是提供了20个开箱即用的AI Agent技能，让AI能够直接操作飞书平台。</p>
+<p>截至目前，lark-cli 在 GitHub 上已获得超过6700个Star，成为企业协作自动化领域的标杆工具。</p>
+<h2 id="安装与配置">安装与配置</h2>
+<h3 id="环境要求">环境要求</h3>
+<p>在开始安装之前，请确保你的开发环境满足以下要求：</p>
 <ul>
-<li><strong>长期记忆</strong>：记住学习到的知识</li>
-<li><strong>自我进化</strong>：从工作中不断学习和改进</li>
-<li><strong>持续成长</strong>：随着使用时间增长变得更加智能</li>
+<li><strong>Node.js</strong>：需要 npm 或 npx 包管理器</li>
+<li><strong>Go 1.23+</strong> 和 <strong>Python 3</strong>：仅在使用源码编译时需要</li>
 </ul>
-<h2 id="核心特性">核心特性</h2>
-<h3 id="1-持久记忆系统">1. 持久记忆系统</h3>
+<h3 id="安装方式">安装方式</h3>
+<p>lark-cli 提供两种安装方式，推荐使用 npm 安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 方式一：使用 npm 安装（推荐）</span>
+</span></span><span class="line"><span class="cl">npm install -g @larksuite/cli
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 方式二：从源码编译安装</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/larksuite/cli.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> cli
+</span></span><span class="line"><span class="cl">make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npx skills add larksuite/cli -y -g
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="初始化配置">初始化配置</h3>
+<p>安装完成后，需要进行一次性配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 初始化应用凭证（交互式引导）</span>
+</span></span><span class="line"><span class="cl">lark-cli config init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 登录飞书账号（推荐自动授权模式）</span>
+</span></span><span class="line"><span class="cl">lark-cli auth login --recommend
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证登录状态</span>
+</span></span><span class="line"><span class="cl">lark-cli auth status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是AI Agent进行配置，需要使用非阻塞模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># AI Agent模式：返回授权URL而非阻塞等待</span>
+</span></span><span class="line"><span class="cl">lark-cli config init --new
+</span></span><span class="line"><span class="cl">lark-cli auth login --no-wait --domain calendar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="核心功能详解">核心功能详解</h2>
+<p>lark-cli 采用三层命令架构，从易用到高级依次为：Shortcuts（快捷命令）、API Commands（API命令）、Raw API（原始API）。</p>
+<h3 id="1-快捷命令shortcuts">1. 快捷命令（Shortcuts）</h3>
+<p>快捷命令以 <code>+</code> 开头，专为人类和AI设计，内置智能默认值和结构化输出。以下是各业务域的典型用法：</p>
+<p><strong>即时通讯（IM）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 发送消息到群聊</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-send --chat-id <span class="s2">&#34;oc_xxx&#34;</span> --text <span class="s2">&#34;Hello World&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建群聊</span>
+</span></span><span class="line"><span class="cl">lark-cli im +chats-create --name <span class="s2">&#34;项目讨论组&#34;</span> --user-id-list <span class="s2">&#34;ou_xxx,ou_yyy&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 搜索消息</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-search --keyword <span class="s2">&#34;项目进度&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>日历管理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看今日 agenda</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +agenda
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建日程事件</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +events-create --title <span class="s2">&#34;Team Meeting&#34;</span> --start-time <span class="s2">&#34;2026-04-06T10:00:00&#34;</span> --end-time <span class="s2">&#34;2026-04-06T11:00:00&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询忙碌状态</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +free-busy --user-id <span class="s2">&#34;ou_xxx&#34;</span> --start-time <span class="s2">&#34;2026-04-06T09:00:00&#34;</span> --end-time <span class="s2">&#34;2026-04-06T18:00:00&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>文档操作</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建文档</span>
+</span></span><span class="line"><span class="cl">lark-cli docs +create --title <span class="s2">&#34;周报&#34;</span> --markdown <span class="s2">&#34;# 周报\n- 完成项1\n- 完成项2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取文档</span>
+</span></span><span class="line"><span class="cl">lark-cli docs +get --token <span class="s2">&#34;xxx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>多维表格（Base）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建表格</span>
+</span></span><span class="line"><span class="cl">lark-cli base +tables-create --app-id <span class="s2">&#34;app_xxx&#34;</span> --name <span class="s2">&#34;项目看板&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加记录</span>
+</span></span><span class="line"><span class="cl">lark-cli base +records-create --app-id <span class="s2">&#34;app_xxx&#34;</span> --table-id <span class="s2">&#34;tbl_xxx&#34;</span> --records <span class="s1">&#39;[{&#34;fields&#34;:{&#34;名称&#34;:&#34;任务A&#34;,&#34;状态&#34;:&#34;进行中&#34;}}]&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>电子表格（Sheets）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建表格</span>
+</span></span><span class="line"><span class="cl">lark-cli sheets +create --title <span class="s2">&#34;销售数据&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 写入数据</span>
+</span></span><span class="line"><span class="cl">lark-cli sheets +write --spreadsheet-id <span class="s2">&#34;xxx&#34;</span> --sheet-id <span class="s2">&#34;yyy&#34;</span> --range <span class="s2">&#34;A1&#34;</span> --values <span class="s1">&#39;[[&#34;姓名&#34;,&#34;销售额&#34;],[&#34;张三&#34;,10000]]&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>任务管理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建任务</span>
+</span></span><span class="line"><span class="cl">lark-cli task +create --title <span class="s2">&#34;完成需求文档&#34;</span> --due <span class="s2">&#34;2026-04-10&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询任务列表</span>
+</span></span><span class="line"><span class="cl">lark-cli task +list --status <span class="s2">&#34;pending&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-api-命令">2. API 命令</h3>
+<p>API命令从飞书开放平台元数据自动生成，经过评估和质量门控，100+命令与平台端点一一对应：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 日历相关</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar calendars list
+</span></span><span class="line"><span class="cl">lark-cli calendar events instance_view --params <span class="s1">&#39;{&#34;calendar_id&#34;:&#34;primary&#34;,&#34;start_time&#34;:&#34;1700000000&#34;,&#34;end_time&#34;:&#34;1700086400&#34;}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 消息相关</span>
+</span></span><span class="line"><span class="cl">lark-cli im messages send --params <span class="s1">&#39;{&#34;receive_id_type&#34;:&#34;chat_id&#34;}&#39;</span> --body <span class="s1">&#39;{&#34;receive_id&#34;:&#34;oc_xxx&#34;,&#34;msg_type&#34;:&#34;text&#34;,&#34;content&#34;:&#34;{\&#34;text\&#34;:\&#34;Hello\&#34;}&#34;}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-原始-api-调用">3. 原始 API 调用</h3>
+<p>对于高级用户，可以直接调用飞书开放平台的2500+ API：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># GET 请求</span>
+</span></span><span class="line"><span class="cl">lark-cli api GET /open-apis/calendar/v4/calendars
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># POST 请求</span>
+</span></span><span class="line"><span class="cl">lark-cli api POST /open-apis/im/v1/messages --params <span class="s1">&#39;{&#34;receive_id_type&#34;:&#34;chat_id&#34;}&#39;</span> --body <span class="s1">&#39;{&#34;receive_id&#34;:&#34;oc_xxx&#34;,&#34;msg_type&#34;:&#34;text&#34;,&#34;content&#34;:&#34;{\&#34;text\&#34;:\&#34;Hello\&#34;}&#34;}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ai-agent-技能">AI Agent 技能</h2>
+<p>lark-cli 最大的亮点是内置了20个开箱即用的AI Agent技能，这些技能经过专门优化，调用成功率高，非常适合集成到各种AI工作流中。</p>
+<h3 id="技能分类">技能分类</h3>
+<table>
+<thead>
+<tr>
+<th>技能名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lark-shared</code></td>
+<td>应用配置、登录、身份切换、权限管理、安全规则（其他技能自动加载）</td>
+</tr>
+<tr>
+<td><code>lark-calendar</code></td>
+<td>日程事件、议程视图、忙碌查询、时间建议</td>
+</tr>
+<tr>
+<td><code>lark-im</code></td>
+<td>发送/回复消息、群聊管理、消息搜索、上传下载媒体文件</td>
+</tr>
+<tr>
+<td><code>lark-doc</code></td>
+<td>创建、读取、更新、搜索文档（基于Markdown）</td>
+</tr>
+<tr>
+<td><code>lark-drive</code></td>
+<td>上传下载文件、管理权限和评论</td>
+</tr>
+<tr>
+<td><code>lark-sheets</code></td>
+<td>创建、读取、追加、查找、导出电子表格</td>
+</tr>
+<tr>
+<td><code>lark-base</code></td>
+<td>多维表格、字段、记录、视图、仪表盘、数据聚合分析</td>
+</tr>
+<tr>
+<td><code>lark-task</code></td>
+<td>任务、任务列表、子任务、提醒、成员分配</td>
+</tr>
+<tr>
+<td><code>lark-mail</code></td>
+<td>浏览、搜索、读取邮件、发送、回复、转发、草稿管理</td>
+</tr>
+<tr>
+<td><code>lark-contact</code></td>
+<td>按姓名/邮箱/电话搜索用户、获取用户资料</td>
+</tr>
+<tr>
+<td><code>lark-wiki</code></td>
+<td>知识空间、节点、文档管理</td>
+</tr>
+<tr>
+<td><code>lark-event</code></td>
+<td>实时事件订阅（WebSocket）、正则路由、Agent友好格式</td>
+</tr>
+<tr>
+<td><code>lark-vc</code></td>
+<td>搜索会议记录、查询会议纪要</td>
+</tr>
+<tr>
+<td><code>lark-approval</code></td>
+<td>查询审批任务、批准/拒绝/转交、取消和抄送</td>
+</tr>
+</tbody>
+</table>
+<h3 id="工作流技能">工作流技能</h3>
+<p>除了单一业务技能，lark-cli 还提供了组合工作流技能：</p>
 <ul>
-<li>跨会话记住重要信息</li>
-<li>自动保存学习到的知识</li>
-<li>知识可以复用和积累</li>
+<li><strong>lark-workflow-meeting-summary</strong>：会议纪要聚合与结构化报告生成</li>
+<li><strong>lark-workflow-standup-report</strong>：每日站会议程与待办汇总</li>
 </ul>
-<h3 id="2-自我进化能力">2. 自我进化能力</h3>
-<ul>
-<li>从成功和失败中学习</li>
-<li>自动优化工作流程</li>
-<li>逐渐适应用户的习惯和偏好</li>
-</ul>
-<h3 id="3-多平台运行">3. 多平台运行</h3>
-<ul>
-<li>本地运行（保护隐私）</li>
-<li>支持 Ollama 部署</li>
-<li>云端 API 调用</li>
-<li>多模型支持</li>
-</ul>
-<h3 id="4-agent-工作流">4. Agent 工作流</h3>
-<ul>
-<li>自主规划和执行任务</li>
-<li>工具调用和工具创建</li>
-<li>多步骤复杂任务处理</li>
-</ul>
-<h3 id="5-开源免费">5. 开源免费</h3>
-<ul>
-<li>完全开源</li>
-<li>MIT 许可证</li>
-<li>社区活跃</li>
-</ul>
-<h2 id="安装配置">安装配置</h2>
-<h3 id="前置要求">前置要求</h3>
-<ul>
-<li>Python 3.8+</li>
-<li>支持 Ollama（本地运行）或 OpenAI API</li>
-</ul>
-<h3 id="安装步骤">安装步骤</h3>
+<p>这些技能可以直接集成到 Claude、GPT 等AI助手中，实现自动化企业协作。</p>
+<h2 id="高级用法">高级用法</h2>
+<h3 id="输出格式控制">输出格式控制</h3>
+<p>lark-cli 支持多种输出格式，方便不同场景使用：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -789,22 +1049,29 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 克隆仓库</span>
-</span></span><span class="line"><span class="cl">git clone https://github.com/NousResearch/hermes-agent.git
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> hermes-agent
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># JSON 完整输出（默认）</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +agenda --format json
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 安装依赖</span>
-</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># 美化格式输出</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +agenda --format pretty
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 复制环境配置</span>
-</span></span><span class="line"><span class="cl">cp .env.example .env
+</span></span><span class="line"><span class="cl"><span class="c1"># 表格形式输出</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-list --format table
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 .env 文件，配置 API Key</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 换行分隔JSON（适合管道处理）</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-list --format ndjson
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CSV 格式导出</span>
+</span></span><span class="line"><span class="cl">lark-cli sheets +read --format csv
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="使用-ollama-本地运行">使用 Ollama 本地运行</h3>
+</div><h3 id="分页处理">分页处理</h3>
+<p>处理大量数据时，可以使用分页参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -817,18 +1084,30 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 Ollama</span>
-</span></span><span class="line"><span class="cl">brew install ollama
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 自动翻页获取所有数据</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-list --page-all
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 拉取模型</span>
-</span></span><span class="line"><span class="cl">ollama pull hermes-agent
+</span></span><span class="line"><span class="cl"><span class="c1"># 限制最多5页</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-list --page-limit <span class="m">5</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 启动 Hermes Agent</span>
-</span></span><span class="line"><span class="cl">python main.py --local
+</span></span><span class="line"><span class="cl"><span class="c1"># 页面请求间隔500ms</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-list --page-delay <span class="m">500</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="使用方法">使用方法</h2>
-<h3 id="基本使用">基本使用</h3>
+</div><h3 id="模拟运行">模拟运行</h3>
+<p>对于有副作用的操作，可以先预览再执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 预览请求但不实际执行</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-send --chat-id <span class="s2">&#34;oc_xxx&#34;</span> --text <span class="s2">&#34;Hello&#34;</span> --dry-run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="schema-自省">Schema 自省</h3>
+<p>查看任意API方法的参数、请求体、响应结构、支持的身份和权限范围：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -837,32 +1116,18 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动交互式对话</span>
-</span></span><span class="line"><span class="cl">python main.py
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有可用 Schema</span>
+</span></span><span class="line"><span class="cl">lark-cli schema
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 指定模型</span>
-</span></span><span class="line"><span class="cl">python main.py --model hermes-agent
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 本地模式</span>
-</span></span><span class="line"><span class="cl">python main.py --local --model llama3
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定命令的 Schema</span>
+</span></span><span class="line"><span class="cl">lark-cli schema calendar.events.instance_view
+</span></span><span class="line"><span class="cl">lark-cli schema im.messages.delete
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="配置自定义工具">配置自定义工具</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 在 tools 目录添加自定义工具</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 工具会自动注册到 Agent</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="记忆管理">记忆管理</h3>
+</div><h3 id="身份切换">身份切换</h3>
+<p>可以在用户身份和机器人身份之间切换：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -870,129 +1135,61 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看记忆</span>
-</span></span><span class="line"><span class="cl">python -m memory list
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以当前用户身份执行</span>
+</span></span><span class="line"><span class="cl">lark-cli calendar +agenda --as user
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 导出记忆</span>
-</span></span><span class="line"><span class="cl">python -m memory <span class="nb">export</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 清除记忆</span>
-</span></span><span class="line"><span class="cl">python -m memory clear
+</span></span><span class="line"><span class="cl"><span class="c1"># 以机器人身份执行</span>
+</span></span><span class="line"><span class="cl">lark-cli im +messages-send --as bot --chat-id <span class="s2">&#34;oc_xxx&#34;</span> --text <span class="s2">&#34;Hello&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="与其他-agent-对比">与其他 Agent 对比</h2>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Hermes Agent</th>
-<th>OpenClaw</th>
-<th>Claude Code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>记忆持久化</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>自我进化</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>本地运行</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>开源</td>
-<td>✅</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Stars</td>
-<td>24.5K</td>
-<td>29K</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="应用场景">应用场景</h2>
-<h3 id="1-个人助理">1. 个人助理</h3>
+</div><h2 id="安全注意事项">安全注意事项</h2>
+<p>lark-cli 能够代表用户执行飞书平台操作，因此存在一定风险：</p>
+<ol>
+<li><strong>模型幻觉风险</strong>：AI Agent可能产生错误操作</li>
+<li><strong>提示注入风险</strong>：可能被恶意输入欺骗</li>
+<li><strong>数据泄露风险</strong>：在授权范围内操作可能导致敏感数据外泄</li>
+</ol>
+<p>官方建议：</p>
 <ul>
-<li>记住你的偏好和习惯</li>
-<li>从日常交互中学习</li>
-<li>提供个性化服务</li>
-</ul>
-<h3 id="2-开发助手">2. 开发助手</h3>
-<ul>
-<li>辅助代码编写和调试</li>
-<li>学习项目规范</li>
-<li>自动化重复任务</li>
-</ul>
-<h3 id="3-研究工具">3. 研究工具</h3>
-<ul>
-<li>长期研究项目</li>
-<li>知识积累和管理</li>
-<li>文献分析</li>
-</ul>
-<h3 id="4-自动化工作流">4. 自动化工作流</h3>
-<ul>
-<li>多步骤复杂任务</li>
-<li>跨应用协调</li>
-<li>持续优化</li>
+<li>不要随意修改默认安全设置</li>
+<li>建议将飞书机器人作为私有对话助手使用</li>
+<li>尽量避免将其添加到群聊中</li>
+<li>谨慎授权权限范围</li>
 </ul>
 <h2 id="总结">总结</h2>
-<p>Hermes Agent 是一个具有革命性意义的 AI 智能体：</p>
+<p>lark-cli 作为飞书官方出品的命令行工具，凭借其200+命令、12个业务域覆盖、20个AI Agent技能的强大能力，为开发者和AI Agent提供了高效操作飞书平台的途径。其三层命令架构设计兼顾了易用性和灵活性，无论是日常使用还是深度定制都能满足需求。</p>
+<p>对于需要将飞书集成到自动化工作流的开发者，或者希望AI能够帮你处理企业协作任务的你，lark-cli 无疑是最佳选择。只需3分钟即可完成从安装到首次调用的全过程，MIT开源协议也保证了无任何使用门槛。</p>
+<h2 id="参考资源">参考资源</h2>
 <ul>
-<li>✅ <strong>持久记忆</strong> - 记住跨会话的信息</li>
-<li>✅ <strong>自我进化</strong> - 从经验中学习和改进</li>
-<li>✅ <strong>本地运行</strong> - 保护隐私安全</li>
-<li>✅ <strong>完全开源</strong> - 社区活跃可定制</li>
-<li>✅ <strong>多模型支持</strong> - 灵活选择</li>
-</ul>
-<p>如果你需要一个能够&quot;记住&quot;并&quot;成长&quot;的 AI 助手，Hermes Agent 是极佳的选择。</p>
-<h2 id="参考链接">参考链接</h2>
-<ul>
-<li>GitHub：https://github.com/NousResearch/hermes-agent</li>
-<li>Nous Research：https://nousresearch.com/</li>
-<li>官方文档：https://github.com/NousResearch/hermes-agent/blob/main/README.md</li>
+<li>GitHub 仓库：https://github.com/larksuite/cli</li>
+<li>官方文档：https://docs.larkuite.com</li>
+<li>飞书开放平台：https://open.larksuite.com</li>
 </ul>
 </div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2026-04-05&#32;00:26:20>更新于 2026-04-05&nbsp;</span>
+        <span title=2026-04-05&#32;21:13:14>更新于 2026-04-05&nbsp;</span>
       </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/hermes-agent-introduction/" data-title="Hermes Agent：会自我进化的 AI 智能体"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/lark-cli-usage-guide/" data-title="飞书 lark-cli 命令行工具使用指南"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hermes-agent/">Hermes Agent</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/nous-research/">Nous Research</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%A3%9E%E4%B9%A6/">飞书</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/last30days-skill-introduction/" class="prev" rel="prev" title="last30days：AI 驱动的全网研究技能"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>last30days：AI 驱动的全网研究技能</a>
-      <a href="/lark-cli-usage-guide/" class="next" rel="next" title="飞书 lark-cli 命令行工具使用指南">飞书 lark-cli 命令行工具使用指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/hermes-agent-introduction/" class="prev" rel="prev" title="Hermes Agent：会自我进化的 AI 智能体"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Hermes Agent：会自我进化的 AI 智能体</a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
