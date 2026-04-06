@@ -4,7 +4,20 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCLI：将任意网站变成命令行工具的利器</title>
+  <link>https://cfanzp008.github.io/opencli-introduction/</link>
+  <pubDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencli-introduction/</guid>
+  <description><![CDATA[OpenCLI：将任意网站变成命令行工具的利器 背景简介 在AI Agent开发中，如何让AI能够自动获取网页数据和控制桌面应用，一直是开发者面临的核心挑战。传统解决方案如Puppeteer、Selenium需要编写大量脚本代码，且面对反爬取措施时往往显得脆弱。
+2026年，一个名为 OpenCLI 的开源项目应运而生，由Apache Arrow/DataFusion PMC成员jackwener开发。该项目能够将80+网站和Electron桌面应用转换为标准化的命令行接口，让AI Agent以零Token消耗的方式获取结构化数据。截至目前，OpenCLI在GitHub上已获得超过13000个Star，成为浏览器自动化领域的标杆工具。
+核心特性 OpenCLI的核心设计理念是：让任意网站和工具成为你的CLI。
+1. 80+ 内置网站适配器 OpenCLI预置了覆盖多个领域的网站适配器，开箱即用：
+领域 支持平台 数据类型 社交媒体 Twitter/X, Reddit, LinkedIn, Instagram 帖子、评论、用户信息 内容平台 YouTube, TikTok, Medium, HackerNews 视频信息、文章、讨论 中文平台 Bilibili, 知乎, 小红书 视频、回答、笔记 学术研究 arXiv, Stack Overflow 论文、技术问答 金融数据 Yahoo Finance, Bloomberg 股票、金融数据 AI平台 HuggingFace, Grok 模型信息、AI对话 使用示例：
+1 2 3 4 5 6 7 8 # 获取HackerNews热门帖子 opencli hackernews top --limit 10 --format json # 搜索arXiv论文 opencli arxiv search &#34;large language model&#34; --limit 5 # 获取GitHub仓库信息 opencli github repo jackwener/opencli --format table 2.]]></description>
+</item>
+<item>
   <title>飞书 lark-cli 命令行工具使用指南</title>
   <link>https://cfanzp008.github.io/lark-cli-usage-guide/</link>
   <pubDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</pubDate>

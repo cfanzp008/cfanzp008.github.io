@@ -4,7 +4,20 @@
     <link>https://cfanzp008.github.io/categories/ai/</link>
     <description>AI - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCLI：将任意网站变成命令行工具的利器</title>
+  <link>https://cfanzp008.github.io/opencli-introduction/</link>
+  <pubDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencli-introduction/</guid>
+  <description><![CDATA[OpenCLI：将任意网站变成命令行工具的利器 背景简介 在AI Agent开发中，如何让AI能够自动获取网页数据和控制桌面应用，一直是开发者面临的核心挑战。传统解决方案如Puppeteer、Selenium需要编写大量脚本代码，且面对反爬取措施时往往显得脆弱。
+2026年，一个名为 OpenCLI 的开源项目应运而生，由Apache Arrow/DataFusion PMC成员jackwener开发。该项目能够将80+网站和Electron桌面应用转换为标准化的命令行接口，让AI Agent以零Token消耗的方式获取结构化数据。截至目前，OpenCLI在GitHub上已获得超过13000个Star，成为浏览器自动化领域的标杆工具。
+核心特性 OpenCLI的核心设计理念是：让任意网站和工具成为你的CLI。
+1. 80+ 内置网站适配器 OpenCLI预置了覆盖多个领域的网站适配器，开箱即用：
+领域 支持平台 数据类型 社交媒体 Twitter/X, Reddit, LinkedIn, Instagram 帖子、评论、用户信息 内容平台 YouTube, TikTok, Medium, HackerNews 视频信息、文章、讨论 中文平台 Bilibili, 知乎, 小红书 视频、回答、笔记 学术研究 arXiv, Stack Overflow 论文、技术问答 金融数据 Yahoo Finance, Bloomberg 股票、金融数据 AI平台 HuggingFace, Grok 模型信息、AI对话 使用示例：
+1 2 3 4 5 6 7 8 # 获取HackerNews热门帖子 opencli hackernews top --limit 10 --format json # 搜索arXiv论文 opencli arxiv search &#34;large language model&#34; --limit 5 # 获取GitHub仓库信息 opencli github repo jackwener/opencli --format table 2.]]></description>
+</item>
+<item>
   <title>飞书 lark-cli 命令行工具使用指南</title>
   <link>https://cfanzp008.github.io/lark-cli-usage-guide/</link>
   <pubDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</pubDate>
@@ -98,17 +111,6 @@ Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需
   <description><![CDATA[MiniMax AI 平台全面介绍 什么是 MiniMax MiniMax 是由稀宇科技开发的 AI 平台，提供从文本到语音、视频、音乐的全模态 AI 能力。该平台在编程、多模态理解、Agent 能力等方面表现出色，是国内领先的 AI 大模型提供商之一。
 MiniMax 的核心理念是&quot;让 AI 能力触手可及&quot;，通过提供高性价比的 API 服务，让开发者能够轻松构建 AI 应用。
 模型矩阵 文本模型 模型 上下文窗口 特点 MiniMax-M2.7 200K 最新旗舰模型，编程和 Agent 能力 SOTA MiniMax-M2.5 200K 编程能力突出，SWE-Bench 得分 80.2% MiniMax-M2.5-Lightlight 200K 轻量版本，性价比更高 MiniMax-M2.1 200K 多语言编程大师 MiniMax-M2 200K Agent 能力，先进推理 语音模型 MiniMax Speech 2.6：最新语音合成模型 MiniMax Speech 2.5：高质量语音输出 视频模型 MiniMax Hailuo 2.3：视频生成模型 MiniMax Hailuo 2.3 Fast：快速生成版本 其他模态 图片生成 音乐生成 核心能力 1. 编程能力 MiniMax-M2.5 在编程领域表现突出：]]></description>
-</item>
-<item>
-  <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
-  <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
-  <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/zeroclaw-introduction/</guid>
-  <description><![CDATA[ZeroClaw：超轻量级 AI 助手基础设施 什么是 ZeroClaw ZeroClaw 是一个用 Rust 编写的下一代 AI 助手框架，致力于提供&quot;零开销、零妥协&quot;的解决方案。它可以在仅 10 美元的硬件上运行，内存占用少于 5MB，比同类产品节省 99% 的资源。
-该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。
-核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
-核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
 </item>
 </channel>
 </rss>
