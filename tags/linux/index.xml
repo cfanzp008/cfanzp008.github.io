@@ -4,7 +4,18 @@
     <link>https://cfanzp008.github.io/tags/linux/</link>
     <description>linux - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 17:07:51 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 21:30:40 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+  <title>Superfile：美观现代的终端文件管理器</title>
+  <link>https://cfanzp008.github.io/superfile-introduction/</link>
+  <pubDate>Tue, 07 Apr 2026 21:30:40 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/superfile-introduction/</guid>
+  <description><![CDATA[Superfile：美观现代的终端文件管理器 什么是 Superfile Superfile 是一个非常精美且现代化的终端文件管理器，由 Go 语言开发。它旨在为用户提供一个既美观又功能完整的命令行文件管理体验。
+截至目前，Superfile 在 GitHub 上已获得超过 17000 个 Star，是当前最受欢迎的终端文件管理器之一。
+核心特点：
+精美 UI：专为美观设计的界面 完整功能：支持几乎所有文件操作 完全可定制：可自定义热键、主题颜色、边框样式 多面板支持：可同时查看多个目录 安装配置 环境要求 Go 1.22+（如需源码编译） 终端模拟器支持 Unicode 字符 安装方式 1 2 3 4 5 6 7 8 9 10 11 # 方式一：官方安装脚本（推荐） bash -c &#34;$(curl -sLo- https://superfile.netlify.app/install.sh)&#34; # 方式二：使用 wget bash -c &#34;$(wget -qO- https://superfile.netlify.app/install.sh)&#34; # 方式三：使用 Homebrew（macOS/Linux） brew install superfile # 方式四：使用 Go 安装 go install github.com/yorukot/superfile@latest 启动 Superfile 1 2 3 4 5 # 直接运行 superfile # 或指定目录启动 superfile /path/to/directory 思维导图：Superfile 功能概览 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ┌─────────────────────────────────────────┐ │ Superfile 功能体系 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 核心特性 │ │ 文件操作 │ │ 多面板功能 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─精美 UI 设计 ├─浏览/导航 ├─多标签页 ├─主题切换 ├─复制/移动/删除 ├─面板切换 ├─快捷键自定义 ├─重命名/创建 ├─跨面板复制 └─边框样式 ├─搜索/过滤 └─分屏显示 │ ├─压缩/解压 ├─权限修改 └─书签收藏 ▼ ┌─────────────────────────────────┐ │ 可视化操作 │ ├─────────────────────────────────┤ │ • 进度条显示 │ │ • 文件预览 │ │ • 大小计算 │ │ • 类型图标 │ └─────────────────────────────────┘ 基本操作 导航操作 按键 功能 h/j/k/l 或 ←↓↑→ 导航（Vim 风格/方向键） Enter 进入目录/打开文件 Backspace 返回上级目录 g 转到目录开头 G 转到目录末尾 / 搜索文件 cd 切换目录 文件操作 按键 功能 Space 选择/取消选择文件 v 可视模式选择 y 复制文件 x 剪切文件 p 粘贴文件 d 删除文件 r 重命名文件 n 创建新文件/目录 Shift + n 创建新目录 快捷操作 按键 功能 : 打开命令面板 z 撤销操作 Ctrl + z 后台运行 q 退出 ?]]></description>
+</item>
+<item>
   <title>小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手</title>
   <link>https://cfanzp008.github.io/tencent-cloud-server-optimization/</link>
   <pubDate>Tue, 07 Apr 2026 17:07:51 &#43;0800</pubDate>
@@ -86,14 +97,6 @@ Swap 的作用：
   <pubDate>Sat, 03 Jun 2023 21:17:45 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp008.github.io/ls-color/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>linux基础</title>
-  <link>https://cfanzp008.github.io/linux-question/</link>
-  <pubDate>Sat, 01 Apr 2023 16:42:12 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/linux-question/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>
