@@ -4,7 +4,23 @@
     <link>https://cfanzp008.github.io/tags/llm/</link>
     <description>LLM - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/llm/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 11:37:25 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/llm/" rel="self" type="application/rss+xml" /><item>
+  <title>RAG检索增强生成分类详解</title>
+  <link>https://cfanzp008.github.io/rag-classification-detailed-guide/</link>
+  <pubDate>Tue, 07 Apr 2026 11:37:25 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/rag-classification-detailed-guide/</guid>
+  <description><![CDATA[RAG检索增强生成分类详解 背景 随着大语言模型（LLM）的快速发展，如何让AI在生成内容时准确引用最新、最相关的信息成为一个核心挑战。检索增强生成（Retrieval-Augmented Generation，简称RAG）技术应运而生，它通过结合检索系统和生成模型的优势，显著提升了AI输出的准确性和可信度。本文将详细介绍RAG的分类体系，帮助读者根据不同场景选择合适的RAG方案。
+RAG基本工作原理 RAG的核心思想是将用户查询与外部知识库相结合，其工作流程主要包括以下几个环节：
+文档处理：将原始文档切分为Chunks（文本块），每个chunk经过Embedding模型转换为向量 向量存储：将向量存入向量数据库（如Milvus、Pinecone、Chroma等） 语义检索：用户查询同样被转换为向量，在向量数据库中检索最相关的Top-K个chunks 增强生成：将检索到的相关文档作为上下文，连同用户问题一起发送给LLM生成回答 1 用户问题 → 向量化 → 向量数据库检索 → 上下文组装 → LLM生成 → 回答输出 RAG分类体系 根据技术复杂度和应用场景，RAG可以分为以下几类：
+1. 简单RAG（Naive RAG） 简单RAG是最基础的实现方式，采用&quot;检索-拼接-生成&quot;的直线路径。
+工作流程：
+用户输入查询 一次性从向量数据库检索Top-K相关文档 将检索结果与查询拼接后发送给LLM 优点：架构简单、实现成本低、延迟低
+缺点：当检索结果不准确或包含噪声时，生成质量会明显下降；无法处理复杂的多跳推理问题
+适用场景：文档问答、知识库查询、结构简单的FAQ系统
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 # 简单RAG实现示例 from langchain_ollama import OllamaLLM from langchain_chroma import Chroma from langchain_ollama import OllamaEmbeddings # 初始化组件 llm = OllamaLLM(model=&#34;qwen2.]]></description>
+</item>
+<item>
   <title>Google Gemma 4 全面介绍：开源最强模型如何使用</title>
   <link>https://cfanzp008.github.io/gemma-4-introduction/</link>
   <pubDate>Sat, 04 Apr 2026 10:00:00 &#43;0800</pubDate>
