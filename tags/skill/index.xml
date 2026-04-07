@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>skill - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/skill/</link>
+    <description>skill - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 14:19:21 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/skill/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCode Skill Creator 使用指南</title>
+  <link>https://cfanzp008.github.io/opencode-skill-creator-guide/</link>
+  <pubDate>Tue, 07 Apr 2026 14:19:21 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencode-skill-creator-guide/</guid>
+  <description><![CDATA[OpenCode Skill Creator 使用指南 什么是 Skill Creator Skill Creator 是 OpenCode 平台的一个强大工具，用于创建和管理自定义技能（Skills）。它允许用户将重复性的工作流程封装成可复用的技能，让 AI 助手能够自动化执行复杂任务。
+核心价值：
+将工作流程固化为可复用的技能 让 AI 助手具备领域专业知识 提高团队协作效率 标准化工作流程 Skill Creator 工作流程 Skill Creator 遵循一套标准化的创建流程：
+1 2 3 4 5 6 7 8 9 graph LR A[理解需求] --&gt; B[编写草稿] B --&gt; C[创建测试用例] C --&gt; D[运行测试] D --&gt; E[用户评估] E --&gt; F{是否满意?} F --&gt;|否| B F --&gt;|是| G[优化触发描述] G --&gt; H[打包发布] 第一步：理解需求 在创建技能之前，需要明确回答以下问题：
+技能目标：这个技能要解决什么问题？ 触发条件：用户什么情况下会使用这个技能？ 输出格式：期望的输出是什么样的？ 测试验证：如何验证技能是否正常工作？ 第二步：编写 SKILL.md Skill 的核心文件是 SKILL.]]></description>
+</item>
+</channel>
+</rss>
