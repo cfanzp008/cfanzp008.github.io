@@ -4,7 +4,23 @@
     <link>https://cfanzp008.github.io/tags/ai-agent/</link>
     <description>ai agent - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 09:54:05 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai-agent/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 10:07:25 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai-agent/" rel="self" type="application/rss+xml" /><item>
+  <title>Harness Engineering 与 Ralph Loop 的关系解析</title>
+  <link>https://cfanzp008.github.io/harness-engineering-ralph-loop-relation/</link>
+  <pubDate>Tue, 07 Apr 2026 10:07:25 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/harness-engineering-ralph-loop-relation/</guid>
+  <description><![CDATA[Harness Engineering 与 Ralph Loop 的关系解析 背景介绍 在AI辅助软件开发领域，两种重要的方法论正在引起广泛关注：Harness Engineering（架具工程） 和 Ralph Loop。前者由Thoughtworks的Birgitta Böckeler在Martin Fowler博客上系统阐述，后者是Ralphable团队提出的自动化循环方法。虽然两者出现的背景和关注点不同，但它们在提升AI Agent可靠性方面存在着深刻的互补关系。
+什么是Harness Engineering Harness Engineering（架具工程）是一种系统性地构建AI Agent运行环境的方法论，其核心观点是：Agent = Model + Harness。也就是说，除了模型本身的智能之外，围绕模型构建的“架具”系统同样关键。
+核心组件：引导与传感器 Harness Engineering将架具分为两大类组件：
+引导（Guides）- 前馈控制
+引导旨在预测Agent的行为并在其行动之前进行引导，目标是在第一次尝试就产生良好结果。引导可以是：
+计算型引导：确定性且快速，如LSP、语言服务器、CLI工具、脚本、codemods 推理型引导：基于语义分析，如AGENTS.md、Skills、文档 传感器（Sensors）- 反馈控制
+传感器在Agent行动后进行观察，帮助其自我修正。特别强大的是那些针对LLM消费优化的传感器，例如包含修正指令的自定义linter消息——一种积极的提示注入。
+1 2 3 4 5 6 7 8 # 计算型传感器示例 npx eslint # 代码风格检查 npm run coverage # 测试覆盖率 semgrep # 安全扫描 # 推理型传感器示例 /code-review # AI代码审查 /architecture-review # 架构审查 调节类别 Harness Engineering将架具分为三个调节维度：
+可维护性架具：调节代码质量和内部结构，如代码风格、复杂度、测试覆盖 架构适应性架具：定义和检查应用的架构特性，如性能要求、可观测性标准 行为架具：指导并感知应用功能行为，这是目前最具挑战性的领域 什么是Ralph Loop Ralph Loop是一种结构化的任务执行循环方法论，让AI能够自动迭代直到所有显式的成功标准都满足。其核心是一个四阶段循环：执行 → 评估 → 修复 → 重复。]]></description>
+</item>
+<item>
   <title>Ralph Loop：让AI自动循环直到任务完成</title>
   <link>https://cfanzp008.github.io/ralph-loop-introduction/</link>
   <pubDate>Tue, 07 Apr 2026 09:54:05 &#43;0800</pubDate>
