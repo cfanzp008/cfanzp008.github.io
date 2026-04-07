@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>n8n 自部署指南：开源工作流自动化平台 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 n8n 开源工作流自动化平台的 Docker 部署方法、配置优化及典型使用案例，帮助开发者构建自己的自动化工作流" /><meta name="keywords" content='n8n, 自动化, 工作流, docker, 部署, ai' /><meta itemprop="name" content="n8n 自部署指南：开源工作流自动化平台">
+<meta itemprop="description" content="详细介绍 n8n 开源工作流自动化平台的 Docker 部署方法、配置优化及典型使用案例，帮助开发者构建自己的自动化工作流"><meta itemprop="datePublished" content="2026-04-07T18:22:15+08:00" />
+<meta itemprop="dateModified" content="2026-04-07T18:22:15+08:00" />
+<meta itemprop="wordCount" content="922"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="n8n,自动化,工作流,docker,部署,ai," /><meta property="og:title" content="n8n 自部署指南：开源工作流自动化平台" />
+<meta property="og:description" content="详细介绍 n8n 开源工作流自动化平台的 Docker 部署方法、配置优化及典型使用案例，帮助开发者构建自己的自动化工作流" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/n8n-deployment-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-07T18:22:15+08:00" />
+<meta property="article:modified_time" content="2026-04-07T18:22:15+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="n8n 自部署指南：开源工作流自动化平台"/>
+<meta name="twitter:description" content="详细介绍 n8n 开源工作流自动化平台的 Docker 部署方法、配置优化及典型使用案例，帮助开发者构建自己的自动化工作流"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/n8n-deployment-guide/" /><link rel="prev" href="https://cfanzp008.github.io/tencent-cloud-server-optimization/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "n8n 自部署指南：开源工作流自动化平台",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/n8n-deployment-guide\/"
+    },"genre": "posts","keywords": "n8n, 自动化, 工作流, docker, 部署, ai","wordcount":  922 ,
+    "url": "https:\/\/cfanzp008.github.io\/n8n-deployment-guide\/","datePublished": "2026-04-07T18:22:15+08:00","dateModified": "2026-04-07T18:22:15+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 n8n 开源工作流自动化平台的 Docker 部署方法、配置优化及典型使用案例，帮助开发者构建自己的自动化工作流"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>n8n 自部署指南：开源工作流自动化平台</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-07&#32;18:22:15><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 922 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="n8n 自部署指南：开源工作流自动化平台">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-n8n">什么是 n8n</a></li>
+    <li><a href="#部署方式选择">部署方式选择</a></li>
+    <li><a href="#docker-compose-部署推荐">Docker Compose 部署（推荐）</a>
+      <ul>
+        <li><a href="#环境要求">环境要求</a></li>
+        <li><a href="#简单版sqlite">简单版（SQLite）</a></li>
+        <li><a href="#生产版postgresql">生产版（PostgreSQL）</a></li>
+      </ul>
+    </li>
+    <li><a href="#添加-ssl可选">添加 SSL（可选）</a></li>
+    <li><a href="#快速测试docker-run">快速测试（Docker Run）</a></li>
+    <li><a href="#思维导图n8n-部署流程">思维导图：n8n 部署流程</a></li>
+    <li><a href="#常见使用案例">常见使用案例</a>
+      <ul>
+        <li><a href="#案例-1自动收集社交媒体数据">案例 1：自动收集社交媒体数据</a></li>
+        <li><a href="#案例-2自动化客户支持">案例 2：自动化客户支持</a></li>
+        <li><a href="#案例-3定时备份数据">案例 3：定时备份数据</a></li>
+        <li><a href="#案例-4ai-内容创作助手">案例 4：AI 内容创作助手</a></li>
+        <li><a href="#案例-5自动化代码部署">案例 5：自动化代码部署</a></li>
+        <li><a href="#案例-6定时数据同步">案例 6：定时数据同步</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用节点介绍">常用节点介绍</a></li>
+    <li><a href="#配置优化建议">配置优化建议</a>
+      <ul>
+        <li><a href="#生产环境必须配置">生产环境必须配置</a></li>
+        <li><a href="#备份策略">备份策略</a></li>
+        <li><a href="#更新-n8n">更新 n8n</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#q-如何实现-https-访问">Q: 如何实现 HTTPS 访问？</a></li>
+        <li><a href="#q-工作流在哪里运行">Q: 工作流在哪里运行？</a></li>
+        <li><a href="#q-如何实现多个工作流">Q: 如何实现多个工作流？</a></li>
+        <li><a href="#q-是否需要编程基础">Q: 是否需要编程基础？</a></li>
+        <li><a href="#q-免费版-vs-收费版区别">Q: 免费版 vs 收费版区别？</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资源">参考资源</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="n8n-自部署指南开源工作流自动化平台">n8n 自部署指南：开源工作流自动化平台</h1>
+<h2 id="什么是-n8n">什么是 n8n</h2>
+<p>n8n（发音为 &ldquo;n-eight-n&rdquo;）是一个开源的工作流自动化平台，被称为&quot;自托管的 Zapier 替代品&quot;。它允许用户通过可视化的节点编辑器创建自动化工作流，连接不同的应用程序和服务，实现业务流程的自动化。</p>
+<p><strong>n8n 的核心特点：</strong></p>
+<ul>
+<li><strong>开源免费</strong>：MIT 许可证，可自托管</li>
+<li><strong>可视化编辑器</strong>：无需编码，通过拖拽创建工作流</li>
+<li><strong>丰富集成</strong>：支持 400+ 应用集成</li>
+<li><strong>灵活部署</strong>：支持 Docker、Kubernetes、本地部署</li>
+<li><strong>定时执行</strong>：支持手动、定时、事件触发</li>
+</ul>
+<p>截至目前，n8n 在 GitHub 上已获得超过 37000 个 Star，是最受欢迎的自动化工作流工具之一。</p>
+<h2 id="部署方式选择">部署方式选择</h2>
+<p>n8n 支持多种部署方式：</p>
+<table>
+<thead>
+<tr>
+<th>部署方式</th>
+<th>适用场景</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Compose（SQLite）</td>
+<td>个人使用、小团队</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>Docker Compose（PostgreSQL）</td>
+<td>生产环境、多用户</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>Node.js (npm)</td>
+<td>本地开发测试</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>大规模生产部署</td>
+<td>复杂</td>
+</tr>
+</tbody>
+</table>
+<h2 id="docker-compose-部署推荐">Docker Compose 部署（推荐）</h2>
+<h3 id="环境要求">环境要求</h3>
+<ul>
+<li>服务器：Ubuntu 22.04+ 或其他 Linux 发行版</li>
+<li>资源：建议 2GB+ 内存，20GB+ 存储</li>
+<li>Docker 和 Docker Compose 已安装</li>
+</ul>
+<h3 id="简单版sqlite">简单版（SQLite）</h3>
+<p>创建项目目录和配置文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p ~/n8n <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/n8n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat &gt; docker-compose.yml <span class="s">&lt;&lt;&#39;YAML&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">services:
+</span></span></span><span class="line"><span class="cl"><span class="s">  n8n:
+</span></span></span><span class="line"><span class="cl"><span class="s">    image: n8nio/n8n:latest
+</span></span></span><span class="line"><span class="cl"><span class="s">    container_name: n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">    restart: unless-stopped
+</span></span></span><span class="line"><span class="cl"><span class="s">    ports:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - &#34;5678:5678&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    environment:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_HOST=automation.example.com
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_PORT=5678
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_PROTOCOL=https
+</span></span></span><span class="line"><span class="cl"><span class="s">      - WEBHOOK_URL=https://automation.example.com/
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+</span></span></span><span class="line"><span class="cl"><span class="s">      - GENERIC_TIMEZONE=Asia/Shanghai
+</span></span></span><span class="line"><span class="cl"><span class="s">    volumes:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - ./n8n_data:/home/node/.n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">YAML</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置加密密钥并启动：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">N8N_ENCRYPTION_KEY</span><span class="o">=</span><span class="k">$(</span>openssl rand -hex 32<span class="k">)</span>
+</span></span><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生产版postgresql">生产版（PostgreSQL）</h3>
+<p>对于团队使用或生产环境，建议使用 PostgreSQL：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p ~/n8n <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/n8n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat &gt; docker-compose.yml <span class="s">&lt;&lt;&#39;YAML&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">services:
+</span></span></span><span class="line"><span class="cl"><span class="s">  n8n:
+</span></span></span><span class="line"><span class="cl"><span class="s">    image: n8nio/n8n:latest
+</span></span></span><span class="line"><span class="cl"><span class="s">    container_name: n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">    restart: unless-stopped
+</span></span></span><span class="line"><span class="cl"><span class="s">    depends_on:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - postgres
+</span></span></span><span class="line"><span class="cl"><span class="s">    ports:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - &#34;5678:5678&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">    environment:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_HOST=automation.example.com
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_PORT=5678
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_PROTOCOL=https
+</span></span></span><span class="line"><span class="cl"><span class="s">      - WEBHOOK_URL=https://automation.example.com/
+</span></span></span><span class="line"><span class="cl"><span class="s">      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+</span></span></span><span class="line"><span class="cl"><span class="s">      - GENERIC_TIMEZONE=Asia/Shanghai
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_TYPE=postgresdb
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_POSTGRESDB_HOST=postgres
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_POSTGRESDB_PORT=5432
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_POSTGRESDB_DATABASE=n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_POSTGRESDB_USER=n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+</span></span></span><span class="line"><span class="cl"><span class="s">    volumes:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - ./n8n_data:/home/node/.n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">  postgres:
+</span></span></span><span class="line"><span class="cl"><span class="s">    image: postgres:15
+</span></span></span><span class="line"><span class="cl"><span class="s">    container_name: n8n_postgres
+</span></span></span><span class="line"><span class="cl"><span class="s">    restart: unless-stopped
+</span></span></span><span class="line"><span class="cl"><span class="s">    environment:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - POSTGRES_USER=n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+</span></span></span><span class="line"><span class="cl"><span class="s">      - POSTGRES_DB=n8n
+</span></span></span><span class="line"><span class="cl"><span class="s">    volumes:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - ./pg_data:/var/lib/postgresql/data
+</span></span></span><span class="line"><span class="cl"><span class="s">YAML</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置密钥并启动：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">N8N_ENCRYPTION_KEY</span><span class="o">=</span><span class="k">$(</span>openssl rand -hex 32<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="k">$(</span>openssl rand -hex 24<span class="k">)</span>
+</span></span><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="添加-ssl可选">添加 SSL（可选）</h2>
+<p>使用 Nginx 反向代理并配置 SSL：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 Nginx 和 Certbot</span>
+</span></span><span class="line"><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y nginx certbot python3-certbot-nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置 Nginx</span>
+</span></span><span class="line"><span class="cl">sudo tee /etc/nginx/sites-available/n8n &gt; /dev/null <span class="s">&lt;&lt;&#39;NGINX&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">server {
+</span></span></span><span class="line"><span class="cl"><span class="s">    listen 80;
+</span></span></span><span class="line"><span class="cl"><span class="s">    server_name automation.example.com;
+</span></span></span><span class="line"><span class="cl"><span class="s">    
+</span></span></span><span class="line"><span class="cl"><span class="s">    location / {
+</span></span></span><span class="line"><span class="cl"><span class="s">        proxy_pass http://127.0.0.1:5678;
+</span></span></span><span class="line"><span class="cl"><span class="s">        proxy_set_header Host $host;
+</span></span></span><span class="line"><span class="cl"><span class="s">        proxy_set_header X-Real-IP $remote_addr;
+</span></span></span><span class="line"><span class="cl"><span class="s">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span></span><span class="line"><span class="cl"><span class="s">        proxy_set_header X-Forwarded-Proto $scheme;
+</span></span></span><span class="line"><span class="cl"><span class="s">    }
+</span></span></span><span class="line"><span class="cl"><span class="s">}
+</span></span></span><span class="line"><span class="cl"><span class="s">NGINX</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用配置</span>
+</span></span><span class="line"><span class="cl">sudo ln -s /etc/nginx/sites-available/n8n /etc/nginx/sites-enabled/
+</span></span><span class="line"><span class="cl">sudo nginx -t <span class="o">&amp;&amp;</span> sudo systemctl reload nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 SSL 证书</span>
+</span></span><span class="line"><span class="cl">sudo certbot --nginx -d automation.example.com --redirect
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="快速测试docker-run">快速测试（Docker Run）</h2>
+<p>用于本地快速测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -it --rm <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 5678:5678 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">N8N_HOST</span><span class="o">=</span>localhost <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">N8N_PORT</span><span class="o">=</span><span class="m">5678</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">N8N_PROTOCOL</span><span class="o">=</span>http <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">WEBHOOK_URL</span><span class="o">=</span>http://localhost:5678/ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -e <span class="nv">N8N_ENCRYPTION_KEY</span><span class="o">=</span><span class="k">$(</span>openssl rand -hex 32<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  n8nio/n8n:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="思维导图n8n-部署流程">思维导图：n8n 部署流程</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                         │        n8n 部署流程总览                 │
+</span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
+</span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│     环境准备        │        │    选择部署方式      │        │     配置优化        │
+</span></span><span class="line"><span class="cl">│                     │        │                     │        │                     │
+</span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ├─安装 Docker                    ├─Docker Compose SQLite          ├─设置加密密钥
+</span></span><span class="line"><span class="cl">          ├─安装 Docker Compose           ├─Docker Compose PostgreSQL      ├─配置时区
+</span></span><span class="line"><span class="cl">          ├─准备服务器                    ├─Node.js (npm)                 ├─配置 SMTP
+</span></span><span class="line"><span class="cl">          └─配置域名                      └─Kubernetes                   ├─配置备份
+</span></span><span class="line"><span class="cl">                                                                      ├─配置 SSL
+</span></span><span class="line"><span class="cl">                                           ▼
+</span></span><span class="line"><span class="cl">                              ┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                              │        核心环境变量             │
+</span></span><span class="line"><span class="cl">                              ├─────────────────────────────────┤
+</span></span><span class="line"><span class="cl">                              │ • N8N_HOST - 主机名            │
+</span></span><span class="line"><span class="cl">                              │ • N8N_PORT - 端口              │
+</span></span><span class="line"><span class="cl">                              │ • N8N_PROTOCOL - 协议          │
+</span></span><span class="line"><span class="cl">                              │ • WEBHOOK_URL - Webhook 地址   │
+</span></span><span class="line"><span class="cl">                              │ • N8N_ENCRYPTION_KEY - 加密密钥 │
+</span></span><span class="line"><span class="cl">                              │ • GENERIC_TIMEZONE - 时区      │
+</span></span><span class="line"><span class="cl">                              └─────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见使用案例">常见使用案例</h2>
+<h3 id="案例-1自动收集社交媒体数据">案例 1：自动收集社交媒体数据</h3>
+<p><strong>场景</strong>：每天自动收集 Twitter/X 和 Reddit 的特定话题讨论</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>Schedule Trigger</strong> - 每天早上 8 点触发</li>
+<li><strong>HTTP Request</strong> - 调用 Twitter API 获取话题推文</li>
+<li><strong>HTTP Request</strong> - 调用 Reddit API 获取帖子</li>
+<li><strong>Function</strong> - 合并和格式化数据</li>
+<li><strong>Gmail</strong> - 发送每日报告到指定邮箱</li>
+</ol>
+<p><strong>配置示例</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">触发器：每天 8:00
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">Twitter: 搜索关键词 &#34;AI automation&#34;
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">Reddit: 搜索 subreddit &#34;programming&#34;
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">数据处理：JSON 合并去重
+</span></span><span class="line"><span class="cl">  ↓
+</span></span><span class="line"><span class="cl">Gmail: 发送报告到 user@example.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-2自动化客户支持">案例 2：自动化客户支持</h3>
+<p><strong>场景</strong>：新客户提交表单后自动创建支持工单</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>Webhook Trigger</strong> - 接收网站表单提交</li>
+<li><strong>IF</strong> - 判断客户类型（VIP/普通）</li>
+<li><strong>Mattermost</strong> - 发送通知到客服频道</li>
+<li><strong>Google Sheets</strong> - 记录客户信息</li>
+<li><strong>Slack</strong> - 向对应客服发送提醒</li>
+</ol>
+<h3 id="案例-3定时备份数据">案例 3：定时备份数据</h3>
+<p><strong>场景</strong>：每天自动备份 MySQL 数据库到云存储</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>Schedule Trigger</strong> - 每天凌晨 2 点</li>
+<li><strong>MySQL</strong> - 执行备份查询</li>
+<li><strong>Function</strong> - 压缩数据</li>
+<li><strong>Google Drive</strong> - 上传到指定文件夹</li>
+<li><strong>Discord</strong> - 发送备份完成通知</li>
+</ol>
+<h3 id="案例-4ai-内容创作助手">案例 4：AI 内容创作助手</h3>
+<p><strong>场景</strong>：输入主题关键词，自动生成并发布文章</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>Manual Trigger</strong> - 手动触发</li>
+<li><strong>HTTP Request</strong> - 调用 OpenAI API 生成大纲</li>
+<li><strong>HTTP Request</strong> - 调用 OpenAI API 生成正文</li>
+<li><strong>WordPress</strong> - 发布到博客</li>
+<li><strong>Gmail</strong> - 发送发布通知</li>
+</ol>
+<h3 id="案例-5自动化代码部署">案例 5：自动化代码部署</h3>
+<p><strong>场景</strong>：GitHub PR 合并后自动部署到服务器</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>GitHub Webhook</strong> - 监听 PR 合并事件</li>
+<li><strong>GitHub</strong> - 获取最新代码</li>
+<li><strong>SSH</strong> - 连接到服务器</li>
+<li><strong>Command</strong> - 执行部署命令</li>
+<li><strong>Discord</strong> - 发送部署结果</li>
+</ol>
+<h3 id="案例-6定时数据同步">案例 6：定时数据同步</h3>
+<p><strong>场景</strong>：每小时同步 CRM 数据到数据分析工具</p>
+<p><strong>工作流节点</strong>：</p>
+<ol>
+<li><strong>Schedule Trigger</strong> - 每小时</li>
+<li><strong>HTTP Request</strong> - 获取 CRM API 数据</li>
+<li><strong>Transform</strong> - 转换数据格式</li>
+<li><strong>PostgreSQL</strong> - 写入分析数据库</li>
+<li><strong>Wait</strong> - 等待下一次同步</li>
+</ol>
+<h2 id="常用节点介绍">常用节点介绍</h2>
+<table>
+<thead>
+<tr>
+<th>节点类别</th>
+<th>常用节点</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发器</td>
+<td>Schedule, Webhook, Manual</td>
+<td>工作流启动条件</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>Gmail, Slack, Discord, Telegram</td>
+<td>消息通知</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>HTTP Request, JSON, Function</td>
+<td>数据处理</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>Google Sheets, PostgreSQL, MySQL</td>
+<td>数据存储</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>OpenAI, Anthropic</td>
+<td>AI 能力集成</td>
+</tr>
+<tr>
+<td>开发工具</td>
+<td>GitHub, GitLab, SSH</td>
+<td>代码和部署</td>
+</tr>
+<tr>
+<td>营销</td>
+<td>WordPress, Mailchimp</td>
+<td>营销自动化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="配置优化建议">配置优化建议</h2>
+<h3 id="生产环境必须配置">生产环境必须配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 关键环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="nv">N8N_ENCRYPTION_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">N8N_ENCRYPTION_KEY</span><span class="si">}</span>    <span class="c1"># 必须设置强密钥</span>
+</span></span><span class="line"><span class="cl"><span class="nv">N8N_PROTOCOL</span><span class="o">=</span>https                          <span class="c1"># 生产环境必须 HTTPS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WEBHOOK_URL</span><span class="o">=</span>https://your-domain.com/        <span class="c1"># 正确的 Webhook 地址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GENERIC_TIMEZONE</span><span class="o">=</span>Asia/Shanghai              <span class="c1"># 设置正确时区</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="备份策略">备份策略</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 备份 SQLite 数据</span>
+</span></span><span class="line"><span class="cl">tar -czf n8n_backup_<span class="k">$(</span>date +%Y%m%d<span class="k">)</span>.tar.gz ./n8n_data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份 PostgreSQL 数据</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> n8n_postgres pg_dump -U n8n n8n &gt; backup.sql
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="更新-n8n">更新 n8n</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 拉取最新镜像</span>
+</span></span><span class="line"><span class="cl">docker compose pull
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见问题">常见问题</h2>
+<h3 id="q-如何实现-https-访问">Q: 如何实现 HTTPS 访问？</h3>
+<p>A: 使用 Nginx 反向代理 + Let&rsquo;s Encrypt SSL 证书，或使用 Traefik 自动配置。</p>
+<h3 id="q-工作流在哪里运行">Q: 工作流在哪里运行？</h3>
+<p>A: 在 n8n 服务器上运行，可以是本地服务器、云服务器或 Docker 环境。</p>
+<h3 id="q-如何实现多个工作流">Q: 如何实现多个工作流？</h3>
+<p>A: n8n 支持创建多个独立的工作流，每个工作流可以有不同的触发条件和动作。</p>
+<h3 id="q-是否需要编程基础">Q: 是否需要编程基础？</h3>
+<p>A: 不需要。n8n 提供可视化界面，通过连接节点即可创建工作流。复杂逻辑可使用 Function 节点编写 JavaScript。</p>
+<h3 id="q-免费版-vs-收费版区别">Q: 免费版 vs 收费版区别？</h3>
+<p>A: 自托管版本功能完全免费。官方云服务有收费版，主要区别在于托管便利性和支持服务。</p>
+<h2 id="总结">总结</h2>
+<p>n8n 是一个功能强大且灵活的开源工作流自动化平台。通过 Docker 部署，可以快速搭建自己的自动化服务，实现业务流程的自动化和效率提升。</p>
+<p><strong>部署要点：</strong></p>
+<ol>
+<li>生产环境使用 Docker Compose + PostgreSQL</li>
+<li>配置 SSL 和加密密钥</li>
+<li>定期备份数据</li>
+<li>及时更新版本</li>
+</ol>
+<p><strong>使用建议：</strong></p>
+<ol>
+<li>从简单工作流开始</li>
+<li>充分利用定时执行功能</li>
+<li>结合 AI 节点实现智能化</li>
+<li>做好数据备份</li>
+</ol>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><a
+  href="https://n8n.io/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>n8n 官网</a></li>
+<li><a
+  href="https://github.com/n8n-io/n8n"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>n8n GitHub</a></li>
+<li><a
+  href="https://docs.n8n.io/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>n8n 文档</a></li>
+<li><a
+  href="https://community.n8n.io/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>n8n 社区</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-07&#32;18:22:15>更新于 2026-04-07&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/n8n-deployment-guide/" data-title="n8n 自部署指南：开源工作流自动化平台"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/n8n/">n8n</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a>,&nbsp;<a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/">工作流</a>,&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>,&nbsp;<a href="/tags/ai/">AI</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/tencent-cloud-server-optimization/" class="prev" rel="prev" title="小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

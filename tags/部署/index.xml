@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>部署 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E9%83%A8%E7%BD%B2/</link>
+    <description>部署 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 18:22:15 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E9%83%A8%E7%BD%B2/" rel="self" type="application/rss+xml" /><item>
+  <title>n8n 自部署指南：开源工作流自动化平台</title>
+  <link>https://cfanzp008.github.io/n8n-deployment-guide/</link>
+  <pubDate>Tue, 07 Apr 2026 18:22:15 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/n8n-deployment-guide/</guid>
+  <description><![CDATA[n8n 自部署指南：开源工作流自动化平台 什么是 n8n n8n（发音为 &ldquo;n-eight-n&rdquo;）是一个开源的工作流自动化平台，被称为&quot;自托管的 Zapier 替代品&quot;。它允许用户通过可视化的节点编辑器创建自动化工作流，连接不同的应用程序和服务，实现业务流程的自动化。
+n8n 的核心特点：
+开源免费：MIT 许可证，可自托管 可视化编辑器：无需编码，通过拖拽创建工作流 丰富集成：支持 400+ 应用集成 灵活部署：支持 Docker、Kubernetes、本地部署 定时执行：支持手动、定时、事件触发 截至目前，n8n 在 GitHub 上已获得超过 37000 个 Star，是最受欢迎的自动化工作流工具之一。
+部署方式选择 n8n 支持多种部署方式：
+部署方式 适用场景 难度 Docker Compose（SQLite） 个人使用、小团队 简单 Docker Compose（PostgreSQL） 生产环境、多用户 中等 Node.js (npm) 本地开发测试 简单 Kubernetes 大规模生产部署 复杂 Docker Compose 部署（推荐） 环境要求 服务器：Ubuntu 22.04+ 或其他 Linux 发行版 资源：建议 2GB+ 内存，20GB+ 存储 Docker 和 Docker Compose 已安装 简单版（SQLite） 创建项目目录和配置文件：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 mkdir -p ~/n8n &amp;&amp; cd ~/n8n cat &gt; docker-compose.]]></description>
+</item>
+</channel>
+</rss>
