@@ -4,7 +4,20 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/</link>
     <description>开发者工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 10:07:25 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 14:28:22 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenSpec：让 AI 编程助手遵循规范而非猜测</title>
+  <link>https://cfanzp008.github.io/openspec-introduction/</link>
+  <pubDate>Tue, 07 Apr 2026 14:28:22 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openspec-introduction/</guid>
+  <description><![CDATA[OpenSpec：让 AI 编程助手遵循规范而非猜测 背景简介 AI 编程助手最常见的问题不是它们不会写代码，而是它们写出的代码与你的预期不符。你说&quot;添加深色模式&quot;，它却重写了 CSS 变量、添加了切换按钮、还重构了布局——而你只是想改变颜色变量。下一次对话时，上下文丢失了，AI 又从零开始猜测你的意图。
+OpenSpec 解决了这个问题：在 AI 开始写代码之前先生成规范文档。双方先对齐&quot;要做什么&quot;和&quot;怎么做&quot;，然后再按照规范实现。
+截至目前，OpenSpec 在 GitHub 上已获得超过 36000 个 Star，成为 AI 驱动开发领域的标杆框架。
+核心架构 OpenSpec 将项目知识分为两个部分：
+1 2 3 4 5 6 7 8 9 openspec/ ├── specs/ ← 真实来源（当前行为） │ ├── auth/ │ │ └── spec.md │ └── payments/ │ └── spec.md └── changes/ ← 进行中的修改（每个变更一个文件夹） ├── add-dark-mode/ └── archive/ ← 已完成的变更归档 Specs 描述系统的当前行为，Changes 是提出的修改。分开管理，多个变更可以并行进行而不会冲突。
+思维导图：OpenSpec 整体架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 ┌─────────────────────────────────────────┐ │ OpenSpec 框架 │ │ 规范驱动开发 (Spec-Driven Dev) │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 真实来源 │ │ 变更管理 │ │ 工作流程 │ │ (Specs) │ │ (Changes) │ │ (Workflow) │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─系统当前行为 ├─proposal（提议） ├─propose ├─增量更新 ├─specs（增量规范） ├─apply └─版本历史 ├─design（设计） ├─archive └─tasks（任务清单） └─explore │ ├─ADDED（新增） ├─MODIFIED（修改） └─REMOVED（删除） ▼ ┌─────────────────────────────────┐ │ 四类产出物 │ ├─────────────────────────────────┤ │ • proposal.]]></description>
+</item>
+<item>
   <title>Harness Engineering 与 Ralph Loop 的关系解析</title>
   <link>https://cfanzp008.github.io/harness-engineering-ralph-loop-relation/</link>
   <pubDate>Tue, 07 Apr 2026 10:07:25 &#43;0800</pubDate>

@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>OpenSpec：让 AI 编程助手遵循规范而非猜测 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 OpenSpec 规范驱动开发框架，如何让 AI 编程助手在写代码前先对齐需求，支持 30&#43; 工具" /><meta name="keywords" content='openspec, ai, 规范驱动开发, sdd, 开发者工具' /><meta itemprop="name" content="OpenSpec：让 AI 编程助手遵循规范而非猜测">
+<meta itemprop="description" content="详细介绍 OpenSpec 规范驱动开发框架，如何让 AI 编程助手在写代码前先对齐需求，支持 30&#43; 工具"><meta itemprop="datePublished" content="2026-04-07T14:28:22+08:00" />
+<meta itemprop="dateModified" content="2026-04-07T14:28:22+08:00" />
+<meta itemprop="wordCount" content="869"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="openspec,ai,规范驱动开发,sdd,开发者工具," /><meta property="og:title" content="OpenSpec：让 AI 编程助手遵循规范而非猜测" />
+<meta property="og:description" content="详细介绍 OpenSpec 规范驱动开发框架，如何让 AI 编程助手在写代码前先对齐需求，支持 30&#43; 工具" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/openspec-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-07T14:28:22+08:00" />
+<meta property="article:modified_time" content="2026-04-07T14:28:22+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="OpenSpec：让 AI 编程助手遵循规范而非猜测"/>
+<meta name="twitter:description" content="详细介绍 OpenSpec 规范驱动开发框架，如何让 AI 编程助手在写代码前先对齐需求，支持 30&#43; 工具"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/openspec-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/opencode-skill-creator-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "OpenSpec：让 AI 编程助手遵循规范而非猜测",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/openspec-introduction\/"
+    },"genre": "posts","keywords": "openspec, ai, 规范驱动开发, sdd, 开发者工具","wordcount":  869 ,
+    "url": "https:\/\/cfanzp008.github.io\/openspec-introduction\/","datePublished": "2026-04-07T14:28:22+08:00","dateModified": "2026-04-07T14:28:22+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 OpenSpec 规范驱动开发框架，如何让 AI 编程助手在写代码前先对齐需求，支持 30+ 工具"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>OpenSpec：让 AI 编程助手遵循规范而非猜测</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-07&#32;14:28:22><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 869 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="OpenSpec：让 AI 编程助手遵循规范而非猜测">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景简介">背景简介</a></li>
+    <li><a href="#核心架构">核心架构</a></li>
+    <li><a href="#思维导图openspec-整体架构">思维导图：OpenSpec 整体架构</a></li>
+    <li><a href="#安装与配置">安装与配置</a>
+      <ul>
+        <li><a href="#环境要求">环境要求</a></li>
+        <li><a href="#安装命令">安装命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#基本工作流程">基本工作流程</a>
+      <ul>
+        <li><a href="#1-propose描述变更">1. Propose：描述变更</a></li>
+        <li><a href="#2-apply按规范实现">2. Apply：按规范实现</a></li>
+        <li><a href="#3-archive记录完成">3. Archive：记录完成</a></li>
+      </ul>
+    </li>
+    <li><a href="#规范格式">规范格式</a></li>
+    <li><a href="#delta-spec描述改变了什么">Delta Spec：描述&quot;改变了什么&quot;</a></li>
+    <li><a href="#explore-模式">Explore 模式</a></li>
+    <li><a href="#高级命令">高级命令</a>
+      <ul>
+        <li><a href="#扩展工作流需要切换-profile">扩展工作流（需要切换 profile）</a></li>
+        <li><a href="#continue-vs-ff">continue vs ff</a></li>
+        <li><a href="#verify三维度验证">verify：三维度验证</a></li>
+      </ul>
+    </li>
+    <li><a href="#schema自定义产出物流程">Schema：自定义产出物流程</a></li>
+    <li><a href="#支持的工具">支持的工具</a></li>
+    <li><a href="#与其他方案对比">与其他方案对比</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资源">参考资源</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="openspec让-ai-编程助手遵循规范而非猜测">OpenSpec：让 AI 编程助手遵循规范而非猜测</h1>
+<h2 id="背景简介">背景简介</h2>
+<p>AI 编程助手最常见的问题不是它们不会写代码，而是它们写出的代码与你的预期不符。你说&quot;添加深色模式&quot;，它却重写了 CSS 变量、添加了切换按钮、还重构了布局——而你只是想改变颜色变量。下一次对话时，上下文丢失了，AI 又从零开始猜测你的意图。</p>
+<p><strong>OpenSpec</strong> 解决了这个问题：在 AI 开始写代码之前先生成规范文档。双方先对齐&quot;要做什么&quot;和&quot;怎么做&quot;，然后再按照规范实现。</p>
+<p>截至目前，OpenSpec 在 GitHub 上已获得超过 36000 个 Star，成为 AI 驱动开发领域的标杆框架。</p>
+<h2 id="核心架构">核心架构</h2>
+<p>OpenSpec 将项目知识分为两个部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openspec/
+</span></span><span class="line"><span class="cl">├── specs/              ← 真实来源（当前行为）
+</span></span><span class="line"><span class="cl">│   ├── auth/
+</span></span><span class="line"><span class="cl">│   │   └── spec.md
+</span></span><span class="line"><span class="cl">│   └── payments/
+</span></span><span class="line"><span class="cl">│       └── spec.md
+</span></span><span class="line"><span class="cl">└── changes/            ← 进行中的修改（每个变更一个文件夹）
+</span></span><span class="line"><span class="cl">    ├── add-dark-mode/
+</span></span><span class="line"><span class="cl">    └── archive/        ← 已完成的变更归档
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Specs</strong> 描述系统的当前行为，<strong>Changes</strong> 是提出的修改。分开管理，多个变更可以并行进行而不会冲突。</p>
+<h2 id="思维导图openspec-整体架构">思维导图：OpenSpec 整体架构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                         │          OpenSpec 框架                  │
+</span></span><span class="line"><span class="cl">                         │    规范驱动开发 (Spec-Driven Dev)       │
+</span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
+</span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│       真实来源        │        │      变更管理        │        │     工作流程        │
+</span></span><span class="line"><span class="cl">│       (Specs)        │        │     (Changes)       │        │    (Workflow)       │
+</span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ├─系统当前行为                    ├─proposal（提议）                ├─propose
+</span></span><span class="line"><span class="cl">          ├─增量更新                        ├─specs（增量规范）              ├─apply
+</span></span><span class="line"><span class="cl">          └─版本历史                        ├─design（设计）                ├─archive
+</span></span><span class="line"><span class="cl">                                       └─tasks（任务清单）              └─explore
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">                                            ├─ADDED（新增）
+</span></span><span class="line"><span class="cl">                                            ├─MODIFIED（修改）
+</span></span><span class="line"><span class="cl">                                            └─REMOVED（删除）
+</span></span><span class="line"><span class="cl">                                            
+</span></span><span class="line"><span class="cl">                                            ▼
+</span></span><span class="line"><span class="cl">                              ┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                              │        四类产出物               │
+</span></span><span class="line"><span class="cl">                              ├─────────────────────────────────┤
+</span></span><span class="line"><span class="cl">                              │ • proposal.md - 为什么做        │
+</span></span><span class="line"><span class="cl">                              │ • specs/ - 什么改变了          │
+</span></span><span class="line"><span class="cl">                              │ • design.md - 怎么实现          │
+</span></span><span class="line"><span class="cl">                              │ • tasks.md - 具体步骤           │
+</span></span><span class="line"><span class="cl">                              └─────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安装与配置">安装与配置</h2>
+<h3 id="环境要求">环境要求</h3>
+<ul>
+<li>Node.js 20.19.0+</li>
+</ul>
+<h3 id="安装命令">安装命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -g @fission-ai/openspec@latest
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> your-project
+</span></span><span class="line"><span class="cl">openspec init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持 npm、pnpm、yarn、bun、nix 等包管理器。</p>
+<h2 id="基本工作流程">基本工作流程</h2>
+<p>OpenSpec 的核心流程是：<strong>propose → apply → archive</strong></p>
+<h3 id="1-propose描述变更">1. Propose：描述变更</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opsx:propose add-dark-mode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>AI 一次性生成四个产出物：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">openspec/changes/add-dark-mode/
+</span></span><span class="line"><span class="cl">├── proposal.md       # 为什么做，范围（范围内/外）
+</span></span><span class="line"><span class="cl">├── specs/            # 增量规范：添加/修改/删除了什么行为
+</span></span><span class="line"><span class="cl">│   └── ui/
+</span></span><span class="line"><span class="cl">│       └── spec.md
+</span></span><span class="line"><span class="cl">├── design.md         # 技术方案，架构决策
+</span></span><span class="line"><span class="cl">└── tasks.md          # 实现检查清单（复选框）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>产出物</th>
+<th>回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal.md</td>
+<td>为什么要做？范围是什么？</td>
+</tr>
+<tr>
+<td>specs/</td>
+<td>系统行为改变了什么？（增量）</td>
+</tr>
+<tr>
+<td>design.md</td>
+<td>技术上如何实现？什么架构？</td>
+</tr>
+<tr>
+<td>tasks.md</td>
+<td>实现步骤是什么？完成了什么？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-apply按规范实现">2. Apply：按规范实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opsx:apply
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>AI 逐项按照 tasks.md 执行，每完成一项就打勾：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Working on 1.1: Create ThemeContext...
+</span></span><span class="line"><span class="cl">✓ 1.1 Complete
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Working on 1.2: Add CSS custom properties...
+</span></span><span class="line"><span class="cl">✓ 1.2 Complete
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它不会偏离规范。如果中断，下次可以从断点继续。</p>
+<h3 id="3-archive记录完成">3. Archive：记录完成</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opsx:archive
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Archive 做两件事：</p>
+<ol>
+<li><strong>合并增量规范</strong>到 <code>openspec/specs/</code>（更新真实来源）</li>
+<li><strong>移动变更文件夹</strong>到 <code>openspec/changes/archive/2026-04-07-add-dark-mode/</code></li>
+</ol>
+<p>规范随每次归档递增，形成完整的系统行为文档。</p>
+<h2 id="规范格式">规范格式</h2>
+<p>规范是行为契约，不是实现细节。使用需求 + 场景描述：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Auth Specification
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## Purpose
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Authentication and session management.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## Requirements
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### Requirement: User Authentication
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>The system SHALL issue a JWT token upon successful login.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">#### Scenario: Valid credentials
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> GIVEN a user with valid credentials
+</span></span><span class="line"><span class="cl"><span class="k">-</span> WHEN the user submits login form
+</span></span><span class="line"><span class="cl"><span class="k">-</span> THEN a JWT token is returned
+</span></span><span class="line"><span class="cl"><span class="k">-</span> AND the user is redirected to dashboard
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">#### Scenario: Invalid credentials
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> GIVEN invalid credentials
+</span></span><span class="line"><span class="cl"><span class="k">-</span> WHEN the user submits login form
+</span></span><span class="line"><span class="cl"><span class="k">-</span> THEN an error message is displayed
+</span></span><span class="line"><span class="cl"><span class="k">-</span> AND no token is issued
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 GIVEN/WHEN/THEN 描述场景，每个场景都可测试。RFC 2119 关键字（MUST/SHALL/SHOULD/MAY）表达需求强度。</p>
+<h2 id="delta-spec描述改变了什么">Delta Spec：描述&quot;改变了什么&quot;</h2>
+<p>这是 OpenSpec 最重要的概念。修改不是重写整个规范，而是描述差异：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># Auth 的增量
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## 新增需求
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### Requirement: Two-Factor Authentication
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>The system MUST support TOTP-based two-factor authentication.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">#### Scenario: 2FA login
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> GIVEN a user with 2FA enabled
+</span></span><span class="line"><span class="cl"><span class="k">-</span> WHEN the user submits valid credentials
+</span></span><span class="line"><span class="cl"><span class="k">-</span> THEN an OTP challenge is presented
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 修改需求
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### Requirement: Session Expiration
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>The system MUST expire sessions after 15 minutes of inactivity.
+</span></span><span class="line"><span class="cl">(Previously: 30 minutes)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 删除需求
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">### Requirement: Remember Me
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>(Deprecated in favor of 2FA.)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>章节</th>
+<th>含义</th>
+<th>Archive 操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADDED</td>
+<td>新行为</td>
+<td>添加到主规范</td>
+</tr>
+<tr>
+<td>MODIFIED</td>
+<td>修改了现有行为</td>
+<td>替换原需求</td>
+</tr>
+<tr>
+<td>REMOVED</td>
+<td>删除的行为</td>
+<td>从主规范中删除</td>
+</tr>
+</tbody>
+</table>
+<p>为什么用增量而不是重写整个规范？<strong>因为两个并行变更可以各自修改同一规范的不同需求而不冲突。</strong></p>
+<h2 id="explore-模式">Explore 模式</h2>
+<p>当你不知道该怎么做时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opsx:explore
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先与 AI 讨论——它分析代码库，比较方案，画出架构图。不生成产出物。等你想清楚后，再运行 <code>/opsx:propose</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">You: /opsx:explore
+</span></span><span class="line"><span class="cl">AI:  What would you like to explore?
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">You: How should we handle authentication for the mobile app?
+</span></span><span class="line"><span class="cl">AI:  Let me investigate your current auth setup...
+</span></span><span class="line"><span class="cl">     I see you&#39;re using session-based auth for the web app.
+</span></span><span class="line"><span class="cl">     For mobile, we have three options:
+</span></span><span class="line"><span class="cl">     1. JWT tokens (stateless, works offline)
+</span></span><span class="line"><span class="cl">     2. OAuth2 (third-party login)
+</span></span><span class="line"><span class="cl">     3. Extend current sessions (simpler)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">You: Let&#39;s go with JWT.
+</span></span><span class="line"><span class="cl">AI:  Ready. Run /opsx:propose add-jwt-auth to begin.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="高级命令">高级命令</h2>
+<h3 id="扩展工作流需要切换-profile">扩展工作流（需要切换 profile）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openspec config profile   <span class="c1"># 选择扩展工作流</span>
+</span></span><span class="line"><span class="cl">openspec update           <span class="c1"># 刷新 AI 指令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/opsx:new</code></td>
+<td>仅创建文件夹，无产出物（手动节奏）</td>
+</tr>
+<tr>
+<td><code>/opsx:continue</code></td>
+<td>按依赖顺序逐个产出</td>
+</tr>
+<tr>
+<td><code>/opsx:ff</code></td>
+<td>快速前进，一次性产出所有内容</td>
+</tr>
+<tr>
+<td><code>/opsx:verify</code></td>
+<td>验证实现是否符合规范</td>
+</tr>
+<tr>
+<td><code>/opsx:sync</code></td>
+<td>手动合并增量规范（不归档）</td>
+</tr>
+<tr>
+<td><code>/opsx:bulk-archive</code></td>
+<td>批量归档多个变更</td>
+</tr>
+<tr>
+<td><code>/opsx:onboard</code></td>
+<td>使用你自己的代码库引导教程</td>
+</tr>
+</tbody>
+</table>
+<h3 id="continue-vs-ff">continue vs ff</h3>
+<p><code>/opsx:continue</code> 逐个产出物让你逐步审核：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">proposal → (审核) → specs → (审核) → design → (审核) → tasks
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>/opsx:ff</code> 一次性产出所有内容——适用于你已经明确知道想要什么的情况。</p>
+<h3 id="verify三维度验证">verify：三维度验证</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opsx:verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>检查内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Completeness</strong></td>
+<td>所有任务完成？所有需求都有对应实现？</td>
+</tr>
+<tr>
+<td><strong>Correctness</strong></td>
+<td>实现符合规范意图？处理了边缘情况？</td>
+</tr>
+<tr>
+<td><strong>Coherence</strong></td>
+<td>代码与 design.md 决策一致？命名规范统一？</td>
+</tr>
+</tbody>
+</table>
+<p>报告分为三个级别：CRITICAL、WARNING、SUGGESTION。不会阻止归档，但让你知道需要注意什么。</p>
+<h2 id="schema自定义产出物流程">Schema：自定义产出物流程</h2>
+<p>默认的 <code>spec-driven</code> Schema 流程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">proposal → specs → design → tasks → implement
+</span></span><span class="line"><span class="cl">         ↘              ↗
+</span></span><span class="line"><span class="cl">          (design 只依赖 proposal，可以与 specs 并行)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你可以定义自定义 Schema，例如添加研究阶段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># openspec/schemas/research-first/schema.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">research-first</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">artifacts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">research</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">generates</span><span class="p">:</span><span class="w"> </span><span class="l">research.md</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requires</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">proposal</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">generates</span><span class="p">:</span><span class="w"> </span><span class="l">proposal.md</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requires</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">research]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">tasks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">generates</span><span class="p">:</span><span class="w"> </span><span class="l">tasks.md</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requires</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">proposal]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openspec schema init research-first
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="支持的工具">支持的工具</h2>
+<p>OpenSpec 不锁定特定 AI 工具，支持 30+ 编程助手：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>命令格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>/opsx:propose</code>, <code>/opsx:apply</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>/opsx-propose</code>, <code>/opsx-apply</code></td>
+</tr>
+<tr>
+<td>Windsurf</td>
+<td><code>/opsx-propose</code>, <code>/opsx-apply</code></td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td><code>/opsx-propose</code>, <code>/opsx-apply</code></td>
+</tr>
+<tr>
+<td>Codex / Gemini CLI / Amazon Q</td>
+<td>各自集成</td>
+</tr>
+</tbody>
+</table>
+<p>基本上任何能读取文件和处理斜杠命令的 AI 工具都可以工作。</p>
+<h2 id="与其他方案对比">与其他方案对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>OpenSpec</th>
+<th>Spec Kit (GitHub)</th>
+<th>Kiro (AWS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>理念</td>
+<td>轻量、流畅</td>
+<td>完整但重量级</td>
+<td>强大但 IDE 锁定</td>
+</tr>
+<tr>
+<td>阶段控制</td>
+<td>无阶段门</td>
+<td>严格阶段门</td>
+<td>锁定特定模型</td>
+</tr>
+<tr>
+<td>遗留项目</td>
+<td>原生支持（增量规范）</td>
+<td>需要完全重写</td>
+<td>有限</td>
+</tr>
+<tr>
+<td>工具锁定</td>
+<td>30+ 工具</td>
+<td>GitHub 生态</td>
+<td>仅 Kiro IDE</td>
+</tr>
+<tr>
+<td>格式</td>
+<td>Markdown + Git</td>
+<td>Markdown + Python</td>
+<td>内置格式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>使用 OpenSpec 后最大的区别是：<strong>AI 不再偏离主题。</strong></p>
+<p>以前，每个新对话都需要重新解释&quot;这个项目长什么样，之前做了什么决策&quot;。现在 AI 读取 <code>openspec/specs/</code> 就已经知道。</p>
+<p><code>proposal.md</code> 中的范围区分（范围内/外）特别有用。写下&quot;我们不做什么&quot;，AI 就不会&quot;好心地&quot;做你没用请求的事。</p>
+<p><code>design.md</code> 也很有价值——它迫使你在写代码前先思考技术方案。很多时候，设计阶段会揭示&quot;这个方案不行，让我们换一个&quot;——比实现后才发现省时间。</p>
+<p>唯一的代价是额外的一步：不能直接告诉 AI&quot;添加深色模式&quot;然后等结果。你需要 propose、审核、然后 apply。但回报是可预测性和可追溯性，对于任何非平凡的变更都值得。</p>
+<p><strong>不适合</strong>：改一行 CSS、修复拼写错误——直接做就行，不需要 propose 流程。</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li>OpenSpec 官网：https://openspec.dev/</li>
+<li>OpenSpec GitHub：https://github.com/fission-ai/openspec</li>
+<li>OpenSpec npm 包：@fission-ai/openspec</li>
+<li>RFC 2119：需求级别关键字定义</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-07&#32;14:28:22>更新于 2026-04-07&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/openspec-introduction/" data-title="OpenSpec：让 AI 编程助手遵循规范而非猜测"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openspec/">openspec</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%A7%84%E8%8C%83%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">规范驱动开发</a>,&nbsp;<a href="/tags/sdd/">sdd</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/">开发者工具</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/opencode-skill-creator-guide/" class="prev" rel="prev" title="OpenCode Skill Creator 使用指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>OpenCode Skill Creator 使用指南</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
