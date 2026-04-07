@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Superpowers：让 AI Agent 获得专家级能力的技能框架 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍Superpowers技能框架的概念、安装方法以及在OpenCode中的使用，帮助开发者构建更强大的AI Agent工作流" /><meta name="keywords" content='superpowers, opencode, ai, 技能框架, ai agent' /><meta itemprop="name" content="Superpowers：让 AI Agent 获得专家级能力的技能框架">
+<meta itemprop="description" content="详细介绍Superpowers技能框架的概念、安装方法以及在OpenCode中的使用，帮助开发者构建更强大的AI Agent工作流"><meta itemprop="datePublished" content="2026-04-07T11:28:09+08:00" />
+<meta itemprop="dateModified" content="2026-04-07T11:28:09+08:00" />
+<meta itemprop="wordCount" content="404"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="superpowers,opencode,ai,技能框架,ai agent," /><meta property="og:title" content="Superpowers：让 AI Agent 获得专家级能力的技能框架" />
+<meta property="og:description" content="详细介绍Superpowers技能框架的概念、安装方法以及在OpenCode中的使用，帮助开发者构建更强大的AI Agent工作流" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/superpowers-opencode-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-07T11:28:09+08:00" />
+<meta property="article:modified_time" content="2026-04-07T11:28:09+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Superpowers：让 AI Agent 获得专家级能力的技能框架"/>
+<meta name="twitter:description" content="详细介绍Superpowers技能框架的概念、安装方法以及在OpenCode中的使用，帮助开发者构建更强大的AI Agent工作流"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/superpowers-opencode-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/openai-tokenizer-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Superpowers：让 AI Agent 获得专家级能力的技能框架",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/superpowers-opencode-introduction\/"
+    },"genre": "posts","keywords": "superpowers, opencode, ai, 技能框架, ai agent","wordcount":  404 ,
+    "url": "https:\/\/cfanzp008.github.io\/superpowers-opencode-introduction\/","datePublished": "2026-04-07T11:28:09+08:00","dateModified": "2026-04-07T11:28:09+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍Superpowers技能框架的概念、安装方法以及在OpenCode中的使用，帮助开发者构建更强大的AI Agent工作流"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Superpowers：让 AI Agent 获得专家级能力的技能框架</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-07&#32;11:28:09><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 404 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Superpowers：让 AI Agent 获得专家级能力的技能框架">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景简介">背景简介</a></li>
+    <li><a href="#什么是-superpowers">什么是 Superpowers</a>
+      <ul>
+        <li><a href="#核心设计理念">核心设计理念</a></li>
+        <li><a href="#技能skills机制">技能（Skills）机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#思维导图superpowers-整体架构">思维导图：Superpowers 整体架构</a></li>
+    <li><a href="#opencode-简介">OpenCode 简介</a></li>
+    <li><a href="#在-opencode-中安装-superpowers">在 OpenCode 中安装 Superpowers</a>
+      <ul>
+        <li><a href="#安装步骤">安装步骤</a></li>
+        <li><a href="#安装原理">安装原理</a></li>
+        <li><a href="#技能存放位置">技能存放位置</a></li>
+      </ul>
+    </li>
+    <li><a href="#工具映射说明">工具映射说明</a></li>
+    <li><a href="#核心技能详解">核心技能详解</a>
+      <ul>
+        <li><a href="#1-brainstorming头脑风暴">1. brainstorming（头脑风暴）</a></li>
+        <li><a href="#2-verification-before-completion完成前验证">2. verification-before-completion（完成前验证）</a></li>
+        <li><a href="#3-receiving-code-review接受代码审查">3. receiving-code-review（接受代码审查）</a></li>
+        <li><a href="#4-requesting-code-review请求代码审查">4. requesting-code-review（请求代码审查）</a></li>
+        <li><a href="#5-test-driven-development测试驱动开发">5. test-driven-development（测试驱动开发）</a></li>
+        <li><a href="#6-systematic-debugging系统化调试">6. systematic-debugging（系统化调试）</a></li>
+      </ul>
+    </li>
+    <li><a href="#实际使用示例">实际使用示例</a>
+      <ul>
+        <li><a href="#触发技能">触发技能</a></li>
+        <li><a href="#手动使用技能">手动使用技能</a></li>
+      </ul>
+    </li>
+    <li><a href="#superpowers-的设计哲学">Superpowers 的设计哲学</a>
+      <ul>
+        <li><a href="#停止即失败">停止即失败</a></li>
+        <li><a href="#evals评估机制">Evals（评估）机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资源">参考资源</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="superpowers让-ai-agent-获得专家级能力的技能框架">Superpowers：让 AI Agent 获得专家级能力的技能框架</h1>
+<h2 id="背景简介">背景简介</h2>
+<p>在 AI 辅助软件开发领域，如何让 AI Agent 像人类专家一样工作一直是核心挑战。传统的 AI 编程工具虽然功能强大，但在处理复杂任务时往往缺乏系统性方法——它们可能会直接开始编码，而不是先理解需求、规划方案。</p>
+<p><strong>Superpowers</strong> 是由 Keyboardio 联合创始人 Jesse Vincent 开发的一个 AI Agent 技能框架和软件开发方法论。该项目在 GitHub 上已获得超过 134000 个 Star，成为 AI 编程工作流领域的标杆工具。</p>
+<h2 id="什么是-superpowers">什么是 Superpowers</h2>
+<p>Superpowers 是一个为 AI 编程 Agent 设计的技能框架和工作流工具集。它的核心理念是：<strong>将人类专家的开发习惯和工作流程传授给 AI Agent</strong>，让 AI 能够系统性地处理复杂任务，而不是盲目跳入编码。</p>
+<h3 id="核心设计理念">核心设计理念</h3>
+<p>Superpowers 基于一个关键洞察：AI Agent 在处理复杂代码时经常失败，但通过特定的技能（Skills）引导，AI 可以表现得像人类专家一样。这些技能封装了：</p>
+<ul>
+<li><strong>系统性思考</strong>：先理解需求，再制定计划</li>
+<li><strong>质量控制</strong>：在实现前先验证，在修改后确认</li>
+<li><strong>工具使用</strong>：正确使用调试、测试、审查等工具</li>
+<li><strong>迭代优化</strong>：持续改进而非一次完成</li>
+</ul>
+<h3 id="技能skills机制">技能（Skills）机制</h3>
+<p>Superpowers 的技能系统受 Simon Willison 提出的 Claude Skills 概念启发。每个技能是一个独立的指令集，可以被 AI Agent 按需加载和使用。技能的核心文件是 <code>SKILL.md</code>，其中包含：</p>
+<ul>
+<li>技能的用途说明</li>
+<li>使用场景和触发条件</li>
+<li>具体的工作流程和步骤</li>
+<li>工具映射说明</li>
+</ul>
+<h2 id="思维导图superpowers-整体架构">思维导图：Superpowers 整体架构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                         │           Superpowers 框架             │
+</span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
+</span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│      核心概念        │        │     主要技能         │        │    工具集成         │
+</span></span><span class="line"><span class="cl">│                     │        │                     │        │                     │
+</span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ├─技能框架(Skills)                ├─brainstorming                 ├─OpenCode
+</span></span><span class="line"><span class="cl">          ├─Agent工作流                     ├─verification-before-completion ├─Claude Code
+</span></span><span class="line"><span class="cl">          ├─工具映射                        ├─receiving-code-review        ├─Codex
+</span></span><span class="line"><span class="cl">          └─Bootstrap机制                  ├─requesting-code-review       └─MCP Servers
+</span></span><span class="line"><span class="cl">                                           ├─test-driven-development
+</span></span><span class="line"><span class="cl">                                           ├─systematic-debugging
+</span></span><span class="line"><span class="cl">                                           └─...更多
+</span></span><span class="line"><span class="cl">                                           
+</span></span><span class="line"><span class="cl">                                           ▼
+</span></span><span class="line"><span class="cl">                              ┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                              │      技能发现与加载机制          │
+</span></span><span class="line"><span class="cl">                              ├─────────────────────────────────┤
+</span></span><span class="line"><span class="cl">                              │ • find_skills: 发现可用技能     │
+</span></span><span class="line"><span class="cl">                              │ • use_skill: 加载并使用技能      │
+</span></span><span class="line"><span class="cl">                              │ • 启动时自动 bootstrap          │
+</span></span><span class="line"><span class="cl">                              └─────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="opencode-简介">OpenCode 简介</h2>
+<p>OpenCode（opencode.ai）是一个开源的 AI 编程 Agent，类似于 Claude Code 或 OpenAI Codex，但其独特之处在于：</p>
+<ul>
+<li><strong>模型无关</strong>：不依赖特定模型或模型提供商</li>
+<li><strong>MCP 支持</strong>：支持 Model Context Protocol 服务器</li>
+<li><strong>自定义工具</strong>：允许用户添加自定义工具</li>
+<li><strong>REST API</strong>：提供 REST API 接口，可构建自定义 UI</li>
+<li><strong>Subagent 支持</strong>：支持子代理机制</li>
+</ul>
+<h2 id="在-opencode-中安装-superpowers">在 OpenCode 中安装 Superpowers</h2>
+<h3 id="安装步骤">安装步骤</h3>
+<p>OpenCode 本身没有内置的技能安装机制，但提供了插件系统来注入功能。安装 Superpowers 非常简单，只需在 OpenCode 中执行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">opencode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后告诉它：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenCode 会自动下载并执行安装脚本，完成 Superpowers 的配置。</p>
+<h3 id="安装原理">安装原理</h3>
+<p>Superpowers 通过 OpenCode 的插件系统和 Hooks 机制实现自动启动：</p>
+<ol>
+<li><strong>Bootstrap 机制</strong>：在会话启动时自动触发，解释 Superpowers 是什么以及如何使用</li>
+<li><strong>工具注入</strong>：添加 <code>find_skills</code> 和 <code>use_skill</code> 两个自定义工具</li>
+<li><strong>技能发现</strong>：自动扫描 <code>~/.config/opencode/skills</code>（全局技能）和 <code>.opencode/skills</code>（项目技能）目录</li>
+</ol>
+<h3 id="技能存放位置">技能存放位置</h3>
+<p>安装 Superpowers 后，你可以添加自己的技能：</p>
+<ul>
+<li><strong>全局技能</strong>：<code>~/.config/opencode/skills/</code></li>
+<li><strong>项目技能</strong>：<code>项目目录/.opencode/skills/</code></li>
+</ul>
+<p>每个技能是一个文件夹，里面包含 <code>SKILL.md</code> 文件。</p>
+<h2 id="工具映射说明">工具映射说明</h2>
+<p>由于 Superpowers 最初为 Claude Code 设计，需要进行工具映射才能在 OpenCode 中使用：</p>
+<table>
+<thead>
+<tr>
+<th>Claude Code 工具</th>
+<th>OpenCode 等价工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TodoWrite</code></td>
+<td><code>todowrite</code></td>
+</tr>
+<tr>
+<td><code>Task</code>（子代理）</td>
+<td>OpenCode 子系统（@mention）</td>
+</tr>
+<tr>
+<td><code>Skill</code></td>
+<td><code>use_skill</code> 自定义工具</td>
+</tr>
+<tr>
+<td><code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Bash</code></td>
+<td>OpenCode 原生工具</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心技能详解">核心技能详解</h2>
+<h3 id="1-brainstorming头脑风暴">1. brainstorming（头脑风暴）</h3>
+<p>这是最重要的技能之一。当用户提出一个开发任务时，AI 不应立即开始编码，而应该：</p>
+<ul>
+<li>深入理解用户的真实需求</li>
+<li>探索技术方案和实现路径</li>
+<li>识别潜在风险和约束</li>
+<li>制定详细的实现计划</li>
+</ul>
+<p><strong>使用场景</strong>：当你对 AI 说&quot;让我们做一个 React 待办事项列表&quot;时，AI 应该先启动 brainstorming 技能，询问你更多细节，而不是直接开始写代码。</p>
+<h3 id="2-verification-before-completion完成前验证">2. verification-before-completion（完成前验证）</h3>
+<p>在声称工作完成之前，必须运行验证命令确认：</p>
+<ul>
+<li>代码无语法错误</li>
+<li>测试通过</li>
+<li>构建成功</li>
+<li>功能符合预期</li>
+</ul>
+<h3 id="3-receiving-code-review接受代码审查">3. receiving-code-review（接受代码审查）</h3>
+<p>在实现建议之前，需要先理解代码上下文、验证问题真实存在，而不是盲目执行。</p>
+<h3 id="4-requesting-code-review请求代码审查">4. requesting-code-review（请求代码审查）</h3>
+<p>在完成重要功能或合并分支前，主动请求人工审查。</p>
+<h3 id="5-test-driven-development测试驱动开发">5. test-driven-development（测试驱动开发）</h3>
+<p>先写测试，再写实现代码，确保代码可测试且测试通过。</p>
+<h3 id="6-systematic-debugging系统化调试">6. systematic-debugging（系统化调试）</h3>
+<p>遇到 bug 时，先复现问题、分析根因、制定修复方案，再实施修复。</p>
+<h2 id="实际使用示例">实际使用示例</h2>
+<h3 id="触发技能">触发技能</h3>
+<p>当你对 OpenCode 说&quot;帮我在项目中添加用户认证功能&quot;时，Superpowers 会：</p>
+<ol>
+<li>检测到这是一个复杂任务</li>
+<li>自动加载 brainstorming 技能</li>
+<li>询问你更多细节：认证方式、用户存储、技术栈等</li>
+<li>基于回答制定详细计划</li>
+<li>在实现过程中使用其他技能确保质量</li>
+</ol>
+<h3 id="手动使用技能">手动使用技能</h3>
+<p>你也可以直接要求 AI 使用特定技能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">请使用 test-driven-development 技能来实现这个功能
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="superpowers-的设计哲学">Superpowers 的设计哲学</h2>
+<h3 id="停止即失败">停止即失败</h3>
+<p>Superpowers 有一个关键的验收测试：打开一个新会话，不做任何前置说明，直接告诉 AI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Let&#39;s make a react todo list.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果 AI 立刻开始写代码，说明 Superpowers 安装失败。如果 AI 停下来，启动 brainstorming 技能并试图深入了解你的需求，说明安装成功。</p>
+<h3 id="evals评估机制">Evals（评估）机制</h3>
+<p>由于 LLM 的非确定性，传统的测试套件不适用于 AI Agent。Superpowers 采用&quot;Evals&quot;机制：</p>
+<ul>
+<li>多次运行测试，检查通过率</li>
+<li>某些测试必须 100% 通过（如上述验收测试）</li>
+<li>允许一定概率的失败（取决于任务复杂度）</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>Superpowers 为 AI 编程 Agent 带来了系统化的开发方法论，通过技能机制将人类专家的工作习惯传递给 AI。结合 OpenCode 的强大功能和插件系统，开发者可以构建更可靠、更高效的 AI 辅助开发工作流。</p>
+<p>安装 Superpowers 后，AI 不再是简单的代码生成器，而是成为了一个能够系统性思考、规范化操作的开发伙伴。</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li>Superpowers GitHub：https://github.com/obra/Superpowers</li>
+<li>OpenCode 官网：https://opencode.ai</li>
+<li>Superpowers for OpenCode 博客：https://blog.fsck.com/2025/11/24/Superpowers-for-OpenCode/</li>
+<li>OpenCode 技能文档：https://opencode.ai/docs/skills/</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-07&#32;11:28:09>更新于 2026-04-07&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/superpowers-opencode-introduction/" data-title="Superpowers：让 AI Agent 获得专家级能力的技能框架"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/superpowers/">superpowers</a>,&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6/">技能框架</a>,&nbsp;<a href="/tags/ai-agent/">ai agent</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/openai-tokenizer-introduction/" class="prev" rel="prev" title="OpenAI Tokenizer 在线工具详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>OpenAI Tokenizer 在线工具详解</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
