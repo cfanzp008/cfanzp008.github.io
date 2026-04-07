@@ -4,7 +4,21 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
     <description>开发工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 10:25:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenAI Tokenizer 在线工具详解</title>
+  <link>https://cfanzp008.github.io/openai-tokenizer-introduction/</link>
+  <pubDate>Tue, 07 Apr 2026 10:25:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openai-tokenizer-introduction/</guid>
+  <description><![CDATA[OpenAI Tokenizer 在线工具详解 什么是 Tokenizer 在深入了解 OpenAI Tokenizer 工具之前，我们首先需要理解什么是 Token（词元）。
+Token 是 OpenAI 模型处理文本的基本单位。它们可以是短至单个字符，也可以长至整个单词，具体取决于语言和编码方式。对于英文文本，大约 4 个字符等于 1 个 Token；对于中文文本，通常 1-2 个汉字等于 1 个 Token。
+理解 Token 的概念对于使用 OpenAI API 至关重要，因为：
+API 计费：OpenAI 按 Token 数量计费，了解 Token 数量可以帮助估算成本 上下文窗口：每个模型有固定的上下文窗口限制（通常是 4K、8K、16K、32K、128K 等），Token 数决定了能输入多少内容 优化提示：了解 Token 计数可以帮助优化提示词，提高效率 OpenAI Tokenizer 工具概述 OpenAI Tokenizer 是官方提供的在线工具，访问地址为：https://platform.openai.com/tokenizer
+这个工具允许开发者直观地看到任意文本被如何分词（Tokenize），以及对应的 Token 数量。这对于以下场景特别有用：
+学习 Token 概念 估算 API 调用成本 优化提示词长度 调试 Token 相关问题 工具界面与功能 主要功能区域 OpenAI Tokenizer 工具界面主要包含以下几个部分：
+1. 文本输入区]]></description>
+</item>
+<item>
   <title>Tmux &#43; OpenCode 安装使用教程</title>
   <link>https://cfanzp008.github.io/tmux-opencode-tutorial/</link>
   <pubDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</pubDate>
