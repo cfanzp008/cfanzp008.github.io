@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>系统管理 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+    <description>系统管理 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 16:39:35 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+  <title>Linux Swap 分区大小修改指南</title>
+  <link>https://cfanzp008.github.io/linux-swap-resize-guide/</link>
+  <pubDate>Tue, 07 Apr 2026 16:39:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/linux-swap-resize-guide/</guid>
+  <description><![CDATA[Linux Swap 分区大小修改指南 什么是 Swap Swap（交换空间）是 Linux 系统的一种虚拟内存技术。当物理内存不足时，系统会将不活跃的内存页面移动到 Swap 空间中，从而释放物理内存供活跃进程使用。
+Swap 的作用：
+扩展可用内存容量 防止内存耗尽导致系统崩溃 支持内存休眠（suspend to disk） 在内存压力时提供缓冲 修改 Swap 大小的三种方法 方法一：使用 swapfile（推荐） 这种方法最灵活，不需要重新分区。
+步骤 1：查看当前 Swap 状态 1 2 3 4 5 6 7 8 # 查看当前 Swap 使用情况 free -h # 查看 Swap 文件位置 swapon --show # 查看磁盘空间 df -h 步骤 2：禁用现有 Swap 1 2 3 4 5 # 关闭 Swap sudo swapoff -a # 如果有多个 Swap，指定关闭特定文件 sudo swapoff /swapfile 注意： 关闭 Swap 前确保有足够的物理内存，否则可能导致程序崩溃。最好在系统负载低时操作。]]></description>
+</item>
+</channel>
+</rss>
