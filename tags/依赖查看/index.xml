@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>Windows - 标签 - cfanzp学习笔记</title>
-    <link>https://cfanzp008.github.io/tags/windows/</link>
-    <description>Windows - 标签 - cfanzp学习笔记</description>
+    <title>依赖查看 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E4%BE%9D%E8%B5%96%E6%9F%A5%E7%9C%8B/</link>
+    <description>依赖查看 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/windows/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E4%BE%9D%E8%B5%96%E6%9F%A5%E7%9C%8B/" rel="self" type="application/rss+xml" /><item>
   <title>Dependencies：现代 Windows DLL 依赖查看器</title>
   <link>https://cfanzp008.github.io/dependencies-tool/</link>
   <pubDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</pubDate>
@@ -15,30 +15,6 @@
 为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
 找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
 可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
-</item>
-<item>
-  <title>[mac][x86]Mac Mini 2014安装win10</title>
-  <link>https://cfanzp008.github.io/mac-mini-2014-win10/</link>
-  <pubDate>Sun, 08 Sep 2024 12:23:08 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/mac-mini-2014-win10/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Windows Server 2022安装体验</title>
-  <link>https://cfanzp008.github.io/windows-server-2022/</link>
-  <pubDate>Thu, 12 Jan 2023 17:56:12 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/windows-server-2022/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>Windows如何写一个脚本定时删除日志？</title>
-  <link>https://cfanzp008.github.io/windows-del-log/</link>
-  <pubDate>Wed, 07 Dec 2022 14:27:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/windows-del-log/</guid>
-  <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>

@@ -4,22 +4,7 @@
     <link>https://cfanzp008.github.io/categories/devtools/</link>
     <description>开发工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:45:31 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/devtools/" rel="self" type="application/rss+xml" /><item>
-  <title>软件依赖管理完全指南</title>
-  <link>https://cfanzp008.github.io/software-dependencies-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 17:45:31 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/software-dependencies-guide/</guid>
-  <description><![CDATA[软件依赖管理完全指南 什么是软件依赖 在现代软件开发中，几乎没有任何项目是完全从零开始的。开发者通常会使用大量的开源库、框架和工具来加速开发进度。这些外部代码库就是项目的「依赖」（Dependencies）。
-软件依赖是指一个软件项目所依赖的外部代码模块，这些模块提供了项目正常运行所需的功能。例如：
-一个 Python Web 项目可能依赖 Django、Flask 等框架 一个 JavaScript 前端项目可能依赖 React、Vue 等 UI 库 一个 Go 后端项目可能依赖 Gin、gRPC 等工具库 依赖管理是软件工程中最重要但也最容易被忽视的方面之一。良好的依赖管理可以提高开发效率，而糟糕的依赖管理则可能导致项目难以维护、安全漏洞频发。
-依赖管理的重要性 1. 提高开发效率 通过使用成熟的依赖库，开发者可以避免重复造轮子，将精力集中在核心业务逻辑上。一个好的依赖管理系统能够：
-自动下载和安装依赖 解决依赖之间的版本冲突 保持依赖的一致性 2. 保障项目安全 依赖库中可能存在安全漏洞，未及时更新的依赖可能导致项目面临安全风险。依赖管理工具可以帮助：
-扫描已知的安全漏洞 及时获取安全更新 跟踪依赖的来源和版本 3. 简化协作流程 在团队协作中，统一的依赖管理可以确保所有成员使用相同版本的依赖，避免「在我机器上能运行」的问题。
-主流依赖管理工具 JavaScript/Node.js npm（Node Package Manager） npm 是 Node.js 官方默认的包管理器，也是目前最大的 JavaScript 包仓库。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 初始化项目 npm init # 安装依赖 npm install lodash # 安装开发依赖 npm install --save-dev jest # 全局安装 npm install -g typescript # 查看依赖 npm list # 更新依赖 npm update package.]]></description>
-</item>
-<item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/devtools/" rel="self" type="application/rss+xml" /><item>
   <title>Tmux &#43; OpenCode 安装使用教程</title>
   <link>https://cfanzp008.github.io/tmux-opencode-tutorial/</link>
   <pubDate>Thu, 02 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -100,6 +85,16 @@
   <guid>https://cfanzp008.github.io/git-faq/</guid>
   <description><![CDATA[git常见问题 FAQ git如何清除提交记录？ 项目如果走过了一个很长的开发周期以后，提交历史会很长，如果提交记录不重要，这种情况下可以删除掉历时记录。
 创建一个干净的分支 使用--orphan参数 添加当前的所有文件 提交注释 删除原来的分支master 把当前分支重命名为master 把当前分支强行推送到远端 1 2 3 4 5 6 git checkout --orphan test git add . git commit -m &#34;init&#34; git branch -D master git branch -m master git push -f origin master git如何查看空间占用? 1 2 git count-objects -v # 查看 git 相关文件占用的空间 du -sh .git # 查看 .git 文件夹占用磁盘空间 如何查找git提交中涉及的大文件? 1 git rev-list --objects --all | grep &#34;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk &#39;{print$1}&#39;)&#34; 如何删除大文件?]]></description>
+</item>
+<item>
+  <title>解决gitlab占用内存太大的问题</title>
+  <link>https://cfanzp008.github.io/gitlab-config/</link>
+  <pubDate>Mon, 22 Aug 2022 14:06:24 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/gitlab-config/</guid>
+  <description><![CDATA[解决gitlab占用内存太大的问题 最近gitlab服务器出现了占用内存太大的问题。虚拟机里的linux系统内存&gt;4G都被几乎用完了。
+网上查询了相关资料，解决方法主要是修改一下配置。或者更换git服务器工具，比如更换为gogs或者gitea等。 因为时间关系暂且改一下配置解决一下问题:
+配置文件路径为: 1 /etc/gitlab/gitlab.rb 修改相关参数 1 2 3 4 5 6 postgresql[&#39;shared_buffers&#39;] = &#34;64MB&#34; postgresql[&#39;max_worker_processes&#39;] = 2 sidekiq[&#39;max-concurrency&#39;]=5 #禁用prometheus，可以进一步减少内存占用 prometheus_monitoring[&#39;enable&#39;] = false sidekiq[&#39;concurrency&#39;] = 25 重启服务 1 2 gitlab-ctl reconfigure gitlab-ctl restart 精简gitlab服务:https://zhuanlan.zhihu.com/p/389717047 参考资料 https://zhuanlan.zhihu.com/p/348813603 https://my.oschina.net/sunhualong/blog/4275867 ]]></description>
 </item>
 </channel>
 </rss>

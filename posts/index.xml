@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:45:31 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -27,19 +27,16 @@
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
 </item>
 <item>
-  <title>软件依赖管理完全指南</title>
-  <link>https://cfanzp008.github.io/software-dependencies-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 17:45:31 &#43;0800</pubDate>
+  <title>Dependencies：现代 Windows DLL 依赖查看器</title>
+  <link>https://cfanzp008.github.io/dependencies-tool/</link>
+  <pubDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</pubDate>
   <author>作者</author>
-  <guid>https://cfanzp008.github.io/software-dependencies-guide/</guid>
-  <description><![CDATA[软件依赖管理完全指南 什么是软件依赖 在现代软件开发中，几乎没有任何项目是完全从零开始的。开发者通常会使用大量的开源库、框架和工具来加速开发进度。这些外部代码库就是项目的「依赖」（Dependencies）。
-软件依赖是指一个软件项目所依赖的外部代码模块，这些模块提供了项目正常运行所需的功能。例如：
-一个 Python Web 项目可能依赖 Django、Flask 等框架 一个 JavaScript 前端项目可能依赖 React、Vue 等 UI 库 一个 Go 后端项目可能依赖 Gin、gRPC 等工具库 依赖管理是软件工程中最重要但也最容易被忽视的方面之一。良好的依赖管理可以提高开发效率，而糟糕的依赖管理则可能导致项目难以维护、安全漏洞频发。
-依赖管理的重要性 1. 提高开发效率 通过使用成熟的依赖库，开发者可以避免重复造轮子，将精力集中在核心业务逻辑上。一个好的依赖管理系统能够：
-自动下载和安装依赖 解决依赖之间的版本冲突 保持依赖的一致性 2. 保障项目安全 依赖库中可能存在安全漏洞，未及时更新的依赖可能导致项目面临安全风险。依赖管理工具可以帮助：
-扫描已知的安全漏洞 及时获取安全更新 跟踪依赖的来源和版本 3. 简化协作流程 在团队协作中，统一的依赖管理可以确保所有成员使用相同版本的依赖，避免「在我机器上能运行」的问题。
-主流依赖管理工具 JavaScript/Node.js npm（Node Package Manager） npm 是 Node.js 官方默认的包管理器，也是目前最大的 JavaScript 包仓库。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 初始化项目 npm init # 安装依赖 npm install lodash # 安装开发依赖 npm install --save-dev jest # 全局安装 npm install -g typescript # 查看依赖 npm list # 更新依赖 npm update package.]]></description>
+  <guid>https://cfanzp008.github.io/dependencies-tool/</guid>
+  <description><![CDATA[Dependencies：现代 Windows DLL 依赖查看器 什么是 Dependencies Dependencies 是对经典软件 Dependency Walker 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。
+该项目在 GitHub 上已获得 11,400+ 颗星，是 Windows 开发者必备的调试工具之一。
+为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
+找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
+可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
 </item>
 <item>
   <title>Google Workspace CLI：统一管理 Google Workspace 的命令行工具</title>

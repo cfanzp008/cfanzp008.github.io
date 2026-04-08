@@ -5,22 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>所有文章 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+    <title>Dependencies：现代 Windows DLL 依赖查看器 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp学习笔记" /><meta name="keywords" content='cfanzp, linux开发, 学习笔记' /><meta itemprop="name" content="Posts">
-<meta itemprop="description" content="cfanzp学习笔记"><meta property="og:title" content="Posts" />
-<meta property="og:description" content="cfanzp学习笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp008.github.io/posts/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" />
+<meta name="description" content="详细介绍 Dependencies——一个用 C# 重写的现代版 Dependency Walker，帮助 Windows 开发者解决 DLL 加载依赖问题" /><meta name="keywords" content='Windows, DLL, 依赖查看, 开发工具, github' /><meta itemprop="name" content="Dependencies：现代 Windows DLL 依赖查看器">
+<meta itemprop="description" content="详细介绍 Dependencies——一个用 C# 重写的现代版 Dependency Walker，帮助 Windows 开发者解决 DLL 加载依赖问题"><meta itemprop="datePublished" content="2026-04-08T17:48:46+08:00" />
+<meta itemprop="dateModified" content="2026-04-08T17:48:46+08:00" />
+<meta itemprop="wordCount" content="322"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="Windows,DLL,依赖查看,开发工具,github," /><meta property="og:title" content="Dependencies：现代 Windows DLL 依赖查看器" />
+<meta property="og:description" content="详细介绍 Dependencies——一个用 C# 重写的现代版 Dependency Walker，帮助 Windows 开发者解决 DLL 加载依赖问题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/dependencies-tool/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-08T17:48:46+08:00" />
+<meta property="article:modified_time" content="2026-04-08T17:48:46+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="cfanzp学习笔记"/>
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Dependencies：现代 Windows DLL 依赖查看器"/>
+<meta name="twitter:description" content="详细介绍 Dependencies——一个用 C# 重写的现代版 Dependency Walker，帮助 Windows 开发者解决 DLL 加载依赖问题"/>
 <meta name="application-name" content="cfanzp学习笔记">
 <meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/posts/" /><link rel="alternate" href="/posts/index.xml" type="application/rss+xml" title="cfanzp学习笔记">
-  <link rel="feed" href="/posts/index.xml" type="application/rss+xml" title="cfanzp学习笔记"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/dependencies-tool/" /><link rel="prev" href="https://cfanzp008.github.io/google-workspace-cli-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Dependencies：现代 Windows DLL 依赖查看器",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/dependencies-tool\/"
+    },"genre": "posts","keywords": "Windows, DLL, 依赖查看, 开发工具, github","wordcount":  322 ,
+    "url": "https:\/\/cfanzp008.github.io\/dependencies-tool\/","datePublished": "2026-04-08T17:48:46+08:00","dateModified": "2026-04-08T17:48:46+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 Dependencies——一个用 C# 重写的现代版 Dependency Walker，帮助 Windows 开发者解决 DLL 加载依赖问题"
+  }
+  </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -33,7 +54,7 @@
     alt="cfanzp学习笔记"
     title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
     <nav>
-      <ul class="menu"><li class="menu-item active">
+      <ul class="menu"><li class="menu-item">
               <a
                 class="menu-link"
                 href="/posts/"
@@ -327,7 +348,7 @@
     </div>
     <nav>
       <ul class="menu" id="menu-mobile"><li
-              class="menu-item active"
+              class="menu-item"
             ><a
                   class="menu-link"
                   href="/posts/"
@@ -619,102 +640,361 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page archive">
-    <div class="header"><h1 class="single-title animate__animated animate__pulse animate__faster">所有文章
-        <sup>363</sup>
-      </h1><p class="single-subtitle total-word-count" title='总计约 71283 字'><i class="fa-regular fa-keyboard fa-fw" aria-hidden="true"></i> 总计约 71.28K 字</p></div><h2 class="group-title">2024</h2><article class="archive-item">
-            <a href="/switch3-switch2/" class="archive-item-link">三层交换机与二层交换机有什么区别？</a>
-            <span class="archive-item-date" title='2024-05-10 00:04:31'>05-10</span>
-          </article><article class="archive-item">
-            <a href="/interface/" class="archive-item-link">网络设备接口</a>
-            <span class="archive-item-date" title='2024-05-09 23:36:58'>05-09</span>
-          </article><article class="archive-item">
-            <a href="/tig/" class="archive-item-link">Tig</a>
-            <span class="archive-item-date" title='2024-05-02 21:42:33'>05-02</span>
-          </article><article class="archive-item">
-            <a href="/acer-n22c6-i5-1235u-16g-512gb-2022/" class="archive-item-link">办公电脑Acer N22c6 I5 1235u 16g 512gb 2022</a>
-            <span class="archive-item-date" title='2024-05-02 14:01:05'>05-02</span>
-          </article><article class="archive-item">
-            <a href="/ant-design-pro-install/" class="archive-item-link">Ant Design Pro Install</a>
-            <span class="archive-item-date" title='2024-04-29 22:14:19'>04-29</span>
-          </article><article class="archive-item">
-            <a href="/dns/" class="archive-item-link">dns</a>
-            <span class="archive-item-date" title='2024-04-26 23:25:07'>04-26</span>
-          </article><article class="archive-item">
-            <a href="/yum-lock/" class="archive-item-link">yumBackend.py引起yum lock的解决办法</a>
-            <span class="archive-item-date" title='2024-04-17 22:27:55'>04-17</span>
-          </article><article class="archive-item">
-            <a href="/disk-mount/" class="archive-item-link">磁盘挂载</a>
-            <span class="archive-item-date" title='2024-04-17 21:59:01'>04-17</span>
-          </article><article class="archive-item">
-            <a href="/rabbitmq/" class="archive-item-link">Rabbitmq实战</a>
-            <span class="archive-item-date" title='2024-04-10 20:26:59'>04-10</span>
-          </article><article class="archive-item">
-            <a href="/nginx-resolver/" class="archive-item-link">nginx使用resolver</a>
-            <span class="archive-item-date" title='2024-04-02 21:55:38'>04-02</span>
-          </article><article class="archive-item">
-            <a href="/nginx-http-muti-domain/" class="archive-item-link">http一个端口如何配置多个域名？</a>
-            <span class="archive-item-date" title='2024-03-28 23:49:30'>03-28</span>
-          </article><article class="archive-item">
-            <a href="/nginx-tunnel-https-proxy/" class="archive-item-link">nginx隧道模式使用SNI进行流量分流</a>
-            <span class="archive-item-date" title='2024-03-28 22:52:30'>03-28</span>
-          </article><article class="archive-item">
-            <a href="/server-process-mem-tencent/" class="archive-item-link">服务器内存资源优化</a>
-            <span class="archive-item-date" title='2024-03-23 20:42:09'>03-23</span>
-          </article><article class="archive-item">
-            <a href="/nginx-logrotate/" class="archive-item-link">Nginx切割日志后日志不正常写入？</a>
-            <span class="archive-item-date" title='2024-03-20 20:17:34'>03-20</span>
-          </article><article class="archive-item">
-            <a href="/electric-iron/" class="archive-item-link">电烙铁</a>
-            <span class="archive-item-date" title='2024-03-11 22:58:28'>03-11</span>
-          </article><article class="archive-item">
-            <a href="/nginx-11-stage/" class="archive-item-link">Nginx的11个阶段</a>
-            <span class="archive-item-date" title='2024-03-11 21:53:19'>03-11</span>
-          </article><article class="archive-item">
-            <a href="/nginx-ip-city/" class="archive-item-link">Nginx实现日志打印IP对应的城市信息(qqwry)</a>
-            <span class="archive-item-date" title='2024-03-07 21:26:32'>03-07</span>
-          </article><article class="archive-item">
-            <a href="/install-old-macos/" class="archive-item-link">如何安装老版本的macOS?</a>
-            <span class="archive-item-date" title='2024-03-03 22:14:06'>03-03</span>
-          </article><article class="archive-item">
-            <a href="/nginx-geoip2/" class="archive-item-link">Nginx获取客户端地理位置</a>
-            <span class="archive-item-date" title='2024-02-29 21:59:13'>02-29</span>
-          </article><article class="archive-item">
-            <a href="/test-nginx/" class="archive-item-link">Nginx性能测试</a>
-            <span class="archive-item-date" title='2024-02-24 18:38:20'>02-24</span>
-          </article><ul class="pagination"><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/">1</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/4/">4</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/5/">5</a>
-          </span>
-        </li><li class="page-item active">
-          <span class="page-link">
-            <a href="/posts/page/6/">6</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/7/">7</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/8/">8</a>
-          </span>
-        </li><li class="page-item ">
-          <span class="page-link" aria-hidden="true">&hellip;</span>
-        </li><li class="page-item ">
-          <span class="page-link">
-            <a href="/posts/page/19/">19</a>
-          </span>
-        </li></ul></div></main><footer class="footer">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Dependencies：现代 Windows DLL 依赖查看器</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-08&#32;17:48:46><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 322 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Dependencies：现代 Windows DLL 依赖查看器">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-dependencies">什么是 Dependencies</a></li>
+    <li><a href="#为什么需要-dependencies">为什么需要 Dependencies</a></li>
+    <li><a href="#主要功能特性">主要功能特性</a>
+      <ul>
+        <li><a href="#1-gui-和-cli-双版本">1. GUI 和 CLI 双版本</a></li>
+        <li><a href="#2-导入导出分析">2. 导入/导出分析</a></li>
+        <li><a href="#3-api-set-支持">3. API Set 支持</a></li>
+        <li><a href="#4-sxs并行支持">4. SxS（并行）支持</a></li>
+        <li><a href="#5-clr-程序集支持">5. CLR 程序集支持</a></li>
+        <li><a href="#6-符号去混淆">6. 符号去混淆</a></li>
+        <li><a href="#7-过滤器支持">7. 过滤器支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装和使用">安装和使用</a>
+      <ul>
+        <li><a href="#前置要求">前置要求</a></li>
+        <li><a href="#安装步骤">安装步骤</a></li>
+        <li><a href="#常见用法">常见用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#树构建行为配置">树构建行为配置</a>
+      <ul>
+        <li><a href="#1-childonly默认">1. ChildOnly（默认）</a></li>
+        <li><a href="#2-recursiveonlyondirectimports">2. RecursiveOnlyOnDirectImports</a></li>
+        <li><a href="#3-recursive">3. Recursive</a></li>
+      </ul>
+    </li>
+    <li><a href="#与原版-dependency-walker-的对比">与原版 Dependency Walker 的对比</a></li>
+    <li><a href="#下载地址">下载地址</a>
+      <ul>
+        <li><a href="#官方下载">官方下载</a></li>
+        <li><a href="#替代下载避免-av-误报">替代下载（避免 AV 误报）</a></li>
+      </ul>
+    </li>
+    <li><a href="#适用场景">适用场景</a>
+      <ul>
+        <li><a href="#1-开发调试">1. 开发调试</a></li>
+        <li><a href="#2-部署检查">2. 部署检查</a></li>
+        <li><a href="#3-逆向分析">3. 逆向分析</a></li>
+        <li><a href="#4-故障排查">4. 故障排查</a></li>
+      </ul>
+    </li>
+    <li><a href="#局限性">局限性</a></li>
+    <li><a href="#技术栈">技术栈</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="dependencies现代-windows-dll-依赖查看器">Dependencies：现代 Windows DLL 依赖查看器</h1>
+<h2 id="什么是-dependencies">什么是 Dependencies</h2>
+<p><strong>Dependencies</strong> 是对经典软件 <strong>Dependency Walker</strong> 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。</p>
+<p>该项目在 GitHub 上已获得 <strong>11,400+ 颗星</strong>，是 Windows 开发者必备的调试工具之一。</p>
+<h2 id="为什么需要-dependencies">为什么需要 Dependencies</h2>
+<p>在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：</p>
+<ul>
+<li><strong>找不到 DLL</strong>：程序运行时提示找不到某个动态链接库</li>
+<li><strong>版本冲突</strong>：不同版本的同名 DLL 导致程序崩溃</li>
+<li><strong>依赖缺失</strong>：缺少必要的 Visual C++ 运行库或其他系统组件</li>
+<li><strong>32/64 位混用</strong>：32 位程序加载了 64 位 DLL，反之亦然</li>
+</ul>
+<p>Dependencies 可以帮助开发者：</p>
+<ul>
+<li>可视化查看 PE 文件的所有导入和导出</li>
+<li>追踪 DLL 依赖链</li>
+<li>识别缺失或无法加载的依赖</li>
+<li>分析 API Set 重定向</li>
+</ul>
+<h2 id="主要功能特性">主要功能特性</h2>
+<h3 id="1-gui-和-cli-双版本">1. GUI 和 CLI 双版本</h3>
+<ul>
+<li><strong>DependenciesGui.exe</strong>：图形界面版本，适合日常分析和调试</li>
+<li><strong>Dependencies.exe</strong>：命令行版本，适合自动化脚本和 CI/CD 集成</li>
+</ul>
+<h3 id="2-导入导出分析">2. 导入/导出分析</h3>
+<ul>
+<li>显示 PE 文件的导入表（Imports）</li>
+<li>显示 PE 文件的导出表（Exports）</li>
+<li>支持直接依赖、转发依赖和延迟加载依赖</li>
+</ul>
+<h3 id="3-api-set-支持">3. API Set 支持</h3>
+<p>从 1.5 版本开始支持 Windows API Set Schema 解析，可以正确解析现代 Windows 中的虚拟 DLL 重定向。</p>
+<h3 id="4-sxs并行支持">4. SxS（并行）支持</h3>
+<p>支持解析 Windows Side-by-Side 程序集的私有清单。</p>
+<h3 id="5-clr-程序集支持">5. CLR 程序集支持</h3>
+<p>能够枚举 .NET 程序集的依赖项。</p>
+<h3 id="6-符号去混淆">6. 符号去混淆</h3>
+<p>集成了 LLVM demangler，可以将 mangled C++ 符号还原为可读格式。</p>
+<h3 id="7-过滤器支持">7. 过滤器支持</h3>
+<p>API 和模块列表支持过滤，方便在大项目中快速定位目标。</p>
+<h2 id="安装和使用">安装和使用</h2>
+<h3 id="前置要求">前置要求</h3>
+<p>Dependencies 需要以下组件才能正常运行：</p>
+<ul>
+<li><strong>Visual C++ Redistributable</strong>：因为项目使用 /clr 编译，需要 VC++ 运行库</li>
+</ul>
+<h3 id="安装步骤">安装步骤</h3>
+<ol>
+<li>
+<p>访问 GitHub Releases 页面下载最新版本：</p>
+<ul>
+<li><a
+  href="https://github.com/lucasg/Dependencies/releases"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/lucasg/Dependencies/releases</a></li>
+</ul>
+</li>
+<li>
+<p>下载 <code>Dependencies_x64_Release.zip</code>（或 x86 版本）</p>
+</li>
+<li>
+<p>解压到任意目录</p>
+</li>
+<li>
+<p>运行 <code>DependenciesGui.exe</code></p>
+</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：由于程序未经过代码签名，Windows SmartScreen 可能会发出警告，点击「更多信息」→「仍要运行」即可。</p>
+</blockquote>
+<h3 id="常见用法">常见用法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 GUI 查看依赖</span>
+</span></span><span class="line"><span class="cl">DependenciesGui.exe myapp.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 CLI 查看依赖</span>
+</span></span><span class="line"><span class="cl">Dependencies.exe --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="树构建行为配置">树构建行为配置</h2>
+<p>Dependencies 提供了三种树构建模式，可在「选项 → 属性 → Tree build behaviour」中配置：</p>
+<h3 id="1-childonly默认">1. ChildOnly（默认）</h3>
+<p>只处理 PE 的直接子依赖，不递归处理更深层的依赖。这是最节省内存的模式。</p>
+<h3 id="2-recursiveonlyondirectimports">2. RecursiveOnlyOnDirectImports</h3>
+<p>不处理 delayload DLL 的递归依赖。</p>
+<h3 id="3-recursive">3. Recursive</h3>
+<p>完整的递归分析。注意：这会消耗大量内存，简单分析就可能超过 7GB。</p>
+<h2 id="与原版-dependency-walker-的对比">与原版 Dependency Walker 的对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Dependencies</th>
+<th>Dependency Walker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发状态</td>
+<td>活跃维护</td>
+<td>已停止（约 2006 年）</td>
+</tr>
+<tr>
+<td>平台支持</td>
+<td>Windows 7+</td>
+<td>较旧的 Windows</td>
+</tr>
+<tr>
+<td>API Set 解析</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>SxS 解析</td>
+<td>✅</td>
+<td>有限</td>
+</tr>
+<tr>
+<td>.NET 支持</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>去混淆</td>
+<td>LLVM</td>
+<td>有限</td>
+</tr>
+<tr>
+<td>CLI 工具</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>C#</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>Stars</td>
+<td>11K+</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="下载地址">下载地址</h2>
+<h3 id="官方下载">官方下载</h3>
+<ul>
+<li><strong>GitHub Releases</strong>：https://github.com/lucasg/Dependencies/releases</li>
+</ul>
+<p>直接下载：</p>
+<ul>
+<li><strong>x64 版本</strong>：https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release.zip</li>
+<li><strong>x86 版本</strong>：https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x86_Release.zip</li>
+</ul>
+<h3 id="替代下载避免-av-误报">替代下载（避免 AV 误报）</h3>
+<p>如果不方便使用主下载链接，可以使用不包含 peview.exe 的版本：</p>
+<ul>
+<li><a
+  href="https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release_.without.peview.exe.zip"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release_.without.peview.exe.zip</a></li>
+</ul>
+<h2 id="适用场景">适用场景</h2>
+<h3 id="1-开发调试">1. 开发调试</h3>
+<ul>
+<li>排查程序启动失败原因</li>
+<li>分析缺少哪些 DLL</li>
+<li>验证依赖项是否正确</li>
+</ul>
+<h3 id="2-部署检查">2. 部署检查</h3>
+<ul>
+<li>打包应用前检查所有依赖</li>
+<li>确保目标机器有所需的运行库</li>
+</ul>
+<h3 id="3-逆向分析">3. 逆向分析</h3>
+<ul>
+<li>分析未知可执行文件的依赖</li>
+<li>了解程序使用了哪些系统 API</li>
+</ul>
+<h3 id="4-故障排查">4. 故障排查</h3>
+<ul>
+<li>解决「找不到入口点」错误</li>
+<li>处理 DLL Hell 问题</li>
+</ul>
+<h2 id="局限性">局限性</h2>
+<p>目前 Dependencies 有以下局限性：</p>
+<ol>
+<li><strong>不支持 LoadLibrary 动态加载</strong>：只分析静态导入的依赖</li>
+<li><strong>最小 SxS 支持</strong>：仅支持私有清单搜索</li>
+<li><strong>内存消耗</strong>：递归模式下内存占用较大</li>
+</ol>
+<h2 id="技术栈">技术栈</h2>
+<ul>
+<li><strong>语言</strong>：C# (78%), C++ (17.8%), PowerShell (3.2%)</li>
+<li><strong>UI 框架</strong>：WPF</li>
+<li><strong>核心库</strong>：ProcessHacker2 的 phlib（PE 解析）</li>
+<li><strong>UI 库</strong>：Dragablz（可停靠/拖拽界面）</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>Dependencies 是一个功能强大且维护活跃的现代化依赖查看工具。对于 Windows 开发者来说，它是替代已停止更新的 Dependency Walker 的最佳选择。无论是日常开发调试还是复杂的部署问题排查，Dependencies 都能提供有力的帮助。</p>
+<p>如果你在 Windows 开发中遇到 DLL 依赖问题，强烈推荐试试 Dependencies。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>GitHub 仓库：https://github.com/lucasg/Dependencies</li>
+<li>官方网站：https://lucasg.github.io/Dependencies/</li>
+<li>下载地址：https://github.com/lucasg/Dependencies/releases</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-08&#32;17:48:46>更新于 2026-04-08&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/dependencies-tool/" data-title="Dependencies：现代 Windows DLL 依赖查看器"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/dll/">DLL</a>,&nbsp;<a href="/tags/%E4%BE%9D%E8%B5%96%E6%9F%A5%E7%9C%8B/">依赖查看</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/github/">github</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/google-workspace-cli-introduction/" class="prev" rel="prev" title="Google Workspace CLI：统一管理 Google Workspace 的命令行工具"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Google Workspace CLI：统一管理 Google Workspace 的命令行工具</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -742,5 +1022,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>

@@ -4,7 +4,19 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>Dependencies：现代 Windows DLL 依赖查看器</title>
+  <link>https://cfanzp008.github.io/dependencies-tool/</link>
+  <pubDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/dependencies-tool/</guid>
+  <description><![CDATA[Dependencies：现代 Windows DLL 依赖查看器 什么是 Dependencies Dependencies 是对经典软件 Dependency Walker 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。
+该项目在 GitHub 上已获得 11,400+ 颗星，是 Windows 开发者必备的调试工具之一。
+为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
+找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
+可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
+</item>
+<item>
   <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
   <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
   <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>
