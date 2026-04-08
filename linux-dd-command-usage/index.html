@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Linux dd 命令详解：用法与使用场景 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 Linux dd 命令的参数用法和典型使用场景，包括文件生成、磁盘备份、系统安装等" /><meta name="keywords" content='dd, linux, 命令行, 磁盘操作, 文件操作' /><meta itemprop="name" content="Linux dd 命令详解：用法与使用场景">
+<meta itemprop="description" content="详细介绍 Linux dd 命令的参数用法和典型使用场景，包括文件生成、磁盘备份、系统安装等"><meta itemprop="datePublished" content="2026-04-08T11:16:04+08:00" />
+<meta itemprop="dateModified" content="2026-04-08T11:16:04+08:00" />
+<meta itemprop="wordCount" content="876"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="dd,linux,命令行,磁盘操作,文件操作," /><meta property="og:title" content="Linux dd 命令详解：用法与使用场景" />
+<meta property="og:description" content="详细介绍 Linux dd 命令的参数用法和典型使用场景，包括文件生成、磁盘备份、系统安装等" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/linux-dd-command-usage/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-08T11:16:04+08:00" />
+<meta property="article:modified_time" content="2026-04-08T11:16:04+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Linux dd 命令详解：用法与使用场景"/>
+<meta name="twitter:description" content="详细介绍 Linux dd 命令的参数用法和典型使用场景，包括文件生成、磁盘备份、系统安装等"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/linux-dd-command-usage/" /><link rel="prev" href="https://cfanzp008.github.io/snat-dnat-sdnat-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux dd 命令详解：用法与使用场景",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/linux-dd-command-usage\/"
+    },"genre": "posts","keywords": "dd, linux, 命令行, 磁盘操作, 文件操作","wordcount":  876 ,
+    "url": "https:\/\/cfanzp008.github.io\/linux-dd-command-usage\/","datePublished": "2026-04-08T11:16:04+08:00","dateModified": "2026-04-08T11:16:04+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 Linux dd 命令的参数用法和典型使用场景，包括文件生成、磁盘备份、系统安装等"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Linux dd 命令详解：用法与使用场景</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-08&#32;11:16:04><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 876 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux dd 命令详解：用法与使用场景">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-dd-命令">什么是 dd 命令</a></li>
+    <li><a href="#基本语法">基本语法</a></li>
+    <li><a href="#思维导图dd-命令使用场景">思维导图：dd 命令使用场景</a></li>
+    <li><a href="#常用场景示例">常用场景示例</a>
+      <ul>
+        <li><a href="#1-生成指定大小的测试文件">1. 生成指定大小的测试文件</a></li>
+        <li><a href="#2-创建空文件或截断文件">2. 创建空文件或截断文件</a></li>
+        <li><a href="#3-生成随机数据文件">3. 生成随机数据文件</a></li>
+        <li><a href="#4-磁盘分区备份与恢复">4. 磁盘/分区备份与恢复</a></li>
+        <li><a href="#5-制作启动-u-盘">5. 制作启动 U 盘</a></li>
+        <li><a href="#6-磁盘速度测试">6. 磁盘速度测试</a></li>
+        <li><a href="#7-清除磁盘数据安全擦除">7. 清除磁盘数据（安全擦除）</a></li>
+        <li><a href="#8-文件转换操作">8. 文件转换操作</a></li>
+        <li><a href="#9-制作交换文件">9. 制作交换文件</a></li>
+        <li><a href="#10-备份-mbr">10. 备份 MBR</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用参数详解">常用参数详解</a>
+      <ul>
+        <li><a href="#块大小bs常用单位">块大小（bs）常用单位</a></li>
+        <li><a href="#常用转换选项conv">常用转换选项（conv）</a></li>
+        <li><a href="#进度显示">进度显示</a></li>
+      </ul>
+    </li>
+    <li><a href="#实际应用案例">实际应用案例</a>
+      <ul>
+        <li><a href="#案例-1快速生成测试文件">案例 1：快速生成测试文件</a></li>
+        <li><a href="#案例-2备份并压缩整个系统">案例 2：备份并压缩整个系统</a></li>
+        <li><a href="#案例-3安全擦除旧硬盘">案例 3：安全擦除旧硬盘</a></li>
+      </ul>
+    </li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#q-为什么-dd-比-cp-慢">Q: 为什么 dd 比 cp 慢？</a></li>
+        <li><a href="#q-如何判断-dd-是否完成">Q: 如何判断 dd 是否完成？</a></li>
+        <li><a href="#q-dd-可以通过网络传输吗">Q: dd 可以通过网络传输吗？</a></li>
+        <li><a href="#q-如何终止正在运行的-dd">Q: 如何终止正在运行的 dd？</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考命令汇总">参考命令汇总</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="linux-dd-命令详解用法与使用场景">Linux dd 命令详解：用法与使用场景</h1>
+<h2 id="什么是-dd-命令">什么是 dd 命令</h2>
+<p><code>dd</code>（disk dump / data definition）是 Linux 系统中一个强大的底层数据复制工具。它的名称常被戏称为&quot;disk destroyer&quot;（磁盘毁灭者），因为它可以直接操作原始设备，处理不当可能导致数据丢失。</p>
+<p>与 <code>cp</code> 命令不同，<code>dd</code> 可以：</p>
+<ul>
+<li>复制原始设备（raw device）</li>
+<li>跳过文件系统直接读写数据</li>
+<li>灵活控制数据块大小和转换方式</li>
+<li>创建指定大小的文件</li>
+</ul>
+<h2 id="基本语法">基本语法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>&lt;来源&gt; <span class="nv">of</span><span class="o">=</span>&lt;目标&gt; <span class="nv">bs</span><span class="o">=</span>&lt;块大小&gt; <span class="nv">count</span><span class="o">=</span>&lt;块数量&gt; <span class="o">[</span>选项<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if</code></td>
+<td>输入文件（input file），如 <code>/dev/zero</code>、<code>/dev/sda</code></td>
+</tr>
+<tr>
+<td><code>of</code></td>
+<td>输出文件（output file），如 <code>output.txt</code>、<code>/dev/sdb</code></td>
+</tr>
+<tr>
+<td><code>bs</code></td>
+<td>块大小（block size），如 <code>1M</code>、<code>2G</code></td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td>复制的块数量</td>
+</tr>
+<tr>
+<td><code>skip</code></td>
+<td>跳过输入文件开头的块数</td>
+</tr>
+<tr>
+<td><code>seek</code></td>
+<td>跳过输出文件开头的块数</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>显示进度信息（<code>progress</code>）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="思维导图dd-命令使用场景">思维导图：dd 命令使用场景</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                         │          dd 命令使用场景                │
+</span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
+</span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│    文件操作         │        │    磁盘操作         │        │    系统操作         │
+</span></span><span class="line"><span class="cl">│                     │        │                     │        │                     │
+</span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ├─生成测试文件                     ├─磁盘全量备份                   ├─制作启动盘
+</span></span><span class="line"><span class="cl">          ├─创建空文件                       ├─磁盘克隆                       ├─系统镜像
+</span></span><span class="line"><span class="cl">          ├─生成随机文件                     ├─分区复制                       └─文件系统修复
+</span></span><span class="line"><span class="cl">          └─文件截断                        └─清除磁盘数据
+</span></span><span class="line"><span class="cl">                                           └─磁盘速度测试
+</span></span><span class="line"><span class="cl">                                           
+</span></span><span class="line"><span class="cl">                                           ▼
+</span></span><span class="line"><span class="cl">                              ┌─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                              │        常用块大小单位           │
+</span></span><span class="line"><span class="cl">                              ├─────────────────────────────────┤
+</span></span><span class="line"><span class="cl">                              │ • 1K = 1024 字节                │
+</span></span><span class="line"><span class="cl">                              │ • 1M = 1024 * 1024             │
+</span></span><span class="line"><span class="cl">                              │ • 1G = 1024 * 1024 * 1024       │
+</span></span><span class="line"><span class="cl">                              │ • 2G = 2 * 1024 * 1024 * 1024   │
+</span></span><span class="line"><span class="cl">                              └─────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用场景示例">常用场景示例</h2>
+<h3 id="1-生成指定大小的测试文件">1. 生成指定大小的测试文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 1 个 2GB 的文件（用 /dev/zero 填充）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">bs</span><span class="o">=</span>2G <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 100MB 的测试文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>test_100MB.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 1GB 的文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>1GB_file.img <span class="nv">bs</span><span class="o">=</span>1G <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简化写法：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用简化语法</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">bs</span><span class="o">=</span>2G <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 等价于</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">bs</span><span class="o">=</span>1G <span class="nv">count</span><span class="o">=</span><span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-创建空文件或截断文件">2. 创建空文件或截断文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建一个 1MB 的空文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>empty_file.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将文件截断为 0 字节（清空文件内容但保留文件）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/null <span class="nv">of</span><span class="o">=</span>existing_file.img <span class="nv">bs</span><span class="o">=</span><span class="m">0</span> <span class="nv">count</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将文件截断为指定大小</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>file.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">10</span> <span class="nv">seek</span><span class="o">=</span><span class="m">5</span> <span class="nv">conv</span><span class="o">=</span>notrunc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-生成随机数据文件">3. 生成随机数据文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 /dev/urandom 生成随机数据（较慢但更安全）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>random_file.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成随机字节用于加密测试</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>random.bin <span class="nv">bs</span><span class="o">=</span><span class="m">64</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong> <code>/dev/urandom</code> 比较慢，生产大文件可能需要很长时间。</p>
+<h3 id="4-磁盘分区备份与恢复">4. 磁盘/分区备份与恢复</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 备份整个磁盘到镜像文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">of</span><span class="o">=</span>/backup/sda_image.img <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份单个分区</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda1 <span class="nv">of</span><span class="o">=</span>/backup/partition_backup.img <span class="nv">bs</span><span class="o">=</span>4M
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从镜像恢复磁盘</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/backup/sda_image.img <span class="nv">of</span><span class="o">=</span>/dev/sda <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 gzip 压缩备份（节省空间）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="p">|</span> gzip &gt; /backup/sda_image.img.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压恢复</span>
+</span></span><span class="line"><span class="cl">gzip -dc /backup/sda_image.img.gz <span class="p">|</span> dd <span class="nv">of</span><span class="o">=</span>/dev/sda <span class="nv">bs</span><span class="o">=</span>4M
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-制作启动-u-盘">5. 制作启动 U 盘</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将 ISO 镜像写入 U 盘（注意：/dev/sdb 是 U 盘设备）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>ubuntu.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 写入后同步</span>
+</span></span><span class="line"><span class="cl">sync
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>警告：</strong> 目标设备必须是 U 盘本身（如 <code>/dev/sdb</code>），而不是分区（如 <code>/dev/sdb1</code>）。</p>
+<h3 id="6-磁盘速度测试">6. 磁盘速度测试</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 测试写入速度（写入 1GB 数据）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/tmp/test <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span> <span class="nv">oflag</span><span class="o">=</span>direct
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试读取速度</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/tmp/test <span class="nv">of</span><span class="o">=</span>/dev/null <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span> <span class="nv">iflag</span><span class="o">=</span>direct
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 完整测试（同时测试读写）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/tmp/test <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span> <span class="nv">conv</span><span class="o">=</span>fdatasync
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/tmp/test <span class="nv">of</span><span class="o">=</span>/dev/null <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-清除磁盘数据安全擦除">7. 清除磁盘数据（安全擦除）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 用零填充整个磁盘（简单擦除）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用随机数据覆盖（更安全，但耗时）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong> 这会永久删除磁盘上的所有数据，请谨慎使用！</p>
+<h3 id="8-文件转换操作">8. 文件转换操作</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 转换大写为小写</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>input.txt <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">conv</span><span class="o">=</span>lcase
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 转换小写为大写</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>input.txt <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">conv</span><span class="o">=</span>ucase
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 追加数据（不覆盖）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>new_data.txt <span class="nv">of</span><span class="o">=</span>existing_file.txt <span class="nv">conv</span><span class="o">=</span>notrunc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 跳过前 100 块</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>input.img <span class="nv">of</span><span class="o">=</span>output.img <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">skip</span><span class="o">=</span><span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从第 100 块开始写入</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>input.img <span class="nv">of</span><span class="o">=</span>output.img <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">seek</span><span class="o">=</span><span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 截断输出文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>input.img <span class="nv">of</span><span class="o">=</span>output.img <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">10</span> <span class="nv">conv</span><span class="o">=</span>trunc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9-制作交换文件">9. 制作交换文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建一个 2GB 的交换文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/swapfile <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">2048</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置权限</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> /swapfile
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 格式化为交换空间</span>
+</span></span><span class="line"><span class="cl">mkswap /swapfile
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用交换文件</span>
+</span></span><span class="line"><span class="cl">swapon /swapfile
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加到 /etc/fstab 永久生效</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;/swapfile none swap sw 0 0&#39;</span> &gt;&gt; /etc/fstab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="10-备份-mbr">10. 备份 MBR</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 备份 MBR（包含分区表）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">of</span><span class="o">=</span>mbr_backup.bin <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 恢复 MBR</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>mbr_backup.bin <span class="nv">of</span><span class="o">=</span>/dev/sda <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 只恢复 MBR 代码（不包括分区表）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>mbr_backup.bin <span class="nv">of</span><span class="o">=</span>/dev/sda <span class="nv">bs</span><span class="o">=</span><span class="m">446</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用参数详解">常用参数详解</h2>
+<h3 id="块大小bs常用单位">块大小（bs）常用单位</h3>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>含义</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>B</code></td>
+<td>字节</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>千字节</td>
+<td>1024</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>兆字节</td>
+<td>1048576</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>吉字节</td>
+<td>1073741824</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>太字节</td>
+<td>1099511627776</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用转换选项conv">常用转换选项（conv）</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lcase</code></td>
+<td>转换为小写</td>
+</tr>
+<tr>
+<td><code>ucase</code></td>
+<td>转换为大写</td>
+</tr>
+<tr>
+<td><code>notrunc</code></td>
+<td>不截断输出文件</td>
+</tr>
+<tr>
+<td><code>noerror</code></td>
+<td>遇到错误继续执行</td>
+</tr>
+<tr>
+<td><code>sync</code></td>
+<td>用零填充错误块</td>
+</tr>
+<tr>
+<td><code>trunc</code></td>
+<td>截断输出文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="进度显示">进度显示</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示详细进度</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>test.img <span class="nv">bs</span><span class="o">=</span>1G <span class="nv">count</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>progress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">记录了1073741824字节（1.0 GB，954 MB），用时 3 秒，306 MB/秒
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实际应用案例">实际应用案例</h2>
+<h3 id="案例-1快速生成测试文件">案例 1：快速生成测试文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 2GB 测试文件用于磁盘IO测试</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>2GB_test.img <span class="nv">bs</span><span class="o">=</span>2G <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看生成的文件大小</span>
+</span></span><span class="line"><span class="cl">ls -lh 2GB_test.img
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-2备份并压缩整个系统">案例 2：备份并压缩整个系统</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 备份整个磁盘并压缩</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">bs</span><span class="o">=</span>4M <span class="p">|</span> gzip -c &gt; /backup/system_backup.img.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 恢复到新磁盘</span>
+</span></span><span class="line"><span class="cl">gzip -dc /backup/system_backup.img.gz <span class="p">|</span> dd <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-3安全擦除旧硬盘">案例 3：安全擦除旧硬盘</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 用随机数据覆盖 3 次（符合 DoD 标准）</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/dev/sdc <span class="nv">bs</span><span class="o">=</span>4M
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/dev/sdc <span class="nv">bs</span><span class="o">=</span>4M
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/dev/sdc <span class="nv">bs</span><span class="o">=</span>4M
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<ol>
+<li><strong>数据安全</strong>：<code>dd</code> 操作是直接读写原始设备，一旦执行就无法撤销。请务必确认目标设备！</li>
+<li><strong>设备路径</strong>：在 Linux 中，磁盘设备通常是 <code>/dev/sda</code>、<code>/dev/nvme0n1</code> 等</li>
+<li><strong>权限问题</strong>：操作磁盘设备需要 root 权限（使用 <code>sudo</code>）</li>
+<li><strong>进度监控</strong>：大文件操作时使用 <code>status=progress</code> 查看进度</li>
+<li><strong>同步数据</strong>：操作完成后使用 <code>sync</code> 确保数据写入磁盘</li>
+</ol>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="q-为什么-dd-比-cp-慢">Q: 为什么 dd 比 cp 慢？</h3>
+<p>A: <code>dd</code> 默认块大小较小，可以增大 <code>bs</code> 值提高速度，如 <code>bs=4M</code>。</p>
+<h3 id="q-如何判断-dd-是否完成">Q: 如何判断 dd 是否完成？</h3>
+<p>A: 使用 <code>status=progress</code> 参数查看进度，或使用 <code>ps aux | grep dd</code> 检查进程。</p>
+<h3 id="q-dd-可以通过网络传输吗">Q: dd 可以通过网络传输吗？</h3>
+<p>A: 可以，结合 SSH 实现远程备份：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="p">|</span> ssh user@remote <span class="s2">&#34;dd of=/backup.img&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="q-如何终止正在运行的-dd">Q: 如何终止正在运行的 dd？</h3>
+<p>A: 使用 <code>Ctrl + C</code> 或 <code>kill -15 &lt;PID&gt;</code>，然后检查数据完整性。</p>
+<h2 id="总结">总结</h2>
+<p><code>dd</code> 是 Linux 系统中最强大但也最危险的工具之一。掌握其用法可以完成：</p>
+<ul>
+<li>生成指定大小的测试文件</li>
+<li>磁盘全量备份与恢复</li>
+<li>制作启动 U 盘</li>
+<li>安全擦除磁盘数据</li>
+<li>性能测试</li>
+</ul>
+<p><strong>核心命令模板：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>&lt;输入&gt; <span class="nv">of</span><span class="o">=</span>&lt;输出&gt; <span class="nv">bs</span><span class="o">=</span>&lt;块大小&gt; <span class="nv">count</span><span class="o">=</span>&lt;数量&gt; <span class="nv">status</span><span class="o">=</span>progress
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考命令汇总">参考命令汇总</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 2GB 测试文件</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>output.txt <span class="nv">bs</span><span class="o">=</span>2G <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 磁盘备份</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">of</span><span class="o">=</span>/backup.img <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 制作启动盘</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>ubuntu.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>4M <span class="nv">status</span><span class="o">=</span>progress
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 性能测试</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/tmp/test <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span> <span class="nv">oflag</span><span class="o">=</span>direct
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份 MBR</span>
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/sda <span class="nv">of</span><span class="o">=</span>mbr.bin <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-08&#32;11:16:04>更新于 2026-04-08&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/linux-dd-command-usage/" data-title="Linux dd 命令详解：用法与使用场景"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dd/">dd</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>,&nbsp;<a href="/tags/%E7%A3%81%E7%9B%98%E6%93%8D%E4%BD%9C/">磁盘操作</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">文件操作</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/snat-dnat-sdnat-introduction/" class="prev" rel="prev" title="SNAT、DNAT 与 SDNAT：网络地址转换详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>SNAT、DNAT 与 SDNAT：网络地址转换详解</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
