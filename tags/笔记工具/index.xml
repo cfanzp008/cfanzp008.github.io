@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>笔记工具 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E7%AC%94%E8%AE%B0%E5%B7%A5%E5%85%B7/</link>
+    <description>笔记工具 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%AC%94%E8%AE%B0%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
+  <link>https://cfanzp008.github.io/notebooklm-usage-guide/</link>
+  <pubDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/notebooklm-usage-guide/</guid>
+  <description><![CDATA[Google NotebookLM：AI 驱动的智能笔记本详解 什么是 NotebookLM NotebookLM 是 Google 实验室（Google Labs）推出的一款实验性 AI 笔记本工具。它的核心理念是「以 AI 为核心的笔记本」——从设计之初就将强大的语言模型融入其中，帮助用户更快地从信息中获取洞察。
+与传统的 AI 聊天机器人不同，NotebookLM 的独特之处在于它的「源 grounding」机制。你可以将自己选择的文档作为 AI 的知识来源，让 AI 只基于你提供的资料来回答问题。这不仅大大减少了「幻觉」问题，还确保了答案的相关性和准确性。
+NotebookLM 最初于 2023 年 7 月以「Project Tailwind」的名字在 Google I/O 大会上首次亮相，随后正式命名为 NotebookLM。经过几年发展，它已经从最初的文档摘要工具演变为一个功能强大的多模态学习和工作助手。
+核心功能详解 1. 智能文档导入 NotebookLM 支持多种文档格式的导入：
+Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文档进行分析 网页内容：可以通过 URL 导入网页内容 音频文件：支持上传音频文件进行转录和分析 Markdown 和文本文件：支持纯文本格式 导入文档后，NotebookLM 会自动分析内容，生成摘要、关键主题和可能的问题，帮助你快速了解文档概况。
+2. AI 问答功能 基于导入的文档，你可以向 NotebookLM 提问：
+医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
+3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：]]></description>
+</item>
+</channel>
+</rss>

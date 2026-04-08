@@ -4,9 +4,24 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
+  <link>https://cfanzp008.github.io/notebooklm-usage-guide/</link>
+  <pubDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/notebooklm-usage-guide/</guid>
+  <description><![CDATA[Google NotebookLM：AI 驱动的智能笔记本详解 什么是 NotebookLM NotebookLM 是 Google 实验室（Google Labs）推出的一款实验性 AI 笔记本工具。它的核心理念是「以 AI 为核心的笔记本」——从设计之初就将强大的语言模型融入其中，帮助用户更快地从信息中获取洞察。
+与传统的 AI 聊天机器人不同，NotebookLM 的独特之处在于它的「源 grounding」机制。你可以将自己选择的文档作为 AI 的知识来源，让 AI 只基于你提供的资料来回答问题。这不仅大大减少了「幻觉」问题，还确保了答案的相关性和准确性。
+NotebookLM 最初于 2023 年 7 月以「Project Tailwind」的名字在 Google I/O 大会上首次亮相，随后正式命名为 NotebookLM。经过几年发展，它已经从最初的文档摘要工具演变为一个功能强大的多模态学习和工作助手。
+核心功能详解 1. 智能文档导入 NotebookLM 支持多种文档格式的导入：
+Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文档进行分析 网页内容：可以通过 URL 导入网页内容 音频文件：支持上传音频文件进行转录和分析 Markdown 和文本文件：支持纯文本格式 导入文档后，NotebookLM 会自动分析内容，生成摘要、关键主题和可能的问题，帮助你快速了解文档概况。
+2. AI 问答功能 基于导入的文档，你可以向 NotebookLM 提问：
+医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
+3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：]]></description>
+</item>
+<item>
   <title>Hermes Agent：会自我进化的 AI 智能体</title>
   <link>https://cfanzp008.github.io/hermes-agent-introduction/</link>
   <pubDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</pubDate>
@@ -102,17 +117,6 @@ n8n 的核心特点：
 对于小内存服务器（如 1GB 或 2GB 内存）来说，这些后台服务可能会影响业务程序的可用内存，甚至导致 OOM（内存耗尽）问题。
 优化目标：
 释放内存资源 减少后台进程占用 提升服务器响应速度 降低资源消耗 需要关闭的组件 组件名称 功能 占用资源 云监控（YunAgent） 监控服务器性能指标 约 50-100MB 内存 云镜（Security Agent） 安全防护和病毒扫描 约 30-80MB 内存 安全加固（Security hardening） 系统安全加固 约 20-50MB 内存 自动化助手（TAT） 远程运维自动化 约 10-30MB 内存 思维导图：操作流程总览 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 graph TD A[开始优化] --&gt; B{确认权限} B --&gt;|需要sudo| C[获取root权限] B --&gt;|已是root| D[开始操作] C --&gt; D D --&gt; E[1.]]></description>
-</item>
-<item>
-  <title>Linux Swap 分区大小修改指南</title>
-  <link>https://cfanzp008.github.io/linux-swap-resize-guide/</link>
-  <pubDate>Tue, 07 Apr 2026 16:39:35 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/linux-swap-resize-guide/</guid>
-  <description><![CDATA[Linux Swap 分区大小修改指南 什么是 Swap Swap（交换空间）是 Linux 系统的一种虚拟内存技术。当物理内存不足时，系统会将不活跃的内存页面移动到 Swap 空间中，从而释放物理内存供活跃进程使用。
-Swap 的作用：
-扩展可用内存容量 防止内存耗尽导致系统崩溃 支持内存休眠（suspend to disk） 在内存压力时提供缓冲 修改 Swap 大小的三种方法 方法一：使用 swapfile（推荐） 这种方法最灵活，不需要重新分区。
-步骤 1：查看当前 Swap 状态 1 2 3 4 5 6 7 8 # 查看当前 Swap 使用情况 free -h # 查看 Swap 文件位置 swapon --show # 查看磁盘空间 df -h 步骤 2：禁用现有 Swap 1 2 3 4 5 # 关闭 Swap sudo swapoff -a # 如果有多个 Swap，指定关闭特定文件 sudo swapoff /swapfile 注意： 关闭 Swap 前确保有足够的物理内存，否则可能导致程序崩溃。最好在系统负载低时操作。]]></description>
 </item>
 </channel>
 </rss>
