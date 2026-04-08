@@ -4,15 +4,18 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/</link>
     <description>开源 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sun, 05 Apr 2026 00:26:20 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
   <title>Hermes Agent：会自我进化的 AI 智能体</title>
   <link>https://cfanzp008.github.io/hermes-agent-introduction/</link>
-  <pubDate>Sun, 05 Apr 2026 00:26:20 &#43;0800</pubDate>
+  <pubDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp008.github.io/hermes-agent-introduction/</guid>
-  <description><![CDATA[Hermes Agent：会自我进化的 AI 智能体 什么是 Hermes Agent Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是&quot;The agent that grows with you&quot;（与你共同成长的智能体）。该项目在 GitHub 上已获得 24,500+ 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-核心理念 大多数 AI 智能体本质上只是&quot;带有额外步骤的聊天机器人&quot;——你与它们对话，它们忘记一切，下次重新开始。Hermes Agent 采取了不同的方式：
-长期记忆：记住学习到的知识 自我进化：从工作中不断学习和改进 持续成长：随着使用时间增长变得更加智能 核心特性 1. 持久记忆系统 跨会话记住重要信息 自动保存学习到的知识 知识可以复用和积累 2. 自我进化能力 从成功和失败中学习 自动优化工作流程 逐渐适应用户的习惯和偏好 3. 多平台运行 本地运行（保护隐私） 支持 Ollama 部署 云端 API 调用 多模型支持 4. Agent 工作流 自主规划和执行任务 工具调用和工具创建 多步骤复杂任务处理 5. 开源免费 完全开源 MIT 许可证 社区活跃 安装配置 前置要求 Python 3.]]></description>
+  <description><![CDATA[Hermes Agent：会自我进化的 AI 智能体 引言 在人工智能快速发展的今天，AI 智能体（Agent）已经成为技术领域的热门话题。大多数 AI 智能体本质上只是「带有额外步骤的聊天机器人」——你与它们对话，它们忘记一切，下次重新开始。然而，Hermes Agent 采取了不同的方式，它致力于打造一个「与你共同成长的智能体」。
+Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是「The agent that grows with you」（与你共同成长的智能体）。该项目在 GitHub 上已获得 33,000+ 颗星，是当前最受欢迎的自进化 AI 智能体之一。
+什么是 Hermes Agent Hermes Agent 是一个功能强大的开源 autonomous AI agent，采用 MIT 许可证发布。与传统聊天机器人不同，它具有以下核心特性：
+长期记忆：跨会话记住重要信息，自动保存学习到的知识 自我进化：从成功和失败中学习，逐渐适应用户的习惯和偏好 多平台运行：支持本地运行（保护隐私）、Ollama 部署、云端 API 调用 完全开源：社区活跃，持续迭代更新 核心功能详解 1. 持久记忆系统 Hermes Agent 拥有先进的持久记忆系统，通过 MEMORY.md 和 USER.md 文件保存用户偏好、项目信息和学习到的知识。这种有边界的、精心管理的记忆能够跨会话持久化，让 Agent 记住你的偏好、项目和环境设置。
+2. 上下文文件 Hermes Agent 能够自动发现和加载项目上下文文件，包括：
+.hermes.md AGENTS.md CLAUDE.md SOUL.md .cursorrules 这些文件会塑造 Agent 在项目中的行为方式，让它更好地理解你的项目规范和需求。]]></description>
 </item>
 <item>
   <title>last30days：AI 驱动的全网研究技能</title>
