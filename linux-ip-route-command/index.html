@@ -5,41 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>Linux df 命令详解：磁盘空间查看与管理 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+    <title>Linux ip route 命令深度详解：路由管理完全指南 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="详细介绍 Linux df 命令的参数用法和实际使用场景，包括获取磁盘利用率、过滤特定文件系统等技巧" /><meta name="keywords" content='df, linux, 命令行, 磁盘空间, 系统管理' /><meta itemprop="name" content="Linux df 命令详解：磁盘空间查看与管理">
-<meta itemprop="description" content="详细介绍 Linux df 命令的参数用法和实际使用场景，包括获取磁盘利用率、过滤特定文件系统等技巧"><meta itemprop="datePublished" content="2026-04-08T11:32:25+08:00" />
-<meta itemprop="dateModified" content="2026-04-08T11:32:25+08:00" />
-<meta itemprop="wordCount" content="858"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
-<meta itemprop="keywords" content="df,linux,命令行,磁盘空间,系统管理," /><meta property="og:title" content="Linux df 命令详解：磁盘空间查看与管理" />
-<meta property="og:description" content="详细介绍 Linux df 命令的参数用法和实际使用场景，包括获取磁盘利用率、过滤特定文件系统等技巧" />
+<meta name="description" content="详细介绍 Linux ip route 命令的用法，包括添加删除路由、查看路由表、默认路由、静态路由等完整指南" /><meta name="keywords" content='ip route, linux, 网络, 路由, 命令行' /><meta itemprop="name" content="Linux ip route 命令深度详解：路由管理完全指南">
+<meta itemprop="description" content="详细介绍 Linux ip route 命令的用法，包括添加删除路由、查看路由表、默认路由、静态路由等完整指南"><meta itemprop="datePublished" content="2026-04-08T12:04:57+08:00" />
+<meta itemprop="dateModified" content="2026-04-08T12:04:57+08:00" />
+<meta itemprop="wordCount" content="1022"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="ip route,linux,网络,路由,命令行," /><meta property="og:title" content="Linux ip route 命令深度详解：路由管理完全指南" />
+<meta property="og:description" content="详细介绍 Linux ip route 命令的用法，包括添加删除路由、查看路由表、默认路由、静态路由等完整指南" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://cfanzp008.github.io/linux-df-command-usage/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2026-04-08T11:32:25+08:00" />
-<meta property="article:modified_time" content="2026-04-08T11:32:25+08:00" />
+<meta property="og:url" content="https://cfanzp008.github.io/linux-ip-route-command/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-08T12:04:57+08:00" />
+<meta property="article:modified_time" content="2026-04-08T12:04:57+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Linux df 命令详解：磁盘空间查看与管理"/>
-<meta name="twitter:description" content="详细介绍 Linux df 命令的参数用法和实际使用场景，包括获取磁盘利用率、过滤特定文件系统等技巧"/>
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Linux ip route 命令深度详解：路由管理完全指南"/>
+<meta name="twitter:description" content="详细介绍 Linux ip route 命令的用法，包括添加删除路由、查看路由表、默认路由、静态路由等完整指南"/>
 <meta name="application-name" content="cfanzp学习笔记">
 <meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/linux-df-command-usage/" /><link rel="prev" href="https://cfanzp008.github.io/linux-dd-command-usage/" /><link rel="next" href="https://cfanzp008.github.io/linux-ip-route-command/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/linux-ip-route-command/" /><link rel="prev" href="https://cfanzp008.github.io/linux-df-command-usage/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "Linux df 命令详解：磁盘空间查看与管理",
+    "headline": "Linux ip route 命令深度详解：路由管理完全指南",
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/cfanzp008.github.io\/linux-df-command-usage\/"
-    },"genre": "posts","keywords": "df, linux, 命令行, 磁盘空间, 系统管理","wordcount":  858 ,
-    "url": "https:\/\/cfanzp008.github.io\/linux-df-command-usage\/","datePublished": "2026-04-08T11:32:25+08:00","dateModified": "2026-04-08T11:32:25+08:00","publisher": {
+      "@id": "https:\/\/cfanzp008.github.io\/linux-ip-route-command\/"
+    },"genre": "posts","keywords": "ip route, linux, 网络, 路由, 命令行","wordcount":  1022 ,
+    "url": "https:\/\/cfanzp008.github.io\/linux-ip-route-command\/","datePublished": "2026-04-08T12:04:57+08:00","dateModified": "2026-04-08T12:04:57+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
         "name": "cfanzp"
-      },"description": "详细介绍 Linux df 命令的参数用法和实际使用场景，包括获取磁盘利用率、过滤特定文件系统等技巧"
+      },"description": "详细介绍 Linux ip route 命令的用法，包括添加删除路由、查看路由表、默认路由、静态路由等完整指南"
   }
   </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -649,7 +649,7 @@
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span>Linux df 命令详解：磁盘空间查看与管理</span>
+        <span>Linux ip route 命令深度详解：路由管理完全指南</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -670,8 +670,8 @@
   
 ><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
     </a></span>
-          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
-      <div class="post-meta-line"><span title=2026-04-08&#32;11:32:25><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 858 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux df 命令详解：磁盘空间查看与管理">
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-08&#32;12:04:57><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1022 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux ip route 命令深度详解：路由管理完全指南">
             <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
           </span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
@@ -681,41 +681,49 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是-df-命令">什么是 df 命令</a></li>
+    <li><a href="#什么是-ip-route">什么是 ip route</a></li>
     <li><a href="#基本语法">基本语法</a></li>
-    <li><a href="#输出字段说明">输出字段说明</a></li>
-    <li><a href="#思维导图df-命令使用场景">思维导图：df 命令使用场景</a></li>
+    <li><a href="#思维导图ip-route-命令体系">思维导图：ip route 命令体系</a></li>
     <li><a href="#常用场景示例">常用场景示例</a>
       <ul>
-        <li><a href="#1-基本显示所有文件系统">1. 基本显示所有文件系统</a></li>
-        <li><a href="#2-人类可读格式显示">2. 人类可读格式显示</a></li>
-        <li><a href="#3-查看特定挂载点或文件系统">3. 查看特定挂载点或文件系统</a></li>
-        <li><a href="#4-获取系统根目录磁盘利用率">4. 获取系统根目录磁盘利用率</a></li>
-        <li><a href="#5-显示-inode-信息">5. 显示 inode 信息</a></li>
-        <li><a href="#6-显示文件系统类型">6. 显示文件系统类型</a></li>
-        <li><a href="#7-显示总量汇总">7. 显示总量汇总</a></li>
-        <li><a href="#8-格式化输出">8. 格式化输出</a></li>
-        <li><a href="#9-高级过滤示例">9. 高级过滤示例</a></li>
-        <li><a href="#10-在脚本中使用">10. 在脚本中使用</a></li>
-        <li><a href="#11-监控多个挂载点">11. 监控多个挂载点</a></li>
+        <li><a href="#1-查看当前路由表">1. 查看当前路由表</a></li>
+        <li><a href="#2-添加默认路由">2. 添加默认路由</a></li>
+        <li><a href="#3-添加普通路由">3. 添加普通路由</a></li>
+        <li><a href="#4-删除路由">4. 删除路由</a></li>
+        <li><a href="#5-修改路由">5. 修改路由</a></li>
+        <li><a href="#6-路由度量值metric">6. 路由度量值（Metric）</a></li>
+        <li><a href="#7-黑洞路由blackhole">7. 黑洞路由（Blackhole）</a></li>
+        <li><a href="#8-持久化路由重启后生效">8. 持久化路由（重启后生效）</a></li>
+        <li><a href="#9-路由表管理">9. 路由表管理</a></li>
+        <li><a href="#10-追踪路由">10. 追踪路由</a></li>
+        <li><a href="#11-刷新清空路由缓存">11. 刷新/清空路由缓存</a></li>
+        <li><a href="#12-负载均衡multipath">12. 负载均衡（Multipath）</a></li>
       </ul>
     </li>
-    <li><a href="#常用参数汇总">常用参数汇总</a></li>
+    <li><a href="#高级用法">高级用法</a>
+      <ul>
+        <li><a href="#1-策略路由">1. 策略路由</a></li>
+        <li><a href="#2-mtu-设置">2. MTU 设置</a></li>
+        <li><a href="#3-隧道路由">3. 隧道路由</a></li>
+      </ul>
+    </li>
     <li><a href="#实际应用案例">实际应用案例</a>
       <ul>
-        <li><a href="#案例-1获取根目录磁盘利用率">案例 1：获取根目录磁盘利用率</a></li>
-        <li><a href="#案例-2查找使用率最高的分区">案例 2：查找使用率最高的分区</a></li>
-        <li><a href="#案例-3找出-inode-即将耗尽的文件系统">案例 3：找出 inode 即将耗尽的文件系统</a></li>
-        <li><a href="#案例-4排除伪文件系统查看磁盘">案例 4：排除伪文件系统查看磁盘</a></li>
-        <li><a href="#案例-5与-du-命令配合使用">案例 5：与 du 命令配合使用</a></li>
+        <li><a href="#案例-1添加默认网关">案例 1：添加默认网关</a></li>
+        <li><a href="#案例-2添加静态路由实现双网卡访问">案例 2：添加静态路由实现双网卡访问</a></li>
+        <li><a href="#案例-3阻止访问特定-ip">案例 3：阻止访问特定 IP</a></li>
+        <li><a href="#案例-4临时添加路由重启失效">案例 4：临时添加路由（重启失效）</a></li>
       </ul>
     </li>
-    <li><a href="#df-与-du-的区别">df 与 du 的区别</a></li>
+    <li><a href="#路由表字段说明">路由表字段说明</a></li>
+    <li><a href="#常用参数汇总">常用参数汇总</a></li>
+    <li><a href="#ip-route-vs-route-命令">ip route vs route 命令</a></li>
     <li><a href="#常见问题">常见问题</a>
       <ul>
-        <li><a href="#q-为什么-df-显示的已用空间比-du-多">Q: 为什么 df 显示的已用空间比 du 多？</a></li>
-        <li><a href="#q-如何查看-inode-使用情况">Q: 如何查看 inode 使用情况？</a></li>
-        <li><a href="#q-为什么-devsda-显示-0-可用但-df-显示有空间">Q: 为什么 /dev/sda 显示 0 可用但 df 显示有空间？</a></li>
+        <li><a href="#q-添加的路由重启后丢失怎么办">Q: 添加的路由重启后丢失怎么办？</a></li>
+        <li><a href="#q-如何查看路由是否生效">Q: 如何查看路由是否生效？</a></li>
+        <li><a href="#q-默认路由和网关的区别">Q: 默认路由和网关的区别？</a></li>
+        <li><a href="#q-如何删除所有路由">Q: 如何删除所有路由？</a></li>
       </ul>
     </li>
     <li><a href="#总结">总结</a></li>
@@ -727,55 +735,20 @@
       id="content"
       
       
-    ><h1 id="linux-df-命令详解磁盘空间查看与管理">Linux df 命令详解：磁盘空间查看与管理</h1>
-<h2 id="什么是-df-命令">什么是 df 命令</h2>
-<p><code>df</code>（disk free）是 Linux 系统中用于显示磁盘空间使用情况的命令。它可以查看所有已挂载文件系统的磁盘使用情况，包括总容量、已用空间、可用空间和使用百分比。</p>
+    ><h1 id="linux-ip-route-命令深度详解路由管理完全指南">Linux ip route 命令深度详解：路由管理完全指南</h1>
+<h2 id="什么是-ip-route">什么是 ip route</h2>
+<p><code>ip route</code> 是 Linux 系统中管理路由表的核心命令，属于 <code>iproute2</code> 包。它可以显示、添加、删除和修改系统路由表中的条目。</p>
+<p>与传统的 <code>route</code> 命令相比，<code>ip route</code> 功能更强大，语法更规范，是现代 Linux 系统的推荐用法。</p>
 <h2 id="基本语法">基本语法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">df <span class="o">[</span>选项<span class="o">]</span> <span class="o">[</span>文件系统或挂载点<span class="o">]</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route <span class="o">[</span>选项<span class="o">]</span> &lt;命令&gt; <span class="o">[</span>参数<span class="o">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="输出字段说明">输出字段说明</h2>
-<p>执行 <code>df</code> 命令后，输出结果包含以下字段：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Filesystem</td>
-<td>文件系统设备名</td>
-</tr>
-<tr>
-<td>Size</td>
-<td>总容量</td>
-</tr>
-<tr>
-<td>Used</td>
-<td>已使用空间</td>
-</tr>
-<tr>
-<td>Available</td>
-<td>可用空间</td>
-</tr>
-<tr>
-<td>Use%</td>
-<td>使用百分比</td>
-</tr>
-<tr>
-<td>Mounted on</td>
-<td>挂载点</td>
-</tr>
-</tbody>
-</table>
-<h2 id="思维导图df-命令使用场景">思维导图：df 命令使用场景</h2>
+</div><h2 id="思维导图ip-route-命令体系">思维导图：ip route 命令体系</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -802,76 +775,44 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
-</span></span><span class="line"><span class="cl">                         │          df 命令使用场景              │
+</span></span><span class="line"><span class="cl">                         │         ip route 命令体系              │
 </span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
 </span></span><span class="line"><span class="cl">                                            │
 </span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
 </span></span><span class="line"><span class="cl">          │                                 │                                 │
 </span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
 </span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
-</span></span><span class="line"><span class="cl">│    基本显示         │        │    格式化输出        │        │    过滤与查找        │
+</span></span><span class="line"><span class="cl">│      查看路由        │        │     添加路由        │        │    删除/修改路由    │
 </span></span><span class="line"><span class="cl">│                     │        │                     │        │                     │
 </span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
 </span></span><span class="line"><span class="cl">          │                                 │                                 │
-</span></span><span class="line"><span class="cl">          ├─查看所有文件系统                 ├─人类可读格式(-h)               ├─查看特定挂载点
-</span></span><span class="line"><span class="cl">          ├─查看特定文件系统                 ├─显示 inode 信息(-i)            ├─获取根目录利用率
-</span></span><span class="line"><span class="cl">          └─显示伪文件系统                  └─显示总量(-T)                  └─过滤特定类型
-</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ├─ip route show                  ├─ip route add                    ├─ip route delete
+</span></span><span class="line"><span class="cl">          ├─ip route list                  ├─ip route change               ├─ip route replace
+</span></span><span class="line"><span class="cl">          ├─ip route get                  └─ip route prepend              └─ip route flush
+</span></span><span class="line"><span class="cl">          │
+</span></span><span class="line"><span class="cl">          └─ip r (简写)
 </span></span><span class="line"><span class="cl">                                            ▼
 </span></span><span class="line"><span class="cl">                              ┌─────────────────────────────────┐
-</span></span><span class="line"><span class="cl">                              │        常用组合技巧             │
+</span></span><span class="line"><span class="cl">                              │        路由类型                │
 </span></span><span class="line"><span class="cl">                              ├─────────────────────────────────┤
-</span></span><span class="line"><span class="cl">                              │ • df | awk 提取数据            │
-</span></span><span class="line"><span class="cl">                              │ • du 配合查找大文件            │
-</span></span><span class="line"><span class="cl">                              │ • 监控脚本集成                 │
+</span></span><span class="line"><span class="cl">                              │ • 默认路由 (default)          │
+</span></span><span class="line"><span class="cl">                              │ • 主机路由 (/32)              │
+</span></span><span class="line"><span class="cl">                              │ • 网络路由 (CIDR)             │
+</span></span><span class="line"><span class="cl">                              │ • 黑洞路由 (blackhole)         │
+</span></span><span class="line"><span class="cl">                              │ • 负载均衡 (multipath)        │
+</span></span><span class="line"><span class="cl">                              │ • 策略路由 (table/rule)        │
 </span></span><span class="line"><span class="cl">                              └─────────────────────────────────┘
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="常用场景示例">常用场景示例</h2>
-<h3 id="1-基本显示所有文件系统">1. 基本显示所有文件系统</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示所有文件系统（包括伪文件系统）</span>
-</span></span><span class="line"><span class="cl">df
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 显示真实的文件系统（排除伪文件系统）</span>
-</span></span><span class="line"><span class="cl">df -a
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="2-人类可读格式显示">2. 人类可读格式显示</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以 KB/MB/GB 显示（更易读）</span>
-</span></span><span class="line"><span class="cl">df -h
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 以 MB/GB 显示（使用 1024）</span>
-</span></span><span class="line"><span class="cl">df -h
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 以 1000 为单位显示（与厂商一致）</span>
-</span></span><span class="line"><span class="cl">df -H
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="3-查看特定挂载点或文件系统">3. 查看特定挂载点或文件系统</h3>
+<h3 id="1-查看当前路由表">1. 查看当前路由表</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -890,23 +831,177 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看根目录所在文件系统</span>
-</span></span><span class="line"><span class="cl">df /
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有路由（最常用）</span>
+</span></span><span class="line"><span class="cl">ip route show
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看 /home 挂载点</span>
-</span></span><span class="line"><span class="cl">df /home
+</span></span><span class="line"><span class="cl"><span class="c1"># 简写形式</span>
+</span></span><span class="line"><span class="cl">ip r
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定设备</span>
-</span></span><span class="line"><span class="cl">df /dev/sda1
+</span></span><span class="line"><span class="cl"><span class="c1"># 更详细的输出</span>
+</span></span><span class="line"><span class="cl">ip route list
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有 ext4 文件系统</span>
-</span></span><span class="line"><span class="cl">df -t ext4
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定网段的路由</span>
+</span></span><span class="line"><span class="cl">ip route show 192.168.1.0/24
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 排除特定类型</span>
-</span></span><span class="line"><span class="cl">df -x tmpfs
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定网卡的路由</span>
+</span></span><span class="line"><span class="cl">ip route show dev eth0
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="4-获取系统根目录磁盘利用率">4. 获取系统根目录磁盘利用率</h3>
+</div><h3 id="2-添加默认路由">2. 添加默认路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加默认路由（通过指定网关）</span>
+</span></span><span class="line"><span class="cl">ip route add default via 10.168.27.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加默认路由（指定出接口）</span>
+</span></span><span class="line"><span class="cl">ip route add default dev eth0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加默认路由（指定网关和出接口）</span>
+</span></span><span class="line"><span class="cl">ip route add default via 10.168.27.1 dev eth0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-添加普通路由">3. 添加普通路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加到特定网络的路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加到特定网络的路由（指定出接口）</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 dev eth1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加到特定主机的路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.100/32 via 10.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-删除路由">4. 删除路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除默认路由</span>
+</span></span><span class="line"><span class="cl">ip route del default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除特定网络的路由</span>
+</span></span><span class="line"><span class="cl">ip route del 192.168.1.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除特定网关的路由</span>
+</span></span><span class="line"><span class="cl">ip route del default via 10.168.27.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-修改路由">5. 修改路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 替换现有路由</span>
+</span></span><span class="line"><span class="cl">ip route replace 192.168.1.0/24 via 10.0.0.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改默认路由</span>
+</span></span><span class="line"><span class="cl">ip route change default via 10.168.27.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-路由度量值metric">6. 路由度量值（Metric）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加带度量值的路由（数字越小优先级越高）</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1 metric <span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看路由的度量值</span>
+</span></span><span class="line"><span class="cl">ip route show
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-黑洞路由blackhole">7. 黑洞路由（Blackhole）</h3>
+<p>黑洞路由会丢弃数据包，常用于阻止访问特定网段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加黑洞路由（数据包被丢弃）</span>
+</span></span><span class="line"><span class="cl">ip route add blackhole 192.168.1.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 unreachable 路由（返回 ICMP 不可达）</span>
+</span></span><span class="line"><span class="cl">ip route add unreachable 192.168.1.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 prohibit 路由（返回 ICMP 禁止）</span>
+</span></span><span class="line"><span class="cl">ip route add prohibit 192.168.1.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8-持久化路由重启后生效">8. 持久化路由（重启后生效）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 Debian/Ubuntu 中配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在网卡配置中添加：</span>
+</span></span><span class="line"><span class="cl">up ip route add 192.168.1.0/24 via 10.0.0.1
+</span></span><span class="line"><span class="cl">down ip route del 192.168.1.0/24 via 10.0.0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 RHEL/CentOS 中配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑 /etc/sysconfig/network-scripts/route-eth0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加：</span>
+</span></span><span class="line"><span class="cl">192.168.1.0/24 via 10.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9-路由表管理">9. 路由表管理</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -922,21 +1017,56 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 方法一：直接获取根目录使用率百分比</span>
-</span></span><span class="line"><span class="cl">df <span class="p">|</span> awk <span class="s1">&#39;$6==&#34;/&#34;{gsub(&#34;%&#34;,&#34;&#34;,$5); print $5}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有路由表</span>
+</span></span><span class="line"><span class="cl">ip route show table all
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 方法二：更详细的输出</span>
-</span></span><span class="line"><span class="cl">df -h / <span class="p">|</span> awk <span class="s1">&#39;NR==2{print $5}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定路由表</span>
+</span></span><span class="line"><span class="cl">ip route show table main
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 方法三：获取已用空间（以 GB 为单位）</span>
-</span></span><span class="line"><span class="cl">df -BG / <span class="p">|</span> awk <span class="s1">&#39;NR==2{print $3}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地路由表</span>
+</span></span><span class="line"><span class="cl">ip route show table <span class="nb">local</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 方法四：获取可用空间（以 GB 为单位）</span>
-</span></span><span class="line"><span class="cl">df -BG / <span class="p">|</span> awk <span class="s1">&#39;NR==2{print $4}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义路由表</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1 table custom
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="5-显示-inode-信息">5. 显示 inode 信息</h3>
-<p>Inode 是文件系统中的索引节点，存储文件元数据。如果 inode 耗尽，即使磁盘空间充足也无法创建新文件。</p>
+</div><h3 id="10-追踪路由">10. 追踪路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 模拟路由查询（测试数据包如何路由）</span>
+</span></span><span class="line"><span class="cl">ip route get 192.168.1.100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例输出：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 192.168.1.100 via 10.168.27.1 dev eth0 src 10.168.27.100</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     cache</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="11-刷新清空路由缓存">11. 刷新/清空路由缓存</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 清空路由缓存</span>
+</span></span><span class="line"><span class="cl">ip route flush cache
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 清空特定表的路由</span>
+</span></span><span class="line"><span class="cl">ip route flush table main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-负载均衡multipath">12. 负载均衡（Multipath）</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -949,17 +1079,60 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示 inode 使用情况</span>
-</span></span><span class="line"><span class="cl">df -i
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加负载均衡路由（两条路径轮流使用）</span>
+</span></span><span class="line"><span class="cl">ip route add default scope global nexthop via 10.0.0.1 dev eth0 weight <span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>nexthop via 10.0.0.2 dev eth1 weight <span class="m">1</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定挂载点的 inode</span>
-</span></span><span class="line"><span class="cl">df -i /
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 人类可读格式显示 inode</span>
-</span></span><span class="line"><span class="cl">df -i -h
+</span></span><span class="line"><span class="cl"><span class="c1"># 基于权重的负载均衡</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>nexthop via 10.0.0.1 dev eth0 weight <span class="m">3</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>nexthop via 10.0.0.2 dev eth1 weight <span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="6-显示文件系统类型">6. 显示文件系统类型</h3>
+</div><h2 id="高级用法">高级用法</h2>
+<h3 id="1-策略路由">1. 策略路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加指定源地址的路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1 src 10.168.27.100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基于源地址选择不同路由表</span>
+</span></span><span class="line"><span class="cl">ip rule add from 10.168.27.100 lookup <span class="m">100</span>
+</span></span><span class="line"><span class="cl">ip route add default via 10.0.0.1 table <span class="m">100</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-mtu-设置">2. MTU 设置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加带 MTU 限制的路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1 mtu <span class="m">1400</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-隧道路由">3. 隧道路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加隧道端点路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.2.0/24 dev tun0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实际应用案例">实际应用案例</h2>
+<h3 id="案例-1添加默认网关">案例 1：添加默认网关</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -969,14 +1142,14 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示文件系统类型列</span>
-</span></span><span class="line"><span class="cl">df -T
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 服务器添加默认网关</span>
+</span></span><span class="line"><span class="cl">ip route add default via 192.168.1.1
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 排除 tmpfs 显示</span>
-</span></span><span class="line"><span class="cl">df -T -x tmpfs
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证</span>
+</span></span><span class="line"><span class="cl">ip route show <span class="p">|</span> grep default
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="7-显示总量汇总">7. 显示总量汇总</h3>
+</div><h3 id="案例-2添加静态路由实现双网卡访问">案例 2：添加静态路由实现双网卡访问</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -984,16 +1157,18 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示所有行并加上总量行</span>
-</span></span><span class="line"><span class="cl">df -a --total
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># eth0: 192.168.10.0/24 网段</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># eth1: 192.168.20.0/24 网段</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 只显示总量</span>
-</span></span><span class="line"><span class="cl">df --total
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加路由让两个网段互通</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.20.0/24 via 192.168.10.1 dev eth0
+</span></span><span class="line"><span class="cl">ip route add 192.168.10.0/24 via 192.168.20.1 dev eth1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="8-格式化输出">8. 格式化输出</h3>
+</div><h3 id="案例-3阻止访问特定-ip">案例 3：阻止访问特定 IP</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1004,92 +1179,86 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 仅显示指定列（使用 POSIX 输出格式）</span>
-</span></span><span class="line"><span class="cl">df -P
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用黑洞路由阻止访问 1.1.1.1</span>
+</span></span><span class="line"><span class="cl">ip route add blackhole 1.1.1.1/32
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 显示本地文件系统</span>
-</span></span><span class="line"><span class="cl">df -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 阻止访问整个网段</span>
+</span></span><span class="line"><span class="cl">ip route add blackhole 10.0.0.0/8
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 输出时每行一个文件系统</span>
-</span></span><span class="line"><span class="cl">df -k    <span class="c1"># 以 KB 为单位</span>
-</span></span><span class="line"><span class="cl">df -m    <span class="c1"># 以 MB 为单位</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看黑洞路由</span>
+</span></span><span class="line"><span class="cl">ip route show <span class="p">|</span> grep blackhole
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="9-高级过滤示例">9. 高级过滤示例</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看已使用超过 80% 的文件系统</span>
-</span></span><span class="line"><span class="cl">df -h <span class="p">|</span> awk <span class="s1">&#39;$5&gt;80{print}&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看根分区和 home 分区的使用情况</span>
-</span></span><span class="line"><span class="cl">df -h / /home
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 显示特定列（挂载点、使用率、可用空间）</span>
-</span></span><span class="line"><span class="cl">df -h <span class="p">|</span> awk <span class="s1">&#39;{print $1, $5, $4}&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 格式化输出：设备名 | 大小 | 已用 | 可用 | 使用率 | 挂载点</span>
-</span></span><span class="line"><span class="cl">df -h <span class="p">|</span> awk <span class="s1">&#39;{printf &#34;%-20s %10s %10s %10s %-10s %s\n&#34;, $1, $2, $3, $4, $5, $6}&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="10-在脚本中使用">10. 在脚本中使用</h3>
+</div><h3 id="案例-4临时添加路由重启失效">案例 4：临时添加路由（重启失效）</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># 检查根目录使用率，超过 80% 时告警</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加临时路由（系统重启后丢失）</span>
+</span></span><span class="line"><span class="cl">ip route add 172.16.0.0/12 via 192.168.1.1
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">USAGE</span><span class="o">=</span><span class="k">$(</span>df -h / <span class="p">|</span> awk <span class="s1">&#39;NR==2 {gsub(&#34;%&#34;,&#34;&#34;,$5); print $5}&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$USAGE</span><span class="s2">&#34;</span> -gt <span class="m">80</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Warning: Root partition usage is </span><span class="si">${</span><span class="nv">USAGE</span><span class="si">}</span><span class="s2">%&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># 发送告警通知</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使路由永久生效（添加到 /etc/rc.local 或网络配置）</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="11-监控多个挂载点">11. 监控多个挂载点</h3>
+</div><h2 id="路由表字段说明">路由表字段说明</h2>
+<p>执行 <code>ip route show</code> 输出示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查多个关键挂载点</span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> mount in / /home /data /var<span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">usage</span><span class="o">=</span><span class="k">$(</span>df -h <span class="s2">&#34;</span><span class="nv">$mount</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> awk <span class="s1">&#39;NR==2 {print $5}&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$mount</span><span class="s2">: </span><span class="nv">$usage</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="k">done</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">default via 10.168.27.1 dev eth0 proto dhcp src 10.168.27.100 metric 100 
+</span></span><span class="line"><span class="cl">10.168.27.0/24 dev eth0 proto kernel scope link src 10.168.27.100 
+</span></span><span class="line"><span class="cl">192.168.1.0/24 via 10.168.27.1 dev eth0
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="常用参数汇总">常用参数汇总</h2>
+</div><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td>默认路由</td>
+</tr>
+<tr>
+<td><code>via</code></td>
+<td>下一跳网关地址</td>
+</tr>
+<tr>
+<td><code>dev</code></td>
+<td>出接口</td>
+</tr>
+<tr>
+<td><code>proto</code></td>
+<td>路由协议（kernel/static/dhcp）</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>作用范围（link/global/host）</td>
+</tr>
+<tr>
+<td><code>src</code></td>
+<td>源地址</td>
+</tr>
+<tr>
+<td><code>metric</code></td>
+<td>优先级（数值越小越高）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用参数汇总">常用参数汇总</h2>
 <table>
 <thead>
 <tr>
@@ -1099,57 +1268,114 @@
 </thead>
 <tbody>
 <tr>
-<td><code>-a</code></td>
-<td>显示所有文件系统（包括伪文件系统）</td>
+<td><code>ip route show</code></td>
+<td>显示路由表</td>
 </tr>
 <tr>
-<td><code>-h</code></td>
-<td>人类可读格式（自动选择单位）</td>
+<td><code>ip route add</code></td>
+<td>添加路由</td>
 </tr>
 <tr>
-<td><code>-H</code></td>
-<td>以 1000 为单位（与厂商一致）</td>
+<td><code>ip route del</code></td>
+<td>删除路由</td>
 </tr>
 <tr>
-<td><code>-T</code></td>
-<td>显示文件系统类型</td>
+<td><code>ip route change</code></td>
+<td>修改路由</td>
 </tr>
 <tr>
-<td><code>-i</code></td>
-<td>显示 inode 信息</td>
+<td><code>ip route replace</code></td>
+<td>替换路由</td>
 </tr>
 <tr>
-<td><code>-l</code></td>
-<td>仅显示本地文件系统</td>
+<td><code>ip route get</code></td>
+<td>测试路由</td>
 </tr>
 <tr>
-<td><code>-k</code></td>
-<td>以 KB 为单位</td>
+<td><code>ip route flush</code></td>
+<td>清空路由缓存</td>
 </tr>
 <tr>
-<td><code>-m</code></td>
-<td>以 MB 为单位</td>
+<td><code>via</code></td>
+<td>下一跳地址</td>
 </tr>
 <tr>
-<td><code>-P</code></td>
-<td>POSIX 格式输出（每行一个文件系统）</td>
+<td><code>dev</code></td>
+<td>出接口</td>
 </tr>
 <tr>
-<td><code>-x</code></td>
-<td>排除指定类型的文件系统</td>
+<td><code>metric</code></td>
+<td>路由优先级</td>
 </tr>
 <tr>
-<td><code>-t</code></td>
-<td>仅显示指定类型的文件系统</td>
-</tr>
-<tr>
-<td><code>--total</code></td>
-<td>显示总量</td>
+<td><code>blackhole</code></td>
+<td>黑洞路由</td>
 </tr>
 </tbody>
 </table>
-<h2 id="实际应用案例">实际应用案例</h2>
-<h3 id="案例-1获取根目录磁盘利用率">案例 1：获取根目录磁盘利用率</h3>
+<h2 id="ip-route-vs-route-命令">ip route vs route 命令</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ip route</th>
+<th>route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所属包</td>
+<td>iproute2</td>
+<td>net-tools</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>现代推荐</td>
+<td>已废弃</td>
+</tr>
+<tr>
+<td>语法</td>
+<td>结构化</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>完整</td>
+<td>有限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="q-添加的路由重启后丢失怎么办">Q: 添加的路由重启后丢失怎么办？</h3>
+<p>A: 两种方案：</p>
+<ol>
+<li>写入网络配置文件（如 <code>/etc/network/interfaces</code> 或 <code>/etc/sysconfig/network-scripts/</code>）</li>
+<li>写入 <code>/etc/rc.local</code></li>
+</ol>
+<h3 id="q-如何查看路由是否生效">Q: 如何查看路由是否生效？</h3>
+<p>A: 使用 <code>ip route show</code> 或 <code>ip route get &lt;目标IP&gt;</code></p>
+<h3 id="q-默认路由和网关的区别">Q: 默认路由和网关的区别？</h3>
+<p>A: 默认路由（0.0.0.0/0）指向网关，是访问任何未知网络的最后手段。</p>
+<h3 id="q-如何删除所有路由">Q: 如何删除所有路由？</h3>
+<p>A: 危险操作，仅删除自定义路由：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip route flush table main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p><code>ip route</code> 是 Linux 网络管理中最重要的命令之一，熟练掌握可以：</p>
+<ul>
+<li>配置静态路由实现网络互通</li>
+<li>管理默认网关</li>
+<li>阻止访问特定地址（黑洞路由）</li>
+<li>实现网络负载均衡</li>
+<li>调试网络连接问题</li>
+</ul>
+<p><strong>核心命令模板：</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1162,157 +1388,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取根目录磁盘使用率百分比</span>
-</span></span><span class="line"><span class="cl">df <span class="p">|</span> awk <span class="s1">&#39;$6==&#34;/&#34;{gsub(&#34;%&#34;,&#34;&#34;,$5); print $5}&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加默认路由</span>
+</span></span><span class="line"><span class="cl">ip route add default via &lt;网关IP&gt;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 示例输出：</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 49</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加静态路由</span>
+</span></span><span class="line"><span class="cl">ip route add &lt;目标网段&gt; via &lt;网关IP&gt;
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 获取更详细的根目录信息</span>
-</span></span><span class="line"><span class="cl">df -h /
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>输出示例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Filesystem      Size  Used Avail Use% Mounted on
-</span></span><span class="line"><span class="cl">/dev/sda1       100G   49G   51G  49% /
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="案例-2查找使用率最高的分区">案例 2：查找使用率最高的分区</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 按使用率排序显示</span>
-</span></span><span class="line"><span class="cl">df -h <span class="p">|</span> grep -v <span class="s1">&#39;tmpfs\|devtmpfs&#39;</span> <span class="p">|</span> sort -k5 -hr
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 示例输出：</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># /dev/sda2       500G  450G   50G  90% /data</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># /dev/sda1       100G   80G   20G  80% /</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="案例-3找出-inode-即将耗尽的文件系统">案例 3：找出 inode 即将耗尽的文件系统</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查找 inode 使用率超过 80% 的文件系统</span>
-</span></span><span class="line"><span class="cl">df -i <span class="p">|</span> awk <span class="s1">&#39;$5&gt;80{print}&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 完整显示 inode 信息</span>
-</span></span><span class="line"><span class="cl">df -i -h
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="案例-4排除伪文件系统查看磁盘">案例 4：排除伪文件系统查看磁盘</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 排除 tmpfs 和 devtmpfs，只看真实磁盘</span>
-</span></span><span class="line"><span class="cl">df -h -x tmpfs -x devtmpfs -x squashfs
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="案例-5与-du-命令配合使用">案例 5：与 du 命令配合使用</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 找出占用空间最大的目录</span>
-</span></span><span class="line"><span class="cl">du -sh /* 2&gt;/dev/null <span class="p">|</span> sort -rh <span class="p">|</span> head -10
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定目录属于哪个文件系统</span>
-</span></span><span class="line"><span class="cl">df -h /var/log
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="df-与-du-的区别">df 与 du 的区别</h2>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>df</th>
-<th>du</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>全称</td>
-<td>disk free</td>
-<td>disk usage</td>
-</tr>
-<tr>
-<td>作用</td>
-<td>显示文件系统整体使用情况</td>
-<td>显示目录/文件占用空间</td>
-</tr>
-<tr>
-<td>原理</td>
-<td>读取文件系统元数据</td>
-<td>遍历目录计算实际占用</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>查看磁盘剩余空间</td>
-<td>查找哪些目录占用空间多</td>
-</tr>
-</tbody>
-</table>
-<h2 id="常见问题">常见问题</h2>
-<h3 id="q-为什么-df-显示的已用空间比-du-多">Q: 为什么 df 显示的已用空间比 du 多？</h3>
-<p>A: <code>df</code> 显示的是文件系统层面的已分配空间，而 <code>du</code> 只计算实际使用的文件。可能的原因：</p>
-<ul>
-<li>已删除但仍被进程占用的文件</li>
-<li>文件系统保留空间</li>
-<li>目录缓存</li>
-</ul>
-<h3 id="q-如何查看-inode-使用情况">Q: 如何查看 inode 使用情况？</h3>
-<p>A: 使用 <code>df -i</code> 命令</p>
-<h3 id="q-为什么-devsda-显示-0-可用但-df-显示有空间">Q: 为什么 /dev/sda 显示 0 可用但 df 显示有空间？</h3>
-<p>A: 文件系统通常保留 5% 空间供 root 使用，使用 <code>tune2fs -m 0</code> 可调整（慎用）。</p>
-<h2 id="总结">总结</h2>
-<p><code>df</code> 命令是 Linux 系统管理中最常用的工具之一，主要用于：</p>
-<ul>
-<li>查看磁盘空间使用情况</li>
-<li>监控系统存储状态</li>
-<li>在脚本中进行自动化监控</li>
-</ul>
-<p><strong>核心命令模板：</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基本查看</span>
-</span></span><span class="line"><span class="cl">df -h
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 获取根目录利用率</span>
-</span></span><span class="line"><span class="cl">df <span class="p">|</span> awk <span class="s1">&#39;$6==&#34;/&#34;{gsub(&#34;%&#34;,&#34;&#34;,$5); print $5}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看路由</span>
+</span></span><span class="line"><span class="cl">ip route show
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="参考命令汇总">参考命令汇总</h2>
@@ -1339,59 +1422,54 @@
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基本显示</span>
-</span></span><span class="line"><span class="cl">df
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看路由表</span>
+</span></span><span class="line"><span class="cl">ip route show
+</span></span><span class="line"><span class="cl">ip r
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 人类可读格式</span>
-</span></span><span class="line"><span class="cl">df -h
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加默认路由</span>
+</span></span><span class="line"><span class="cl">ip route add default via 10.168.27.1
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看特定挂载点</span>
-</span></span><span class="line"><span class="cl">df /
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加静态路由</span>
+</span></span><span class="line"><span class="cl">ip route add 192.168.1.0/24 via 10.0.0.1
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 获取根目录使用率</span>
-</span></span><span class="line"><span class="cl">df <span class="p">|</span> awk <span class="s1">&#39;$6==&#34;/&#34;{gsub(&#34;%&#34;,&#34;&#34;,$5); print $5}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除路由</span>
+</span></span><span class="line"><span class="cl">ip route del default
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 显示 inode</span>
-</span></span><span class="line"><span class="cl">df -i
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改路由</span>
+</span></span><span class="line"><span class="cl">ip route change default via 10.168.27.2
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 显示文件系统类型</span>
-</span></span><span class="line"><span class="cl">df -T
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试路由</span>
+</span></span><span class="line"><span class="cl">ip route get 192.168.1.1
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 排除伪文件系统</span>
-</span></span><span class="line"><span class="cl">df -h -x tmpfs
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看使用率超过 80% 的分区</span>
-</span></span><span class="line"><span class="cl">df -h <span class="p">|</span> awk <span class="s1">&#39;$5&gt;80{print}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加黑洞路由</span>
+</span></span><span class="line"><span class="cl">ip route add blackhole 192.168.1.0/24
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2026-04-08&#32;11:32:25>更新于 2026-04-08&nbsp;</span>
+        <span title=2026-04-08&#32;12:04:57>更新于 2026-04-08&nbsp;</span>
       </div></div>
     <div class="post-info-line">
       <div class="post-info-md"></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/linux-df-command-usage/" data-title="Linux df 命令详解：磁盘空间查看与管理"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/linux-ip-route-command/" data-title="Linux ip route 命令深度详解：路由管理完全指南"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/df/">df</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>,&nbsp;<a href="/tags/%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4/">磁盘空间</a>,&nbsp;<a href="/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">系统管理</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ip-route/">ip route</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>,&nbsp;<a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div>
 
-  <div class="post-nav"><a href="/linux-dd-command-usage/" class="prev" rel="prev" title="Linux dd 命令详解：用法与使用场景"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Linux dd 命令详解：用法与使用场景</a>
-      <a href="/linux-ip-route-command/" class="next" rel="next" title="Linux ip route 命令深度详解：路由管理完全指南">Linux ip route 命令深度详解：路由管理完全指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+  <div class="post-nav"><a href="/linux-df-command-usage/" class="prev" rel="prev" title="Linux df 命令详解：磁盘空间查看与管理"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Linux df 命令详解：磁盘空间查看与管理</a></div>
 </div>
 </article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

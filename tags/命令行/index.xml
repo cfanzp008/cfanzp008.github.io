@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
     <description>命令行 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 11:32:25 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="self" type="application/rss+xml" /><item>
+  <title>Linux ip route 命令深度详解：路由管理完全指南</title>
+  <link>https://cfanzp008.github.io/linux-ip-route-command/</link>
+  <pubDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/linux-ip-route-command/</guid>
+  <description><![CDATA[Linux ip route 命令深度详解：路由管理完全指南 什么是 ip route ip route 是 Linux 系统中管理路由表的核心命令，属于 iproute2 包。它可以显示、添加、删除和修改系统路由表中的条目。
+与传统的 route 命令相比，ip route 功能更强大，语法更规范，是现代 Linux 系统的推荐用法。
+基本语法 1 ip route [选项] &lt;命令&gt; [参数] 思维导图：ip route 命令体系 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ ip route 命令体系 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 查看路由 │ │ 添加路由 │ │ 删除/修改路由 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─ip route show ├─ip route add ├─ip route delete ├─ip route list ├─ip route change ├─ip route replace ├─ip route get └─ip route prepend └─ip route flush │ └─ip r (简写) ▼ ┌─────────────────────────────────┐ │ 路由类型 │ ├─────────────────────────────────┤ │ • 默认路由 (default) │ │ • 主机路由 (/32) │ │ • 网络路由 (CIDR) │ │ • 黑洞路由 (blackhole) │ │ • 负载均衡 (multipath) │ │ • 策略路由 (table/rule) │ └─────────────────────────────────┘ 常用场景示例 1.]]></description>
+</item>
+<item>
   <title>Linux df 命令详解：磁盘空间查看与管理</title>
   <link>https://cfanzp008.github.io/linux-df-command-usage/</link>
   <pubDate>Wed, 08 Apr 2026 11:32:25 &#43;0800</pubDate>
