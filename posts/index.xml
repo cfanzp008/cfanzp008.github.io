@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,18 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
+  <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
+  <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/another-redis-desktop-manager/</guid>
+  <description><![CDATA[Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端 引言 Redis 作为最流行的内存数据库之一，在现代应用开发中扮演着重要角色。然而，选择一款好用的 Redis 客户端管理工具却并不容易。常见的 Redis 桌面客户端要么功能单一，要么在处理大量数据时容易崩溃。今天给大家介绍一款由国人开发的开源 Redis 桌面管理工具——Another Redis Desktop Manager，它以「更快、更好、更稳定」为目标，在 GitHub 上已收获 34,000+ 颗星，广受开发者好评。
+什么是 Another Redis Desktop Manager Another Redis Desktop Manager 是一款现代化、轻量级的跨平台 Redis 桌面客户端，由国内开发者 qishibo 开发并维护。该项目最初于 2019 年开源，旨在为开发者提供一个更快、更好、更稳定的 Redis 可视化管理工具。
+与传统的 Redis 客户端相比，Another Redis Desktop Manager 具有以下显著优势：
+跨平台支持：完美兼容 Linux、Windows 和 macOS 系统 稳定可靠：经过大量实际项目验证，在处理大量数据时也不会轻易崩溃 功能丰富：支持集群、哨兵、SSL 认证等高级特性 完全免费：开源免费，无需付费即可使用全部功能 核心功能特性 1. 多连接管理 Another Redis Desktop Manager 支持同时管理多个 Redis 连接，你可以：
+轻松添加、编辑、删除 Redis 连接 支持 SSH 隧道连接 保存连接密码，下次自动填充 支持连接分组，便于项目管理 2.]]></description>
 </item>
 <item>
   <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
@@ -126,17 +138,6 @@ n8n 的核心特点：
 部署方式选择 n8n 支持多种部署方式：
 部署方式 适用场景 难度 Docker Compose（SQLite） 个人使用、小团队 简单 Docker Compose（PostgreSQL） 生产环境、多用户 中等 Node.js (npm) 本地开发测试 简单 Kubernetes 大规模生产部署 复杂 Docker Compose 部署（推荐） 环境要求 服务器：Ubuntu 22.04+ 或其他 Linux 发行版 资源：建议 2GB+ 内存，20GB+ 存储 Docker 和 Docker Compose 已安装 简单版（SQLite） 创建项目目录和配置文件：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 mkdir -p ~/n8n &amp;&amp; cd ~/n8n cat &gt; docker-compose.]]></description>
-</item>
-<item>
-  <title>小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手</title>
-  <link>https://cfanzp008.github.io/tencent-cloud-server-optimization/</link>
-  <pubDate>Tue, 07 Apr 2026 17:07:51 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/tencent-cloud-server-optimization/</guid>
-  <description><![CDATA[小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手 背景简介 腾讯云服务器默认会安装多种监控和安全组件，包括云监控（Cloud Monitor）、云镜（Security Agent）、安全加固和自动化助手（TAT）等。这些组件在后台持续运行，会占用一定的系统资源（CPU、内存）。
-对于小内存服务器（如 1GB 或 2GB 内存）来说，这些后台服务可能会影响业务程序的可用内存，甚至导致 OOM（内存耗尽）问题。
-优化目标：
-释放内存资源 减少后台进程占用 提升服务器响应速度 降低资源消耗 需要关闭的组件 组件名称 功能 占用资源 云监控（YunAgent） 监控服务器性能指标 约 50-100MB 内存 云镜（Security Agent） 安全防护和病毒扫描 约 30-80MB 内存 安全加固（Security hardening） 系统安全加固 约 20-50MB 内存 自动化助手（TAT） 远程运维自动化 约 10-30MB 内存 思维导图：操作流程总览 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 graph TD A[开始优化] --&gt; B{确认权限} B --&gt;|需要sudo| C[获取root权限] B --&gt;|已是root| D[开始操作] C --&gt; D D --&gt; E[1.]]></description>
 </item>
 </channel>
 </rss>
