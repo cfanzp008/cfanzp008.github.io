@@ -4,7 +4,35 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>AI - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenSpec 工程化规范总结</title>
+  <link>https://cfanzp008.github.io/openspec-engineering-summary/</link>
+  <pubDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openspec-engineering-summary/</guid>
+  <description><![CDATA[OpenSpec 工程化规范总结 什么是 OpenSpec OpenSpec 是一个面向 AI 编码助手的规范驱动开发框架（Spec-Driven Development，SDD）。它的核心理念是在编写任何代码之前，先创建可审查的规范（Spec），让人类开发者和 AI 编码助手能够就项目意图达成共识。
+该项目在 GitHub 上已获得 37,000+ 颗星，是 AI 开发工具领域最受欢迎的项目之一。
+核心价值 1. 解决 AI 编程的沟通问题 传统编程中，开发者通过代码表达意图。但 AI 编程助理解读代码时可能会产生偏差，导致：
+实现与预期不符 重复修改 项目失控 OpenSpec 通过在编码前明确定义规范来解决这个问题。
+2. 版本控制意图 OpenSpec 充当「意图的版本控制」：
+规范文件可以被审查 可以版本化管理 可以追踪意图的演变 便于人类和 AI 协同理解 3. 防止「氛围编程」 「Vibe Coding」（氛围编程）是指盲目跟随 AI 生成代码，缺乏深思熟虑的设计。OpenSpec 强制要求在编码前思考和规划。
+OpenSpec 规范结构 1. Project Spec（项目规范） 定义项目的整体结构和目标：
+1 2 3 4 5 6 7 name: my-project description: A web application for task management version: 1.]]></description>
+</item>
+<item>
+  <title>Superpowers 自动化使用指南</title>
+  <link>https://cfanzp008.github.io/superpowers-automation-guide/</link>
+  <pubDate>Wed, 08 Apr 2026 18:04:31 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/superpowers-automation-guide/</guid>
+  <description><![CDATA[Superpowers 自动化使用指南 什么是 Superpowers Superpowers 是 OpenCode 平台推出的一套 AI 技能框架，旨在为 AI Agent 提供专家级能力。通过 Superpowers，用户可以将特定领域的知识和工作流封装为可重用的技能（Skills），让 AI 在执行任务时能够自动调用这些技能。
+Superpowers 的核心理念是「让 AI 具备专业领域知识」，就像为 AI 配备了一个随身携带的专家团队。
+Superpowers 架构 技能类型 Superpowers 将技能分为两类：
+Rigid Skills（刚性技能）：严格遵循预设流程，如 TDD（测试驱动开发）、Debugging
+使用时必须完全按照规范执行 不允许随意调整流程 Flexible Skills（柔性技能）：可以灵活适应上下文，如 Patterns
+可以根据实际情况调整实现方式 需要理解技能背后的原理 技能层级 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 Superpowers ├── 基础技能（Built-in） │ ├── playwright │ ├── frontend-ui-ux │ ├── git-master │ ├── dev-browser │ ├── review-work │ └── ai-slop-remover │ ├── 用户技能（User-installed） │ ├── doc-coauthoring │ ├── blog-do-publish │ ├── pdf │ ├── docx │ ├── xlsx │ ├── pptx │ ├── mcp-builder │ └── article-writer │ └── 超级技能（Superpowers） ├── using-superpowers ├── brainstorming ├── test-driven-development ├── systematic-debugging ├── verification-before-completion ├── requesting-code-review ├── receiving-code-review ├── finishing-a-development-branch ├── writing-plans ├── executing-plans ├── subagent-driven-development ├── writing-skills ├── skill-creator ├── using-git-worktrees └── dispatching-parallel-agents 如何使用 Superpowers 1.]]></description>
+</item>
+<item>
   <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
   <link>https://cfanzp008.github.io/notebooklm-usage-guide/</link>
   <pubDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</pubDate>
@@ -108,36 +136,6 @@ Superpowers 是由 Keyboardio 联合创始人 Jesse Vincent 开发的一个 AI A
 核心设计理念 Superpowers 基于一个关键洞察：AI Agent 在处理复杂代码时经常失败，但通过特定的技能（Skills）引导，AI 可以表现得像人类专家一样。这些技能封装了：
 系统性思考：先理解需求，再制定计划 质量控制：在实现前先验证，在修改后确认 工具使用：正确使用调试、测试、审查等工具 迭代优化：持续改进而非一次完成 技能（Skills）机制 Superpowers 的技能系统受 Simon Willison 提出的 Claude Skills 概念启发。每个技能是一个独立的指令集，可以被 AI Agent 按需加载和使用。技能的核心文件是 SKILL.md，其中包含：
 技能的用途说明 使用场景和触发条件 具体的工作流程和步骤 工具映射说明 思维导图：Superpowers 整体架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Superpowers 框架 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 核心概念 │ │ 主要技能 │ │ 工具集成 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─技能框架(Skills) ├─brainstorming ├─OpenCode ├─Agent工作流 ├─verification-before-completion ├─Claude Code ├─工具映射 ├─receiving-code-review ├─Codex └─Bootstrap机制 ├─requesting-code-review └─MCP Servers ├─test-driven-development ├─systematic-debugging └─.]]></description>
-</item>
-<item>
-  <title>OpenAI Tokenizer 在线工具详解</title>
-  <link>https://cfanzp008.github.io/openai-tokenizer-introduction/</link>
-  <pubDate>Tue, 07 Apr 2026 10:25:57 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/openai-tokenizer-introduction/</guid>
-  <description><![CDATA[OpenAI Tokenizer 在线工具详解 什么是 Tokenizer 在深入了解 OpenAI Tokenizer 工具之前，我们首先需要理解什么是 Token（词元）。
-Token 是 OpenAI 模型处理文本的基本单位。它们可以是短至单个字符，也可以长至整个单词，具体取决于语言和编码方式。对于英文文本，大约 4 个字符等于 1 个 Token；对于中文文本，通常 1-2 个汉字等于 1 个 Token。
-理解 Token 的概念对于使用 OpenAI API 至关重要，因为：
-API 计费：OpenAI 按 Token 数量计费，了解 Token 数量可以帮助估算成本 上下文窗口：每个模型有固定的上下文窗口限制（通常是 4K、8K、16K、32K、128K 等），Token 数决定了能输入多少内容 优化提示：了解 Token 计数可以帮助优化提示词，提高效率 OpenAI Tokenizer 工具概述 OpenAI Tokenizer 是官方提供的在线工具，访问地址为：https://platform.openai.com/tokenizer
-这个工具允许开发者直观地看到任意文本被如何分词（Tokenize），以及对应的 Token 数量。这对于以下场景特别有用：
-学习 Token 概念 估算 API 调用成本 优化提示词长度 调试 Token 相关问题 工具界面与功能 主要功能区域 OpenAI Tokenizer 工具界面主要包含以下几个部分：
-1. 文本输入区]]></description>
-</item>
-<item>
-  <title>Harness Engineering 与 Ralph Loop 的关系解析</title>
-  <link>https://cfanzp008.github.io/harness-engineering-ralph-loop-relation/</link>
-  <pubDate>Tue, 07 Apr 2026 10:07:25 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/harness-engineering-ralph-loop-relation/</guid>
-  <description><![CDATA[Harness Engineering 与 Ralph Loop 的关系解析 背景介绍 在AI辅助软件开发领域，两种重要的方法论正在引起广泛关注：Harness Engineering（架具工程） 和 Ralph Loop。前者由Thoughtworks的Birgitta Böckeler在Martin Fowler博客上系统阐述，后者是Ralphable团队提出的自动化循环方法。虽然两者出现的背景和关注点不同，但它们在提升AI Agent可靠性方面存在着深刻的互补关系。
-什么是Harness Engineering Harness Engineering（架具工程）是一种系统性地构建AI Agent运行环境的方法论，其核心观点是：Agent = Model + Harness。也就是说，除了模型本身的智能之外，围绕模型构建的“架具”系统同样关键。
-核心组件：引导与传感器 Harness Engineering将架具分为两大类组件：
-引导（Guides）- 前馈控制
-引导旨在预测Agent的行为并在其行动之前进行引导，目标是在第一次尝试就产生良好结果。引导可以是：
-计算型引导：确定性且快速，如LSP、语言服务器、CLI工具、脚本、codemods 推理型引导：基于语义分析，如AGENTS.md、Skills、文档 传感器（Sensors）- 反馈控制
-传感器在Agent行动后进行观察，帮助其自我修正。特别强大的是那些针对LLM消费优化的传感器，例如包含修正指令的自定义linter消息——一种积极的提示注入。
-1 2 3 4 5 6 7 8 # 计算型传感器示例 npx eslint # 代码风格检查 npm run coverage # 测试覆盖率 semgrep # 安全扫描 # 推理型传感器示例 /code-review # AI代码审查 /architecture-review # 架构审查 调节类别 Harness Engineering将架具分为三个调节维度：
-可维护性架具：调节代码质量和内部结构，如代码风格、复杂度、测试覆盖 架构适应性架具：定义和检查应用的架构特性，如性能要求、可观测性标准 行为架具：指导并感知应用功能行为，这是目前最具挑战性的领域 什么是Ralph Loop Ralph Loop是一种结构化的任务执行循环方法论，让AI能够自动迭代直到所有显式的成功标准都满足。其核心是一个四阶段循环：执行 → 评估 → 修复 → 重复。]]></description>
 </item>
 </channel>
 </rss>

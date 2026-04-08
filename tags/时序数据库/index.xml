@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>时序数据库 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>时序数据库 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:01:27 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+  <title>InfluxDB CLI 使用笔记</title>
+  <link>https://cfanzp008.github.io/influxdb2-cli-usage/</link>
+  <pubDate>Wed, 08 Apr 2026 18:01:27 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/influxdb2-cli-usage/</guid>
+  <description><![CDATA[InfluxDB CLI 使用笔记 什么是 InfluxDB CLI InfluxDB CLI 是 InfluxData 官方提供的命令行客户端工具，用于与 InfluxDB 服务器进行交互。通过 CLI，用户可以执行数据查询、写入、管理配置等操作，无需使用 Web 界面或 API。
+CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
+主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
+官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.]]></description>
+</item>
+<item>
+  <title>InfluxDBStudio 使用笔记</title>
+  <link>https://cfanzp008.github.io/influxdb-studio-usage/</link>
+  <pubDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/influxdb-studio-usage/</guid>
+  <description><![CDATA[InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
+该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
+主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：]]></description>
+</item>
+</channel>
+</rss>

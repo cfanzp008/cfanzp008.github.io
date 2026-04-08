@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/gui/</link>
     <description>GUI - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/gui/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/gui/" rel="self" type="application/rss+xml" /><item>
+  <title>InfluxDBStudio 使用笔记</title>
+  <link>https://cfanzp008.github.io/influxdb-studio-usage/</link>
+  <pubDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/influxdb-studio-usage/</guid>
+  <description><![CDATA[InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
+该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
+主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：]]></description>
+</item>
+<item>
   <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
   <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
   <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>

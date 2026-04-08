@@ -685,6 +685,170 @@
 ><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/harness-engineering-ralph-loop-relation/">Harness Engineering 与 Ralph Loop 的关系解析</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 10:07:25'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Harness Engineering 与 Ralph Loop 的关系解析 背景介绍 在AI辅助软件开发领域，两种重要的方法论正在引起广泛关注：Harness Engineering（架具工程） 和 Ralph Loop。前者由Thoughtworks的Birgitta Böckeler在Martin Fowler博客上系统阐述，后者是Ralphable团队提出的自动化循环方法。虽然两者出现的背景和关注点不同，但它们在提升AI Agent可靠性方面存在着深刻的互补关系。
+什么是Harness Engineering Harness Engineering（架具工程）是一种系统性地构建AI Agent运行环境的方法论，其核心观点是：Agent = Model + Harness。也就是说，除了模型本身的智能之外，围绕模型构建的“架具”系统同样关键。
+核心组件：引导与传感器 Harness Engineering将架具分为两大类组件：
+引导（Guides）- 前馈控制
+引导旨在预测Agent的行为并在其行动之前进行引导，目标是在第一次尝试就产生良好结果。引导可以是：
+计算型引导：确定性且快速，如LSP、语言服务器、CLI工具、脚本、codemods 推理型引导：基于语义分析，如AGENTS.md、Skills、文档 传感器（Sensors）- 反馈控制
+传感器在Agent行动后进行观察，帮助其自我修正。特别强大的是那些针对LLM消费优化的传感器，例如包含修正指令的自定义linter消息——一种积极的提示注入。
+1 2 3 4 5 6 7 8 # 计算型传感器示例 npx eslint # 代码风格检查 npm run coverage # 测试覆盖率 semgrep # 安全扫描 # 推理型传感器示例 /code-review # AI代码审查 /architecture-review # 架构审查 调节类别 Harness Engineering将架具分为三个调节维度：
+可维护性架具：调节代码质量和内部结构，如代码风格、复杂度、测试覆盖 架构适应性架具：定义和检查应用的架构特性，如性能要求、可观测性标准 行为架具：指导并感知应用功能行为，这是目前最具挑战性的领域 什么是Ralph Loop Ralph Loop是一种结构化的任务执行循环方法论，让AI能够自动迭代直到所有显式的成功标准都满足。其核心是一个四阶段循环：执行 → 评估 → 修复 → 重复。</div><div class="post-footer">
+    <a href="/harness-engineering-ralph-loop-relation/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/harness-engineering/">harness engineering</a>,&nbsp;<a href="/tags/ralph-loop/">ralph loop</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/">开发者工具</a>,&nbsp;<a href="/tags/ai-agent/">ai agent</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/ralph-loop-introduction/">Ralph Loop：让AI自动循环直到任务完成</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 09:54:05'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Ralph Loop：让AI自动循环直到任务完成 背景简介 在AI辅助开发日益普及的今天，一个根本性问题困扰着开发者：AI从来不会真正“完成”工作。它可以给出接近完美的答案，却很少交付生产级别的完整解决方案。这是因为传统AI交互遵循“单次”或“对话循环”模式——你提问，AI回答，你指出问题，AI修改，如此往复，直到你疲倦并接受“差不多就行”的结果。
+2025年，一个名为Ralph Loop的开源方法论应运而生，旨在解决这个AI完成度问题。该方法论由Ralphable团队提出，核心思想是将AI任务执行转变为结构化的循环过程，直到所有显式的成功标准都得到满足。截至目前，最流行的Ralph实现（snarktank/ralph）在GitHub上已获得超过14000个Star，成为AI自动化开发领域的标杆方法。
+什么是Ralph Loop Ralph Loop是一种结构化的任务执行循环，其中Claude Code或GitHub Copilot将工作分解为原子任务，根据明确的标准进行自我测试，并循环直到100%的条件都通过。简而言之，它是一种让AI“工作直到完成”而非“看起来不错就停止”的方法论。
+四阶段执行循环 每个Ralph Loop都遵循一致的结构：
+1 执行 → 评估 → 修复 → 重复（直到所有标准通过） 第一阶段：执行（Execute）
+复杂的工作被分解为最小的独立单元，称为“原子任务”。每个原子任务必须满足以下条件：可独立验证（无需其他组件即可测试）、单一职责（只做一件事）、边界清晰（有明确的范围）。
+例如，将“构建用户认证系统”这个模糊任务分解为：创建包含email、hashed_password和时间戳的User模型；使用bcrypt实现密码哈希；构建带邮箱验证的注册端点；构建带令牌生成的登录端点；创建验证受保护路由令牌的中间件；为重复邮箱注册编写测试；为凭证错误登录编写测试。
+第二阶段：评估（Evaluate）
+每个原子任务都包含用测试条件表示的通过/失败标准。这些不是主观判断，而是客观的、二进制的条件。例如，任务“构建带邮箱验证的注册端点”的通过标准包括：POST /api/register接受{email, password}；如果邮箱格式无效返回400；如果邮箱已存在返回409；成功时返回201及用户对象；密码在存储前被哈希；所有响应包含适当的JSON结构。
+第三阶段：修复（Fix）
+当标准失败时，AI不会盲目猜测修复方案，而是遵循诊断模式：识别哪些具体标准失败；分析失败原因；实施有针对性的修复；记录更改内容。
+第四阶段：重复（Repeat）
+循环持续进行，直到所有原子任务的所有标准都通过。没有人为的“差不多就行”干预——AI根据客观标准判断完成。
+工作原理详解 Ralph Loop的核心机制可以从技术层面理解：每个迭代中，AI重新读取磁盘上的RALPH.md文件，运行命令，将输出替换占位符{{placeholder}}，将组合的提示发送给Agent，Agent执行并退出，然后重复。
+这意味着开发者只需编写一个RALPH.md文件，定义原子任务、成功标准和执行指令，然后启动Loop。AI会自动按照定义执行任务、测试结果、修复问题，直到所有标准都通过。
+为什么传统AI工作流会失败 尽管AI能力取得了显著进步，大多数组织和个人在AI辅助工作中却持续经历挫败。问题不在于AI的智能，而在于我们的交互模式。三个根本性缺陷困扰着传统AI工作流，理解这些是理解Ralph Loop价值的关键。
+单次问题 最常见的AI工作流是这样的：人类精心编写提示，AI生成响应，人类接受或拒绝。这个模式假设AI可以在复杂任务中一次生成完整、正确的作品。现实是：复杂工作需要迭代，但单次模式没有提供任何迭代机制。
+单次问题表现为：表面完成——AI只解决明确提到的问题，而非隐含的内容；边缘案例缺失——复杂系统需要处理异常，而AI无法预见；集成缺口——组件单独工作但组合时失败；质量差异——输出质量严重依赖提示词的质量。
+对话循环问题 当用户意识到单次问题时，通常会陷入对话循环陷阱：人类说“构建登录系统”，AI提供基础代码；人类说“添加密码验证”，AI添加验证；人类说“再添加邮箱验证”，AI添加验证；如此无限继续。这种模式没有自然结论——AI按要求添加功能，但系统何时完成却无法确定。
+对话循环失败的原因包括：没有客观的完成标准——没有清晰的标准，更多功能总是可以添加；人类疲劳决定完成——系统在人累了时停止，而非真正完成；没有系统测试——每个添加都没有针对整个系统进行验证。
+手动迭代问题 一些高级用户尝试手动迭代模式：AI写代码，人类运行测试，人类识别失败，人类向AI解释失败，AI修复一些问题。这种方法认识到需要迭代，但不能规模化，因为人类时间成为瓶颈——每次迭代都需要人类评估；反馈不一致——人类解释的质量和完整性各不相同；跨迭代无学习——每个修复都是孤立的，模式未被捕获；时间成本指数增长——复杂任务需要数十次迭代。
+成本与后果 这些失败的后果不仅是不便：生产力流失——团队花更多时间纠正AI，而非AI节省的时间；质量债务——“差不多就行”的AI输出需要大量人工抛光；信任侵蚀——用户对重要工作失去对AI的信心；机会错失——组织为复杂任务放弃AI，而AI本可提供最大价值；技能停滞——开发者没有学会有效利用AI。
+Ralph Loop的核心组件 Ralph Loop通过五个核心组件将Claude从有用助手转变为自主问题解决引擎。
+原子任务分解 原子任务是可独立执行和验证的最小有意义工作单元。原子任务具有三个关键特征：单一责任——每个任务只完成一件事；独立验证——无需其他任务上下文即可测试其成功；清晰边界——任务有定义的输入和输出。
+将复杂工作分解为原子 pieces 需要系统性思维：从最终目标开始——定义“完成”是什么；识别主要阶段——对相关活动进行分组；递归分解——持续分解直到任务变得原子化；检查依赖——映射什么需要在什么之前发生；验证原子性——确保每个任务满足上述三个标准。
+通过/失败标准 有效的通过/失败标准必须是客观、具体和可测量的。标准必须消除歧义并防止AI“伪造”结果。模糊标准如“让表单看起来不错”“正确验证邮箱”“优雅处理错误”会导致问题，具体标准如“表单使用CSS Grid布局”“所有表单元素有统一的12px内边距”“提交按钮有#007BFF背景和白色文本”才能真正验证。
+测试实现 Claude通过创建验证脚本、运行并解释结果来测试自己的工作。这种自我验证遵循模式：生成针对标准的特定测试代码；在沙盒环境中执行测试；根据通过条件分析结果；用证据记录发现。
+迭代逻辑 当Claude的自我测试揭示失败时，它不会随机重试，而是遵循系统性过程：失败分析——识别哪些具体标准失败；根因诊断——确定失败原因；针对性修复——应用特定修正；重新测试——验证修复是否有效；文档记录——记录修复了什么。
+迭代策略通常包括：每个任务最大尝试次数为5次；3次失败后升级阈值；3次失败后添加30秒冷却期；5次尝试后，记录问题并继续下一个任务。
+完成验证 完成不仅是完成任务，而是验证所有任务的所有标准都得到满足。最终验证有三个层次：单个任务验证——每个原子任务通过其测试；集成验证——组合任务一起工作；端到端验证——完整系统满足原始要求。</div><div class="post-footer">
+    <a href="/ralph-loop-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ralph-loop/">ralph loop</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/">开发者工具</a>,&nbsp;<a href="/tags/ai-agent/">ai agent</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/opencli-introduction/">OpenCLI：将任意网站变成命令行工具的利器</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-06 20:20:50'>发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenCLI：将任意网站变成命令行工具的利器 背景简介 在AI Agent开发中，如何让AI能够自动获取网页数据和控制桌面应用，一直是开发者面临的核心挑战。传统解决方案如Puppeteer、Selenium需要编写大量脚本代码，且面对反爬取措施时往往显得脆弱。
+2026年，一个名为 OpenCLI 的开源项目应运而生，由Apache Arrow/DataFusion PMC成员jackwener开发。该项目能够将80+网站和Electron桌面应用转换为标准化的命令行接口，让AI Agent以零Token消耗的方式获取结构化数据。截至目前，OpenCLI在GitHub上已获得超过13000个Star，成为浏览器自动化领域的标杆工具。
+核心特性 OpenCLI的核心设计理念是：让任意网站和工具成为你的CLI。
+1. 80+ 内置网站适配器 OpenCLI预置了覆盖多个领域的网站适配器，开箱即用：
+领域 支持平台 数据类型 社交媒体 Twitter/X, Reddit, LinkedIn, Instagram 帖子、评论、用户信息 内容平台 YouTube, TikTok, Medium, HackerNews 视频信息、文章、讨论 中文平台 Bilibili, 知乎, 小红书 视频、回答、笔记 学术研究 arXiv, Stack Overflow 论文、技术问答 金融数据 Yahoo Finance, Bloomberg 股票、金融数据 AI平台 HuggingFace, Grok 模型信息、AI对话 使用示例：
+1 2 3 4 5 6 7 8 # 获取HackerNews热门帖子 opencli hackernews top --limit 10 --format json # 搜索arXiv论文 opencli arxiv search &#34;large language model&#34; --limit 5 # 获取GitHub仓库信息 opencli github repo jackwener/opencli --format table 2.</div><div class="post-footer">
+    <a href="/opencli-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencli/">opencli</a>,&nbsp;<a href="/tags/cli/">CLI</a>,&nbsp;<a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/">浏览器自动化</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/lark-cli-usage-guide/">飞书 lark-cli 命令行工具使用指南</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-05 21:13:14'>发布于 <time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">飞书 lark-cli 命令行工具使用指南 背景简介 在企业协作场景中，飞书（Lark/Feishu）作为新一代办公平台，已经深入到日程管理、文档协作、项目推进等各个环节。然而，如何高效地与飞书平台进行自动化交互，一直是开发者和AI Agent面临的核心挑战。
+2026年3月，飞书官方正式开源了 lark-cli 命令行工具，为开发者和AI Agent提供了统一的命令行接口。该工具支持200+命令，覆盖12个业务领域，包括即时通讯、日历、文档、云盘、多维表格、邮件、任务、会议、知识库、审批等，更重要的是提供了20个开箱即用的AI Agent技能，让AI能够直接操作飞书平台。
+截至目前，lark-cli 在 GitHub 上已获得超过6700个Star，成为企业协作自动化领域的标杆工具。
+安装与配置 环境要求 在开始安装之前，请确保你的开发环境满足以下要求：
+Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用源码编译时需要 安装方式 lark-cli 提供两种安装方式，推荐使用 npm 安装：
+1 2 3 4 5 6 7 # 方式一：使用 npm 安装（推荐） npm install -g @larksuite/cli # 方式二：从源码编译安装 git clone https://github.com/larksuite/cli.git cd cli make install 安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：
+1 npx skills add larksuite/cli -y -g 初始化配置 安装完成后，需要进行一次性配置：</div><div class="post-footer">
+    <a href="/lark-cli-usage-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%A3%9E%E4%B9%A6/">飞书</a>,&nbsp;<a href="/tags/cli/">CLI</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/last30days-skill-introduction/">last30days：AI 驱动的全网研究技能</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-05 00:20:00'>发布于 <time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">last30days：AI 驱动的全网研究技能 什么是 last30days last30days 是一个 AI Agent 技能，专门用于在多个平台进行深度研究并合成有根据的总结。该项目在 GitHub 上已获得 18,100+ 颗星，是 AI 研究工具领域的热门开源项目。
+核心理念 跨平台研究：同时搜索 Reddit、X (Twitter)、YouTube、Hacker News、Polymarket 等平台 智能合成：将分散的信息整合为结构化的总结报告 有据可查：所有结论都基于真实数据，而非主观猜测 实时更新：获取最近 30 天的最新信息 支持的平台 平台 用途 Reddit 社区讨论、热门话题 X (Twitter) 实时动态、专家观点 YouTube 视频内容、教程 Hacker News 技术讨论、创业热点 Polymarket 预测市场、趋势分析 Web Search 通用搜索补充 核心功能 1. 智能研究 输入任意主题 自动在多个平台搜索相关信息 过滤噪音，提取关键信息 2. 趋势分析 识别热门话题 分析讨论趋势 预测未来走向 3. 多维度总结 技术角度分析 社区反馈汇总 市场情绪评估 4. 证据溯源 引用来源链接 数据可验证 避免虚假信息 安装配置 前置要求 Python 3.8+ Claude Code 或兼容的 AI 助手 API 密钥（根据使用的平台） 安装步骤 1 2 3 4 5 6 7 8 # 克隆仓库 git clone https://github.</div><div class="post-footer">
+    <a href="/last30days-skill-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/last30days/">last30days</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E7%A0%94%E7%A9%B6/">研究</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/openscreen-introduction/">OpenScreen：免费开源的屏幕录制神器</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -707,148 +871,6 @@
     </a></span>&nbsp;<span class="post-publish" title='2026-04-05 00:10:30'>发布于 <time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenScreen：免费开源的屏幕录制神器 什么是 OpenScreen OpenScreen 是一款免费、开源的屏幕录制和演示视频制作工具，旨在帮助用户创建专业级别的产品演示视频。该项目在 GitHub 上已获得 18,400+ 颗星，是 Screen Studio 的优秀开源替代品。
 核心理念 完全免费：无需订阅，无广告，无水印 开源透明：代码完全开放，可自由修改 商业可用：MIT 许可证，允许商业使用 核心特性 1. 高质量屏幕录制 支持全屏录制 支持单个应用窗口录制 录制时显示光标追踪 高清视频输出 2. 智能缩放效果 自动缩放：跟随鼠标移动自动缩放 手动缩放：通过快捷键控制缩放 平滑过渡：缩放效果流畅自然 3. 标注功能 添加文本注释 绘制箭头和形状 插入图片标注 高亮重要内容 4. 后期编辑 时间轴编辑 关键帧动画 裁剪和拼接 背景自定义 5. 导出选项 多种视频格式 自定义分辨率 质量调节 GIF 导出 支持平台 平台 状态 macOS ✅ 支持 Windows ✅ 支持 Linux ✅ 支持 安装方法 macOS 1 2 # 使用 Homebrew 安装 brew install --cask openscreen 或直接下载 DMG 文件从 GitHub Releases。</div><div class="post-footer">
     <a href="/openscreen-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openscreen/">OpenScreen</a>,&nbsp;<a href="/tags/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6/">屏幕录制</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BD%95%E5%B1%8F/">录屏</a>,&nbsp;<a href="/tags/%E6%BC%94%E7%A4%BA/">演示</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/rich-dad-poor-dad-summary/">《富爸爸穷爸爸》：改变你金钱观的经典之作</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-04 22:30:00'>发布于 <time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/others/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 杂谈</a></span></div><div class="content">《富爸爸穷爸爸》：改变你金钱观的经典之作 什么是真正的财富 《富爸爸穷爸爸》这本书自1999年出版以来，已经影响了全球数以千万计的读者。作者罗伯特·清崎通过亲身经历，讲述了他有两个&quot;爸爸&quot;——一个是受过良好教育的穷爸爸，另一个是善于投资的富爸爸——给他带来的不同金钱观念。
-书中首先颠覆了我们对财富的认知。财富不是看你赚了多少钱，而是看你留下了多少钱。很多人收入很高，但开销同样很大，最终没有积累下任何资产。真正的财富是能够持续为你带来收入的资产，而不是你银行账户里的数字。
-富人 vs 穷人的思维方式 书中最重要的观点之一是：富人不为钱工作，而是让钱为自己工作。
-穷人和中产阶级往往陷入&quot;工作赚钱&quot;的循环：
-拿到工资 → 支付账单 → 剩余部分存起来 → 等待加薪 → 重复这个循环 而富人思维是：
-赚取收入 → 购买资产 → 资产产生收入 → 用收入购买更多资产 → 财富持续增长 这就是所谓的&quot;老鼠赛跑&quot;——无论收入多高，只要还在为钱工作，就永远无法逃脱。
-区分资产与负债 书中另一个核心概念是：分清什么是真正的资产。
-罗伯特·清崎对资产和负债的定义非常简单：
-资产：是把钱放进你口袋的东西（股票、债券、房产租金、版税等） 负债：是把钱从你口袋取出的东西（房贷、车贷、信用卡债务等） 很多人以为自己买了房子就是拥有了资产，但实际上，如果房子需要你还贷款、支付物业费，它就是负债。真正的富人会不断买入能产生现金流的资产，而不是购买负债。
-为什么要学习财务知识 书中强调，理财最重要的是财务知识，而不是单纯的省钱或存钱。
-财务知识包括四个方面：
-会计（财务知识，看懂财务报表） 投资（钱生钱的科学） 了解市场（供给与需求的关系） 法律（税收和公司架构的优势） 如果你不懂财务知识，即使中了彩票大奖，最终也会失去财富。知识才能带来持续的财富。
-克服困难，勇于行动 书中还提到，追求财富的道路上最大的障碍是恐惧和贪婪。
-恐惧让人不敢投资，把钱放在银行里接受通货膨胀的贬值 贪婪让人盲目消费，买下不必要的奢侈品 成功的人不是没有恐惧，而是能够克服恐惧采取行动。行动永远比等待更重要，即使你只有很少的资金，也可以从小额投资开始学习和积累。
-改变，从今天开始 《富爸爸穷爸爸》教会我们的最宝贵的一课是：观念决定命运。
-如果你的观念还停留在&quot;努力工作赚钱、存钱、还房贷&quot;上，那么你的财务状况很难改变。只有转变思维，理解金钱运行的规律，学会让钱为自己工作，才能真正走向财富自由。
-这本书可能改变你对金钱的全部认知，值得反复阅读和实践。无论你现在处于什么财务状态，这本书都能给你启发——从今天开始，建立正确的财富思维，永远不会太晚。</div><div class="post-footer">
-    <a href="/rich-dad-poor-dad-summary/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E7%90%86%E8%B4%A2/">理财</a>,&nbsp;<a href="/tags/%E8%B4%A2%E5%AF%8C/">财富</a>,&nbsp;<a href="/tags/%E6%80%9D%E7%BB%B4/">思维</a>,&nbsp;<a href="/tags/%E4%BA%BA%E7%94%9F/">人生</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/vibevoice-introduction/">VibeVoice：Microsoft 开源的前沿语音 AI</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-04 14:00:00'>发布于 <time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">VibeVoice：Microsoft 开源的前沿语音 AI 什么是 VibeVoice VibeVoice 是 Microsoft 于 2025 年 8 月发布的开源语音 AI 项目，可以生成长达 90 分钟的多说话者播客内容。该项目在 GitHub 上已获得 35,900+ 颗星，是当前最受欢迎的开源语音合成项目之一。
-VibeVoice 的核心能力是表达性长文本对话语音合成，能够生成自然流畅的多人对话播客。
-核心特性 1. 超长语音生成 支持生成长达 90 分钟的连续语音内容 适合播客、有声书、长对话场景 保持一致的语音质量 2. 多说话者支持 支持多个说话者同时对话 区分不同角色的声音和情感 自然的对话节奏 3. 表达性语音 情感丰富的语音输出 自然的语调变化 支持多种说话风格 4. 开源免费 MIT 许可证 - 完全开源 免费商用 社区活跃（社区 fork 版本有 1000+ 星） 5. Python 实现 纯 Python 实现 易于集成和扩展 丰富的 API 接口 安装配置 环境要求 Python 3.8+ CUDA（推荐用于 GPU 加速） 16GB+ RAM 安装步骤 1 2 3 4 5 6 7 8 9 # 克隆仓库 git clone https://github.</div><div class="post-footer">
-    <a href="/vibevoice-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vibevoice/">VibeVoice</a>,&nbsp;<a href="/tags/microsoft/">Microsoft</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/">语音合成</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/github/">github</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/openai-codex-cli-introduction/">OpenAI Codex CLI 全面介绍：开源的终端编程助手</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-04 12:00:00'>发布于 <time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenAI Codex CLI 全面介绍：开源的终端编程助手 什么是 Codex CLI Codex CLI 是 OpenAI 于 2025 年开源的轻量级编程助手，完全运行在你的终端中。它可以读取代码库、进行编辑、运行命令，帮助开发者完成各种编程任务。
-该项目在 GitHub 上已获得 72,900+ 颗星，是 Rust 编写的开源项目。
-核心特性 1. 终端集成 完整的终端 UI 直接读取和编辑代码 运行终端命令 支持图像输入（截图分析） 2. 多种使用模式 交互模式：全屏终端 UI，实时协作 非交互模式：适合 CI/CD 集成 Exec 模式：脚本化调用 3. 强大的命令支持 /test：生成测试代码 /edit：代码编辑 /shell：执行 shell 命令 /review：代码审查 /diff：查看变更 4. 沙箱安全 安全的代码执行环境 防止恶意操作 可配置的安全级别 5. 多模型支持 支持多种 AI 模型 可自定义模型选择 支持本地模型 安装配置 安装方式 1 2 3 4 5 6 7 8 # 方法一：npm npm i -g @openai/codex # 方法二：Homebrew brew install --cask codex # 方法三：下载二进制 # 访问 GitHub Releases 页面 验证安装 1 2 3 4 5 # 查看版本 codex --version # 启动交互模式 codex 认证配置 1 2 3 4 5 # 登录 OpenAI 账号 codex auth login # 或设置 API Key export OPENAI_API_KEY=&#34;sk-.</div><div class="post-footer">
-    <a href="/openai-codex-cli-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openai/">OpenAI</a>,&nbsp;<a href="/tags/codex/">Codex</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/cli/">CLI</a>,&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B/">编程助手</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/gemma-4-introduction/">Google Gemma 4 全面介绍：开源最强模型如何使用</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-04 10:00:00'>发布于 <time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Google Gemma 4 全面介绍：开源最强模型如何使用 什么是 Gemma 4 Gemma 4 是 Google DeepMind 于 2026 年 4 月 2 日发布的最新开源模型系列，被誉为&quot;字节对字节&quot;最强大的开源模型。该模型基于与 Gemini 3 相同的研究构建，在推理、Agent 工作流、编程和多模态理解方面表现出色。
-核心理念 Gemma 这个名字来源于拉丁语&quot;gemma&quot;，意为&quot;宝石&quot;。Google 希望通过这个轻量级但强大的模型系列，让 AI 能力像宝石一样珍贵且易于获取。
-Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需求：
-版本 参数规模 适用场景 硬件要求 Gemma 4 2B 20亿 手机/嵌入式设备 普通 CPU 即可 Gemma 4 4B 40亿 笔记本电脑 8GB+ RAM Gemma 4 9B 90亿 台式机/服务器 16GB+ VRAM Gemma 4 27B 270亿 高性能服务器 显存 80GB+ 核心特性 1. 多模态能力 Gemma 4 支持文本和图像输入，可以：</div><div class="post-footer">
-    <a href="/gemma-4-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gemma/">Gemma</a>,&nbsp;<a href="/tags/google/">Google</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/">本地部署</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/rustdesk-introduction/">RustDesk：开源远程桌面解决方案</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-03 17:00:00'>发布于 <time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">RustDesk：开源远程桌面解决方案 什么是 RustDesk RustDesk 是一个用 Rust 语言编写的开源远程桌面软件，旨在为用户提供一个安全、可靠且可自托管的远程访问解决方案。它可以完美替代 TeamViewer、AnyDesk、Splashtop 等商业远程桌面工具。
-该项目在 GitHub 上已获得 106,000+ 颗星，拥有超过 3000 万次客户端下载和 1000 万次 Docker 下载，是目前最受欢迎的开源远程桌面项目之一。
-核心特性 1. 开源免费 完全开源，可以免费使用 代码透明，无后门 社区活跃，持续更新 2. 自托管部署 可以部署自己的服务器 数据完全可控 无需依赖第三方服务 3. 跨平台支持 Windows macOS Linux Android iOS（通过 Web 客户端） 4. 高性能 使用 Rust 编写，性能优异 低延迟、高帧率 支持多种编码器 5. 企业级功能（Pro 版本） 用户级 ACL 设备分组管理 自定义品牌 90+ 配置选项 快速开始 方式一：直接使用（无需自托管） 如果你只是需要远程访问，可以直接下载客户端：
-访问 GitHub Releases 下载对应平台的安装包 安装并运行 客户端会自动连接到 RustDesk 的公共服务器，可以直接通过 ID 进行连接。
-方式二：自托管服务器 如果你需要更好的隐私和可控性，可以部署自己的服务器。</div><div class="post-footer">
-    <a href="/rustdesk-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rustdesk/">RustDesk</a>,&nbsp;<a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/">远程桌面</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/rust/">rust</a>,&nbsp;<a href="/tags/%E8%BF%9C%E7%A8%8B%E5%8A%9E%E5%85%AC/">远程办公</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
@@ -880,7 +902,7 @@ Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/61/">61</a>
+            <a href="/page/62/">62</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>

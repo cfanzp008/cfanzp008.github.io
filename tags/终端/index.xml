@@ -4,7 +4,22 @@
     <link>https://cfanzp008.github.io/tags/%E7%BB%88%E7%AB%AF/</link>
     <description>终端 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 07 Apr 2026 21:30:40 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BB%88%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:03:04 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BB%88%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+  <title>Windows 上的 Tmux 使用指南</title>
+  <link>https://cfanzp008.github.io/tmux-for-windows-usage/</link>
+  <pubDate>Wed, 08 Apr 2026 18:03:04 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/tmux-for-windows-usage/</guid>
+  <description><![CDATA[Windows 上的 Tmux 使用指南 什么是 tmux tmux（Terminal Multiplexer）是一个终端多路复用器，允许用户在一个终端中运行多个会话、窗口和面板。对于需要在服务器上同时管理多个任务的用户来说，tmux 是不可或缺的工具。
+虽然 tmux 本身是为 Unix/Linux 系统设计的，但通过一些方案，Windows 用户也可以享受 tmux 带来的便利。
+Windows 上的 tmux 方案 方案一：itmux（推荐） itmux 是一个轻量级、可移植的终端多路复用器，专为 Windows 设计，绑定了 Tmux、Mintty、OpenSSH 和最小的 Cygwin 环境。
+特点：
+便携版，无需安装 包含完整的 tmux 功能 与 Mintty 终端集成良好 支持 OpenSSH 下载：
+https://github.com/itefixnet/itmux 方案二：WSL（Windows Subsystem for Linux） 如果你使用 Windows 10/11，推荐使用 WSL，它提供完整的 Linux 环境，可以直接安装 tmux。
+安装 tmux：
+1 2 3 4 5 6 # Ubuntu/Debian sudo apt-get update sudo apt-get install tmux # CentOS/RHEL sudo yum install tmux 使用：]]></description>
+</item>
+<item>
   <title>Superfile：美观现代的终端文件管理器</title>
   <link>https://cfanzp008.github.io/superfile-introduction/</link>
   <pubDate>Tue, 07 Apr 2026 21:30:40 &#43;0800</pubDate>

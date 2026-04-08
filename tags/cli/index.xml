@@ -4,7 +4,18 @@
     <link>https://cfanzp008.github.io/tags/cli/</link>
     <description>CLI - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:49:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/cli/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:01:27 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/cli/" rel="self" type="application/rss+xml" /><item>
+  <title>InfluxDB CLI 使用笔记</title>
+  <link>https://cfanzp008.github.io/influxdb2-cli-usage/</link>
+  <pubDate>Wed, 08 Apr 2026 18:01:27 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/influxdb2-cli-usage/</guid>
+  <description><![CDATA[InfluxDB CLI 使用笔记 什么是 InfluxDB CLI InfluxDB CLI 是 InfluxData 官方提供的命令行客户端工具，用于与 InfluxDB 服务器进行交互。通过 CLI，用户可以执行数据查询、写入、管理配置等操作，无需使用 Web 界面或 API。
+CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
+主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
+官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.]]></description>
+</item>
+<item>
   <title>Google Workspace CLI：统一管理 Google Workspace 的命令行工具</title>
   <link>https://cfanzp008.github.io/google-workspace-cli-introduction/</link>
   <pubDate>Wed, 08 Apr 2026 16:49:45 &#43;0800</pubDate>

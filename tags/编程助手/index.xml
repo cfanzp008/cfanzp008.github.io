@@ -4,7 +4,22 @@
     <link>https://cfanzp008.github.io/tags/%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B/</link>
     <description>编程助手 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Apr 2026 12:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenSpec 工程化规范总结</title>
+  <link>https://cfanzp008.github.io/openspec-engineering-summary/</link>
+  <pubDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openspec-engineering-summary/</guid>
+  <description><![CDATA[OpenSpec 工程化规范总结 什么是 OpenSpec OpenSpec 是一个面向 AI 编码助手的规范驱动开发框架（Spec-Driven Development，SDD）。它的核心理念是在编写任何代码之前，先创建可审查的规范（Spec），让人类开发者和 AI 编码助手能够就项目意图达成共识。
+该项目在 GitHub 上已获得 37,000+ 颗星，是 AI 开发工具领域最受欢迎的项目之一。
+核心价值 1. 解决 AI 编程的沟通问题 传统编程中，开发者通过代码表达意图。但 AI 编程助理解读代码时可能会产生偏差，导致：
+实现与预期不符 重复修改 项目失控 OpenSpec 通过在编码前明确定义规范来解决这个问题。
+2. 版本控制意图 OpenSpec 充当「意图的版本控制」：
+规范文件可以被审查 可以版本化管理 可以追踪意图的演变 便于人类和 AI 协同理解 3. 防止「氛围编程」 「Vibe Coding」（氛围编程）是指盲目跟随 AI 生成代码，缺乏深思熟虑的设计。OpenSpec 强制要求在编码前思考和规划。
+OpenSpec 规范结构 1. Project Spec（项目规范） 定义项目的整体结构和目标：
+1 2 3 4 5 6 7 name: my-project description: A web application for task management version: 1.]]></description>
+</item>
+<item>
   <title>OpenAI Codex CLI 全面介绍：开源的终端编程助手</title>
   <link>https://cfanzp008.github.io/openai-codex-cli-introduction/</link>
   <pubDate>Sat, 04 Apr 2026 12:00:00 &#43;0800</pubDate>
