@@ -4,7 +4,18 @@
     <link>https://cfanzp008.github.io/tags/github/</link>
     <description>github - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/github/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 16:49:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/github/" rel="self" type="application/rss+xml" /><item>
+  <title>Google Workspace CLI：统一管理 Google Workspace 的命令行工具</title>
+  <link>https://cfanzp008.github.io/google-workspace-cli-introduction/</link>
+  <pubDate>Wed, 08 Apr 2026 16:49:45 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/google-workspace-cli-introduction/</guid>
+  <description><![CDATA[Google Workspace CLI：统一管理 Google Workspace 的命令行工具 引言 对于经常使用 Google Workspace（Google 工作空间）的用户来说，管理 Drive、Gmail、Calendar、Sheets、Docs、Chat 等多个服务往往需要在浏览器和多个应用之间切换。虽然 Google 提供了 Web 界面和各个服务的 API，但使用这些 API 需要编写大量重复的代码和配置。Google Workspace CLI（简称 gws）的出现改变了这一状况，它提供了一个统一的命令行界面，可以操控所有 Google Workspace 服务。
+gws 在 GitHub 上已获得 24,000+ 颗星，是当前最受欢迎的 Google Workspace 命令行工具。它采用 Rust 语言开发，具有高性能和跨平台特性，同时支持人类用户和 AI 代理使用。
+什么是 Google Workspace CLI Google Workspace CLI（gws）是一个统一的命令行工具，旨在为人类用户和 AI 代理提供一种简单、优雅的方式来管理所有 Google Workspace 服务。无论你是想查看 Drive 文件、发送 Gmail 邮件、管理 Calendar 事件，还是操作 Sheets 表格、Docs 文档、Chat 消息，一个 gws 命令就能搞定。
+gws 的独特之处在于它采用了动态命令构建机制。它并不硬编码一组固定的命令，而是通过读取 Google 的 Discovery Service（发现服务）在运行时动态生成整个命令表面。这意味着当 Google 添加新的 API 端点或方法时，gws 会自动获取并可用，无需任何更新。]]></description>
+</item>
+<item>
   <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
   <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
   <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>
