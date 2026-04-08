@@ -4,7 +4,16 @@
     <link>https://cfanzp008.github.io/categories/net/</link>
     <description>计算机网络 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 04 Jan 2025 14:21:44 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/net/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 08:43:46 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/net/" rel="self" type="application/rss+xml" /><item>
+  <title>SNAT、DNAT 与 SDNAT：网络地址转换详解</title>
+  <link>https://cfanzp008.github.io/snat-dnat-sdnat-introduction/</link>
+  <pubDate>Wed, 08 Apr 2026 08:43:46 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/snat-dnat-sdnat-introduction/</guid>
+  <description><![CDATA[SNAT、DNAT 与 SDNAT：网络地址转换详解 什么是 NAT NAT（Network Address Translation，网络地址转换）是一种在网络中修改 IP 地址信息的技术。它的主要作用是：
+解决 IP 地址短缺问题：让多个设备共享一个公网 IP 上网 保护内部网络：隐藏内部私有 IP 地址 实现网络隔离：在防火墙或路由器上实现内外网隔离 思维导图：NAT 类型总览 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 ┌─────────────────────────────────────────┐ │ 网络地址转换（NAT） │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ SNAT │ │ DNAT │ │ SDNAT │ │ 源地址转换 │ │ 目的地址转换 │ │ 动态源地址转换 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─出站流量 ├─入站流量 ├─SNAT 扩展 ├─伪装（MASQUERADE） ├─端口转发 ├─自动选择公网IP └─静态源地址转换 └─DNAT 映射 └─节省公网IP │ └─SNAT vs DNAT 对比 • 修改源 IP → SNAT • 修改目的 IP → DNAT • 双向流量处理 ┌────────────────────────────────────────────────────────────┐ │ 典型应用场景 │ ├────────────────────────────────────────────────────────────┤ │ • 家庭/企业共享上网（SNAT） │ │ • 端口映射/内网服务暴露（DNAT） │ │ • 负载均衡/透明代理（SDNAT） │ └────────────────────────────────────────────────────────────┘ SNAT（Source NAT） 概念 SNAT 修改数据包的源 IP 地址。主要应用于出站流量，即内部网络访问外部网络时的地址转换。]]></description>
+</item>
+<item>
   <title>autossh</title>
   <link>https://cfanzp008.github.io/autossh/</link>
   <pubDate>Sat, 04 Jan 2025 14:21:44 &#43;0800</pubDate>
@@ -74,14 +83,6 @@
   <pubDate>Thu, 15 Aug 2024 22:00:36 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp008.github.io/net-ip-addr/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>SpeedTest命令使用</title>
-  <link>https://cfanzp008.github.io/net-speedtest/</link>
-  <pubDate>Sat, 03 Aug 2024 21:16:26 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/net-speedtest/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

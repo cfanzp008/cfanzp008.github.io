@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>SNAT、DNAT 与 SDNAT：网络地址转换详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍网络地址转换中的 SNAT、DNAT 与 SDNAT 概念、工作原理、应用场景及配置示例" /><meta name="keywords" content='snat, dnat, 网络, 防火墙, 路由' /><meta itemprop="name" content="SNAT、DNAT 与 SDNAT：网络地址转换详解">
+<meta itemprop="description" content="详细介绍网络地址转换中的 SNAT、DNAT 与 SDNAT 概念、工作原理、应用场景及配置示例"><meta itemprop="datePublished" content="2026-04-08T08:43:46+08:00" />
+<meta itemprop="dateModified" content="2026-04-08T08:43:46+08:00" />
+<meta itemprop="wordCount" content="897"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="snat,dnat,网络,防火墙,路由," /><meta property="og:title" content="SNAT、DNAT 与 SDNAT：网络地址转换详解" />
+<meta property="og:description" content="详细介绍网络地址转换中的 SNAT、DNAT 与 SDNAT 概念、工作原理、应用场景及配置示例" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/snat-dnat-sdnat-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-08T08:43:46+08:00" />
+<meta property="article:modified_time" content="2026-04-08T08:43:46+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="SNAT、DNAT 与 SDNAT：网络地址转换详解"/>
+<meta name="twitter:description" content="详细介绍网络地址转换中的 SNAT、DNAT 与 SDNAT 概念、工作原理、应用场景及配置示例"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/snat-dnat-sdnat-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/superfile-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "SNAT、DNAT 与 SDNAT：网络地址转换详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/snat-dnat-sdnat-introduction\/"
+    },"genre": "posts","keywords": "snat, dnat, 网络, 防火墙, 路由","wordcount":  897 ,
+    "url": "https:\/\/cfanzp008.github.io\/snat-dnat-sdnat-introduction\/","datePublished": "2026-04-08T08:43:46+08:00","dateModified": "2026-04-08T08:43:46+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍网络地址转换中的 SNAT、DNAT 与 SDNAT 概念、工作原理、应用场景及配置示例"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>SNAT、DNAT 与 SDNAT：网络地址转换详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-08&#32;08:43:46><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 897 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="SNAT、DNAT 与 SDNAT：网络地址转换详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-nat">什么是 NAT</a></li>
+    <li><a href="#思维导图nat-类型总览">思维导图：NAT 类型总览</a></li>
+    <li><a href="#snatsource-nat">SNAT（Source NAT）</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#工作原理">工作原理</a></li>
+        <li><a href="#典型应用场景">典型应用场景</a></li>
+        <li><a href="#配置示例linux-iptables">配置示例（Linux iptables）</a></li>
+        <li><a href="#图示snat-工作流程">图示：SNAT 工作流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#dnatdestination-nat">DNAT（Destination NAT）</a>
+      <ul>
+        <li><a href="#概念-1">概念</a></li>
+        <li><a href="#工作原理-1">工作原理</a></li>
+        <li><a href="#典型应用场景-1">典型应用场景</a></li>
+        <li><a href="#配置示例linux-iptables-1">配置示例（Linux iptables）</a></li>
+        <li><a href="#图示dnat-工作流程">图示：DNAT 工作流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#snat-vs-dnat-对比">SNAT vs DNAT 对比</a></li>
+    <li><a href="#sdnatsource-and-destination-nat">SDNAT（Source and Destination NAT）</a>
+      <ul>
+        <li><a href="#概念-2">概念</a></li>
+        <li><a href="#工作原理-2">工作原理</a></li>
+        <li><a href="#典型应用场景-2">典型应用场景</a></li>
+        <li><a href="#配置示例linux-iptables-2">配置示例（Linux iptables）</a></li>
+        <li><a href="#图示sdnat-工作流程">图示：SDNAT 工作流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#实际应用案例">实际应用案例</a>
+      <ul>
+        <li><a href="#案例-1家庭路由器共享上网">案例 1：家庭路由器共享上网</a></li>
+        <li><a href="#案例-2发布内网-web-服务">案例 2：发布内网 Web 服务</a></li>
+        <li><a href="#案例-3双向服务访问">案例 3：双向服务访问</a></li>
+      </ul>
+    </li>
+    <li><a href="#注意事项">注意事项</a>
+      <ul>
+        <li><a href="#安全考虑">安全考虑</a></li>
+        <li><a href="#性能影响">性能影响</a></li>
+        <li><a href="#常见问题">常见问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考命令汇总">参考命令汇总</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="snatdnat-与-sdnat网络地址转换详解">SNAT、DNAT 与 SDNAT：网络地址转换详解</h1>
+<h2 id="什么是-nat">什么是 NAT</h2>
+<p>NAT（Network Address Translation，网络地址转换）是一种在网络中修改 IP 地址信息的技术。它的主要作用是：</p>
+<ul>
+<li><strong>解决 IP 地址短缺问题</strong>：让多个设备共享一个公网 IP 上网</li>
+<li><strong>保护内部网络</strong>：隐藏内部私有 IP 地址</li>
+<li><strong>实现网络隔离</strong>：在防火墙或路由器上实现内外网隔离</li>
+</ul>
+<h2 id="思维导图nat-类型总览">思维导图：NAT 类型总览</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                         ┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">                         │        网络地址转换（NAT）              │
+</span></span><span class="line"><span class="cl">                         └─────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">                                            │
+</span></span><span class="line"><span class="cl">          ┌─────────────────────────────────┼─────────────────────────────────┐
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ▼                                 ▼                                 ▼
+</span></span><span class="line"><span class="cl">┌─────────────────────┐        ┌─────────────────────┐        ┌─────────────────────┐
+</span></span><span class="line"><span class="cl">│      SNAT           │        │      DNAT            │        │     SDNAT           │
+</span></span><span class="line"><span class="cl">│   源地址转换        │        │   目的地址转换       │        │   动态源地址转换     │
+</span></span><span class="line"><span class="cl">│                     │        │                     │        │                     │
+</span></span><span class="line"><span class="cl">└─────────────────────┘        └─────────────────────┘        └─────────────────────┘
+</span></span><span class="line"><span class="cl">          │                                 │                                 │
+</span></span><span class="line"><span class="cl">          ├─出站流量                         ├─入站流量                        ├─SNAT 扩展
+</span></span><span class="line"><span class="cl">          ├─伪装（MASQUERADE）               ├─端口转发                        ├─自动选择公网IP
+</span></span><span class="line"><span class="cl">          └─静态源地址转换                   └─DNAT 映射                       └─节省公网IP
+</span></span><span class="line"><span class="cl">                                           │
+</span></span><span class="line"><span class="cl">                                           └─SNAT vs DNAT 对比
+</span></span><span class="line"><span class="cl">                                              • 修改源 IP → SNAT
+</span></span><span class="line"><span class="cl">                                              • 修改目的 IP → DNAT
+</span></span><span class="line"><span class="cl">                                              • 双向流量处理
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         ┌────────────────────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">         │                     典型应用场景                          │
+</span></span><span class="line"><span class="cl">         ├────────────────────────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">         │ • 家庭/企业共享上网（SNAT）                               │
+</span></span><span class="line"><span class="cl">         │ • 端口映射/内网服务暴露（DNAT）                            │
+</span></span><span class="line"><span class="cl">         │ • 负载均衡/透明代理（SDNAT）                                │
+</span></span><span class="line"><span class="cl">         └────────────────────────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="snatsource-nat">SNAT（Source NAT）</h2>
+<h3 id="概念">概念</h3>
+<p>SNAT 修改数据包的<strong>源 IP 地址</strong>。主要应用于<strong>出站流量</strong>，即内部网络访问外部网络时的地址转换。</p>
+<h3 id="工作原理">工作原理</h3>
+<p>当内部私有网络的用户访问互联网时：</p>
+<ol>
+<li>数据包从内部网络发送到网关</li>
+<li>网关将数据包的<strong>源 IP</strong>（私有 IP）转换为<strong>公网 IP</strong></li>
+<li>数据包发送到目标服务器</li>
+<li>响应数据包返回时，再将公网 IP 转换回私有 IP</li>
+</ol>
+<h3 id="典型应用场景">典型应用场景</h3>
+<ul>
+<li><strong>共享上网</strong>：让局域网内多台电脑通过一个公网 IP 访问互联网</li>
+<li><strong>企业出口网关</strong>：公司内网访问外部网络时统一使用公网 IP</li>
+<li><strong>IP 伪装</strong>：隐藏内部网络结构</li>
+</ul>
+<h3 id="配置示例linux-iptables">配置示例（Linux iptables）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># SNAT 静态转换</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 192.168.1.0/24 网段的出站流量源地址转换为 203.0.113.10</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j SNAT --to-source 203.0.113.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MASQUERADE（动态伪装）- 适用于公网 IP 不固定的情况</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 NAT 规则</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -L -n -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图示snat-工作流程">图示：SNAT 工作流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">客户端 A (192.168.1.10) ──►  ──►  ──►  互联网服务器
+</span></span><span class="line"><span class="cl">                         │      │        │
+</span></span><span class="line"><span class="cl">                         ▼      ▼        ▼
+</span></span><span class="line"><span class="cl">                      网关 (SNAT)    转换后
+</span></span><span class="line"><span class="cl">                   192.168.1.10 → 203.0.113.10
+</span></span><span class="line"><span class="cl">                   
+</span></span><span class="line"><span class="cl">返回时：互联网服务器 ──► 网关 ──► 客户端 A
+</span></span><span class="line"><span class="cl">                     203.0.113.10 → 192.168.1.10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dnatdestination-nat">DNAT（Destination NAT）</h2>
+<h3 id="概念-1">概念</h3>
+<p>DNAT 修改数据包的<strong>目的 IP 地址</strong>。主要应用于<strong>入站流量</strong>，即外部网络访问内部网络时的地址转换。</p>
+<h3 id="工作原理-1">工作原理</h3>
+<p>当外部用户访问内部服务时：</p>
+<ol>
+<li>数据包到达网关（公网 IP）</li>
+<li>网关将数据包的目的 IP（公网 IP）转换为<strong>内网私有 IP</strong></li>
+<li>数据包转发到内网服务器</li>
+<li>响应数据包返回时，进行相反转换</li>
+</ol>
+<h3 id="典型应用场景-1">典型应用场景</h3>
+<ul>
+<li><strong>端口映射</strong>：将外部端口映射到内网服务器</li>
+<li><strong>内网服务暴露</strong>：让外部用户访问内部 Web 服务</li>
+<li><strong>负载均衡</strong>：将外部请求分发到多台内网服务器</li>
+</ul>
+<h3 id="配置示例linux-iptables-1">配置示例（Linux iptables）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># DNAT 端口转发 - 将 80 端口流量转发到内网 192.168.1.100:80</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">80</span> -j DNAT --to-destination 192.168.1.100:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将访问本机 8080 端口的流量转发到 192.168.1.50:9000</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">8080</span> -j DNAT --to-destination 192.168.1.50:9000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 本地端口转发（DNAT + 路由）</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp -d 203.0.113.10 --dport <span class="m">2222</span> -j DNAT --to-destination 192.168.1.100:22
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配合 SNAT 确保返回流量正常（针对本地发起的连接）</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -d 192.168.1.100 -p tcp --dport <span class="m">80</span> -j SNAT --to-source 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图示dnat-工作流程">图示：DNAT 工作流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">互联网客户端 ──► ──► ──► 内网服务器 (192.168.1.100:80)
+</span></span><span class="line"><span class="cl">               │      │        │
+</span></span><span class="line"><span class="cl">               ▼      ▼        ▼
+</span></span><span class="line"><span class="cl">            网关 (DNAT)    转换后
+</span></span><span class="line"><span class="cl">          203.0.113.10 → 192.168.1.100
+</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl">返回时：内网服务器 ──► 网关 ──► 互联网客户端
+</span></span><span class="line"><span class="cl">                 192.168.1.100 → 203.0.113.10
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="snat-vs-dnat-对比">SNAT vs DNAT 对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>SNAT</th>
+<th>DNAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>转换目标</strong></td>
+<td>源 IP 地址</td>
+<td>目的 IP 地址</td>
+</tr>
+<tr>
+<td><strong>流量方向</strong></td>
+<td>出站（内网→外网）</td>
+<td>入站（外网→内网）</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>共享上网、IP 伪装</td>
+<td>端口映射、服务暴露</td>
+</tr>
+<tr>
+<td><strong>典型命令</strong></td>
+<td><code>SNAT --to-source</code></td>
+<td><code>DNAT --to-destination</code></td>
+</tr>
+<tr>
+<td><strong>使用链</strong></td>
+<td>POSTROUTING</td>
+<td>PREROUTING/OUTPUT</td>
+</tr>
+<tr>
+<td><strong>返回流量</strong></td>
+<td>自动反向转换</td>
+<td>需要配合 SNAT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sdnatsource-and-destination-nat">SDNAT（Source and Destination NAT）</h2>
+<h3 id="概念-2">概念</h3>
+<p>SDNAT 是 SNAT 和 DNAT 的结合，同时修改数据包的源 IP 和目的 IP。这种情况通常出现在更复杂的网络场景中。</p>
+<h3 id="工作原理-2">工作原理</h3>
+<p>当数据包经过 SDNAT 处理时：</p>
+<ol>
+<li>先修改目的 IP（类似 DNAT）</li>
+<li>再修改源 IP（类似 SNAT）</li>
+<li>实现双向流量的透明转发</li>
+</ol>
+<h3 id="典型应用场景-2">典型应用场景</h3>
+<ul>
+<li><strong>透明代理</strong>：客户端无感知地转发流量</li>
+<li><strong>负载均衡</strong>：将请求分发到后端服务器</li>
+<li><strong>VPN 隧道</strong>：在隧道两端进行地址转换</li>
+<li><strong>双向 NAT</strong>：内外网需要双向地址转换的场景</li>
+</ul>
+<h3 id="配置示例linux-iptables-2">配置示例（Linux iptables）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># SDNAT 示例：同时修改源和目的地址</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 192.168.1.10 访问 10.0.0.50 的流量转换为 203.0.113.10 访问 192.168.1.100</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -s 192.168.1.10 -d 10.0.0.50 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -j DNAT --to-destination 192.168.1.100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.10 -d 192.168.1.100 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -j SNAT --to-source 192.168.1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更常见的 SDNAT 场景：HAProxy 透明模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 HAProxy 服务器上进行双向地址转换</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">80</span> -j DNAT --to-destination 192.168.1.10
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.10 -o eth0 -j MASQUERADE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图示sdnat-工作流程">图示：SDNAT 工作流程</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">客户端 A ──► ──► ──► ──► 服务器 B
+</span></span><span class="line"><span class="cl">(192.168.1.10)    (SDNAT)    (192.168.1.100)
+</span></span><span class="line"><span class="cl">                │
+</span></span><span class="line"><span class="cl">                ▼
+</span></span><span class="line"><span class="cl">         DNAT: 目的 10.0.0.50 → 192.168.1.100
+</span></span><span class="line"><span class="cl">         SNAT: 源 192.168.1.10 → 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实际应用案例">实际应用案例</h2>
+<h3 id="案例-1家庭路由器共享上网">案例 1：家庭路由器共享上网</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">家庭网络拓扑：
+</span></span><span class="line"><span class="cl">[电脑1: 192.168.1.10] ─┐
+</span></span><span class="line"><span class="cl">[电脑2: 192.168.1.11] ─┼──► [路由器] ──► [互联网]
+</span></span><span class="line"><span class="cl">[手机: 192.168.1.12] ──┘              (公网 IP: 203.0.113.10)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">配置命令：
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">效果：所有设备共享路由器的一个公网 IP 上网
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-2发布内网-web-服务">案例 2：发布内网 Web 服务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">需求：将内网 192.168.1.100:80 的 Web 服务通过公网 IP 暴露
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">配置命令：
+</span></span><span class="line"><span class="cl"># DNAT 端口映射
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.1.100:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 确保返回流量正常
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -d 192.168.1.100 -p tcp --dport 80 -j SNAT --to-source 192.168.1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">效果：外部访问 公网IP:80 即可访问内网 Web 服务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-3双向服务访问">案例 3：双向服务访问</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">需求：内网服务器需要访问自己通过 DNAT 暴露的服务
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">配置命令：
+</span></span><span class="line"><span class="cl"># DNAT 映射
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.100:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 本地转发（解决&#34;发夹&#34;效应）
+</span></span><span class="line"><span class="cl">iptables -t nat -A OUTPUT -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.100:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">效果：内网其他机器通过 192.168.1.1:8080 也能访问内网服务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<h3 id="安全考虑">安全考虑</h3>
+<ol>
+<li><strong>IP 伪装并不能完全隐藏内部网络</strong>：可通过 TTL、IP ID 等特征识别</li>
+<li><strong>DNAT 可能带来安全风险</strong>：确保内网服务不暴露不必要的端口</li>
+<li><strong>双向 NAT 需要仔细配置</strong>：确保返回流量正确路由</li>
+</ol>
+<h3 id="性能影响">性能影响</h3>
+<ol>
+<li><strong>NAT 会增加延迟</strong>：每个数据包都需要修改 IP 头</li>
+<li><strong>连接跟踪表</strong>：大量并发连接会消耗内存</li>
+<li><strong>CPU 开销</strong>：复杂的 NAT 规则会影响性能</li>
+</ol>
+<h3 id="常见问题">常见问题</h3>
+<p><strong>Q: 为什么 DNAT 后返回流量不通？</strong>
+A: 需要确保返回路径可以正确转换，可能需要配合 SNAT。</p>
+<p><strong>Q: SNAT 和 MASQUERADE 有什么区别？</strong>
+A: SNAT 需要指定固定公网 IP，MASQUERADE 会自动使用出接口 IP，更适合动态 IP 场景。</p>
+<p><strong>Q: 如何查看 NAT 转换状态？</strong>
+A: 使用 <code>conntrack -L</code> 或 <code>cat /proc/net/nf_conntrack</code> 查看连接跟踪表。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li><strong>SNAT</strong>：修改源 IP，用于内网访问外网（共享上网）</li>
+<li><strong>DNAT</strong>：修改目的 IP，用于外网访问内网（端口映射）</li>
+<li><strong>SDNAT</strong>：同时修改源和目的 IP，用于复杂转发场景</li>
+</ul>
+<p>理解这三种 NAT 类型的区别和应用场景，对于网络管理和安全防护非常重要。</p>
+<h2 id="参考命令汇总">参考命令汇总</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># SNAT 静态转换</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j SNAT --to-source 203.0.113.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># SNAT 动态伪装</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># DNAT 端口映射</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">80</span> -j DNAT --to-destination 192.168.1.100:80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 NAT 规则</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -L -n -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看连接跟踪</span>
+</span></span><span class="line"><span class="cl">conntrack -L
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除 NAT 规则</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -D POSTROUTING <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-08&#32;08:43:46>更新于 2026-04-08&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/snat-dnat-sdnat-introduction/" data-title="SNAT、DNAT 与 SDNAT：网络地址转换详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/snat/">snat</a>,&nbsp;<a href="/tags/dnat/">dnat</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>,&nbsp;<a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/">防火墙</a>,&nbsp;<a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/superfile-introduction/" class="prev" rel="prev" title="Superfile：美观现代的终端文件管理器"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Superfile：美观现代的终端文件管理器</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
