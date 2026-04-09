@@ -118,7 +118,7 @@ results = search_memories("auth decisions", palace_path="~/.mempalace/palace")
 
 ### AAAK 语言
 
-MemPalace 为 AI 专用设计了一种压缩语言 AAAK，可以在保持精度的同时大��减少 token 消耗。
+MemPalace 为 AI 专用设计了一种压缩语言 AAAK，可以在保持精度的同时大幅减少 token 消耗。
 
 - RAW 模式：96.6% 召回率
 - AAAK 模式：84.2% 召回率，省 token
