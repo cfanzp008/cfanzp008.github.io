@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>隧道 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E9%9A%A7%E9%81%93/</link>
+    <description>隧道 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:42:09 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E9%9A%A7%E9%81%93/" rel="self" type="application/rss+xml" /><item>
+  <title>IPsec VPN 详解</title>
+  <link>https://cfanzp008.github.io/ipsec-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:42:09 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ipsec-vpn-usage/</guid>
+  <description><![CDATA[IPsec VPN 详解 什么是 IPsec IPsec（Internet Protocol Security）是 IETF 制定的安全协议标准，用于在 IP 层提供安全的数据传输。它是企业网络中最广泛使用的 VPN 技术，也是网络层安全的基石。
+IPsec 不是一个单一的协议，而是一个协议套件，包含多个子协议来实现不同安全功能。
+IPsec 组件 1. 安全协议 AH（Authentication Header）：提供数据完整性、源认证和防重放攻击 ESP（Encapsulating Security Payload）：提供加密、完整性认证（常用） 2. 密钥交换协议 IKE（Internet Key Exchange）：自动密钥协商和管理 3. 安全关联（SA） 定义通信双方如何保护数据 包括加密算法、密钥、生命周期等 工作模式 1. 传输模式（Transport Mode） 只加密数据部分（payload） 原始 IP 头保留 适用于主机到主机的通信 1 2 原始 IP 包: [IP Header][TCP][Data] IPsec 传输: [IP Header][ESP][TCP][Data][ESP Trailer] 2. 隧道模式（Tunnel Mode） 加密整个原始 IP 包 加上新的 IP 头 适用于网关到网关或网关到主机 1 2 原始 IP 包: [原始 IP][TCP][Data] IPsec 隧道: [新 IP Header][ESP][原始 IP][TCP][Data][ESP Trailer] IKE 阶段 Phase 1（建立 ISAKMP SA） 协商安全参数 认证对等体 建立第一阶段 SA 两种模式：]]></description>
+</item>
+</channel>
+</rss>

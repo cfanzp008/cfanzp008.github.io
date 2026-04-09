@@ -4,7 +4,28 @@
     <link>https://cfanzp008.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
     <description>网络 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:40:31 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+  <title>Tailscale 使用详解</title>
+  <link>https://cfanzp008.github.io/tailscale-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:40:31 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/tailscale-usage/</guid>
+  <description><![CDATA[Tailscale 使用详解 什么是 Tailscale Tailscale 是一款基于 WireGuard 协议的零信任网络访问工具，由 Google 前员工创立。它简化了 VPN 的配置和管理，让用户可以轻松地在任意设备之间建立安全的点对点连接。
+Tailscale 不需要复杂的服务器配置，它使用 Tailscale 提供的免费中继服务器（称为「DERP」）来帮助设备建立连接，在某些场景下也可以直接端到端连接。
+核心特性 1. 零信任网络 基于设备身份认证 不再依赖传统 VPN 的网络边界 每个设备都需要独立认证 2. WireGuard 底层 继承 WireGuard 的高性能 端到端加密 快速连接 3. 简单易用 支持多平台（Windows、macOS、Linux、iOS、Android） 一键安装，自动配置 不需要专业知识 4. 内网穿透 可以在任意网络环境下访问设备 突破 NAT 和防火墙 支持 UDP 打洞 5. ACL 访问控制 基于用户和设备的细粒度控制 可以限制哪些设备可以互相访问 支持分组管理 应用场景 1. 远程办公 安全的远程访问公司电脑 访问公司内网资源 无需配置复杂 VPN 服务器 2. 家庭网络 远程访问家中设备（NAS、路由器、智能家居） 不需要公网 IP 安全的远程管理 3. 开发测试 访问测试环境服务器 团队成员间安全互联 快速搭建开发网络 4.]]></description>
+</item>
+<item>
+  <title>WireGuard VPN 使用详解</title>
+  <link>https://cfanzp008.github.io/wireguard-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:39:08 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/wireguard-vpn-usage/</guid>
+  <description><![CDATA[WireGuard VPN 使用详解 什么是 WireGuard WireGuard 是一款现代、快速、安全的 VPN 隧道协议，由 Jason A. Donenfeld 于 2015 年开发。它设计简洁、代码量极小（约 4000 行），同时提供了卓越的安全性和性能。
+WireGuard 被认为是传统 VPN 协议（如 OpenVPN、IPsec）的理想替代品，已被纳入 Linux 内核主线，并在多个操作系统中得到支持。
+WireGuard 的特点 1. 简洁高效 代码量极小，仅约 4000 行 配置简单，易于理解和维护 运行时资源占用低 2. 高速性能 采用最新的加密原语 内核级实现，数据处理效率高 比传统 VPN 协议快 3-4 倍 3. 安全可靠 使用 Curve25519 进行密钥交换 ChaCha20-Poly1305 用于数据加密 现代化加密设计，避免传统协议的已知问题 4. 跨平台支持 Linux（内核原生支持） macOS、Windows、iOS、Android 路由器（OpenWrt 等） 工作原理 WireGuard 基于以下核心技术：
+密钥交换：使用 Curve25519 DH 算法 加密：使用 ChaCha20-Poly1305 AEAD 认证：基于公钥密码学 隧道：基于 UDP 协议 数据流过程 1 客户端 → 公钥加密 → WireGuard 隧道 → UDP 传输 → 公钥解密 → 服务器 安装配置 Linux 安装 1 2 3 4 5 6 7 8 # Ubuntu/Debian sudo apt install wireguard # CentOS/RHEL sudo yum install wireguard-tools # Arch Linux sudo pacman -S wireguard-tools 生成密钥对 1 2 3 4 5 6 7 8 9 # 生成私钥 wg genkey &gt; privatekey # 生成公钥 wg pubkey &lt; privatekey &gt; publickey # 查看密钥 cat privatekey cat publickey 服务端配置 创建配置文件 /etc/wireguard/wg0.]]></description>
+</item>
+<item>
   <title>Linux ip route 命令深度详解：路由管理完全指南</title>
   <link>https://cfanzp008.github.io/linux-ip-route-command/</link>
   <pubDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</pubDate>

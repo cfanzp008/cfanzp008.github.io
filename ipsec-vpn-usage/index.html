@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>IPsec VPN 详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 IPsec 协议的工作原理、配置方法和应用场景，这是企业级网络安全的基石" /><meta name="keywords" content='IPsec, VPN, 网络安全, 隧道, 加密' /><meta itemprop="name" content="IPsec VPN 详解">
+<meta itemprop="description" content="详细介绍 IPsec 协议的工作原理、配置方法和应用场景，这是企业级网络安全的基石"><meta itemprop="datePublished" content="2026-04-09T11:42:09+08:00" />
+<meta itemprop="dateModified" content="2026-04-09T11:42:09+08:00" />
+<meta itemprop="wordCount" content="764"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="IPsec,VPN,网络安全,隧道,加密," /><meta property="og:title" content="IPsec VPN 详解" />
+<meta property="og:description" content="详细介绍 IPsec 协议的工作原理、配置方法和应用场景，这是企业级网络安全的基石" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/ipsec-vpn-usage/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-09T11:42:09+08:00" />
+<meta property="article:modified_time" content="2026-04-09T11:42:09+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="IPsec VPN 详解"/>
+<meta name="twitter:description" content="详细介绍 IPsec 协议的工作原理、配置方法和应用场景，这是企业级网络安全的基石"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/ipsec-vpn-usage/" /><link rel="prev" href="https://cfanzp008.github.io/tailscale-usage/" /><link rel="next" href="https://cfanzp008.github.io/mqtt-usage-scenarios/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "IPsec VPN 详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/ipsec-vpn-usage\/"
+    },"genre": "posts","keywords": "IPsec, VPN, 网络安全, 隧道, 加密","wordcount":  764 ,
+    "url": "https:\/\/cfanzp008.github.io\/ipsec-vpn-usage\/","datePublished": "2026-04-09T11:42:09+08:00","dateModified": "2026-04-09T11:42:09+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 IPsec 协议的工作原理、配置方法和应用场景，这是企业级网络安全的基石"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>IPsec VPN 详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-09&#32;11:42:09><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-09">2026-04-09</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 764 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="IPsec VPN 详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-ipsec">什么是 IPsec</a></li>
+    <li><a href="#ipsec-组件">IPsec 组件</a>
+      <ul>
+        <li><a href="#1-安全协议">1. 安全协议</a></li>
+        <li><a href="#2-密钥交换协议">2. 密钥交换协议</a></li>
+        <li><a href="#3-安全关联sa">3. 安全关联（SA）</a></li>
+      </ul>
+    </li>
+    <li><a href="#工作模式">工作模式</a>
+      <ul>
+        <li><a href="#1-传输模式transport-mode">1. 传输模式（Transport Mode）</a></li>
+        <li><a href="#2-隧道模式tunnel-mode">2. 隧道模式（Tunnel Mode）</a></li>
+      </ul>
+    </li>
+    <li><a href="#ike-阶段">IKE 阶段</a>
+      <ul>
+        <li><a href="#phase-1建立-isakmp-sa">Phase 1（建立 ISAKMP SA）</a></li>
+        <li><a href="#phase-2建立-ipsec-sa">Phase 2（建立 IPsec SA）</a></li>
+      </ul>
+    </li>
+    <li><a href="#加密算法">加密算法</a>
+      <ul>
+        <li><a href="#加密算法-1">加密算法</a></li>
+        <li><a href="#认证算法">认证算法</a></li>
+        <li><a href="#diffie-hellmandh组">Diffie-Hellman（DH）组</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux-配置使用-strongswan">Linux 配置（使用 strongSwan）</a>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#生成证书">生成证书</a></li>
+        <li><a href="#服务端配置">服务端配置</a></li>
+        <li><a href="#客户端配置">客户端配置</a></li>
+        <li><a href="#启动和调试">启动和调试</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-libreswan-配置">使用 libreswan 配置</a>
+      <ul>
+        <li><a href="#安装-1">安装</a></li>
+        <li><a href="#配置示例">配置示例</a></li>
+        <li><a href="#启动服务">启动服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#windows-路由器配置">Windows 路由器配置</a>
+      <ul>
+        <li><a href="#windows-server">Windows Server</a></li>
+        <li><a href="#cisco-路由器">Cisco 路由器</a></li>
+        <li><a href="#juniper">Juniper</a></li>
+      </ul>
+    </li>
+    <li><a href="#故障排查">故障排查</a>
+      <ul>
+        <li><a href="#常见问题">常见问题</a></li>
+        <li><a href="#调试命令">调试命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#与其他-vpn-对比">与其他 VPN 对比</a></li>
+    <li><a href="#安全最佳实践">安全最佳实践</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="ipsec-vpn-详解">IPsec VPN 详解</h1>
+<h2 id="什么是-ipsec">什么是 IPsec</h2>
+<p>IPsec（Internet Protocol Security）是 IETF 制定的安全协议标准，用于在 IP 层提供安全的数据传输。它是企业网络中最广泛使用的 VPN 技术，也是网络层安全的基石。</p>
+<p>IPsec 不是一个单一的协议，而是一个协议套件，包含多个子协议来实现不同安全功能。</p>
+<h2 id="ipsec-组件">IPsec 组件</h2>
+<h3 id="1-安全协议">1. 安全协议</h3>
+<ul>
+<li><strong>AH（Authentication Header）</strong>：提供数据完整性、源认证和防重放攻击</li>
+<li><strong>ESP（Encapsulating Security Payload）</strong>：提供加密、完整性认证（常用）</li>
+</ul>
+<h3 id="2-密钥交换协议">2. 密钥交换协议</h3>
+<ul>
+<li><strong>IKE（Internet Key Exchange）</strong>：自动密钥协商和管理</li>
+</ul>
+<h3 id="3-安全关联sa">3. 安全关联（SA）</h3>
+<ul>
+<li>定义通信双方如何保护数据</li>
+<li>包括加密算法、密钥、生命周期等</li>
+</ul>
+<h2 id="工作模式">工作模式</h2>
+<h3 id="1-传输模式transport-mode">1. 传输模式（Transport Mode）</h3>
+<ul>
+<li>只加密数据部分（payload）</li>
+<li>原始 IP 头保留</li>
+<li>适用于主机到主机的通信</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原始 IP 包: [IP Header][TCP][Data]
+</span></span><span class="line"><span class="cl">IPsec 传输: [IP Header][ESP][TCP][Data][ESP Trailer]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-隧道模式tunnel-mode">2. 隧道模式（Tunnel Mode）</h3>
+<ul>
+<li>加密整个原始 IP 包</li>
+<li>加上新的 IP 头</li>
+<li>适用于网关到网关或网关到主机</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原始 IP 包: [原始 IP][TCP][Data]
+</span></span><span class="line"><span class="cl">IPsec 隧道: [新 IP Header][ESP][原始 IP][TCP][Data][ESP Trailer]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="ike-阶段">IKE 阶段</h2>
+<h3 id="phase-1建立-isakmp-sa">Phase 1（建立 ISAKMP SA）</h3>
+<ul>
+<li>协商安全参数</li>
+<li>认证对等体</li>
+<li>建立第一阶段 SA</li>
+</ul>
+<p>两种模式：</p>
+<ul>
+<li><strong>主模式（Main Mode）</strong>：6 条消息，3 次交换，更安全</li>
+<li><strong>激进模式（Aggressive Mode）</strong>：3 条消息，速度快但安全性低</li>
+</ul>
+<h3 id="phase-2建立-ipsec-sa">Phase 2（建立 IPsec SA）</h3>
+<ul>
+<li>
+<p>协商 IPsec 参数</p>
+</li>
+<li>
+<p>生成加密密钥</p>
+</li>
+<li>
+<p>建立第二阶段 SA</p>
+</li>
+<li>
+<p><strong>快速模式（Quick Mode）</strong>：协商 IPsec SA</p>
+</li>
+</ul>
+<h2 id="加密算法">加密算法</h2>
+<h3 id="加密算法-1">加密算法</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DES</td>
+<td>56 位，已不安全</td>
+</tr>
+<tr>
+<td>3DES</td>
+<td>168 位，性能差</td>
+</tr>
+<tr>
+<td>AES</td>
+<td>推荐，128/192/256 位</td>
+</tr>
+<tr>
+<td>ChaCha20</td>
+<td>现代算法，性能好</td>
+</tr>
+</tbody>
+</table>
+<h3 id="认证算法">认证算法</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MD5</td>
+<td>不推荐，已破解</td>
+</tr>
+<tr>
+<td>SHA-1</td>
+<td>不推荐</td>
+</tr>
+<tr>
+<td>SHA-2</td>
+<td>推荐（SHA-256）</td>
+</tr>
+<tr>
+<td>SHA-3</td>
+<td>最新标准</td>
+</tr>
+</tbody>
+</table>
+<h3 id="diffie-hellmandh组">Diffie-Hellman（DH）组</h3>
+<table>
+<thead>
+<tr>
+<th>组</th>
+<th>位数</th>
+<th>安全性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>768</td>
+<td>不安全</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1024</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1536</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2048</td>
+<td>推荐</td>
+</tr>
+<tr>
+<td>19-21</td>
+<td>256-384</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linux-配置使用-strongswan">Linux 配置（使用 strongSwan）</h2>
+<h3 id="安装">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Ubuntu/Debian</span>
+</span></span><span class="line"><span class="cl">sudo apt install strongswan strongswan-pki
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CentOS</span>
+</span></span><span class="line"><span class="cl">sudo yum install strongswan
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="生成证书">生成证书</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 CA 私钥和证书</span>
+</span></span><span class="line"><span class="cl">ipsec pki --gen --ca --lifetime <span class="m">3652</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成服务器私钥和证书</span>
+</span></span><span class="line"><span class="cl">ipsec pki --gen --server --lifetime <span class="m">1826</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成客户端私钥和证书</span>
+</span></span><span class="line"><span class="cl">ipsec pki --gen --client --lifetime <span class="m">1826</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="服务端配置">服务端配置</h3>
+<p>编辑 <code>/etc/ipsec.conf</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">config setup
+</span></span><span class="line"><span class="cl">    charondebug=&#34;all&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 隧道配置
+</span></span><span class="line"><span class="cl">conn tunnel
+</span></span><span class="line"><span class="cl">    authby=secret          # 使用预共享密钥
+</span></span><span class="line"><span class="cl">    left=203.0.113.1       # 服务端公网 IP
+</span></span><span class="line"><span class="cl">    leftsubnet=10.0.0.0/24  # 服务端内网
+</span></span><span class="line"><span class="cl">    right=203.0.113.2       # 客户端公网 IP
+</span></span><span class="line"><span class="cl">    rightsubnet=192.168.1.0/24  # 客户端内网
+</span></span><span class="line"><span class="cl">    auto=add
+</span></span><span class="line"><span class="cl">    keyexchange=ikev1
+</span></span><span class="line"><span class="cl">    auth=esp
+</span></span><span class="line"><span class="cl">    esp=aes256-sha256
+</span></span><span class="line"><span class="cl">    ike=aes256-sha256-modp2048
+</span></span><span class="line"><span class="cl">    lifetime=28800
+</span></span><span class="line"><span class="cl">    rekeymargin=5400
+</span></span><span class="line"><span class="cl">    rekeyfuzz=100%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>添加预共享密钥 <code>/etc/ipsec.secrets</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 格式：PSK &#34;密钥&#34;
+</span></span><span class="line"><span class="cl">: PSK &#34;your_preshared_secret_key&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="客户端配置">客户端配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conn tunnel
+</span></span><span class="line"><span class="cl">    authby=secret
+</span></span><span class="line"><span class="cl">    left=203.0.113.2
+</span></span><span class="line"><span class="cl">    leftsubnet=192.168.1.0/24
+</span></span><span class="line"><span class="cl">    right=203.0.113.1
+</span></span><span class="line"><span class="cl">    rightsubnet=10.0.0.0/24
+</span></span><span class="line"><span class="cl">    auto=start
+</span></span><span class="line"><span class="cl">    keyexchange=ikev1
+</span></span><span class="line"><span class="cl">    auth=esp
+</span></span><span class="line"><span class="cl">    esp=aes256-sha256
+</span></span><span class="line"><span class="cl">    ike=aes256-sha256-modp2048
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启动和调试">启动和调试</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动 IPsec</span>
+</span></span><span class="line"><span class="cl">sudo ipsec start
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看状态</span>
+</span></span><span class="line"><span class="cl">sudo ipsec status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看详细状态</span>
+</span></span><span class="line"><span class="cl">sudo ipsec statusall
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">sudo ipsec restart
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用-libreswan-配置">使用 libreswan 配置</h2>
+<h3 id="安装-1">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># RHEL/CentOS</span>
+</span></span><span class="line"><span class="cl">sudo yum install libreswan
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ubuntu</span>
+</span></span><span class="line"><span class="cl">sudo apt install libreswan
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="配置示例">配置示例</h3>
+<p>编辑 <code>/etc/ipsec.conf</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 基本配置
+</span></span><span class="line"><span class="cl">config setup
+</span></span><span class="line"><span class="cl">    nat_traversal=yes
+</span></span><span class="line"><span class="cl">    virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># VPN 隧道
+</span></span><span class="line"><span class="cl">conn myvpn
+</span></span><span class="line"><span class="cl">    authby=secret
+</span></span><span class="line"><span class="cl">    auto=start
+</span></span><span class="line"><span class="cl">    left=203.0.113.1
+</span></span><span class="line"><span class="cl">    leftsubnet=10.0.0.0/24
+</span></span><span class="line"><span class="cl">    right=203.0.113.2
+</span></span><span class="line"><span class="cl">    rightsubnet=192.168.1.0/24
+</span></span><span class="line"><span class="cl">    phase2=esp
+</span></span><span class="line"><span class="cl">    phase2alg=aes256-sha1
+</span></span><span class="line"><span class="cl">    ike=aes256-sha1
+</span></span><span class="line"><span class="cl">    dpdaction=restart
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>添加密钥 <code>/etc/ipsec.secrets</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">203.0.113.1 203.0.113.2 : PSK &#34;secret_key&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启动服务">启动服务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start ipsec
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开机自启</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> ipsec
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查状态</span>
+</span></span><span class="line"><span class="cl">sudo ipsec status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="windows-路由器配置">Windows 路由器配置</h2>
+<h3 id="windows-server">Windows Server</h3>
+<ol>
+<li>安装「路由和远程访问」角色</li>
+<li>配置输入接口</li>
+<li>配置 VPN</li>
+<li>配置 IPsec 策略</li>
+</ol>
+<h3 id="cisco-路由器">Cisco 路由器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">! 创建 ACL 定义感兴趣流量
+</span></span><span class="line"><span class="cl">ip access-list extended VPN_ACL
+</span></span><span class="line"><span class="cl"> permit ip 10.0.0.0 0.0.0.255 192.168.1.0 0.0.0.255
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">! 配置 IKE 策略
+</span></span><span class="line"><span class="cl">crypto isakmp policy 10
+</span></span><span class="line"><span class="cl"> encryption aes
+</span></span><span class="line"><span class="cl"> hash sha
+</span></span><span class="line"><span class="cl"> authentication pre-share
+</span></span><span class="line"><span class="cl"> group 14
+</span></span><span class="line"><span class="cl"> lifetime 28800
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">! 配置预共享密钥
+</span></span><span class="line"><span class="cl">crypto isakmp key cisco123 address 203.0.113.2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">! 配置变换集
+</span></span><span class="line"><span class="cl">crypto ipsec transform-set TS esp-aes esp-sha-hmac
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">! 创建加密映射
+</span></span><span class="line"><span class="cl">crypto map MAP 10 ipsec-isakmp
+</span></span><span class="line"><span class="cl"> set peer 203.0.113.2
+</span></span><span class="line"><span class="cl"> set transform-set TS
+</span></span><span class="line"><span class="cl"> match address VPN_ACL
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">! 应用到接口
+</span></span><span class="line"><span class="cl">interface GigabitEthernet0/0
+</span></span><span class="line"><span class="cl"> crypto map MAP
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="juniper">Juniper</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 配置安全关联
+</span></span><span class="line"><span class="cl">set security ipsec proposal PROPOSAL1 protocol esp
+</span></span><span class="line"><span class="cl">set security ipsec proposal PROPOSAL1 authentication-algorithm hmac-sha1-96-encryption
+</span></span><span class="line"><span class="cl">set security ipsec proposal PROPOSAL1 encryption-algorithm aes-256-cbc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 配置 IKE
+</span></span><span class="line"><span class="cl">set security ike proposal IKE_PROPOSAL1 authentication-method pre-shared-keys
+</span></span><span class="line"><span class="cl">set security ike proposal IKE_PROPOSAL1 dh-group group14
+</span></span><span class="line"><span class="cl">set security ike proposal IKE_PROPOSAL1 authentication-algorithm sha1
+</span></span><span class="line"><span class="cl">set security ike proposal IKE_PROPOSAL1 encryption-algorithm aes-256-cbc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="故障排查">故障排查</h2>
+<h3 id="常见问题">常见问题</h3>
+<ol>
+<li>
+<p><strong>IKE 协商失败</strong></p>
+<ul>
+<li>检查端口 500（UDP）和 4500（NAT-T）</li>
+<li>验证防火墙规则</li>
+<li>检查日志</li>
+</ul>
+</li>
+<li>
+<p><strong>SA 建立失败</strong></p>
+<ul>
+<li>验证加密算法和认证方法匹配</li>
+<li>检查 DH 组配置</li>
+<li>确认预共享密钥正确</li>
+</ul>
+</li>
+<li>
+<p><strong>流量不通</strong></p>
+<ul>
+<li>检查路由</li>
+<li>验证 ACL</li>
+<li>检查 NAT 配置</li>
+</ul>
+</li>
+</ol>
+<h3 id="调试命令">调试命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux 查看日志</span>
+</span></span><span class="line"><span class="cl">sudo journalctl -u strongswan -f
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 SA</span>
+</span></span><span class="line"><span class="cl">ip xfrm state
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看策略</span>
+</span></span><span class="line"><span class="cl">ip xfrm policy
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 抓包分析</span>
+</span></span><span class="line"><span class="cl">tcpdump -i any port <span class="m">500</span> or port <span class="m">4500</span> -nn
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="与其他-vpn-对比">与其他 VPN 对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>IPsec</th>
+<th>WireGuard</th>
+<th>OpenVPN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准化</td>
+<td>RFC 标准</td>
+<td>新兴标准</td>
+<td>开源方案</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>中等</td>
+<td>高</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>配置</td>
+<td>复杂</td>
+<td>简单</td>
+<td>复杂</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td>极好</td>
+<td>较好</td>
+<td>好</td>
+</tr>
+<tr>
+<td>穿透性</td>
+<td>好</td>
+<td>需协助</td>
+<td>好</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>企业</td>
+<td>轻量</td>
+<td>灵活</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安全最佳实践">安全最佳实践</h2>
+<ol>
+<li>
+<p><strong>使用强加密算法</strong></p>
+<ul>
+<li>AES-256</li>
+<li>SHA-256 或更高</li>
+<li>DH 组 14 或更高</li>
+</ul>
+</li>
+<li>
+<p><strong>定期轮换密钥</strong></p>
+<ul>
+<li>IKE SA 生命周期不超过 24 小时</li>
+<li>IPsec SA 生命周期不超过 8 小时</li>
+</ul>
+</li>
+<li>
+<p><strong>使用证书认证</strong></p>
+<ul>
+<li>比预共享密钥更安全</li>
+<li>便于管理和撤销</li>
+</ul>
+</li>
+<li>
+<p><strong>启用 NAT-T</strong></p>
+<ul>
+<li>支持 NAT 环境</li>
+<li>需要 UDP 4500 端口</li>
+</ul>
+</li>
+<li>
+<p><strong>记录和监控</strong></p>
+<ul>
+<li>监控连接状态</li>
+<li>记录安全事件</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>IPsec 是企业网络安全的基石，提供了：</p>
+<ul>
+<li>✅ 标准化的安全架构</li>
+<li>✅ 广泛的网络设备支持</li>
+<li>✅ 完善的认证和加密机制</li>
+<li>✅ 强大的兼容性</li>
+</ul>
+<p>虽然配置相对复杂，但其安全性和可靠性使其在企业环境中仍然不可或缺。对于需要高安全性、广泛兼容性的场景，IPsec 仍然是首选方案。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li>RFC 4301：IPsec 架构</li>
+<li>RFC 4302：AH 协议</li>
+<li>RFC 4303：ESP 协议</li>
+<li>RFC 4306：IKEv2</li>
+<li>strongSwan 文档：https://www.strongswan.org/</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-09&#32;11:42:09>更新于 2026-04-09&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/ipsec-vpn-usage/" data-title="IPsec VPN 详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ipsec/">IPsec</a>,&nbsp;<a href="/tags/vpn/">VPN</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>,&nbsp;<a href="/tags/%E9%9A%A7%E9%81%93/">隧道</a>,&nbsp;<a href="/tags/%E5%8A%A0%E5%AF%86/">加密</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/tailscale-usage/" class="prev" rel="prev" title="Tailscale 使用详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Tailscale 使用详解</a>
+      <a href="/mqtt-usage-scenarios/" class="next" rel="next" title="MQTT 使用场景详解">MQTT 使用场景详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -4,7 +4,56 @@
     <link>https://cfanzp008.github.io/categories/net/</link>
     <description>计算机网络 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/net/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/net/" rel="self" type="application/rss+xml" /><item>
+  <title>MQTT 使用场景详解</title>
+  <link>https://cfanzp008.github.io/mqtt-usage-scenarios/</link>
+  <pubDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mqtt-usage-scenarios/</guid>
+  <description><![CDATA[MQTT 使用场景详解 什么是 MQTT MQTT（Message Queuing Telemetry Transport）是一种轻量级、基于发布/订阅模式的消息传输协议，由 IBM 的 Andy Stanford-Clark 和 Arcom 的 Arlen Nipper 于 1999 年设计。该协议专为低带宽、高延迟或不可靠的网络环境优化，特别适合物联网（IoT）设备通信。
+MQTT 以其简洁的设计和极低的开销著称，最小报文只有 2 字节，广泛应用于智能家居、工业物联网、车联网等领域。
+MQTT 核心特性 1. 发布/订阅模式 与传统的请求/响应模式不同，MQTT 采用发布/订阅模式：
+发布者（Publisher）：将消息发送到主题（Topic） 订阅者（Subscriber）：订阅感兴趣的主题 Broker（代理）：负责接收消息并转发给订阅者 这种松耦合的架构使得发布者和订阅者可以独立运行，无需直接连接。
+2. QoS（服务质量） MQTT 提供三种服务质量级别：
+QoS 0：最多分发一次（At most once）
+发送一次，不确认 适用于对可靠性要求不高的场景 QoS 1：至少分发一次（At least once）
+确认后重发，确保到达 适用于需要确保到达的场景 QoS 2：仅分发一次（Exactly once）
+四次握手，确保唯一 适用于关键任务场景 3. 主题（Topic） 主题是 MQTT 的核心概念，采用分层结构：
+1 2 3 home/livingroom/temperature home/bedroom/humidity industrial/factory1/sensor/pressure 支持通配符：
+#：匹配多层路径 +：匹配单层路径 4. 遗嘱消息（Last Will） 当客户端异常断开时，Broker 可以发送预设的遗嘱消息，用于通知其他客户端设备离线。]]></description>
+</item>
+<item>
+  <title>IPsec VPN 详解</title>
+  <link>https://cfanzp008.github.io/ipsec-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:42:09 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ipsec-vpn-usage/</guid>
+  <description><![CDATA[IPsec VPN 详解 什么是 IPsec IPsec（Internet Protocol Security）是 IETF 制定的安全协议标准，用于在 IP 层提供安全的数据传输。它是企业网络中最广泛使用的 VPN 技术，也是网络层安全的基石。
+IPsec 不是一个单一的协议，而是一个协议套件，包含多个子协议来实现不同安全功能。
+IPsec 组件 1. 安全协议 AH（Authentication Header）：提供数据完整性、源认证和防重放攻击 ESP（Encapsulating Security Payload）：提供加密、完整性认证（常用） 2. 密钥交换协议 IKE（Internet Key Exchange）：自动密钥协商和管理 3. 安全关联（SA） 定义通信双方如何保护数据 包括加密算法、密钥、生命周期等 工作模式 1. 传输模式（Transport Mode） 只加密数据部分（payload） 原始 IP 头保留 适用于主机到主机的通信 1 2 原始 IP 包: [IP Header][TCP][Data] IPsec 传输: [IP Header][ESP][TCP][Data][ESP Trailer] 2. 隧道模式（Tunnel Mode） 加密整个原始 IP 包 加上新的 IP 头 适用于网关到网关或网关到主机 1 2 原始 IP 包: [原始 IP][TCP][Data] IPsec 隧道: [新 IP Header][ESP][原始 IP][TCP][Data][ESP Trailer] IKE 阶段 Phase 1（建立 ISAKMP SA） 协商安全参数 认证对等体 建立第一阶段 SA 两种模式：]]></description>
+</item>
+<item>
+  <title>Tailscale 使用详解</title>
+  <link>https://cfanzp008.github.io/tailscale-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:40:31 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/tailscale-usage/</guid>
+  <description><![CDATA[Tailscale 使用详解 什么是 Tailscale Tailscale 是一款基于 WireGuard 协议的零信任网络访问工具，由 Google 前员工创立。它简化了 VPN 的配置和管理，让用户可以轻松地在任意设备之间建立安全的点对点连接。
+Tailscale 不需要复杂的服务器配置，它使用 Tailscale 提供的免费中继服务器（称为「DERP」）来帮助设备建立连接，在某些场景下也可以直接端到端连接。
+核心特性 1. 零信任网络 基于设备身份认证 不再依赖传统 VPN 的网络边界 每个设备都需要独立认证 2. WireGuard 底层 继承 WireGuard 的高性能 端到端加密 快速连接 3. 简单易用 支持多平台（Windows、macOS、Linux、iOS、Android） 一键安装，自动配置 不需要专业知识 4. 内网穿透 可以在任意网络环境下访问设备 突破 NAT 和防火墙 支持 UDP 打洞 5. ACL 访问控制 基于用户和设备的细粒度控制 可以限制哪些设备可以互相访问 支持分组管理 应用场景 1. 远程办公 安全的远程访问公司电脑 访问公司内网资源 无需配置复杂 VPN 服务器 2. 家庭网络 远程访问家中设备（NAS、路由器、智能家居） 不需要公网 IP 安全的远程管理 3. 开发测试 访问测试环境服务器 团队成员间安全互联 快速搭建开发网络 4.]]></description>
+</item>
+<item>
+  <title>WireGuard VPN 使用详解</title>
+  <link>https://cfanzp008.github.io/wireguard-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:39:08 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/wireguard-vpn-usage/</guid>
+  <description><![CDATA[WireGuard VPN 使用详解 什么是 WireGuard WireGuard 是一款现代、快速、安全的 VPN 隧道协议，由 Jason A. Donenfeld 于 2015 年开发。它设计简洁、代码量极小（约 4000 行），同时提供了卓越的安全性和性能。
+WireGuard 被认为是传统 VPN 协议（如 OpenVPN、IPsec）的理想替代品，已被纳入 Linux 内核主线，并在多个操作系统中得到支持。
+WireGuard 的特点 1. 简洁高效 代码量极小，仅约 4000 行 配置简单，易于理解和维护 运行时资源占用低 2. 高速性能 采用最新的加密原语 内核级实现，数据处理效率高 比传统 VPN 协议快 3-4 倍 3. 安全可靠 使用 Curve25519 进行密钥交换 ChaCha20-Poly1305 用于数据加密 现代化加密设计，避免传统协议的已知问题 4. 跨平台支持 Linux（内核原生支持） macOS、Windows、iOS、Android 路由器（OpenWrt 等） 工作原理 WireGuard 基于以下核心技术：
+密钥交换：使用 Curve25519 DH 算法 加密：使用 ChaCha20-Poly1305 AEAD 认证：基于公钥密码学 隧道：基于 UDP 协议 数据流过程 1 客户端 → 公钥加密 → WireGuard 隧道 → UDP 传输 → 公钥解密 → 服务器 安装配置 Linux 安装 1 2 3 4 5 6 7 8 # Ubuntu/Debian sudo apt install wireguard # CentOS/RHEL sudo yum install wireguard-tools # Arch Linux sudo pacman -S wireguard-tools 生成密钥对 1 2 3 4 5 6 7 8 9 # 生成私钥 wg genkey &gt; privatekey # 生成公钥 wg pubkey &lt; privatekey &gt; publickey # 查看密钥 cat privatekey cat publickey 服务端配置 创建配置文件 /etc/wireguard/wg0.]]></description>
+</item>
+<item>
   <title>Linux ip route 命令深度详解：路由管理完全指南</title>
   <link>https://cfanzp008.github.io/linux-ip-route-command/</link>
   <pubDate>Wed, 08 Apr 2026 12:04:57 &#43;0800</pubDate>
@@ -53,38 +102,6 @@
   <pubDate>Sat, 14 Sep 2024 22:42:37 &#43;0800</pubDate>
   <author>作者</author>
   <guid>https://cfanzp008.github.io/tranceroute/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>IPV4数据包</title>
-  <link>https://cfanzp008.github.io/ipv4-package/</link>
-  <pubDate>Sat, 14 Sep 2024 22:22:21 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/ipv4-package/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>ip地址(ipv4)</title>
-  <link>https://cfanzp008.github.io/ip/</link>
-  <pubDate>Sat, 14 Sep 2024 21:37:03 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/ip/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>摄像头监控布线</title>
-  <link>https://cfanzp008.github.io/home-net-camera/</link>
-  <pubDate>Mon, 02 Sep 2024 08:33:29 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/home-net-camera/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>iperf3用法</title>
-  <link>https://cfanzp008.github.io/net-iperf3/</link>
-  <pubDate>Sat, 17 Aug 2024 21:38:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/net-iperf3/</guid>
   <description><![CDATA[]]></description>
 </item>
 </channel>

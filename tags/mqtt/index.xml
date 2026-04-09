@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>MQTT - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/mqtt/</link>
+    <description>MQTT - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/mqtt/" rel="self" type="application/rss+xml" /><item>
+  <title>MQTT 使用场景详解</title>
+  <link>https://cfanzp008.github.io/mqtt-usage-scenarios/</link>
+  <pubDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mqtt-usage-scenarios/</guid>
+  <description><![CDATA[MQTT 使用场景详解 什么是 MQTT MQTT（Message Queuing Telemetry Transport）是一种轻量级、基于发布/订阅模式的消息传输协议，由 IBM 的 Andy Stanford-Clark 和 Arcom 的 Arlen Nipper 于 1999 年设计。该协议专为低带宽、高延迟或不可靠的网络环境优化，特别适合物联网（IoT）设备通信。
+MQTT 以其简洁的设计和极低的开销著称，最小报文只有 2 字节，广泛应用于智能家居、工业物联网、车联网等领域。
+MQTT 核心特性 1. 发布/订阅模式 与传统的请求/响应模式不同，MQTT 采用发布/订阅模式：
+发布者（Publisher）：将消息发送到主题（Topic） 订阅者（Subscriber）：订阅感兴趣的主题 Broker（代理）：负责接收消息并转发给订阅者 这种松耦合的架构使得发布者和订阅者可以独立运行，无需直接连接。
+2. QoS（服务质量） MQTT 提供三种服务质量级别：
+QoS 0：最多分发一次（At most once）
+发送一次，不确认 适用于对可靠性要求不高的场景 QoS 1：至少分发一次（At least once）
+确认后重发，确保到达 适用于需要确保到达的场景 QoS 2：仅分发一次（Exactly once）
+四次握手，确保唯一 适用于关键任务场景 3. 主题（Topic） 主题是 MQTT 的核心概念，采用分层结构：
+1 2 3 home/livingroom/temperature home/bedroom/humidity industrial/factory1/sensor/pressure 支持通配符：
+#：匹配多层路径 +：匹配单层路径 4. 遗嘱消息（Last Will） 当客户端异常断开时，Broker 可以发送预设的遗嘱消息，用于通知其他客户端设备离线。]]></description>
+</item>
+</channel>
+</rss>

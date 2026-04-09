@@ -4,9 +4,58 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>MQTT 使用场景详解</title>
+  <link>https://cfanzp008.github.io/mqtt-usage-scenarios/</link>
+  <pubDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mqtt-usage-scenarios/</guid>
+  <description><![CDATA[MQTT 使用场景详解 什么是 MQTT MQTT（Message Queuing Telemetry Transport）是一种轻量级、基于发布/订阅模式的消息传输协议，由 IBM 的 Andy Stanford-Clark 和 Arcom 的 Arlen Nipper 于 1999 年设计。该协议专为低带宽、高延迟或不可靠的网络环境优化，特别适合物联网（IoT）设备通信。
+MQTT 以其简洁的设计和极低的开销著称，最小报文只有 2 字节，广泛应用于智能家居、工业物联网、车联网等领域。
+MQTT 核心特性 1. 发布/订阅模式 与传统的请求/响应模式不同，MQTT 采用发布/订阅模式：
+发布者（Publisher）：将消息发送到主题（Topic） 订阅者（Subscriber）：订阅感兴趣的主题 Broker（代理）：负责接收消息并转发给订阅者 这种松耦合的架构使得发布者和订阅者可以独立运行，无需直接连接。
+2. QoS（服务质量） MQTT 提供三种服务质量级别：
+QoS 0：最多分发一次（At most once）
+发送一次，不确认 适用于对可靠性要求不高的场景 QoS 1：至少分发一次（At least once）
+确认后重发，确保到达 适用于需要确保到达的场景 QoS 2：仅分发一次（Exactly once）
+四次握手，确保唯一 适用于关键任务场景 3. 主题（Topic） 主题是 MQTT 的核心概念，采用分层结构：
+1 2 3 home/livingroom/temperature home/bedroom/humidity industrial/factory1/sensor/pressure 支持通配符：
+#：匹配多层路径 +：匹配单层路径 4. 遗嘱消息（Last Will） 当客户端异常断开时，Broker 可以发送预设的遗嘱消息，用于通知其他客户端设备离线。]]></description>
+</item>
+<item>
+  <title>IPsec VPN 详解</title>
+  <link>https://cfanzp008.github.io/ipsec-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:42:09 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ipsec-vpn-usage/</guid>
+  <description><![CDATA[IPsec VPN 详解 什么是 IPsec IPsec（Internet Protocol Security）是 IETF 制定的安全协议标准，用于在 IP 层提供安全的数据传输。它是企业网络中最广泛使用的 VPN 技术，也是网络层安全的基石。
+IPsec 不是一个单一的协议，而是一个协议套件，包含多个子协议来实现不同安全功能。
+IPsec 组件 1. 安全协议 AH（Authentication Header）：提供数据完整性、源认证和防重放攻击 ESP（Encapsulating Security Payload）：提供加密、完整性认证（常用） 2. 密钥交换协议 IKE（Internet Key Exchange）：自动密钥协商和管理 3. 安全关联（SA） 定义通信双方如何保护数据 包括加密算法、密钥、生命周期等 工作模式 1. 传输模式（Transport Mode） 只加密数据部分（payload） 原始 IP 头保留 适用于主机到主机的通信 1 2 原始 IP 包: [IP Header][TCP][Data] IPsec 传输: [IP Header][ESP][TCP][Data][ESP Trailer] 2. 隧道模式（Tunnel Mode） 加密整个原始 IP 包 加上新的 IP 头 适用于网关到网关或网关到主机 1 2 原始 IP 包: [原始 IP][TCP][Data] IPsec 隧道: [新 IP Header][ESP][原始 IP][TCP][Data][ESP Trailer] IKE 阶段 Phase 1（建立 ISAKMP SA） 协商安全参数 认证对等体 建立第一阶段 SA 两种模式：]]></description>
+</item>
+<item>
+  <title>Tailscale 使用详解</title>
+  <link>https://cfanzp008.github.io/tailscale-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:40:31 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/tailscale-usage/</guid>
+  <description><![CDATA[Tailscale 使用详解 什么是 Tailscale Tailscale 是一款基于 WireGuard 协议的零信任网络访问工具，由 Google 前员工创立。它简化了 VPN 的配置和管理，让用户可以轻松地在任意设备之间建立安全的点对点连接。
+Tailscale 不需要复杂的服务器配置，它使用 Tailscale 提供的免费中继服务器（称为「DERP」）来帮助设备建立连接，在某些场景下也可以直接端到端连接。
+核心特性 1. 零信任网络 基于设备身份认证 不再依赖传统 VPN 的网络边界 每个设备都需要独立认证 2. WireGuard 底层 继承 WireGuard 的高性能 端到端加密 快速连接 3. 简单易用 支持多平台（Windows、macOS、Linux、iOS、Android） 一键安装，自动配置 不需要专业知识 4. 内网穿透 可以在任意网络环境下访问设备 突破 NAT 和防火墙 支持 UDP 打洞 5. ACL 访问控制 基于用户和设备的细粒度控制 可以限制哪些设备可以互相访问 支持分组管理 应用场景 1. 远程办公 安全的远程访问公司电脑 访问公司内网资源 无需配置复杂 VPN 服务器 2. 家庭网络 远程访问家中设备（NAS、路由器、智能家居） 不需要公网 IP 安全的远程管理 3. 开发测试 访问测试环境服务器 团队成员间安全互联 快速搭建开发网络 4.]]></description>
+</item>
+<item>
+  <title>WireGuard VPN 使用详解</title>
+  <link>https://cfanzp008.github.io/wireguard-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:39:08 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/wireguard-vpn-usage/</guid>
+  <description><![CDATA[WireGuard VPN 使用详解 什么是 WireGuard WireGuard 是一款现代、快速、安全的 VPN 隧道协议，由 Jason A. Donenfeld 于 2015 年开发。它设计简洁、代码量极小（约 4000 行），同时提供了卓越的安全性和性能。
+WireGuard 被认为是传统 VPN 协议（如 OpenVPN、IPsec）的理想替代品，已被纳入 Linux 内核主线，并在多个操作系统中得到支持。
+WireGuard 的特点 1. 简洁高效 代码量极小，仅约 4000 行 配置简单，易于理解和维护 运行时资源占用低 2. 高速性能 采用最新的加密原语 内核级实现，数据处理效率高 比传统 VPN 协议快 3-4 倍 3. 安全可靠 使用 Curve25519 进行密钥交换 ChaCha20-Poly1305 用于数据加密 现代化加密设计，避免传统协议的已知问题 4. 跨平台支持 Linux（内核原生支持） macOS、Windows、iOS、Android 路由器（OpenWrt 等） 工作原理 WireGuard 基于以下核心技术：
+密钥交换：使用 Curve25519 DH 算法 加密：使用 ChaCha20-Poly1305 AEAD 认证：基于公钥密码学 隧道：基于 UDP 协议 数据流过程 1 客户端 → 公钥加密 → WireGuard 隧道 → UDP 传输 → 公钥解密 → 服务器 安装配置 Linux 安装 1 2 3 4 5 6 7 8 # Ubuntu/Debian sudo apt install wireguard # CentOS/RHEL sudo yum install wireguard-tools # Arch Linux sudo pacman -S wireguard-tools 生成密钥对 1 2 3 4 5 6 7 8 9 # 生成私钥 wg genkey &gt; privatekey # 生成公钥 wg pubkey &lt; privatekey &gt; publickey # 查看密钥 cat privatekey cat publickey 服务端配置 创建配置文件 /etc/wireguard/wg0.]]></description>
+</item>
+<item>
   <title>OpenSpec 工程化规范总结</title>
   <link>https://cfanzp008.github.io/openspec-engineering-summary/</link>
   <pubDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</pubDate>
@@ -81,57 +130,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
 为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
 找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
 可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
-</item>
-<item>
-  <title>Google Workspace CLI：统一管理 Google Workspace 的命令行工具</title>
-  <link>https://cfanzp008.github.io/google-workspace-cli-introduction/</link>
-  <pubDate>Wed, 08 Apr 2026 16:49:45 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/google-workspace-cli-introduction/</guid>
-  <description><![CDATA[Google Workspace CLI：统一管理 Google Workspace 的命令行工具 引言 对于经常使用 Google Workspace（Google 工作空间）的用户来说，管理 Drive、Gmail、Calendar、Sheets、Docs、Chat 等多个服务往往需要在浏览器和多个应用之间切换。虽然 Google 提供了 Web 界面和各个服务的 API，但使用这些 API 需要编写大量重复的代码和配置。Google Workspace CLI（简称 gws）的出现改变了这一状况，它提供了一个统一的命令行界面，可以操控所有 Google Workspace 服务。
-gws 在 GitHub 上已获得 24,000+ 颗星，是当前最受欢迎的 Google Workspace 命令行工具。它采用 Rust 语言开发，具有高性能和跨平台特性，同时支持人类用户和 AI 代理使用。
-什么是 Google Workspace CLI Google Workspace CLI（gws）是一个统一的命令行工具，旨在为人类用户和 AI 代理提供一种简单、优雅的方式来管理所有 Google Workspace 服务。无论你是想查看 Drive 文件、发送 Gmail 邮件、管理 Calendar 事件，还是操作 Sheets 表格、Docs 文档、Chat 消息，一个 gws 命令就能搞定。
-gws 的独特之处在于它采用了动态命令构建机制。它并不硬编码一组固定的命令，而是通过读取 Google 的 Discovery Service（发现服务）在运行时动态生成整个命令表面。这意味着当 Google 添加新的 API 端点或方法时，gws 会自动获取并可用，无需任何更新。]]></description>
-</item>
-<item>
-  <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
-  <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
-  <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/another-redis-desktop-manager/</guid>
-  <description><![CDATA[Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端 引言 Redis 作为最流行的内存数据库之一，在现代应用开发中扮演着重要角色。然而，选择一款好用的 Redis 客户端管理工具却并不容易。常见的 Redis 桌面客户端要么功能单一，要么在处理大量数据时容易崩溃。今天给大家介绍一款由国人开发的开源 Redis 桌面管理工具——Another Redis Desktop Manager，它以「更快、更好、更稳定」为目标，在 GitHub 上已收获 34,000+ 颗星，广受开发者好评。
-什么是 Another Redis Desktop Manager Another Redis Desktop Manager 是一款现代化、轻量级的跨平台 Redis 桌面客户端，由国内开发者 qishibo 开发并维护。该项目最初于 2019 年开源，旨在为开发者提供一个更快、更好、更稳定的 Redis 可视化管理工具。
-与传统的 Redis 客户端相比，Another Redis Desktop Manager 具有以下显著优势：
-跨平台支持：完美兼容 Linux、Windows 和 macOS 系统 稳定可靠：经过大量实际项目验证，在处理大量数据时也不会轻易崩溃 功能丰富：支持集群、哨兵、SSL 认证等高级特性 完全免费：开源免费，无需付费即可使用全部功能 核心功能特性 1. 多连接管理 Another Redis Desktop Manager 支持同时管理多个 Redis 连接，你可以：
-轻松添加、编辑、删除 Redis 连接 支持 SSH 隧道连接 保存连接密码，下次自动填充 支持连接分组，便于项目管理 2.]]></description>
-</item>
-<item>
-  <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
-  <link>https://cfanzp008.github.io/notebooklm-usage-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/notebooklm-usage-guide/</guid>
-  <description><![CDATA[Google NotebookLM：AI 驱动的智能笔记本详解 什么是 NotebookLM NotebookLM 是 Google 实验室（Google Labs）推出的一款实验性 AI 笔记本工具。它的核心理念是「以 AI 为核心的笔记本」——从设计之初就将强大的语言模型融入其中，帮助用户更快地从信息中获取洞察。
-与传统的 AI 聊天机器人不同，NotebookLM 的独特之处在于它的「源 grounding」机制。你可以将自己选择的文档作为 AI 的知识来源，让 AI 只基于你提供的资料来回答问题。这不仅大大减少了「幻觉」问题，还确保了答案的相关性和准确性。
-NotebookLM 最初于 2023 年 7 月以「Project Tailwind」的名字在 Google I/O 大会上首次亮相，随后正式命名为 NotebookLM。经过几年发展，它已经从最初的文档摘要工具演变为一个功能强大的多模态学习和工作助手。
-核心功能详解 1. 智能文档导入 NotebookLM 支持多种文档格式的导入：
-Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文档进行分析 网页内容：可以通过 URL 导入网页内容 音频文件：支持上传音频文件进行转录和分析 Markdown 和文本文件：支持纯文本格式 导入文档后，NotebookLM 会自动分析内容，生成摘要、关键主题和可能的问题，帮助你快速了解文档概况。
-2. AI 问答功能 基于导入的文档，你可以向 NotebookLM 提问：
-医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
-3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：]]></description>
-</item>
-<item>
-  <title>Hermes Agent：会自我进化的 AI 智能体</title>
-  <link>https://cfanzp008.github.io/hermes-agent-introduction/</link>
-  <pubDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/hermes-agent-introduction/</guid>
-  <description><![CDATA[Hermes Agent：会自我进化的 AI 智能体 引言 在人工智能快速发展的今天，AI 智能体（Agent）已经成为技术领域的热门话题。大多数 AI 智能体本质上只是「带有额外步骤的聊天机器人」——你与它们对话，它们忘记一切，下次重新开始。然而，Hermes Agent 采取了不同的方式，它致力于打造一个「与你共同成长的智能体」。
-Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是「The agent that grows with you」（与你共同成长的智能体）。该项目在 GitHub 上已获得 33,000+ 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-什么是 Hermes Agent Hermes Agent 是一个功能强大的开源 autonomous AI agent，采用 MIT 许可证发布。与传统聊天机器人不同，它具有以下核心特性：
-长期记忆：跨会话记住重要信息，自动保存学习到的知识 自我进化：从成功和失败中学习，逐渐适应用户的习惯和偏好 多平台运行：支持本地运行（保护隐私）、Ollama 部署、云端 API 调用 完全开源：社区活跃，持续迭代更新 核心功能详解 1. 持久记忆系统 Hermes Agent 拥有先进的持久记忆系统，通过 MEMORY.md 和 USER.md 文件保存用户偏好、项目信息和学习到的知识。这种有边界的、精心管理的记忆能够跨会话持久化，让 Agent 记住你的偏好、项目和环境设置。
-2. 上下文文件 Hermes Agent 能够自动发现和加载项目上下文文件，包括：
-.hermes.md AGENTS.md CLAUDE.md SOUL.md .cursorrules 这些文件会塑造 Agent 在项目中的行为方式，让它更好地理解你的项目规范和需求。]]></description>
 </item>
 </channel>
 </rss>

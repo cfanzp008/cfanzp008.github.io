@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>tunnel - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/tunnel/</link>
+    <description>tunnel - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:39:08 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/tunnel/" rel="self" type="application/rss+xml" /><item>
+  <title>WireGuard VPN 使用详解</title>
+  <link>https://cfanzp008.github.io/wireguard-vpn-usage/</link>
+  <pubDate>Thu, 09 Apr 2026 11:39:08 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/wireguard-vpn-usage/</guid>
+  <description><![CDATA[WireGuard VPN 使用详解 什么是 WireGuard WireGuard 是一款现代、快速、安全的 VPN 隧道协议，由 Jason A. Donenfeld 于 2015 年开发。它设计简洁、代码量极小（约 4000 行），同时提供了卓越的安全性和性能。
+WireGuard 被认为是传统 VPN 协议（如 OpenVPN、IPsec）的理想替代品，已被纳入 Linux 内核主线，并在多个操作系统中得到支持。
+WireGuard 的特点 1. 简洁高效 代码量极小，仅约 4000 行 配置简单，易于理解和维护 运行时资源占用低 2. 高速性能 采用最新的加密原语 内核级实现，数据处理效率高 比传统 VPN 协议快 3-4 倍 3. 安全可靠 使用 Curve25519 进行密钥交换 ChaCha20-Poly1305 用于数据加密 现代化加密设计，避免传统协议的已知问题 4. 跨平台支持 Linux（内核原生支持） macOS、Windows、iOS、Android 路由器（OpenWrt 等） 工作原理 WireGuard 基于以下核心技术：
+密钥交换：使用 Curve25519 DH 算法 加密：使用 ChaCha20-Poly1305 AEAD 认证：基于公钥密码学 隧道：基于 UDP 协议 数据流过程 1 客户端 → 公钥加密 → WireGuard 隧道 → UDP 传输 → 公钥解密 → 服务器 安装配置 Linux 安装 1 2 3 4 5 6 7 8 # Ubuntu/Debian sudo apt install wireguard # CentOS/RHEL sudo yum install wireguard-tools # Arch Linux sudo pacman -S wireguard-tools 生成密钥对 1 2 3 4 5 6 7 8 9 # 生成私钥 wg genkey &gt; privatekey # 生成公钥 wg pubkey &lt; privatekey &gt; publickey # 查看密钥 cat privatekey cat publickey 服务端配置 创建配置文件 /etc/wireguard/wg0.]]></description>
+</item>
+</channel>
+</rss>

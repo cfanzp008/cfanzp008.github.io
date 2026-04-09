@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>MQTT 使用场景详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 MQTT 协议的核心概念、特性以及在各行业中的典型应用场景" /><meta name="keywords" content='MQTT, 物联网, 消息队列, 网络协议, IoT' /><meta itemprop="name" content="MQTT 使用场景详解">
+<meta itemprop="description" content="详细介绍 MQTT 协议的核心概念、特性以及在各行业中的典型应用场景"><meta itemprop="datePublished" content="2026-04-09T11:43:57+08:00" />
+<meta itemprop="dateModified" content="2026-04-09T11:43:57+08:00" />
+<meta itemprop="wordCount" content="883"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="MQTT,物联网,消息队列,网络协议,IoT," /><meta property="og:title" content="MQTT 使用场景详解" />
+<meta property="og:description" content="详细介绍 MQTT 协议的核心概念、特性以及在各行业中的典型应用场景" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/mqtt-usage-scenarios/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-09T11:43:57+08:00" />
+<meta property="article:modified_time" content="2026-04-09T11:43:57+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="MQTT 使用场景详解"/>
+<meta name="twitter:description" content="详细介绍 MQTT 协议的核心概念、特性以及在各行业中的典型应用场景"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/mqtt-usage-scenarios/" /><link rel="prev" href="https://cfanzp008.github.io/ipsec-vpn-usage/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "MQTT 使用场景详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/mqtt-usage-scenarios\/"
+    },"genre": "posts","keywords": "MQTT, 物联网, 消息队列, 网络协议, IoT","wordcount":  883 ,
+    "url": "https:\/\/cfanzp008.github.io\/mqtt-usage-scenarios\/","datePublished": "2026-04-09T11:43:57+08:00","dateModified": "2026-04-09T11:43:57+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 MQTT 协议的核心概念、特性以及在各行业中的典型应用场景"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>MQTT 使用场景详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-09&#32;11:43:57><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-09">2026-04-09</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 883 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="MQTT 使用场景详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-mqtt">什么是 MQTT</a></li>
+    <li><a href="#mqtt-核心特性">MQTT 核心特性</a>
+      <ul>
+        <li><a href="#1-发布订阅模式">1. 发布/订阅模式</a></li>
+        <li><a href="#2-qos服务质量">2. QoS（服务质量）</a></li>
+        <li><a href="#3-主题topic">3. 主题（Topic）</a></li>
+        <li><a href="#4-遗嘱消息last-will">4. 遗嘱消息（Last Will）</a></li>
+        <li><a href="#5-保留消息retained-message">5. 保留消息（Retained Message）</a></li>
+        <li><a href="#6-持久会话persistent-session">6. 持久会话（Persistent Session）</a></li>
+      </ul>
+    </li>
+    <li><a href="#mqtt-常用客户端库">MQTT 常用客户端库</a>
+      <ul>
+        <li><a href="#1-eclipse-paho">1. Eclipse Paho</a></li>
+        <li><a href="#2-mqttjs">2. MQTT.js</a></li>
+        <li><a href="#3-mqttjs-浏览器端">3. MQTT.js 浏览器端</a></li>
+        <li><a href="#4-go-语言">4. Go 语言</a></li>
+      </ul>
+    </li>
+    <li><a href="#主流-mqtt-broker">主流 MQTT Broker</a>
+      <ul>
+        <li><a href="#1-mosquitto">1. Mosquitto</a></li>
+        <li><a href="#2-emqx">2. EMQX</a></li>
+        <li><a href="#3-apache-activemq">3. Apache ActiveMQ</a></li>
+        <li><a href="#4-hivemq">4. HiveMQ</a></li>
+      </ul>
+    </li>
+    <li><a href="#典型使用场景">典型使用场景</a>
+      <ul>
+        <li><a href="#1-智能家居">1. 智能家居</a></li>
+        <li><a href="#2-工业物联网iiot">2. 工业物联网（IIoT）</a></li>
+        <li><a href="#3-车联网v2x">3. 车联网（V2X）</a></li>
+        <li><a href="#4-智慧农业">4. 智慧农业</a></li>
+        <li><a href="#5-医疗健康">5. 医疗健康</a></li>
+        <li><a href="#6-物流追踪">6. 物流追踪</a></li>
+        <li><a href="#7-电力系统">7. 电力系统</a></li>
+        <li><a href="#8-机器人控制">8. 机器人控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#mqtt-与其他协议对比">MQTT 与其他协议对比</a></li>
+    <li><a href="#安全性最佳实践">安全性最佳实践</a>
+      <ul>
+        <li><a href="#1-认证和授权">1. 认证和授权</a></li>
+        <li><a href="#2-访问控制">2. 访问控制</a></li>
+        <li><a href="#3-主题命名规范">3. 主题命名规范</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="mqtt-使用场景详解">MQTT 使用场景详解</h1>
+<h2 id="什么是-mqtt">什么是 MQTT</h2>
+<p>MQTT（Message Queuing Telemetry Transport）是一种轻量级、基于发布/订阅模式的消息传输协议，由 IBM 的 Andy Stanford-Clark 和 Arcom 的 Arlen Nipper 于 1999 年设计。该协议专为低带宽、高延迟或不可靠的网络环境优化，特别适合物联网（IoT）设备通信。</p>
+<p>MQTT 以其简洁的设计和极低的开销著称，最小报文只有 2 字节，广泛应用于智能家居、工业物联网、车联网等领域。</p>
+<h2 id="mqtt-核心特性">MQTT 核心特性</h2>
+<h3 id="1-发布订阅模式">1. 发布/订阅模式</h3>
+<p>与传统的请求/响应模式不同，MQTT 采用发布/订阅模式：</p>
+<ul>
+<li><strong>发布者（Publisher）</strong>：将消息发送到主题（Topic）</li>
+<li><strong>订阅者（Subscriber）</strong>：订阅感兴趣的主题</li>
+<li><strong>Broker（代理）</strong>：负责接收消息并转发给订阅者</li>
+</ul>
+<p>这种松耦合的架构使得发布者和订阅者可以独立运行，无需直接连接。</p>
+<h3 id="2-qos服务质量">2. QoS（服务质量）</h3>
+<p>MQTT 提供三种服务质量级别：</p>
+<ul>
+<li>
+<p><strong>QoS 0</strong>：最多分发一次（At most once）</p>
+<ul>
+<li>发送一次，不确认</li>
+<li>适用于对可靠性要求不高的场景</li>
+</ul>
+</li>
+<li>
+<p><strong>QoS 1</strong>：至少分发一次（At least once）</p>
+<ul>
+<li>确认后重发，确保到达</li>
+<li>适用于需要确保到达的场景</li>
+</ul>
+</li>
+<li>
+<p><strong>QoS 2</strong>：仅分发一次（Exactly once）</p>
+<ul>
+<li>四次握手，确保唯一</li>
+<li>适用于关键任务场景</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-主题topic">3. 主题（Topic）</h3>
+<p>主题是 MQTT 的核心概念，采用分层结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">home/livingroom/temperature
+</span></span><span class="line"><span class="cl">home/bedroom/humidity
+</span></span><span class="line"><span class="cl">industrial/factory1/sensor/pressure
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持通配符：</p>
+<ul>
+<li><code>#</code>：匹配多层路径</li>
+<li><code>+</code>：匹配单层路径</li>
+</ul>
+<h3 id="4-遗嘱消息last-will">4. 遗嘱消息（Last Will）</h3>
+<p>当客户端异常断开时，Broker 可以发送预设的遗嘱消息，用于通知其他客户端设备离线。</p>
+<h3 id="5-保留消息retained-message">5. 保留消息（Retained Message）</h3>
+<p>Broker 会保留最后一个主题消息，新订阅者可以立即获取最新数据。</p>
+<h3 id="6-持久会话persistent-session">6. 持久会话（Persistent Session）</h3>
+<p>客户端可以恢复之前的订阅和未接收的消息。</p>
+<h2 id="mqtt-常用客户端库">MQTT 常用客户端库</h2>
+<h3 id="1-eclipse-paho">1. Eclipse Paho</h3>
+<p>支持多种语言，是最流行的 MQTT 客户端库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Python</span>
+</span></span><span class="line"><span class="cl"><span class="n">pip</span> <span class="n">install</span> <span class="n">paho</span><span class="o">-</span><span class="n">mqtt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">paho.mqtt.client</span> <span class="k">as</span> <span class="nn">mqtt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Connected with result code </span><span class="si">{</span><span class="n">rc</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&#34;home/temperature&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">on_connect</span> <span class="o">=</span> <span class="n">on_connect</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&#34;broker.emqx.io&#34;</span><span class="p">,</span> <span class="mi">1883</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">loop_forever</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-mqttjs">2. MQTT.js</h3>
+<p>JavaScript/Node.js 首选库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">mqtt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mqtt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;mqtt://broker.emqx.io:1883&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connected&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;home/temperature&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">topic</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">topic</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-mqttjs-浏览器端">3. MQTT.js 浏览器端</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/mqtt/dist/mqtt.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">&#39;wss://broker.emqx.io:8084/mqtt&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;home/temperature&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">topic</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">topic</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-go-语言">4. Go 语言</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mqtt</span> <span class="s">&#34;github.com/eclipse/paho.mqtt.golang&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">opts</span> <span class="o">:=</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nf">NewClientOptions</span><span class="p">().</span><span class="nf">AddBroker</span><span class="p">(</span><span class="s">&#34;tcp://broker.emqx.io:1883&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">client</span> <span class="o">:=</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nf">NewClient</span><span class="p">(</span><span class="nx">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">token</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Connect</span><span class="p">();</span> <span class="nx">token</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">token</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">panic</span><span class="p">(</span><span class="nx">token</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nx">client</span><span class="p">.</span><span class="nf">Subscribe</span><span class="p">(</span><span class="s">&#34;home/temperature&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">client</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="nx">msg</span> <span class="nx">mqtt</span><span class="p">.</span><span class="nx">Message</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%s: %s\n&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">.</span><span class="nf">Topic</span><span class="p">(),</span> <span class="nb">string</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nf">Payload</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">select</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="主流-mqtt-broker">主流 MQTT Broker</h2>
+<h3 id="1-mosquitto">1. Mosquitto</h3>
+<p>最流行的开源 MQTT Broker，资源占用低：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">sudo apt install mosquitto mosquitto-clients
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start mosquitto
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 订阅主题</span>
+</span></span><span class="line"><span class="cl">mosquitto_sub -t <span class="s2">&#34;home/temperature&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发布消息</span>
+</span></span><span class="line"><span class="cl">mosquitto_pub -t <span class="s2">&#34;home/temperature&#34;</span> -m <span class="s2">&#34;25.5&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置文件 <code>/etc/mosquitto/mosquitto.conf</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># 监听端口</span>
+</span></span><span class="line"><span class="cl"><span class="n">listener</span> <span class="mi">1883</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许匿名访问</span>
+</span></span><span class="line"><span class="cl"><span class="n">allow_anonymous</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用websockets</span>
+</span></span><span class="line"><span class="cl"><span class="n">listener</span> <span class="mi">9001</span>
+</span></span><span class="line"><span class="cl"><span class="n">protocol</span> <span class="n">websockets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 持久化存储</span>
+</span></span><span class="line"><span class="cl"><span class="n">persistence</span> <span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">persistence_location</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mosquitto</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 日志</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_dest</span> <span class="n">file</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">mosquitto</span><span class="o">/</span><span class="n">mosquitto</span><span class="o">.</span><span class="n">log</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_type</span> <span class="n">error</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_type</span> <span class="n">warning</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_type</span> <span class="n">notice</span>
+</span></span><span class="line"><span class="cl"><span class="n">log_type</span> <span class="n">information</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-emqx">2. EMQX</h3>
+<p>功能强大的企业级 MQTT Broker：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Docker 部署</span>
+</span></span><span class="line"><span class="cl">docker run -d --name emqx <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 1883:1883 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 8083:8083 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 8084:8084 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -p 18083:18083 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  emqx/emqx:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>支持集群</li>
+<li>规则引擎</li>
+<li>数据持久化</li>
+<li>WebSocket 支持</li>
+</ul>
+<h3 id="3-apache-activemq">3. Apache ActiveMQ</h3>
+<p>企业级消息中间件，支持 MQTT：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- activemq.xml --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;broker&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;transportConnectors&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;transportConnector</span> <span class="na">name=</span><span class="s">&#34;mqtt&#34;</span> <span class="na">uri=</span><span class="s">&#34;mqtt://0.0.0.0:1883&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/transportConnectors&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/broker&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-hivemq">4. HiveMQ</h3>
+<p>企业级 MQTT 平台：</p>
+<ul>
+<li>高性能</li>
+<li>集群支持</li>
+<li>扩展性强</li>
+<li>商业支持</li>
+</ul>
+<h2 id="典型使用场景">典型使用场景</h2>
+<h3 id="1-智能家居">1. 智能家居</h3>
+<p>MQTT 是智能家居领域最常用的协议：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[温度传感器] --(MQTT)--&gt; [Broker] --(MQTT)--&gt; [手机APP]
+</span></span><span class="line"><span class="cl">                       |
+</span></span><span class="line"><span class="cl">                       --(MQTT)--&gt; [智能音箱]
+</span></span><span class="line"><span class="cl">                       |
+</span></span><span class="line"><span class="cl">                       --(MQTT)--&gt; [云平台]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>典型主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设备状态上报</span>
+</span></span><span class="line"><span class="cl">home/<span class="o">{</span>room<span class="o">}</span>/sensor/<span class="o">{</span>device_id<span class="o">}</span>/state
+</span></span><span class="line"><span class="cl">home/livingroom/sensor/temp_001/state
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设备控制指令</span>
+</span></span><span class="line"><span class="cl">home/<span class="o">{</span>room<span class="o">}</span>/switch/<span class="o">{</span>device_id<span class="o">}</span>/set
+</span></span><span class="line"><span class="cl">home/bedroom/switch/light_001/set
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设备在线状态</span>
+</span></span><span class="line"><span class="cl">home/<span class="o">{</span>room<span class="o">}</span>/device/<span class="o">{</span>device_id<span class="o">}</span>/online
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>实际应用示例</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 温度传感器上报数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;home/livingroom/sensor/temp_001/state&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;{&#34;temperature&#34;: 25.5, &#34;humidity&#34;: 60}&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">retain</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 手机APP订阅温度数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">&#34;home/+/sensor/+/state&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-工业物联网iiot">2. 工业物联网（IIoT）</h3>
+<p>工厂设备监控和远程控制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[PLC] ---&gt; [工业网关] --(MQTT)--&gt; [MQTT Broker] ---&gt; [SCADA系统]
+</span></span><span class="line"><span class="cl">[传感器] --&gt; [工业网关] --(MQTT)--&gt; [MQTT Broker] ---&gt; [数据分析平台]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设备数据</span>
+</span></span><span class="line"><span class="cl">industrial/<span class="o">{</span>factory<span class="o">}</span>/<span class="o">{</span>line<span class="o">}</span>/sensor/<span class="o">{</span>device_id<span class="o">}</span>/data
+</span></span><span class="line"><span class="cl">industrial/factory1/line1/sensor/pump_001/data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设备告警</span>
+</span></span><span class="line"><span class="cl">industrial/<span class="o">{</span>factory<span class="o">}</span>/<span class="o">{</span>line<span class="o">}</span>/alarm/<span class="o">{</span>level<span class="o">}</span>
+</span></span><span class="line"><span class="cl">industrial/factory1/line1/alarm/critical
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设备控制</span>
+</span></span><span class="line"><span class="cl">industrial/<span class="o">{</span>factory<span class="o">}</span>/<span class="o">{</span>line<span class="o">}</span>/control/<span class="o">{</span>device_id<span class="o">}</span>/command
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>数据格式</strong>（JSON）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-04-09T10:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;device_id&#34;</span><span class="p">:</span> <span class="s2">&#34;pump_001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;pressure&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;unit&#34;</span><span class="p">:</span> <span class="s2">&#34;MPa&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;normal&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-车联网v2x">3. 车联网（V2X）</h3>
+<p>车辆与云平台通信：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[车载终端] --(MQTT)--&gt; [云平台] &lt;--数据分析
+</span></span><span class="line"><span class="cl">                              |
+</span></span><span class="line"><span class="cl">                              &lt;--[车主APP]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 车辆状态上报</span>
+</span></span><span class="line"><span class="cl">vehicle/<span class="o">{</span>vin<span class="o">}</span>/telemetry
+</span></span><span class="line"><span class="cl">vehicle/ABC123/telemetry
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 车辆位置</span>
+</span></span><span class="line"><span class="cl">vehicle/<span class="o">{</span>vin<span class="o">}</span>/location
+</span></span><span class="line"><span class="cl">vehicle/ABC123/location
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 远程控制</span>
+</span></span><span class="line"><span class="cl">vehicle/<span class="o">{</span>vin<span class="o">}</span>/command/lock
+</span></span><span class="line"><span class="cl">vehicle/<span class="o">{</span>vin<span class="o">}</span>/command/start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-智慧农业">4. 智慧农业</h3>
+<p>温室大棚环境监控：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[温湿度传感器] ---&gt; [网关] --(MQTT)--&gt; [云平台] ---&gt; [管理平台]
+</span></span><span class="line"><span class="cl">[光照传感器] ---&gt;
+</span></span><span class="line"><span class="cl">[土壤传感器] ---&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 温室数据</span>
+</span></span><span class="line"><span class="cl">agri/greenhouse/<span class="o">{</span>id<span class="o">}</span>/sensor/temperature
+</span></span><span class="line"><span class="cl">agri/greenhouse/<span class="o">{</span>id<span class="o">}</span>/sensor/humidity
+</span></span><span class="line"><span class="cl">agri/greenhouse/<span class="o">{</span>id<span class="o">}</span>/sensor/light
+</span></span><span class="line"><span class="cl">agri/greenhouse/<span class="o">{</span>id<span class="o">}</span>/sensor/soil
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 灌溉控制</span>
+</span></span><span class="line"><span class="cl">agri/greenhouse/<span class="o">{</span>id<span class="o">}</span>/irrigation/set
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-医疗健康">5. 医疗健康</h3>
+<p>可穿戴设备和医疗设备数据采集：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[心率监测器] --(BLE)--&gt; [手机] --(MQTT)--&gt; [健康平台]
+</span></span><span class="line"><span class="cl">[血压计] ------&gt; [手机] --(MQTT)--&gt; [健康平台]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生理数据</span>
+</span></span><span class="line"><span class="cl">health/<span class="o">{</span>user_id<span class="o">}</span>/heartrate
+</span></span><span class="line"><span class="cl">health/<span class="o">{</span>user_id<span class="o">}</span>/blood_pressure
+</span></span><span class="line"><span class="cl">health/<span class="o">{</span>user_id<span class="o">}</span>/steps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设备状态</span>
+</span></span><span class="line"><span class="cl">health/<span class="o">{</span>user_id<span class="o">}</span>/device/<span class="o">{</span>device_id<span class="o">}</span>/status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-物流追踪">6. 物流追踪</h3>
+<p>货物运输状态监控：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[GPS追踪器] --(4G)--&gt; [MQTT Broker] --&gt; [物流平台]
+</span></span><span class="line"><span class="cl">[温湿度计] -----&gt; [MQTT Broker] --&gt; [物流平台]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>主题设计</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 货物位置</span>
+</span></span><span class="line"><span class="cl">logistics/<span class="o">{</span>shipment_id<span class="o">}</span>/location
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 环境数据</span>
+</span></span><span class="line"><span class="cl">logistics/<span class="o">{</span>shipment_id<span class="o">}</span>/environment/temperature
+</span></span><span class="line"><span class="cl">logistics/<span class="o">{</span>shipment_id<span class="o">}</span>/environment/humidity
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 状态更新</span>
+</span></span><span class="line"><span class="cl">logistics/<span class="o">{</span>shipment_id<span class="o">}</span>/status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-电力系统">7. 电力系统</h3>
+<p>智能电网数据采集：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[智能电表] ---&gt; [集中器] --(MQTT)--&gt; [用电管理平台]
+</span></span><span class="line"><span class="cl">[变压器] -----&gt; [集中器] --(MQTT)--&gt; [用电管理平台]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8-机器人控制">8. 机器人控制</h3>
+<p>机器人状态监控和指令下发：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 机器人状态</span>
+</span></span><span class="line"><span class="cl">robot/<span class="o">{</span>robot_id<span class="o">}</span>/status
+</span></span><span class="line"><span class="cl">robot/<span class="o">{</span>robot_id<span class="o">}</span>/telemetry/position
+</span></span><span class="line"><span class="cl">robot/<span class="o">{</span>robot_id<span class="o">}</span>/telemetry/battery
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指令控制</span>
+</span></span><span class="line"><span class="cl">robot/<span class="o">{</span>robot_id<span class="o">}</span>/command/move
+</span></span><span class="line"><span class="cl">robot/<span class="o">{</span>robot_id<span class="o">}</span>/command/gripper
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mqtt-与其他协议对比">MQTT 与其他协议对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>MQTT</th>
+<th>CoAP</th>
+<th>AMQP</th>
+<th>HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模式</td>
+<td>发布/订阅</td>
+<td>请求/响应</td>
+<td>队列/发布-订阅</td>
+<td>请求/响应</td>
+</tr>
+<tr>
+<td>传输</td>
+<td>TCP/UDP</td>
+<td>UDP</td>
+<td>TCP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>报文大小</td>
+<td>最小2字节</td>
+<td>最小4字节</td>
+<td>较大</td>
+<td>较大</td>
+</tr>
+<tr>
+<td>QoS</td>
+<td>3级</td>
+<td>2级</td>
+<td>3级</td>
+<td>无</td>
+</tr>
+<tr>
+<td>功耗</td>
+<td>低</td>
+<td>极低</td>
+<td>中等</td>
+<td>高</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>IoT</td>
+<td>传感器</td>
+<td>企业消息</td>
+<td>Web API</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安全性最佳实践">安全性最佳实践</h2>
+<h3 id="1-认证和授权">1. 认证和授权</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 用户名密码认证</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">username_pw_set</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># TLS/SSL 加密</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">tls_set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ca_certs</span><span class="o">=</span><span class="s2">&#34;/path/to/ca.crt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">certfile</span><span class="o">=</span><span class="s2">&#34;/path/to/client.crt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keyfile</span><span class="o">=</span><span class="s2">&#34;/path/to/client.key&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="o">.</span><span class="n">tls_insecure_set</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-访问控制">2. 访问控制</h3>
+<p>使用 ACL 限制主题访问：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;acls&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;device001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;allow&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;home/device001/#&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;app001&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;allow&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;home/+/sensor/#&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-主题命名规范">3. 主题命名规范</h3>
+<ul>
+<li>使用有意义的分层结构</li>
+<li>避免特殊字符</li>
+<li>统一命名风格（小写）</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>MQTT 作为物联网通信的核心协议，以其轻量、可靠、易用的特点，成为连接设备与云端的桥梁。从智能家居到工业物联网，从车联网到医疗健康，MQTT 正在各行各业发挥重要作用。</p>
+<p>其优势总结：</p>
+<ul>
+<li>✅ 轻量级，低资源消耗</li>
+<li>✅ 发布/订阅，松耦合</li>
+<li>✅ QoS 机制，可靠传输</li>
+<li>✅ 主题过滤，灵活路由</li>
+<li>✅ 持续连接，实时通信</li>
+<li>✅ 广泛支持，生态成熟</li>
+</ul>
+<p>掌握 MQTT，将为你打开物联网世界的大门。</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-09&#32;11:43:57>更新于 2026-04-09&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/mqtt-usage-scenarios/" data-title="MQTT 使用场景详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mqtt/">MQTT</a>,&nbsp;<a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/">物联网</a>,&nbsp;<a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>,&nbsp;<a href="/tags/iot/">IoT</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ipsec-vpn-usage/" class="prev" rel="prev" title="IPsec VPN 详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>IPsec VPN 详解</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
