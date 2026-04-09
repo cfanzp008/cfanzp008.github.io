@@ -59,6 +59,7 @@
 - [公众号](/images/gzh.jpeg#pic_center "公众号")
   [加我微信](/images/wechat-zp.jpg#pic_center "微信")
   [CSDN](/images/csdn.jpg#pic_center "csdn")
+- [RSS 订阅](/index.xml)
 
 ## TODO
 - [TODO](/todo)
