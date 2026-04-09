@@ -4,7 +4,22 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/</link>
     <description>开源 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
+  <title>MemPalace - GitHub 最强 AI 记忆系统</title>
+  <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
+  <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mempalace-ai-memory-system/</guid>
+  <description><![CDATA[MemPalace - GitHub 最强 AI 记忆系统 简介 MemPalace 是一款开源的 AI 记忆系统，由《生化危机》女主角 Milla Jovovich 与程序员老友 Ben Sigman 及 Claude 共同打造。
+该项目在 LongMemEval 基准测试中拿下96.6% 的史上最高分，而且完全免费、本地可运行。
+GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800+
+为什么需要 AI 记忆系统 现在的 AI 对话存在一个核心问题：每次对话都是从头开始，AI 不记得你们之前聊过什么。
+传统方案要么把所有历史塞进上下文（成本太高），要么用向量数据库搜索（效果有限）。
+MemPalace 提出了全新的解决思路：记忆宫殿法。
+核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
+层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
+</item>
+<item>
   <title>Feeder - 开源 Android RSS 阅读器</title>
   <link>https://cfanzp008.github.io/feeder-android-rss-app/</link>
   <pubDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</pubDate>
@@ -101,19 +116,6 @@ Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需
 该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。
 核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
 核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
-</item>
-<item>
-  <title>DeerFlow 2.0：字节跳动的开源超级智能体框架</title>
-  <link>https://cfanzp008.github.io/deerflow-2-introduction/</link>
-  <pubDate>Fri, 03 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/deerflow-2-introduction/</guid>
-  <description><![CDATA[DeerFlow 2.0：字节跳动的开源超级智能体框架 什么是 DeerFlow DeerFlow（Deep Exploration and Efficient Research Flow）是字节跳动开源的超级智能体（SuperAgent）框架。它能够研究、编码和创造，通过沙箱、记忆、工具、技能和子智能体的协作，处理从几分钟到几小时不等的多层次任务。
-DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHub Trending 第一名，24 小时内获得 35,300+ 颗星，目前累计已超过 45,000 颗星。
-⚠️ 注意：DeerFlow 2.0 是完全重写的版本，与 1.0 版本没有共享代码。
-核心特性 1. 沙箱执行（Sandbox） DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：
-1 2 3 4 5 6 7 # Docker 沙箱配置示例 sandbox: use: src.community.aio_sandbox:AioSandboxProvider image: enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest port: 8080 auto_start: true container_prefix: deer-flow-sandbox 隔离执行环境 支持代码运行 网络请求转发 文件系统访问 2. 持久记忆（Memory） DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：
-1 2 3 4 5 6 7 8 9 10 11 12 13 class MemoryMiddleware: def before_model(self, state, runtime): # 注入记忆上下文 memory_content = format_memory_for_injection( memory_data, max_tokens=config.]]></description>
 </item>
 </channel>
 </rss>

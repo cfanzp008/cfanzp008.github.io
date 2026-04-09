@@ -4,7 +4,22 @@
     <link>https://cfanzp008.github.io/tags/python/</link>
     <description>python - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 13 Jun 2024 20:05:20 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
+  <title>MemPalace - GitHub 最强 AI 记忆系统</title>
+  <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
+  <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mempalace-ai-memory-system/</guid>
+  <description><![CDATA[MemPalace - GitHub 最强 AI 记忆系统 简介 MemPalace 是一款开源的 AI 记忆系统，由《生化危机》女主角 Milla Jovovich 与程序员老友 Ben Sigman 及 Claude 共同打造。
+该项目在 LongMemEval 基准测试中拿下96.6% 的史上最高分，而且完全免费、本地可运行。
+GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800+
+为什么需要 AI 记忆系统 现在的 AI 对话存在一个核心问题：每次对话都是从头开始，AI 不记得你们之前聊过什么。
+传统方案要么把所有历史塞进上下文（成本太高），要么用向量数据库搜索（效果有限）。
+MemPalace 提出了全新的解决思路：记忆宫殿法。
+核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
+层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
+</item>
+<item>
   <title>python使用pdb调试</title>
   <link>https://cfanzp008.github.io/python-pdb/</link>
   <pubDate>Thu, 13 Jun 2024 20:05:20 &#43;0800</pubDate>

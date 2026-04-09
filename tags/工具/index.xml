@@ -4,7 +4,22 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>MemPalace - GitHub 最强 AI 记忆系统</title>
+  <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
+  <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mempalace-ai-memory-system/</guid>
+  <description><![CDATA[MemPalace - GitHub 最强 AI 记忆系统 简介 MemPalace 是一款开源的 AI 记忆系统，由《生化危机》女主角 Milla Jovovich 与程序员老友 Ben Sigman 及 Claude 共同打造。
+该项目在 LongMemEval 基准测试中拿下96.6% 的史上最高分，而且完全免费、本地可运行。
+GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800+
+为什么需要 AI 记忆系统 现在的 AI 对话存在一个核心问题：每次对话都是从头开始，AI 不记得你们之前聊过什么。
+传统方案要么把所有历史塞进上下文（成本太高），要么用向量数据库搜索（效果有限）。
+MemPalace 提出了全新的解决思路：记忆宫殿法。
+核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
+层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
+</item>
+<item>
   <title>Feeder - 开源 Android RSS 阅读器</title>
   <link>https://cfanzp008.github.io/feeder-android-rss-app/</link>
   <pubDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</pubDate>
@@ -113,18 +128,6 @@ Everything Claude Code 是一个由 Anthropic hackathon 获奖者开发的综合
 什么是 Everything Claude Code Everything Claude Code（简称 ECC）是一个经过实战检验的 Claude Code 插件配置集合，包含：
 9 个专业 Agent：针对不同开发场景的专用代理 14 个命令：扩展 Claude Code 的功能 8+ 个技能（Skills）：扩展 Claude 的专业能力 Hooks：自动化工作流程 安全规则：保护开发环境 核心功能特性 1. 专业技能（Skills） ECC 提供了多个专业技能来增强 Claude Code：
 continuous-learning-v2：持续学习技能，记录对话上下文 strategic-compact：智能压缩技能，优化 token 使用 项目特定技能：针对不同项目类型的定制技能 2.]]></description>
-</item>
-<item>
-  <title>MiniMax 模型接入 OpenCode 教程</title>
-  <link>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</link>
-  <pubDate>Thu, 02 Apr 2026 10:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/minimax-model-opencode-tutorial/</guid>
-  <description><![CDATA[MiniMax 模型接入 OpenCode 教程 背景介绍 OpenCode 是一个强大的 AI 编程助手，支持多种大语言模型提供商。MiniMax 作为国内领先的 AI 平台，提供了性能优异的编程模型 M2 系列。本教程将详细介绍如何将 MiniMax 模型接入 OpenCode，实现本地 AI 辅助编程。
-什么是 MiniMax MiniMax 是专注于多语言编程能力的 AI 平台，提供以下优势：
-强大的代码理解能力：深度理解多种编程语言和框架 长上下文窗口：支持高达 204,800 tokens 的上下文 高速输出：M2.5-highspeed 模型可达 100 tps 输出速度 多模型选择：支持 M2.5、M2.1、M2 等多个版本 支持的模型列表：
-模型名称 上下文窗口 输出速度 MiniMax-M2.5 204,800 ~60 tps MiniMax-M2.5-highspeed 204,800 ~100 tps MiniMax-M2.1 204,800 ~60 tps MiniMax-M2.1-highspeed 204,800 ~100 tps 前置条件 在开始配置之前，请确保：
-已安装 OpenCode（如果没有安装，可参考官方文档） 已注册 MiniMax 平台账号并获取 API Key 具备基本的命令行操作能力 获取 MiniMax API Key 访问 MiniMax 开放平台 注册并登录账号 在个人中心或开发者设置中获取 API Key 确保账户有足够的 API 调用额度 配置步骤 方法一：环境变量配置 最简单的方式是通过环境变量配置 MiniMax：]]></description>
 </item>
 </channel>
 </rss>

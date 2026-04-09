@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,21 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>MemPalace - GitHub 最强 AI 记忆系统</title>
+  <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
+  <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mempalace-ai-memory-system/</guid>
+  <description><![CDATA[MemPalace - GitHub 最强 AI 记忆系统 简介 MemPalace 是一款开源的 AI 记忆系统，由《生化危机》女主角 Milla Jovovich 与程序员老友 Ben Sigman 及 Claude 共同打造。
+该项目在 LongMemEval 基准测试中拿下96.6% 的史上最高分，而且完全免费、本地可运行。
+GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800+
+为什么需要 AI 记忆系统 现在的 AI 对话存在一个核心问题：每次对话都是从头开始，AI 不记得你们之前聊过什么。
+传统方案要么把所有历史塞进上下文（成本太高），要么用向量数据库搜索（效果有限）。
+MemPalace 提出了全新的解决思路：记忆宫殿法。
+核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
+层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
 </item>
 <item>
   <title>Feeder - 开源 Android RSS 阅读器</title>
@@ -138,21 +153,6 @@ Superpowers 架构 技能类型 Superpowers 将技能分为两类：
 Rigid Skills（刚性技能）：严格遵循预设流程，如 TDD（测试驱动开发）、Debugging
 使用时必须完全按照规范执行 不允许随意调整流程 Flexible Skills（柔性技能）：可以灵活适应上下文，如 Patterns
 可以根据实际情况调整实现方式 需要理解技能背后的原理 技能层级 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 Superpowers ├── 基础技能（Built-in） │ ├── playwright │ ├── frontend-ui-ux │ ├── git-master │ ├── dev-browser │ ├── review-work │ └── ai-slop-remover │ ├── 用户技能（User-installed） │ ├── doc-coauthoring │ ├── blog-do-publish │ ├── pdf │ ├── docx │ ├── xlsx │ ├── pptx │ ├── mcp-builder │ └── article-writer │ └── 超级技能（Superpowers） ├── using-superpowers ├── brainstorming ├── test-driven-development ├── systematic-debugging ├── verification-before-completion ├── requesting-code-review ├── receiving-code-review ├── finishing-a-development-branch ├── writing-plans ├── executing-plans ├── subagent-driven-development ├── writing-skills ├── skill-creator ├── using-git-worktrees └── dispatching-parallel-agents 如何使用 Superpowers 1.]]></description>
-</item>
-<item>
-  <title>Windows 上的 Tmux 使用指南</title>
-  <link>https://cfanzp008.github.io/tmux-for-windows-usage/</link>
-  <pubDate>Wed, 08 Apr 2026 18:03:04 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/tmux-for-windows-usage/</guid>
-  <description><![CDATA[Windows 上的 Tmux 使用指南 什么是 tmux tmux（Terminal Multiplexer）是一个终端多路复用器，允许用户在一个终端中运行多个会话、窗口和面板。对于需要在服务器上同时管理多个任务的用户来说，tmux 是不可或缺的工具。
-虽然 tmux 本身是为 Unix/Linux 系统设计的，但通过一些方案，Windows 用户也可以享受 tmux 带来的便利。
-Windows 上的 tmux 方案 方案一：itmux（推荐） itmux 是一个轻量级、可移植的终端多路复用器，专为 Windows 设计，绑定了 Tmux、Mintty、OpenSSH 和最小的 Cygwin 环境。
-特点：
-便携版，无需安装 包含完整的 tmux 功能 与 Mintty 终端集成良好 支持 OpenSSH 下载：
-https://github.com/itefixnet/itmux 方案二：WSL（Windows Subsystem for Linux） 如果你使用 Windows 10/11，推荐使用 WSL，它提供完整的 Linux 环境，可以直接安装 tmux。
-安装 tmux：
-1 2 3 4 5 6 # Ubuntu/Debian sudo apt-get update sudo apt-get install tmux # CentOS/RHEL sudo yum install tmux 使用：]]></description>
 </item>
 </channel>
 </rss>
