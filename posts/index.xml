@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 11:43:57 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 14:01:33 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,29 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>Surfingkeys - 浏览器端的 Vim 键位扩展</title>
+  <link>https://cfanzp008.github.io/surfingkeys-vim-browser-extension/</link>
+  <pubDate>Thu, 09 Apr 2026 14:01:33 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/surfingkeys-vim-browser-extension/</guid>
+  <description><![CDATA[Surfingkeys - 浏览器端的 Vim 键位扩展 什么是 Surfingkeys Surfingkeys 是一个为浏览器设计的键位扩展，兼容 Chrome、Chromium、Firefox 和 Safari。它将 Vim 编辑器的操作方式带入浏览器，让用户可以完全脱离鼠标，仅用键盘就能高效浏览网页。
+目前该项目在 GitHub 上拥有 6.1k stars，可见其受欢迎程度。
+安装 Chrome/Chromium 从 Chrome Web Store 安装
+Firefox 从 Firefox Add-ons 安装
+核心功能 1. 键盘导航 按键 功能 j/k 向下/向上滚动 h/l 向左/向右滚动 d/u 向下/向上滚动半页 f 跟随链接（显示提示字母） F 在新标签页中打开链接 t 搜索书签/历史 / 在当前页面搜索 T 切换标签页 2. Vim 风格操作 Normal 模式: 默认模式，使用上述键位导航 Insert 模式: 在输入框中输入时自动启用 Visual 模式: 按 v 切换，可使用 Vim 光标移动选择文本 Vim-like marks: 支持书签标记 3.]]></description>
+</item>
+<item>
+  <title>NotebookLM 去水印工具 - 免费在线解决方案</title>
+  <link>https://cfanzp008.github.io/notebooklm-watermark-remover-tool/</link>
+  <pubDate>Thu, 09 Apr 2026 13:20:41 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/notebooklm-watermark-remover-tool/</guid>
+  <description><![CDATA[NotebookLM 去水印工具 什么是 NotebookLM NotebookLM 是 Google 推出的一款 AI 笔记和研究助理工具，它可以将文档、PDF、幻灯片等材料转化为交互式笔记，还能生成 Podcast 风格的音频摘要。然而，NotebookLM 导出的视频和幻灯片默认带有水印，这对于需要干净素材进行二次创作或专业演示的用户来说是个困扰。
+NotebooKLM Remover 是一个免费的在线工具，可以帮助用户移除这些水印，无需安装任何软件。
+工具概述 NotebookLM Remover 是一个基于浏览器的免费在线工具，主要功能包括：
+视频去水印 - 移除 NotebookLM 生成的视频水印和片尾 PDF 去水印 - 从导出的 PDF 幻灯片中移除 Logo PPTX 去水印 - 清理 PPTX 演示文稿中的水印 核心特性 像素级精确去除：预设 NotebookLM 720p/1080p 布局坐标，自动检测并裁剪 100% 隐私保护：所有处理通过 WebAssembly 在浏览器本地完成，文件不上传服务器 无损画质：采用 Smart CRF 18 编码，在去除水印的同时保持原始画质 完全免费：无需付费即可使用 使用方法 视频去水印 访问 NotebookLM Remover 视频去水印页面 将您的 .mp4 文件拖放到上传区域（最大支持 100MB） 工具会自动检测并处理视频 下载处理后的干净视频 PDF 幻灯片去水印 访问 PDF 去水印页面 上传您的 PDF 文件 自动移除右下角的水印 Logo 下载清理后的 PDF PPTX 去水印 访问 PPTX 去水印页面 上传 PPTX 演示文稿 工具自动处理 获取干净的演示文件 技术原理 该工具的核心技术特点：]]></description>
 </item>
 <item>
   <title>MQTT 使用场景详解</title>
@@ -128,28 +151,6 @@ https://github.com/itefixnet/itmux 方案二：WSL（Windows Subsystem for Linux
 CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
 主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
 官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.]]></description>
-</item>
-<item>
-  <title>InfluxDBStudio 使用笔记</title>
-  <link>https://cfanzp008.github.io/influxdb-studio-usage/</link>
-  <pubDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/influxdb-studio-usage/</guid>
-  <description><![CDATA[InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
-该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
-主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：]]></description>
-</item>
-<item>
-  <title>Dependencies：现代 Windows DLL 依赖查看器</title>
-  <link>https://cfanzp008.github.io/dependencies-tool/</link>
-  <pubDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/dependencies-tool/</guid>
-  <description><![CDATA[Dependencies：现代 Windows DLL 依赖查看器 什么是 Dependencies Dependencies 是对经典软件 Dependency Walker 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。
-该项目在 GitHub 上已获得 11,400+ 颗星，是 Windows 开发者必备的调试工具之一。
-为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
-找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
-可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
 </item>
 </channel>
 </rss>
