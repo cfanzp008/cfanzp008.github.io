@@ -701,6 +701,34 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/deerflow-2-introduction/">DeerFlow 2.0：字节跳动的开源超级智能体框架</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-03 10:00:00'>发布于 <time datetime="2026-04-03">2026-04-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">DeerFlow 2.0：字节跳动的开源超级智能体框架 什么是 DeerFlow DeerFlow（Deep Exploration and Efficient Research Flow）是字节跳动开源的超级智能体（SuperAgent）框架。它能够研究、编码和创造，通过沙箱、记忆、工具、技能和子智能体的协作，处理从几分钟到几小时不等的多层次任务。
+DeerFlow 2.0 于 2026 年 2 月 27 日发布，一经推出便迅速登上 GitHub Trending 第一名，24 小时内获得 35,300+ 颗星，目前累计已超过 45,000 颗星。
+⚠️ 注意：DeerFlow 2.0 是完全重写的版本，与 1.0 版本没有共享代码。
+核心特性 1. 沙箱执行（Sandbox） DeerFlow 在隔离的沙箱环境中执行代码，确保安全性和稳定性：
+1 2 3 4 5 6 7 # Docker 沙箱配置示例 sandbox: use: src.community.aio_sandbox:AioSandboxProvider image: enterprise-public-cn-beijing.cr.volces.com/vefaas-public/all-in-one-sandbox:latest port: 8080 auto_start: true container_prefix: deer-flow-sandbox 隔离执行环境 支持代码运行 网络请求转发 文件系统访问 2. 持久记忆（Memory） DeerFlow 具有强大的记忆功能，可以在对话之间保持上下文：
+1 2 3 4 5 6 7 8 9 10 11 12 13 class MemoryMiddleware: def before_model(self, state, runtime): # 注入记忆上下文 memory_content = format_memory_for_injection( memory_data, max_tokens=config.</div><div class="post-footer">
+    <a href="/deerflow-2-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/deerflow/">DeerFlow</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/">字节跳动</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/langgraph/">LangGraph</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/understanding-software-was-eaten-by-ai/">如何理解纳瓦尔说的 Software was eaten by AI？</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -846,31 +874,6 @@ continuous-learning-v2：持续学习技能，记录对话上下文 strategic-co
 会话管理：保持后台任务运行，即使 SSH 断开也不会中断 分屏功能：将终端分割成多个窗格，同时查看多个任务 会话共享：允许其他人加入到同一个终端会话中 标签式操作：通过快捷键快速切换不同窗口 什么是 OpenCode OpenCode 是一个开源的 AI 编程助手，支持：
 代码补全与生成 代码审查与重构 自然语言编程 多模型支持 Tmux 安装 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install tmux CentOS/RHEL 1 sudo yum install tmux macOS 1 2 # 使用 Homebrew brew install tmux 验证安装 1 tmux -V Tmux 基本使用 启动与退出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 启动新会话 tmux # 指定会话名称启动 tmux new -s mysession # 退出 tmux（会话保留） Ctrl+b 然后按 d # 列出所有会话 tmux ls # 重新接入会话 tmux attach -t mysession # 杀死会话 tmux kill-session -t mysession 快捷键前缀 Tmux 的所有快捷键都需要先按下 前缀键（默认是 Ctrl+b），然后再按功能键。</div><div class="post-footer">
     <a href="/tmux-opencode-tutorial/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tmux/">tmux</a>,&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E5%85%A5%E9%97%A8/">入门</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/carbonyl-brow6el-terminal-browser/">终端浏览器 Carbonyl 与 Brow6el 介绍</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-02 11:00:00'>发布于 <time datetime="2026-04-02">2026-04-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">终端浏览器 Carbonyl 与 Brow6el 介绍 背景 在终端环境中浏览网页通常意味着只能访问纯文本内容，放弃所有的图片、视频和交互式 Web 应用。但随着 Carbonyl 和 Brow6el 这两款终端浏览器的出现，开发者可以在终端中体验完整的 Web 内容，包括视频播放、WebGL 游戏等。
-Carbonyl 什么是 Carbonyl Carbonyl 是一个基于 Chromium 的终端浏览器，由 Fathy Boundjadj 开发。它可以在终端中运行完整的 Chromium 浏览器，支持几乎所有现代 Web API。
-主要特性 60 FPS 流畅渲染：高性能图形渲染 完整 Web API 支持：包括 WebGL、WebGPU、音频视频播放 无需图形界面：不依赖 X Server，可在纯终端环境运行 SSH 远程支持：可以通过 SSH 远程访问 Rust 实现：使用 Rust 编写，性能优异 安装方法 1 2 3 4 5 # 使用 cargo 安装 cargo install carbonyl # 或者下载预编译版本 # 访问 https://github.com/fathyb/carbonyl/releases 使用方法 1 2 3 4 5 # 基本用法 carbonyl https://www.</div><div class="post-footer">
-    <a href="/carbonyl-brow6el-terminal-browser/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/carbonyl/">carbonyl</a>,&nbsp;<a href="/tags/brow6el/">brow6el</a>,&nbsp;<a href="/tags/terminal/">terminal</a>,&nbsp;<a href="/tags/browser/">browser</a>,&nbsp;<a href="/tags/%E7%BB%88%E7%AB%AF/">终端</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
