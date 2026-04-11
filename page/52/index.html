@@ -701,6 +701,14 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/vim-plug-in/">Vim常用插件有哪些?</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      </span></span>&nbsp;<span class="post-publish" title='2022-08-26 10:25:44'>发布于 <time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> vim</a>&ensp;<a href="/categories/nvim/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> nvim</a></span></div><div class="content">Vim常用插件有哪些? Vim的插件真的很多，Vim好用主要原因是它基本的移动命令，几大模式,但是要提高开发效率，插件也是比不可少的。这里简单罗列一下我平时用得比较多的几款插件。
+molokai配色方案 1 Plug &#39;git://github.com/tomasr/molokai.git&#39; 树形插件:nerdtree 1 Plug &#39;preservim/nerdtree&#39; 函数标签栏:tagbar 1 Plug &#39;majutsushi/tagbar&#39; 对齐工具:tabular 1 Plug &#39;godlygeek/tabular&#39; 文件查找插件:ctrlp 1 Plug &#39;ctrlpvim/ctrlp.vim&#39; 文本查找插件:ag.vim 1 Plug &#39;git://github.com/rking/ag.vim.git&#39; markdown预览插件 1 Plug &#39;iamcco/markdown-preview.vim&#39; fzf 查找插件 1 Plug &#39;junegunn/fzf.vim&#39; LeaderF查找插件 1 Plug &#39;Yggdroot/LeaderF&#39;, { &#39;do&#39;: &#39;./install.sh&#39; } gitsigns https://github.com/lewis6991/gitsigns.nvim Trouble https://github.com/folke/trouble.nvim toggleterm.nvim https://github.com/akinsho/toggleterm.nvim telescope https://github.com/nvim-telescope/telescope.nvim 上面罗列的插件已经很多了，平时用上这些插件，对于日常的开发基本就已经够用了。有空详细介绍一下上面的各个插件的用法。
+更多vim用发可以浏览: https://cfanzp.com/categories/vim/</div><div class="post-footer">
+    <a href="/vim-plug-in/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/nvim/">nvim</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/skynet-res/">skynet学习资源汇总</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       </span></span>&nbsp;<span class="post-publish" title='2022-08-26 09:01:44'>发布于 <time datetime="2022-08-26">2022-08-26</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/skynet/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> skynet框架</a>&ensp;<a href="/categories/opensource/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开源</a></span></div><div class="content">skynet学习资源汇总 学习使用skynet已经有一段时间了，最初学习skynet是直接拿着skynet的源码已经官方例子，一点点地自己看，自己跑demo,慢慢才熟悉了skynet。这过程中就踩了不少坑，这里收集了一些skynet的学习资源，在此记录一下。
@@ -733,13 +741,6 @@ skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文�
 1 go env -w GOPROXY=https://goproxy.io,direct </div><div class="post-footer">
     <a href="/goproxy/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/lua-debug/">lua中如何实现打印行号和当前函数名？</a>
-  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      </span></span>&nbsp;<span class="post-publish" title='2022-08-23 11:28:13'>发布于 <time datetime="2022-08-23">2022-08-23</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> lua</a></span></div><div class="content">lua中如何实现打印行号和当前函数名？ lua中可以使用debug的get_info方法来获取当前的堆栈信息，进而可以打印出相关的环境信息，具体信息包括:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 table: 0x7f92b8f19e80 { isvararg = false , what = Lua , func = function: 0x7f92b7b8d600 , namewhat = , istailcall = true , lastlinedefined = 16 , source = @service/db/db_interactionemotion.lua , linedefined = 7 , currentline = 11 , ntransfer = 0 , short_src = service/db/db_interactionemotion.lua , ftransfer = 0 , nups = 3 , nparams = 0 , } lua中需要打印行号多半是日志需求，下面是一个demo:</div><div class="post-footer">
-    <a href="/lua-debug/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lua/">lua</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
             <a href="/">1</a>
@@ -770,7 +771,7 @@ skynet的github地址: https://github.com/cloudwu/skynet skynet官方帮助文�
           <span class="page-link" aria-hidden="true">&hellip;</span>
         </li><li class="page-item ">
           <span class="page-link">
-            <a href="/page/63/">63</a>
+            <a href="/page/64/">64</a>
           </span>
         </li></ul></div></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
