@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>ai - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Code 快速入门指南</title>
+  <link>https://cfanzp008.github.io/claude-code-quickstart/</link>
+  <pubDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-code-quickstart/</guid>
+  <description><![CDATA[Claude Code 快速入门指南 什么是 Claude Code Claude Code 是 Anthropic 推出的 AI 编程 CLI 工具。它可以直接在终端中运行，帮助开发者：
+自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
+方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.]]></description>
+</item>
+<item>
   <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
   <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
   <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>
@@ -117,19 +127,6 @@ n8n 的核心特点：
 部署方式选择 n8n 支持多种部署方式：
 部署方式 适用场景 难度 Docker Compose（SQLite） 个人使用、小团队 简单 Docker Compose（PostgreSQL） 生产环境、多用户 中等 Node.js (npm) 本地开发测试 简单 Kubernetes 大规模生产部署 复杂 Docker Compose 部署（推荐） 环境要求 服务器：Ubuntu 22.04+ 或其他 Linux 发行版 资源：建议 2GB+ 内存，20GB+ 存储 Docker 和 Docker Compose 已安装 简单版（SQLite） 创建项目目录和配置文件：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 mkdir -p ~/n8n &amp;&amp; cd ~/n8n cat &gt; docker-compose.]]></description>
-</item>
-<item>
-  <title>OpenSpec：让 AI 编程助手遵循规范而非猜测</title>
-  <link>https://cfanzp008.github.io/openspec-introduction/</link>
-  <pubDate>Tue, 07 Apr 2026 14:28:22 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/openspec-introduction/</guid>
-  <description><![CDATA[OpenSpec：让 AI 编程助手遵循规范而非猜测 背景简介 AI 编程助手最常见的问题不是它们不会写代码，而是它们写出的代码与你的预期不符。你说&quot;添加深色模式&quot;，它却重写了 CSS 变量、添加了切换按钮、还重构了布局——而你只是想改变颜色变量。下一次对话时，上下文丢失了，AI 又从零开始猜测你的意图。
-OpenSpec 解决了这个问题：在 AI 开始写代码之前先生成规范文档。双方先对齐&quot;要做什么&quot;和&quot;怎么做&quot;，然后再按照规范实现。
-截至目前，OpenSpec 在 GitHub 上已获得超过 36000 个 Star，成为 AI 驱动开发领域的标杆框架。
-核心架构 OpenSpec 将项目知识分为两个部分：
-1 2 3 4 5 6 7 8 9 openspec/ ├── specs/ ← 真实来源（当前行为） │ ├── auth/ │ │ └── spec.md │ └── payments/ │ └── spec.md └── changes/ ← 进行中的修改（每个变更一个文件夹） ├── add-dark-mode/ └── archive/ ← 已完成的变更归档 Specs 描述系统的当前行为，Changes 是提出的修改。分开管理，多个变更可以并行进行而不会冲突。
-思维导图：OpenSpec 整体架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 ┌─────────────────────────────────────────┐ │ OpenSpec 框架 │ │ 规范驱动开发 (Spec-Driven Dev) │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 真实来源 │ │ 变更管理 │ │ 工作流程 │ │ (Specs) │ │ (Changes) │ │ (Workflow) │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─系统当前行为 ├─proposal（提议） ├─propose ├─增量更新 ├─specs（增量规范） ├─apply └─版本历史 ├─design（设计） ├─archive └─tasks（任务清单） └─explore │ ├─ADDED（新增） ├─MODIFIED（修改） └─REMOVED（删除） ▼ ┌─────────────────────────────────┐ │ 四类产出物 │ ├─────────────────────────────────┤ │ • proposal.]]></description>
 </item>
 </channel>
 </rss>

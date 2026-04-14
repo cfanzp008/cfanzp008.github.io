@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>编程 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E7%BC%96%E7%A8%8B/</link>
+    <description>编程 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Code 快速入门指南</title>
+  <link>https://cfanzp008.github.io/claude-code-quickstart/</link>
+  <pubDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-code-quickstart/</guid>
+  <description><![CDATA[Claude Code 快速入门指南 什么是 Claude Code Claude Code 是 Anthropic 推出的 AI 编程 CLI 工具。它可以直接在终端中运行，帮助开发者：
+自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
+方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.]]></description>
+</item>
+</channel>
+</rss>

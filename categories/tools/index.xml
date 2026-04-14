@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Code 快速入门指南</title>
+  <link>https://cfanzp008.github.io/claude-code-quickstart/</link>
+  <pubDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-code-quickstart/</guid>
+  <description><![CDATA[Claude Code 快速入门指南 什么是 Claude Code Claude Code 是 Anthropic 推出的 AI 编程 CLI 工具。它可以直接在终端中运行，帮助开发者：
+自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
+方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.]]></description>
+</item>
+<item>
   <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
   <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
   <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>
@@ -110,16 +120,6 @@ https://github.com/itefixnet/itmux 方案二：WSL（Windows Subsystem for Linux
 CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
 主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
 官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.]]></description>
-</item>
-<item>
-  <title>InfluxDBStudio 使用笔记</title>
-  <link>https://cfanzp008.github.io/influxdb-studio-usage/</link>
-  <pubDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/influxdb-studio-usage/</guid>
-  <description><![CDATA[InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
-该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
-主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：]]></description>
 </item>
 </channel>
 </rss>

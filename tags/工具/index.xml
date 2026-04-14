@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Code 快速入门指南</title>
+  <link>https://cfanzp008.github.io/claude-code-quickstart/</link>
+  <pubDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-code-quickstart/</guid>
+  <description><![CDATA[Claude Code 快速入门指南 什么是 Claude Code Claude Code 是 Anthropic 推出的 AI 编程 CLI 工具。它可以直接在终端中运行，帮助开发者：
+自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
+方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.]]></description>
+</item>
+<item>
   <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
   <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
   <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>
@@ -111,20 +121,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
 1. 80+ 内置网站适配器 OpenCLI预置了覆盖多个领域的网站适配器，开箱即用：
 领域 支持平台 数据类型 社交媒体 Twitter/X, Reddit, LinkedIn, Instagram 帖子、评论、用户信息 内容平台 YouTube, TikTok, Medium, HackerNews 视频信息、文章、讨论 中文平台 Bilibili, 知乎, 小红书 视频、回答、笔记 学术研究 arXiv, Stack Overflow 论文、技术问答 金融数据 Yahoo Finance, Bloomberg 股票、金融数据 AI平台 HuggingFace, Grok 模型信息、AI对话 使用示例：
 1 2 3 4 5 6 7 8 # 获取HackerNews热门帖子 opencli hackernews top --limit 10 --format json # 搜索arXiv论文 opencli arxiv search &#34;large language model&#34; --limit 5 # 获取GitHub仓库信息 opencli github repo jackwener/opencli --format table 2.]]></description>
-</item>
-<item>
-  <title>飞书 lark-cli 命令行工具使用指南</title>
-  <link>https://cfanzp008.github.io/lark-cli-usage-guide/</link>
-  <pubDate>Sun, 05 Apr 2026 21:13:14 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/lark-cli-usage-guide/</guid>
-  <description><![CDATA[飞书 lark-cli 命令行工具使用指南 背景简介 在企业协作场景中，飞书（Lark/Feishu）作为新一代办公平台，已经深入到日程管理、文档协作、项目推进等各个环节。然而，如何高效地与飞书平台进行自动化交互，一直是开发者和AI Agent面临的核心挑战。
-2026年3月，飞书官方正式开源了 lark-cli 命令行工具，为开发者和AI Agent提供了统一的命令行接口。该工具支持200+命令，覆盖12个业务领域，包括即时通讯、日历、文档、云盘、多维表格、邮件、任务、会议、知识库、审批等，更重要的是提供了20个开箱即用的AI Agent技能，让AI能够直接操作飞书平台。
-截至目前，lark-cli 在 GitHub 上已获得超过6700个Star，成为企业协作自动化领域的标杆工具。
-安装与配置 环境要求 在开始安装之前，请确保你的开发环境满足以下要求：
-Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用源码编译时需要 安装方式 lark-cli 提供两种安装方式，推荐使用 npm 安装：
-1 2 3 4 5 6 7 # 方式一：使用 npm 安装（推荐） npm install -g @larksuite/cli # 方式二：从源码编译安装 git clone https://github.com/larksuite/cli.git cd cli make install 安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：
-1 npx skills add larksuite/cli -y -g 初始化配置 安装完成后，需要进行一次性配置：]]></description>
 </item>
 </channel>
 </rss>
