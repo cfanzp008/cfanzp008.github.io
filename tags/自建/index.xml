@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>自建 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E8%87%AA%E5%BB%BA/</link>
+    <description>自建 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E8%87%AA%E5%BB%BA/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Relay Service - 自建 Claude API 中转服务</title>
+  <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
+  <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-relay-service-introduction/</guid>
+  <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
+这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
+🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
+</item>
+</channel>
+</rss>

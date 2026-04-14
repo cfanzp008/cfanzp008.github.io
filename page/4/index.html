@@ -701,6 +701,33 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/dependencies-tool/">Dependencies：现代 Windows DLL 依赖查看器</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 17:48:46'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">Dependencies：现代 Windows DLL 依赖查看器 什么是 Dependencies Dependencies 是对经典软件 Dependency Walker 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。
+该项目在 GitHub 上已获得 11,400+ 颗星，是 Windows 开发者必备的调试工具之一。
+为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
+找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
+可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.</div><div class="post-footer">
+    <a href="/dependencies-tool/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/dll/">DLL</a>,&nbsp;<a href="/tags/%E4%BE%9D%E8%B5%96%E6%9F%A5%E7%9C%8B/">依赖查看</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/github/">github</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/google-workspace-cli-introduction/">Google Workspace CLI：统一管理 Google Workspace 的命令行工具</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -835,31 +862,6 @@ Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是
 与传统的 AI 助手不同，Hermes Agent 具备：
 内置学习循环：从经验中创建 Skills，持续自我改进 持久记忆：跨会话记住重要信息，建立用户模型 多平台运行：本地、SSH、Docker、云端皆可运行 完全开源：MIT 许可证，社区活跃 思维导图：Hermes Agent 核心架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Hermes Agent 核心架构 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 运行模式 │ │ 核心系统 │ │ 接入平台 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─CLI 终端 ├─Skills 系统 ├─Telegram ├─Gateway 网关 ├─Memory 记忆 ├─Discord ├─本地运行 ├─MCP 集成 ├─Slack ├─SSH 远程 ├─工具集 ├─WhatsApp └─Docker/云端 ├─计划任务 └─Email │ ▼ ┌─────────────────────────────────┐ │ 模型支持 │ ├─────────────────────────────────┤ │ • Nous Portal │ │ • OpenRouter (200+ 模型) │ │ • OpenAI / Anthropic │ │ • Kimi / MiniMax / GLM │ │ • 本地 Ollama │ └─────────────────────────────────┘ 安装与配置 快速安装 1 2 3 4 5 6 7 8 # 一键安装（Linux/macOS/WSL2） curl -fsSL https://raw.</div><div class="post-footer">
     <a href="/hermes-agent-usage-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hermes-agent/">Hermes Agent</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/nous-research/">Nous Research</a>,&nbsp;<a href="/tags/%E8%87%AA%E6%88%91%E8%BF%9B%E5%8C%96/">自我进化</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/linux-ip-route-command/">Linux ip route 命令深度详解：路由管理完全指南</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 12:04:57'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div><div class="content">Linux ip route 命令深度详解：路由管理完全指南 什么是 ip route ip route 是 Linux 系统中管理路由表的核心命令，属于 iproute2 包。它可以显示、添加、删除和修改系统路由表中的条目。
-与传统的 route 命令相比，ip route 功能更强大，语法更规范，是现代 Linux 系统的推荐用法。
-基本语法 1 ip route [选项] &lt;命令&gt; [参数] 思维导图：ip route 命令体系 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ ip route 命令体系 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 查看路由 │ │ 添加路由 │ │ 删除/修改路由 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─ip route show ├─ip route add ├─ip route delete ├─ip route list ├─ip route change ├─ip route replace ├─ip route get └─ip route prepend └─ip route flush │ └─ip r (简写) ▼ ┌─────────────────────────────────┐ │ 路由类型 │ ├─────────────────────────────────┤ │ • 默认路由 (default) │ │ • 主机路由 (/32) │ │ • 网络路由 (CIDR) │ │ • 黑洞路由 (blackhole) │ │ • 负载均衡 (multipath) │ │ • 策略路由 (table/rule) │ └─────────────────────────────────┘ 常用场景示例 1.</div><div class="post-footer">
-    <a href="/linux-ip-route-command/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ip-route/">ip route</a>,&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>,&nbsp;<a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

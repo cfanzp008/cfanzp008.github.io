@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/</link>
     <description>开源 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E6%BA%90/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Relay Service - 自建 Claude API 中转服务</title>
+  <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
+  <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-relay-service-introduction/</guid>
+  <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
+这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
+🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
+</item>
+<item>
   <title>MemPalace - GitHub 最强 AI 记忆系统</title>
   <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
   <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
@@ -105,17 +115,6 @@ Gemma 4 四大版本 Gemma 4 提供四个规模的模型，满足不同场景需
 核心特性 1. 开源免费 完全开源，可以免费使用 代码透明，无后门 社区活跃，持续更新 2. 自托管部署 可以部署自己的服务器 数据完全可控 无需依赖第三方服务 3. 跨平台支持 Windows macOS Linux Android iOS（通过 Web 客户端） 4. 高性能 使用 Rust 编写，性能优异 低延迟、高帧率 支持多种编码器 5. 企业级功能（Pro 版本） 用户级 ACL 设备分组管理 自定义品牌 90+ 配置选项 快速开始 方式一：直接使用（无需自托管） 如果你只是需要远程访问，可以直接下载客户端：
 访问 GitHub Releases 下载对应平台的安装包 安装并运行 客户端会自动连接到 RustDesk 的公共服务器，可以直接通过 ID 进行连接。
 方式二：自托管服务器 如果你需要更好的隐私和可控性，可以部署自己的服务器。]]></description>
-</item>
-<item>
-  <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
-  <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
-  <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/zeroclaw-introduction/</guid>
-  <description><![CDATA[ZeroClaw：超轻量级 AI 助手基础设施 什么是 ZeroClaw ZeroClaw 是一个用 Rust 编写的下一代 AI 助手框架，致力于提供&quot;零开销、零妥协&quot;的解决方案。它可以在仅 10 美元的硬件上运行，内存占用少于 5MB，比同类产品节省 99% 的资源。
-该项目由哈佛、MIT 和 Sundai.Club 社区的学生和成员构建，在 GitHub 上已获得 29,300+ 颗星。
-核心特性 🚀 极致性能 指标 ZeroClaw OpenClaw 启动时间 &lt; 10ms ~500ms 二进制大小 3.4MB ~150MB 内存占用 &lt; 5MB &gt; 1GB 安全保证 Rust 内存安全 运行时检查 📦 超轻量级 单一二进制文件，支持 ARM、x86 和 RISC-V 架构 无运行时依赖，部署简单 设计目标：10 美元的开发板也能运行 🔌 可插拔架构 基于 Rust trait 系统的灵活组件扩展：
-核心层：基于 trait 的架构、内存安全保证、异步运行时 AI 适配层：统一 API 抽象、22+ AI 提供商、灵活切换 渠道层：多平台支持、消息路由、事件处理 🌐 广泛的平台支持 AI 提供商：]]></description>
 </item>
 </channel>
 </rss>

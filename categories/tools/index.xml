@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 09 Apr 2026 17:52:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>Claude Relay Service - 自建 Claude API 中转服务</title>
+  <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
+  <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/claude-relay-service-introduction/</guid>
+  <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
+这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
+🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
+</item>
+<item>
   <title>Gemini Voyager - Google Gemini 全能增强插件</title>
   <link>https://cfanzp008.github.io/gemini-voyager-usage-guide/</link>
   <pubDate>Thu, 09 Apr 2026 17:52:00 &#43;0800</pubDate>
@@ -112,18 +122,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
 为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
 找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
 可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
-</item>
-<item>
-  <title>Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端</title>
-  <link>https://cfanzp008.github.io/another-redis-desktop-manager/</link>
-  <pubDate>Wed, 08 Apr 2026 16:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/another-redis-desktop-manager/</guid>
-  <description><![CDATA[Another Redis Desktop Manager：更快更好更稳定的 Redis 桌面客户端 引言 Redis 作为最流行的内存数据库之一，在现代应用开发中扮演着重要角色。然而，选择一款好用的 Redis 客户端管理工具却并不容易。常见的 Redis 桌面客户端要么功能单一，要么在处理大量数据时容易崩溃。今天给大家介绍一款由国人开发的开源 Redis 桌面管理工具——Another Redis Desktop Manager，它以「更快、更好、更稳定」为目标，在 GitHub 上已收获 34,000+ 颗星，广受开发者好评。
-什么是 Another Redis Desktop Manager Another Redis Desktop Manager 是一款现代化、轻量级的跨平台 Redis 桌面客户端，由国内开发者 qishibo 开发并维护。该项目最初于 2019 年开源，旨在为开发者提供一个更快、更好、更稳定的 Redis 可视化管理工具。
-与传统的 Redis 客户端相比，Another Redis Desktop Manager 具有以下显著优势：
-跨平台支持：完美兼容 Linux、Windows 和 macOS 系统 稳定可靠：经过大量实际项目验证，在处理大量数据时也不会轻易崩溃 功能丰富：支持集群、哨兵、SSL 认证等高级特性 完全免费：开源免费，无需付费即可使用全部功能 核心功能特性 1. 多连接管理 Another Redis Desktop Manager 支持同时管理多个 Redis 连接，你可以：
-轻松添加、编辑、删除 Redis 连接 支持 SSH 隧道连接 保存连接密码，下次自动填充 支持连接分组，便于项目管理 2.]]></description>
 </item>
 </channel>
 </rss>
