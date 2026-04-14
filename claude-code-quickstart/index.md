@@ -32,6 +32,12 @@ curl -fsSL https://claude.ai/install.sh | bash
 irm https://claude.ai/install.ps1 | iex
 ```
 
+### npm 安装（备选）
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
 ### 验证安装
 
 ```bash
