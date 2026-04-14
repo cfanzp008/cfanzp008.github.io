@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
+  <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
+  <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</guid>
+  <description><![CDATA[CC-Switch CLI - AI CLI 工具统一管理工具 简介 CC-Switch CLI 是一个跨平台的命令行工具，用于统一管理 Claude Code、Codex、Gemini CLI、OpenCode 和 OpenClaw 的配置。它让用户可以轻松地在不同 AI CLI 工具和提供商之间切换。
+GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
+支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.]]></description>
+</item>
+<item>
   <title>Claude Relay Service - 自建 Claude API 中转服务</title>
   <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
   <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
@@ -110,18 +120,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
   <description><![CDATA[InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
 该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
 主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：]]></description>
-</item>
-<item>
-  <title>Dependencies：现代 Windows DLL 依赖查看器</title>
-  <link>https://cfanzp008.github.io/dependencies-tool/</link>
-  <pubDate>Wed, 08 Apr 2026 17:48:46 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/dependencies-tool/</guid>
-  <description><![CDATA[Dependencies：现代 Windows DLL 依赖查看器 什么是 Dependencies Dependencies 是对经典软件 Dependency Walker 的现代化重写，由开发者 lucasg 用 C# 编写。Dependency Walker 曾是 Windows SDK 附带的工具，用于分析和查看 PE（可执行文件）的依赖关系，但其开发在 2006 年左右停止。Dependencies 在继承原版功能的基础上，添加了许多现代化改进。
-该项目在 GitHub 上已获得 11,400+ 颗星，是 Windows 开发者必备的调试工具之一。
-为什么需要 Dependencies 在 Windows 开发中，DLL 依赖问题是最常见也是最棘手的问题之一：
-找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
-可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.]]></description>
 </item>
 </channel>
 </rss>
