@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>ai - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</title>
+  <link>https://cfanzp008.github.io/openai-codex-cli-deep-analysis/</link>
+  <pubDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openai-codex-cli-deep-analysis/</guid>
+  <description><![CDATA[OpenAI Codex CLI 深度分析 - 终端 AI 编程助手 简介 Codex CLI 是 OpenAI 推出的轻量级命令行 AI 编程助手，可以在终端中直接帮助开发者完成代码生成、重构、调试等任务。
+GitHub: https://github.com/openai/codex Stars: 75,000+ | Forks: 10,000+
+系统要求 要求 详情 操作系统 macOS 12+、Ubuntu 20.04+/Debian 10+、Windows 11 (WSL2) 内存 最低 4GB（推荐 8GB） Git 可选（推荐 2.23+） 安装 npm 安装（推荐） 1 npm install -g @openai/codex Homebrew 安装 1 brew install --cask codex 验证安装 1 codex --version 认证配置 方式一：ChatGPT 账号登录 1 codex login 使用 ChatGPT Plus、Pro、Team、Edu 或 Enterprise 账号登录。]]></description>
+</item>
+<item>
   <title>AI Stupid Level - AI 模型实时基准测试平台</title>
   <link>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</link>
   <pubDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</pubDate>
@@ -116,16 +126,6 @@ Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是
 长期记忆：跨会话记住重要信息，自动保存学习到的知识 自我进化：从成功和失败中学习，逐渐适应用户的习惯和偏好 多平台运行：支持本地运行（保护隐私）、Ollama 部署、云端 API 调用 完全开源：社区活跃，持续迭代更新 核心功能详解 1. 持久记忆系统 Hermes Agent 拥有先进的持久记忆系统，通过 MEMORY.md 和 USER.md 文件保存用户偏好、项目信息和学习到的知识。这种有边界的、精心管理的记忆能够跨会话持久化，让 Agent 记住你的偏好、项目和环境设置。
 2. 上下文文件 Hermes Agent 能够自动发现和加载项目上下文文件，包括：
 .hermes.md AGENTS.md CLAUDE.md SOUL.md .cursorrules 这些文件会塑造 Agent 在项目中的行为方式，让它更好地理解你的项目规范和需求。]]></description>
-</item>
-<item>
-  <title>Hermes Agent 深度用法指南：自我进化的 AI 智能体完全手册</title>
-  <link>https://cfanzp008.github.io/hermes-agent-usage-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 13:19:33 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/hermes-agent-usage-guide/</guid>
-  <description><![CDATA[Hermes Agent 深度用法指南：自我进化的 AI 智能体完全手册 背景简介 Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，被称为&quot;会成长的智能体&quot;（The agent that grows with you）。截至目前，其 GitHub 仓库已获得超过 33000 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-与传统的 AI 助手不同，Hermes Agent 具备：
-内置学习循环：从经验中创建 Skills，持续自我改进 持久记忆：跨会话记住重要信息，建立用户模型 多平台运行：本地、SSH、Docker、云端皆可运行 完全开源：MIT 许可证，社区活跃 思维导图：Hermes Agent 核心架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Hermes Agent 核心架构 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 运行模式 │ │ 核心系统 │ │ 接入平台 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─CLI 终端 ├─Skills 系统 ├─Telegram ├─Gateway 网关 ├─Memory 记忆 ├─Discord ├─本地运行 ├─MCP 集成 ├─Slack ├─SSH 远程 ├─工具集 ├─WhatsApp └─Docker/云端 ├─计划任务 └─Email │ ▼ ┌─────────────────────────────────┐ │ 模型支持 │ ├─────────────────────────────────┤ │ • Nous Portal │ │ • OpenRouter (200+ 模型) │ │ • OpenAI / Anthropic │ │ • Kimi / MiniMax / GLM │ │ • 本地 Ollama │ └─────────────────────────────────┘ 安装与配置 快速安装 1 2 3 4 5 6 7 8 # 一键安装（Linux/macOS/WSL2） curl -fsSL https://raw.]]></description>
 </item>
 </channel>
 </rss>

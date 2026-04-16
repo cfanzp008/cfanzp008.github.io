@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,16 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</title>
+  <link>https://cfanzp008.github.io/openai-codex-cli-deep-analysis/</link>
+  <pubDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/openai-codex-cli-deep-analysis/</guid>
+  <description><![CDATA[OpenAI Codex CLI 深度分析 - 终端 AI 编程助手 简介 Codex CLI 是 OpenAI 推出的轻量级命令行 AI 编程助手，可以在终端中直接帮助开发者完成代码生成、重构、调试等任务。
+GitHub: https://github.com/openai/codex Stars: 75,000+ | Forks: 10,000+
+系统要求 要求 详情 操作系统 macOS 12+、Ubuntu 20.04+/Debian 10+、Windows 11 (WSL2) 内存 最低 4GB（推荐 8GB） Git 可选（推荐 2.23+） 安装 npm 安装（推荐） 1 npm install -g @openai/codex Homebrew 安装 1 brew install --cask codex 验证安装 1 codex --version 认证配置 方式一：ChatGPT 账号登录 1 codex login 使用 ChatGPT Plus、Pro、Team、Edu 或 Enterprise 账号登录。]]></description>
 </item>
 <item>
   <title>AI Stupid Level - AI 模型实时基准测试平台</title>
@@ -167,19 +177,6 @@ GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800
 MemPalace 提出了全新的解决思路：记忆宫殿法。
 核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
 层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
-</item>
-<item>
-  <title>Feeder - 开源 Android RSS 阅读器</title>
-  <link>https://cfanzp008.github.io/feeder-android-rss-app/</link>
-  <pubDate>Thu, 09 Apr 2026 15:42:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/feeder-android-rss-app/</guid>
-  <description><![CDATA[Feeder - 开源 Android RSS 阅读器 简介 Feeder 是一款开源的 Android RSS 阅读器应用，从 2014 年开始开发，至今仍在活跃维护。它支持 RSS、Atom 和 JSONFeed 三种主流格式，让你能够在一个应用中阅读来自所有 favorite 网站的最新资讯。
-核心特点：完全本地运行，无需注册账户，数据 100% 隐私保护。
-主要特性 离线阅读 - 文章缓存本地，随时离线阅读 通知支持 - 新文章推送通知 OPML 导入/导出 - 方便迁移订阅列表 Material Design - 现代 Material Design 设计风格 多语言支持 - 支持 Weblate 翻译 免费开源 - GPLv3 协议 安装方式 F-Droid（推荐） 在 F-Droid 应用商店搜索 &ldquo;Feeder&rdquo; 或访问： F-Droid
-Google Play Google Play
-GitHub Releases 直接下载 APK： GitHub Releases
-自行编译 如果你想自行编译体验最新功能：]]></description>
 </item>
 </channel>
 </rss>
