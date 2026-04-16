@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,18 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>AI Stupid Level - AI 模型实时基准测试平台</title>
+  <link>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</link>
+  <pubDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</guid>
+  <description><![CDATA[AI Stupid Level - AI 模型实时基准测试平台 简介 AI Stupid Level 是一个实时 AI 模型基准测试和排名平台。它追踪 50+ 主流 AI 模型，通过 7 维度评分体系对模型进行客观评测对比。
+网站：https://aistupidlevel.info/
+核心功能 7 维度评分体系 平台采用 7 个维度评估 AI 模型：
+维度 说明 正确性 答案准确程度 规范遵循 符合指令要求 代码质量 代码规范和可维护性 效率 响应速度和资源消耗 稳定性 输出一致性 拒绝率 不当请求处理 特色功能 特殊能力支持 追踪模型 平台追踪 50+ 主流 AI 模型，包括：
+OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 2.5 系列 xAI Grok 4 以及其他主流模型 实时更新 速度测试：每 4 小时更新 深度推理测试：每日更新 95% 置信区间统计 Smart Router API 功能特点 智能路由 API 可以自动选择最佳模型：]]></description>
 </item>
 <item>
   <title>Claude Code 快速入门指南</title>
@@ -168,18 +180,6 @@ MemPalace 提出了全新的解决思路：记忆宫殿法。
 Google Play Google Play
 GitHub Releases 直接下载 APK： GitHub Releases
 自行编译 如果你想自行编译体验最新功能：]]></description>
-</item>
-<item>
-  <title>Surfingkeys - 浏览器端的 Vim 键位扩展</title>
-  <link>https://cfanzp008.github.io/surfingkeys-vim-browser-extension/</link>
-  <pubDate>Thu, 09 Apr 2026 14:01:33 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/surfingkeys-vim-browser-extension/</guid>
-  <description><![CDATA[Surfingkeys - 浏览器端的 Vim 键位扩展 什么是 Surfingkeys Surfingkeys 是一个为浏览器设计的键位扩展，兼容 Chrome、Chromium、Firefox 和 Safari。它将 Vim 编辑器的操作方式带入浏览器，让用户可以完全脱离鼠标，仅用键盘就能高效浏览网页。
-目前该项目在 GitHub 上拥有 6.1k stars，可见其受欢迎程度。
-安装 Chrome/Chromium 从 Chrome Web Store 安装
-Firefox 从 Firefox Add-ons 安装
-核心功能 1. 键盘导航 按键 功能 j/k 向下/向上滚动 h/l 向左/向右滚动 d/u 向下/向上滚动半页 f 跟随链接（显示提示字母） F 在新标签页中打开链接 t 搜索书签/历史 / 在当前页面搜索 T 切换标签页 2. Vim 风格操作 Normal 模式: 默认模式，使用上述键位导航 Insert 模式: 在输入框中输入时自动启用 Visual 模式: 按 v 切换，可使用 Vim 光标移动选择文本 Vim-like marks: 支持书签标记 3.]]></description>
 </item>
 </channel>
 </rss>

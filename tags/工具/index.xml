@@ -4,7 +4,19 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>AI Stupid Level - AI 模型实时基准测试平台</title>
+  <link>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</link>
+  <pubDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</guid>
+  <description><![CDATA[AI Stupid Level - AI 模型实时基准测试平台 简介 AI Stupid Level 是一个实时 AI 模型基准测试和排名平台。它追踪 50+ 主流 AI 模型，通过 7 维度评分体系对模型进行客观评测对比。
+网站：https://aistupidlevel.info/
+核心功能 7 维度评分体系 平台采用 7 个维度评估 AI 模型：
+维度 说明 正确性 答案准确程度 规范遵循 符合指令要求 代码质量 代码规范和可维护性 效率 响应速度和资源消耗 稳定性 输出一致性 拒绝率 不当请求处理 特色功能 特殊能力支持 追踪模型 平台追踪 50+ 主流 AI 模型，包括：
+OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 2.5 系列 xAI Grok 4 以及其他主流模型 实时更新 速度测试：每 4 小时更新 深度推理测试：每日更新 95% 置信区间统计 Smart Router API 功能特点 智能路由 API 可以自动选择最佳模型：]]></description>
+</item>
+<item>
   <title>Claude Code 快速入门指南</title>
   <link>https://cfanzp008.github.io/claude-code-quickstart/</link>
   <pubDate>Tue, 14 Apr 2026 18:18:00 &#43;0800</pubDate>
@@ -108,19 +120,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
   <description><![CDATA[Hermes Agent 深度用法指南：自我进化的 AI 智能体完全手册 背景简介 Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，被称为&quot;会成长的智能体&quot;（The agent that grows with you）。截至目前，其 GitHub 仓库已获得超过 33000 颗星，是当前最受欢迎的自进化 AI 智能体之一。
 与传统的 AI 助手不同，Hermes Agent 具备：
 内置学习循环：从经验中创建 Skills，持续自我改进 持久记忆：跨会话记住重要信息，建立用户模型 多平台运行：本地、SSH、Docker、云端皆可运行 完全开源：MIT 许可证，社区活跃 思维导图：Hermes Agent 核心架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Hermes Agent 核心架构 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 运行模式 │ │ 核心系统 │ │ 接入平台 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─CLI 终端 ├─Skills 系统 ├─Telegram ├─Gateway 网关 ├─Memory 记忆 ├─Discord ├─本地运行 ├─MCP 集成 ├─Slack ├─SSH 远程 ├─工具集 ├─WhatsApp └─Docker/云端 ├─计划任务 └─Email │ ▼ ┌─────────────────────────────────┐ │ 模型支持 │ ├─────────────────────────────────┤ │ • Nous Portal │ │ • OpenRouter (200+ 模型) │ │ • OpenAI / Anthropic │ │ • Kimi / MiniMax / GLM │ │ • 本地 Ollama │ └─────────────────────────────────┘ 安装与配置 快速安装 1 2 3 4 5 6 7 8 # 一键安装（Linux/macOS/WSL2） curl -fsSL https://raw.]]></description>
-</item>
-<item>
-  <title>OpenCLI：将任意网站变成命令行工具的利器</title>
-  <link>https://cfanzp008.github.io/opencli-introduction/</link>
-  <pubDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/opencli-introduction/</guid>
-  <description><![CDATA[OpenCLI：将任意网站变成命令行工具的利器 背景简介 在AI Agent开发中，如何让AI能够自动获取网页数据和控制桌面应用，一直是开发者面临的核心挑战。传统解决方案如Puppeteer、Selenium需要编写大量脚本代码，且面对反爬取措施时往往显得脆弱。
-2026年，一个名为 OpenCLI 的开源项目应运而生，由Apache Arrow/DataFusion PMC成员jackwener开发。该项目能够将80+网站和Electron桌面应用转换为标准化的命令行接口，让AI Agent以零Token消耗的方式获取结构化数据。截至目前，OpenCLI在GitHub上已获得超过13000个Star，成为浏览器自动化领域的标杆工具。
-核心特性 OpenCLI的核心设计理念是：让任意网站和工具成为你的CLI。
-1. 80+ 内置网站适配器 OpenCLI预置了覆盖多个领域的网站适配器，开箱即用：
-领域 支持平台 数据类型 社交媒体 Twitter/X, Reddit, LinkedIn, Instagram 帖子、评论、用户信息 内容平台 YouTube, TikTok, Medium, HackerNews 视频信息、文章、讨论 中文平台 Bilibili, 知乎, 小红书 视频、回答、笔记 学术研究 arXiv, Stack Overflow 论文、技术问答 金融数据 Yahoo Finance, Bloomberg 股票、金融数据 AI平台 HuggingFace, Grok 模型信息、AI对话 使用示例：
-1 2 3 4 5 6 7 8 # 获取HackerNews热门帖子 opencli hackernews top --limit 10 --format json # 搜索arXiv论文 opencli arxiv search &#34;large language model&#34; --limit 5 # 获取GitHub仓库信息 opencli github repo jackwener/opencli --format table 2.]]></description>
 </item>
 </channel>
 </rss>
