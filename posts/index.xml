@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,15 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</title>
+  <link>https://cfanzp008.github.io/ai-coding-cli-comparison/</link>
+  <pubDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ai-coding-cli-comparison/</guid>
+  <description><![CDATA[三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode 前言 AI 编程助手已经成为开发者日常工具链的重要组成部分。本文将对三款主流终端 AI 编程工具进行深度对比：
+Codex CLI - OpenAI 官方出品 Claude Code - Anthropic 官方出品 OpenCode - 开源社区之作 基础信息对比 特性 Codex CLI Claude Code OpenCode 开发公司 OpenAI Anthropic 开源社区 GitHub Stars 75,000+ - 120,000+ 语言 Rust - Go 开源 部分开源 否 完全开源 安装量 npm npm 多方式 安装与配置 Codex CLI 1 2 3 4 5 # npm 安装 npm install -g @openai/codex # Homebrew brew install --cask codex Claude Code 1 2 3 4 5 # 官方安装脚本 curl -fsSL https://claude.]]></description>
 </item>
 <item>
   <title>OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</title>
@@ -162,21 +171,6 @@ GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
   <description><![CDATA[Gemini Voyager - Google Gemini 全能增强插件 简介 Gemini Voyager 是为 Google Gemini 和 AI Studio 打造的全能增强插件，集成时间轴导航、文件夹管理、提示词库及聊天导出等众多功能。
 GitHub: https://github.com/Nagi-ovo/gemini-voyager Stars: 15,800+ | Forks: 474+
 支持浏览器 Chrome / Edge / Firefox / Safari / Opera / Brave 基于 Chromium 的浏览器（Arc, Vivaldi 等）均支持 核心功能 📂 文件夹管理 两层级文件夹 hierarchy 拖拽排序支持 支持 Account Isolation Mode 自定义文件夹颜色 💡 提示词库（Prompt Vault） 保存和复用提示词 支持 Gemini、AI Studio 和自定义网站 跨平台同步 ☁️ 云同步 文件夹和提示词同步到 Google Drive 多设备无无缝使用 📍 时间轴导航（Gemini 专享） 可视化节点跳转 星级标记重要消息 管理对话分支 💾 聊天导出 导出为 JSON、Markdown 或 PDF 包含图片 🧜‍♀️ Mermaid 渲染 自动渲染流程图 序列图和其他图表 🍌 NanoBanana 无损去除 Gemini 生成图片的水印 🔬 Deep Research 提取思考过程和研究链接 其他功能 Batch Delete: 批量删除对话 Quote Reply: 引用回复 Tab Title Sync: 浏览器标签同步 Prevent Auto Scroll: 阻止自动滚动 Input Collapse: 自动展开输入区域 Default Model: 设置默认模型 Hide Recent Items: 隐藏最近列表 安装 浏览器商店 Chrome Web Store Edge Add-ons Firefox Add-ons 手动安装 1 2 3 4 5 6 7 8 9 10 11 # 安装依赖（推荐 Bun） bun i # 开发模式 bun run dev:chrome # Chrome bun run dev:firefox # Firefox # 生产构建 bun run build:chrome bun run build:firefox bun run build:all 使用技巧 文件夹管理 点击侧边栏的文件夹图标 创建新文件夹 拖拽对话到文件夹中 右键设置文件夹颜色 提示词库 打开扩展 popup 进入 Prompt Vault 点击保存当前对话为提示词 在新对话中快速调用 时间轴导航 点击时间轴图标 可视化查看所有消息 点击节点跳转到对应位置 星级标记重要消息 视觉特效 在设置中可以开启季节性特效：]]></description>
-</item>
-<item>
-  <title>MemPalace - GitHub 最强 AI 记忆系统</title>
-  <link>https://cfanzp008.github.io/mempalace-ai-memory-system/</link>
-  <pubDate>Thu, 09 Apr 2026 17:05:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/mempalace-ai-memory-system/</guid>
-  <description><![CDATA[MemPalace - GitHub 最强 AI 记忆系统 简介 MemPalace 是一款开源的 AI 记忆系统，由《生化危机》女主角 Milla Jovovich 与程序员老友 Ben Sigman 及 Claude 共同打造。
-该项目在 LongMemEval 基准测试中拿下96.6% 的史上最高分，而且完全免费、本地可运行。
-GitHub: https://github.com/milla-jovovich/mempalace Stars: 30,000+ | Fork: 3,800+
-为什么需要 AI 记忆系统 现在的 AI 对话存在一个核心问题：每次对话都是从头开始，AI 不记得你们之前聊过什么。
-传统方案要么把所有历史塞进上下文（成本太高），要么用向量数据库搜索（效果有限）。
-MemPalace 提出了全新的解决思路：记忆宫殿法。
-核心设计：记忆宫殿 MemPalace 的名字来源于古希腊演说家常用的&quot;记忆宫殿法&quot;——通过在脑中构建虚拟空间来存储和检索信息。
-层级结构 1 2 3 4 5 6 7 Palace（宫殿） ├── Wings（翅膀）- 一个人或一个项目 │ └── Rooms（房间）- 具体主题（如认证、计费、部署） │ └── Drawers（抽屉）- 原始对话记录 │ └── Closets（衣柜）- 压缩摘要 │ └── Halls（走廊）- 记忆属性（建议、偏好、决策） └── Tunnels（隧道）- 打通不同 wing 的同一主题 检索效率 在 22000+ 真实对话中的测试结果：]]></description>
 </item>
 </channel>
 </rss>

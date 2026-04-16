@@ -4,7 +4,16 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>ai - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</title>
+  <link>https://cfanzp008.github.io/ai-coding-cli-comparison/</link>
+  <pubDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ai-coding-cli-comparison/</guid>
+  <description><![CDATA[三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode 前言 AI 编程助手已经成为开发者日常工具链的重要组成部分。本文将对三款主流终端 AI 编程工具进行深度对比：
+Codex CLI - OpenAI 官方出品 Claude Code - Anthropic 官方出品 OpenCode - 开源社区之作 基础信息对比 特性 Codex CLI Claude Code OpenCode 开发公司 OpenAI Anthropic 开源社区 GitHub Stars 75,000+ - 120,000+ 语言 Rust - Go 开源 部分开源 否 完全开源 安装量 npm npm 多方式 安装与配置 Codex CLI 1 2 3 4 5 # npm 安装 npm install -g @openai/codex # Homebrew brew install --cask codex Claude Code 1 2 3 4 5 # 官方安装脚本 curl -fsSL https://claude.]]></description>
+</item>
+<item>
   <title>OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</title>
   <link>https://cfanzp008.github.io/openai-codex-cli-deep-analysis/</link>
   <pubDate>Thu, 16 Apr 2026 22:42:00 &#43;0800</pubDate>
@@ -113,19 +122,6 @@ Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文
 2. AI 问答功能 基于导入的文档，你可以向 NotebookLM 提问：
 医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
 3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：]]></description>
-</item>
-<item>
-  <title>Hermes Agent：会自我进化的 AI 智能体</title>
-  <link>https://cfanzp008.github.io/hermes-agent-introduction/</link>
-  <pubDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/hermes-agent-introduction/</guid>
-  <description><![CDATA[Hermes Agent：会自我进化的 AI 智能体 引言 在人工智能快速发展的今天，AI 智能体（Agent）已经成为技术领域的热门话题。大多数 AI 智能体本质上只是「带有额外步骤的聊天机器人」——你与它们对话，它们忘记一切，下次重新开始。然而，Hermes Agent 采取了不同的方式，它致力于打造一个「与你共同成长的智能体」。
-Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是「The agent that grows with you」（与你共同成长的智能体）。该项目在 GitHub 上已获得 33,000+ 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-什么是 Hermes Agent Hermes Agent 是一个功能强大的开源 autonomous AI agent，采用 MIT 许可证发布。与传统聊天机器人不同，它具有以下核心特性：
-长期记忆：跨会话记住重要信息，自动保存学习到的知识 自我进化：从成功和失败中学习，逐渐适应用户的习惯和偏好 多平台运行：支持本地运行（保护隐私）、Ollama 部署、云端 API 调用 完全开源：社区活跃，持续迭代更新 核心功能详解 1. 持久记忆系统 Hermes Agent 拥有先进的持久记忆系统，通过 MEMORY.md 和 USER.md 文件保存用户偏好、项目信息和学习到的知识。这种有边界的、精心管理的记忆能够跨会话持久化，让 Agent 记住你的偏好、项目和环境设置。
-2. 上下文文件 Hermes Agent 能够自动发现和加载项目上下文文件，包括：
-.hermes.md AGENTS.md CLAUDE.md SOUL.md .cursorrules 这些文件会塑造 Agent 在项目中的行为方式，让它更好地理解你的项目规范和需求。]]></description>
 </item>
 </channel>
 </rss>

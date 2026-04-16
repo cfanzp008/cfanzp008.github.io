@@ -5,22 +5,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
-    <title>cli - 标签 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+    <title>三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode - cfanzp学习笔记</title><meta name="author" content="cfanzp">
 <meta name="author-link" content="">
-<meta name="description" content="cfanzp学习笔记" /><meta name="keywords" content='cfanzp, linux开发, 学习笔记' /><meta itemprop="name" content="cli">
-<meta itemprop="description" content="cfanzp学习笔记"><meta property="og:title" content="cli" />
-<meta property="og:description" content="cfanzp学习笔记" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cfanzp008.github.io/tags/cli/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" />
+<meta name="description" content="深度对比 OpenAI Codex CLI、Claude Code 和 OpenCode 三大 AI 编程 CLI 工具的功能特性、优劣势及适用场景" /><meta name="keywords" content='ai, 编程, cli, 对比' /><meta itemprop="name" content="三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode">
+<meta itemprop="description" content="深度对比 OpenAI Codex CLI、Claude Code 和 OpenCode 三大 AI 编程 CLI 工具的功能特性、优劣势及适用场景"><meta itemprop="datePublished" content="2026-04-16T23:37:00+08:00" />
+<meta itemprop="dateModified" content="2026-04-16T23:37:00+08:00" />
+<meta itemprop="wordCount" content="478"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="ai,编程,cli,对比," /><meta property="og:title" content="三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode" />
+<meta property="og:description" content="深度对比 OpenAI Codex CLI、Claude Code 和 OpenCode 三大 AI 编程 CLI 工具的功能特性、优劣势及适用场景" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/ai-coding-cli-comparison/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-16T23:37:00+08:00" />
+<meta property="article:modified_time" content="2026-04-16T23:37:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="cli"/>
-<meta name="twitter:description" content="cfanzp学习笔记"/>
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode"/>
+<meta name="twitter:description" content="深度对比 OpenAI Codex CLI、Claude Code 和 OpenCode 三大 AI 编程 CLI 工具的功能特性、优劣势及适用场景"/>
 <meta name="application-name" content="cfanzp学习笔记">
 <meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/tags/cli/" /><link rel="alternate" href="/tags/cli/index.xml" type="application/rss+xml" title="cfanzp学习笔记">
-  <link rel="feed" href="/tags/cli/index.xml" type="application/rss+xml" title="cfanzp学习笔记"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/ai-coding-cli-comparison/" /><link rel="prev" href="https://cfanzp008.github.io/openai-codex-cli-deep-analysis/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/ai-coding-cli-comparison\/"
+    },"genre": "posts","keywords": "ai, 编程, cli, 对比","wordcount":  478 ,
+    "url": "https:\/\/cfanzp008.github.io\/ai-coding-cli-comparison\/","datePublished": "2026-04-16T23:37:00+08:00","dateModified": "2026-04-16T23:37:00+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "深度对比 OpenAI Codex CLI、Claude Code 和 OpenCode 三大 AI 编程 CLI 工具的功能特性、优劣势及适用场景"
+  }
+  </script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -619,35 +640,643 @@
     </nav>
   </div>
 </header><main class="container" data-page-style="normal">
-        <div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster"><i class="fa-solid fa-tag fa-fw" aria-hidden="true"></i>
-        cli&nbsp;<sup>9</sup></h2><h3 class="group-title">2026</h3><article class="archive-item">
-            <a href="/ai-coding-cli-comparison/" class="archive-item-link">三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</a>
-            <span class="archive-item-date" title=2026-04-16&#32;23:37:00>04-16</span>
-          </article><article class="archive-item">
-            <a href="/openai-codex-cli-deep-analysis/" class="archive-item-link">OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</a>
-            <span class="archive-item-date" title=2026-04-16&#32;22:42:00>04-16</span>
-          </article><article class="archive-item">
-            <a href="/claude-code-quickstart/" class="archive-item-link">Claude Code 快速入门指南</a>
-            <span class="archive-item-date" title=2026-04-14&#32;18:18:00>04-14</span>
-          </article><article class="archive-item">
-            <a href="/cc-switch-cli-usage-guide/" class="archive-item-link">CC-Switch CLI - AI CLI 工具统一管理工具</a>
-            <span class="archive-item-date" title=2026-04-14&#32;16:08:00>04-14</span>
-          </article><article class="archive-item">
-            <a href="/influxdb2-cli-usage/" class="archive-item-link">InfluxDB CLI 使用笔记</a>
-            <span class="archive-item-date" title=2026-04-08&#32;18:01:27>04-08</span>
-          </article><article class="archive-item">
-            <a href="/google-workspace-cli-introduction/" class="archive-item-link">Google Workspace CLI：统一管理 Google Workspace 的命令行工具</a>
-            <span class="archive-item-date" title=2026-04-08&#32;16:49:45>04-08</span>
-          </article><article class="archive-item">
-            <a href="/opencli-introduction/" class="archive-item-link">OpenCLI：将任意网站变成命令行工具的利器</a>
-            <span class="archive-item-date" title=2026-04-06&#32;20:20:50>04-06</span>
-          </article><article class="archive-item">
-            <a href="/lark-cli-usage-guide/" class="archive-item-link">飞书 lark-cli 命令行工具使用指南</a>
-            <span class="archive-item-date" title=2026-04-05&#32;21:13:14>04-05</span>
-          </article><article class="archive-item">
-            <a href="/openai-codex-cli-introduction/" class="archive-item-link">OpenAI Codex CLI 全面介绍：开源的终端编程助手</a>
-            <span class="archive-item-date" title=2026-04-04&#32;12:00:00>04-04</span>
-          </article></div></main><footer class="footer">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-16&#32;23:37:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-16">2026-04-16</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 478 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#基础信息对比">基础信息对比</a></li>
+    <li><a href="#安装与配置">安装与配置</a>
+      <ul>
+        <li><a href="#codex-cli">Codex CLI</a></li>
+        <li><a href="#claude-code">Claude Code</a></li>
+        <li><a href="#opencode">OpenCode</a></li>
+      </ul>
+    </li>
+    <li><a href="#模型支持">模型支持</a>
+      <ul>
+        <li><a href="#codex-cli-1">Codex CLI</a></li>
+        <li><a href="#claude-code-1">Claude Code</a></li>
+        <li><a href="#opencode-1">OpenCode</a></li>
+      </ul>
+    </li>
+    <li><a href="#操作模式对比">操作模式对比</a></li>
+    <li><a href="#核心功能对比">核心功能对比</a>
+      <ul>
+        <li><a href="#mcp-支持">MCP 支持</a></li>
+        <li><a href="#skills-技能">Skills 技能</a></li>
+        <li><a href="#记忆文件">记忆文件</a></li>
+        <li><a href="#平台支持">平台支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#特色功能">特色功能</a>
+      <ul>
+        <li><a href="#codex-cli-特色">Codex CLI 特色</a></li>
+        <li><a href="#claude-code-特色">Claude Code 特色</a></li>
+        <li><a href="#opencode-特色">OpenCode 特色</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置对比">配置对比</a>
+      <ul>
+        <li><a href="#配置文件位置">配置文件位置</a></li>
+        <li><a href="#环境变量">环境变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用场景推荐">使用场景推荐</a>
+      <ul>
+        <li><a href="#推荐-codex-cli">推荐 Codex CLI</a></li>
+        <li><a href="#推荐-claude-code">推荐 Claude Code</a></li>
+        <li><a href="#推荐-opencode">推荐 OpenCode</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能对比">性能对比</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="三大-ai-编程-cli-工具对比codex-cli-vs-claude-code-vs-opencode">三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</h1>
+<h2 id="前言">前言</h2>
+<p>AI 编程助手已经成为开发者日常工具链的重要组成部分。本文将对三款主流终端 AI 编程工具进行深度对比：</p>
+<ul>
+<li><strong>Codex CLI</strong> - OpenAI 官方出品</li>
+<li><strong>Claude Code</strong> - Anthropic 官方出品</li>
+<li><strong>OpenCode</strong> - 开源社区之作</li>
+</ul>
+<h2 id="基础信息对比">基础信息对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Codex CLI</th>
+<th>Claude Code</th>
+<th>OpenCode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发公司</td>
+<td>OpenAI</td>
+<td>Anthropic</td>
+<td>开源社区</td>
+</tr>
+<tr>
+<td>GitHub Stars</td>
+<td>75,000+</td>
+<td>-</td>
+<td>120,000+</td>
+</tr>
+<tr>
+<td>语言</td>
+<td>Rust</td>
+<td>-</td>
+<td>Go</td>
+</tr>
+<tr>
+<td>开源</td>
+<td>部分开源</td>
+<td>否</td>
+<td>完全开源</td>
+</tr>
+<tr>
+<td>安装量</td>
+<td>npm</td>
+<td>npm</td>
+<td>多方式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装与配置">安装与配置</h2>
+<h3 id="codex-cli">Codex CLI</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># npm 安装</span>
+</span></span><span class="line"><span class="cl">npm install -g @openai/codex
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Homebrew</span>
+</span></span><span class="line"><span class="cl">brew install --cask codex
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="claude-code">Claude Code</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 官方安装脚本</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://claude.ai/install.sh <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># npm（已废弃）</span>
+</span></span><span class="line"><span class="cl">npm install -g @anthropic-ai/claude-code
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="opencode">OpenCode</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一键安装</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://opencode.ai/install <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Homebrew</span>
+</span></span><span class="line"><span class="cl">brew install anomalyco/tap/opencode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># npm</span>
+</span></span><span class="line"><span class="cl">npm install -g opencode-ai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go</span>
+</span></span><span class="line"><span class="cl">go install github.com/opencode-ai/opencode@latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="模型支持">模型支持</h2>
+<h3 id="codex-cli-1">Codex CLI</h3>
+<ul>
+<li>默认使用 OpenAI GPT-5-Codex</li>
+<li>支持切换不同 GPT 模型</li>
+<li>需要 OpenAI API 或 ChatGPT 账号</li>
+</ul>
+<h3 id="claude-code-1">Claude Code</h3>
+<ul>
+<li>默认使用 Claude Sonnet 4</li>
+<li>支持 Opus 4、Haiku 等</li>
+<li>需要 Anthropic API 或 Claude 账号</li>
+</ul>
+<h3 id="opencode-1">OpenCode</h3>
+<ul>
+<li><strong>最大优势</strong>：支持 75+ 模型提供商</li>
+<li>OpenAI、Anthropic、Google Gemini</li>
+<li>支持本地模型（Ollama）</li>
+<li>支持 GitHub Copilot</li>
+<li>可用免费模型（GLM-4.7、MiniMax 等）</li>
+</ul>
+<h2 id="操作模式对比">操作模式对比</h2>
+<p>三款工具都提供三级审批模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>Codex CLI</th>
+<th>Claude Code</th>
+<th>OpenCode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建议模式</td>
+<td>suggest</td>
+<td>suggest</td>
+<td>-</td>
+</tr>
+<tr>
+<td>半自动</td>
+<td>auto-edit</td>
+<td>auto-edit</td>
+<td>-</td>
+</tr>
+<tr>
+<td>全自动</td>
+<td>full-auto</td>
+<td>auto-execute</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心功能对比">核心功能对比</h2>
+<h3 id="mcp-支持">MCP 支持</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>MCP 支持</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex CLI</td>
+<td>✅</td>
+<td>仅支持 stdio 类型</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>✅</td>
+<td>完整支持</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>✅</td>
+<td>原生集成</td>
+</tr>
+</tbody>
+</table>
+<h3 id="skills-技能">Skills 技能</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>Skills</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex CLI</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>✅</td>
+<td>GitHub 一键安装</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>✅</td>
+<td>自定义 Skills</td>
+</tr>
+</tbody>
+</table>
+<h3 id="记忆文件">记忆文件</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>CLAUDE.md</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex CLI</td>
+<td>✅</td>
+<td>项目级</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>✅</td>
+<td>支持多层级</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>✅</td>
+<td>AGENTS.md</td>
+</tr>
+</tbody>
+</table>
+<h3 id="平台支持">平台支持</h3>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>Codex CLI</th>
+<th>Claude Code</th>
+<th>OpenCode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>WSL2</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>桌面应用</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ Beta</td>
+</tr>
+<tr>
+<td>Web 界面</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="特色功能">特色功能</h2>
+<h3 id="codex-cli-特色">Codex CLI 特色</h3>
+<ul>
+<li><strong>Rust 实现</strong>：速度快、资源占用低</li>
+<li><strong>轻量级</strong>：专注于 CLI 体验</li>
+<li><strong>OpenAI 生态</strong>：与 ChatGPT 无缝集成</li>
+</ul>
+<h3 id="claude-code-特色">Claude Code 特色</h3>
+<ul>
+<li><strong>Skills 生态</strong>：丰富的预置技能库</li>
+<li><strong>多层级记忆</strong>：CLAUDE.md、CLAUDE.local.md</li>
+<li><strong>深度代码理解</strong>：Claude 的推理能力</li>
+<li><strong>VS Code 插件</strong>：IDE 集成</li>
+</ul>
+<h3 id="opencode-特色">OpenCode 特色</h3>
+<ul>
+<li><strong>完全开源</strong>：代码透明可审计</li>
+<li><strong>模型自由</strong>：不绑定任何提供商</li>
+<li><strong>多会话</strong>：同一项目多个并行代理</li>
+<li><strong>分享链接</strong>：会话可分享</li>
+<li><strong>GitHub Agent</strong>：内置 DevOps 能力</li>
+<li><strong>远程控制</strong>：服务器/TUI 分离</li>
+<li><strong>免费模型</strong>：支持 GLM-4.7 等免费模型</li>
+</ul>
+<h2 id="配置对比">配置对比</h2>
+<h3 id="配置文件位置">配置文件位置</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>全局配置</th>
+<th>项目配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex CLI</td>
+<td><code>~/.codex/config.toml</code></td>
+<td><code>.codex/config.toml</code></td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td><code>~/.claude/settings.json</code></td>
+<td><code>CLAUDE.md</code></td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><code>~/.config/opencode/opencode.json</code></td>
+<td><code>opencode.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="环境变量">环境变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Codex CLI</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OPENAI_API_KEY</span><span class="o">=</span>xxx
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OPENAI_BASE_URL</span><span class="o">=</span>https://xxx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Claude Code</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>xxx
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_BASE_URL</span><span class="o">=</span>https://xxx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># OpenCode - 支持多种 Provider</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OPENAI_API_KEY</span><span class="o">=</span>xxx
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>xxx
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOOGLE_GENERATIVE_AI_API_KEY</span><span class="o">=</span>xxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用场景推荐">使用场景推荐</h2>
+<h3 id="推荐-codex-cli">推荐 Codex CLI</h3>
+<ul>
+<li>✅ 已订阅 ChatGPT Plus/Pro</li>
+<li>✅ 习惯 OpenAI 生态</li>
+<li>✅ 需要轻量级 CLI 工具</li>
+<li>✅ 主要使用 GPT 模型</li>
+</ul>
+<h3 id="推荐-claude-code">推荐 Claude Code</h3>
+<ul>
+<li>✅ 已订阅 Claude</li>
+<li>✅ 需要 Skills 扩展</li>
+<li>✅ 深度代码理解需求</li>
+<li>✅ VS Code 用户</li>
+</ul>
+<h3 id="推荐-opencode">推荐 OpenCode</h3>
+<ul>
+<li>✅ 追求开源透明</li>
+<li>✅ 需要模型灵活性</li>
+<li>✅ 想用免费模型</li>
+<li>✅ 需要 GitHub Agent</li>
+<li>✅ 需要远程控制</li>
+<li>✅ 多模型并行使用</li>
+</ul>
+<h2 id="性能对比">性能对比</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>Codex CLI</th>
+<th>Claude Code</th>
+<th>OpenCode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动速度</td>
+<td>快</td>
+<td>中</td>
+<td>快</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>低</td>
+<td>中</td>
+<td>低</td>
+</tr>
+<tr>
+<td>响应速度</td>
+<td>快</td>
+<td>中</td>
+<td>快</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>三款工具各有特色，选择取决于你的需求：</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>推荐工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI 生态</td>
+<td>Codex CLI</td>
+</tr>
+<tr>
+<td>Claude 生态</td>
+<td>Claude Code</td>
+</tr>
+<tr>
+<td>模型自由</td>
+<td>OpenCode</td>
+</tr>
+<tr>
+<td>完全开源</td>
+<td>OpenCode</td>
+</tr>
+<tr>
+<td>免费使用</td>
+<td>OpenCode</td>
+</tr>
+<tr>
+<td>GitHub 集成</td>
+<td>OpenCode</td>
+</tr>
+<tr>
+<td>Skills 生态</td>
+<td>Claude Code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实际建议</strong>：可以同时安装使用，根据不同场景选择最合适的工具。</p>
+<p><strong>项目地址</strong>：</p>
+<ul>
+<li>Codex CLI: <a
+  href="https://github.com/openai/codex"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://github.com/openai/codex</a></li>
+<li>Claude Code: <a
+  href="https://claude.ai/code"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://claude.ai/code</a></li>
+<li>OpenCode: <a
+  href="https://opencode.ai"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://opencode.ai</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-16&#32;23:37:00>更新于 2026-04-16&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/ai-coding-cli-comparison/" data-title="三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%AF%B9%E6%AF%94/">对比</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/openai-codex-cli-deep-analysis/" class="prev" rel="prev" title="OpenAI Codex CLI 深度分析 - 终端 AI 编程助手"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>OpenAI Codex CLI 深度分析 - 终端 AI 编程助手</a></div>
+</div>
+</article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
               <a
@@ -675,5 +1304,5 @@
   <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
   </div><div id="mask"></div>
 </div>
-<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
 </html>

@@ -701,6 +701,36 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/openspec-engineering-summary/">OpenSpec 工程化规范总结</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 18:06:11'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenSpec 工程化规范总结 什么是 OpenSpec OpenSpec 是一个面向 AI 编码助手的规范驱动开发框架（Spec-Driven Development，SDD）。它的核心理念是在编写任何代码之前，先创建可审查的规范（Spec），让人类开发者和 AI 编码助手能够就项目意图达成共识。
+该项目在 GitHub 上已获得 37,000+ 颗星，是 AI 开发工具领域最受欢迎的项目之一。
+核心价值 1. 解决 AI 编程的沟通问题 传统编程中，开发者通过代码表达意图。但 AI 编程助理解读代码时可能会产生偏差，导致：
+实现与预期不符 重复修改 项目失控 OpenSpec 通过在编码前明确定义规范来解决这个问题。
+2. 版本控制意图 OpenSpec 充当「意图的版本控制」：
+规范文件可以被审查 可以版本化管理 可以追踪意图的演变 便于人类和 AI 协同理解 3. 防止「氛围编程」 「Vibe Coding」（氛围编程）是指盲目跟随 AI 生成代码，缺乏深思熟虑的设计。OpenSpec 强制要求在编码前思考和规划。
+OpenSpec 规范结构 1. Project Spec（项目规范） 定义项目的整体结构和目标：
+1 2 3 4 5 6 7 name: my-project description: A web application for task management version: 1.</div><div class="post-footer">
+    <a href="/openspec-engineering-summary/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openspec/">OpenSpec</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">开发框架</a>,&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B/">编程助手</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/superpowers-automation-guide/">Superpowers 自动化使用指南</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -835,32 +865,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
 找不到 DLL：程序运行时提示找不到某个动态链接库 版本冲突：不同版本的同名 DLL 导致程序崩溃 依赖缺失：缺少必要的 Visual C++ 运行库或其他系统组件 32/64 位混用：32 位程序加载了 64 位 DLL，反之亦然 Dependencies 可以帮助开发者：
 可视化查看 PE 文件的所有导入和导出 追踪 DLL 依赖链 识别缺失或无法加载的依赖 分析 API Set 重定向 主要功能特性 1. GUI 和 CLI 双版本 DependenciesGui.</div><div class="post-footer">
     <a href="/dependencies-tool/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/dll/">DLL</a>,&nbsp;<a href="/tags/%E4%BE%9D%E8%B5%96%E6%9F%A5%E7%9C%8B/">依赖查看</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/github/">github</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/google-workspace-cli-introduction/">Google Workspace CLI：统一管理 Google Workspace 的命令行工具</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 16:49:45'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Google Workspace CLI：统一管理 Google Workspace 的命令行工具 引言 对于经常使用 Google Workspace（Google 工作空间）的用户来说，管理 Drive、Gmail、Calendar、Sheets、Docs、Chat 等多个服务往往需要在浏览器和多个应用之间切换。虽然 Google 提供了 Web 界面和各个服务的 API，但使用这些 API 需要编写大量重复的代码和配置。Google Workspace CLI（简称 gws）的出现改变了这一状况，它提供了一个统一的命令行界面，可以操控所有 Google Workspace 服务。
-gws 在 GitHub 上已获得 24,000+ 颗星，是当前最受欢迎的 Google Workspace 命令行工具。它采用 Rust 语言开发，具有高性能和跨平台特性，同时支持人类用户和 AI 代理使用。
-什么是 Google Workspace CLI Google Workspace CLI（gws）是一个统一的命令行工具，旨在为人类用户和 AI 代理提供一种简单、优雅的方式来管理所有 Google Workspace 服务。无论你是想查看 Drive 文件、发送 Gmail 邮件、管理 Calendar 事件，还是操作 Sheets 表格、Docs 文档、Chat 消息，一个 gws 命令就能搞定。
-gws 的独特之处在于它采用了动态命令构建机制。它并不硬编码一组固定的命令，而是通过读取 Google 的 Discovery Service（发现服务）在运行时动态生成整个命令表面。这意味着当 Google 添加新的 API 端点或方法时，gws 会自动获取并可用，无需任何更新。</div><div class="post-footer">
-    <a href="/google-workspace-cli-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google/">google</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a>,&nbsp;<a href="/tags/github/">github</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
