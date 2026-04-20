@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/rust/</link>
     <description>rust - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/rust/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 20 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/rust/" rel="self" type="application/rss+xml" /><item>
+  <title>Rust 中 Option 的用法详解</title>
+  <link>https://cfanzp008.github.io/rust-option-usage/</link>
+  <pubDate>Mon, 20 Apr 2026 10:00:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/rust-option-usage/</guid>
+  <description><![CDATA[Rust 中 Option 的用法详解 什么是 Option Option 是 Rust 标准库中定义的一个枚举类型，用于表示一个值要么存在（Some），要么不存在（None）。这是 Rust 处理可空值的核心方式，与其他语言中的 null 类似，但更加安全。
+1 2 3 4 pub enum Option&lt;T&gt; { None, Some(T), } 为什么需要 Option 在 Rust 中，不存在 null 值。这是 Rust 设计的一个重要决定——null 引用是许多编程语言中常见 bug 的根源。Rust 使用 Option&lt;T&gt; 来替代 null，强制开发者显式处理值可能不存在的情况。
+基本用法 创建 Option 1 2 3 4 5 // 创建一个 Some 值 let some_value: Option&lt;i32&gt; = Some(5); // 创建一个 None 值 let absent_value: Option&lt;i32&gt; = None; 匹配 Option 最直接的方式是使用 match 表达式：]]></description>
+</item>
+<item>
   <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
   <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
   <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>

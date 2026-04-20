@@ -701,6 +701,31 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/rust-option-usage/">Rust 中 Option 的用法详解</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-20 10:00:00'>发布于 <time datetime="2026-04-20">2026-04-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">Rust 中 Option 的用法详解 什么是 Option Option 是 Rust 标准库中定义的一个枚举类型，用于表示一个值要么存在（Some），要么不存在（None）。这是 Rust 处理可空值的核心方式，与其他语言中的 null 类似，但更加安全。
+1 2 3 4 pub enum Option&lt;T&gt; { None, Some(T), } 为什么需要 Option 在 Rust 中，不存在 null 值。这是 Rust 设计的一个重要决定——null 引用是许多编程语言中常见 bug 的根源。Rust 使用 Option&lt;T&gt; 来替代 null，强制开发者显式处理值可能不存在的情况。
+基本用法 创建 Option 1 2 3 4 5 // 创建一个 Some 值 let some_value: Option&lt;i32&gt; = Some(5); // 创建一个 None 值 let absent_value: Option&lt;i32&gt; = None; 匹配 Option 最直接的方式是使用 match 表达式：</div><div class="post-footer">
+    <a href="/rust-option-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rust/">rust</a>,&nbsp;<a href="/tags/rust%E7%BC%96%E7%A8%8B/">rust编程</a>,&nbsp;<a href="/tags/option/">Option</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/ai-coding-cli-comparison/">三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -825,31 +850,6 @@ OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 
 GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
 支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.</div><div class="post-footer">
     <a href="/cc-switch-cli-usage-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/rust/">rust</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/claude-relay-service-introduction/">Claude Relay Service - 自建 Claude API 中转服务</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-14 11:46:30'>发布于 <time datetime="2026-04-14">2026-04-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
-这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
-🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：</div><div class="post-footer">
-    <a href="/claude-relay-service-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/claude/">claude</a>,&nbsp;<a href="/tags/api/">api</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%BB%BA/">自建</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item active">
           <span class="page-link">
