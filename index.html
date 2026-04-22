@@ -701,6 +701,32 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/render-markdown-nvim-guide/">render-markdown.nvim 使用指南：让 Neovim 中的 Markdown 如虎添翼</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-22 10:47:39'>发布于 <time datetime="2026-04-22">2026-04-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">render-markdown.nvim 使用指南 对于经常使用 Neovim 编辑 Markdown 文件的用户来说，如何让文档在编辑时拥有更好的可读性一直是一个痛点。render-markdown.nvim 正是为解决这一问题而生的插件——它可以在 Neovim 内部直接渲染 Markdown 元素，让你的文档预览体验媲美 Typora、Obsidian 等专业 Markdown 编辑器。
+插件简介 render-markdown.nvim 是一个纯 Lua 编写的 Neovim 插件，完全在 Neovim 内部运行，不需要任何外部窗口或依赖。它能够将 Markdown 文件中的各种元素（如标题、代码块、表格、引用块等）渲染为更加直观的视觉形式。
+核心特性 纯内部渲染：所有渲染工作都在 Neovim 中完成，无需启动外部进程 完全可配置：所有组件、图标、颜色、间距都可以自定义 文件类型无关：不仅限于 .md 文件，还可以渲染任意文件中的 Markdown 片段 模态渲染：支持在「渲染视图」和「原始视图」之间根据模式自动切换 大文件支持：只渲染当前可见区域，可以根据文件大小完全禁用 自定义渲染：提供扩展点，用户可以添加自定义渲染规则 环境要求 在安装插件之前，需要确保你的环境满足以下要求：
+Neovim 版本：最低 &gt;= 0.9.0，推荐 &gt;= 0.10.0 Nerd Font：需要安装 Nerd Font 以正确显示图标 Treesitter 解析器： markdown 和 markdown_inline：必选，用于解析 Markdown 文件 html（可选）：用于隐藏 HTML 注释 latex（可选）：用于获取 Markdown 中的 LaTeX 公式 yaml（可选）：用于渲染 Frontmatter 元数据 图标插件（可选）：mini.</div><div class="post-footer">
+    <a href="/render-markdown-nvim-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/neovim/">neovim</a>,&nbsp;<a href="/tags/markdown/">markdown</a>,&nbsp;<a href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/">效率提升</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/rust-option-usage/">Rust 中 Option 的用法详解</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -825,31 +851,6 @@ OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 
 自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex npm 安装（备选） 1 npm install -g @anthropic-ai/claude-code 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
 方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.</div><div class="post-footer">
     <a href="/claude-code-quickstart/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/cc-switch-cli-usage-guide/">CC-Switch CLI - AI CLI 工具统一管理工具</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-14 16:08:00'>发布于 <time datetime="2026-04-14">2026-04-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">CC-Switch CLI - AI CLI 工具统一管理工具 简介 CC-Switch CLI 是一个跨平台的命令行工具，用于统一管理 Claude Code、Codex、Gemini CLI、OpenCode 和 OpenClaw 的配置。它让用户可以轻松地在不同 AI CLI 工具和提供商之间切换。
-GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
-支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.</div><div class="post-footer">
-    <a href="/cc-switch-cli-usage-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/rust/">rust</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item active">
           <span class="page-link">

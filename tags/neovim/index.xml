@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>neovim - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/neovim/</link>
+    <description>neovim - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 22 Apr 2026 10:47:39 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/neovim/" rel="self" type="application/rss+xml" /><item>
+  <title>render-markdown.nvim 使用指南：让 Neovim 中的 Markdown 如虎添翼</title>
+  <link>https://cfanzp008.github.io/render-markdown-nvim-guide/</link>
+  <pubDate>Wed, 22 Apr 2026 10:47:39 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/render-markdown-nvim-guide/</guid>
+  <description><![CDATA[render-markdown.nvim 使用指南 对于经常使用 Neovim 编辑 Markdown 文件的用户来说，如何让文档在编辑时拥有更好的可读性一直是一个痛点。render-markdown.nvim 正是为解决这一问题而生的插件——它可以在 Neovim 内部直接渲染 Markdown 元素，让你的文档预览体验媲美 Typora、Obsidian 等专业 Markdown 编辑器。
+插件简介 render-markdown.nvim 是一个纯 Lua 编写的 Neovim 插件，完全在 Neovim 内部运行，不需要任何外部窗口或依赖。它能够将 Markdown 文件中的各种元素（如标题、代码块、表格、引用块等）渲染为更加直观的视觉形式。
+核心特性 纯内部渲染：所有渲染工作都在 Neovim 中完成，无需启动外部进程 完全可配置：所有组件、图标、颜色、间距都可以自定义 文件类型无关：不仅限于 .md 文件，还可以渲染任意文件中的 Markdown 片段 模态渲染：支持在「渲染视图」和「原始视图」之间根据模式自动切换 大文件支持：只渲染当前可见区域，可以根据文件大小完全禁用 自定义渲染：提供扩展点，用户可以添加自定义渲染规则 环境要求 在安装插件之前，需要确保你的环境满足以下要求：
+Neovim 版本：最低 &gt;= 0.9.0，推荐 &gt;= 0.10.0 Nerd Font：需要安装 Nerd Font 以正确显示图标 Treesitter 解析器： markdown 和 markdown_inline：必选，用于解析 Markdown 文件 html（可选）：用于隐藏 HTML 注释 latex（可选）：用于获取 Markdown 中的 LaTeX 公式 yaml（可选）：用于渲染 Frontmatter 元数据 图标插件（可选）：mini.]]></description>
+</item>
+</channel>
+</rss>
