@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>markview.nvim - Neovim 文档实时预览插件 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="markview.nvim 是一个功能强大的 Neovim 插件，支持 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc 文档的实时预览，让你在编辑过程中直接看到渲染效果。" /><meta name="keywords" content='neovim, vim, 插件, markdown, 效率工具' /><meta itemprop="name" content="markview.nvim - Neovim 文档实时预览插件">
+<meta itemprop="description" content="markview.nvim 是一个功能强大的 Neovim 插件，支持 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc 文档的实时预览，让你在编辑过程中直接看到渲染效果。"><meta itemprop="datePublished" content="2026-04-22T11:33:18+08:00" />
+<meta itemprop="dateModified" content="2026-04-22T11:33:18+08:00" />
+<meta itemprop="wordCount" content="423"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="neovim,vim,插件,markdown,效率工具," /><meta property="og:title" content="markview.nvim - Neovim 文档实时预览插件" />
+<meta property="og:description" content="markview.nvim 是一个功能强大的 Neovim 插件，支持 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc 文档的实时预览，让你在编辑过程中直接看到渲染效果。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/markview-nvim-plugin/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-22T11:33:18+08:00" />
+<meta property="article:modified_time" content="2026-04-22T11:33:18+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="markview.nvim - Neovim 文档实时预览插件"/>
+<meta name="twitter:description" content="markview.nvim 是一个功能强大的 Neovim 插件，支持 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc 文档的实时预览，让你在编辑过程中直接看到渲染效果。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/markview-nvim-plugin/" /><link rel="prev" href="https://cfanzp008.github.io/render-markdown-nvim-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "markview.nvim - Neovim 文档实时预览插件",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/markview-nvim-plugin\/"
+    },"genre": "posts","keywords": "neovim, vim, 插件, markdown, 效率工具","wordcount":  423 ,
+    "url": "https:\/\/cfanzp008.github.io\/markview-nvim-plugin\/","datePublished": "2026-04-22T11:33:18+08:00","dateModified": "2026-04-22T11:33:18+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "markview.nvim 是一个功能强大的 Neovim 插件，支持 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc 文档的实时预览，让你在编辑过程中直接看到渲染效果。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>markview.nvim - Neovim 文档实时预览插件</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-22&#32;11:33:18><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-22">2026-04-22</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 423 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="markview.nvim - Neovim 文档实时预览插件">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#安装要求">安装要求</a>
+      <ul>
+        <li><a href="#系统要求">系统要求</a></li>
+        <li><a href="#推荐配置">推荐配置</a></li>
+        <li><a href="#必需的-tree-sitter-解析器">必需的 Tree-sitter 解析器</a></li>
+        <li><a href="#可选解析器">可选解析器</a></li>
+        <li><a href="#字体要求">字体要求</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装方式">安装方式</a>
+      <ul>
+        <li><a href="#使用-lazynvim">使用 Lazy.nvim</a></li>
+        <li><a href="#使用-vim-plug">使用 Vim-plug</a></li>
+        <li><a href="#使用-minideps">使用 Mini.deps</a></li>
+        <li><a href="#使用-rocksnvim">使用 Rocks.nvim</a></li>
+      </ul>
+    </li>
+    <li><a href="#基本使用">基本使用</a>
+      <ul>
+        <li><a href="#命令行">命令行</a></li>
+        <li><a href="#混合编辑模式hybrid-mode">混合编辑模式（Hybrid Mode）</a></li>
+        <li><a href="#分屏预览">分屏预览</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置示例">配置示例</a>
+      <ul>
+        <li><a href="#基础配置">基础配置</a></li>
+        <li><a href="#启用混合编辑模式">启用混合编辑模式</a></li>
+        <li><a href="#分屏预览配置">分屏预览配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#支持的语法">支持的语法</a>
+      <ul>
+        <li><a href="#markdown">Markdown</a></li>
+        <li><a href="#latex">LaTeX</a></li>
+        <li><a href="#html">HTML</a></li>
+        <li><a href="#typst">Typst</a></li>
+        <li><a href="#yaml">YAML</a></li>
+        <li><a href="#asciidoc">Asciidoc</a></li>
+      </ul>
+    </li>
+    <li><a href="#调试功能">调试功能</a></li>
+    <li><a href="#检查健康状态">检查健康状态</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#预览不显示">预览不显示</a></li>
+        <li><a href="#样式不正确">样式不正确</a></li>
+        <li><a href="#透明主题兼容">透明主题兼容</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="markviewnvim---neovim-文档实时预览插件">markview.nvim - Neovim 文档实时预览插件</h1>
+<h2 id="简介">简介</h2>
+<p>如果你经常在 Neovim 中编辑 Markdown、LaTeX 等文档，是否曾梦想过能够实时预览渲染效果？<strong>markview.nvim</strong> 正是为解决这个需求而生的插件。它支持在 Neovim 中实时预览多种文档格式，包括 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="/images/markview-preview.png"
+    data-srcset="/images/markview-preview.png, /images/markview-preview.png 1.5x, /images/markview-preview.png 2x"
+    data-sizes="auto"
+    alt="/images/markview-preview.png"
+    title="markview.nvim 预览效果" /></p>
+<p>markview.nvim 具有以下核心特性：</p>
+<ul>
+<li><strong>多格式支持</strong>：支持 Markdown、HTML、LaTeX、Typst、YAML、Asciidoc 六种格式</li>
+<li><strong>混合编辑模式</strong>：允许在预览的同时直接编辑文档</li>
+<li><strong>分屏预览</strong>：支持左右分屏同时查看编辑和预览效果</li>
+<li><strong>高度可定制</strong>：几乎所有功能都可以通过配置自定义</li>
+<li><strong>动态高亮</strong>：自动适配当前colorscheme主题</li>
+</ul>
+<h2 id="安装要求">安装要求</h2>
+<h3 id="系统要求">系统要求</h3>
+<ul>
+<li>Neovim &gt;= 0.10.3</li>
+</ul>
+<h3 id="推荐配置">推荐配置</h3>
+<ul>
+<li>使用 tree-sitter 基础的 colorscheme</li>
+<li>推荐使用 <code>nowrap</code> 选项（插件本身支持 wrap）</li>
+<li>不使用 <code>expandtab</code></li>
+</ul>
+<h3 id="必需的-tree-sitter-解析器">必需的 Tree-sitter 解析器</h3>
+<p>需要安装以下解析器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">TSInstall</span> <span class="nx">markdown</span> <span class="nx">markdown_inline</span> <span class="nx">html</span> <span class="nx">latex</span> <span class="nx">typst</span> <span class="nx">yaml</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可选解析器">可选解析器</h3>
+<ul>
+<li><code>comment</code>：支持 fancy comments</li>
+<li><code>html</code>：支持 HTML 预览</li>
+<li><code>latex</code>：支持 LaTeX 数学公式</li>
+<li><code>typst</code>：支持 Typst 预览</li>
+<li><a
+  href="https://github.com/cathaysia/tree-sitter-asciidoc"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>tree-sitter-asciidoc</a>：支持 Asciidoc</li>
+</ul>
+<h3 id="字体要求">字体要求</h3>
+<ul>
+<li>需要现代 Unicode 字体来显示数学符号</li>
+<li>推荐使用 Nerd Fonts</li>
+</ul>
+<h2 id="安装方式">安装方式</h2>
+<h3 id="使用-lazynvim">使用 Lazy.nvim</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- plugins/markview.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;OXY2DEV/markview.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lazy</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-vim-plug">使用 Vim-plug</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">Plug</span> <span class="s1">&#39;OXY2DEV/markview.nvim&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-minideps">使用 Mini.deps</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">MiniDeps</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;mini.deps&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">MiniDeps.add</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">source</span> <span class="o">=</span> <span class="s2">&#34;OXY2DEV/markview.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-rocksnvim">使用 Rocks.nvim</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">:Rocks install markview.nvim
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="基本使用">基本使用</h2>
+<h3 id="命令行">命令行</h3>
+<p>插件使用子命令的形式提供功能，主要命令为 <code>:Markview</code>：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:Markview Toggle</code></td>
+<td>全局切换预览</td>
+</tr>
+<tr>
+<td><code>:Markview Enable</code></td>
+<td>全局启用预览</td>
+</tr>
+<tr>
+<td><code>:Markview Disable</code></td>
+<td>全局禁用预览</td>
+</tr>
+<tr>
+<td><code>:Markview toggle [buffer]</code></td>
+<td>切换指定缓冲区预览</td>
+</tr>
+<tr>
+<td><code>:Markview splitToggle</code></td>
+<td>切换分屏预览</td>
+</tr>
+<tr>
+<td><code>:Markview HybridEnable</code></td>
+<td>启用混合编辑模式</td>
+</tr>
+<tr>
+<td><code>:Markview HybridDisable</code></td>
+<td>禁用混合编辑模式</td>
+</tr>
+<tr>
+<td><code>:Markview render</code></td>
+<td>渲染当前缓冲区</td>
+</tr>
+<tr>
+<td><code>:Markview clear</code></td>
+<td>清除当前缓冲区预览</td>
+</tr>
+</tbody>
+</table>
+<h3 id="混合编辑模式hybrid-mode">混合编辑模式（Hybrid Mode）</h3>
+<p>混合编辑模式是 markview.nvim 的一大特色，允许你在预览的同时直接编辑文档。有两种模式：</p>
+<ul>
+<li><strong>Node-based</strong>（默认）：基于语法树节点清除编辑范围</li>
+<li><strong>Range-based</strong>：基于光标上下行数清除范围</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; 启用混合模式</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">HybridEnable</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 切换到行-wise模式</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">linewiseEnable</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分屏预览">分屏预览</h3>
+<p>可以将预览窗口分离到单独窗口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; 打开分屏预览</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">splitOpen</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 关闭分屏</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">splitClose</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 重新绘制</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">splitRedraw</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置示例">配置示例</h2>
+<h3 id="基础配置">基础配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;markview&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">preview</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 使用内置图标提供器</span>
+</span></span><span class="line"><span class="cl">        <span class="n">icon_provider</span> <span class="o">=</span> <span class="s2">&#34;internal&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 启用 Org-mode 风格的标题缩进</span>
+</span></span><span class="line"><span class="cl">        <span class="n">headings</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">org_indent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 启用 Checkbox 支持</span>
+</span></span><span class="line"><span class="cl">        <span class="n">checkboxes</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启用混合编辑模式">启用混合编辑模式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;markview&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hybrid_mode</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 默认使用行-wise模式</span>
+</span></span><span class="line"><span class="cl">        <span class="n">linewise</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="分屏预览配置">分屏预览配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;markview&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">split</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 分屏方向</span>
+</span></span><span class="line"><span class="cl">        <span class="n">orientation</span> <span class="o">=</span> <span class="s2">&#34;right&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 初始窗口宽度</span>
+</span></span><span class="line"><span class="cl">        <span class="n">width</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 滚动同步</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scroll_sync</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="支持的语法">支持的语法</h2>
+<h3 id="markdown">Markdown</h3>
+<ul>
+<li>标题（Setext 和 ATX 风格）</li>
+<li>代码块（带语言标识）</li>
+<li>列表项（有序和无序）</li>
+<li>表格</li>
+<li>Checkbox（支持 GitHub 风格）</li>
+<li>引用块（支持 Callouts）</li>
+<li>链接和图片</li>
+<li>脚注</li>
+<li>代码高亮</li>
+<li>Obsidian 扩展语法（块引用、内部链接、标签）</li>
+</ul>
+<h3 id="latex">LaTeX</h3>
+<ul>
+<li>数学块（<code>$$...$$</code>）</li>
+<li>行内数学（<code>$...$</code>）</li>
+<li>常用数学命令（<code>\frac</code>、<code>\sin</code>、<code>\cos</code>、<code>\sqrt</code> 等）</li>
+<li>数学字体（<code>\mathbb</code>、<code>\mathbf</code>、<code>\mathcal</code> 等）</li>
+<li>支持 2056 个数学符号</li>
+</ul>
+<h3 id="html">HTML</h3>
+<ul>
+<li>容器元素（<code>&lt;a&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;code&gt;</code>、<code>&lt;em&gt;</code> 等）</li>
+<li>空元素（<code>&lt;hr&gt;</code>、<code>&lt;br&gt;</code>）</li>
+<li>自定义样式</li>
+</ul>
+<h3 id="typst">Typst</h3>
+<ul>
+<li>代码块和行内代码</li>
+<li>标题</li>
+<li>列表项</li>
+<li>数学块</li>
+<li>引用链接</li>
+<li>932 个符号支持</li>
+</ul>
+<h3 id="yaml">YAML</h3>
+<ul>
+<li>自定义属性图标</li>
+<li>类型特定的装饰</li>
+<li>常用属性高亮</li>
+</ul>
+<h3 id="asciidoc">Asciidoc</h3>
+<ul>
+<li>Admonitions</li>
+<li>Checkbox</li>
+<li>水平线</li>
+<li>代码块</li>
+<li>列表项</li>
+<li>自动化 TOC</li>
+</ul>
+<h2 id="调试功能">调试功能</h2>
+<p>markview.nvim 提供_traceShow` 命令用于调试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; 查看插件执行日志</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">traceShow</span>
+</span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; 导出日志到文件</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nx">Markview</span> <span class="nx">traceExport</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="检查健康状态">检查健康状态</h2>
+<p>安装后运行以下命令检查配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">checkhealth</span> <span class="nx">markview</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见问题">常见问题</h2>
+<h3 id="预览不显示">预览不显示</h3>
+<ol>
+<li>确认已安装所需的 tree-sitter 解析器</li>
+<li>检查是否正确加载了插件</li>
+<li>运行 <code>:checkhealth markview</code> 检查问题</li>
+</ol>
+<h3 id="样式不正确">样式不正确</h3>
+<ol>
+<li>确保使用 tree-sitter 基础的 colorscheme</li>
+<li>检查字体是否支持所需字符（特别是数学符号）</li>
+</ol>
+<h3 id="透明主题兼容">透明主题兼容</h3>
+<p>如果使用透明 colorscheme 且颜色显示不正确，参考官方 Wiki 的透明主题配置。</p>
+<h2 id="总结">总结</h2>
+<p>markview.nvim 是一个功能强大且高度可定制的文档预览插件，特别适合：</p>
+<ul>
+<li>经常编辑 Markdown 文档的开发者</li>
+<li>写作技术文档的用户</li>
+<li>使用 LaTeX 写数学公式的用户</li>
+<li>需要 Obsidian 风格语法的 PKM 用户</li>
+</ul>
+<p>其混合编辑模式和分屏预览功能使得编辑体验非常流畅，值得一试。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a
+  href="https://github.com/OXY2DEV/markview.nvim"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>GitHub 仓库</a></li>
+<li><a
+  href="https://github.com/OXY2DEV/markview.nvim/wiki/Home"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>官方 Wiki</a></li>
+<li><a
+  href="https://github.com/OXY2DEV/markview.nvim/wiki/Configuration"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>配置文档</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-22&#32;11:33:18>更新于 2026-04-22&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/markview-nvim-plugin/" data-title="markview.nvim - Neovim 文档实时预览插件"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/neovim/">neovim</a>,&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/%E6%8F%92%E4%BB%B6/">插件</a>,&nbsp;<a href="/tags/markdown/">markdown</a>,&nbsp;<a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/">效率工具</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/render-markdown-nvim-guide/" class="prev" rel="prev" title="render-markdown.nvim 使用指南：让 Neovim 中的 Markdown 如虎添翼"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>render-markdown.nvim 使用指南：让 Neovim 中的 Markdown 如虎添翼</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 22 Apr 2026 10:47:39 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 22 Apr 2026 11:33:18 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,17 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>markview.nvim - Neovim 文档实时预览插件</title>
+  <link>https://cfanzp008.github.io/markview-nvim-plugin/</link>
+  <pubDate>Wed, 22 Apr 2026 11:33:18 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/markview-nvim-plugin/</guid>
+  <description><![CDATA[markview.nvim - Neovim 文档实时预览插件 简介 如果你经常在 Neovim 中编辑 Markdown、LaTeX 等文档，是否曾梦想过能够实时预览渲染效果？markview.nvim 正是为解决这个需求而生的插件。它支持在 Neovim 中实时预览多种文档格式，包括 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc。
+markview.nvim 具有以下核心特性：
+多格式支持：支持 Markdown、HTML、LaTeX、Typst、YAML、Asciidoc 六种格式 混合编辑模式：允许在预览的同时直接编辑文档 分屏预览：支持左右分屏同时查看编辑和预览效果 高度可定制：几乎所有功能都可以通过配置自定义 动态高亮：自动适配当前colorscheme主题 安装要求 系统要求 Neovim &gt;= 0.10.3 推荐配置 使用 tree-sitter 基础的 colorscheme 推荐使用 nowrap 选项（插件本身支持 wrap） 不使用 expandtab 必需的 Tree-sitter 解析器 需要安装以下解析器：
+1 :TSInstall markdown markdown_inline html latex typst yaml 可选解析器 comment：支持 fancy comments html：支持 HTML 预览 latex：支持 LaTeX 数学公式 typst：支持 Typst 预览 tree-sitter-asciidoc：支持 Asciidoc 字体要求 需要现代 Unicode 字体来显示数学符号 推荐使用 Nerd Fonts 安装方式 使用 Lazy.]]></description>
 </item>
 <item>
   <title>render-markdown.nvim 使用指南：让 Neovim 中的 Markdown 如虎添翼</title>
@@ -142,25 +153,6 @@ GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
 这句话与大家共勉。
 参考信息：
 书名：《时间管理幸福学》（珍藏版） 作者：吴淡如 出版社：化学工业出版社 出版年：2012年 ISBN：9787122125101 ]]></description>
-</item>
-<item>
-  <title>《早起的奇迹》读书笔记 - 让你的人生从此不同</title>
-  <link>https://cfanzp008.github.io/the-miracle-morning-reading-notes/</link>
-  <pubDate>Sat, 11 Apr 2026 07:48:38 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/the-miracle-morning-reading-notes/</guid>
-  <description><![CDATA[《早起的奇迹》读书笔记 前言 &ldquo;人生最大的奇迹，就是成为梦想中的自己。&rdquo;
-这是《早起的奇迹》作者哈尔·埃尔罗德在书中开篇的一句话。这本书不仅改变了他自己的命运，也帮助了全球数百万人实现了人生的逆袭。
-作者简介 哈尔·埃尔罗德（Hal Elrod）是一个传奇人物：
-15岁：拥有自己的个人电台节目 20岁：成为市值2亿美元公司的顶尖销售员 20岁：遭遇严重车祸，&ldquo;临床死亡&quot;6分钟，奇迹生还，11根骨头骨折，却在天后重新站上运动场 28岁：经历金融危机，负债287万，一度患上抑郁症 29岁：开发&quot;神奇的早起&quot;计划，人生从此改变 33岁：出版《早起的奇迹》，连续5年占据英文亚马逊畅销榜首 他用自己的经历证明：即使经历人生低谷，也能通过早起创造奇迹。
-核心内容：SAVERS 六步法 全书的核心是&quot;神奇的早起人生拯救计划&rdquo;（The Miracle Morning Life S.A.V.E.R.S.），包含六个步骤：
-字母 含义 具体做法 S Silence 心静 冥想、感恩、祈祷 A Affirmations 自我肯定 大声朗诵自我肯定宣言 V Visualization 具象化 想象理想中的自己 E Exercise 运动 身体锻炼 R Reading 阅读 读一页书 S Scribing 书写 写日记 1. 心静（Silence） 每天早上醒来后，找一个安静的地方进行冥想。一开始可以从5分钟开始，慢慢增加时间。目的是让内心平静下来，以更好的状态面对新的一天。
-2. 自我肯定（Affirmations） 写下你的自我肯定宣言，包括：
-你真正想要什么？ 为什么想要那些？ 你必须成为什么样的人，才能得到你想要的？ 你必须做什么，才能得到你想要的？ 每天大声朗诵这些宣言，强化潜意识。
-3. 具象化（Visualization） 想象自己已经成为理想中的样子，感受那时的情绪和状态。这种&quot;内心演练&quot;能够帮助你更清晰地设定目标并实现它。
-4. 运动（Exercise） 早上进行适度的身体锻炼，不仅能唤醒身体，还能释放压力，提升精力。即使只是简单的伸展运动也有很好的效果。
-5. 阅读（Reading） 每天阅读一页书。书中附录提供了作者推荐的书单，涵盖个人成长、理财、创业等多个领域。
-6. 书写（Scribing） 写日记，记录自己的想法、感恩的事情、目标进度等。这是反思和自我提升的重要工具。]]></description>
 </item>
 </channel>
 </rss>
