@@ -4,7 +4,19 @@
     <link>https://cfanzp008.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
     <description>浏览器自动化 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+  <title>CDP (Chrome DevTools Protocol) 详解</title>
+  <link>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</guid>
+  <description><![CDATA[CDP (Chrome DevTools Protocol) 详解 简介 Chrome DevTools Protocol（CDP） 是 Google Chrome / Chromium 提供的一套底层调试协议，允许外部工具通过 JSON 消息对浏览器进行检测、检查、调试和性能分析。
+你可能不知道，平时用的 Chrome DevTools 开发者工具，底层就是靠 CDP 来和浏览器通信的。而现在，越来越多的自动化工具（Puppeteer、Playwright、browser-use 等）都基于 CDP 构建。
+在上一篇 browser-use 实战总结 中，我们看到了 --remote-debugging-port=9222 这个参数，这正是启用 CDP 的关键。
+什么是 CDP CDP 本质上是一个基于 WebSocket 的 JSON 消息协议。它将浏览器的各种能力划分为多个域（Domain），每个域定义了一组支持的命令（Commands）和事件（Events）。
+协议架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ┌──────────────────────────────────────────┐ │ Chrome / Chromium │ │ ┌────────────────────────────────┐ │ │ │ DOM Network Page .]]></description>
+</item>
+<item>
   <title>OpenCLI：将任意网站变成命令行工具的利器</title>
   <link>https://cfanzp008.github.io/opencli-introduction/</link>
   <pubDate>Mon, 06 Apr 2026 20:20:50 &#43;0800</pubDate>

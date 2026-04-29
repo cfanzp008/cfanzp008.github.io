@@ -4,7 +4,19 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>CDP (Chrome DevTools Protocol) 详解</title>
+  <link>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</guid>
+  <description><![CDATA[CDP (Chrome DevTools Protocol) 详解 简介 Chrome DevTools Protocol（CDP） 是 Google Chrome / Chromium 提供的一套底层调试协议，允许外部工具通过 JSON 消息对浏览器进行检测、检查、调试和性能分析。
+你可能不知道，平时用的 Chrome DevTools 开发者工具，底层就是靠 CDP 来和浏览器通信的。而现在，越来越多的自动化工具（Puppeteer、Playwright、browser-use 等）都基于 CDP 构建。
+在上一篇 browser-use 实战总结 中，我们看到了 --remote-debugging-port=9222 这个参数，这正是启用 CDP 的关键。
+什么是 CDP CDP 本质上是一个基于 WebSocket 的 JSON 消息协议。它将浏览器的各种能力划分为多个域（Domain），每个域定义了一组支持的命令（Commands）和事件（Events）。
+协议架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ┌──────────────────────────────────────────┐ │ Chrome / Chromium │ │ ┌────────────────────────────────┐ │ │ │ DOM Network Page .]]></description>
+</item>
+<item>
   <title>browser-use demo002 实战总结</title>
   <link>https://cfanzp008.github.io/browser-use-demo002-summary/</link>
   <pubDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</pubDate>
@@ -100,16 +112,6 @@ OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 
   <description><![CDATA[CC-Switch CLI - AI CLI 工具统一管理工具 简介 CC-Switch CLI 是一个跨平台的命令行工具，用于统一管理 Claude Code、Codex、Gemini CLI、OpenCode 和 OpenClaw 的配置。它让用户可以轻松地在不同 AI CLI 工具和提供商之间切换。
 GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
 支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.]]></description>
-</item>
-<item>
-  <title>Claude Relay Service - 自建 Claude API 中转服务</title>
-  <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
-  <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/claude-relay-service-introduction/</guid>
-  <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
-这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
-🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
 </item>
 </channel>
 </rss>

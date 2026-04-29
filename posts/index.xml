@@ -4,7 +4,7 @@
     <link>https://cfanzp008.github.io/posts/</link>
     <description>所有文章 | cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>ZeroClaw：超轻量级 AI 助手基础设施</title>
   <link>https://cfanzp008.github.io/zeroclaw-introduction/</link>
   <pubDate>Fri, 03 Apr 2026 14:00:00 &#43;0800</pubDate>
@@ -25,6 +25,18 @@
 主要特点 支持 TCP、UDP、SCTP 协议 可调节与时序、协议和缓冲区相关的参数 报告吞吐量、丢包率、延迟等指标 支持多线程并行测试 支持 IPv4 和 IPv6 客户端/服务器架构 安装 iperf3 Ubuntu/Debian 1 2 sudo apt-get update sudo apt-get install iperf3 CentOS/RHEL 1 sudo yum install iperf3 macOS 1 brew install iperf3 Windows 可以从 ESnet 官网下载预编译的 Windows 版本：
 1 2 # 使用 Chocolatey choco install iperf3 Android 在 Android 设备上使用 iperf3 有两种方式：安装 APP 或通过 Termux 运行。
 方法一：安装 iPerf3 Speed Test App（推荐） 从 Google Play 商店下载 iPerf3 Speed Test 或从 F-Droid 下载 安装后打开应用 点击右上角菜单可以选择「Use as Server」或「Use as Client」 方法二：使用 Termux（命令行） 1 2 3 4 5 6 7 8 9 10 11 # 安装 Termux（从 F-Droid 或 Play 商店） # 启动 Termux 后： # 更新仓库 pkg update # 安装 iperf3 pkg install iperf3 # 查看版本 iperf3 --version 作为服务器运行 1 2 3 4 5 6 7 8 # 基本服务器模式 iperf3 -s # 指定端口 iperf3 -s -p 5202 # 绑定特定 IP iperf3 -s -B 192.]]></description>
+</item>
+<item>
+  <title>CDP (Chrome DevTools Protocol) 详解</title>
+  <link>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 17:34:53 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/chrome-devtools-protocol-introduction/</guid>
+  <description><![CDATA[CDP (Chrome DevTools Protocol) 详解 简介 Chrome DevTools Protocol（CDP） 是 Google Chrome / Chromium 提供的一套底层调试协议，允许外部工具通过 JSON 消息对浏览器进行检测、检查、调试和性能分析。
+你可能不知道，平时用的 Chrome DevTools 开发者工具，底层就是靠 CDP 来和浏览器通信的。而现在，越来越多的自动化工具（Puppeteer、Playwright、browser-use 等）都基于 CDP 构建。
+在上一篇 browser-use 实战总结 中，我们看到了 --remote-debugging-port=9222 这个参数，这正是启用 CDP 的关键。
+什么是 CDP CDP 本质上是一个基于 WebSocket 的 JSON 消息协议。它将浏览器的各种能力划分为多个域（Domain），每个域定义了一组支持的命令（Commands）和事件（Events）。
+协议架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ┌──────────────────────────────────────────┐ │ Chrome / Chromium │ │ ┌────────────────────────────────┐ │ │ │ DOM Network Page .]]></description>
 </item>
 <item>
   <title>browser-use demo002 实战总结</title>
@@ -122,16 +134,6 @@ OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 
   <description><![CDATA[Claude Code 快速入门指南 什么是 Claude Code Claude Code 是 Anthropic 推出的 AI 编程 CLI 工具。它可以直接在终端中运行，帮助开发者：
 自动编写代码 修复 Bug 阅读大型代码库 自动生成脚本 分析项目结构 系统要求 macOS 13.0+ / Windows 10+ / Ubuntu 20.04+ Node.js 18+（可选，原生安装不需要） 安装 macOS / Linux（推荐） 1 curl -fsSL https://claude.ai/install.sh | bash Windows PowerShell 1 irm https://claude.ai/install.ps1 | iex npm 安装（备选） 1 npm install -g @anthropic-ai/claude-code 验证安装 1 claude --version 配置国内使用 由于网络原因，国内使用需要配置 API Key 和代理。
 方法一：配置环境变量 1 2 3 4 5 6 # 方式一：使用 API Key export ANTHROPIC_API_KEY=sk-ant-your-key-here # 方式二：使用第三方中转 export ANTHROPIC_API_KEY=your-key export ANTHROPIC_BASE_URL=https://your-proxy-url.]]></description>
-</item>
-<item>
-  <title>CC-Switch CLI - AI CLI 工具统一管理工具</title>
-  <link>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</link>
-  <pubDate>Tue, 14 Apr 2026 16:08:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/cc-switch-cli-usage-guide/</guid>
-  <description><![CDATA[CC-Switch CLI - AI CLI 工具统一管理工具 简介 CC-Switch CLI 是一个跨平台的命令行工具，用于统一管理 Claude Code、Codex、Gemini CLI、OpenCode 和 OpenClaw 的配置。它让用户可以轻松地在不同 AI CLI 工具和提供商之间切换。
-GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
-支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.]]></description>
 </item>
 </channel>
 </rss>

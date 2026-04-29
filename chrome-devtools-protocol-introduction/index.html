@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>CDP (Chrome DevTools Protocol) 详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 Chrome DevTools Protocol (CDP) 的原理、使用方法、HTTP 端点、WebSocket 通信，以及基于 CDP 的工具如 Puppeteer、Playwright、browser-use 的实际应用。" /><meta name="keywords" content='chrome, devtools, cdp, playwright, puppeteer, 浏览器自动化' /><meta itemprop="name" content="CDP (Chrome DevTools Protocol) 详解">
+<meta itemprop="description" content="详细介绍 Chrome DevTools Protocol (CDP) 的原理、使用方法、HTTP 端点、WebSocket 通信，以及基于 CDP 的工具如 Puppeteer、Playwright、browser-use 的实际应用。"><meta itemprop="datePublished" content="2026-04-29T17:34:53+08:00" />
+<meta itemprop="dateModified" content="2026-04-29T17:34:53+08:00" />
+<meta itemprop="wordCount" content="960"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="chrome,devtools,cdp,playwright,puppeteer,浏览器自动化," /><meta property="og:title" content="CDP (Chrome DevTools Protocol) 详解" />
+<meta property="og:description" content="详细介绍 Chrome DevTools Protocol (CDP) 的原理、使用方法、HTTP 端点、WebSocket 通信，以及基于 CDP 的工具如 Puppeteer、Playwright、browser-use 的实际应用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/chrome-devtools-protocol-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-04-29T17:34:53+08:00" />
+<meta property="article:modified_time" content="2026-04-29T17:34:53+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="CDP (Chrome DevTools Protocol) 详解"/>
+<meta name="twitter:description" content="详细介绍 Chrome DevTools Protocol (CDP) 的原理、使用方法、HTTP 端点、WebSocket 通信，以及基于 CDP 的工具如 Puppeteer、Playwright、browser-use 的实际应用。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/chrome-devtools-protocol-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/browser-use-demo002-summary/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CDP (Chrome DevTools Protocol) 详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/chrome-devtools-protocol-introduction\/"
+    },"genre": "posts","keywords": "chrome, devtools, cdp, playwright, puppeteer, 浏览器自动化","wordcount":  960 ,
+    "url": "https:\/\/cfanzp008.github.io\/chrome-devtools-protocol-introduction\/","datePublished": "2026-04-29T17:34:53+08:00","dateModified": "2026-04-29T17:34:53+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 Chrome DevTools Protocol (CDP) 的原理、使用方法、HTTP 端点、WebSocket 通信，以及基于 CDP 的工具如 Puppeteer、Playwright、browser-use 的实际应用。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>CDP (Chrome DevTools Protocol) 详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-04-29&#32;17:34:53><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-29">2026-04-29</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 960 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="CDP (Chrome DevTools Protocol) 详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#什么是-cdp">什么是 CDP</a>
+      <ul>
+        <li><a href="#协议架构">协议架构</a></li>
+        <li><a href="#核心域domains">核心域（Domains）</a></li>
+      </ul>
+    </li>
+    <li><a href="#启用-cdp">启用 CDP</a>
+      <ul>
+        <li><a href="#启动参数">启动参数</a></li>
+        <li><a href="#验证是否启用成功">验证是否启用成功</a></li>
+      </ul>
+    </li>
+    <li><a href="#http-端点">HTTP 端点</a>
+      <ul>
+        <li><a href="#get-jsonversion"><code>GET /json/version</code></a></li>
+        <li><a href="#get-json-或-jsonlist"><code>GET /json</code> 或 <code>/json/list</code></a></li>
+        <li><a href="#get-jsonprotocol"><code>GET /json/protocol/</code></a></li>
+        <li><a href="#put-jsonnewurl"><code>PUT /json/new?{url}</code></a></li>
+        <li><a href="#get-jsonactivatetargetid"><code>GET /json/activate/{targetId}</code></a></li>
+        <li><a href="#get-jsonclosetargetid"><code>GET /json/close/{targetId}</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#websocket-通信">WebSocket 通信</a>
+      <ul>
+        <li><a href="#连接格式">连接格式</a></li>
+        <li><a href="#消息格式">消息格式</a></li>
+        <li><a href="#python-示例通过-websocket-操作浏览器">Python 示例：通过 WebSocket 操作浏览器</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用场景">使用场景</a>
+      <ul>
+        <li><a href="#1-浏览器自动化测试">1. 浏览器自动化测试</a></li>
+        <li><a href="#2-网页爬虫">2. 网页爬虫</a></li>
+        <li><a href="#3-性能分析">3. 性能分析</a></li>
+        <li><a href="#4-远程调试">4. 远程调试</a></li>
+        <li><a href="#5-ai-agent-浏览器自动化">5. AI Agent 浏览器自动化</a></li>
+      </ul>
+    </li>
+    <li><a href="#基于-cdp-的主流工具">基于 CDP 的主流工具</a>
+      <ul>
+        <li><a href="#puppeteernodejs">Puppeteer（Node.js）</a></li>
+        <li><a href="#playwrightnodejs--python">Playwright（Node.js / Python）</a></li>
+        <li><a href="#browser-usepython">browser-use（Python）</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-chrome-extension-调试协议">使用 Chrome Extension 调试协议</a></li>
+    <li><a href="#在-chrome-devtools-中使用-cdp">在 Chrome DevTools 中使用 CDP</a>
+      <ul>
+        <li><a href="#protocol-monitor">Protocol Monitor</a></li>
+        <li><a href="#devtools-on-devtools">DevTools-on-DevTools</a></li>
+      </ul>
+    </li>
+    <li><a href="#多客户端支持">多客户端支持</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#cdp-和-webdriver-有什么区别">CDP 和 WebDriver 有什么区别？</a></li>
+        <li><a href="#如何获取协议定义文件">如何获取协议定义文件？</a></li>
+        <li><a href="#--remote-debugging-port0-是什么"><code>--remote-debugging-port=0</code> 是什么？</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="cdp-chrome-devtools-protocol-详解">CDP (Chrome DevTools Protocol) 详解</h1>
+<h2 id="简介">简介</h2>
+<p><strong>Chrome DevTools Protocol（CDP）</strong> 是 Google Chrome / Chromium 提供的一套底层调试协议，允许外部工具通过 JSON 消息对浏览器进行<strong>检测、检查、调试和性能分析</strong>。</p>
+<p>你可能不知道，平时用的 Chrome DevTools 开发者工具，底层就是靠 CDP 来和浏览器通信的。而现在，越来越多的自动化工具（Puppeteer、Playwright、browser-use 等）都基于 CDP 构建。</p>
+<p>在上一篇 <a
+  href="/browser-use-demo002-summary/"
+  
+  
+  
+  
+  
+>browser-use 实战总结</a> 中，我们看到了 <code>--remote-debugging-port=9222</code> 这个参数，这正是启用 CDP 的关键。</p>
+<h2 id="什么是-cdp">什么是 CDP</h2>
+<p>CDP 本质上是一个基于 <strong>WebSocket</strong> 的 JSON 消息协议。它将浏览器的各种能力划分为多个<strong>域（Domain）</strong>，每个域定义了一组支持的<strong>命令（Commands）<strong>和</strong>事件（Events）</strong>。</p>
+<h3 id="协议架构">协议架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│          Chrome / Chromium             │
+</span></span><span class="line"><span class="cl">│  ┌────────────────────────────────┐  │
+</span></span><span class="line"><span class="cl">│  │   DOM   Network   Page   ...  │  │
+</span></span><span class="line"><span class="cl">│  └────────────────────────────────┘  │
+</span></span><span class="line"><span class="cl">│            ▲      │                  │
+</span></span><span class="line"><span class="cl">│            │      ▼                  │
+</span></span><span class="line"><span class="cl">│     ┌─────────────────────┐         │
+</span></span><span class="line"><span class="cl">│     │   CDP WebSocket     │         │
+</span></span><span class="line"><span class="cl">│     └─────────────────────┘         │
+</span></span><span class="line"><span class="cl">└──────────────────────────────────────────┘
+</span></span><span class="line"><span class="cl">            ▲      │
+</span></span><span class="line"><span class="cl">            │      ▼
+</span></span><span class="line"><span class="cl">┌──────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│  DevTools / Puppeteer / Playwright │
+</span></span><span class="line"><span class="cl">└──────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="核心域domains">核心域（Domains）</h3>
+<p>CDP 包含 40+ 个域，常用的有：</p>
+<table>
+<thead>
+<tr>
+<th>域</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Page</code></td>
+<td>页面导航、截图、打印</td>
+</tr>
+<tr>
+<td><code>Network</code></td>
+<td>网络请求拦截、Cookie 管理</td>
+</tr>
+<tr>
+<td><code>DOM</code></td>
+<td>DOM 树操作、节点查询</td>
+</tr>
+<tr>
+<td><code>Runtime</code></td>
+<td>JavaScript 执行、表达式求值</td>
+</tr>
+<tr>
+<td><code>Debugger</code></td>
+<td>JavaScript 调试、断点管理</td>
+</tr>
+<tr>
+<td><code>Emulation</code></td>
+<td>设备模拟、UA 伪装</td>
+</tr>
+<tr>
+<td><code>Input</code></td>
+<td>鼠标、键盘输入模拟</td>
+</tr>
+<tr>
+<td><code>Browser</code></td>
+<td>浏览器级别操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="启用-cdp">启用 CDP</h2>
+<h3 id="启动参数">启动参数</h3>
+<p>要让 Chrome / Chromium 开启 CDP 服务，启动时加上 <code>--remote-debugging-port</code> 参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启动 Chrome 并开启 CDP，端口 9222</span>
+</span></span><span class="line"><span class="cl">google-chrome --remote-debugging-port<span class="o">=</span><span class="m">9222</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 无头模式 + CDP</span>
+</span></span><span class="line"><span class="cl">google-chrome --headless --remote-debugging-port<span class="o">=</span><span class="m">9222</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定 CDP 端口为 0，让浏览器自动选择可用端口</span>
+</span></span><span class="line"><span class="cl">google-chrome --remote-debugging-port<span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>在 <a
+  href="/browser-use-demo002-summary/"
+  
+  
+  
+  
+  
+>browser-use demo002</a> 中，我们用的就是这个参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">browser_profile</span> <span class="o">=</span> <span class="n">BrowserProfile</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;--remote-debugging-port=9222&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="验证是否启用成功">验证是否启用成功</h3>
+<p>浏览器启动后，访问 <code>http://localhost:9222/json/version</code> 可以看到版本信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Browser&#34;</span><span class="p">:</span> <span class="s2">&#34;Chrome/126.0.6478.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Protocol-Version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla/5.0 ... Chrome/126.0...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;webkit-Version&#34;</span><span class="p">:</span> <span class="s2">&#34;537.36...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;webSocketDebuggerUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;ws://localhost:9222/devtools/browser/...&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="http-端点">HTTP 端点</h2>
+<p>开启 CDP 后，同一端口会暴露多个 HTTP 端点，用于查询和操作浏览器：</p>
+<h3 id="get-jsonversion"><code>GET /json/version</code></h3>
+<p>获取浏览器版本元数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Browser&#34;</span><span class="p">:</span> <span class="s2">&#34;Chrome/72.0.3601.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Protocol-Version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;webSocketDebuggerUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;ws://localhost:9222/devtools/browser/...&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get-json-或-jsonlist"><code>GET /json</code> 或 <code>/json/list</code></h3>
+<p>列出所有可用的 WebSocket Target（标签页）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;devtoolsFrontendUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;/devtools/inspector.html?ws=localhost:9222/devtools/page/...&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;DAB7FB6187B554E10B0BD18821265734&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Example Domain&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;page&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;webSocketDebuggerUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;ws://localhost:9222/devtools/page/DAB7FB6187B554E10B0BD18821265734&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get-jsonprotocol"><code>GET /json/protocol/</code></h3>
+<p>获取当前浏览器支持的完整 CDP 协议定义（JSON 格式）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;domains&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;domain&#34;</span><span class="p">:</span> <span class="s2">&#34;Accessibility&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;experimental&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;DOM&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;types&#34;</span><span class="p">:</span> <span class="p">[</span><span class="err">...</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span><span class="err">...</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;events&#34;</span><span class="p">:</span> <span class="p">[</span><span class="err">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="put-jsonnewurl"><code>PUT /json/new?{url}</code></h3>
+<p>打开新标签页，返回新 Tab 的 Target 数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X PUT <span class="s2">&#34;http://localhost:9222/json/new?https://example.com&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get-jsonactivatetargetid"><code>GET /json/activate/{targetId}</code></h3>
+<p>将指定标签页置于前台（激活 Tab）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl <span class="s2">&#34;http://localhost:9222/json/activate/DAB7FB6187B554E10B0BD18821265734&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get-jsonclosetargetid"><code>GET /json/close/{targetId}</code></h3>
+<p>关闭指定标签页：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl <span class="s2">&#34;http://localhost:9222/json/close/DAB7FB6187B554E10B0BD18821265734&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="websocket-通信">WebSocket 通信</h2>
+<p>真正的 CDP 操作是通过 <strong>WebSocket</strong> 连接完成的。每个 Target（标签页）都有一个对应的 WebSocket URL。</p>
+<h3 id="连接格式">连接格式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ws</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9222</span><span class="o">/</span><span class="n">devtools</span><span class="o">/</span><span class="n">page</span><span class="o">/</span><span class="p">{</span><span class="n">targetId</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或浏览器级别：</span>
+</span></span><span class="line"><span class="cl"><span class="n">ws</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">9222</span><span class="o">/</span><span class="n">devtools</span><span class="o">/</span><span class="n">browser</span><span class="o">/</span><span class="p">{</span><span class="n">browserId</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="消息格式">消息格式</h3>
+<p>CDP 消息是 JSON 对象，包含 <code>id</code>（请求 ID）、<code>method</code>（方法名）和 <code>params</code>（参数）：</p>
+<p><strong>发送命令：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;Page.navigate&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>接收响应：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;frameId&#34;</span><span class="p">:</span> <span class="s2">&#34;ABC123&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>接收事件：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;Page.loadEventFired&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;timestamp&#34;</span><span class="p">:</span> <span class="mf">12345678.123</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="python-示例通过-websocket-操作浏览器">Python 示例：通过 WebSocket 操作浏览器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">asyncio</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">websockets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 1. 获取 Target 列表</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">urllib.request</span>
+</span></span><span class="line"><span class="cl">    <span class="n">targets</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;http://localhost:9222/json&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 2. 连接到第一个 page 的 WebSocket</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ws_url</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&#34;webSocketDebuggerUrl&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;ws://&#34;</span><span class="p">,</span> <span class="s2">&#34;ws://&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ws_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 3. 发送 Page.navigate 命令</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">ws</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;Page.navigate&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.com&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 4. 接收响应</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ws</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Response:&#34;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 5. 等待加载完成事件</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">msg</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="k">await</span> <span class="n">ws</span><span class="o">.</span><span class="n">recv</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;method&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;Page.loadEventFired&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Page loaded!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用场景">使用场景</h2>
+<p>CDP 适用的场景非常广泛：</p>
+<h3 id="1-浏览器自动化测试">1. 浏览器自动化测试</h3>
+<p>Puppeteer、Playwright 等工具底层都使用 CDP 来控制浏览器，模拟用户操作、截图、生成 PDF 等。</p>
+<h3 id="2-网页爬虫">2. 网页爬虫</h3>
+<p>通过 CDP 可以绕过一些反爬机制，获取动态渲染后的页面内容，拦截网络请求等。</p>
+<h3 id="3-性能分析">3. 性能分析</h3>
+<p>使用 <code>Profiler</code>、<code>Performance</code> 等域，可以分析页面性能、内存使用等。</p>
+<h3 id="4-远程调试">4. 远程调试</h3>
+<p>通过 CDP 可以远程调试设备上的 Chrome 浏览器，特别是移动端调试。</p>
+<h3 id="5-ai-agent-浏览器自动化">5. AI Agent 浏览器自动化</h3>
+<p>如 <a
+  href="/browser-use-introduction/"
+  
+  
+  
+  
+  
+>browser-use</a> 这样的 AI Agent 工具，通过 CDP 让 LLM 能够&quot;看到&quot;并操作网页。</p>
+<h2 id="基于-cdp-的主流工具">基于 CDP 的主流工具</h2>
+<h3 id="puppeteernodejs">Puppeteer（Node.js）</h3>
+<p>Google 官方出品，直接封装 CDP：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">puppeteer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;puppeteer&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">browser</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">puppeteer</span><span class="p">.</span><span class="nx">launch</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;--remote-debugging-port=9222&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">browser</span><span class="p">.</span><span class="nx">newPage</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">await</span> <span class="nx">page</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="s1">&#39;https://example.com&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">await</span> <span class="nx">page</span><span class="p">.</span><span class="nx">screenshot</span><span class="p">({</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;screenshot.png&#39;</span> <span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="playwrightnodejs--python">Playwright（Node.js / Python）</h3>
+<p>微软出品，支持 Chromium、Firefox、WebKit 多浏览器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">playwright.sync_api</span> <span class="kn">import</span> <span class="n">sync_playwright</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">sync_playwright</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">browser</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">chromium</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">new_page</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="s2">&#34;https://example.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">page</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&#34;screenshot.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Playwright 也支持直接通过 CDP Session 发送原始命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">page</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">new_page</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdp_session</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">new_cdp_session</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdp_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;Page.captureScreenshot&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;jpeg&#34;</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="browser-usepython">browser-use（Python）</h3>
+<p>AI 驱动的浏览器自动化工具，底层使用 Playwright（基于 CDP）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">browser_use</span> <span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">BrowserProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">browser_use.llm</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">browser_profile</span> <span class="o">=</span> <span class="n">BrowserProfile</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;--remote-debugging-port=9222&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">task</span><span class="o">=</span><span class="s2">&#34;打开 https://example.com 并告诉我页面标题&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">llm</span><span class="o">=</span><span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&#34;gpt-4o&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">browser_profile</span><span class="o">=</span><span class="n">browser_profile</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用-chrome-extension-调试协议">使用 Chrome Extension 调试协议</h2>
+<p>除了直接连接 WebSocket，还可以通过 Chrome Extension 的 <code>chrome.debugger</code> API 来使用 CDP：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 在 Chrome 扩展中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">chrome</span><span class="p">.</span><span class="kr">debugger</span><span class="p">.</span><span class="nx">attach</span><span class="p">({</span> <span class="nx">targetId</span><span class="o">:</span> <span class="nx">tabId</span> <span class="p">},</span> <span class="s2">&#34;1.3&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">chrome</span><span class="p">.</span><span class="kr">debugger</span><span class="p">.</span><span class="nx">sendCommand</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="nx">targetId</span><span class="o">:</span> <span class="nx">tabId</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Page.captureScreenshot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="nx">format</span><span class="o">:</span> <span class="s2">&#34;jpeg&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Screenshot captured!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种方式的好处是：不需要手动管理 WebSocket 连接，Chrome 扩展框架帮你处理请求和响应的绑定。</p>
+<h2 id="在-chrome-devtools-中使用-cdp">在 Chrome DevTools 中使用 CDP</h2>
+<p>Chrome DevTools 本身也提供了查看和发送 CDP 命令的功能：</p>
+<h3 id="protocol-monitor">Protocol Monitor</h3>
+<ol>
+<li>打开 DevTools → 设置（齿轮图标）→ 实验功能</li>
+<li>启用 <strong>Protocol Monitor</strong></li>
+<li>关闭并重新打开 DevTools</li>
+<li>菜单 → More Tools → Protocol Monitor</li>
+</ol>
+<p>在这里你可以：</p>
+<ul>
+<li>实时查看所有 CDP 请求和响应</li>
+<li>直接发送 CDP 命令</li>
+<li>使用 CDP Editor 可视化编辑参数</li>
+</ul>
+<h3 id="devtools-on-devtools">DevTools-on-DevTools</h3>
+<p>还可以打开&quot;DevTools on DevTools&quot;，在内部的 DevTools 控制台中使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">Main</span> <span class="o">=</span> <span class="kr">await</span> <span class="kr">import</span><span class="p">(</span><span class="s1">&#39;./front_end/entrypoints/main/main.js&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">await</span> <span class="nx">Main</span><span class="p">.</span><span class="nx">MainImpl</span><span class="p">.</span><span class="nx">sendOverProtocol</span><span class="p">(</span><span class="s1">&#39;Emulation.setDeviceMetricsOverride&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mobile</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">width</span><span class="o">:</span> <span class="mi">412</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">height</span><span class="o">:</span> <span class="mi">732</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">deviceScaleFactor</span><span class="o">:</span> <span class="mf">2.625</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="多客户端支持">多客户端支持</h2>
+<p>从 <strong>Chrome 63</strong> 开始，CDP 支持多个客户端同时连接。这意味着你可以一边用 DevTools 调试，一边用 Puppeteer 做自动化，两者不会互相踢出。</p>
+<p>当某个客户端断开连接时，会收到 <code>Inspector.detached</code> 事件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;Inspector.detached&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;replaced_with_devtools&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见问题">常见问题</h2>
+<h3 id="cdp-和-webdriver-有什么区别">CDP 和 WebDriver 有什么区别？</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>CDP</th>
+<th>WebDriver (Selenium)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议</td>
+<td>私有 JSON/WebSocket</td>
+<td>W3C 标准 HTTP</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>快（直接连接浏览器）</td>
+<td>较慢（中间层多）</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>更底层、更完整</td>
+<td>标准化、跨浏览器</td>
+</tr>
+<tr>
+<td>浏览器支持</td>
+<td>主要是 Chrome/Chromium</td>
+<td>多浏览器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="如何获取协议定义文件">如何获取协议定义文件？</h3>
+<p>协议定义在 Chromium 源码中：</p>
+<ul>
+<li><code>browser_protocol.pdl</code>：浏览器相关</li>
+<li><code>js_protocol.pdl</code>：V8 相关</li>
+</ul>
+<p>GitHub 镜像：https://github.com/ChromeDevTools/devtools-protocol</p>
+<p>也可以通过 <code>http://localhost:9222/json/protocol/</code> 获取当前浏览器支持的协议。</p>
+<h3 id="--remote-debugging-port0-是什么"><code>--remote-debugging-port=0</code> 是什么？</h3>
+<p>指定端口为 0 时，Chrome 会自动选择一个可用的端口。端口号会写入：</p>
+<ul>
+<li>stderr 输出</li>
+<li>用户数据目录下的 <code>DevToolsActivePort</code> 文件</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>CDP 是连接人类和 Chrome 浏览器的桥梁，它让程序能够像人一样操作浏览器。从基本的页面导航、截图，到复杂的 AI Agent 自动化，CDP 提供了完整的能力支持。</p>
+<p><strong>核心要点：</strong></p>
+<ol>
+<li>CDP 是基于 WebSocket 的 JSON 协议，分为 40+ 个功能域</li>
+<li>通过 <code>--remote-debugging-port</code> 启动参数开启</li>
+<li>HTTP 端点提供 Target 管理和协议查询</li>
+<li>WebSocket 端点是实际通信的通道</li>
+<li>Puppeteer、Playwright、browser-use 等工具都基于 CDP</li>
+<li>Chrome 63+ 支持多客户端同时连接</li>
+</ol>
+<p>无论你是想做浏览器自动化测试、网页爬虫，还是开发 AI Agent，理解 CDP 都是非常有价值的基础。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a
+  href="https://chromedevtools.github.io/devtools-protocol/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>官方文档</a></li>
+<li><a
+  href="https://developer.chrome.com/docs/devtools/debugger-protocol/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Chrome DevTools Protocol 官方说明</a></li>
+<li><a
+  href="https://github.com/ChromeDevTools/awesome-chrome-devtools"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>awesome-chrome-devtools</a></li>
+<li><a
+  href="https://github.com/aslushnikov/getting-started-with-cdp"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Getting Started with CDP</a></li>
+<li><a
+  href="/browser-use-introduction/"
+  
+  
+  
+  
+  
+>上一篇：browser-use 介绍</a></li>
+<li><a
+  href="/browser-use-demo002-summary/"
+  
+  
+  
+  
+  
+>实战：browser-use demo002</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-04-29&#32;17:34:53>更新于 2026-04-29&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/chrome-devtools-protocol-introduction/" data-title="CDP (Chrome DevTools Protocol) 详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/chrome/">chrome</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/cdp/">cdp</a>,&nbsp;<a href="/tags/playwright/">playwright</a>,&nbsp;<a href="/tags/puppeteer/">puppeteer</a>,&nbsp;<a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/">浏览器自动化</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/browser-use-demo002-summary/" class="prev" rel="prev" title="browser-use demo002 实战总结"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>browser-use demo002 实战总结</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
