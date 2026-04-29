@@ -4,9 +4,23 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 22 Apr 2026 11:33:18 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>browser-use - AI 驱动的浏览器自动化工具</title>
+  <link>https://cfanzp008.github.io/browser-use-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/browser-use-introduction/</guid>
+  <description><![CDATA[browser-use - AI 驱动的浏览器自动化工具 简介 browser-use 是一个开源的 Python 库，旨在让 AI 代理（Agent）能够自动化操作网页浏览器。它通过结合大语言模型（LLM）和浏览器自动化技术（基于 Playwright），使得开发者可以用自然语言描述任务，让 AI 自动完成复杂的网页操作。
+该项目在 GitHub 上获得了超过 9.1 万星标，是当前最热门的 AI 浏览器自动化工具之一。无论是表单填写、信息抓取、在线购物，还是自动化测试，browser-use 都能通过简单的 Python 代码来实现。
+核心特性 1. 自然语言驱动 不需要编写繁琐的 CSS 选择器或 XPath，只需用自然语言描述任务：
+1 task = &#34;去 Hacker News 找到置顶帖子的标题和链接&#34; 2. 多 LLM 支持 支持多种主流大语言模型：
+模型提供商 类名称 示例模型 Browser Use 专用 ChatBrowserUse browser-use/bu-30b-a3b-preview OpenAI ChatOpenAI gpt-4o, gpt-4.1-mini Anthropic ChatAnthropic claude-sonnet-4-0 Google ChatGoogle gemini-flash-latest 3. 两种使用方式 开源版本：完全自托管，可深度定制工具和行为。
+Cloud 版本：托管在 Browser Use Cloud，提供更好的隐蔽性、代理轮换和验证码解决能力。
+4. 丰富的功能 表单自动填写：自动识别表单字段并填写 多标签页管理：跨标签页操作和切换 结构化输出：使用 Pydantic 模型定义输出格式 自定义工具：扩展 Agent 能力 持久化浏览器会话：复用登录状态 CLI 工具：命令行快速操作 安装配置 环境要求 Python &gt;= 3.]]></description>
+</item>
+<item>
   <title>markview.nvim - Neovim 文档实时预览插件</title>
   <link>https://cfanzp008.github.io/markview-nvim-plugin/</link>
   <pubDate>Wed, 22 Apr 2026 11:33:18 &#43;0800</pubDate>
@@ -98,41 +112,6 @@ GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
   <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
 这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
 🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
-</item>
-<item>
-  <title>《时间管理幸福学》第一章读书笔记 - 累积时间的力量</title>
-  <link>https://cfanzp008.github.io/time-management-happiness-chapter1/</link>
-  <pubDate>Mon, 13 Apr 2026 23:57:19 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/time-management-happiness-chapter1/</guid>
-  <description><![CDATA[《时间管理幸福学》第一章读书笔记 - 累积时间的力量 关于本书 《时间管理幸福学》是台湾畅销书作家吴淡如的代表作之一。吴淡如十岁开始写作，二十岁出版第一本小说集，连续5年获金石堂最佳畅销女作家第1名，有&quot;台湾畅销书天后&quot;的美誉。
-与市面上枯燥的时间管理工具书不同，这本书文笔细腻、幽默，不讲大道理却又很有道理，好看又实用。书中还有多幅可爱漫画穿插其中，图文并茂，轻松易读。
-第一章：在时间夹缝中寻找空间 第一章的核心主题是&quot;时间立体化&quot;，共有11个小节，其中打头的就是&quot;累积时间的力量&quot;——这，也是全书最核心的观念。
-从浪费到觉醒 吴淡如在书中坦言，自己曾经是一个非常会浪费时间的人。考上台大之后，她每天在校园里晃荡，把交男友当成人生最重要的事，上课时常为了考虑该穿什么样的衣服而忘了带课本，没有人看过她出现在图书馆。
-直到后来修八门课，有四科不及格，一向给高分的老师给了她史上最低分，她才终于开始反思。
-室友的启示 真正让她体会到&quot;累积时间的力量&quot;的，是她的室友。
-当时她们都修同一门日文课，室友每天早上起床会念一小时日文，而她还赖在床上，有作业只想抄她的。两年下来，两人的日文水平悬殊。
-&ldquo;就算没有天分，只要你愿意每天花一点时间，做同样一件事情，不知不觉间，你就会走得很远。&rdquo;
-这是吴淡如从室友身上学到的最重要的一课。
-日积月累的智慧 书中有一个让我印象深刻的比喻：
-&ldquo;日积月累，是笨功夫，但也是最聪明的事。&rdquo;
-很多人渴望速成，渴望找到捷径，但真正的成长往往来自于持续的积累。每天进步一点点，长期坚持下来，效果是惊人的。
-吴淡如举了自己写作的例子。她每天都会写三千字，对她来说已经是一种习惯了。写久了，她不必想&quot;这种情况该用什么形容词&quot;；写久了，她知道每一个瓶颈都是一个转折点，只要继续下去就会柳暗花明。
-关键在于&quot;真心想要&quot; 书中有一句话让我印象深刻：
-&ldquo;当你真心想要做时，你一定会挤出时间来。&rdquo;
-吴淡如在两场录像之间，会拿出笔记本电脑聚精会神地写稿。别人觉得这种&quot;利用时间&quot;的精神真伟大，但她觉得，这跟电玩迷在无聊时拿出游戏机玩游戏一样，她是在&quot;减压&quot;。
-这就是时间管理哲学的奥秘之一：放下与转移。如果你爱它，它就不是苦差事，你是在享乐。
-写作的&quot;改变密码&quot; 吴淡如提到一个概念叫做&quot;改变密码&quot;：
-&ldquo;当一个东西进入你的生命，成为你生活的一部分时，那种微妙的感觉很难形容。也许电玩狂热分子最能体会我的感觉：那个与现实世界无关的虚拟世界好迷人，你很想每天进去探索它的无限可能。&rdquo;
-我和电玩狂热分子的差别只在于，他们的幻想世界是被设定的，而她的比较容易接受自己的指令而做各种更改。
-&ldquo;写作的世界很刺激。永远有新鲜的事情，比挑影片看更有趣，你可以看鬼片、动作片、科幻片、文艺片，只要你愿意……&rdquo;
-谁需要时间管理？ 书中总结了最需要做时间管理的五类人：
-感觉时间有限，而工作无限的人 努力工作，却收不到成果的人 努力工作，却不是很快乐的人 想要趁早实现自己理想的人 常连吃饭都没有时间，但不想过劳死的人 如果你符合其中任何一条，这本书值得一读。
-我的感悟 读完这一章，我最大的感触是：
-笨功夫最有效：不要迷信速成，每天坚持一点点，积累的力量是惊人的 兴趣是最好的动力：当你真心热爱一件事时，你自然会找到时间 改变视角：把&quot;必须做&quot;变成&quot;想要做&quot;，心态完全不同 &ldquo;日积月累，使你变真聪明。&rdquo;
-这句话与大家共勉。
-参考信息：
-书名：《时间管理幸福学》（珍藏版） 作者：吴淡如 出版社：化学工业出版社 出版年：2012年 ISBN：9787122125101 ]]></description>
 </item>
 </channel>
 </rss>

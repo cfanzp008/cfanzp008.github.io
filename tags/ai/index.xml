@@ -4,7 +4,21 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>ai - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>browser-use - AI 驱动的浏览器自动化工具</title>
+  <link>https://cfanzp008.github.io/browser-use-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/browser-use-introduction/</guid>
+  <description><![CDATA[browser-use - AI 驱动的浏览器自动化工具 简介 browser-use 是一个开源的 Python 库，旨在让 AI 代理（Agent）能够自动化操作网页浏览器。它通过结合大语言模型（LLM）和浏览器自动化技术（基于 Playwright），使得开发者可以用自然语言描述任务，让 AI 自动完成复杂的网页操作。
+该项目在 GitHub 上获得了超过 9.1 万星标，是当前最热门的 AI 浏览器自动化工具之一。无论是表单填写、信息抓取、在线购物，还是自动化测试，browser-use 都能通过简单的 Python 代码来实现。
+核心特性 1. 自然语言驱动 不需要编写繁琐的 CSS 选择器或 XPath，只需用自然语言描述任务：
+1 task = &#34;去 Hacker News 找到置顶帖子的标题和链接&#34; 2. 多 LLM 支持 支持多种主流大语言模型：
+模型提供商 类名称 示例模型 Browser Use 专用 ChatBrowserUse browser-use/bu-30b-a3b-preview OpenAI ChatOpenAI gpt-4o, gpt-4.1-mini Anthropic ChatAnthropic claude-sonnet-4-0 Google ChatGoogle gemini-flash-latest 3. 两种使用方式 开源版本：完全自托管，可深度定制工具和行为。
+Cloud 版本：托管在 Browser Use Cloud，提供更好的隐蔽性、代理轮换和验证码解决能力。
+4. 丰富的功能 表单自动填写：自动识别表单字段并填写 多标签页管理：跨标签页操作和切换 结构化输出：使用 Pydantic 模型定义输出格式 自定义工具：扩展 Agent 能力 持久化浏览器会话：复用登录状态 CLI 工具：命令行快速操作 安装配置 环境要求 Python &gt;= 3.]]></description>
+</item>
+<item>
   <title>三大 AI 编程 CLI 工具对比：Codex CLI vs Claude Code vs OpenCode</title>
   <link>https://cfanzp008.github.io/ai-coding-cli-comparison/</link>
   <pubDate>Thu, 16 Apr 2026 23:37:00 &#43;0800</pubDate>
@@ -107,21 +121,6 @@ Superpowers 架构 技能类型 Superpowers 将技能分为两类：
 Rigid Skills（刚性技能）：严格遵循预设流程，如 TDD（测试驱动开发）、Debugging
 使用时必须完全按照规范执行 不允许随意调整流程 Flexible Skills（柔性技能）：可以灵活适应上下文，如 Patterns
 可以根据实际情况调整实现方式 需要理解技能背后的原理 技能层级 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 Superpowers ├── 基础技能（Built-in） │ ├── playwright │ ├── frontend-ui-ux │ ├── git-master │ ├── dev-browser │ ├── review-work │ └── ai-slop-remover │ ├── 用户技能（User-installed） │ ├── doc-coauthoring │ ├── blog-do-publish │ ├── pdf │ ├── docx │ ├── xlsx │ ├── pptx │ ├── mcp-builder │ └── article-writer │ └── 超级技能（Superpowers） ├── using-superpowers ├── brainstorming ├── test-driven-development ├── systematic-debugging ├── verification-before-completion ├── requesting-code-review ├── receiving-code-review ├── finishing-a-development-branch ├── writing-plans ├── executing-plans ├── subagent-driven-development ├── writing-skills ├── skill-creator ├── using-git-worktrees └── dispatching-parallel-agents 如何使用 Superpowers 1.]]></description>
-</item>
-<item>
-  <title>Google NotebookLM：AI 驱动的智能笔记本详解</title>
-  <link>https://cfanzp008.github.io/notebooklm-usage-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 15:47:49 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/notebooklm-usage-guide/</guid>
-  <description><![CDATA[Google NotebookLM：AI 驱动的智能笔记本详解 什么是 NotebookLM NotebookLM 是 Google 实验室（Google Labs）推出的一款实验性 AI 笔记本工具。它的核心理念是「以 AI 为核心的笔记本」——从设计之初就将强大的语言模型融入其中，帮助用户更快地从信息中获取洞察。
-与传统的 AI 聊天机器人不同，NotebookLM 的独特之处在于它的「源 grounding」机制。你可以将自己选择的文档作为 AI 的知识来源，让 AI 只基于你提供的资料来回答问题。这不仅大大减少了「幻觉」问题，还确保了答案的相关性和准确性。
-NotebookLM 最初于 2023 年 7 月以「Project Tailwind」的名字在 Google I/O 大会上首次亮相，随后正式命名为 NotebookLM。经过几年发展，它已经从最初的文档摘要工具演变为一个功能强大的多模态学习和工作助手。
-核心功能详解 1. 智能文档导入 NotebookLM 支持多种文档格式的导入：
-Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文档进行分析 网页内容：可以通过 URL 导入网页内容 音频文件：支持上传音频文件进行转录和分析 Markdown 和文本文件：支持纯文本格式 导入文档后，NotebookLM 会自动分析内容，生成摘要、关键主题和可能的问题，帮助你快速了解文档概况。
-2. AI 问答功能 基于导入的文档，你可以向 NotebookLM 提问：
-医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
-3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：]]></description>
 </item>
 </channel>
 </rss>

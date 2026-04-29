@@ -4,7 +4,21 @@
     <link>https://cfanzp008.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/</link>
     <description>自动化 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:04:31 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+  <title>browser-use - AI 驱动的浏览器自动化工具</title>
+  <link>https://cfanzp008.github.io/browser-use-introduction/</link>
+  <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/browser-use-introduction/</guid>
+  <description><![CDATA[browser-use - AI 驱动的浏览器自动化工具 简介 browser-use 是一个开源的 Python 库，旨在让 AI 代理（Agent）能够自动化操作网页浏览器。它通过结合大语言模型（LLM）和浏览器自动化技术（基于 Playwright），使得开发者可以用自然语言描述任务，让 AI 自动完成复杂的网页操作。
+该项目在 GitHub 上获得了超过 9.1 万星标，是当前最热门的 AI 浏览器自动化工具之一。无论是表单填写、信息抓取、在线购物，还是自动化测试，browser-use 都能通过简单的 Python 代码来实现。
+核心特性 1. 自然语言驱动 不需要编写繁琐的 CSS 选择器或 XPath，只需用自然语言描述任务：
+1 task = &#34;去 Hacker News 找到置顶帖子的标题和链接&#34; 2. 多 LLM 支持 支持多种主流大语言模型：
+模型提供商 类名称 示例模型 Browser Use 专用 ChatBrowserUse browser-use/bu-30b-a3b-preview OpenAI ChatOpenAI gpt-4o, gpt-4.1-mini Anthropic ChatAnthropic claude-sonnet-4-0 Google ChatGoogle gemini-flash-latest 3. 两种使用方式 开源版本：完全自托管，可深度定制工具和行为。
+Cloud 版本：托管在 Browser Use Cloud，提供更好的隐蔽性、代理轮换和验证码解决能力。
+4. 丰富的功能 表单自动填写：自动识别表单字段并填写 多标签页管理：跨标签页操作和切换 结构化输出：使用 Pydantic 模型定义输出格式 自定义工具：扩展 Agent 能力 持久化浏览器会话：复用登录状态 CLI 工具：命令行快速操作 安装配置 环境要求 Python &gt;= 3.]]></description>
+</item>
+<item>
   <title>Superpowers 自动化使用指南</title>
   <link>https://cfanzp008.github.io/superpowers-automation-guide/</link>
   <pubDate>Wed, 08 Apr 2026 18:04:31 &#43;0800</pubDate>
