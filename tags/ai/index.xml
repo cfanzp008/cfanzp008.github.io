@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/ai/</link>
     <description>ai - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>browser-use demo002 实战总结</title>
+  <link>https://cfanzp008.github.io/browser-use-demo002-summary/</link>
+  <pubDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/browser-use-demo002-summary/</guid>
+  <description><![CDATA[browser-use demo002 实战总结 背景 在上一篇介绍 browser-use 的文章中，我们了解了这个 AI 驱动的浏览器自动化工具的基本概念。本文通过一个实际的 demo002.py 示例，深入分析 browser-use 的实际运行效果，包括配置细节、执行流程和结果分析。
+示例代码分析 demo002.py 是一个最小化的 browser-use 使用示例，核心代码如下：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 import asyncio from browser_use import Agent, BrowserProfile from browser_use.llm import ChatOpenAI async def main(): # 1. 配置浏览器参数 browser_profile = BrowserProfile( headless=True, args=[ &#34;--no-sandbox&#34;, &#34;--disable-setuid-sandbox&#34;, &#34;--disable-dev-shm-usage&#34;, &#34;--disable-gpu&#34;, &#34;--remote-debugging-port=9222&#34;, # 强制 CDP 端口 ], ) # 2.]]></description>
+</item>
+<item>
   <title>browser-use - AI 驱动的浏览器自动化工具</title>
   <link>https://cfanzp008.github.io/browser-use-introduction/</link>
   <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
@@ -108,19 +118,6 @@ MemPalace 提出了全新的解决思路：记忆宫殿法。
 规范文件可以被审查 可以版本化管理 可以追踪意图的演变 便于人类和 AI 协同理解 3. 防止「氛围编程」 「Vibe Coding」（氛围编程）是指盲目跟随 AI 生成代码，缺乏深思熟虑的设计。OpenSpec 强制要求在编码前思考和规划。
 OpenSpec 规范结构 1. Project Spec（项目规范） 定义项目的整体结构和目标：
 1 2 3 4 5 6 7 name: my-project description: A web application for task management version: 1.]]></description>
-</item>
-<item>
-  <title>Superpowers 自动化使用指南</title>
-  <link>https://cfanzp008.github.io/superpowers-automation-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 18:04:31 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/superpowers-automation-guide/</guid>
-  <description><![CDATA[Superpowers 自动化使用指南 什么是 Superpowers Superpowers 是 OpenCode 平台推出的一套 AI 技能框架，旨在为 AI Agent 提供专家级能力。通过 Superpowers，用户可以将特定领域的知识和工作流封装为可重用的技能（Skills），让 AI 在执行任务时能够自动调用这些技能。
-Superpowers 的核心理念是「让 AI 具备专业领域知识」，就像为 AI 配备了一个随身携带的专家团队。
-Superpowers 架构 技能类型 Superpowers 将技能分为两类：
-Rigid Skills（刚性技能）：严格遵循预设流程，如 TDD（测试驱动开发）、Debugging
-使用时必须完全按照规范执行 不允许随意调整流程 Flexible Skills（柔性技能）：可以灵活适应上下文，如 Patterns
-可以根据实际情况调整实现方式 需要理解技能背后的原理 技能层级 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 Superpowers ├── 基础技能（Built-in） │ ├── playwright │ ├── frontend-ui-ux │ ├── git-master │ ├── dev-browser │ ├── review-work │ └── ai-slop-remover │ ├── 用户技能（User-installed） │ ├── doc-coauthoring │ ├── blog-do-publish │ ├── pdf │ ├── docx │ ├── xlsx │ ├── pptx │ ├── mcp-builder │ └── article-writer │ └── 超级技能（Superpowers） ├── using-superpowers ├── brainstorming ├── test-driven-development ├── systematic-debugging ├── verification-before-completion ├── requesting-code-review ├── receiving-code-review ├── finishing-a-development-branch ├── writing-plans ├── executing-plans ├── subagent-driven-development ├── writing-skills ├── skill-creator ├── using-git-worktrees └── dispatching-parallel-agents 如何使用 Superpowers 1.]]></description>
 </item>
 </channel>
 </rss>

@@ -4,9 +4,19 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>browser-use demo002 实战总结</title>
+  <link>https://cfanzp008.github.io/browser-use-demo002-summary/</link>
+  <pubDate>Wed, 29 Apr 2026 17:06:45 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/browser-use-demo002-summary/</guid>
+  <description><![CDATA[browser-use demo002 实战总结 背景 在上一篇介绍 browser-use 的文章中，我们了解了这个 AI 驱动的浏览器自动化工具的基本概念。本文通过一个实际的 demo002.py 示例，深入分析 browser-use 的实际运行效果，包括配置细节、执行流程和结果分析。
+示例代码分析 demo002.py 是一个最小化的 browser-use 使用示例，核心代码如下：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 import asyncio from browser_use import Agent, BrowserProfile from browser_use.llm import ChatOpenAI async def main(): # 1. 配置浏览器参数 browser_profile = BrowserProfile( headless=True, args=[ &#34;--no-sandbox&#34;, &#34;--disable-setuid-sandbox&#34;, &#34;--disable-dev-shm-usage&#34;, &#34;--disable-gpu&#34;, &#34;--remote-debugging-port=9222&#34;, # 强制 CDP 端口 ], ) # 2.]]></description>
+</item>
+<item>
   <title>browser-use - AI 驱动的浏览器自动化工具</title>
   <link>https://cfanzp008.github.io/browser-use-introduction/</link>
   <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
@@ -102,16 +112,6 @@ OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 
   <description><![CDATA[CC-Switch CLI - AI CLI 工具统一管理工具 简介 CC-Switch CLI 是一个跨平台的命令行工具，用于统一管理 Claude Code、Codex、Gemini CLI、OpenCode 和 OpenClaw 的配置。它让用户可以轻松地在不同 AI CLI 工具和提供商之间切换。
 GitHub: https://github.com/farion1231/cc-switch Stars: 40,000+ | Forks: 2,500+
 支持的 CLI 工具 Claude Code - Anthropic AI 编程助手 Codex - OpenAI Codex Gemini CLI - Google Gemini 命令行 OpenCode - 国产 AI 编程助手 OpenClaw - OpenCode 桌面版 核心功能 Provider 管理 50+ 预设提供商 一键复制 API Key 导入 自定义 API 端点配置 代理设置支持 MCP 服务器管理 MCP 服务器同步 一键安装/卸载 自定义配置 Skills 管理 从 GitHub 仓库一键安装 ZIP 文件安装 自定义仓库管理 提示词库 提示词保存和复用 跨工具同步 安装 一键安装（推荐） 1 curl -fsSL https://github.]]></description>
-</item>
-<item>
-  <title>Claude Relay Service - 自建 Claude API 中转服务</title>
-  <link>https://cfanzp008.github.io/claude-relay-service-introduction/</link>
-  <pubDate>Tue, 14 Apr 2026 11:46:30 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/claude-relay-service-introduction/</guid>
-  <description><![CDATA[Claude Relay Service - 自建 Claude API 中转服务 前言 Claude Relay Service（简称 CRS）是一个开源的 Claude API 中转服务项目，在 GitHub 上已获得 11k+ stars，fork 数量达 1.6k，是目前最受欢迎的 Claude 自建服务方案之一。
-这个项目适合谁？ 如果你有以下需求，CRS 可能是你的解决方案：
-🌍 地区限制：所在地区无法直接访问 Claude Code 服务 🔒 隐私担忧：担心第三方镜像服务会记录对话内容 👥 成本分摊：想和朋友一起分摊 Claude Code Max 订阅费用 ⚡ 稳定性需求：第三方镜像站经常不稳定，影响工作效率 核心功能 基础功能 ✅ 多账户管理：支持添加多个 Claude 账户自动轮换 ✅ 自定义 API Key：给每个人分配独立的 Key ✅ 使用统计：详细记录每个人用了多少 Token 高级功能 🔄 智能切换：账户出问题自动切换到下一个 🚀 性能优化：连接池、缓存，减少延迟 📊 监控面板：Web 界面查看所有数据 🛡️ 安全控制：访问限制、速率控制、客户端限制 🌐 代理支持：支持 HTTP/SOCKS5 代理 支持的模型 CRS 不仅支持 Claude，还支持多种主流 AI 服务：]]></description>
 </item>
 </channel>
 </rss>
