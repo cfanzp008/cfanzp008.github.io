@@ -4,7 +4,20 @@
     <link>https://cfanzp008.github.io/categories/language/</link>
     <description>编程语言 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 20 Apr 2026 10:00:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/language/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 11 May 2026 18:12:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/language/" rel="self" type="application/rss+xml" /><item>
+  <title>AI 模型蒸馏 (Distillation) 技术详解</title>
+  <link>https://cfanzp008.github.io/ai-model-distillation-introduction/</link>
+  <pubDate>Mon, 11 May 2026 18:12:45 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ai-model-distillation-introduction/</guid>
+  <description><![CDATA[AI 模型蒸馏 (Distillation) 技术详解 背景 近年来，大型语言模型（LLM）和深度学习模型的规模越来越大。以 GPT-4 为例，据说有超过 1 万亿参数；Meta 的 Llama 3.1 8B 模型也有 80 亿参数。这些&quot;巨型&quot;模型在性能上确实出色，但在实际部署时面临严峻挑战：
+推理速度慢：参数量大意味着计算量大，延迟高 显存占用高：需要昂贵的 GPU 才能运行 部署成本高：云端部署的费用让很多场景变得不切实际 模型蒸馏（Distillation） 就是解决这个问题的关键技术之一。它能将大模型（Teacher）的知识&quot;浓缩&quot;到小模型（Student）中，让小模型在保持接近大模型性能的同时，大幅降低计算和存储成本。
+什么是知识蒸馏 知识蒸馏（Knowledge Distillation） 最早由 Hinton 等人在 2015 年提出，核心思想是：
+让一个轻量级的学生模型学习一个笨重但准确度高的教师模型的行为，从而在保持性能的同时大幅压缩模型规模。
+打个比方：知识蒸馏就像是一位经验丰富的大厨（Teacher）指导一个年轻学徒（Student）。学徒虽然经验不足，但通过学习大厨的&quot;火候把握&quot;和&quot;调味直觉&quot;，能做出一道接近大厨水平的菜，而且速度更快、成本更低。
+基本架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ┌─────────────────────────────────────────────────────┐ │ 知识蒸馏框架 │ │ │ │ ┌─────────────┐ 软标签（Soft Labels） │ │ │ Teacher │ ──────────────────────────────▶ │ │ │ 大模型 │ 知识传递（Knowledge Transfer） │ │ │ (参数量大) │ │ │ └─────────────┘ │ │ │ │ │ │ Hard Labels │ │ │ (真实标签) │ │ ▼ │ │ ┌─────────────┐ │ │ │ Student │ ◀──────────────────────────────── │ │ │ 小模型 │ 蒸馏损失（Distillation Loss） │ │ │ (参数量小) │ │ │ └─────────────┘ │ └─────────────────────────────────────────────────────┘ 软标签 vs 硬标签 传统的监督学习只使用硬标签（Hard Label），即非 0 即 1 的确定性标签：]]></description>
+</item>
+<item>
   <title>Rust 中 Option 的用法详解</title>
   <link>https://cfanzp008.github.io/rust-option-usage/</link>
   <pubDate>Mon, 20 Apr 2026 10:00:00 &#43;0800</pubDate>
@@ -98,14 +111,6 @@ lua-pbc如何使用？ 这里有几个接个api需要熟悉一下
   <author>cfanzp</author>
   <guid>https://cfanzp008.github.io/lua-man/</guid>
   <description><![CDATA[lua5.3开发手册 https://cloud.tencent.com/developer/doc/1141 云风翻译:http://cloudwu.github.io/lua53doc/manual.html lua5.4开发手册 官网英文版:http://www.lua.org/manual/5.4/manual.html lua匹配库Lpeg 官网: http://www.inf.puc-rio.br/~roberto/lpeg/ 帮助: https://www.jianshu.com/p/e8e1c5abfdbb tutorial: https://lua-users.org/wiki/LpegTutorial luasocket github: https://github.com/lunarmodules/luasocket 使用demo: https://blog.csdn.net/h1023417614/article/details/52297408 lua md5 github: https://github.com/keplerproject/md5 jemalloc http://jemalloc.net/ ]]></description>
-</item>
-<item>
-  <title>rust语言基础</title>
-  <link>https://cfanzp008.github.io/language-rust/</link>
-  <pubDate>Sat, 30 Jul 2022 19:44:42 &#43;0800</pubDate>
-  <author>cfanzp</author>
-  <guid>https://cfanzp008.github.io/language-rust/</guid>
-  <description><![CDATA[rust语言基础 rust语言的优点 c/c++ 性能好，但是类型系统和内存都不太安全。 java/c#, 有GC,内存安全有很多优秀的特性，但性能不行。 Rust:安全，无需GC,易于维护 rust的缺点 难学 Rust特别擅长的领域 高性能Web Service WebAssemble 命令行工具 网络编程 嵌入式设备 系统编程 Rust的用户和案例 Google:新操作系统Fuschia,Rust:30% Amazon：基于Linux开发的直接可以在裸机、虚拟机上运行容器的操作系统 System76：纯Rust开发了下一代安全操作系统Redox 蚂蚁金服:库操作系统Occlum 斯坦福和密歇根大学:嵌入式实时操作系统，应用于Google的加密产品。 微软:Rust重写Windows系统中的一些低级组件 微软:WinRT/Rust项目 Dropbox、Yelp、LINE、npm、百度、华为、Deno等 注意 Rust有很多独有的概念，他们和现在大多主流语言都不通。 学习Rust必须从基础概念一步一步学，否则会懵。 参考教材 Rust权威指南(The rust programming language) Rust安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 curl --proto &#39;=https&#39; --tlsv1.]]></description>
 </item>
 </channel>
 </rss>

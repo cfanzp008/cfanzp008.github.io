@@ -701,6 +701,34 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/ai-model-distillation-introduction/">AI 模型蒸馏 (Distillation) 技术详解</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-05-11 18:12:45'>发布于 <time datetime="2026-05-11">2026-05-11</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">AI 模型蒸馏 (Distillation) 技术详解 背景 近年来，大型语言模型（LLM）和深度学习模型的规模越来越大。以 GPT-4 为例，据说有超过 1 万亿参数；Meta 的 Llama 3.1 8B 模型也有 80 亿参数。这些&quot;巨型&quot;模型在性能上确实出色，但在实际部署时面临严峻挑战：
+推理速度慢：参数量大意味着计算量大，延迟高 显存占用高：需要昂贵的 GPU 才能运行 部署成本高：云端部署的费用让很多场景变得不切实际 模型蒸馏（Distillation） 就是解决这个问题的关键技术之一。它能将大模型（Teacher）的知识&quot;浓缩&quot;到小模型（Student）中，让小模型在保持接近大模型性能的同时，大幅降低计算和存储成本。
+什么是知识蒸馏 知识蒸馏（Knowledge Distillation） 最早由 Hinton 等人在 2015 年提出，核心思想是：
+让一个轻量级的学生模型学习一个笨重但准确度高的教师模型的行为，从而在保持性能的同时大幅压缩模型规模。
+打个比方：知识蒸馏就像是一位经验丰富的大厨（Teacher）指导一个年轻学徒（Student）。学徒虽然经验不足，但通过学习大厨的&quot;火候把握&quot;和&quot;调味直觉&quot;，能做出一道接近大厨水平的菜，而且速度更快、成本更低。
+基本架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ┌─────────────────────────────────────────────────────┐ │ 知识蒸馏框架 │ │ │ │ ┌─────────────┐ 软标签（Soft Labels） │ │ │ Teacher │ ──────────────────────────────▶ │ │ │ 大模型 │ 知识传递（Knowledge Transfer） │ │ │ (参数量大) │ │ │ └─────────────┘ │ │ │ │ │ │ Hard Labels │ │ │ (真实标签) │ │ ▼ │ │ ┌─────────────┐ │ │ │ Student │ ◀──────────────────────────────── │ │ │ 小模型 │ 蒸馏损失（Distillation Loss） │ │ │ (参数量小) │ │ │ └─────────────┘ │ └─────────────────────────────────────────────────────┘ 软标签 vs 硬标签 传统的监督学习只使用硬标签（Hard Label），即非 0 即 1 的确定性标签：</div><div class="post-footer">
+    <a href="/ai-model-distillation-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/machine-learning/">machine-learning</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/llm/">llm</a>,&nbsp;<a href="/tags/%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/">模型压缩</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/chrome-devtools-protocol-introduction/">CDP (Chrome DevTools Protocol) 详解</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -832,31 +860,6 @@ markview.nvim 具有以下核心特性：
 核心特性 纯内部渲染：所有渲染工作都在 Neovim 中完成，无需启动外部进程 完全可配置：所有组件、图标、颜色、间距都可以自定义 文件类型无关：不仅限于 .md 文件，还可以渲染任意文件中的 Markdown 片段 模态渲染：支持在「渲染视图」和「原始视图」之间根据模式自动切换 大文件支持：只渲染当前可见区域，可以根据文件大小完全禁用 自定义渲染：提供扩展点，用户可以添加自定义渲染规则 环境要求 在安装插件之前，需要确保你的环境满足以下要求：
 Neovim 版本：最低 &gt;= 0.9.0，推荐 &gt;= 0.10.0 Nerd Font：需要安装 Nerd Font 以正确显示图标 Treesitter 解析器： markdown 和 markdown_inline：必选，用于解析 Markdown 文件 html（可选）：用于隐藏 HTML 注释 latex（可选）：用于获取 Markdown 中的 LaTeX 公式 yaml（可选）：用于渲染 Frontmatter 元数据 图标插件（可选）：mini.</div><div class="post-footer">
     <a href="/render-markdown-nvim-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vim/">vim</a>,&nbsp;<a href="/tags/neovim/">neovim</a>,&nbsp;<a href="/tags/markdown/">markdown</a>,&nbsp;<a href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/">效率提升</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/rust-option-usage/">Rust 中 Option 的用法详解</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-20 10:00:00'>发布于 <time datetime="2026-04-20">2026-04-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div><div class="content">Rust 中 Option 的用法详解 什么是 Option Option 是 Rust 标准库中定义的一个枚举类型，用于表示一个值要么存在（Some），要么不存在（None）。这是 Rust 处理可空值的核心方式，与其他语言中的 null 类似，但更加安全。
-1 2 3 4 pub enum Option&lt;T&gt; { None, Some(T), } 为什么需要 Option 在 Rust 中，不存在 null 值。这是 Rust 设计的一个重要决定——null 引用是许多编程语言中常见 bug 的根源。Rust 使用 Option&lt;T&gt; 来替代 null，强制开发者显式处理值可能不存在的情况。
-基本用法 创建 Option 1 2 3 4 5 // 创建一个 Some 值 let some_value: Option&lt;i32&gt; = Some(5); // 创建一个 None 值 let absent_value: Option&lt;i32&gt; = None; 匹配 Option 最直接的方式是使用 match 表达式：</div><div class="post-footer">
-    <a href="/rust-option-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rust/">rust</a>,&nbsp;<a href="/tags/rust%E7%BC%96%E7%A8%8B/">rust编程</a>,&nbsp;<a href="/tags/option/">Option</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item active">
           <span class="page-link">

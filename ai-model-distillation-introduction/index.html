@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>AI 模型蒸馏 (Distillation) 技术详解 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="详细介绍 AI 模型蒸馏技术，包括知识蒸馏的核心原理、Teacher-Student 架构、损失函数设计，以及 PyTorch 实现示例和 LLM 蒸馏实战案例。" /><meta name="keywords" content='ai, machine-learning, 深度学习, llm, 模型压缩' /><meta itemprop="name" content="AI 模型蒸馏 (Distillation) 技术详解">
+<meta itemprop="description" content="详细介绍 AI 模型蒸馏技术，包括知识蒸馏的核心原理、Teacher-Student 架构、损失函数设计，以及 PyTorch 实现示例和 LLM 蒸馏实战案例。"><meta itemprop="datePublished" content="2026-05-11T18:12:45+08:00" />
+<meta itemprop="dateModified" content="2026-05-11T18:12:45+08:00" />
+<meta itemprop="wordCount" content="754"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="ai,machine-learning,深度学习,llm,模型压缩," /><meta property="og:title" content="AI 模型蒸馏 (Distillation) 技术详解" />
+<meta property="og:description" content="详细介绍 AI 模型蒸馏技术，包括知识蒸馏的核心原理、Teacher-Student 架构、损失函数设计，以及 PyTorch 实现示例和 LLM 蒸馏实战案例。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/ai-model-distillation-introduction/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-05-11T18:12:45+08:00" />
+<meta property="article:modified_time" content="2026-05-11T18:12:45+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="AI 模型蒸馏 (Distillation) 技术详解"/>
+<meta name="twitter:description" content="详细介绍 AI 模型蒸馏技术，包括知识蒸馏的核心原理、Teacher-Student 架构、损失函数设计，以及 PyTorch 实现示例和 LLM 蒸馏实战案例。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/ai-model-distillation-introduction/" /><link rel="prev" href="https://cfanzp008.github.io/chrome-devtools-protocol-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI 模型蒸馏 (Distillation) 技术详解",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/ai-model-distillation-introduction\/"
+    },"genre": "posts","keywords": "ai, machine-learning, 深度学习, llm, 模型压缩","wordcount":  754 ,
+    "url": "https:\/\/cfanzp008.github.io\/ai-model-distillation-introduction\/","datePublished": "2026-05-11T18:12:45+08:00","dateModified": "2026-05-11T18:12:45+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "详细介绍 AI 模型蒸馏技术，包括知识蒸馏的核心原理、Teacher-Student 架构、损失函数设计，以及 PyTorch 实现示例和 LLM 蒸馏实战案例。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/book/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/book/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书笔记</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> Vim实用技巧</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/network-5/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 计算机网络（第5版）</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>AI 模型蒸馏 (Distillation) 技术详解</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/language/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程语言</a></span></div>
+      <div class="post-meta-line"><span title=2026-05-11&#32;18:12:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-11">2026-05-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 754 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="AI 模型蒸馏 (Distillation) 技术详解">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#什么是知识蒸馏">什么是知识蒸馏</a>
+      <ul>
+        <li><a href="#基本架构">基本架构</a></li>
+        <li><a href="#软标签-vs-硬标签">软标签 vs 硬标签</a></li>
+      </ul>
+    </li>
+    <li><a href="#蒸馏的核心机制">蒸馏的核心机制</a>
+      <ul>
+        <li><a href="#温度参数temperature">温度参数（Temperature）</a></li>
+        <li><a href="#蒸馏损失函数">蒸馏损失函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#pytorch-实现">PyTorch 实现</a></li>
+    <li><a href="#llm-蒸馏实际案例">LLM 蒸馏：实际案例</a>
+      <ul>
+        <li><a href="#llama-31-8b--llama-32-1b">Llama 3.1 8B → Llama 3.2 1B</a></li>
+        <li><a href="#openai-model-distillation">OpenAI Model Distillation</a></li>
+      </ul>
+    </li>
+    <li><a href="#蒸馏技术的变体">蒸馏技术的变体</a>
+      <ul>
+        <li><a href="#1-中间层蒸馏intermediate-layer-distillation">1. 中间层蒸馏（Intermediate Layer Distillation）</a></li>
+        <li><a href="#2-多教师蒸馏multi-teacher-distillation">2. 多教师蒸馏（Multi-Teacher Distillation）</a></li>
+        <li><a href="#3-自我蒸馏self-distillation">3. 自我蒸馏（Self-Distillation）</a></li>
+      </ul>
+    </li>
+    <li><a href="#蒸馏-vs-其他压缩技术">蒸馏 vs 其他压缩技术</a></li>
+    <li><a href="#超参数调优">超参数调优</a>
+      <ul>
+        <li><a href="#温度参数-t">温度参数 T</a></li>
+        <li><a href="#损失平衡-α">损失平衡 α</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战建议">实战建议</a></li>
+    <li><a href="#应用场景">应用场景</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="ai-模型蒸馏-distillation-技术详解">AI 模型蒸馏 (Distillation) 技术详解</h1>
+<h2 id="背景">背景</h2>
+<p>近年来，大型语言模型（LLM）和深度学习模型的规模越来越大。以 GPT-4 为例，据说有超过 1 万亿参数；Meta 的 Llama 3.1 8B 模型也有 80 亿参数。这些&quot;巨型&quot;模型在性能上确实出色，但在实际部署时面临严峻挑战：</p>
+<ul>
+<li><strong>推理速度慢</strong>：参数量大意味着计算量大，延迟高</li>
+<li><strong>显存占用高</strong>：需要昂贵的 GPU 才能运行</li>
+<li><strong>部署成本高</strong>：云端部署的费用让很多场景变得不切实际</li>
+</ul>
+<p><strong>模型蒸馏（Distillation）</strong> 就是解决这个问题的关键技术之一。它能将大模型（Teacher）的知识&quot;浓缩&quot;到小模型（Student）中，让小模型在保持接近大模型性能的同时，大幅降低计算和存储成本。</p>
+<h2 id="什么是知识蒸馏">什么是知识蒸馏</h2>
+<p><strong>知识蒸馏（Knowledge Distillation）</strong> 最早由 Hinton 等人在 2015 年提出，核心思想是：</p>
+<blockquote>
+<p>让一个轻量级的学生模型学习一个笨重但准确度高的教师模型的行为，从而在保持性能的同时大幅压缩模型规模。</p>
+</blockquote>
+<p>打个比方：知识蒸馏就像是一位经验丰富的大厨（Teacher）指导一个年轻学徒（Student）。学徒虽然经验不足，但通过学习大厨的&quot;火候把握&quot;和&quot;调味直觉&quot;，能做出一道接近大厨水平的菜，而且速度更快、成本更低。</p>
+<h3 id="基本架构">基本架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│                    知识蒸馏框架                      │
+</span></span><span class="line"><span class="cl">│                                                     │
+</span></span><span class="line"><span class="cl">│   ┌─────────────┐      软标签（Soft Labels）         │
+</span></span><span class="line"><span class="cl">│   │   Teacher   │ ──────────────────────────────▶   │
+</span></span><span class="line"><span class="cl">│   │   大模型     │      知识传递（Knowledge Transfer） │
+</span></span><span class="line"><span class="cl">│   │  (参数量大)  │                                   │
+</span></span><span class="line"><span class="cl">│   └─────────────┘                                   │
+</span></span><span class="line"><span class="cl">│          │                                          │
+</span></span><span class="line"><span class="cl">│          │  Hard Labels                             │
+</span></span><span class="line"><span class="cl">│          │  (真实标签)                               │
+</span></span><span class="line"><span class="cl">│          ▼                                          │
+</span></span><span class="line"><span class="cl">│   ┌─────────────┐                                   │
+</span></span><span class="line"><span class="cl">│   │   Student  │ ◀────────────────────────────────   │
+</span></span><span class="line"><span class="cl">│   │   小模型     │      蒸馏损失（Distillation Loss）    │
+</span></span><span class="line"><span class="cl">│   │  (参数量小)  │                                   │
+</span></span><span class="line"><span class="cl">│   └─────────────┘                                   │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="软标签-vs-硬标签">软标签 vs 硬标签</h3>
+<p>传统的监督学习只使用<strong>硬标签（Hard Label）</strong>，即非 0 即 1 的确定性标签：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">图像分类结果: 猫 → 1, 狗 → 0, 其他 → 0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>知识蒸馏则利用 Teacher 模型的<strong>软标签（Soft Label）</strong>，包含概率分布信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">图像分类结果: 猫 → 0.7, 狗 → 0.25, 其他 → 0.05
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>软标签包含了类别之间的<strong>暗知识（Dark Knowledge）</strong>。比如上例中，Teacher 认为这张图有 25% 的概率是狗，即使它被正确分类为猫。这种信息对于 Student 学习类别之间的关系非常有价值。</p>
+<h2 id="蒸馏的核心机制">蒸馏的核心机制</h2>
+<h3 id="温度参数temperature">温度参数（Temperature）</h3>
+<p>在知识蒸馏中，<strong>温度参数 T（Temperature）</strong> 是一个关键超参数。它通过<strong>softmax 函数</strong>来软化 Teacher 和 Student 的输出分布：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">softmax_with_temperature</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    使用温度参数软化概率分布
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - T &gt; 1: 分布更平滑，突出微小差异
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - T = 1: 标准 softmax
+</span></span></span><span class="line"><span class="cl"><span class="s2">    - T &lt; 1: 分布更尖锐，差距更大
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>为什么需要温度？</strong></p>
+<p>当 T=1 时，Teacher 的输出分布通常非常&quot;尖锐&quot;（最大值接近 1，其他接近 0），信息熵低。通过提高 T，分布会变得更平滑，让 Student 更容易学习到类别之间的细微关系。</p>
+<h3 id="蒸馏损失函数">蒸馏损失函数</h3>
+<p>蒸馏损失通常由两部分组成：</p>
+<p><strong>1. 蒸馏损失（Distillation Loss）</strong></p>
+<p>Teacher 和 Student 软标签之间的 KL 散度：</p>
+<p>$$
+L_{KD} = T^2 \cdot KL(p_{teacher} || p_{student})
+$$</p>
+<p>注意前面的 $T^2$ 因子，用于补偿由于温度引起的梯度缩放。</p>
+<p><strong>2. 学生损失（Student Loss）</strong></p>
+<p>Student 在真实标签上的交叉熵：</p>
+<p>$$
+L_{CE} = - \sum_{i} y_i \cdot \log(p_{student,i})
+$$</p>
+<p><strong>3. 总损失</strong></p>
+<p>$$
+L_{total} = \alpha \cdot L_{KD} + (1 - \alpha) \cdot L_{CE}
+$$</p>
+<p>其中 $\alpha$ 是平衡两个损失的超参数，通常设为 0.7 或 0.8。</p>
+<h2 id="pytorch-实现">PyTorch 实现</h2>
+<p>下面是一个完整的知识蒸馏实现示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DistillationLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    知识蒸馏损失函数
+</span></span></span><span class="line"><span class="cl"><span class="s2">    结合蒸馏损失和交叉熵损失
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">student_logits</span><span class="p">,</span> <span class="n">teacher_logits</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 1. 蒸馏损失：KL 散度</span>
+</span></span><span class="line"><span class="cl">        <span class="n">soft_student</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">student_logits</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">soft_teacher</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">teacher_logits</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kd_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">kl_div</span><span class="p">(</span><span class="n">soft_student</span><span class="p">,</span> <span class="n">soft_teacher</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;batchmean&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kd_loss</span> <span class="o">=</span> <span class="n">kd_loss</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 梯度补偿</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 2. 学生损失：交叉熵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ce_loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">student_logits</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 3. 总损失</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">kd_loss</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">ce_loss</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">total_loss</span><span class="p">,</span> <span class="n">kd_loss</span><span class="p">,</span> <span class="n">ce_loss</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用示例</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">train_with_distillation</span><span class="p">(</span><span class="n">student_model</span><span class="p">,</span> <span class="n">teacher_model</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distillation_criterion</span> <span class="o">=</span> <span class="n">DistillationLoss</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">student_model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">teacher_model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># Teacher 不更新</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># Teacher 前向传播（不计算梯度）</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">teacher_logits</span> <span class="o">=</span> <span class="n">teacher_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># Student 前向传播</span>
+</span></span><span class="line"><span class="cl">        <span class="n">student_logits</span> <span class="o">=</span> <span class="n">student_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 计算损失</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total_loss</span><span class="p">,</span> <span class="n">kd_loss</span><span class="p">,</span> <span class="n">ce_loss</span> <span class="o">=</span> <span class="n">distillation_criterion</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">student_logits</span><span class="p">,</span> <span class="n">teacher_logits</span><span class="p">,</span> <span class="n">labels</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 反向传播</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="llm-蒸馏实际案例">LLM 蒸馏：实际案例</h2>
+<h3 id="llama-31-8b--llama-32-1b">Llama 3.1 8B → Llama 3.2 1B</h3>
+<p>Meta 就用知识蒸馏技术将 Llama 3.1 8B（80 亿参数）蒸馏成 Llama 3.2 1B（10 亿参数）。这是官方发布的实际案例：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数量</th>
+<th>内存占用</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Llama 3.1 8B</td>
+<td>8B</td>
+<td>~16GB</td>
+<td>服务器端部署</td>
+</tr>
+<tr>
+<td>Llama 3.2 1B</td>
+<td>1B</td>
+<td>~2GB</td>
+<td>移动端、边缘设备</td>
+</tr>
+</tbody>
+</table>
+<p>使用 PyTorch 的 torchtune 库，蒸馏过程简化为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 torchtune 蒸馏配置</span>
+</span></span><span class="line"><span class="cl">tune run knowledge_distillation_single_device <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --config llama3_2/8B_to_1B_KD_lora_single_device
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="openai-model-distillation">OpenAI Model Distillation</h3>
+<p>OpenAI 提供了完整的模型蒸馏平台，工作流程如下：</p>
+<ol>
+<li>
+<p><strong>选择 Teacher 和 Student</strong></p>
+<ul>
+<li>Teacher: GPT-4o（强大但昂贵）</li>
+<li>Student: GPT-4o mini（轻量级）</li>
+</ul>
+</li>
+<li>
+<p><strong>生成训练数据</strong></p>
+<ul>
+<li>用 Teacher 生成高质量的输入输出对</li>
+</ul>
+</li>
+<li>
+<p><strong>蒸馏微调</strong></p>
+<ul>
+<li>用 Teacher 生成的数据微调 Student</li>
+</ul>
+</li>
+<li>
+<p><strong>评估验证</strong></p>
+<ul>
+<li>对比蒸馏前后的性能</li>
+</ul>
+</li>
+</ol>
+<h2 id="蒸馏技术的变体">蒸馏技术的变体</h2>
+<h3 id="1-中间层蒸馏intermediate-layer-distillation">1. 中间层蒸馏（Intermediate Layer Distillation）</h3>
+<p>不仅让学生学习 Teacher 的最终输出，还学习中间层的表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 中间层特征匹配损失</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">feature_matching_loss</span><span class="p">(</span><span class="n">student_features</span><span class="p">,</span> <span class="n">teacher_features</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">student_features</span><span class="p">,</span> <span class="n">teacher_features</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-多教师蒸馏multi-teacher-distillation">2. 多教师蒸馏（Multi-Teacher Distillation）</h3>
+<p>同时学习多个 Teacher 的知识：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Student ← Teacher1
+</span></span><span class="line"><span class="cl">        ← Teacher2
+</span></span><span class="line"><span class="cl">        ← Teacher3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>适用于希望融合多个模型优势的场景。</p>
+<h3 id="3-自我蒸馏self-distillation">3. 自我蒸馏（Self-Distillation）</h3>
+<p>使用同一模型的不同时期或不同视图作为 Teacher 和 Student：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Student(t) ← Teacher(t+1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：Deepseek 的技术中使用了这种方法。</p>
+<h2 id="蒸馏-vs-其他压缩技术">蒸馏 vs 其他压缩技术</h2>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>知识蒸馏</strong></td>
+<td>学习大模型输出分布</td>
+<td>效果好，能保留暗知识</td>
+<td>需要训练，计算开销大</td>
+</tr>
+<tr>
+<td><strong>剪枝（Pruning）</strong></td>
+<td>移除不重要的权重/神经元</td>
+<td>无需重新训练</td>
+<td>精度可能下降</td>
+</tr>
+<tr>
+<td><strong>量化（Quantization）</strong></td>
+<td>用低精度表示权重</td>
+<td>实现简单，加速明显</td>
+<td>可能损失精度</td>
+</tr>
+<tr>
+<td><strong>知识蒸馏 + 剪枝</strong></td>
+<td>结合多种技术</td>
+<td>效果更佳</td>
+<td>实现复杂</td>
+</tr>
+</tbody>
+</table>
+<h2 id="超参数调优">超参数调优</h2>
+<h3 id="温度参数-t">温度参数 T</h3>
+<table>
+<thead>
+<tr>
+<th>T 值</th>
+<th>效果</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T=1</td>
+<td>标准 softmax</td>
+<td>接近原始训练</td>
+</tr>
+<tr>
+<td>T=2~5</td>
+<td>平滑分布，易于学习</td>
+<td>一般蒸馏任务</td>
+</tr>
+<tr>
+<td>T=10+</td>
+<td>极平滑</td>
+<td>知识非常丰富时</td>
+</tr>
+</tbody>
+</table>
+<h3 id="损失平衡-α">损失平衡 α</h3>
+<table>
+<thead>
+<tr>
+<th>α 值</th>
+<th>效果</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>α=0.9</td>
+<td>强调蒸馏损失</td>
+<td>Teacher 非常可靠</td>
+</tr>
+<tr>
+<td>α=0.7</td>
+<td>平衡两者</td>
+<td>一般情况</td>
+</tr>
+<tr>
+<td>α=0.5</td>
+<td>平衡两者</td>
+<td>需要保留标签信息</td>
+</tr>
+<tr>
+<td>α=0.3</td>
+<td>强调硬标签</td>
+<td>数据标签可靠</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实战建议">实战建议</h2>
+<ol>
+<li>
+<p><strong>先微调 Teacher</strong>：在目标数据集上微调 Teacher，效果会更好</p>
+</li>
+<li>
+<p><strong>数据质量很重要</strong>：确保训练数据质量高，覆盖目标场景</p>
+</li>
+<li>
+<p><strong>渐进式蒸馏</strong>：从大 Teacher 到小 Student，可以分多步完成</p>
+</li>
+<li>
+<p><strong>评估要全面</strong>：</p>
+<ul>
+<li>准确率</li>
+<li>推理延迟</li>
+<li>模型大小</li>
+<li>特定任务的指标</li>
+</ul>
+</li>
+<li>
+<p><strong>结合其他技术</strong>：蒸馏 + 剪枝 + 量化通常效果更好</p>
+</li>
+</ol>
+<h2 id="应用场景">应用场景</h2>
+<ul>
+<li><strong>移动端 AI</strong>：手机上的图像识别、语音助手</li>
+<li><strong>边缘计算</strong>：IoT 设备的实时推理</li>
+<li><strong>实时系统</strong>：需要低延迟的交互场景</li>
+<li><strong>成本优化</strong>：减少云端部署费用</li>
+<li><strong>隐私保护</strong>：本地运行模型，避免数据上传</li>
+</ul>
+<h2 id="总结">总结</h2>
+<p>知识蒸馏是模型压缩领域最重要的技术之一。它通过让小模型学习大模型的&quot;暗知识&quot;，在保持性能的同时大幅降低计算和存储成本。</p>
+<p><strong>核心要点：</strong></p>
+<ol>
+<li><strong>软标签</strong>比硬标签包含更多信息</li>
+<li><strong>温度参数 T</strong> 用于控制分布平滑程度</li>
+<li><strong>总损失</strong> = 蒸馏损失 + 交叉熵损失</li>
+<li><strong>LLM 蒸馏</strong>可以将 8B 模型压缩到 1B</li>
+<li>可以结合<strong>剪枝、量化</strong>进一步优化</li>
+</ol>
+<p>随着 LLM 的普及，蒸馏技术变得越来越重要。掌握这项技术，你就能在保持 AI 能力的同时，让模型跑得更快、更省、更轻。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a
+  href="https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Knowledge Distillation Tutorial - PyTorch</a></li>
+<li><a
+  href="https://www.datacamp.com/tutorial/model-distillation-openai"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenAI Model Distillation Guide</a></li>
+<li><a
+  href="https://pytorch.org/blog/llama-into-torchtune/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Distilling Llama3.1 8B into 1B - PyTorch Blog</a></li>
+<li><a
+  href="https://pytorch.org/torchtune/main/tutorials/llama_kd_tutorial.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>torchtune Knowledge Distillation Tutorial</a></li>
+<li><a
+  href="https://arxiv.org/abs/1503.02531"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>原始论文：Distilling the Knowledge in a Neural Network</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-05-11&#32;18:12:45>更新于 2026-05-11&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/ai-model-distillation-introduction/" data-title="AI 模型蒸馏 (Distillation) 技术详解"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/machine-learning/">machine-learning</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/llm/">llm</a>,&nbsp;<a href="/tags/%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/">模型压缩</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/chrome-devtools-protocol-introduction/" class="prev" rel="prev" title="CDP (Chrome DevTools Protocol) 详解"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CDP (Chrome DevTools Protocol) 详解</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

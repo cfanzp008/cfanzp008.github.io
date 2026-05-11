@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>模型压缩 - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/</link>
+    <description>模型压缩 - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 11 May 2026 18:12:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/" rel="self" type="application/rss+xml" /><item>
+  <title>AI 模型蒸馏 (Distillation) 技术详解</title>
+  <link>https://cfanzp008.github.io/ai-model-distillation-introduction/</link>
+  <pubDate>Mon, 11 May 2026 18:12:45 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/ai-model-distillation-introduction/</guid>
+  <description><![CDATA[AI 模型蒸馏 (Distillation) 技术详解 背景 近年来，大型语言模型（LLM）和深度学习模型的规模越来越大。以 GPT-4 为例，据说有超过 1 万亿参数；Meta 的 Llama 3.1 8B 模型也有 80 亿参数。这些&quot;巨型&quot;模型在性能上确实出色，但在实际部署时面临严峻挑战：
+推理速度慢：参数量大意味着计算量大，延迟高 显存占用高：需要昂贵的 GPU 才能运行 部署成本高：云端部署的费用让很多场景变得不切实际 模型蒸馏（Distillation） 就是解决这个问题的关键技术之一。它能将大模型（Teacher）的知识&quot;浓缩&quot;到小模型（Student）中，让小模型在保持接近大模型性能的同时，大幅降低计算和存储成本。
+什么是知识蒸馏 知识蒸馏（Knowledge Distillation） 最早由 Hinton 等人在 2015 年提出，核心思想是：
+让一个轻量级的学生模型学习一个笨重但准确度高的教师模型的行为，从而在保持性能的同时大幅压缩模型规模。
+打个比方：知识蒸馏就像是一位经验丰富的大厨（Teacher）指导一个年轻学徒（Student）。学徒虽然经验不足，但通过学习大厨的&quot;火候把握&quot;和&quot;调味直觉&quot;，能做出一道接近大厨水平的菜，而且速度更快、成本更低。
+基本架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ┌─────────────────────────────────────────────────────┐ │ 知识蒸馏框架 │ │ │ │ ┌─────────────┐ 软标签（Soft Labels） │ │ │ Teacher │ ──────────────────────────────▶ │ │ │ 大模型 │ 知识传递（Knowledge Transfer） │ │ │ (参数量大) │ │ │ └─────────────┘ │ │ │ │ │ │ Hard Labels │ │ │ (真实标签) │ │ ▼ │ │ ┌─────────────┐ │ │ │ Student │ ◀──────────────────────────────── │ │ │ 小模型 │ 蒸馏损失（Distillation Loss） │ │ │ (参数量小) │ │ │ └─────────────┘ │ └─────────────────────────────────────────────────────┘ 软标签 vs 硬标签 传统的监督学习只使用硬标签（Hard Label），即非 0 即 1 的确定性标签：]]></description>
+</item>
+</channel>
+</rss>
