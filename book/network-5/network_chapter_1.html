@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>计算机网络(第5版)</title>
-        <meta name="robots" content="noindex">
+        <title>第1章 概述 - 计算机网络(第5版)</title>
 
 
         <!-- Custom HTML head -->
@@ -175,17 +174,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="关于笔记"><a class="header" href="#关于笔记">关于笔记</a></h1>
-<h2 id="笔记生成"><a class="header" href="#笔记生成">笔记生成</a></h2>
-<pre><code class="language-bash">cd /opt/linux_note/network5_mbook/
-cp_book.sh
-</code></pre>
-<h2 id="时间线"><a class="header" href="#时间线">时间线</a></h2>
-<ul>
-<li>20240611：完成第3章3.1</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第1章-概述"><a class="header" href="#第1章-概述">第1章 概述</a></h1>
+                        <h1 id="第1章-概述"><a class="header" href="#第1章-概述">第1章 概述</a></h1>
 <h2 id="11-计算机网络在信息时代中的作用"><a class="header" href="#11-计算机网络在信息时代中的作用">1.1 计算机网络在信息时代中的作用</a></h2>
 <h2 id="12-因特网概述"><a class="header" href="#12-因特网概述">1.2 因特网概述</a></h2>
 <h3 id="121-网络的网络"><a class="header" href="#121-网络的网络">1.2.1 网络的网络</a></h3>
@@ -266,160 +255,18 @@ cp_book.sh
 </ul>
 <h3 id="174-实体协议服务和服务访问点"><a class="header" href="#174-实体协议服务和服务访问点">1.7.4 实体、协议、服务和服务访问点</a></h3>
 <h3 id="175-tcpip的体系结构"><a class="header" href="#175-tcpip的体系结构">1.7.5 TCP/IP的体系结构</a></h3>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第2章-物理层"><a class="header" href="#第2章-物理层">第2章 物理层</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第3章-数据链路层"><a class="header" href="#第3章-数据链路层">第3章 数据链路层</a></h1>
-<h2 id="信道"><a class="header" href="#信道">信道</a></h2>
-<ol>
-<li>点对点信道</li>
-<li>广播信道</li>
-</ol>
-<h2 id="31-使用点对点信道的数据链路层"><a class="header" href="#31-使用点对点信道的数据链路层">3.1 使用点对点信道的数据链路层</a></h2>
-<h3 id="311-数据链路和帧"><a class="header" href="#311-数据链路和帧">3.1.1 数据链路和帧</a></h3>
-<ul>
-<li>链路：所谓链路就是从一个结点到相邻结点的一段物理线路。</li>
-<li>数据链路：是另一个概念。当需要在一条线路上传送数据时，处理必须有一条物理线路外，还必须有一些必要的通信协议来控制这些数据的传输。</li>
-<li>帧：是点对点信道的数据链路层的协议数据单元。</li>
-<li>数据链路层把网络层交下来的数据构成帧发送到链路上，以及把接收到的帧中的数据取出并交给网络层。</li>
-<li>在英特网中，网络层协议数据单元就是IP数据报（简称为数据报、分组或包）。</li>
-</ul>
-<h4 id="点对点信道的数据链路层再进行通信时的主要步骤"><a class="header" href="#点对点信道的数据链路层再进行通信时的主要步骤">点对点信道的数据链路层再进行通信时的主要步骤</a></h4>
-<ol>
-<li>结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部封装成帧。</li>
-<li>节点A把封装好的数据帧发送给结点B的数据链路层。</li>
-<li>若节点B的数据链路层接收到的帧无差错，则从收到的帧中提取出IP数据报上交给上面的网络层：否则丢弃这个帧。</li>
-</ol>
-<h3 id="312-三个基本问题"><a class="header" href="#312-三个基本问题">3.1.2 三个基本问题</a></h3>
-<h4 id="1-封装成帧"><a class="header" href="#1-封装成帧">1. 封装成帧</a></h4>
-<ul>
-<li>定界符SOH:Start Of Head</li>
-<li>定界符EOT:End Of Transmission</li>
-</ul>
-<h4 id="2-透明传输"><a class="header" href="#2-透明传输">2. 透明传输</a></h4>
-<ul>
-<li>通过插入转义字符“ESC”解决传输数据与界定符混淆的问题。</li>
-</ul>
-<h4 id="3-差错检测"><a class="header" href="#3-差错检测">3. 差错检测</a></h4>
-<ul>
-<li>误码率</li>
-<li>循环冗余检验CRC(Cyclic Redundancy Check)的检错的技术</li>
-<li>FCS：帧检验序列。</li>
-</ul>
-<h2 id="32-点对点协议ppp"><a class="header" href="#32-点对点协议ppp">3.2 点对点协议PPP</a></h2>
-<h3 id="321-ppp协议的特点"><a class="header" href="#321-ppp协议的特点">3.2.1 PPP协议的特点</a></h3>
-<h4 id="1-ppp协议应满足的需求"><a class="header" href="#1-ppp协议应满足的需求">1. PPP协议应满足的需求</a></h4>
-<h4 id="2-ppp协议不需要的功能"><a class="header" href="#2-ppp协议不需要的功能">2. PPP协议不需要的功能</a></h4>
-<h3 id="322-ppp协议的帧格式"><a class="header" href="#322-ppp协议的帧格式">3.2.2 PPP协议的帧格式</a></h3>
-<h4 id="1-字段的意义"><a class="header" href="#1-字段的意义">1. 字段的意义</a></h4>
-<h4 id="2-字节填充"><a class="header" href="#2-字节填充">2. 字节填充</a></h4>
-<h4 id="3-零比特填充"><a class="header" href="#3-零比特填充">3. 零比特填充</a></h4>
-<h3 id="323-ppp协议的工作状态"><a class="header" href="#323-ppp协议的工作状态">3.2.3 PPP协议的工作状态</a></h3>
-<h2 id="33-使用广播信道的数据链路层"><a class="header" href="#33-使用广播信道的数据链路层">3.3 使用广播信道的数据链路层</a></h2>
-<h3 id="331-局域网的数据链路层"><a class="header" href="#331-局域网的数据链路层">3.3.1 局域网的数据链路层</a></h3>
-<h4 id="1-以太网的两个标准"><a class="header" href="#1-以太网的两个标准">1. 以太网的两个标准</a></h4>
-<h4 id="2-适配器的作用"><a class="header" href="#2-适配器的作用">2. 适配器的作用</a></h4>
-<h3 id="332-csmacd-协议"><a class="header" href="#332-csmacd-协议">3.3.2 CSMA/CD 协议</a></h3>
-<h2 id="34-使用广播信道的以太网"><a class="header" href="#34-使用广播信道的以太网">3.4 使用广播信道的以太网</a></h2>
-<h3 id="341-使用集线器的星形拓扑"><a class="header" href="#341-使用集线器的星形拓扑">3.4.1 使用集线器的星形拓扑</a></h3>
-<h3 id="342-以太网的信道利用率"><a class="header" href="#342-以太网的信道利用率">3.4.2 以太网的信道利用率</a></h3>
-<h3 id="343-以太网的mac层"><a class="header" href="#343-以太网的mac层">3.4.3 以太网的MAC层</a></h3>
-<h4 id="1-mac层的硬件地址"><a class="header" href="#1-mac层的硬件地址">1. MAC层的硬件地址</a></h4>
-<h4 id="2-mac层帧的格式"><a class="header" href="#2-mac层帧的格式">2. MAC层帧的格式</a></h4>
-<h2 id="35-扩展的以太网"><a class="header" href="#35-扩展的以太网">3.5 扩展的以太网</a></h2>
-<h3 id="351-在物理层扩展以太网"><a class="header" href="#351-在物理层扩展以太网">3.5.1 在物理层扩展以太网</a></h3>
-<h3 id="352-在数据链路层扩展以太网"><a class="header" href="#352-在数据链路层扩展以太网">3.5.2 在数据链路层扩展以太网</a></h3>
-<h4 id="1-网桥的内部结构"><a class="header" href="#1-网桥的内部结构">1. 网桥的内部结构</a></h4>
-<h4 id="2-透明网桥"><a class="header" href="#2-透明网桥">2. 透明网桥</a></h4>
-<h4 id="3-源路由网桥"><a class="header" href="#3-源路由网桥">3. 源路由网桥</a></h4>
-<h4 id="4-多接口网桥以太网交换机"><a class="header" href="#4-多接口网桥以太网交换机">4. 多接口网桥–以太网交换机</a></h4>
-<h2 id="36-高速以太网"><a class="header" href="#36-高速以太网">3.6 高速以太网</a></h2>
-<h3 id="361-100base-t-以太网"><a class="header" href="#361-100base-t-以太网">3.6.1 100BASE-T 以太网</a></h3>
-<h3 id="362-吉比特以太网"><a class="header" href="#362-吉比特以太网">3.6.2 吉比特以太网</a></h3>
-<h3 id="363-10-吉比特以太网"><a class="header" href="#363-10-吉比特以太网">3.6.3 10 吉比特以太网</a></h3>
-<h3 id="364-使用高速以太网进行宽带接入"><a class="header" href="#364-使用高速以太网进行宽带接入">3.6.4 使用高速以太网进行宽带接入</a></h3>
-<h2 id="37-其它类型的高速局域网货接口"><a class="header" href="#37-其它类型的高速局域网货接口">3.7 其它类型的高速局域网货接口</a></h2>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第4章-网络层"><a class="header" href="#第4章-网络层">第4章 网络层</a></h1>
-<h2 id="41-网络层提供的2种服务"><a class="header" href="#41-网络层提供的2种服务">4.1 网络层提供的2种服务</a></h2>
-<h3 id="虚电路服务"><a class="header" href="#虚电路服务">虚电路服务</a></h3>
-<h3 id="数据报服务"><a class="header" href="#数据报服务">数据报服务</a></h3>
-<h2 id="42-网际协议-ip"><a class="header" href="#42-网际协议-ip">4.2 网际协议 IP</a></h2>
-<p>与IP协议配套使用的4个协议</p>
-<ul>
-<li>地址解析协议ARP：Address Resolution Protocol</li>
-<li>逆地址解析协议RARP：Reverse Address Resolution Protocol</li>
-<li>网际控制报文协议ICMP：Internet Control Message Protocol</li>
-<li>网际组管理协议IGMP：Internet Group Management Protocol</li>
-</ul>
-<h3 id="421-虚拟互联网络"><a class="header" href="#421-虚拟互联网络">4.2.1 虚拟互联网络</a></h3>
-<h3 id="422-分类的ip地址"><a class="header" href="#422-分类的ip地址">4.2.2 分类的IP地址</a></h3>
-<h4 id="1-ip地址及其表示方法"><a class="header" href="#1-ip地址及其表示方法">1. IP地址及其表示方法</a></h4>
-<h4 id="2-常用的3种类别的ip地址"><a class="header" href="#2-常用的3种类别的ip地址">2. 常用的3种类别的IP地址</a></h4>
-<h3 id="423-ip地址与硬件地址"><a class="header" href="#423-ip地址与硬件地址">4.2.3 IP地址与硬件地址</a></h3>
-<h3 id="424-地址解析协议arp和逆地址解析协议rarp"><a class="header" href="#424-地址解析协议arp和逆地址解析协议rarp">4.2.4 地址解析协议ARP和逆地址解析协议RARP</a></h3>
-<h3 id="425-ip数据报的格式"><a class="header" href="#425-ip数据报的格式">4.2.5 IP数据报的格式</a></h3>
-<h4 id="1-ip数据报首部的固定部分中的各字段"><a class="header" href="#1-ip数据报首部的固定部分中的各字段">1. IP数据报首部的固定部分中的各字段</a></h4>
-<h4 id="2-ip数据报首部的可变部分"><a class="header" href="#2-ip数据报首部的可变部分">2. IP数据报首部的可变部分</a></h4>
-<h3 id="425-ip转发分组的流程"><a class="header" href="#425-ip转发分组的流程">4.2.5 IP转发分组的流程</a></h3>
-<h2 id="43-划分子网和构造超网"><a class="header" href="#43-划分子网和构造超网">4.3 划分子网和构造超网</a></h2>
-<h3 id="431-划分子网"><a class="header" href="#431-划分子网">4.3.1 划分子网</a></h3>
-<h4 id="1-从两级ip地址到三级ip地址"><a class="header" href="#1-从两级ip地址到三级ip地址">1. 从两级IP地址到三级IP地址</a></h4>
-<h4 id="2-子网掩码"><a class="header" href="#2-子网掩码">2. 子网掩码</a></h4>
-<ul>
-<li>A类地址：255.0.0.0</li>
-<li>B类地址：255.255.0.0</li>
-<li>C类地址：255.255.255.0</li>
-</ul>
-<h3 id="432-使用子网时分组的转发"><a class="header" href="#432-使用子网时分组的转发">4.3.2 使用子网时分组的转发</a></h3>
-<h3 id="433-无分类编址cidr构造超网"><a class="header" href="#433-无分类编址cidr构造超网">4.3.3 无分类编址CIDR(构造超网)</a></h3>
-<h4 id="1-网络前缀"><a class="header" href="#1-网络前缀">1. 网络前缀</a></h4>
-<h4 id="2-最长前缀匹配"><a class="header" href="#2-最长前缀匹配">2. 最长前缀匹配</a></h4>
-<h4 id="3-使用二叉线索查找路由表"><a class="header" href="#3-使用二叉线索查找路由表">3. 使用二叉线索查找路由表</a></h4>
-<h2 id="44-网际控制报文协议icmp"><a class="header" href="#44-网际控制报文协议icmp">4.4 网际控制报文协议ICMP</a></h2>
-<ul>
-<li>ICMP:Internet Control Message Protocol</li>
-</ul>
-<h3 id="441-icmp报文的种类"><a class="header" href="#441-icmp报文的种类">4.4.1 ICMP报文的种类</a></h3>
-<h3 id="442-icmp的应用举例"><a class="header" href="#442-icmp的应用举例">4.4.2 ICMP的应用举例</a></h3>
-<ul>
-<li>ping命令用法</li>
-<li>traceroute命令的用法(linux)</li>
-<li>tracert命令的用法(Windows)</li>
-</ul>
-<h2 id="45-因特网的路由选择协议"><a class="header" href="#45-因特网的路由选择协议">4.5 因特网的路由选择协议</a></h2>
-<h3 id="451-有关路由选择协议的几个基本概念"><a class="header" href="#451-有关路由选择协议的几个基本概念">4.5.1 有关路由选择协议的几个基本概念</a></h3>
-<h4 id="1-理想的路由算法"><a class="header" href="#1-理想的路由算法">1. 理想的路由算法</a></h4>
-<h4 id="2-分层次的路由选择协议"><a class="header" href="#2-分层次的路由选择协议">2. 分层次的路由选择协议</a></h4>
-<h3 id="452-内部网关协议rip"><a class="header" href="#452-内部网关协议rip">4.5.2 内部网关协议RIP</a></h3>
-<h4 id="1-工作原理"><a class="header" href="#1-工作原理">1. 工作原理</a></h4>
-<h4 id="2-距离向量算法"><a class="header" href="#2-距离向量算法">2. 距离向量算法</a></h4>
-<h4 id="3-rip协议的报文格式"><a class="header" href="#3-rip协议的报文格式">3. RIP协议的报文格式</a></h4>
-<h3 id="453-内部网关协议ospf"><a class="header" href="#453-内部网关协议ospf">4.5.3 内部网关协议OSPF</a></h3>
-<h4 id="1-ospf协议的基本特点"><a class="header" href="#1-ospf协议的基本特点">1. OSPF协议的基本特点</a></h4>
-<h4 id="2-ospf的五种分组类型"><a class="header" href="#2-ospf的五种分组类型">2. OSPF的五种分组类型</a></h4>
-<h3 id="454-外部网关协议bgp"><a class="header" href="#454-外部网关协议bgp">4.5.4 外部网关协议BGP</a></h3>
-<h3 id="455-路由器的组成"><a class="header" href="#455-路由器的组成">4.5.5 路由器的组成</a></h3>
-<h2 id="46-ip多播"><a class="header" href="#46-ip多播">4.6 IP多播</a></h2>
-<h2 id="47-虚拟专用网pvn和-网络地址转换"><a class="header" href="#47-虚拟专用网pvn和-网络地址转换">4.7 虚拟专用网PVN和 网络地址转换</a></h2>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第5章-运输层"><a class="header" href="#第5章-运输层">第5章 运输层</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第6章-应用层"><a class="header" href="#第6章-应用层">第6章 应用层</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第7章-网络安全"><a class="header" href="#第7章-网络安全">第7章 网络安全</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第8章-因特网上的音频视频服务"><a class="header" href="#第8章-因特网上的音频视频服务">第8章 因特网上的音频/视频服务</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第9章-无线网络"><a class="header" href="#第9章-无线网络">第9章 无线网络</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="第10章-下一代因特网"><a class="header" href="#第10章-下一代因特网">第10章 下一代因特网</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="about.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
+                            <a rel="next prefetch" href="network_chapter_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -427,7 +274,13 @@ cp_book.sh
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="about.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
+                    <a rel="next prefetch" href="network_chapter_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>
@@ -471,11 +324,6 @@ cp_book.sh
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
 
     </div>
