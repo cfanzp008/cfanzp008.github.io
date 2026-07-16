@@ -701,6 +701,32 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/influxdb2-cli-usage/">InfluxDB CLI 使用笔记</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 18:01:27'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">InfluxDB CLI 使用笔记 什么是 InfluxDB CLI InfluxDB CLI 是 InfluxData 官方提供的命令行客户端工具，用于与 InfluxDB 服务器进行交互。通过 CLI，用户可以执行数据查询、写入、管理配置等操作，无需使用 Web 界面或 API。
+CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
+主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
+官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.</div><div class="post-footer">
+    <a href="/influxdb2-cli-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/influxdb/">InfluxDB</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>,&nbsp;<a href="/tags/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">时序数据库</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/influxdb-studio-usage/">InfluxDBStudio 使用笔记</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -834,34 +860,6 @@ Google Docs：可以直接关联你的 Google 文档 PDF 文件：上传 PDF 文
 医学学生可以上传神经科学论文，让 AI「创建与多巴胺相关的术语表」 作者可以上传研究笔记，问「汇总霍迪尼和柯南·道尔的所有互动」 学生可以上传课堂笔记，让 AI 解释不清楚的概念 每个回答都会附带引用标注，直接指向原文中的相关段落，方便你核实信息的准确性。
 3. 音频概览（Audio Overview） NotebookLM 最受欢迎的功能之一是「音频概览」。它可以将你的文档转换为一段由 AI 生成的对话式播客：</div><div class="post-footer">
     <a href="/notebooklm-usage-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/google/">google</a>,&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0%E5%B7%A5%E5%85%B7/">笔记工具</a>,&nbsp;<a href="/tags/%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86/">文档处理</a>,&nbsp;<a href="/tags/%E5%AD%A6%E4%B9%A0%E5%B7%A5%E5%85%B7/">学习工具</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/hermes-agent-introduction/">Hermes Agent：会自我进化的 AI 智能体</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 13:43:55'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Hermes Agent：会自我进化的 AI 智能体 引言 在人工智能快速发展的今天，AI 智能体（Agent）已经成为技术领域的热门话题。大多数 AI 智能体本质上只是「带有额外步骤的聊天机器人」——你与它们对话，它们忘记一切，下次重新开始。然而，Hermes Agent 采取了不同的方式，它致力于打造一个「与你共同成长的智能体」。
-Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，核心理念是「The agent that grows with you」（与你共同成长的智能体）。该项目在 GitHub 上已获得 33,000+ 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-什么是 Hermes Agent Hermes Agent 是一个功能强大的开源 autonomous AI agent，采用 MIT 许可证发布。与传统聊天机器人不同，它具有以下核心特性：
-长期记忆：跨会话记住重要信息，自动保存学习到的知识 自我进化：从成功和失败中学习，逐渐适应用户的习惯和偏好 多平台运行：支持本地运行（保护隐私）、Ollama 部署、云端 API 调用 完全开源：社区活跃，持续迭代更新 核心功能详解 1. 持久记忆系统 Hermes Agent 拥有先进的持久记忆系统，通过 MEMORY.md 和 USER.md 文件保存用户偏好、项目信息和学习到的知识。这种有边界的、精心管理的记忆能够跨会话持久化，让 Agent 记住你的偏好、项目和环境设置。
-2. 上下文文件 Hermes Agent 能够自动发现和加载项目上下文文件，包括：
-.hermes.md AGENTS.md CLAUDE.md SOUL.md .cursorrules 这些文件会塑造 Agent 在项目中的行为方式，让它更好地理解你的项目规范和需求。</div><div class="post-footer">
-    <a href="/hermes-agent-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hermes-agent/">Hermes Agent</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/nous-research/">Nous Research</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">
