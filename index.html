@@ -733,6 +733,50 @@
     <a href="/litellm-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/litellm/">litellm</a>,&nbsp;<a href="/tags/llm/">llm</a>,&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/pi-coding-agent-guide/">Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-07-29 16:28:59'>发布于 <time datetime="2026-07-29">2026-07-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div><div class="content"><h1 id="pi-coding-agent-入门指南轻量级开源-ai-编码代理的安装与使用">Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>2025-2026 年，AI 编码代理（Coding Agent）领域爆发式增长，Claude Code、Codex CLI、Cursor 等工具层出不穷。但这些产品化的工具都有一个共同问题：<strong>它们帮你做了太多决策</strong>——超大系统提示词、隐藏的上下文注入、无法自己控制的上下文策略。</p>
+<p>Mario Zechner（libGDX 作者，知名游戏框架开发者）受够了 Claude Code 日益臃肿的设计，于 2026 年初发布了 <strong>Pi</strong>——一个极简的终端 AI 编码代理框架。它的设计理念非常直白：</p>
+<blockquote>
+<p><strong>&ldquo;有很多代理框架，但这个是你自己的。&rdquo;</strong></p>
+</blockquote>
+<p>Pi 的核心哲学：系统提示词 + 工具定义控制在 <strong>1000 tokens 以内</strong>，剩下的上下文预算全部交给你的项目。它不做决策，它只是提供你掌控一切的脚手架。</p>
+<p>到今天，Pi 已经发展成一个完整的生态——40k+ GitHub stars，驱动着 250k+ stars 的 <a
+  href="https://github.com/openclaw/openclaw"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenClaw</a>（史上增长最快的 GitHub 项目之一）。</p></div><div class="post-footer">
+    <a href="/pi-coding-agent-guide/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pi/">pi</a>,&nbsp;<a href="/tags/coding-agent/">coding-agent</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/cli/">cli</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/cognition-and-improvement/">什么是认知？如何真正提高认知</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -816,33 +860,6 @@
 打个比方：知识蒸馏就像是一位经验丰富的大厨（Teacher）指导一个年轻学徒（Student）。学徒虽然经验不足，但通过学习大厨的&quot;火候把握&quot;和&quot;调味直觉&quot;，能做出一道接近大厨水平的菜，而且速度更快、成本更低。
 基本架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ┌─────────────────────────────────────────────────────┐ │ 知识蒸馏框架 │ │ │ │ ┌─────────────┐ 软标签（Soft Labels） │ │ │ Teacher │ ──────────────────────────────▶ │ │ │ 大模型 │ 知识传递（Knowledge Transfer） │ │ │ (参数量大) │ │ │ └─────────────┘ │ │ │ │ │ │ Hard Labels │ │ │ (真实标签) │ │ ▼ │ │ ┌─────────────┐ │ │ │ Student │ ◀──────────────────────────────── │ │ │ 小模型 │ 蒸馏损失（Distillation Loss） │ │ │ (参数量小) │ │ │ └─────────────┘ │ └─────────────────────────────────────────────────────┘ 软标签 vs 硬标签 传统的监督学习只使用硬标签（Hard Label），即非 0 即 1 的确定性标签：</div><div class="post-footer">
     <a href="/ai-model-distillation-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/machine-learning/">machine-learning</a>,&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/llm/">llm</a>,&nbsp;<a href="/tags/%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9/">模型压缩</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/chrome-devtools-protocol-introduction/">CDP (Chrome DevTools Protocol) 详解</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-29 17:34:53'>发布于 <time datetime="2026-04-29">2026-04-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">CDP (Chrome DevTools Protocol) 详解 简介 Chrome DevTools Protocol（CDP） 是 Google Chrome / Chromium 提供的一套底层调试协议，允许外部工具通过 JSON 消息对浏览器进行检测、检查、调试和性能分析。
-你可能不知道，平时用的 Chrome DevTools 开发者工具，底层就是靠 CDP 来和浏览器通信的。而现在，越来越多的自动化工具（Puppeteer、Playwright、browser-use 等）都基于 CDP 构建。
-在上一篇 browser-use 实战总结 中，我们看到了 --remote-debugging-port=9222 这个参数，这正是启用 CDP 的关键。
-什么是 CDP CDP 本质上是一个基于 WebSocket 的 JSON 消息协议。它将浏览器的各种能力划分为多个域（Domain），每个域定义了一组支持的命令（Commands）和事件（Events）。
-协议架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ┌──────────────────────────────────────────┐ │ Chrome / Chromium │ │ ┌────────────────────────────────┐ │ │ │ DOM Network Page .</div><div class="post-footer">
-    <a href="/chrome-devtools-protocol-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/chrome/">chrome</a>,&nbsp;<a href="/tags/devtools/">devtools</a>,&nbsp;<a href="/tags/cdp/">cdp</a>,&nbsp;<a href="/tags/playwright/">playwright</a>,&nbsp;<a href="/tags/puppeteer/">puppeteer</a>,&nbsp;<a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/">浏览器自动化</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item active">
           <span class="page-link">

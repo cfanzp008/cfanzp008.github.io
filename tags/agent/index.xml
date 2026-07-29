@@ -4,7 +4,36 @@
     <link>https://cfanzp008.github.io/tags/agent/</link>
     <description>Agent - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/agent/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/agent/" rel="self" type="application/rss+xml" /><item>
+  <title>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</title>
+  <link>https://cfanzp008.github.io/pi-coding-agent-guide/</link>
+  <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/pi-coding-agent-guide/</guid>
+  <description><![CDATA[<h1 id="pi-coding-agent-入门指南轻量级开源-ai-编码代理的安装与使用">Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>2025-2026 年，AI 编码代理（Coding Agent）领域爆发式增长，Claude Code、Codex CLI、Cursor 等工具层出不穷。但这些产品化的工具都有一个共同问题：<strong>它们帮你做了太多决策</strong>——超大系统提示词、隐藏的上下文注入、无法自己控制的上下文策略。</p>
+<p>Mario Zechner（libGDX 作者，知名游戏框架开发者）受够了 Claude Code 日益臃肿的设计，于 2026 年初发布了 <strong>Pi</strong>——一个极简的终端 AI 编码代理框架。它的设计理念非常直白：</p>
+<blockquote>
+<p><strong>&ldquo;有很多代理框架，但这个是你自己的。&rdquo;</strong></p>
+</blockquote>
+<p>Pi 的核心哲学：系统提示词 + 工具定义控制在 <strong>1000 tokens 以内</strong>，剩下的上下文预算全部交给你的项目。它不做决策，它只是提供你掌控一切的脚手架。</p>
+<p>到今天，Pi 已经发展成一个完整的生态——40k+ GitHub stars，驱动着 250k+ stars 的 <a
+  href="https://github.com/openclaw/openclaw"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenClaw</a>（史上增长最快的 GitHub 项目之一）。</p>]]></description>
+</item>
+<item>
   <title>Hermes Agent：会自我进化的 AI 智能体</title>
   <link>https://cfanzp008.github.io/hermes-agent-introduction/</link>
   <pubDate>Wed, 08 Apr 2026 13:43:55 &#43;0800</pubDate>

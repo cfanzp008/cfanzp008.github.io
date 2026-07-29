@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="Pi Coding Agent installation, configuration, extensions, skills, and practical examples - the minimal open-source terminal AI coding agent" /><meta name="keywords" content='pi, coding-agent, ai, agent, 开发工具, cli' /><meta itemprop="name" content="Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用">
+<meta itemprop="description" content="Pi Coding Agent installation, configuration, extensions, skills, and practical examples - the minimal open-source terminal AI coding agent"><meta itemprop="datePublished" content="2026-07-29T16:28:59+08:00" />
+<meta itemprop="dateModified" content="2026-07-29T16:28:59+08:00" />
+<meta itemprop="wordCount" content="1253"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="pi,coding-agent,ai,agent,开发工具,cli," /><meta property="og:title" content="Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用" />
+<meta property="og:description" content="Pi Coding Agent installation, configuration, extensions, skills, and practical examples - the minimal open-source terminal AI coding agent" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/pi-coding-agent-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-07-29T16:28:59+08:00" />
+<meta property="article:modified_time" content="2026-07-29T16:28:59+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用"/>
+<meta name="twitter:description" content="Pi Coding Agent installation, configuration, extensions, skills, and practical examples - the minimal open-source terminal AI coding agent"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/pi-coding-agent-guide/" /><link rel="prev" href="https://cfanzp008.github.io/cognition-and-improvement/" /><link rel="next" href="https://cfanzp008.github.io/litellm-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/pi-coding-agent-guide\/"
+    },"genre": "posts","keywords": "pi, coding-agent, ai, agent, 开发工具, cli","wordcount":  1253 ,
+    "url": "https:\/\/cfanzp008.github.io\/pi-coding-agent-guide\/","datePublished": "2026-07-29T16:28:59+08:00","dateModified": "2026-07-29T16:28:59+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "Pi Coding Agent installation, configuration, extensions, skills, and practical examples - the minimal open-source terminal AI coding agent"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-07-29&#32;16:28:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-07-29">2026-07-29</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1253 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#核心概念与架构">核心概念与架构</a>
+      <ul>
+        <li><a href="#设计哲学">设计哲学</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#通过-npm-安装推荐">通过 npm 安装（推荐）</a></li>
+        <li><a href="#通过-ollama-安装本地模型路径">通过 Ollama 安装（本地模型路径）</a></li>
+        <li><a href="#macos--linux-安装脚本">macOS / Linux 安装脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速上手">快速上手</a>
+      <ul>
+        <li><a href="#第一步进入项目目录并启动">第一步：进入项目目录并启动</a></li>
+        <li><a href="#第二步登录或配置-api-key">第二步：登录或配置 API Key</a></li>
+        <li><a href="#第三步第一次交互">第三步：第一次交互</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法详解">核心用法详解</a>
+      <ul>
+        <li><a href="#1-文件引用">1. 文件引用</a></li>
+        <li><a href="#2-运行命令">2. 运行命令</a></li>
+        <li><a href="#3-切换模型">3. 切换模型</a></li>
+        <li><a href="#4-会话管理">4. 会话管理</a></li>
+        <li><a href="#5-上下文压缩compaction">5. 上下文压缩（Compaction）</a></li>
+      </ul>
+    </li>
+    <li><a href="#项目配置实战">项目配置实战</a>
+      <ul>
+        <li><a href="#创建-agentsmd">创建 AGENTS.md</a></li>
+        <li><a href="#配置-settingsjson">配置 settings.json</a></li>
+      </ul>
+    </li>
+    <li><a href="#四运行模式">四运行模式</a>
+      <ul>
+        <li><a href="#sdk-模式示例嵌入到自己的应用">SDK 模式示例：嵌入到自己的应用</a></li>
+      </ul>
+    </li>
+    <li><a href="#扩展系统extensions">扩展系统（Extensions）</a>
+      <ul>
+        <li><a href="#基础扩展示例">基础扩展示例</a></li>
+        <li><a href="#自扩展能力">自扩展能力</a></li>
+      </ul>
+    </li>
+    <li><a href="#skills-技能系统">Skills 技能系统</a>
+      <ul>
+        <li><a href="#创建技能">创建技能</a></li>
+        <li><a href="#安装社区技能包">安装社区技能包</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战案例-1日常开发工作流">实战案例 1：日常开发工作流</a></li>
+    <li><a href="#实战案例-2代码审查">实战案例 2：代码审查</a></li>
+    <li><a href="#实战案例-3多模型协作">实战案例 3：多模型协作</a></li>
+    <li><a href="#实战案例-4建立完整的项目配置文件">实战案例 4：建立完整的项目配置文件</a></li>
+    <li><a href="#与-claude-code-对比">与 Claude Code 对比</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#pi-和-openclaw-是什么关系">Pi 和 OpenClaw 是什么关系？</a></li>
+        <li><a href="#是否支持本地模型">是否支持本地模型？</a></li>
+        <li><a href="#pi-的性能表现如何">Pi 的性能表现如何？</a></li>
+        <li><a href="#能否在-cicd-中使用">能否在 CI/CD 中使用？</a></li>
+        <li><a href="#如何在不同提供商之间切换">如何在不同提供商之间切换？</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#参考资源">参考资源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="pi-coding-agent-入门指南轻量级开源-ai-编码代理的安装与使用">Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>2025-2026 年，AI 编码代理（Coding Agent）领域爆发式增长，Claude Code、Codex CLI、Cursor 等工具层出不穷。但这些产品化的工具都有一个共同问题：<strong>它们帮你做了太多决策</strong>——超大系统提示词、隐藏的上下文注入、无法自己控制的上下文策略。</p>
+<p>Mario Zechner（libGDX 作者，知名游戏框架开发者）受够了 Claude Code 日益臃肿的设计，于 2026 年初发布了 <strong>Pi</strong>——一个极简的终端 AI 编码代理框架。它的设计理念非常直白：</p>
+<blockquote>
+<p><strong>&ldquo;有很多代理框架，但这个是你自己的。&rdquo;</strong></p>
+</blockquote>
+<p>Pi 的核心哲学：系统提示词 + 工具定义控制在 <strong>1000 tokens 以内</strong>，剩下的上下文预算全部交给你的项目。它不做决策，它只是提供你掌控一切的脚手架。</p>
+<p>到今天，Pi 已经发展成一个完整的生态——40k+ GitHub stars，驱动着 250k+ stars 的 <a
+  href="https://github.com/openclaw/openclaw"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenClaw</a>（史上增长最快的 GitHub 项目之一）。</p>
+<h2 id="核心概念与架构">核心概念与架构</h2>
+<p>Pi 是一个 TypeScript 单体仓库（monorepo），按依赖关系严格分层：</p>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>作用</th>
+<th>依赖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pi-ai</code></td>
+<td>统一多提供商 LLM API 层（15+ 提供商）</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>pi-agent-core</code></td>
+<td>ReAct 循环核心（~200 行）</td>
+<td>pi-ai</td>
+</tr>
+<tr>
+<td><code>pi-coding-agent</code></td>
+<td>终端编码代理 CLI</td>
+<td>pi-agent-core + pi-tui</td>
+</tr>
+<tr>
+<td><code>pi-tui</code></td>
+<td>终端 UI 组件库</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<p>这种分层的意义在于：每一层都可以单独使用。你可以在自己的应用中使用 <code>pi-ai</code> 做批量 LLM 调用，用 <code>pi-agent-core</code> 嵌入 ReAct 循环，用 <code>pi-coding-agent</code> 作为日常编码助手。</p>
+<h3 id="设计哲学">设计哲学</h3>
+<ul>
+<li><strong>4 个核心工具</strong>：<code>read</code>、<code>write</code>、<code>edit</code>、<code>bash</code>。没有 <code>search_codebase</code>、没有 <code>list_directory</code>——用 bash 通用工具（<code>grep -r</code>、<code>find .</code>、<code>git log</code>）替代</li>
+<li><strong>系统提示词 ~100 tokens</strong>：<code>&quot;You are an AI coding assistant. You help users with software engineering tasks. Use the provided tools to accomplish tasks.&quot;</code></li>
+<li><strong>完全透明的上下文</strong>：所有注入上下文的内容都可在 TUI 中查看</li>
+<li><strong>可扩展而非内置功能</strong>：想加功能？写扩展，不要等核心更新</li>
+</ul>
+<h2 id="安装">安装</h2>
+<h3 id="通过-npm-安装推荐">通过 npm 安装（推荐）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验证安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="通过-ollama-安装本地模型路径">通过 Ollama 安装（本地模型路径）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ollama launch pi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这会自动安装 Pi、配置 Ollama 作为提供商、添加网络搜索工具，并启动交互式会话。</p>
+<h3 id="macos--linux-安装脚本">macOS / Linux 安装脚本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -fsSL https://pi.dev/install.sh <span class="p">|</span> sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="快速上手">快速上手</h2>
+<h3 id="第一步进入项目目录并启动">第一步：进入项目目录并启动</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/your-project
+</span></span><span class="line"><span class="cl">pi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这会在你的项目目录中启动 Pi 的交互模式。</p>
+<h3 id="第二步登录或配置-api-key">第二步：登录或配置 API Key</h3>
+<p>Pi 支持两种认证方式：</p>
+<p><strong>方式一：交互式登录（推荐）</strong></p>
+<p>在 Pi 中输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/login
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后选择你需要的提供商——支持 Claude Pro/Max、ChatGPT Plus/Pro、GitHub Copilot 等订阅登录。</p>
+<p><strong>方式二：API Key 环境变量</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DEEPSEEK_API_KEY</span><span class="o">=</span>sk-...
+</span></span><span class="line"><span class="cl">pi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pi 支持 15+ 提供商：Anthropic、OpenAI、Google Gemini、DeepSeek、Mistral、Groq、xAI、Together AI、Hugging Face、AWS Bedrock、Azure、Ollama 等。</p>
+<h3 id="第三步第一次交互">第三步：第一次交互</h3>
+<p>启动后输入你的第一个请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">解释一下这个项目的主要功能和目录结构
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者从命令行直接传递任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi -p <span class="s2">&#34;Summarize this repository&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="核心用法详解">核心用法详解</h2>
+<h3 id="1-文件引用">1. 文件引用</h3>
+<p>使用 <code>@</code> 在交互模式中引用文件，也可以从命令行传递：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看单个文件</span>
+</span></span><span class="line"><span class="cl">pi @README.md <span class="s2">&#34;请总结这个文件&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 同时查看多个相关文件</span>
+</span></span><span class="line"><span class="cl">pi @src/app.ts @src/app.test.ts <span class="s2">&#34;请一起审查这两个文件&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看代码后执行任务</span>
+</span></span><span class="line"><span class="cl">pi @src/auth/login.ts <span class="s2">&#34;找到这个文件的潜在安全漏洞&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-运行命令">2. 运行命令</h3>
+<p>Pi 支持两种命令执行方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">!npm test          # 运行命令并将输出发送给模型
+</span></span><span class="line"><span class="cl">!!npm test         # 运行命令但不将输出发送给模型（避免噪音）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>!</code> 适合让模型基于命令输出做决策，<code>!!</code> 适合只想在本机运行但不消耗上下文预算的场景。</p>
+<h3 id="3-切换模型">3. 切换模型</h3>
+<p>在会话中切换模型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/model
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动时指定模型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi --provider openai --model gpt-4o
+</span></span><span class="line"><span class="cl">pi --model anthropic/claude-sonnet-4-20250514
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pi 还支持思考级别（thinking level）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi --model sonnet:high
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思考级别包括 <code>off</code>、<code>minimal</code>、<code>low</code>、<code>medium</code>、<code>high</code>、<code>xhigh</code>。简单任务用低级别，复杂推理用高级别。</p>
+<h3 id="4-会话管理">4. 会话管理</h3>
+<p>Pi 将会话保存为 JSONL 树形结构，支持分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi                    <span class="c1"># 启动新会话</span>
+</span></span><span class="line"><span class="cl">pi -c                 <span class="c1"># 继续最近的会话</span>
+</span></span><span class="line"><span class="cl">pi -r                 <span class="c1"># 浏览并选择历史会话</span>
+</span></span><span class="line"><span class="cl">pi --no-session       <span class="c1"># 临时会话（不保存）</span>
+</span></span><span class="line"><span class="cl">pi --name <span class="s2">&#34;release-audit&#34;</span>  <span class="c1"># 命名会话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内部会话命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/resume    # 恢复历史会话
+</span></span><span class="line"><span class="cl">/new       # 新会话
+</span></span><span class="line"><span class="cl">/fork      # 从当前节点分支
+</span></span><span class="line"><span class="cl">/tree      # 查看会话树
+</span></span><span class="line"><span class="cl">/compact   # 压缩上下文（长会话时使用）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-上下文压缩compaction">5. 上下文压缩（Compaction）</h3>
+<p>长时间会话会填满上下文窗口。Pi 的压缩机制会自动将旧消息替换为摘要，使用廉价模型（如 Haiku）完成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/compact
+</span></span><span class="line"><span class="cl">/compact 重点关注修改过的文件、未解决的 Bug 和下一步计划
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>压缩阈值可在设置中配置。</p>
+<h2 id="项目配置实战">项目配置实战</h2>
+<h3 id="创建-agentsmd">创建 AGENTS.md</h3>
+<p>在项目根目录创建 <code>AGENTS.md</code>，设置 Pi 的行为规则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 项目指令
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## 项目信息
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 技术栈：Next.js, TypeScript, Tailwind CSS, PostgreSQL
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 部署：通过 Vercel 部署到生产环境
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 包管理器：pnpm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 开发命令
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 类型检查：pnpm typecheck
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 代码检查：pnpm lint
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 测试：pnpm test
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 构建：pnpm build
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 工作规则
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 修改前先阅读现有代码模式
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 优先小范围修改
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 不要回滚用户未请求的更改
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 完成前报告修改的文件和验证结果
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 不要修改 secrets、数据库迁移和部署配置
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 安全
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 涉及认证逻辑的修改必须先解释风险
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 不允许执行 rm -rf 或 git reset --hard
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pi 会自动加载 <code>AGENTS.md</code>、<code>CLAUDE.md</code> 或项目根目录下的 <code>SYSTEM.md</code>。修改后执行 <code>/reload</code> 重新加载。</p>
+<h3 id="配置-settingsjson">配置 settings.json</h3>
+<p>项目级设置 <code>.pi/settings.json</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;defaultProvider&#34;</span><span class="p">:</span> <span class="s2">&#34;anthropic&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;defaultModel&#34;</span><span class="p">:</span> <span class="s2">&#34;claude-sonnet-4-20250514&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;defaultThinkingLevel&#34;</span><span class="p">:</span> <span class="s2">&#34;medium&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;enabledModels&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;claude-*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;openai/gpt-*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;deepseek/*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ollama/*&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;compaction&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;reserveTokens&#34;</span><span class="p">:</span> <span class="mi">16384</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;keepRecentTokens&#34;</span><span class="p">:</span> <span class="mi">20000</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;retry&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;maxRetries&#34;</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;theme&#34;</span><span class="p">:</span> <span class="s2">&#34;dark&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;enableInstallTelemetry&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="四运行模式">四运行模式</h2>
+<p>Pi 不止是终端 TUI，它有四种运行模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>命令/API</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>交互式</strong></td>
+<td><code>pi</code></td>
+<td>日常编码</td>
+</tr>
+<tr>
+<td><strong>Print/JSON</strong></td>
+<td><code>pi -p &quot;query&quot;</code>、<code>--mode json</code></td>
+<td>脚本、CI 钩子、事件流</td>
+</tr>
+<tr>
+<td><strong>RPC</strong></td>
+<td>基于 stdin/stdout 的 JSONL</td>
+<td>编辑器、仪表盘、非 Node 集成</td>
+</tr>
+<tr>
+<td><strong>SDK</strong></td>
+<td>在 Node 中直接导入</td>
+<td>嵌入应用（如 OpenClaw）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sdk-模式示例嵌入到自己的应用">SDK 模式示例：嵌入到自己的应用</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createAgentSession</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@mariozechner/pi-agent-core&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">createAgentSession</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">provider</span><span class="o">:</span> <span class="s2">&#34;anthropic&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">model</span><span class="o">:</span> <span class="s2">&#34;claude-sonnet-4-20250514&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">tools</span><span class="o">:</span> <span class="p">[...</span><span class="nx">defaultTools</span><span class="p">,</span> <span class="p">...</span><span class="nx">customTools</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">extensions</span><span class="o">:</span> <span class="p">[</span><span class="nx">auditExtension</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">onMessage</span><span class="o">:</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Agent:&#34;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 发送消息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">await</span> <span class="nx">session</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;重构 api/user.ts，保持接口不变&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenClaw 就是用这个模式嵌入 Pi，构建了多平台（WhatsApp、Telegram、Slack、Discord 等）的个人 AI 助手。</p>
+<h2 id="扩展系统extensions">扩展系统（Extensions）</h2>
+<p>扩展是 TypeScript 文件，通过 jiti 运行时加载（无需构建步骤）。编辑后输入 <code>/reload</code> 即可热重载。</p>
+<h3 id="基础扩展示例">基础扩展示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// .pi/extensions/safety.ts
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">ExtensionAPI</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@mariozechner/pi-coding-agent&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">pi</span>: <span class="kt">ExtensionAPI</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 注册自定义命令
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">pi</span><span class="p">.</span><span class="nx">registerCommand</span><span class="p">(</span><span class="s2">&#34;review&#34;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">description</span><span class="o">:</span> <span class="s2">&#34;审查暂存的更改&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">handler</span>: <span class="kt">async</span> <span class="p">(</span><span class="nx">_args</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">ctx</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="s2">&#34;审查开始...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">await</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">runAgent</span><span class="p">(</span><span class="s2">&#34;运行 git diff --staged 并审查更改&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 添加生命周期钩子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">pi</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;session_start&#34;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">_event</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ctx</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">setStatus</span><span class="p">(</span><span class="s2">&#34;repo&#34;</span><span class="p">,</span> <span class="s2">&#34;安全检查已加载&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 自定义安全门控
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">pi</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;tool_call&#34;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">toolName</span> <span class="o">!==</span> <span class="s2">&#34;bash&#34;</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">command</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">command</span> <span class="o">??</span> <span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dangerous</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;rm -rf&#34;</span><span class="p">,</span> <span class="s2">&#34;git reset --hard&#34;</span><span class="p">,</span> <span class="s2">&#34;drop database&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">dangerous</span><span class="p">.</span><span class="nx">some</span><span class="p">((</span><span class="nx">d</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">command</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">d</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">ok</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s2">&#34;危险命令&#34;</span><span class="p">,</span> <span class="nx">command</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ok</span><span class="p">)</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">block</span>: <span class="kt">true</span><span class="p">,</span> <span class="nx">reason</span><span class="o">:</span> <span class="s2">&#34;被安全扩展拦截&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="自扩展能力">自扩展能力</h3>
+<p>Pi 最强大的特性：<strong>Agent 可以自己写扩展并热重载</strong>。工作流：</p>
+<ol>
+<li>描述需求：&ldquo;我需要一个 <code>/deploy</code> 命令来运行部署流水线&rdquo;</li>
+<li>Pi 编写扩展 <code>.ts</code> 文件</li>
+<li>输入 <code>/reload</code></li>
+<li>测试新命令</li>
+<li>如果出错，Pi 读取错误、修复代码、重载、重试</li>
+</ol>
+<blockquote>
+<p>知名 Python 开发者 Armin Ronacher（Flask 和 Jinja2 作者）评价：&ldquo;像黏土一样可塑的软件。&rdquo; 他所有的 Pi 扩展（<code>/answer</code>、<code>/todos</code>、<code>/review</code>、<code>/files</code>）都是 Pi 自己写的。</p>
+</blockquote>
+<h2 id="skills-技能系统">Skills 技能系统</h2>
+<p>Pi 实现了 <a
+  href="https://agentskills.io"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>agentskills.io</a> 开放标准，技能包在 Pi、Claude Code、Codex CLI 之间可移植。</p>
+<h3 id="创建技能">创建技能</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># .pi/skills/code-review/SKILL.md
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>---
+</span></span><span class="line"><span class="cl">name: code-review
+</span></span><span class="line"><span class="cl">version: 1.0.0
+</span></span><span class="line"><span class="cl">description: 自动化代码审查，包含代码风格检查
+</span></span><span class="line"><span class="cl">triggers:
+</span></span><span class="line"><span class="cl">  <span class="k">-</span> /review
+</span></span><span class="line"><span class="cl">  <span class="k">-</span> &#34;审查这个&#34;
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># 代码审查技能
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl">作为代码审查助手，当激活时：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">1.</span> 读取 git 暂存的 diff
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> 检查：
+</span></span><span class="line"><span class="cl">   <span class="k">-</span> 安全漏洞
+</span></span><span class="line"><span class="cl">   <span class="k">-</span> 性能问题
+</span></span><span class="line"><span class="cl">   <span class="k">-</span> 代码风格违规
+</span></span><span class="line"><span class="cl">   <span class="k">-</span> 缺少错误处理
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> 提供可操作的建议和行引用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装社区技能包">安装社区技能包</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pi install npm:pi-skills -l
+</span></span><span class="line"><span class="cl">pi install npm:@ollama/pi-web-search -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>-l</code> 标志安装为项目本地包。</p>
+<h2 id="实战案例-1日常开发工作流">实战案例 1：日常开发工作流</h2>
+<p>以下是一个完整的日常开发会话示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 进入项目并启动 Pi</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/projects/my-api-server
+</span></span><span class="line"><span class="cl">pi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>会话流程：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 用户:    @src/routes/users.ts 解释这个文件的功能
+</span></span><span class="line"><span class="cl">   Agent:   [读取并解释用户路由]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 用户:    !npm test
+</span></span><span class="line"><span class="cl">   Agent:   [运行测试，发现 auth 测试失败]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. 用户:    查找 auth 测试失败的原因，先不要改文件
+</span></span><span class="line"><span class="cl">   Agent:   [用 grep 和 read 工具调查，定位到 token 过期时间逻辑错误]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. 用户:    修复这个问题，最小的安全修改
+</span></span><span class="line"><span class="cl">   Agent:   [修改代码，解释改动]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. 用户:    !npm test
+</span></span><span class="line"><span class="cl">   Agent:   测试通过 ✅
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">6. 用户:    /compact
+</span></span><span class="line"><span class="cl">   Agent:   上下文已压缩
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实战案例-2代码审查">实战案例 2：代码审查</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 CI 中使用 print 模式</span>
+</span></span><span class="line"><span class="cl">pi -p --tools read,grep,find,ls <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s2">&#34;审查最近一次提交的代码更改，重点检查安全问题和性能问题。列出所有发现和建议。&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>--tools read,grep,find,ls</code> 限制为只读工具，确保审查过程中 Agent 不会修改代码。</p>
+<h2 id="实战案例-3多模型协作">实战案例 3：多模型协作</h2>
+<p>Pi 支持在同一会话中切换提供商：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 复杂推理用 Claude</span>
+</span></span><span class="line"><span class="cl">pi --model claude-sonnet-4-20250514 -p <span class="s2">&#34;分析这个项目的架构设计&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 快速修改用 GPT</span>
+</span></span><span class="line"><span class="cl">pi --model openai/gpt-4o-mini -p <span class="s2">&#34;修复 src/utils.ts 中的拼写错误&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在交互式会话中，可以直接使用 <code>/model</code> 切换：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/模型切换到 gpt-4o-mini
+</span></span><span class="line"><span class="cl">继续处理剩下的琐碎任务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实战案例-4建立完整的项目配置文件">实战案例 4：建立完整的项目配置文件</h2>
+<p>下面是一个生产级项目的完整 Pi 配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">my-project/
+</span></span><span class="line"><span class="cl">├── AGENTS.md                    # 项目指令
+</span></span><span class="line"><span class="cl">├── .pi/
+</span></span><span class="line"><span class="cl">│   ├── settings.json           # 项目设置
+</span></span><span class="line"><span class="cl">│   ├── extensions/
+</span></span><span class="line"><span class="cl">│   │   ├── safety.ts           # 安全门控
+</span></span><span class="line"><span class="cl">│   │   └── deploy.ts           # 部署命令
+</span></span><span class="line"><span class="cl">│   ├── skills/
+</span></span><span class="line"><span class="cl">│   │   ├── code-review/
+</span></span><span class="line"><span class="cl">│   │   │   └── SKILL.md
+</span></span><span class="line"><span class="cl">│   │   └── release-check/
+</span></span><span class="line"><span class="cl">│   │       └── SKILL.md
+</span></span><span class="line"><span class="cl">│   └── prompts/
+</span></span><span class="line"><span class="cl">│       └── pr-description.md   # 自定义提示词模板
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>提示词模板示例</strong> (<code>.pi/prompts/pr-description.md</code>)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">name: pr-description
+</span></span><span class="line"><span class="cl">description: 生成 PR 描述
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># PR 描述模板
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>
+</span></span><span class="line"><span class="cl">总结代码变更：
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 变更范围：(修改了哪些文件)
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 原因：(为什么做这个修改)
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 测试结果：(运行了哪些测试，结果如何)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gh"># 审查清单
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span><span class="k">- [ ]</span> 类型检查通过
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> 测试通过
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> 没有敏感信息泄露
+</span></span><span class="line"><span class="cl"><span class="k">- [ ]</span> 向后兼容
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 Pi 中可以直接通过 <code>/pr-description</code> 触发此模板。</p>
+<h2 id="与-claude-code-对比">与 Claude Code 对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Pi</th>
+<th>Claude Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开源</td>
+<td>是 (MIT)</td>
+<td>否</td>
+</tr>
+<tr>
+<td>系统提示词</td>
+<td>~100 tokens</td>
+<td>~10,000 tokens</td>
+</tr>
+<tr>
+<td>提供商支持</td>
+<td>15+</td>
+<td>Anthropic 为主</td>
+</tr>
+<tr>
+<td>核心工具数</td>
+<td>4</td>
+<td>20+</td>
+</tr>
+<tr>
+<td>扩展机制</td>
+<td>TypeScript 扩展</td>
+<td>有限</td>
+</tr>
+<tr>
+<td>会话树</td>
+<td>支持（分支）</td>
+<td>线性</td>
+</tr>
+<tr>
+<td>运行模式</td>
+<td>4 种</td>
+<td>交互式为主</td>
+</tr>
+<tr>
+<td>SDK 嵌入</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>技能系统</td>
+<td>开放标准</td>
+<td>私有</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="pi-和-openclaw-是什么关系">Pi 和 OpenClaw 是什么关系？</h3>
+<p>OpenClaw 是构建在 Pi SDK 之上的多平台 AI 助手（支持 WhatsApp、Telegram、Slack 等），由 Peter Steinberger 开发。它是 Pi SDK 模式的旗舰案例，也是 GitHub 上增长最快的项目之一。</p>
+<h3 id="是否支持本地模型">是否支持本地模型？</h3>
+<p>支持。通过 Ollama 集成可以一键启动：<code>ollama launch pi</code>。或者在 <code>models.json</code> 中配置 Ollama 或其他 OpenAI 兼容的本地推理端点（如 vLLM）。</p>
+<h3 id="pi-的性能表现如何">Pi 的性能表现如何？</h3>
+<p>Pi 在 Terminal-Bench 2.0 上与 Claude Code、Codex、Cursor 等产品抗衡，但只用了 &lt;100 tokens 的系统提示词和 4 个工具。其创始人认为，前沿模型已经在训练数据中充分了解了编码代理的运作模式，不需要框架教它们怎么做。</p>
+<h3 id="能否在-cicd-中使用">能否在 CI/CD 中使用？</h3>
+<p>可以。使用 Print/JSON 模式 (<code>pi -p &quot;task&quot; --mode json</code>) 或 RPC 模式可以嵌入脚本流水线。同时可以用 <code>--tools</code> 限制只读操作，适合安全审查。</p>
+<h3 id="如何在不同提供商之间切换">如何在不同提供商之间切换？</h3>
+<p>使用 <code>/model</code> 或在启动时指定 <code>--provider</code> 和 <code>--model</code>。Pi 的上下文接力（Context Handoff）功能能在不同提供商之间序列化会话状态——包括思维链、工具调用结果等——在切换模型时完整保持上下文。</p>
+<h2 id="总结">总结</h2>
+<p>Pi 代表了一种与主流 AI 编码代理不同的设计思路：<strong>极简核心 + 最大扩展性</strong>。</p>
+<ul>
+<li>如果你只需要一个&quot;开箱即用&quot;的编码助手，Pi 的默认体验已经很流畅</li>
+<li>如果你希望完全掌控上下文策略和工作流，Pi 的扩展、技能、设置系统给了你所有必要的工具</li>
+<li>如果你想在自己的应用里嵌入 AI Agent 能力，Pi 的 SDK 模式是最轻量的选择</li>
+</ul>
+<p>Pi 的核心理念值得记住：框架的责任是<strong>让路</strong>，而不是指路。</p>
+<h3 id="参考资源">参考资源</h3>
+<ul>
+<li><a
+  href="https://pi.dev"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Pi 官方网站</a></li>
+<li><a
+  href="https://github.com/badlogic/pi-mono"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>GitHub 仓库</a></li>
+<li><a
+  href="https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/extensions.md"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Pi 扩展文档</a></li>
+<li><a
+  href="https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/skills.md"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Pi Skills 文档</a></li>
+<li><a
+  href="https://docs.ollama.com/integrations/pi"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Ollama Pi 集成</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-07-29&#32;16:28:59>更新于 2026-07-29&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/pi-coding-agent-guide/" data-title="Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pi/">pi</a>,&nbsp;<a href="/tags/coding-agent/">coding-agent</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/cli/">cli</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/cognition-and-improvement/" class="prev" rel="prev" title="什么是认知？如何真正提高认知"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>什么是认知？如何真正提高认知</a>
+      <a href="/litellm-introduction/" class="next" rel="next" title="LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库">LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
