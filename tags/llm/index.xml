@@ -4,7 +4,24 @@
     <link>https://cfanzp008.github.io/tags/llm/</link>
     <description>llm - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Mon, 11 May 2026 18:12:45 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/llm/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/llm/" rel="self" type="application/rss+xml" /><item>
+  <title>LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库</title>
+  <link>https://cfanzp008.github.io/litellm-introduction/</link>
+  <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/litellm-introduction/</guid>
+  <description><![CDATA[<h1 id="litellm-入门指南统一调用-100-llm-的-python-库">LiteLLM 入门指南：统一调用 100+ LLM 的 Python 库</h1>
+<h2 id="背景">背景</h2>
+<p>2023-2025 年是大模型爆发的几年，市面上涌现了 OpenAI、Anthropic、Google Gemini、Mistral、Groq、Cohere 等数十家模型提供商，每个厂商都有自己的 API 格式、鉴权方式和 SDK。这种碎片化给开发者带来了巨大的集成成本：</p>
+<ul>
+<li>切换模型需要重写调用代码</li>
+<li>不同厂商的错误处理机制不同</li>
+<li>缺乏统一的成本追踪</li>
+<li>多模型 fallback 需要自己实现重试逻辑</li>
+</ul>
+<p><strong>LiteLLM</strong> 就是为了解决这些问题而生的。它是一个轻量级的 Python 库（也提供 Proxy Server），把所有 LLM API 统一成 OpenAI 兼容格式，一行代码切换模型提供商。目前支持 <strong>100+ 模型提供商</strong>，包括主流的 OpenAI、Anthropic、Google、AWS Bedrock、Azure、Groq、Together AI 等。</p>]]></description>
+</item>
+<item>
   <title>AI 模型蒸馏 (Distillation) 技术详解</title>
   <link>https://cfanzp008.github.io/ai-model-distillation-introduction/</link>
   <pubDate>Mon, 11 May 2026 18:12:45 &#43;0800</pubDate>
