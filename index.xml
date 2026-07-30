@@ -4,9 +4,26 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</title>
+  <link>https://cfanzp008.github.io/opencode-image-generation-guide/</link>
+  <pubDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencode-image-generation-guide/</guid>
+  <description><![CDATA[<h1 id="opencode-图片处理完全指南拖拽分析参考设计与-ai-生成">OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</h1>
+<h2 id="背景">背景</h2>
+<p>OpenCode（社区常称为 gopencode）是一个用 Go 语言编写的开源 AI 编码代理，可运行在终端、桌面或 IDE 中。它支持 75+ LLM 提供商，提供 Plan/Build 双模式，内置 LSP 集成、多会话并行、MCP 扩展等能力。</p>
+<p>很多人只知道 OpenCode 是一个&quot;编码助手&quot;，忽略了它强大的图片处理能力。实际上，OpenCode 在三个层面深度支持图片工作流：</p>
+<ol>
+<li><strong>图片分析</strong>：拖拽图片到终端，让 Agent 读取并理解图片内容</li>
+<li><strong>设计参考</strong>：在 Plan 模式中提供 UI 参考图，指导代码生成</li>
+<li><strong>图片生成</strong>：通过支持多模态输出的模型或 MCP 工具直接生成图片</li>
+</ol>
+<p>本文通过完整的实战案例，展示这三种能力的用法。</p>]]></description>
+</item>
+<item>
   <title>LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库</title>
   <link>https://cfanzp008.github.io/litellm-introduction/</link>
   <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>
@@ -129,17 +146,6 @@
 模型提供商 类名称 示例模型 Browser Use 专用 ChatBrowserUse browser-use/bu-30b-a3b-preview OpenAI ChatOpenAI gpt-4o, gpt-4.1-mini Anthropic ChatAnthropic claude-sonnet-4-0 Google ChatGoogle gemini-flash-latest 3. 两种使用方式 开源版本：完全自托管，可深度定制工具和行为。
 Cloud 版本：托管在 Browser Use Cloud，提供更好的隐蔽性、代理轮换和验证码解决能力。
 4. 丰富的功能 表单自动填写：自动识别表单字段并填写 多标签页管理：跨标签页操作和切换 结构化输出：使用 Pydantic 模型定义输出格式 自定义工具：扩展 Agent 能力 持久化浏览器会话：复用登录状态 CLI 工具：命令行快速操作 安装配置 环境要求 Python &gt;= 3.]]></description>
-</item>
-<item>
-  <title>markview.nvim - Neovim 文档实时预览插件</title>
-  <link>https://cfanzp008.github.io/markview-nvim-plugin/</link>
-  <pubDate>Wed, 22 Apr 2026 11:33:18 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/markview-nvim-plugin/</guid>
-  <description><![CDATA[markview.nvim - Neovim 文档实时预览插件 简介 如果你经常在 Neovim 中编辑 Markdown、LaTeX 等文档，是否曾梦想过能够实时预览渲染效果？markview.nvim 正是为解决这个需求而生的插件。它支持在 Neovim 中实时预览多种文档格式，包括 Markdown、HTML、LaTeX、Typst、YAML 和 Asciidoc。
-markview.nvim 具有以下核心特性：
-多格式支持：支持 Markdown、HTML、LaTeX、Typst、YAML、Asciidoc 六种格式 混合编辑模式：允许在预览的同时直接编辑文档 分屏预览：支持左右分屏同时查看编辑和预览效果 高度可定制：几乎所有功能都可以通过配置自定义 动态高亮：自动适配当前colorscheme主题 安装要求 系统要求 Neovim &gt;= 0.10.3 推荐配置 使用 tree-sitter 基础的 colorscheme 推荐使用 nowrap 选项（插件本身支持 wrap） 不使用 expandtab 必需的 Tree-sitter 解析器 需要安装以下解析器：
-1 :TSInstall markdown markdown_inline html latex typst yaml 可选解析器 comment：支持 fancy comments html：支持 HTML 预览 latex：支持 LaTeX 数学公式 typst：支持 Typst 预览 tree-sitter-asciidoc：支持 Asciidoc 字体要求 需要现代 Unicode 字体来显示数学符号 推荐使用 Nerd Fonts 安装方式 使用 Lazy.]]></description>
 </item>
 </channel>
 </rss>

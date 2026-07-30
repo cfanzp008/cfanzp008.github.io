@@ -4,7 +4,24 @@
     <link>https://cfanzp008.github.io/tags/cli/</link>
     <description>cli - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/cli/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/cli/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</title>
+  <link>https://cfanzp008.github.io/opencode-image-generation-guide/</link>
+  <pubDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencode-image-generation-guide/</guid>
+  <description><![CDATA[<h1 id="opencode-图片处理完全指南拖拽分析参考设计与-ai-生成">OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</h1>
+<h2 id="背景">背景</h2>
+<p>OpenCode（社区常称为 gopencode）是一个用 Go 语言编写的开源 AI 编码代理，可运行在终端、桌面或 IDE 中。它支持 75+ LLM 提供商，提供 Plan/Build 双模式，内置 LSP 集成、多会话并行、MCP 扩展等能力。</p>
+<p>很多人只知道 OpenCode 是一个&quot;编码助手&quot;，忽略了它强大的图片处理能力。实际上，OpenCode 在三个层面深度支持图片工作流：</p>
+<ol>
+<li><strong>图片分析</strong>：拖拽图片到终端，让 Agent 读取并理解图片内容</li>
+<li><strong>设计参考</strong>：在 Plan 模式中提供 UI 参考图，指导代码生成</li>
+<li><strong>图片生成</strong>：通过支持多模态输出的模型或 MCP 工具直接生成图片</li>
+</ol>
+<p>本文通过完整的实战案例，展示这三种能力的用法。</p>]]></description>
+</item>
+<item>
   <title>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</title>
   <link>https://cfanzp008.github.io/pi-coding-agent-guide/</link>
   <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>
@@ -120,16 +137,6 @@ gws 的独特之处在于它采用了动态命令构建机制。它并不硬编�
 Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用源码编译时需要 安装方式 lark-cli 提供两种安装方式，推荐使用 npm 安装：
 1 2 3 4 5 6 7 # 方式一：使用 npm 安装（推荐） npm install -g @larksuite/cli # 方式二：从源码编译安装 git clone https://github.com/larksuite/cli.git cd cli make install 安装 CLI 技能是必须步骤，否则无法使用AI Agent技能：
 1 npx skills add larksuite/cli -y -g 初始化配置 安装完成后，需要进行一次性配置：]]></description>
-</item>
-<item>
-  <title>OpenAI Codex CLI 全面介绍：开源的终端编程助手</title>
-  <link>https://cfanzp008.github.io/openai-codex-cli-introduction/</link>
-  <pubDate>Sat, 04 Apr 2026 12:00:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/openai-codex-cli-introduction/</guid>
-  <description><![CDATA[OpenAI Codex CLI 全面介绍：开源的终端编程助手 什么是 Codex CLI Codex CLI 是 OpenAI 于 2025 年开源的轻量级编程助手，完全运行在你的终端中。它可以读取代码库、进行编辑、运行命令，帮助开发者完成各种编程任务。
-该项目在 GitHub 上已获得 72,900+ 颗星，是 Rust 编写的开源项目。
-核心特性 1. 终端集成 完整的终端 UI 直接读取和编辑代码 运行终端命令 支持图像输入（截图分析） 2. 多种使用模式 交互模式：全屏终端 UI，实时协作 非交互模式：适合 CI/CD 集成 Exec 模式：脚本化调用 3. 强大的命令支持 /test：生成测试代码 /edit：代码编辑 /shell：执行 shell 命令 /review：代码审查 /diff：查看变更 4. 沙箱安全 安全的代码执行环境 防止恶意操作 可配置的安全级别 5. 多模型支持 支持多种 AI 模型 可自定义模型选择 支持本地模型 安装配置 安装方式 1 2 3 4 5 6 7 8 # 方法一：npm npm i -g @openai/codex # 方法二：Homebrew brew install --cask codex # 方法三：下载二进制 # 访问 GitHub Releases 页面 验证安装 1 2 3 4 5 # 查看版本 codex --version # 启动交互模式 codex 认证配置 1 2 3 4 5 # 登录 OpenAI 账号 codex auth login # 或设置 API Key export OPENAI_API_KEY=&#34;sk-.]]></description>
 </item>
 </channel>
 </rss>

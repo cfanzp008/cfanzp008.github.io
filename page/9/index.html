@@ -701,6 +701,32 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/tencent-cloud-server-optimization/">小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 17:07:51'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/os/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 操作系统</a></span></div><div class="content">小内存腾讯云服务器优化：关闭安全加固、云监控与自动化助手 背景简介 腾讯云服务器默认会安装多种监控和安全组件，包括云监控（Cloud Monitor）、云镜（Security Agent）、安全加固和自动化助手（TAT）等。这些组件在后台持续运行，会占用一定的系统资源（CPU、内存）。
+对于小内存服务器（如 1GB 或 2GB 内存）来说，这些后台服务可能会影响业务程序的可用内存，甚至导致 OOM（内存耗尽）问题。
+优化目标：
+释放内存资源 减少后台进程占用 提升服务器响应速度 降低资源消耗 需要关闭的组件 组件名称 功能 占用资源 云监控（YunAgent） 监控服务器性能指标 约 50-100MB 内存 云镜（Security Agent） 安全防护和病毒扫描 约 30-80MB 内存 安全加固（Security hardening） 系统安全加固 约 20-50MB 内存 自动化助手（TAT） 远程运维自动化 约 10-30MB 内存 思维导图：操作流程总览 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 graph TD A[开始优化] --&gt; B{确认权限} B --&gt;|需要sudo| C[获取root权限] B --&gt;|已是root| D[开始操作] C --&gt; D D --&gt; E[1.</div><div class="post-footer">
+    <a href="/tencent-cloud-server-optimization/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/">腾讯云</a>,&nbsp;<a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96/">服务器优化</a>,&nbsp;<a href="/tags/%E4%BA%91%E7%9B%91%E6%8E%A7/">云监控</a>,&nbsp;<a href="/tags/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA/">安全加固</a>,&nbsp;<a href="/tags/linux/">linux</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/linux-swap-resize-guide/">Linux Swap 分区大小修改指南</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -839,35 +865,6 @@ Superpowers 是由 Keyboardio 联合创始人 Jesse Vincent 开发的一个 AI A
 系统性思考：先理解需求，再制定计划 质量控制：在实现前先验证，在修改后确认 工具使用：正确使用调试、测试、审查等工具 迭代优化：持续改进而非一次完成 技能（Skills）机制 Superpowers 的技能系统受 Simon Willison 提出的 Claude Skills 概念启发。每个技能是一个独立的指令集，可以被 AI Agent 按需加载和使用。技能的核心文件是 SKILL.md，其中包含：
 技能的用途说明 使用场景和触发条件 具体的工作流程和步骤 工具映射说明 思维导图：Superpowers 整体架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Superpowers 框架 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 核心概念 │ │ 主要技能 │ │ 工具集成 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─技能框架(Skills) ├─brainstorming ├─OpenCode ├─Agent工作流 ├─verification-before-completion ├─Claude Code ├─工具映射 ├─receiving-code-review ├─Codex └─Bootstrap机制 ├─requesting-code-review └─MCP Servers ├─test-driven-development ├─systematic-debugging └─.</div><div class="post-footer">
     <a href="/superpowers-opencode-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/superpowers/">Superpowers</a>,&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E6%8A%80%E8%83%BD%E6%A1%86%E6%9E%B6/">技能框架</a>,&nbsp;<a href="/tags/ai-agent/">ai agent</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/openai-tokenizer-introduction/">OpenAI Tokenizer 在线工具详解</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 10:25:57'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenAI Tokenizer 在线工具详解 什么是 Tokenizer 在深入了解 OpenAI Tokenizer 工具之前，我们首先需要理解什么是 Token（词元）。
-Token 是 OpenAI 模型处理文本的基本单位。它们可以是短至单个字符，也可以长至整个单词，具体取决于语言和编码方式。对于英文文本，大约 4 个字符等于 1 个 Token；对于中文文本，通常 1-2 个汉字等于 1 个 Token。
-理解 Token 的概念对于使用 OpenAI API 至关重要，因为：
-API 计费：OpenAI 按 Token 数量计费，了解 Token 数量可以帮助估算成本 上下文窗口：每个模型有固定的上下文窗口限制（通常是 4K、8K、16K、32K、128K 等），Token 数决定了能输入多少内容 优化提示：了解 Token 计数可以帮助优化提示词，提高效率 OpenAI Tokenizer 工具概述 OpenAI Tokenizer 是官方提供的在线工具，访问地址为：https://platform.openai.com/tokenizer
-这个工具允许开发者直观地看到任意文本被如何分词（Tokenize），以及对应的 Token 数量。这对于以下场景特别有用：
-学习 Token 概念 估算 API 调用成本 优化提示词长度 调试 Token 相关问题 工具界面与功能 主要功能区域 OpenAI Tokenizer 工具界面主要包含以下几个部分：
-1. 文本输入区</div><div class="post-footer">
-    <a href="/openai-tokenizer-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openai/">openai</a>,&nbsp;<a href="/tags/tokenizer/">tokenizer</a>,&nbsp;<a href="/tags/token/">token</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

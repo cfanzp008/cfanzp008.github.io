@@ -4,7 +4,24 @@
     <link>https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
     <description>开发工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</title>
+  <link>https://cfanzp008.github.io/opencode-image-generation-guide/</link>
+  <pubDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/opencode-image-generation-guide/</guid>
+  <description><![CDATA[<h1 id="opencode-图片处理完全指南拖拽分析参考设计与-ai-生成">OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</h1>
+<h2 id="背景">背景</h2>
+<p>OpenCode（社区常称为 gopencode）是一个用 Go 语言编写的开源 AI 编码代理，可运行在终端、桌面或 IDE 中。它支持 75+ LLM 提供商，提供 Plan/Build 双模式，内置 LSP 集成、多会话并行、MCP 扩展等能力。</p>
+<p>很多人只知道 OpenCode 是一个&quot;编码助手&quot;，忽略了它强大的图片处理能力。实际上，OpenCode 在三个层面深度支持图片工作流：</p>
+<ol>
+<li><strong>图片分析</strong>：拖拽图片到终端，让 Agent 读取并理解图片内容</li>
+<li><strong>设计参考</strong>：在 Plan 模式中提供 UI 参考图，指导代码生成</li>
+<li><strong>图片生成</strong>：通过支持多模态输出的模型或 MCP 工具直接生成图片</li>
+</ol>
+<p>本文通过完整的实战案例，展示这三种能力的用法。</p>]]></description>
+</item>
+<item>
   <title>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</title>
   <link>https://cfanzp008.github.io/pi-coding-agent-guide/</link>
   <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>

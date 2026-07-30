@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="How to use OpenCode to analyze, reference, and generate images - with drag-and-drop, multimodal models, MCP tools, and practical examples" /><meta name="keywords" content='opencode, gopencode, ai, 图片生成, 开发工具, cli' /><meta itemprop="name" content="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成">
+<meta itemprop="description" content="How to use OpenCode to analyze, reference, and generate images - with drag-and-drop, multimodal models, MCP tools, and practical examples"><meta itemprop="datePublished" content="2026-07-30T16:01:35+08:00" />
+<meta itemprop="dateModified" content="2026-07-30T16:01:35+08:00" />
+<meta itemprop="wordCount" content="663"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="opencode,gopencode,ai,图片生成,开发工具,cli," /><meta property="og:title" content="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成" />
+<meta property="og:description" content="How to use OpenCode to analyze, reference, and generate images - with drag-and-drop, multimodal models, MCP tools, and practical examples" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/opencode-image-generation-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-07-30T16:01:35+08:00" />
+<meta property="article:modified_time" content="2026-07-30T16:01:35+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成"/>
+<meta name="twitter:description" content="How to use OpenCode to analyze, reference, and generate images - with drag-and-drop, multimodal models, MCP tools, and practical examples"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/opencode-image-generation-guide/" /><link rel="prev" href="https://cfanzp008.github.io/litellm-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/opencode-image-generation-guide\/"
+    },"genre": "posts","keywords": "opencode, gopencode, ai, 图片生成, 开发工具, cli","wordcount":  663 ,
+    "url": "https:\/\/cfanzp008.github.io\/opencode-image-generation-guide\/","datePublished": "2026-07-30T16:01:35+08:00","dateModified": "2026-07-30T16:01:35+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "How to use OpenCode to analyze, reference, and generate images - with drag-and-drop, multimodal models, MCP tools, and practical examples"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/devtools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-07-30&#32;16:01:35><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-07-30">2026-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 663 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#前置条件">前置条件</a></li>
+    <li><a href="#图片分析让-agent-看懂图片">图片分析：让 Agent &ldquo;看懂&quot;图片</a>
+      <ul>
+        <li><a href="#基础用法">基础用法</a></li>
+        <li><a href="#实战案例-1ui-设计稿分析">实战案例 1：UI 设计稿分析</a></li>
+        <li><a href="#实战案例-2bug-截图分析">实战案例 2：Bug 截图分析</a></li>
+        <li><a href="#实战案例-3架构图理解和文档生成">实战案例 3：架构图理解和文档生成</a></li>
+      </ul>
+    </li>
+    <li><a href="#设计参考用图片指导代码生成">设计参考：用图片指导代码生成</a>
+      <ul>
+        <li><a href="#实战案例-4参考现有设计实现新功能">实战案例 4：参考现有设计实现新功能</a></li>
+        <li><a href="#实战案例-5组件级设计参考">实战案例 5：组件级设计参考</a></li>
+      </ul>
+    </li>
+    <li><a href="#图片生成通过-ai-模型直接创建图片">图片生成：通过 AI 模型直接创建图片</a>
+      <ul>
+        <li><a href="#方式一使用支持图片输出的多模态模型">方式一：使用支持图片输出的多模态模型</a></li>
+        <li><a href="#方式二通过-mcp-工具集成图片生成-api">方式二：通过 MCP 工具集成图片生成 API</a></li>
+        <li><a href="#方式三通过-bash-工具调用-cli-图片生成工具">方式三：通过 bash 工具调用 CLI 图片生成工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战案例-6完整的多模态工作流">实战案例 6：完整的多模态工作流</a></li>
+    <li><a href="#实战案例-7非交互模式下的图片处理">实战案例 7：非交互模式下的图片处理</a></li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#支持哪些图片格式">支持哪些图片格式？</a></li>
+        <li><a href="#如何粘贴剪贴板中的截图">如何粘贴剪贴板中的截图？</a></li>
+        <li><a href="#生成的图片保存在哪里">生成的图片保存在哪里？</a></li>
+        <li><a href="#为什么-agent-分析了图片但没有生成图片">为什么 Agent 分析了图片但没有生成图片？</a></li>
+        <li><a href="#在远程服务器上能否使用拖拽图片">在远程服务器上能否使用拖拽图片？</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#参考资源">参考资源</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="opencode-图片处理完全指南拖拽分析参考设计与-ai-生成">OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</h1>
+<h2 id="背景">背景</h2>
+<p>OpenCode（社区常称为 gopencode）是一个用 Go 语言编写的开源 AI 编码代理，可运行在终端、桌面或 IDE 中。它支持 75+ LLM 提供商，提供 Plan/Build 双模式，内置 LSP 集成、多会话并行、MCP 扩展等能力。</p>
+<p>很多人只知道 OpenCode 是一个&quot;编码助手&quot;，忽略了它强大的图片处理能力。实际上，OpenCode 在三个层面深度支持图片工作流：</p>
+<ol>
+<li><strong>图片分析</strong>：拖拽图片到终端，让 Agent 读取并理解图片内容</li>
+<li><strong>设计参考</strong>：在 Plan 模式中提供 UI 参考图，指导代码生成</li>
+<li><strong>图片生成</strong>：通过支持多模态输出的模型或 MCP 工具直接生成图片</li>
+</ol>
+<p>本文通过完整的实战案例，展示这三种能力的用法。</p>
+<h2 id="前置条件">前置条件</h2>
+<p>确保已安装 OpenCode：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一键安装</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://opencode.ai/install <span class="p">|</span> bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或通过 npm</span>
+</span></span><span class="line"><span class="cl">npm install -g opencode-ai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 Homebrew</span>
+</span></span><span class="line"><span class="cl">brew install anomalyco/tap/opencode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>选择合适的提供商</strong>：你需要一个支持多模态输入或图片生成的模型。推荐：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>推荐提供商</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图片分析/识别</td>
+<td>OpenAI (GPT-4o)、Anthropic (Claude Sonnet)、Google (Gemini)</td>
+</tr>
+<tr>
+<td>图片生成</td>
+<td>OpenAI (DALL-E/GPT Image)、Google (Gemini/Imagen)、OpenRouter</td>
+</tr>
+<tr>
+<td>本地模型</td>
+<td>Ollama (LLaVA、Qwen-VL)</td>
+</tr>
+</tbody>
+</table>
+<p>配置提供商：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">opencode
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入 TUI 后输入：</span>
+</span></span><span class="line"><span class="cl">/connect
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择你的提供商并输入 API Key</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="图片分析让-agent-看懂图片">图片分析：让 Agent &ldquo;看懂&quot;图片</h2>
+<p>OpenCode 支持<strong>拖拽图片到终端</strong>。图片会自动上传并以 <code>[Image #1]</code> 占位符的形式注入到对话中，Agent 可以读取和分析图片内容。</p>
+<h3 id="基础用法">基础用法</h3>
+<p>在项目目录中启动 OpenCode：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/project
+</span></span><span class="line"><span class="cl">opencode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将一张截图或图片文件从文件管理器拖入终端窗口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[将图片拖入此处]
+</span></span><span class="line"><span class="cl">分析这张图片中的 UI 布局，告诉我用了什么颜色方案和字体风格
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Agent 会读取图片并给出分析结果。</p>
+<h3 id="实战案例-1ui-设计稿分析">实战案例 1：UI 设计稿分析</h3>
+<p>场景：你收到一张设计稿截图，想让 OpenCode 分析后生成对应代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[拖入 design-mockup.png]
+</span></span><span class="line"><span class="cl">这是新页面的设计稿，请分析：
+</span></span><span class="line"><span class="cl">1. 页面的整体布局结构
+</span></span><span class="line"><span class="cl">2. 颜色方案和字体使用
+</span></span><span class="line"><span class="cl">3. 交互元素的样式（按钮、输入框、卡片）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">然后根据分析结果，用 HTML + Tailwind CSS 实现这个页面。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenCode 会先分析图片，然后生成匹配的代码。这对前端开发特别有用——从设计图直接到代码实现。</p>
+<h3 id="实战案例-2bug-截图分析">实战案例 2：Bug 截图分析</h3>
+<p>场景：程序出了 bug，你截图了错误界面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[拖入 error-screenshot.png]
+</span></span><span class="line"><span class="cl">这是我在测试时遇到的错误页面，请分析截图中的错误信息：
+</span></span><span class="line"><span class="cl">1. 错误代码和消息是什么
+</span></span><span class="line"><span class="cl">2. 可能的原因是什么
+</span></span><span class="line"><span class="cl">3. 如何修复这个 bug
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Agent 不仅能读懂错误信息，还能结合你的代码库上下文给出修复方案。</p>
+<h3 id="实战案例-3架构图理解和文档生成">实战案例 3：架构图理解和文档生成</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[拖入 architecture-diagram.png]
+</span></span><span class="line"><span class="cl">这是项目的架构图，请分析：
+</span></span><span class="line"><span class="cl">1. 系统包含哪些组件
+</span></span><span class="line"><span class="cl">2. 组件之间的通信方式
+</span></span><span class="line"><span class="cl">3. 数据流向
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">然后根据这张图，生成一份 README 中的架构说明文档。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="设计参考用图片指导代码生成">设计参考：用图片指导代码生成</h2>
+<p>OpenCode 的 <strong>Plan 模式</strong>特别适合与参考图配合使用。先按 <code>Tab</code> 切换到 Plan 模式（右下角会显示指示器）。</p>
+<h3 id="实战案例-4参考现有设计实现新功能">实战案例 4：参考现有设计实现新功能</h3>
+<p>假设你想实现一个类似已有设计的新页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Tab&gt;  切换到 Plan 模式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[拖入 existing-page.png]
+</span></span><span class="line"><span class="cl">我们有一个已存在的设计，想在新页面中复用类似风格。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">需求：
+</span></span><span class="line"><span class="cl">- 新建一个用户设置页面 `/settings`
+</span></span><span class="line"><span class="cl">- 参考图中的布局结构：左侧导航 + 右侧内容区
+</span></span><span class="line"><span class="cl">- 颜色方案保持一致
+</span></span><span class="line"><span class="cl">- 字体和间距也按照图中的样式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">请先给出实现计划。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Agent 分析图片后生成计划，你可以迭代调整。满意后按 <code>Tab</code> 切回 Build 模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Tab&gt; 切换到 Build 模式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">计划没问题，开始实现吧。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="实战案例-5组件级设计参考">实战案例 5：组件级设计参考</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[拖入 button-component.png]
+</span></span><span class="line"><span class="cl">请实现这个按钮组件：
+</span></span><span class="line"><span class="cl">1. 包含所有视觉状态：normal、hover、active、disabled
+</span></span><span class="line"><span class="cl">2. 使用图片中所示的渐变背景色和阴影
+</span></span><span class="line"><span class="cl">3. 导出为 React 组件并支持 props 配置
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>OpenCode 会从图片中提取颜色、阴影、圆角等设计参数，生成对应的组件代码。</p>
+<h2 id="图片生成通过-ai-模型直接创建图片">图片生成：通过 AI 模型直接创建图片</h2>
+<p>OpenCode 本身不内置图片生成能力，但通过其 75+ 提供商和 MCP 扩展系统，可以有多种方式生成图片。</p>
+<h3 id="方式一使用支持图片输出的多模态模型">方式一：使用支持图片输出的多模态模型</h3>
+<p>部分 Advanced 模型（如 OpenAI 的 GPT Image、Google Gemini）可以直接输出图片。在 OpenCode 中切换到这些模型即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/模型选择
+</span></span><span class="line"><span class="cl">选择 openai/gpt-image-2 或 google/gemini-3-pro-image
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后像聊天一样直接请求生成图片：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">请生成一张 1024x1024 的图片，主题是一只橘猫程序员在终端前 coding，
+</span></span><span class="line"><span class="cl">风格是扁平插画，浅色背景。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成结果会以链接或内嵌图片的形式显示在 TUI 中。</p>
+<h3 id="方式二通过-mcp-工具集成图片生成-api">方式二：通过 MCP 工具集成图片生成 API</h3>
+<p>OpenCode 支持 MCP（Model Context Protocol），可以添加图片生成的 MCP 服务器。</p>
+<p><strong>安装 Composio MCP 集成（提供多种图片生成工具）：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 Composio MCP 插件</span>
+</span></span><span class="line"><span class="cl">opencode plugin add composio
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接图片生成工具</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 OpenCode 中：</span>
+</span></span><span class="line"><span class="cl">请连接 Composio 的 AI/ML API 工具，我需要图片生成能力
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>自定义 MCP 服务器示例：</strong></p>
+<p>创建一个简单的 MCP 服务器来封装 DALL-E 或 FLUX API：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// opencode.json
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mcpServers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;image-gen&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;url&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:3001/mcp&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在对话中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用 image-gen 工具生成一张关于&#34;日落海滩&#34;的图片
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方式三通过-bash-工具调用-cli-图片生成工具">方式三：通过 bash 工具调用 CLI 图片生成工具</h3>
+<p>OpenCode 可以执行 bash 命令。如果你的系统中有图片生成 CLI（如 Open AI CLI、MiniMax 的 mmx CLI 等），可以直接在 OpenCode 中调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">运行这个命令生成图片：
+</span></span><span class="line"><span class="cl">!mmx image --prompt &#34;一只戴耳机的猫，赛博朋克风格，霓虹灯&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者通过 curl 调用 API：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">!curl https://api.openai.com/v1/images/generations \
+</span></span><span class="line"><span class="cl">  -H &#34;Authorization: Bearer $OPENAI_API_KEY&#34; \
+</span></span><span class="line"><span class="cl">  -d &#39;{&#34;model&#34;:&#34;dall-e-3&#34;,&#34;prompt&#34;:&#34;赛博朋克风格的城市夜景&#34;,&#34;n&#34;:1,&#34;size&#34;:&#34;1024x1024&#34;}&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实战案例-6完整的多模态工作流">实战案例 6：完整的多模态工作流</h2>
+<p>下面是一个从图片分析到生成新图片的完整工作流：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">场景：为一个博客文章生成社交分享图
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第一步：提供参考风格
+</span></span><span class="line"><span class="cl">[拖入参考图 - 一张你喜欢的社交媒体卡片设计]
+</span></span><span class="line"><span class="cl">分析这张图片的设计风格：颜色、字体、布局、装饰元素
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第二步：让 Agent 理解需求
+</span></span><span class="line"><span class="cl">我有一篇新博客文章，标题是：
+</span></span><span class="line"><span class="cl">&#34;Go 语言并发编程：从入门到精通&#34;
+</span></span><span class="line"><span class="cl">这篇文章是关于 Go 的 goroutine 和 channel 的。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第三步：生成代码实现
+</span></span><span class="line"><span class="cl">请根据参考图的风格，生成一个 HTML 社交分享卡片（1200x630px）：
+</span></span><span class="line"><span class="cl">- 使用图片中的颜色方案
+</span></span><span class="line"><span class="cl">- 标题用大号粗体
+</span></span><span class="line"><span class="cl">- 加入 Go 语言相关视觉元素（Gopher 吉祥物风格）
+</span></span><span class="line"><span class="cl">- 底部包含作者名和日期
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第四步：预览并截图
+</span></span><span class="line"><span class="cl">!open output.html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">第五步：如果需要 AI 直接生成图片
+</span></span><span class="line"><span class="cl">切换到支持图片生成的模型：
+</span></span><span class="line"><span class="cl">/模型选择 gpt-image-2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">请用同样风格为 &#34;Go 并发编程&#34; 生成一张社交媒体图片，
+</span></span><span class="line"><span class="cl">尺寸 1200x630，包含 Gopher 元素，简洁专业
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实战案例-7非交互模式下的图片处理">实战案例 7：非交互模式下的图片处理</h2>
+<p>OpenCode 的 CLI 模式可以集成到脚本中。这在自动化图片处理流水线中特别有用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 分析图片并输出 JSON 结果</span>
+</span></span><span class="line"><span class="cl">opencode run --output json <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s2">&#34;分析 @screenshot.png，输出一个 JSON：{\&#34;layout\&#34;: \&#34;...\&#34;, \&#34;colors\&#34;: [...], \&#34;elements\&#34;: [...]}&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 批量处理截图</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> file in screenshots/*.png<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  opencode run <span class="s2">&#34;分析 @</span><span class="nv">$file</span><span class="s2">，列出所有可见的 UI 元素&#34;</span> &gt;&gt; analysis/<span class="nv">$file</span>.txt
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CI 中自动生成 Open Graph 图片</span>
+</span></span><span class="line"><span class="cl">opencode run <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s2">&#34;为 &#39;</span><span class="nv">$BLOG_TITLE</span><span class="s2">&#39; 生成一张 OG 图片的 HTML，尺寸 1200x630，风格简洁现代，保存到 og-image.html&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常见问题">常见问题</h2>
+<h3 id="支持哪些图片格式">支持哪些图片格式？</h3>
+<p>OpenCode 支持 PNG、JPG、GIF、WebP 等常见格式。大图片会被自动压缩处理。</p>
+<h3 id="如何粘贴剪贴板中的截图">如何粘贴剪贴板中的截图？</h3>
+<p>目前 OpenCode 主要通过拖拽方式附加图片。剪贴板粘贴的支持正在开发中（GitHub Issue #906）。</p>
+<h3 id="生成的图片保存在哪里">生成的图片保存在哪里？</h3>
+<p>通过多模态模型生成的图片会返回 URL 或 base64 数据。通过 bash 命令生成的图片会保存在你指定的路径。</p>
+<h3 id="为什么-agent-分析了图片但没有生成图片">为什么 Agent 分析了图片但没有生成图片？</h3>
+<p>OpenCode 是一个编码代理，主要聚焦在代码生成和文件操作。图片分析是编码工作流的一部分（设计稿→代码、Bug 截图→修复），而不是独立的图片编辑工具。要生成图片，需要使用支持图片输出的模型，或通过 bash 命令调用图片生成 API。</p>
+<h3 id="在远程服务器上能否使用拖拽图片">在远程服务器上能否使用拖拽图片？</h3>
+<p>如果你通过 SSH 连接远程服务器，需要在终端模拟器中启用图片支持（如 iTerm2、Kitty 支持图片协议）。部分远程场景可能需要使用 <code>opencode web</code> 通过浏览器访问。</p>
+<h2 id="总结">总结</h2>
+<p>OpenCode 的图片处理能力可以分为三个层次：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>实现方式</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>图片分析</strong></td>
+<td>拖拽图片到终端，模型自动识别</td>
+<td>设计稿分析、Bug 截图、架构图理解</td>
+</tr>
+<tr>
+<td><strong>设计参考</strong></td>
+<td>Plan 模式 + 参考图</td>
+<td>UI 实现、组件开发、风格复现</td>
+</tr>
+<tr>
+<td><strong>图片生成</strong></td>
+<td>多模态模型输出 / MCP 工具 / bash CLI</td>
+<td>社交媒体图、概念图、封面图</td>
+</tr>
+</tbody>
+</table>
+<p>OpenCode 的核心优势在于<strong>将图片处理无缝嵌入编码工作流</strong>——不需要打开另一个工具，不需要切换上下文，在终端中一站式完成从&quot;看图片&quot;到&quot;写代码&quot;再到&quot;生成图片&quot;的完整闭环。</p>
+<h3 id="参考资源">参考资源</h3>
+<ul>
+<li><a
+  href="https://opencode.ai/docs"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenCode 官方文档</a></li>
+<li><a
+  href="https://github.com/anomalyco/opencode"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenCode GitHub</a></li>
+<li><a
+  href="https://opencode.ai/docs/providers"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenCode 提供商配置</a></li>
+<li><a
+  href="https://opencode.ai/docs/mcp-servers"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenCode MCP 服务器</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-07-30&#32;16:01:35>更新于 2026-07-30&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/opencode-image-generation-guide/" data-title="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencode/">opencode</a>,&nbsp;<a href="/tags/gopencode/">gopencode</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90/">图片生成</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>,&nbsp;<a href="/tags/cli/">cli</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/litellm-introduction/" class="prev" rel="prev" title="LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>LiteLLM 入门指南：统一调用 100&#43; LLM 的 Python 库</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
