@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="Complete guide to using RemoveWatermark.exe (multi-delogo) for video watermark removal with GUI and CLI usage examples" /><meta name="keywords" content='windows, 视频处理, 水印去除, 开源工具, ffmpeg' /><meta itemprop="name" content="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用">
+<meta itemprop="description" content="Complete guide to using RemoveWatermark.exe (multi-delogo) for video watermark removal with GUI and CLI usage examples"><meta itemprop="datePublished" content="2026-07-30T18:22:20+08:00" />
+<meta itemprop="dateModified" content="2026-07-30T18:22:20+08:00" />
+<meta itemprop="wordCount" content="604"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="windows,视频处理,水印去除,开源工具,ffmpeg," /><meta property="og:title" content="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用" />
+<meta property="og:description" content="Complete guide to using RemoveWatermark.exe (multi-delogo) for video watermark removal with GUI and CLI usage examples" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/removewatermark-exe-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-07-30T18:22:20+08:00" />
+<meta property="article:modified_time" content="2026-07-30T18:22:20+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用"/>
+<meta name="twitter:description" content="Complete guide to using RemoveWatermark.exe (multi-delogo) for video watermark removal with GUI and CLI usage examples"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/removewatermark-exe-guide/" /><link rel="prev" href="https://cfanzp008.github.io/opencode-image-generation-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/removewatermark-exe-guide\/"
+    },"genre": "posts","keywords": "windows, 视频处理, 水印去除, 开源工具, ffmpeg","wordcount":  604 ,
+    "url": "https:\/\/cfanzp008.github.io\/removewatermark-exe-guide\/","datePublished": "2026-07-30T18:22:20+08:00","dateModified": "2026-07-30T18:22:20+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "Complete guide to using RemoveWatermark.exe (multi-delogo) for video watermark removal with GUI and CLI usage examples"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-07-30&#32;18:22:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-07-30">2026-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 604 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#下载与安装">下载与安装</a>
+      <ul>
+        <li><a href="#方式一下载预编译的-exe-文件">方式一：下载预编译的 EXE 文件</a></li>
+        <li><a href="#方式二通过包管理器安装macos">方式二：通过包管理器安装（macOS）</a></li>
+        <li><a href="#方式三从源码编译linux">方式三：从源码编译（Linux）</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用方法">使用方法</a>
+      <ul>
+        <li><a href="#快速上手gui-模式">快速上手：GUI 模式</a></li>
+        <li><a href="#自动检测水印">自动检测水印</a></li>
+        <li><a href="#处理移动水印">处理移动水印</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战案例">实战案例</a>
+      <ul>
+        <li><a href="#案例-1去除视频角落台标">案例 1：去除视频角落台标</a></li>
+        <li><a href="#案例-2批量处理多个视频">案例 2：批量处理多个视频</a></li>
+        <li><a href="#案例-3使用命令行模式">案例 3：使用命令行模式</a></li>
+        <li><a href="#案例-4多个不同位置的水印">案例 4：多个不同位置的水印</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级功能">高级功能</a>
+      <ul>
+        <li><a href="#裁剪视频">裁剪视频</a></li>
+        <li><a href="#调整处理参数">调整处理参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题">常见问题</a>
+      <ul>
+        <li><a href="#q1处理后的视频没有声音">Q1：处理后的视频没有声音？</a></li>
+        <li><a href="#q2处理效果不理想怎么办">Q2：处理效果不理想怎么办？</a></li>
+        <li><a href="#q3路径不能包含中文吗">Q3：路径不能包含中文吗？</a></li>
+        <li><a href="#q4多个视频的水印位置不同">Q4：多个视频的水印位置不同？</a></li>
+        <li><a href="#q5软件卡顿无响应">Q5：软件卡顿无响应？</a></li>
+      </ul>
+    </li>
+    <li><a href="#技术原理">技术原理</a></li>
+    <li><a href="#与其他工具的对比">与其他工具的对比</a></li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#参考链接">参考链接</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="removewatermarkexe-完全指南视频去水印工具的安装与使用">RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>&ldquo;RemoveWatermark.exe&rdquo; 是 Windows 平台上一类视频水印去除工具的统称。这类工具通常采用 FFmpeg 的 delogo 滤镜作为底层处理引擎，通过图形界面简化操作，支持批量去除视频中的固定水印和台标。</p>
+<p>本文以最流行的开源工具 <strong>multi-delogo</strong>（即通常所说的 RemoveWatermark.exe）为例，详细介绍其安装、配置和实战用法。</p>
+<h2 id="下载与安装">下载与安装</h2>
+<h3 id="方式一下载预编译的-exe-文件">方式一：下载预编译的 EXE 文件</h3>
+<p>multi-delogo 项目托管在 GitHub，提供直接可运行的 exe 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 访问 GitHub Releases 页面</span>
+</span></span><span class="line"><span class="cl">https://github.com/wernerturing/multi-delogo/releases
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接下载最新版 (v2.4.0)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://github.com/wernerturing/multi-delogo/releases/download/v2.4.0/multi-delogo-windows-2.4.0.zip</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下载后解压到任意目录，直接运行 <code>multi-delogo.exe</code> 即可启动。</p>
+<h3 id="方式二通过包管理器安装macos">方式二：通过包管理器安装（macOS）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install wernerturing/multi-delogo/multi-delogo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方式三从源码编译linux">方式三：从源码编译（Linux）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/wernerturing/multi-delogo.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> multi-delogo
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要依赖：gtkmm、goocanvas、opencv、boost。</p>
+<h2 id="使用方法">使用方法</h2>
+<h3 id="快速上手gui-模式">快速上手：GUI 模式</h3>
+<p>打开 <code>multi-delogo.exe</code>，主界面如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│  File  Edit  Tools  Help           │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  ┌─────────────────────────────┐   │
+</span></span><span class="line"><span class="cl">│  │     [视频预览区域]           │   │
+</span></span><span class="line"><span class="cl">│  │                             │   │
+</span></span><span class="line"><span class="cl">│  │         水印区域            │   │
+</span></span><span class="line"><span class="cl">│  │        ┌──────┐             │   │
+</span></span><span class="line"><span class="cl">│  │        │水印  │             │   │
+</span></span><span class="line"><span class="cl">│  │        └──────┘             │   │
+</span></span><span class="line"><span class="cl">│  └─────────────────────────────┘   │
+</span></span><span class="line"><span class="cl">│  [添加文件]  [开始处理]  [预览]   │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>基本步骤：</strong></p>
+<ol>
+<li>点击菜单栏 <strong>File &gt; New project</strong>（或 <code>Ctrl+N</code>）新建项目</li>
+<li>选择需要处理的视频文件（支持 MP4、AVI、MOV、MKV 等常见格式）</li>
+<li>视频的第一帧会自动加载到预览区</li>
+<li>使用鼠标 <strong>框选水印区域</strong>（按住左键拖拽即可）</li>
+<li>点击 <strong>Encode</strong> 按钮开始处理</li>
+<li>选择输出路径，等待处理完成</li>
+</ol>
+<h3 id="自动检测水印">自动检测水印</h3>
+<p>multi-delogo 内置了自动水印检测功能，特别适合检测文字类水印：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 菜单路径</span>
+</span></span><span class="line"><span class="cl">Tools &gt; Automatic Logo Detection
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检测完成后，工具会自动标记水印位置，用户只需确认或微调即可。</p>
+<h3 id="处理移动水印">处理移动水印</h3>
+<p>与水印位置固定的工具不同，multi-delogo 支持水印位置变化的情况。操作方式：</p>
+<ol>
+<li>通过进度条或时间输入切换到水印位置发生变化的帧</li>
+<li>在新的位置再次框选水印区域</li>
+<li>工具会自动在时间轴上创建多个过滤器 <code>[Filter 1] [Filter 2] ...</code></li>
+<li>每个过滤器对应一个时间段的水印位置</li>
+</ol>
+<h2 id="实战案例">实战案例</h2>
+<h3 id="案例-1去除视频角落台标">案例 1：去除视频角落台标</h3>
+<p>场景：下载的教学视频左上角有一个固定的频道台标。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">操作步骤：
+</span></span><span class="line"><span class="cl">1. 打开 multi-delogo.exe
+</span></span><span class="line"><span class="cl">2. File &gt; New project &gt; 选择教学视频.mp4
+</span></span><span class="line"><span class="cl">3. 视频加载后，左上角可见台标
+</span></span><span class="line"><span class="cl">4. 鼠标拖拽框选台标区域
+</span></span><span class="line"><span class="cl">5. 点击 Encode
+</span></span><span class="line"><span class="cl">6. 选择输出路径，点击确定
+</span></span><span class="line"><span class="cl">7. 等待处理完成，输出无水印视频
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-2批量处理多个视频">案例 2：批量处理多个视频</h3>
+<p>通过项目文件实现批量处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 用上述方法处理第一个视频，创建项目
+</span></span><span class="line"><span class="cl">2. File &gt; Save project 保存为 .mdpg 项目文件
+</span></span><span class="line"><span class="cl">3. 对第二个视频：
+</span></span><span class="line"><span class="cl">   - File &gt; New project → 选择第二个视频
+</span></span><span class="line"><span class="cl">   - 如果水印位置相同，直接 Encode
+</span></span><span class="line"><span class="cl">   - 如果水印位置不同，重新框选
+</span></span><span class="line"><span class="cl">4. 逐一处理所有视频
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-3使用命令行模式">案例 3：使用命令行模式</h3>
+<p>对于需要批量自动处理的场景，multi-delogo 提供命令行接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接使用 FFmpeg delogo 滤镜</span>
+</span></span><span class="line"><span class="cl">ffmpeg -i input.mp4 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -filter_complex <span class="s2">&#34;delogo=x=10:y=10:w=120:h=40&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -c:a copy <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  output.mp4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中参数说明：</p>
+<ul>
+<li><code>x</code>、<code>y</code>：水印左上角坐标</li>
+<li><code>w</code>、<code>h</code>：水印区域的宽度和高度</li>
+</ul>
+<p>还可以通过 multi-delogo 生成 FFmpeg 命令行的 filter script：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 在 GUI 中框选水印区域
+</span></span><span class="line"><span class="cl">2. Tools &gt; Generate filter script
+</span></span><span class="line"><span class="cl">3. 会生成一个 .txt 文件，包含完整的 FFmpeg filter 参数
+</span></span><span class="line"><span class="cl">4. 在命令行中调用：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ffmpeg -i input.mp4 \
+</span></span><span class="line"><span class="cl">  -filter_complex_script &#34;filter_script.txt&#34; \
+</span></span><span class="line"><span class="cl">  -map &#34;[out_v]&#34; \
+</span></span><span class="line"><span class="cl">  -map 0:a \
+</span></span><span class="line"><span class="cl">  output.mp4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意：-map &#34;[out_v]&#34; 指定处理过的视频流，
+</span></span><span class="line"><span class="cl">      -map 0:a   保留原始音频流。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例-4多个不同位置的水印">案例 4：多个不同位置的水印</h3>
+<p>如果视频中有多个水印在不同时间段出现在不同位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 在第一个时间段，框选水印位置 → 自动创建 Filter 1
+</span></span><span class="line"><span class="cl">2. 拖动进度条到水印位置发生变化的时间点
+</span></span><span class="line"><span class="cl">3. 再次框选新位置 → 自动创建 Filter 2
+</span></span><span class="line"><span class="cl">4. 重复步骤 2-3，直到覆盖所有时间段的全部水印
+</span></span><span class="line"><span class="cl">5. 点击 Encode 开始处理
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>快捷键：</p>
+<ul>
+<li><code>Ctrl+N</code>：新建项目</li>
+<li><code>Ctrl+S</code>：保存项目</li>
+<li><code>Ctrl+O</code>：打开项目</li>
+<li><code>Space</code> / <code>Enter</code>：确认</li>
+<li><code>Esc</code>：取消</li>
+</ul>
+<h2 id="高级功能">高级功能</h2>
+<h3 id="裁剪视频">裁剪视频</h3>
+<p>除了去水印，multi-delogo 还内置了视频裁剪功能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 在预览窗口按住鼠标中键拖拽 → 出现裁剪框
+</span></span><span class="line"><span class="cl">2. 释放鼠标 → 自动添加裁剪过滤器
+</span></span><span class="line"><span class="cl">3. 调整裁剪区域
+</span></span><span class="line"><span class="cl">4. Encode 输出
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="调整处理参数">调整处理参数</h3>
+<p>multi-delogo 支持通过 FFmpeg 的参数微调处理效果：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>band</code></td>
+<td>delogo 滤镜的模糊半径</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>处理强度（越大越模糊）</td>
+<td>1</td>
+</tr>
+<tr>
+<td>输出格式</td>
+<td>保持原始格式或选择特定格式</td>
+<td>原始格式</td>
+</tr>
+<tr>
+<td>编码质量</td>
+<td>CRF 值或比特率控制</td>
+<td>原始质量</td>
+</tr>
+</tbody>
+</table>
+<p>在 <strong>Tools &gt; Options</strong> 中可以设置这些高级参数。</p>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="q1处理后的视频没有声音">Q1：处理后的视频没有声音？</h3>
+<p>这是最常见的问题。如果用 FFmpeg 命令行处理，必须保留音频流：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 正确命令（保留音频）</span>
+</span></span><span class="line"><span class="cl">ffmpeg -i input.mp4 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -filter_complex <span class="s2">&#34;delogo=x=10:y=10:w=120:h=40[out_v]&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -map <span class="s2">&#34;[out_v]&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -map 0:a <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -c:a copy <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  output.mp4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 错误命令（会丢失音频）</span>
+</span></span><span class="line"><span class="cl">ffmpeg -i input.mp4 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -filter_complex <span class="s2">&#34;delogo=x=10:y=10:w=120:h=40&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  output.mp4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="q2处理效果不理想怎么办">Q2：处理效果不理想怎么办？</h3>
+<ul>
+<li>适当扩大框选区域（比水印实际大小略大）</li>
+<li>在 Options 中调整 <code>band</code> 和 <code>t</code> 参数</li>
+<li>对于半透明水印，可尝试增加 <code>t</code> 值至 2-3</li>
+</ul>
+<h3 id="q3路径不能包含中文吗">Q3：路径不能包含中文吗？</h3>
+<p>建议路径中不要包含中文和空格，否则 FFmpeg 可能无法正常处理。</p>
+<h3 id="q4多个视频的水印位置不同">Q4：多个视频的水印位置不同？</h3>
+<p>每个视频需要单独框选水印位置。如果水印位置相同，可以用同一个项目文件批量处理。</p>
+<h3 id="q5软件卡顿无响应">Q5：软件卡顿无响应？</h3>
+<p>处理过程中软件可能会显示&quot;未响应&quot;状态，这是正常现象。可以查看任务管理器确认 CPU/GPU 是否处于工作状态。也可以使用 <strong>Generate filter script</strong> 生成 FFmpeg 命令，在命令行中独立运行。</p>
+<h2 id="技术原理">技术原理</h2>
+<p>RemoveWatermark.exe（multi-delogo）的核心原理：</p>
+<ol>
+<li><strong>视频解码</strong>：使用 FFmpeg 读取视频文件，解码为帧序列</li>
+<li><strong>水印定位</strong>：通过 OpenCV 分析画面差异，结合用户标记确定水印位置</li>
+<li><strong>delogo 滤镜处理</strong>：对标记区域应用 FFmpeg 的 delogo 滤镜，用周围像素插值填补</li>
+<li><strong>视频编码</strong>：将处理后的帧序列重新编码为视频文件</li>
+</ol>
+<p>delogo 滤镜的插值算法可以简单理解为：取水印区域边界像素的颜色和亮度，通过渐变填充到水印区域内部，使处理后的画面看起来自然过渡。</p>
+<h2 id="与其他工具的对比">与其他工具的对比</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>RemoveWatermark.exe (multi-delogo)</th>
+<th>FFmpeg 命令行</th>
+<th>在线工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图形界面</td>
+<td>✅ 有</td>
+<td>❌ 无</td>
+<td>✅ 有</td>
+</tr>
+<tr>
+<td>批量处理</td>
+<td>✅ 支持</td>
+<td>✅ 支持</td>
+<td>❌ 有限制</td>
+</tr>
+<tr>
+<td>移动水印</td>
+<td>✅ 支持</td>
+<td>❌ 需手动编写</td>
+<td>❌ 不支持</td>
+</tr>
+<tr>
+<td>自动检测</td>
+<td>✅ 内置</td>
+<td>❌ 无</td>
+<td>✅ AI 检测</td>
+</tr>
+<tr>
+<td>离线使用</td>
+<td>✅ 完全离线</td>
+<td>✅ 完全离线</td>
+<td>❌ 需联网</td>
+</tr>
+<tr>
+<td>文件大小限制</td>
+<td>❌ 无限制</td>
+<td>❌ 无限制</td>
+<td>⚠️ 通常有限制</td>
+</tr>
+<tr>
+<td>费用</td>
+<td>✅ 免费开源</td>
+<td>✅ 免费</td>
+<td>⚠️ 部分付费</td>
+</tr>
+<tr>
+<td>跨平台</td>
+<td>❌ Windows + Linux + macOS</td>
+<td>✅ 全平台</td>
+<td>✅ 浏览器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>RemoveWatermark.exe（multi-delogo）是一款实用的视频水印去除工具，它的核心优势在于：</p>
+<ul>
+<li><strong>免费开源</strong>：无需付费，代码透明</li>
+<li><strong>支持移动水印</strong>：同类工具中少有的功能</li>
+<li><strong>本地处理</strong>：视频文件不上传云端，保护隐私</li>
+<li><strong>灵活的输出</strong>：保持原始格式、编码和质量</li>
+<li><strong>GUI + CLI 双模式</strong>：适合普通用户和自动化脚本</li>
+</ul>
+<p>如果只是偶尔去除简单的固定水印，也可以直接使用 FFmpeg 命令行的 <code>delogo</code> 滤镜。但如果你需要处理移动水印、需要可视化操作、或者要批量处理大量视频，multi-delogo 是更合适的选择。</p>
+<h3 id="参考链接">参考链接</h3>
+<ul>
+<li><a
+  href="https://github.com/wernerturing/multi-delogo"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>multi-delogo GitHub 仓库</a></li>
+<li><a
+  href="https://github.com/wernerturing/multi-delogo/releases"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>multi-delogo Releases</a></li>
+<li><a
+  href="https://ffmpeg.org/ffmpeg-filters.html#delogo"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>FFmpeg delogo 滤镜文档</a></li>
+<li><a
+  href="https://github.com/lxulxu/WatermarkRemover"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>WatermarkRemover (Python LAMA 版)</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-07-30&#32;18:22:20>更新于 2026-07-30&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/removewatermark-exe-guide/" data-title="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/windows/">Windows</a>,&nbsp;<a href="/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/">视频处理</a>,&nbsp;<a href="/tags/%E6%B0%B4%E5%8D%B0%E5%8E%BB%E9%99%A4/">水印去除</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7/">开源工具</a>,&nbsp;<a href="/tags/ffmpeg/">ffmpeg</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/opencode-image-generation-guide/" class="prev" rel="prev" title="OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

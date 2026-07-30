@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>ffmpeg - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/ffmpeg/</link>
+    <description>ffmpeg - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/ffmpeg/" rel="self" type="application/rss+xml" /><item>
+  <title>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</title>
+  <link>https://cfanzp008.github.io/removewatermark-exe-guide/</link>
+  <pubDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/removewatermark-exe-guide/</guid>
+  <description><![CDATA[<h1 id="removewatermarkexe-完全指南视频去水印工具的安装与使用">RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>&ldquo;RemoveWatermark.exe&rdquo; 是 Windows 平台上一类视频水印去除工具的统称。这类工具通常采用 FFmpeg 的 delogo 滤镜作为底层处理引擎，通过图形界面简化操作，支持批量去除视频中的固定水印和台标。</p>
+<p>本文以最流行的开源工具 <strong>multi-delogo</strong>（即通常所说的 RemoveWatermark.exe）为例，详细介绍其安装、配置和实战用法。</p>]]></description>
+</item>
+</channel>
+</rss>

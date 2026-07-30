@@ -701,6 +701,31 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/tailscale-usage/">Tailscale 使用详解</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-09 11:40:31'>发布于 <time datetime="2026-04-09">2026-04-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/net/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div><div class="content">Tailscale 使用详解 什么是 Tailscale Tailscale 是一款基于 WireGuard 协议的零信任网络访问工具，由 Google 前员工创立。它简化了 VPN 的配置和管理，让用户可以轻松地在任意设备之间建立安全的点对点连接。
+Tailscale 不需要复杂的服务器配置，它使用 Tailscale 提供的免费中继服务器（称为「DERP」）来帮助设备建立连接，在某些场景下也可以直接端到端连接。
+核心特性 1. 零信任网络 基于设备身份认证 不再依赖传统 VPN 的网络边界 每个设备都需要独立认证 2. WireGuard 底层 继承 WireGuard 的高性能 端到端加密 快速连接 3. 简单易用 支持多平台（Windows、macOS、Linux、iOS、Android） 一键安装，自动配置 不需要专业知识 4. 内网穿透 可以在任意网络环境下访问设备 突破 NAT 和防火墙 支持 UDP 打洞 5. ACL 访问控制 基于用户和设备的细粒度控制 可以限制哪些设备可以互相访问 支持分组管理 应用场景 1. 远程办公 安全的远程访问公司电脑 访问公司内网资源 无需配置复杂 VPN 服务器 2. 家庭网络 远程访问家中设备（NAS、路由器、智能家居） 不需要公网 IP 安全的远程管理 3. 开发测试 访问测试环境服务器 团队成员间安全互联 快速搭建开发网络 4.</div><div class="post-footer">
+    <a href="/tailscale-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tailscale/">Tailscale</a>,&nbsp;<a href="/tags/wireguard/">WireGuard</a>,&nbsp;<a href="/tags/vpn/">VPN</a>,&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>,&nbsp;<a href="/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">零信任</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/wireguard-vpn-usage/">WireGuard VPN 使用详解</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -839,31 +864,6 @@ CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必
 主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
 官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.</div><div class="post-footer">
     <a href="/influxdb2-cli-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/influxdb/">InfluxDB</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a>,&nbsp;<a href="/tags/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">时序数据库</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/influxdb-studio-usage/">InfluxDBStudio 使用笔记</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-08 17:59:50'>发布于 <time datetime="2026-04-08">2026-04-08</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div><div class="content">InfluxDBStudio 使用笔记 什么是 InfluxDBStudio InfluxDBStudio 是一款开源的 InfluxDB 图形化管理工具，由 C# 开发。它提供了一个直观的用户界面，让用户可以方便地连接、查询和管理 InfluxDB 数据库。
-该项目在 GitHub 上已获得 920+ 颗星，是 InfluxDB 用户常用的客户端工具之一。
-主要功能 1. 多版本支持 支持 InfluxDB 1.x 版本 支持 InfluxDB 2.x 版本（包括 Cloud 和 OSS） 自动识别连接版本并适配 2. 连接管理 保存多个连接配置 支持用户名/密码认证 支持 Token 认证（InfluxDB 2.x） 支持自定义 URL 和端口 3. 数据查询 可视化查询构建器 原生 InfluxQL 查询支持 Flux 查询支持（InfluxDB 2.x） 查询历史记录 查询结果导出 4. 数据浏览 查看数据库和测量（Measurements） 查看时间序列数据 查看 tag 和 field 数据可视化展示 5. 数据操作 写入数据 删除数据 管理连续查询 管理保留策略 下载安装 官方下载 访问 GitHub Releases 页面下载最新版本：</div><div class="post-footer">
-    <a href="/influxdb-studio-usage/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/influxdb/">InfluxDB</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>,&nbsp;<a href="/tags/gui/">GUI</a>,&nbsp;<a href="/tags/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%BA%93/">时序数据库</a>,&nbsp;<a href="/tags/github/">github</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

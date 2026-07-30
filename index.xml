@@ -4,9 +4,20 @@
     <link>https://cfanzp008.github.io/</link>
     <description>cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</lastBuildDate>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</lastBuildDate>
       <atom:link href="https://cfanzp008.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</title>
+  <link>https://cfanzp008.github.io/removewatermark-exe-guide/</link>
+  <pubDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/removewatermark-exe-guide/</guid>
+  <description><![CDATA[<h1 id="removewatermarkexe-完全指南视频去水印工具的安装与使用">RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>&ldquo;RemoveWatermark.exe&rdquo; 是 Windows 平台上一类视频水印去除工具的统称。这类工具通常采用 FFmpeg 的 delogo 滤镜作为底层处理引擎，通过图形界面简化操作，支持批量去除视频中的固定水印和台标。</p>
+<p>本文以最流行的开源工具 <strong>multi-delogo</strong>（即通常所说的 RemoveWatermark.exe）为例，详细介绍其安装、配置和实战用法。</p>]]></description>
+</item>
+<item>
   <title>OpenCode 图片处理完全指南：拖拽分析、参考设计与 AI 生成</title>
   <link>https://cfanzp008.github.io/opencode-image-generation-guide/</link>
   <pubDate>Thu, 30 Jul 2026 16:01:35 &#43;0800</pubDate>
@@ -132,20 +143,6 @@
   <description><![CDATA[browser-use demo002 实战总结 背景 在上一篇介绍 browser-use 的文章中，我们了解了这个 AI 驱动的浏览器自动化工具的基本概念。本文通过一个实际的 demo002.py 示例，深入分析 browser-use 的实际运行效果，包括配置细节、执行流程和结果分析。
 示例代码分析 demo002.py 是一个最小化的 browser-use 使用示例，核心代码如下：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 import asyncio from browser_use import Agent, BrowserProfile from browser_use.llm import ChatOpenAI async def main(): # 1. 配置浏览器参数 browser_profile = BrowserProfile( headless=True, args=[ &#34;--no-sandbox&#34;, &#34;--disable-setuid-sandbox&#34;, &#34;--disable-dev-shm-usage&#34;, &#34;--disable-gpu&#34;, &#34;--remote-debugging-port=9222&#34;, # 强制 CDP 端口 ], ) # 2.]]></description>
-</item>
-<item>
-  <title>browser-use - AI 驱动的浏览器自动化工具</title>
-  <link>https://cfanzp008.github.io/browser-use-introduction/</link>
-  <pubDate>Wed, 29 Apr 2026 14:54:10 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/browser-use-introduction/</guid>
-  <description><![CDATA[browser-use - AI 驱动的浏览器自动化工具 简介 browser-use 是一个开源的 Python 库，旨在让 AI 代理（Agent）能够自动化操作网页浏览器。它通过结合大语言模型（LLM）和浏览器自动化技术（基于 Playwright），使得开发者可以用自然语言描述任务，让 AI 自动完成复杂的网页操作。
-该项目在 GitHub 上获得了超过 9.1 万星标，是当前最热门的 AI 浏览器自动化工具之一。无论是表单填写、信息抓取、在线购物，还是自动化测试，browser-use 都能通过简单的 Python 代码来实现。
-核心特性 1. 自然语言驱动 不需要编写繁琐的 CSS 选择器或 XPath，只需用自然语言描述任务：
-1 task = &#34;去 Hacker News 找到置顶帖子的标题和链接&#34; 2. 多 LLM 支持 支持多种主流大语言模型：
-模型提供商 类名称 示例模型 Browser Use 专用 ChatBrowserUse browser-use/bu-30b-a3b-preview OpenAI ChatOpenAI gpt-4o, gpt-4.1-mini Anthropic ChatAnthropic claude-sonnet-4-0 Google ChatGoogle gemini-flash-latest 3. 两种使用方式 开源版本：完全自托管，可深度定制工具和行为。
-Cloud 版本：托管在 Browser Use Cloud，提供更好的隐蔽性、代理轮换和验证码解决能力。
-4. 丰富的功能 表单自动填写：自动识别表单字段并填写 多标签页管理：跨标签页操作和切换 结构化输出：使用 Pydantic 模型定义输出格式 自定义工具：扩展 Agent 能力 持久化浏览器会话：复用登录状态 CLI 工具：命令行快速操作 安装配置 环境要求 Python &gt;= 3.]]></description>
 </item>
 </channel>
 </rss>
