@@ -4,7 +4,36 @@
     <link>https://cfanzp008.github.io/categories/ai/</link>
     <description>AI - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</title>
+  <link>https://cfanzp008.github.io/pi-coding-agent-guide/</link>
+  <pubDate>Wed, 29 Jul 2026 16:28:59 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/pi-coding-agent-guide/</guid>
+  <description><![CDATA[<h1 id="pi-coding-agent-入门指南轻量级开源-ai-编码代理的安装与使用">Pi Coding Agent 入门指南：轻量级开源 AI 编码代理的安装与使用</h1>
+<h2 id="背景">背景</h2>
+<p>2025-2026 年，AI 编码代理（Coding Agent）领域爆发式增长，Claude Code、Codex CLI、Cursor 等工具层出不穷。但这些产品化的工具都有一个共同问题：<strong>它们帮你做了太多决策</strong>——超大系统提示词、隐藏的上下文注入、无法自己控制的上下文策略。</p>
+<p>Mario Zechner（libGDX 作者，知名游戏框架开发者）受够了 Claude Code 日益臃肿的设计，于 2026 年初发布了 <strong>Pi</strong>——一个极简的终端 AI 编码代理框架。它的设计理念非常直白：</p>
+<blockquote>
+<p><strong>&ldquo;有很多代理框架，但这个是你自己的。&rdquo;</strong></p>
+</blockquote>
+<p>Pi 的核心哲学：系统提示词 + 工具定义控制在 <strong>1000 tokens 以内</strong>，剩下的上下文预算全部交给你的项目。它不做决策，它只是提供你掌控一切的脚手架。</p>
+<p>到今天，Pi 已经发展成一个完整的生态——40k+ GitHub stars，驱动着 250k+ stars 的 <a
+  href="https://github.com/openclaw/openclaw"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>OpenClaw</a>（史上增长最快的 GitHub 项目之一）。</p>]]></description>
+</item>
+<item>
   <title>OpenSpec 工程化规范总结</title>
   <link>https://cfanzp008.github.io/openspec-engineering-summary/</link>
   <pubDate>Wed, 08 Apr 2026 18:06:11 &#43;0800</pubDate>
@@ -118,22 +147,6 @@ OpenSpec 解决了这个问题：在 AI 开始写代码之前先生成规范文�
 专业领域知识 固定工作流程 API / 工具使用方式 模板和脚本 简单理解：Skill = 给 AI 写的一份操作说明书
 核心价值：
 将工作流程固化为可复用的技能 让 AI 助手具备领域专业知识 提高团队协作效率 标准化工作流程 思维导图：Skill Creator 整体架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 ┌─────────────────────────────────────────┐ │ Skill Creator 框架 │ │ AI 技能开发与评估工具链 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 技能结构 │ │ 工作流程 │ │ 核心工具 │ │ (File Structure) │ │ (Workflow) │ │ (Tools) │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─SKILL.]]></description>
-</item>
-<item>
-  <title>RAG检索增强生成分类详解</title>
-  <link>https://cfanzp008.github.io/rag-classification-detailed-guide/</link>
-  <pubDate>Tue, 07 Apr 2026 11:37:25 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/rag-classification-detailed-guide/</guid>
-  <description><![CDATA[RAG检索增强生成分类详解 背景 随着大语言模型（LLM）的快速发展，如何让AI在生成内容时准确引用最新、最相关的信息成为一个核心挑战。检索增强生成（Retrieval-Augmented Generation，简称RAG）技术应运而生，它通过结合检索系统和生成模型的优势，显著提升了AI输出的准确性和可信度。本文将详细介绍RAG的分类体系，帮助读者根据不同场景选择合适的RAG方案。
-RAG基本工作原理 RAG的核心思想是将用户查询与外部知识库相结合，其工作流程主要包括以下几个环节：
-文档处理：将原始文档切分为Chunks（文本块），每个chunk经过Embedding模型转换为向量 向量存储：将向量存入向量数据库（如Milvus、Pinecone、Chroma等） 语义检索：用户查询同样被转换为向量，在向量数据库中检索最相关的Top-K个chunks 增强生成：将检索到的相关文档作为上下文，连同用户问题一起发送给LLM生成回答 1 用户问题 → 向量化 → 向量数据库检索 → 上下文组装 → LLM生成 → 回答输出 RAG分类体系 根据技术复杂度和应用场景，RAG可以分为以下几类：
-1. 简单RAG（Naive RAG） 简单RAG是最基础的实现方式，采用&quot;检索-拼接-生成&quot;的直线路径。
-工作流程：
-用户输入查询 一次性从向量数据库检索Top-K相关文档 将检索结果与查询拼接后发送给LLM 优点：架构简单、实现成本低、延迟低
-缺点：当检索结果不准确或包含噪声时，生成质量会明显下降；无法处理复杂的多跳推理问题
-适用场景：文档问答、知识库查询、结构简单的FAQ系统
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 # 简单RAG实现示例 from langchain_ollama import OllamaLLM from langchain_chroma import Chroma from langchain_ollama import OllamaEmbeddings # 初始化组件 llm = OllamaLLM(model=&#34;qwen2.]]></description>
 </item>
 </channel>
 </rss>
