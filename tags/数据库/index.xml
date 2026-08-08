@@ -4,7 +4,17 @@
     <link>https://cfanzp008.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
     <description>数据库 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 08 Aug 2026 15:15:18 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+  <title>MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南</title>
+  <link>https://cfanzp008.github.io/mysql-vs-postgresql/</link>
+  <pubDate>Sat, 08 Aug 2026 15:15:18 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/mysql-vs-postgresql/</guid>
+  <description><![CDATA[<h1 id="mysql-与-postgresql-深入对比架构特性与选型指南">MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南</h1>
+<p>MySQL 和 PostgreSQL 是当今最流行的两款开源关系型数据库。根据 Stack Overflow 2025 年的开发者调查，PostgreSQL 连续多年被评为&quot;最受开发者喜爱的数据库&quot;，而 MySQL 则是使用率常年位居前二的开源数据库。很多团队在技术选型时都会在这两者之间纠结，而网上大多数对比文章只停留在&quot;功能列表&quot;层面，很少讲清楚两者在设计哲学上的根本差异。</p>
+<p>本文从架构层面切入，系统对比两者的存储引擎、并发控制、数据类型、索引、SQL 能力、复制方案与生态，最后结合 2026 年 8 月的版本现状给出选型建议。全文约 5000 字，建议收藏后按章节阅读。</p>]]></description>
+</item>
+<item>
   <title>InfluxDBStudio 使用笔记</title>
   <link>https://cfanzp008.github.io/influxdb-studio-usage/</link>
   <pubDate>Wed, 08 Apr 2026 17:59:50 &#43;0800</pubDate>

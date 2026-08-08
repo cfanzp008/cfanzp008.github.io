@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="深入对比 MySQL 与 PostgreSQL 的架构、存储引擎、MVCC、数据类型、索引、事务、复制与生态差异，并给出版本现状与选型建议。" /><meta name="keywords" content='mysql, postgresql, database, 数据库, 性能优化' /><meta itemprop="name" content="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南">
+<meta itemprop="description" content="深入对比 MySQL 与 PostgreSQL 的架构、存储引擎、MVCC、数据类型、索引、事务、复制与生态差异，并给出版本现状与选型建议。"><meta itemprop="datePublished" content="2026-08-08T15:15:18+08:00" />
+<meta itemprop="dateModified" content="2026-08-08T15:15:18+08:00" />
+<meta itemprop="wordCount" content="1106"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="mysql,postgresql,database,数据库,性能优化," /><meta property="og:title" content="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南" />
+<meta property="og:description" content="深入对比 MySQL 与 PostgreSQL 的架构、存储引擎、MVCC、数据类型、索引、事务、复制与生态差异，并给出版本现状与选型建议。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/mysql-vs-postgresql/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-08-08T15:15:18+08:00" />
+<meta property="article:modified_time" content="2026-08-08T15:15:18+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南"/>
+<meta name="twitter:description" content="深入对比 MySQL 与 PostgreSQL 的架构、存储引擎、MVCC、数据类型、索引、事务、复制与生态差异，并给出版本现状与选型建议。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/mysql-vs-postgresql/" /><link rel="prev" href="https://cfanzp008.github.io/removewatermark-exe-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/mysql-vs-postgresql\/"
+    },"genre": "posts","keywords": "mysql, postgresql, database, 数据库, 性能优化","wordcount":  1106 ,
+    "url": "https:\/\/cfanzp008.github.io\/mysql-vs-postgresql\/","datePublished": "2026-08-08T15:15:18+08:00","dateModified": "2026-08-08T15:15:18+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "深入对比 MySQL 与 PostgreSQL 的架构、存储引擎、MVCC、数据类型、索引、事务、复制与生态差异，并给出版本现状与选型建议。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/development-manual/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 开发手册</a></span></div>
+      <div class="post-meta-line"><span title=2026-08-08&#32;15:15:18><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-08">2026-08-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1106 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#历史与定位">历史与定位</a>
+      <ul>
+        <li><a href="#mysql-的血统">MySQL 的血统</a></li>
+        <li><a href="#postgresql-的血统">PostgreSQL 的血统</a></li>
+        <li><a href="#一眼看懂两者定位">一眼看懂两者定位</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心架构差异">核心架构差异</a>
+      <ul>
+        <li><a href="#进程模型">进程模型</a></li>
+        <li><a href="#存储引擎插拔-vs-集成">存储引擎：插拔 vs 集成</a></li>
+        <li><a href="#写前日志wal-与-redoundo">写前日志：WAL 与 redo/undo</a></li>
+        <li><a href="#多版本并发控制mvcc实现">多版本并发控制（MVCC）实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据类型对比">数据类型对比</a>
+      <ul>
+        <li><a href="#数值与字符串">数值与字符串</a></li>
+        <li><a href="#大小写敏感差异">大小写敏感差异</a></li>
+        <li><a href="#高级类型postgresql-的瑞士军刀">高级类型：PostgreSQL 的「瑞士军刀」</a></li>
+        <li><a href="#json-支持">JSON 支持</a></li>
+      </ul>
+    </li>
+    <li><a href="#sql-能力对比">SQL 能力对比</a>
+      <ul>
+        <li><a href="#sql-标准兼容性">SQL 标准兼容性</a></li>
+        <li><a href="#查询优化器">查询优化器</a></li>
+      </ul>
+    </li>
+    <li><a href="#索引体系">索引体系</a>
+      <ul>
+        <li><a href="#postgresql类型最全">PostgreSQL：类型最全</a></li>
+        <li><a href="#mysql单一通用-b-treeinnodb">MySQL：单一通用 B-Tree（InnoDB）</a></li>
+        <li><a href="#两者的经典优化点">两者的经典优化点</a></li>
+      </ul>
+    </li>
+    <li><a href="#事务与隔离级别">事务与隔离级别</a></li>
+    <li><a href="#性能与使用场景">性能与使用场景</a>
+      <ul>
+        <li><a href="#mysql-更强的场景">MySQL 更强的场景</a></li>
+        <li><a href="#postgresql-更强的场景">PostgreSQL 更强的场景</a></li>
+        <li><a href="#benchmark-参考">Benchmark 参考</a></li>
+      </ul>
+    </li>
+    <li><a href="#复制与高可用">复制与高可用</a>
+      <ul>
+        <li><a href="#mysqlbinlog-复制">MySQL：binlog 复制</a></li>
+        <li><a href="#postgresqlwal-流复制--逻辑复制">PostgreSQL：WAL 流复制 + 逻辑复制</a></li>
+      </ul>
+    </li>
+    <li><a href="#版本现状2026-年-8-月">版本现状（2026 年 8 月）</a>
+      <ul>
+        <li><a href="#mysql">MySQL</a></li>
+        <li><a href="#postgresql">PostgreSQL</a></li>
+      </ul>
+    </li>
+    <li><a href="#选型建议">选型建议</a>
+      <ul>
+        <li><a href="#什么时候选-mysql">什么时候选 MySQL</a></li>
+        <li><a href="#什么时候选-postgresql">什么时候选 PostgreSQL</a></li>
+        <li><a href="#迁移提醒">迁移提醒</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考与延伸">参考与延伸</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="mysql-与-postgresql-深入对比架构特性与选型指南">MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南</h1>
+<p>MySQL 和 PostgreSQL 是当今最流行的两款开源关系型数据库。根据 Stack Overflow 2025 年的开发者调查，PostgreSQL 连续多年被评为&quot;最受开发者喜爱的数据库&quot;，而 MySQL 则是使用率常年位居前二的开源数据库。很多团队在技术选型时都会在这两者之间纠结，而网上大多数对比文章只停留在&quot;功能列表&quot;层面，很少讲清楚两者在设计哲学上的根本差异。</p>
+<p>本文从架构层面切入，系统对比两者的存储引擎、并发控制、数据类型、索引、SQL 能力、复制方案与生态，最后结合 2026 年 8 月的版本现状给出选型建议。全文约 5000 字，建议收藏后按章节阅读。</p>
+<h2 id="历史与定位">历史与定位</h2>
+<h3 id="mysql-的血统">MySQL 的血统</h3>
+<p>MySQL 诞生于 1995 年，由瑞典公司 MySQL AB 开发，2008 年被 Sun 收购，2010 年随 Sun 一起被 Oracle 收入囊中。它的设计目标从一开始就是&quot;简单、快速、可靠&quot;，优先考虑 Web 应用的读写性能和易用性，而非完整实现 SQL 标准。</p>
+<p>MySQL 的成名之路与 LAMP（Linux + Apache + MySQL + PHP）架构深度绑定，几乎是 Web 时代的默认数据库。直到今天，WordPress 等主流 CMS 仍然默认使用 MySQL。</p>
+<h3 id="postgresql-的血统">PostgreSQL 的血统</h3>
+<p>PostgreSQL 的源头可以追溯到 1986 年加州大学伯克利分校的 POSTGRES 项目，1996 年更名为 PostgreSQL 并开放社区开发。它的设计目标是&quot;最先进的开源关系型数据库&quot;，追求 SQL 标准兼容、数据完整性、可扩展性。</p>
+<p>PostgreSQL 由 PostgreSQL 全球开发组（PGDG）维护，不接受任何单一商业公司的主导，代码采用类似 MIT 的宽松许可证。近年来它人气飙升，从传统 Web 领域扩展到数据仓库、地理信息（PostGIS）、时序（TimescaleDB）等场景。</p>
+<h3 id="一眼看懂两者定位">一眼看懂两者定位</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>MySQL</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>诞生时间</td>
+<td>1995 年</td>
+<td>1986 年（项目）/ 1996 年（更名）</td>
+</tr>
+<tr>
+<td>当前主导</td>
+<td>Oracle 公司</td>
+<td>社区（PGDG）</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>GPLv2 双许可</td>
+<td>PostgreSQL License（兼容 MIT）</td>
+</tr>
+<tr>
+<td>设计目标</td>
+<td>简单、快速、高可用</td>
+<td>功能完整、符合标准、可扩展</td>
+</tr>
+<tr>
+<td>架构风格</td>
+<td>插件式存储引擎</td>
+<td>单一存储引擎、内核高度集成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="核心架构差异">核心架构差异</h2>
+<h3 id="进程模型">进程模型</h3>
+<p>这是两者最本质的架构区别之一。</p>
+<p>PostgreSQL 使用<strong>多进程架构（process-per-connection）</strong>：每个客户端连接对应一个独立的操作系统进程，另有 postmaster 主进程和若干后台进程（如 writer、checkpointer、WAL writer）。这种隔离性带来了出色的健壮性——单个客户端连接崩溃不会影响其他连接，但也意味着大量连接时内存开销和上下文切换成本较高，因此常有人说&quot;PostgreSQL 连接很贵&quot;。</p>
+<p>MySQL（InnoDB）使用<strong>多线程架构</strong>：一个服务进程内运行多个线程，连接线程、IO 线程、purge 线程等共享进程内存。单机连接数可以开到数千甚至上万而不会像 PostgreSQL 那样吃紧，但线程间的隔离性较差，一个会话的崩溃可能影响整个服务。</p>
+<blockquote>
+<p><strong>结论</strong>：连接密集型应用（大量短连接）天然亲近 MySQL；而 PostgreSQL 适合通过连接池（PgBouncer、pgpool）来管理连接。</p>
+</blockquote>
+<h3 id="存储引擎插拔-vs-集成">存储引擎：插拔 vs 集成</h3>
+<p>MySQL 最核心的特色是<strong>插件式存储引擎</strong>。同一个 MySQL 实例里可以选择 InnoDB（事务）、MyISAM（非事务、压缩）、Memory、NDB 等不同的表存储引擎，默认使用 InnoDB，通过 <code>ENGINE=</code> 子句和系统变量 <code>default_storage_engine</code> 控制。InnoDB 承担了事务、行锁、崩溃恢复、MVCC 等核心能力，实际上可以说&quot;MySQL 的事务能力 = InnoDB 的事务能力&quot;，其他引擎根本不提供完整事务支持。</p>
+<p>PostgreSQL 没有&quot;引擎&quot;概念，<strong>内核本身就集成了存储、事务、并发控制、索引的全部功能</strong>，不存在&quot;换引擎&quot;的说法。换来的是深度的整合优化，核心技术上（比如索引类型、多版本）都是内建基础设施，还可以通过 FDW（外部数据包装器）连接 MySQL、MongoDB 等其他数据源。</p>
+<h3 id="写前日志wal-与-redoundo">写前日志：WAL 与 redo/undo</h3>
+<p>两者都有&quot;先写日志再写数据&quot;的 WAL 机制，名称不同但原理相似：</p>
+<ul>
+<li>MySQL（InnoDB）: <code>redo log</code> 保证已提交事务的持久性；<strong>undo log</strong> 记录旧版本以便回滚与 MVCC；另有 <code>binlog</code>（二进制日志）用于复制、备份与恢复。事务提交时需要把 redo log 刷到磁盘（可调 <code>innodb_flush_log_at_trx_commit</code>），binlog 默认也要在提交时写入磁盘并与 redo log 一致（<code>sync_binlog=1</code>）。</li>
+<li>PostgreSQL：<strong>WAL（Write-Ahead Log）</strong> 是唯一的一致性日志，没有 binlog 与 undo 的区分。MVCC 的多版本信息直接写在数据表中（见下节），不使用 undo 表空间；复制基于 WAL 流式传输。</li>
+</ul>
+<p>WAL 两种设计没有绝对优劣，但带来后续一系列连锁差异。</p>
+<h3 id="多版本并发控制mvcc实现">多版本并发控制（MVCC）实现</h3>
+<p>MVCC 是两者实现高并发读的关键，但实现不同。</p>
+<p><strong>MySQL/InnoDB</strong>使用<strong>undo log + 版本链</strong>：</p>
+<ul>
+<li>每行数据在 InnoDB 中有隐藏列 <code>DB_TRX_ID</code>（最近修改事务）和 <code>DB_ROLL_PTR</code>（指向 undo log 中的旧版本）。</li>
+<li>更新一行时，旧版本复制到 undo log，通过回滚指针形成<strong>版本链</strong>；查询时根据<strong>事务快照（read view）</strong> 顺着版本链找到当前事务可见的版本。</li>
+<li>旧版本的清理由后台 purge 线程执行，删除那些不再被任何活跃事务需要的版本（不阻塞其他事务）。</li>
+</ul>
+<p><strong>PostgreSQL</strong>：老版本直接<strong>留在堆页面内</strong>。每个页面内的行都有 <code>xmin</code>（插入/更新事务）和 <code>xmax</code>（删除/失效事务）隐藏列。更新一行时不是覆盖，而是在页面内追加新版本（空间不足时迁移到新页面），旧版本标记为失效（设置 <code>xmax</code>）。</p>
+<p>两者比较有一个知名差异：<strong>PostgreSQL 的 HOT（Heap-Only Tuple）机制</strong>允许同一个页面内更新时不改索引条目，从而减少索引维护的开销和 WAL 量，这是 InnoDB 版本链所没有的；但代价是 PostgreSQL 需要 <strong>VACUUM</strong> 回收旧版本（dead tuples）并防止事务 ID 回绕，写压力大的表如果清理不及时，表会膨胀、变慢、甚至触及事务 ID 回绕的边界。InnoDB 用 undo log + purge 线程自动完成这些工作，所以长期看 InnoDB 的&quot;自动维护&quot;负担略小，但 PostgreSQL 的清理调度可通过 autovacuum 自动完成，且 18 版本还进一步改进了 freeze（冻结）行为。</p>
+<table>
+<thead>
+<tr>
+<th>MVCC 维度</th>
+<th>MySQL/InnoDB</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多版本存放</td>
+<td>undo log（版本链）</td>
+<td>数据页内（xmin/xmax）</td>
+</tr>
+<tr>
+<td>旧版本清理</td>
+<td>purge 线程自动</td>
+<td>VACUUM / autovacuum</td>
+</tr>
+<tr>
+<td>HOT 优化</td>
+<td>无（回滚指针）</td>
+<td>有（同页更新免索引重写）</td>
+</tr>
+<tr>
+<td>事务 ID 回绕</td>
+<td>无同类问题</td>
+<td>需要冻结（防止事务 ID 回绕）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据类型对比">数据类型对比</h2>
+<h3 id="数值与字符串">数值与字符串</h3>
+<p>两者都支持整数、浮点、DECIMAL/NUMERIC，但：</p>
+<ul>
+<li>PostgreSQL 的 <code>varchar(n)</code> 是可变长度，<code>char(n)</code> 是定长空白填充，长度限定只是约束；MySQL 的 <code>varchar</code> 以字节长度计入行大小限制（InnoDB 行最大约 65535 字节），且受行大小和编码（utf8mb4 四字节）限制更严格。</li>
+<li>MySQL 支持 <code>unsigned integer</code>（无符号整数），PostgreSQL 不支持（要模拟需用 <code>BIGINT</code> + CHECK 约束）。</li>
+<li>PostgreSQL 提供 <code>SMALLINT</code>、<code>INTEGER</code>、<code>BIGINT</code> 以及 <code>BYTEA</code>（字节串）、<code>TEXT</code> 等类型，且 <code>text</code> 与 <code>varchar</code> 在存储上没有区别。</li>
+</ul>
+<h3 id="大小写敏感差异">大小写敏感差异</h3>
+<p>非常容易踩坑：<strong>MySQL 默认在 utf8mb4 且根据排序规则（collation），字符串比较通常不区分大小写</strong>（<code>utf8_general_ci</code> 等 <code>_ci</code> 结尾的排序规则），<code>WHERE name = 'Admin'</code> 会把 <code>admin</code> 也匹配出来；PostgreSQL 默认是区分大小写的（text 比较逐字节），除非显式使用 <code>citext</code> 扩展或 <code>ILIKE</code>。跨数据库迁移时这个行为会造成隐蔽的 bug。</p>
+<ul>
+<li>MySQL：<code>SELECT 'a' = 'a'</code> 返回 1，<code>SELECT 'a' = 'A'</code> 在 utf8_general_ci 下也返回 1。</li>
+<li>PostgreSQL：<code>SELECT 'a' = 'A'</code> 返回 false，用 <code>ILIKE</code> / <code>LOWER()</code> 显式处理。</li>
+</ul>
+<h3 id="高级类型postgresql-的瑞士军刀">高级类型：PostgreSQL 的「瑞士军刀」</h3>
+<p>PostgreSQL 在类型系统上甩开 MySQL 至少两个时代：</p>
+<ul>
+<li><strong>数组</strong>：<code>integer[]</code>、<code>text[]</code> 开箱即用，支持 <code>array_agg(k)</code>、<code>unnest</code>。</li>
+<li><strong>范围类型</strong>：<code>tsrange</code>、<code>int4range</code> 等，配合 <code>&amp;&amp;</code>（重叠）、<code>@&gt;</code> 等操作符做时间段重叠检查，非常方便。</li>
+<li><strong>网络类型</strong>：<code>inet</code>、<code>cidr</code>（内含 IP 匹配逻辑），MySQL 没有对应原生。</li>
+<li><strong>UUID</strong>：原生 <code>uuid</code> 类型 + 18 版本新增 <code>uuidv7()</code> 时序排序 UUID 函数；MySQL 只有 <code>UUID()</code> 函数，存为字符串 <code>char(36)</code>，比较低效。</li>
+<li><strong>自定义类型</strong>：<code>CREATE TYPE</code>、<code>enum</code>、复合类型、域（domain）。</li>
+</ul>
+<p>MySQL 在这些方面只能靠 <code>JSON</code>、<code>BLOB</code> 或应用层处理。</p>
+<h3 id="json-支持">JSON 支持</h3>
+<table>
+<thead>
+<tr>
+<th>JSON 维度</th>
+<th>MySQL</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td><code>JSON</code>（二进制优化）</td>
+<td><code>json</code>（纯文本）/ <code>jsonb</code>（二进制、按 key 排序）</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>JSON 列不可直接建索引，需<strong>生成列 + 普通索引</strong>或函数索引</td>
+<td>jsonb 可直接建 <strong>GIN 索引</strong>（含表达式索引）</td>
+</tr>
+<tr>
+<td>查询</td>
+<td><code>JSON_EXTRACT()</code>、<code>-&gt;</code>、<code>-&gt;&gt;</code>、<code>JSON_TABLE</code></td>
+<td><code>-&gt;</code>/<code>-&gt;&gt;</code>/<code>#&gt;</code>, <code>@&gt;</code>、`?</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>JSON_SET / JSON_ARRAY 等函数</td>
+<td><code>jsonb_set</code>、级联路径更新</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>解析为文本再处理</td>
+<td>jsonb 为二进制（预处理），查询速度明显优势</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL 8.0 之后 JSON 功能大幅增强（<code>JSON_TABLE</code>、多值索引）但在查询能力、索引与标准性上与 jsonb 的差距仍然存在。</p>
+<h2 id="sql-能力对比">SQL 能力对比</h2>
+<p>深入到 SQL 语言层面，两者的差距比功能列表看起来更大。</p>
+<h3 id="sql-标准兼容性">SQL 标准兼容性</h3>
+<p>PostgreSQL 是最接近 SQL 标准的开源数据库，在<strong>窗口函数、<code>WITH</code>（CTE）、<code>GROUPING SETS</code>、<code>ROLLUP</code>、<code>CUBE</code>、<code>MERGE</code>（15+）、<code>RETURNING</code></strong> 等标准特性上支持较完整；MySQL 8.0 之后补齐了 <code>CTE</code>、窗口函数、<code>MERGE</code>（8.0.19+）等，但某些行为仍与标准有差异（比如对 <code>LIMIT</code> 子句的宽容解析、组内排序的默认行为等）。</p>
+<p>这里给出几个高频差异点：</p>
+<p><strong>1. 多行插入的返回</strong></p>
+<p>PostgreSQL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RETURNING</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>MySQL 要用 <code>LAST_INSERT_ID()</code> 变通，没有原生单条语句返回多行。</p>
+<p><strong>2. <code>ON DUPLICATE KEY</code> vs <code>ON CONFLICT</code></strong></p>
+<p>MySQL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="n">DUPLICATE</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>PostgreSQL（9.5+，更规范）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ON</span><span class="w"> </span><span class="n">CONFLICT</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">DO</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EXCLUDED</span><span class="p">.</span><span class="n">v</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ON CONFLICT</code> 可精确指定冲突的列，还可以 <code>DO NOTHING</code>，语义更清晰。</p>
+<p><strong>3. 全外连接 FULL OUTER JOIN</strong></p>
+<p>PostgreSQL 直接支持；MySQL <strong>不支持</strong> <code>FULL OUTER JOIN</code>（只能 UNION 模拟）。MySQL 8.0 的模拟写法又长又绕，做全量外连接时很别扭。</p>
+<p><strong>4. 更新表结构/事务</strong></p>
+<p>PostgreSQL 的 <code>ALTER TABLE</code> 可以在事务内执行并回滚：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">BEGIN</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 发现不对
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ROLLBACK</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 变更被回滚
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>MySQL 的 DDL 会触发隐式提交，一旦执行无法撤销（<code>ALGORITHM=INSTANT</code> 也只解决部分变更）。这是开发环境最有感知的差异之一，也是 MySQL 的 <code>pt-online-schema-change</code>（Percona Toolkit）等工具流行的原因。</p>
+<p><strong>5. <code>LATERAL</code> 子查询</strong></p>
+<p>两者都支持（MySQL 8.0+ 加入），PostgreSQL 语义更规范。</p>
+<h3 id="查询优化器">查询优化器</h3>
+<p>PostgreSQL 的优化器是<strong>基于代价的完备方案</strong>（估算 CPU、I/O、连接方式），提供 <code>EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)</code> 全套观察手段，复杂 JOIN 与子查询处理更聪明。MySQL 近年优化器也在成长，但有一个长期吐槽点：子查询的处理策略不如 PostgreSQL 稳定，有时出现慢子查询需要改写（<code>EXISTS</code> vs <code>IN</code> 等）。</p>
+<h2 id="索引体系">索引体系</h2>
+<h3 id="postgresql类型最全">PostgreSQL：类型最全</h3>
+<p>PostgreSQL 原生提供多种索引类型：</p>
+<ul>
+<li><strong>B-Tree</strong>：默认，最常用。</li>
+<li><strong>GiST / SP-GiST</strong>：地理（配合 PostGIS）、范围类型。</li>
+<li><strong>GIN</strong>：JSONB、数组、全文检索，反向索引。</li>
+<li><strong>BRIN</strong>：块范围索引，按物理顺序记录每个数据块的值范围，适合大数据仓库场景下超大的只读表。</li>
+<li><strong>部分索引（partial index）</strong>、<strong>表达式索引</strong>（<code>create index on t (lower(name))</code>）。</li>
+</ul>
+<h3 id="mysql单一通用-b-treeinnodb">MySQL：单一通用 B-Tree（InnoDB）</h3>
+<p>InnoDB 默认 B+Tree（聚簇索引），另有全文索引（FULLTEXT，InnoDB/MyISAM 均支持）、HASH 索引（仅 Memory 引擎可用）。MySQL 8.0+ 支持<strong>函数索引</strong>（通过生成列实现），但整体与 PostgreSQL 相比缺乏 GiST/GIN 这类专用索引，复杂 JSON 或数组查询只能走 B-Tree + 表达式索引，优化空间有限。</p>
+<h3 id="两者的经典优化点">两者的经典优化点</h3>
+<p><strong>MySQL 的优势点</strong>：<code>REPLACE INTO</code>、<code>INSERT IGNORE</code>、<code>ON DUPLICATE KEY</code> 这类&quot;简单粗暴&quot;的写法方便；<code>EXPLAIN EXTENDED</code> 输出直观；<code>SELECT ... LOCK IN SHARE MODE</code> / <code>FOR UPDATE</code> 的加锁语义简单直接。</p>
+<p><strong>PostgreSQL 的优势点</strong>：基于代价估算 + 索引类型丰富的前提下，通常只需合理建索引，极少出现&quot;优化器乱走&quot;的舆论级问题；<code>UNION ALL</code>、大 JOIN、复杂聚合的原生支持好。</p>
+<h2 id="事务与隔离级别">事务与隔离级别</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>MySQL/InnoDB</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认隔离级别</td>
+<td>REPEATABLE READ（可重复读）</td>
+<td>READ COMMITTED（读已提交）</td>
+</tr>
+<tr>
+<td>实现方式</td>
+<td>MVCC + 快照读，配合当前读加锁</td>
+<td>MVCC（每个语句获取快照）</td>
+</tr>
+<tr>
+<td>幻读处理</td>
+<td>快照读无幻读；当前读用 next-key lock（gap lock）避免</td>
+<td>READ COMMITTED 下语句级快照；SERIALIZABLE 用 SSI 防止</td>
+</tr>
+<tr>
+<td>SERIALIZABLE</td>
+<td>基于锁实现（间隙锁近似）</td>
+<td>基于 SSI（可串行化快照隔离），冲突时回退</td>
+</tr>
+<tr>
+<td>行锁粒度</td>
+<td>InnoDB 行锁 + gap/next-key 锁</td>
+<td>行级锁 + 谓词锁（无 gap 锁，锁粒度更精细）</td>
+</tr>
+<tr>
+<td>死锁</td>
+<td>自动检测（8.0+ <code>innodb_deadlock_detect</code>）</td>
+<td>自动检测/唤醒超时（lock timeout）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>重点差异解释：</strong></p>
+<ol>
+<li><strong>默认隔离级</strong>：MySQL 默认 RR（可重复读）且在这个级别下可以做到&quot;select 一致读&quot;快照，不用担心幻读（InnoDB 用 gap 锁保证）；PostgreSQL 默认 READ COMMITTED，即每条语句都重新创建快照，事务内的不同语句可能看到不同版本（不可重复读），如果应用假设事务内一致，需要显式 <code>BEGIN ISOLATION LEVEL REPEATABLE READ</code>。</li>
+<li><strong>锁的实现</strong>：InnoDB 的 gap/next-key 锁（MySQL <code>RR</code> 下防幻读、<code>SELECT ... FOR UPDATE</code> 区间加锁）会<strong>相互阻塞插入</strong>；PostgreSQL 没有 gap 锁，两个并发事务插入不相交的范围不会互相阻塞（更&quot;乐观&quot;），这是高并发插入场景里 PostgreSQL 写并发表现更好的原因之一。</li>
+<li><strong>可串行化</strong>：PostgreSQL 通过 SSI（Serializable Snapshot Isolation）实现真正的可串行化，出现冲突时回滚其中一个事务，语义上比 InnoDB 的实现更严谨。MySQL 的 SERIALIZABLE 仍基于锁型，性能影响更大。</li>
+</ol>
+<h2 id="性能与使用场景">性能与使用场景</h2>
+<p>&ldquo;谁更快&quot;没有绝对的结论，取决于场景：</p>
+<h3 id="mysql-更强的场景">MySQL 更强的场景</h3>
+<ul>
+<li><strong>读多写少</strong>、简单 SQL 的 Web 服务。MySQL 使用代价估算优化器 + 聚簇索引读很快，配合缓存层（Redis）是常见架构。</li>
+<li><strong>海量连接</strong>：多线程模型下默认万级连接可接受；配合代理连接权重，运维简单。</li>
+<li><strong>大量 Insert / Replace / 批插入</strong>：原生支持 <code>INSERT ... VALUES(...),(...),(...)</code> 多行高效。</li>
+<li><strong>常见主从复制</strong>：复制是 MySQL 的老牌能力，工具链成熟（Replication、半同步、MGR）。</li>
+</ul>
+<h3 id="postgresql-更强的场景">PostgreSQL 更强的场景</h3>
+<ul>
+<li><strong>写密集型、高并发写入</strong>：基于其 MVCC 实现与无 gap 锁的设计，PostgreSQL 在高并发写入下表现更稳。</li>
+<li><strong>JSONB 动态数据</strong>、复杂查询、窗口函数/CTE 复杂分析。</li>
+<li><strong>空间 / 时序 / 全文检索</strong>（依靠 PostGIS、TimescaleDB 等扩展）。</li>
+<li><strong>运维严格性</strong>：数据完整性（外键、检查约束、非空断言）默认严格执行。</li>
+</ul>
+<h3 id="benchmark-参考">Benchmark 参考</h3>
+<p>官方与社区多次做过基准测试（如 PostgreSQL 自带的 <code>pgbench</code>、MySQL 生态的 <code>sysbench</code>）。大致结论：</p>
+<ul>
+<li><strong>纯点查 / 读多写少</strong>：MySQL 小优化胜出（<code>只读</code>场景）。</li>
+<li><strong>写多读少且并发高</strong>：PostgreSQL 在锁与 MVCC 上更稳。</li>
+<li><strong>复杂 JOIN 与聚合</strong>：PostgreSQL 明显占优。</li>
+<li><strong>内存规格</strong>：两者都极度依赖 IO/内存配置，真实差距会小于配置差距。</li>
+</ul>
+<p>结论是：如果不通过压测定结论，不要只听江湖传闻，用你自己的 schema + 工作负载压测（<code>pgbench</code> / <code>sysbench</code>）验证。</p>
+<h2 id="复制与高可用">复制与高可用</h2>
+<h3 id="mysqlbinlog-复制">MySQL：binlog 复制</h3>
+<ul>
+<li><strong>主从复制（binlog）</strong>：默认异步，主库写 binlog 后即返回，从库拉取日志，延迟是常态。</li>
+<li><strong>半同步复制</strong>：保证至少一个从库收到 binlog 才确认提交。</li>
+<li><strong>组复制 Group Replication（MGR，8.0+）</strong>：基于 Paxos 的多主 / 单主，自动故障检测。</li>
+<li>高可用生态：MHA、Orchestrator 等老牌工具。</li>
+</ul>
+<h3 id="postgresqlwal-流复制--逻辑复制">PostgreSQL：WAL 流复制 + 逻辑复制</h3>
+<ul>
+<li><strong>流复制</strong>（物理级）：从库通过 WAL 流同步，支持同步/异步级别；<code>primary_conninfo</code> 指定主库连接。</li>
+<li><strong>级联复制</strong>：从库可再级联（如 2 级）；同步级别可选 <code>any</code>（任一从库同步即提交）。</li>
+<li><strong>逻辑复制</strong>（10+ 官方发布-订阅）：支持跨版本、跨平台的表级复制，可做分库拆迁移。</li>
+<li><strong>pg_createsubscriber</strong>（17+）自动创建订阅。</li>
+<li>高可用工具链：<code>repmgr</code>、Patroni（自动故障切换）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MySQL</th>
+<th>PostgreSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原生复制</td>
+<td>binlog 逻辑复制、MGR 组复制</td>
+<td>物理流复制 + 逻辑复制（发布-订阅）</td>
+</tr>
+<tr>
+<td>复制数据源</td>
+<td>基于 binlog（逻辑层）</td>
+<td>基于 WAL（物理层，一致性更强）</td>
+</tr>
+<tr>
+<td>高可用方案</td>
+<td>MHA / Orchestrator / MGR</td>
+<td>Patroni / repmgr / 内置 <code>pg_auto_failover</code></td>
+</tr>
+<tr>
+<td>数据一致性</td>
+<td>半同步 / 组复制保障</td>
+<td>同步复制 / 逻辑订阅更严谨</td>
+</tr>
+</tbody>
+</table>
+<h2 id="版本现状2026-年-8-月">版本现状（2026 年 8 月）</h2>
+<p>写这篇文章时（2026-08-08），两者的版本情况如下，供选型参考：</p>
+<h3 id="mysql">MySQL</h3>
+<ul>
+<li>2026 年 7 月，Oracle 发布了 <strong>MySQL 26.7.0（Innovation）</strong>，宣布启用<strong>日历版本号</strong>新模型（YY.M）：今后 Innovation 版本号直接反映发布年月（如 26.7、26.10、27.1），不再是 8.x/9.x 顺序号。</li>
+<li>当前的 <strong>LTS 两条线</strong>：<strong>MySQL 8.4 LTS</strong>（8.4.11）与 <strong>MySQL 9.7 LTS</strong>（9.7.2，2026 年）同时维护。</li>
+<li>Innovation 版 = 新功能首发、下个季度替换；LTS = 长期支持、稳定升级。</li>
+<li>对企业用户：选择 LTS（8.4 或 9.7）；开发环境追新尝鲜可以用 Innovation。</li>
+</ul>
+<h3 id="postgresql">PostgreSQL</h3>
+<ul>
+<li>2025 年 9 月发布 <strong>PostgreSQL 18</strong>，当前最新稳定版（18.x）。Release 18 的核心增强：
+<ul>
+<li>新的异步 I/O（AIO）子系统，顺序扫描、位图堆扫描、vacuum 等 I/O 路径下最多 3 倍读性能提升。</li>
+<li><code>uuidv7()</code> 时序递增 UUID 生成、虚拟生成列（计算型列，读取时计算）、B-tree skip scan。</li>
+<li>内置 OAuth 2.0 认证；<code>md5</code> 验证已弃用（后续移除；建议 SCRAM）。</li>
+<li>pg_upgrade 保留优化器统计信息、合并迁移体验。</li>
+<li>Wire protocol 版本升级到 3.2。</li>
+</ul>
+</li>
+<li>PostgreSQL 大约每年发布一个大版本（传统上 9 月底发布）。</li>
+</ul>
+<h2 id="选型建议">选型建议</h2>
+<h3 id="什么时候选-mysql">什么时候选 MySQL</h3>
+<ol>
+<li>传统 LAMP/WordPress 栈，团队已有 MySQL 运维经验。</li>
+<li><strong>读多写少</strong>的典型 CRUD、页面服务，配缓存即可。</li>
+<li>对<strong>高并发短连接</strong>有执念，不想要强约束的复杂事务级别。</li>
+<li>依赖成熟的复制、MHA、云 RDS 开箱产品。</li>
+<li>公司强制投入 Oracle 全家桶或已有数据资产。</li>
+</ol>
+<h3 id="什么时候选-postgresql">什么时候选 PostgreSQL</h3>
+<ol>
+<li>数据模型包含 <strong>JSONB 与动态字段</strong>、数组、网络类型。</li>
+<li>需要复杂查询（窗口函数、CTE、复杂 JOIN、聚合）。</li>
+<li>写并发高、对<strong>可串行化</strong>要求严格。</li>
+<li>需要<strong>扩展开源生态</strong>：PostGIS（地理）、TimescaleDB（时序）、pgvector（向量检索 / AI 应用）。</li>
+<li>想要尽量贴近 SQL 标准、避免方言混淆。</li>
+<li>从 MySQL 迁移数据，改造 <code>ON DUPLICATE KEY</code>、<code>AUTO_INCREMENT</code> 等 MySQL 独有语法的成本可控。</li>
+</ol>
+<h3 id="迁移提醒">迁移提醒</h3>
+<table>
+<thead>
+<tr>
+<th>迁移点</th>
+<th>MySQL → PostgreSQL 常见坑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小写比较</td>
+<td><code>_ci</code> 排序规则 → 默认区分大小写，需 <code>citext</code> 或 <code>LOWER()</code></td>
+</tr>
+<tr>
+<td>自增主键</td>
+<td><code>AUTO_INCREMENT</code> → <code>SERIAL/BIGSERIAL</code> 或 <code>GENERATED AS IDENTITY</code></td>
+</tr>
+<tr>
+<td>布尔</td>
+<td>0/1 只做真值 → <code>BOOLEAN</code> 类型，注意比较写法</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td><code>VARCHAR(n)</code> 细节 → 无默认长度限制</td>
+</tr>
+<tr>
+<td>DDL 行为</td>
+<td>隐式提交 → 事务内 DDL 可回滚</td>
+</tr>
+<tr>
+<td><code>ON DUPLICATE KEY</code></td>
+<td>→ <code>ON CONFLICT(...) DO UPDATE</code></td>
+</tr>
+<tr>
+<td><code>LIMIT</code> / 分页</td>
+<td>语法兼容</td>
+</tr>
+<tr>
+<td>存储过程</td>
+<td>语法不同需改写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<p>MySQL 和 PostgreSQL 都是生产级开源数据库，没有绝对的高下，选择由你的工作负载、团队技能与生态决定。</p>
+<p><strong>核心一句话</strong>：如果你要的是&quot;即开即用、读多写少、社区资源最足的数据库&rdquo;，MySQL 从不让你失望；如果你要的是**&ldquo;不仅是数据库，更是数据平台&rdquo;**（扩展性强、类型丰富、查询强悍、标准严谨），PostgreSQL 是更值得长期投入的方向。而且从版本趋势看，PostgreSQL 在性能（AIO）、扩展（生态）上的追赶已经使其成为越来越多新项目（尤其 AI/JSON/时空数据）的首选。建议新项目默认选 PostgreSQL，老项目基于 MySQL 的成熟生态继续深耕，两者都有光辉的前景。</p>
+<p>最后给一个实操：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 用 SQL 记录两个数据库的版本号（示例）</span>
+</span></span><span class="line"><span class="cl">mysql --version   <span class="c1"># 例如 8.4.11 LTS / 9.7.x</span>
+</span></span><span class="line"><span class="cl">psql --version    <span class="c1"># 例如 18.x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="参考与延伸">参考与延伸</h2>
+<ul>
+<li>PostgreSQL 18 Release Notes: <a
+  href="https://www.postgresql.org/docs/release/18.0/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.postgresql.org/docs/release/18.0/</a></li>
+<li>PostgreSQL 18 Press Kit: <a
+  href="https://www.postgresql.org/about/press/presskit18/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://www.postgresql.org/about/press/presskit18/</a></li>
+<li>MySQL 发布模型（Innovation &amp; LTS）: <a
+  href="https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://dev.mysql.com/doc/refman/9.7/en/mysql-releases.html</a></li>
+<li>MySQL 9.7 Release Notes: <a
+  href="https://dev.mysql.com/doc/relnotes/mysql/9.7/en/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://dev.mysql.com/doc/relnotes/mysql/9.7/en/</a></li>
+<li>MySQL 官方升级指南: <a
+  href="https://dev.mysql.com/doc/refman/9.7/en/upgrading.html"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>https://dev.mysql.com/doc/refman/9.7/en/upgrading.html</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-08-08&#32;15:15:18>更新于 2026-08-08&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/mysql-vs-postgresql/" data-title="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/postgresql/">postgresql</a>,&nbsp;<a href="/tags/database/">database</a>,&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>,&nbsp;<a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/removewatermark-exe-guide/" class="prev" rel="prev" title="RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
