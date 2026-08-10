@@ -4,7 +4,30 @@
     <link>https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 标签 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Sat, 08 Aug 2026 18:48:35 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>zhihu-cli 使用指南：终端里的知乎客户端</title>
+  <link>https://cfanzp008.github.io/zhihu-cli-usage-guide/</link>
+  <pubDate>Sat, 08 Aug 2026 18:48:35 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/zhihu-cli-usage-guide/</guid>
+  <description><![CDATA[<h1 id="zhihu-cli-使用指南终端里的知乎客户端">zhihu-cli 使用指南：终端里的知乎客户端</h1>
+<p>知乎是中文互联网最大的问答社区，但日常浏览往往要打开浏览器或 App。如果你习惯泡在终端里（比如我是 Vim + tmux 重度用户），或者你正在写 AI Agent 想集成知乎能力，那么 <strong>zhihu-cli</strong> 这类命令行工具就能帮你把知乎搬进终端：搜索问题、看热榜、读回答、甚至发布文章和想法，全程不离开键盘。</p>
+<p>本文基于 GitHub 上最活跃的同名项目 <a
+  href="https://github.com/BAIGUANGMEI/zhihu-cli"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>BAIGUANGMEI/zhihu-cli</a>（PyPI 包名 <code>pyzhihu-cli</code>）编写，覆盖安装、登录、常用命令与实战示例。</p>]]></description>
+</item>
+<item>
   <title>AI Stupid Level - AI 模型实时基准测试平台</title>
   <link>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</link>
   <pubDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</pubDate>
@@ -110,16 +133,6 @@ https://github.com/itefixnet/itmux 方案二：WSL（Windows Subsystem for Linux
 CLI 工具支持 InfluxDB 1.x 和 2.x 版本，是运维人员和开发者的必备工具。
 主要功能 1. 数据操作 写入数据（行协议） 查询数据（InfluxQL/Flux） 删除数据 导入/导出数据 2. 资源管理 数据库管理 用户和权限管理 保留策略管理 连续查询管理 3. 配置管理 配置连接参数 设置默认组织 管理 API Token 4. 交互模式 交互式 shell 非交互式批量执行 支持管道输入 下载安装 Windows（x64） 从官方下载 InfluxDB CLI：
 官方文档：https://docs.influxdata.com/influxdb/v2/tools/influx-cli/ 1 2 3 4 5 6 7 8 9 # Windows (PowerShell) # 下载最新版本 Invoke-WebRequest -Uri https://influxdb.]]></description>
-</item>
-<item>
-  <title>Hermes Agent 深度用法指南：自我进化的 AI 智能体完全手册</title>
-  <link>https://cfanzp008.github.io/hermes-agent-usage-guide/</link>
-  <pubDate>Wed, 08 Apr 2026 13:19:33 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/hermes-agent-usage-guide/</guid>
-  <description><![CDATA[Hermes Agent 深度用法指南：自我进化的 AI 智能体完全手册 背景简介 Hermes Agent 是由 Nous Research 开发的开源 AI 智能体，被称为&quot;会成长的智能体&quot;（The agent that grows with you）。截至目前，其 GitHub 仓库已获得超过 33000 颗星，是当前最受欢迎的自进化 AI 智能体之一。
-与传统的 AI 助手不同，Hermes Agent 具备：
-内置学习循环：从经验中创建 Skills，持续自我改进 持久记忆：跨会话记住重要信息，建立用户模型 多平台运行：本地、SSH、Docker、云端皆可运行 完全开源：MIT 许可证，社区活跃 思维导图：Hermes Agent 核心架构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 ┌─────────────────────────────────────────┐ │ Hermes Agent 核心架构 │ └─────────────────────────────────────────┘ │ ┌─────────────────────────────────┼─────────────────────────────────┐ │ │ │ ▼ ▼ ▼ ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ │ 运行模式 │ │ 核心系统 │ │ 接入平台 │ │ │ │ │ │ │ └─────────────────────┘ └─────────────────────┘ └─────────────────────┘ │ │ │ ├─CLI 终端 ├─Skills 系统 ├─Telegram ├─Gateway 网关 ├─Memory 记忆 ├─Discord ├─本地运行 ├─MCP 集成 ├─Slack ├─SSH 远程 ├─工具集 ├─WhatsApp └─Docker/云端 ├─计划任务 └─Email │ ▼ ┌─────────────────────────────────┐ │ 模型支持 │ ├─────────────────────────────────┤ │ • Nous Portal │ │ • OpenRouter (200+ 模型) │ │ • OpenAI / Anthropic │ │ • Kimi / MiniMax / GLM │ │ • 本地 Ollama │ └─────────────────────────────────┘ 安装与配置 快速安装 1 2 3 4 5 6 7 8 # 一键安装（Linux/macOS/WSL2） curl -fsSL https://raw.]]></description>
 </item>
 </channel>
 </rss>

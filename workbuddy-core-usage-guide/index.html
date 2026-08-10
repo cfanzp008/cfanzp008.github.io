@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，本文详解其四层架构、核心用法与花式指令示例，包括 Skills、Claw 远程控制、MCP 连接器与定时任务。" /><meta name="keywords" content='ai, agent, 腾讯, 办公自动化, 智能体' /><meta itemprop="name" content="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南">
+<meta itemprop="description" content="WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，本文详解其四层架构、核心用法与花式指令示例，包括 Skills、Claw 远程控制、MCP 连接器与定时任务。"><meta itemprop="datePublished" content="2026-08-10T20:58:19+08:00" />
+<meta itemprop="dateModified" content="2026-08-10T20:58:19+08:00" />
+<meta itemprop="wordCount" content="559"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="ai,agent,腾讯,办公自动化,智能体," /><meta property="og:title" content="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南" />
+<meta property="og:description" content="WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，本文详解其四层架构、核心用法与花式指令示例，包括 Skills、Claw 远程控制、MCP 连接器与定时任务。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/workbuddy-core-usage-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-08-10T20:58:19+08:00" />
+<meta property="article:modified_time" content="2026-08-10T20:58:19+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南"/>
+<meta name="twitter:description" content="WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，本文详解其四层架构、核心用法与花式指令示例，包括 Skills、Claw 远程控制、MCP 连接器与定时任务。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/workbuddy-core-usage-guide/" /><link rel="prev" href="https://cfanzp008.github.io/zhihu-cli-usage-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/workbuddy-core-usage-guide\/"
+    },"genre": "posts","keywords": "ai, agent, 腾讯, 办公自动化, 智能体","wordcount":  559 ,
+    "url": "https:\/\/cfanzp008.github.io\/workbuddy-core-usage-guide\/","datePublished": "2026-08-10T20:58:19+08:00","dateModified": "2026-08-10T20:58:19+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，本文详解其四层架构、核心用法与花式指令示例，包括 Skills、Claw 远程控制、MCP 连接器与定时任务。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2026-08-10&#32;20:58:19><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-10">2026-08-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 559 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#核心概念四层架构">核心概念：四层架构</a></li>
+    <li><a href="#安装与基础配置">安装与基础配置</a>
+      <ul>
+        <li><a href="#系统要求">系统要求</a></li>
+        <li><a href="#安装步骤">安装步骤</a></li>
+        <li><a href="#模型选择">模型选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法一自然语言指令">核心用法一：自然语言指令</a>
+      <ul>
+        <li><a href="#典型指令示例">典型指令示例</a></li>
+        <li><a href="#指令撰写五技巧">指令撰写五技巧</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法二skills-技能包">核心用法二：Skills 技能包</a>
+      <ul>
+        <li><a href="#加载社区技能">加载社区技能</a></li>
+        <li><a href="#创建自己的技能">创建自己的技能</a></li>
+        <li><a href="#专家expert功能">专家（Expert）功能</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法三claw-远程控制">核心用法三：Claw 远程控制</a>
+      <ul>
+        <li><a href="#配置步骤">配置步骤</a></li>
+        <li><a href="#使用方式">使用方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法四mcp-连接器">核心用法四：MCP 连接器</a>
+      <ul>
+        <li><a href="#内置连接器">内置连接器</a></li>
+        <li><a href="#配置方法">配置方法</a></li>
+        <li><a href="#自定义-mcp-服务器">自定义 MCP 服务器</a></li>
+      </ul>
+    </li>
+    <li><a href="#核心用法五定时任务automation">核心用法五：定时任务（Automation）</a></li>
+    <li><a href="#核心用法六teams-多智能体">核心用法六：Teams 多智能体</a></li>
+    <li><a href="#实战案例一条指令完成数据周报">实战案例：一条指令完成数据周报</a></li>
+    <li><a href="#常见问题-faq">常见问题 FAQ</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="workbuddy-核心用法详解腾讯全场景-ai-智能体实战指南">WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南</h1>
+<p>传统 AI 聊天工具只负责&quot;生成文字&quot;，而 WorkBuddy 是腾讯云代码助手团队于 2026 年 3 月 9 日推出的<strong>全场景职场 AI 智能体桌面工作台</strong>——它能理解你的自然语言指令，在电脑上自主拆解任务、规划执行步骤、调用本地文件和外部服务，最终交付可直接验收的工作成果。简单说：<strong>它不是在和你聊天，而是真的在帮你干活</strong>。</p>
+<p>上线首月月访问量 885 万，2026 年 6 月突破 2097 万，WorkBuddy 已成为国内 PC 端 AI 原生办公智能体市场第一。本文基于官方文档与社区实战资料，详解它的核心用法，并给出大量可直接照抄的指令示例。</p>
+<h2 id="核心概念四层架构">核心概念：四层架构</h2>
+<p>理解 WorkBuddy 的用法，先理解它的四层架构：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行层</td>
+<td>桌面客户端</td>
+<td>本地运行，读写本机文件、执行系统操作，数据不强制上云</td>
+</tr>
+<tr>
+<td>遥控层</td>
+<td>助理（Claw）</td>
+<td>把桌面客户端暴露为远程可控智能体，手机发消息即可派活</td>
+</tr>
+<tr>
+<td>方法论层</td>
+<td>Skills 技能包</td>
+<td>把 SOP、输出模板、业务规则打包成 <code>SKILL.md</code>，让 AI 按手册干活</td>
+</tr>
+<tr>
+<td>连接层</td>
+<td>MCP 协议</td>
+<td>连接腾讯地图、QQ 邮箱、腾讯文档等外部服务，无需编程</td>
+</tr>
+</tbody>
+</table>
+<p>这四层组合起来就是：<strong>桌面干活 + 手机指挥 + 技能约束 + 外部服务打通</strong>。</p>
+<h2 id="安装与基础配置">安装与基础配置</h2>
+<h3 id="系统要求">系统要求</h3>
+<ul>
+<li><strong>操作系统</strong>：Windows 10/11 或 macOS 10.15+</li>
+<li><strong>存储空间</strong>：约 150-180 MB</li>
+<li><strong>网络</strong>：需要稳定网络连接</li>
+</ul>
+<h3 id="安装步骤">安装步骤</h3>
+<ol>
+<li>访问 <a
+  href="https://www.codebuddy.cn/work/"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>WorkBuddy 官网</a> 下载对应版本（Windows 为 <code>WorkBuddySetup.exe</code>，macOS 为 <code>WorkBuddy.dmg</code>）</li>
+<li>Windows 双击安装包按向导完成安装；macOS 拖拽到&quot;应用程序&quot;并在「系统设置 → 安全性与隐私」中允许打开</li>
+<li>使用腾讯账号登录（推荐企业微信或 QQ 账号，方便后续用 Claw 远程控制）</li>
+<li>首次使用需授权 WorkBuddy 访问本地文件夹（桌面、文档、下载等）</li>
+</ol>
+<blockquote>
+<p><strong>安全建议</strong>：仅授权必要的文件夹（如桌面、文档），避免授予敏感数据目录的访问权限。任务默认在沙箱环境中执行，降低误操作风险。</p>
+</blockquote>
+<h3 id="模型选择">模型选择</h3>
+<p>WorkBuddy 默认使用 <strong>Auto 模型</strong>，根据任务类型自动路由：简单问答走轻量快速模型，复杂推理走更强模型。国内版内置模型以腾讯混元为核心，可手动切换 DeepSeek、GLM、Kimi 等：</p>
+<ul>
+<li><strong>日常办公</strong>：Auto / 混元（响应快、省积分）</li>
+<li><strong>复杂任务分析</strong>：DeepSeek、GLM（推理能力强）</li>
+<li><strong>创意写作</strong>：Kimi（文本生成质量高）</li>
+</ul>
+<p>进阶用户还可以接入外部 API（DeepSeek 官方、Qwen 等），只需编辑本地模型配置文件，填入 <code>apiKey</code> 和 <code>baseUrl</code>。</p>
+<h2 id="核心用法一自然语言指令">核心用法一：自然语言指令</h2>
+<p>WorkBuddy 最核心的用法就是<strong>用一句话下达任务</strong>。基本流程是：</p>
+<ol>
+<li><strong>下达指令</strong>：用自然语言描述任务（越具体越好）</li>
+<li><strong>确认计划</strong>：AI 解析并展示执行步骤，确认后开始执行</li>
+<li><strong>执行反馈</strong>：在沙箱环境中运行，实时显示进度</li>
+<li><strong>交付结果</strong>：生成文件、图表或报告，可直接使用</li>
+</ol>
+<h3 id="典型指令示例">典型指令示例</h3>
+<p>下面这些指令可以直接复制使用：</p>
+<p><strong>Excel 数据处理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">把桌面&#34;2026Q1销售数据&#34;文件夹里所有Excel合并，生成柱状图和分析报告
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>文档批量转换</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">把D盘&#34;周报&#34;文件夹里所有Word转成PDF，并按日期重命名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>数据报表生成</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">读取&#34;业绩表.xlsx&#34;，计算各部门环比，生成PPT并自动排版
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>定时任务设置</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">每天9点自动导出昨日订单数据，发送到企业微信群
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>文件整理归档</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">把下载文件夹里所有PDF按月份分类，移动到对应文件夹
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="指令撰写五技巧">指令撰写五技巧</h3>
+<p>想让 WorkBuddy 一次执行成功，指令里要包含这几个要素：</p>
+<ol>
+<li><strong>指定路径</strong>：明确文件或文件夹的完整路径，如 <code>桌面/2026Q1销售数据</code></li>
+<li><strong>明确格式</strong>：说明输出格式（PDF、Excel、PPT 等）</li>
+<li><strong>说明要求</strong>：描述具体细节（图表类型、分析维度、合并方式）</li>
+<li><strong>划定边界</strong>：说明哪些文件要处理、哪些不能碰</li>
+<li><strong>从简单开始</strong>：先跑通小任务，再逐步加大复杂度，便于排查失败原因</li>
+</ol>
+<h2 id="核心用法二skills-技能包">核心用法二：Skills 技能包</h2>
+<p>Skills 是 WorkBuddy 最实用的扩展机制。本质是一个 <code>SKILL.md</code> 文件，写明执行某类任务时应遵循的方法论、输出格式和注意事项——等于给 AI 配备一本<strong>工作手册</strong>，让它按既定流程干活，而不是每次从头推理。</p>
+<h3 id="加载社区技能">加载社区技能</h3>
+<p>WorkBuddy 兼容 OpenClaw 社区技能生态（<code>SKILL.md</code> 格式）。安装方法统一：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 把技能文件夹（或 SKILL.md）放入技能目录</span>
+</span></span><span class="line"><span class="cl">mkdir -p ~/.workbuddy/skills
+</span></span><span class="line"><span class="cl">cp -r /path/to/some-skill ~/.workbuddy/skills/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启 WorkBuddy 后即可在技能列表里看到</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>社区中比较知名的技能包（数据截至 2026 年 8 月）：</p>
+<ul>
+<li><a
+  href="https://github.com/mattpocock/skills"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>mattpocock/skills</a>（200k+ stars）：TypeScript 工程师日常开发工作流，覆盖类型系统分析、代码审查、API 设计评审、重构规划</li>
+<li><a
+  href="https://github.com/op7418/Claude-to-IM-skill"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>op7418/Claude-to-IM-skill</a>（2.8k stars）：把 Claude Code / Codex 桥接到 Telegram、Discord、飞书，可在 IM 里直接对话编程 Agent</li>
+</ul>
+<h3 id="创建自己的技能">创建自己的技能</h3>
+<p><strong>方式一：AI 辅助生成</strong>。在 WorkBuddy 对话框选择「创建技能」，用自然语言描述任务类型，WorkBuddy 自动生成 <code>SKILL.md</code> 草稿，确认后保存到技能目录。</p>
+<p><strong>方式二：手动编写</strong>。在 <code>~/.workbuddy/skills/</code> 下新建 <code>.md</code> 文件，结构参考：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">name: 周报生成专家
+</span></span><span class="line"><span class="cl">description: 根据本周工作记录生成结构化周报，遵循公司格式规范
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 适用场景
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 每周五下午生成周报
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 需要从工作日志中提取关键成果
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 执行步骤
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">1.</span> 读取本周工作日志（~/.workbuddy/memory/工作日志.md）
+</span></span><span class="line"><span class="cl"><span class="k">2.</span> 按「成果-问题-计划」三段式组织内容
+</span></span><span class="line"><span class="cl"><span class="k">3.</span> 输出格式：标题 + 本周成果列表 + 下周计划列表
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## 注意事项
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">-</span> 数据必须来自实际日志，不得编造
+</span></span><span class="line"><span class="cl"><span class="k">-</span> 使用公司规定的措辞风格
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="专家expert功能">专家（Expert）功能</h3>
+<p>在 Skills 基础上更进一步：Skills 定义&quot;怎么做&quot;，专家定义&quot;以什么角色做&quot;。专家以「人设 + 方法论 + 工具链」组合赋予 WorkBuddy 特定领域身份（HR 专家、市场分析师、财务顾问等），配置后对话时会以该角色的思维框架处理任务。</p>
+<h2 id="核心用法三claw-远程控制">核心用法三：Claw 远程控制</h2>
+<p>WorkBuddy 的「助理（Claw）」功能让你<strong>在任意 IM 里发消息，远程驱动桌面端执行任务</strong>，结果异步推送回来。出门开会也能用手机给电脑派活。</p>
+<h3 id="配置步骤">配置步骤</h3>
+<ol>
+<li>打开 WorkBuddy，进入右上角<strong>个人中心</strong></li>
+<li>点击<strong>Claw 设置</strong></li>
+<li>选择要绑定的通讯工具：企业微信、微信、QQ、飞书、钉钉</li>
+<li>扫码完成授权绑定</li>
+</ol>
+<h3 id="使用方式">使用方式</h3>
+<p>绑定后，在对应 IM 中找到 WorkBuddy 机器人，直接发指令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">帮我看一下家里电脑桌面上有没有&#34;季度总结.docx&#34;，有的话发给我
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">下午3点提醒我，并自动整理今天的会议纪要发到企业微信群
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Claw 支持手机端文字、语音、图片和文件输入。典型场景：</p>
+<ul>
+<li>外出时手机操控电脑自动完成报表</li>
+<li>家里远程处理公司文件</li>
+<li>随时随地启动自动化任务</li>
+</ul>
+<h2 id="核心用法四mcp-连接器">核心用法四：MCP 连接器</h2>
+<p>MCP（Model Control Protocol）是 WorkBuddy 与外部服务之间的标准化对接通道。通过 MCP，WorkBuddy 不再是&quot;生成文字&quot;的 AI，而是能<strong>直接操作第三方服务的智能体</strong>。</p>
+<h3 id="内置连接器">内置连接器</h3>
+<p>WorkBuddy 预装了一批主流连接器：</p>
+<ul>
+<li><strong>QQ 邮箱</strong>：收发邮件、自动分类、起草回复</li>
+<li><strong>腾讯文档</strong>：读写、协作、格式转换</li>
+<li><strong>腾讯地图</strong>：路线规划、地点搜索、周边推荐</li>
+<li><strong>有道云笔记</strong>：笔记读写、标签管理</li>
+<li><strong>美团</strong>：团购、外卖等生活服务（配合官方 Skills）</li>
+<li><strong>GitHub / Jira / Notion</strong>：开发者与项目管理场景</li>
+</ul>
+<h3 id="配置方法">配置方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">WorkBuddy 设置 → 连接器 → 添加服务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>选择对应服务，按提示完成 OAuth 授权（首次需登录对应账号），完成后 WorkBuddy 就能直接调用该服务能力，无需任何编程。</p>
+<h3 id="自定义-mcp-服务器">自定义 MCP 服务器</h3>
+<p>WorkBuddy 支持接入符合 MCP 协议规范的第三方服务器，在设置里填入 MCP 服务器地址即可。社区 MCP 服务器列表可参考 GitHub 上的 <code>awesome-mcp-servers</code> 汇总。</p>
+<blockquote>
+<p><strong>Skills vs MCP 怎么选</strong>：Skills 更简单——只是一个 Markdown 文件，零门槛；MCP 需要对应服务有 MCP 服务端支持并完成 OAuth 授权，适合有具体外部服务接入需求的场景。建议先把 Skills 用熟，再按需探索 MCP。</p>
+</blockquote>
+<h2 id="核心用法五定时任务automation">核心用法五：定时任务（Automation）</h2>
+<p>设置重复性任务，让 WorkBuddy 自动定期执行，适合&quot;每天早上自动跑&quot;这类固定动作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">每天早上9点，读取销售系统导出的昨日数据，生成日报发到企业微信群
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">每周五下午5点，整理本周所有会议纪要，汇总成一份周报保存到桌面
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">每月1号，把上个月的发票PDF按供应商分类归档到&#34;财务/发票/2026-07&#34;文件夹
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配合 Claw 和 MCP，定时任务还能联动外部服务：定时导出 → 自动发送 → 归档，形成完整自动化链路。</p>
+<h2 id="核心用法六teams-多智能体">核心用法六：Teams 多智能体</h2>
+<p>WorkBuddy 的 <strong>Teams 功能</strong>支持多个 Agent 并行处理不同子任务，由一个 lead agent 协调。你只需要提出一个复杂任务，它自动决定要不要拆、拆几个、谁验证谁：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">帮我准备下周的产品发布会：Agent A 收集竞品资料，Agent B 整理市场数据，
+</span></span><span class="line"><span class="cl">Agent C 起草演讲稿，最后汇总成一份完整的发布会方案
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对用户来说无需理解 sub-agent 的原理，复杂工程概念被封装在产品里了。</p>
+<h2 id="实战案例一条指令完成数据周报">实战案例：一条指令完成数据周报</h2>
+<p>下面演示一个完整的实战流程。假设每周一你需要把上周销售数据做成周报：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">① 读取&#34;桌面/销售数据/上周销售明细.xlsx&#34;
+</span></span><span class="line"><span class="cl">② 按产品线汇总销售额，计算环比增幅
+</span></span><span class="line"><span class="cl">③ 生成一张柱状图 + 一份分析报告（指出增长最快和最慢的产品线）
+</span></span><span class="line"><span class="cl">④ 输出为 &#34;第31周销售周报.docx&#34; 保存到桌面
+</span></span><span class="line"><span class="cl">⑤ 把报告发送到企业微信群
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>WorkBuddy 会依次执行：解析数据 → 计算汇总 → 调用 MCP 生成图与文档 → 通过 Claw 发送到企微群。整个过程一条指令完成，这正是指令 + Skills + MCP + Claw 四层能力叠加的效果。</p>
+<h2 id="常见问题-faq">常见问题 FAQ</h2>
+<p><strong>Q: WorkBuddy 和 QQ 小龙虾有什么区别？</strong>
+A: 两者定位不同。WorkBuddy 面向办公场景，独立客户端，支持多步骤复杂任务和多种 IM 远程控制；QQ 小龙虾集成在 QQ 中，偏生活场景的轻量任务。</p>
+<p><strong>Q: Credits 是什么？怎么省着用？</strong>
+A: 新用户赠送 5000 Credits，复杂任务消耗较多。省用技巧：日常任务用 Auto/混元，复杂分析切换 DeepSeek 等强模型时合理规划，批量任务分批执行。</p>
+<p><strong>Q: 提示权限拒绝怎么办？</strong>
+A: 重新授权文件夹访问权限。WorkBuddy 设置中检查桌面、文档、下载等目录是否被允许访问。</p>
+<p><strong>Q: 任务执行失败如何排查？</strong>
+A: 先检查指令是否清晰（路径、格式、要求三要素），从简单子任务开始验证，再逐步组合。WorkBuddy 会展示执行日志，可据此定位失败的步骤。</p>
+<p><strong>Q: Skills 目录在哪里？换机器怎么迁移？</strong>
+A: 国内版技能目录为 <code>~/.workbuddy/</code>（海外版 <code>~/.workbuddy-ai/</code>）。可将 skills、memory、对话记录等目录整体复制到新机器，或用社区的 workbuddy-asset-migration 技能自动迁移。</p>
+<p><strong>Q: 数据会上传到云端吗？</strong>
+A: WorkBuddy 桌面客户端本地执行，数据不强制上云；但通过 IM（Claw）远程派发任务时，任务描述和产出文件会经过 IM 中转，企业敏感数据需注意这一风险。</p>
+<h2 id="总结">总结</h2>
+<p>WorkBuddy 的核心用法可以归纳为一条主线：<strong>用自然语言下指令，靠 Skills 约束方法论，借 MCP 打通外部服务，用 Claw 实现远程调度，用 Automation 固化重复劳动</strong>。</p>
+<ul>
+<li>新手：装好客户端，从&quot;一句话指令&quot;开始（Excel 合并、批量转换、文件归档）</li>
+<li>进阶：编写/加载 Skills，配置 MCP 连接器提升自动化深度</li>
+<li>高阶：绑定 Claw 远程指挥 + 定时任务 + Teams 多智能体，把个人工作流升级为&quot;AI 团队&quot;</li>
+</ul>
+<p>在一个 Agent 时代，WorkBuddy 走的是与其他终端型 Agent（Claude Code、Codex）相反的 <strong>messaging-first</strong> 路线：用户不离开 IM，成品直接推到聊天里。如果你也想要一个&quot;能办事&quot;而非&quot;能聊天&quot;的 AI 同事，从上面任何一个指令示例开始试起来就好。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li>WorkBuddy 官网：https://www.codebuddy.cn/work/</li>
+<li>WorkBuddy 实战蓝皮书（开源指南）：https://github.com/AlephAITech/WorkBuddyGuide</li>
+<li>蓝皮书在线阅读：https://workbuddy.homes/</li>
+<li>OpenClaw 技能社区：https://openclaw.org/</li>
+<li>腾讯云开发者社区 WorkBuddy 专栏：https://developer.cloud.tencent.cn/search?keyword=WorkBuddy</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-08-10&#32;20:58:19>更新于 2026-08-10&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/workbuddy-core-usage-guide/" data-title="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E8%85%BE%E8%AE%AF/">腾讯</a>,&nbsp;<a href="/tags/%E5%8A%9E%E5%85%AC%E8%87%AA%E5%8A%A8%E5%8C%96/">办公自动化</a>,&nbsp;<a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/">智能体</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/zhihu-cli-usage-guide/" class="prev" rel="prev" title="zhihu-cli 使用指南：终端里的知乎客户端"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>zhihu-cli 使用指南：终端里的知乎客户端</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

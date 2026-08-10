@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>zhihu-cli 使用指南：终端里的知乎客户端 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="zhihu-cli 是一个 Python 编写的知乎命令行客户端，支持搜索、浏览热榜、查看回答、发布提问/想法/文章，本文介绍安装、登录与全部命令用法。" /><meta name="keywords" content='zhihu, cli, python, 工具, 终端' /><meta itemprop="name" content="zhihu-cli 使用指南：终端里的知乎客户端">
+<meta itemprop="description" content="zhihu-cli 是一个 Python 编写的知乎命令行客户端，支持搜索、浏览热榜、查看回答、发布提问/想法/文章，本文介绍安装、登录与全部命令用法。"><meta itemprop="datePublished" content="2026-08-08T18:48:35+08:00" />
+<meta itemprop="dateModified" content="2026-08-08T18:48:35+08:00" />
+<meta itemprop="wordCount" content="876"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="zhihu,cli,python,工具,终端," /><meta property="og:title" content="zhihu-cli 使用指南：终端里的知乎客户端" />
+<meta property="og:description" content="zhihu-cli 是一个 Python 编写的知乎命令行客户端，支持搜索、浏览热榜、查看回答、发布提问/想法/文章，本文介绍安装、登录与全部命令用法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/zhihu-cli-usage-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-08-08T18:48:35+08:00" />
+<meta property="article:modified_time" content="2026-08-08T18:48:35+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="zhihu-cli 使用指南：终端里的知乎客户端"/>
+<meta name="twitter:description" content="zhihu-cli 是一个 Python 编写的知乎命令行客户端，支持搜索、浏览热榜、查看回答、发布提问/想法/文章，本文介绍安装、登录与全部命令用法。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/zhihu-cli-usage-guide/" /><link rel="prev" href="https://cfanzp008.github.io/mysql-vs-postgresql/" /><link rel="next" href="https://cfanzp008.github.io/workbuddy-core-usage-guide/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "zhihu-cli 使用指南：终端里的知乎客户端",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/zhihu-cli-usage-guide\/"
+    },"genre": "posts","keywords": "zhihu, cli, python, 工具, 终端","wordcount":  876 ,
+    "url": "https:\/\/cfanzp008.github.io\/zhihu-cli-usage-guide\/","datePublished": "2026-08-08T18:48:35+08:00","dateModified": "2026-08-08T18:48:35+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "zhihu-cli 是一个 Python 编写的知乎命令行客户端，支持搜索、浏览热榜、查看回答、发布提问/想法/文章，本文介绍安装、登录与全部命令用法。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>zhihu-cli 使用指南：终端里的知乎客户端</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/cli/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> cli</a></span></div>
+      <div class="post-meta-line"><span title=2026-08-08&#32;18:48:35><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-08">2026-08-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 876 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="zhihu-cli 使用指南：终端里的知乎客户端">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#zhihu-cli-是什么">zhihu-cli 是什么</a></li>
+    <li><a href="#项目信息">项目信息</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#登录与认证">登录与认证</a>
+      <ul>
+        <li><a href="#方式一二维码扫码推荐">方式一：二维码扫码（推荐）</a></li>
+        <li><a href="#方式二手动粘贴-cookie">方式二：手动粘贴 Cookie</a></li>
+        <li><a href="#登录状态管理">登录状态管理</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用命令与示例">常用命令与示例</a>
+      <ul>
+        <li><a href="#搜索内容">搜索内容</a></li>
+        <li><a href="#浏览热榜">浏览热榜</a></li>
+        <li><a href="#查看问题与回答">查看问题与回答</a></li>
+        <li><a href="#用户相关">用户相关</a></li>
+        <li><a href="#推荐流与话题">推荐流与话题</a></li>
+        <li><a href="#互动赞同与关注">互动：赞同与关注</a></li>
+        <li><a href="#创作发布提问想法文章">创作：发布提问、想法、文章</a></li>
+        <li><a href="#删除自己发布的内容">删除自己发布的内容</a></li>
+        <li><a href="#其他实用命令">其他实用命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战一条命令看今日热榜">实战：一条命令看今日热榜</a></li>
+    <li><a href="#工作原理">工作原理</a></li>
+    <li><a href="#网络安全设计">网络安全设计</a></li>
+    <li><a href="#常见问题-faq">常见问题 FAQ</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="zhihu-cli-使用指南终端里的知乎客户端">zhihu-cli 使用指南：终端里的知乎客户端</h1>
+<p>知乎是中文互联网最大的问答社区，但日常浏览往往要打开浏览器或 App。如果你习惯泡在终端里（比如我是 Vim + tmux 重度用户），或者你正在写 AI Agent 想集成知乎能力，那么 <strong>zhihu-cli</strong> 这类命令行工具就能帮你把知乎搬进终端：搜索问题、看热榜、读回答、甚至发布文章和想法，全程不离开键盘。</p>
+<p>本文基于 GitHub 上最活跃的同名项目 <a
+  href="https://github.com/BAIGUANGMEI/zhihu-cli"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>BAIGUANGMEI/zhihu-cli</a>（PyPI 包名 <code>pyzhihu-cli</code>）编写，覆盖安装、登录、常用命令与实战示例。</p>
+<h2 id="zhihu-cli-是什么">zhihu-cli 是什么</h2>
+<p>zhihu-cli 是一个用 Python 编写的知乎命令行客户端，通过知乎 V4 API 获取数据，用 Rich 库在终端渲染成漂亮的表格输出。它把知乎的主要功能搬进了终端：</p>
+<ul>
+<li><strong>搜索</strong>：按关键词搜索问题、回答、文章，支持按类型（话题、用户）过滤</li>
+<li><strong>浏览</strong>：热榜、问题详情、回答详情及评论、首页推荐、话题</li>
+<li><strong>用户</strong>：查看用户资料、回答列表、文章列表、粉丝与关注</li>
+<li><strong>互动</strong>：赞同/取消赞同回答，关注/取消关注问题</li>
+<li><strong>创作</strong>：发布提问、发布想法、发布图文文章（支持 HTML 富文本）</li>
+<li><strong>管理</strong>：查看收藏夹、通知，删除自己发布的内容</li>
+</ul>
+<h2 id="项目信息">项目信息</h2>
+<p>动手之前先看下项目基本面：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub 仓库</td>
+<td><a
+  href="https://github.com/BAIGUANGMEI/zhihu-cli"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>BAIGUANGMEI/zhihu-cli</a></td>
+</tr>
+<tr>
+<td>PyPI 包名</td>
+<td><code>pyzhihu-cli</code></td>
+</tr>
+<tr>
+<td>开发语言</td>
+<td>Python 3.10+（Click + Requests + Rich）</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>Star / Fork</td>
+<td>65 / 17</td>
+</tr>
+<tr>
+<td>安装方式</td>
+<td><code>uv</code> / <code>pipx</code> / 源码</td>
+</tr>
+<tr>
+<td>登录方式</td>
+<td>二维码扫码 或 手动粘贴 Cookie</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：GitHub 上存在多个同名&quot;zhihu-cli&quot;项目（如基于知乎开放平台的 Node.js 版本、仿 curl 的 Rust 版本 zhurl 等）。本文介绍的 <code>pyzhihu-cli</code> 功能最全、持续维护，且不需要申请开放平台密钥，开箱即用。</p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<p>需要 Python 3.10 及以上版本，推荐使用 uv 或 pipx 安装（自动隔离依赖）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 推荐：使用 uv</span>
+</span></span><span class="line"><span class="cl">uv tool install pyzhihu-cli
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或使用 pipx</span>
+</span></span><span class="line"><span class="cl">pipx install pyzhihu-cli
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从源码安装（开发用）</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/BAIGUANGMEI/zhihu-cli.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> zhihu-cli
+</span></span><span class="line"><span class="cl">pip install -e .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验证安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">zhihu --version
+</span></span><span class="line"><span class="cl">zhihu --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装成功后 <code>zhihu</code> 命令即可使用。依赖只有 <code>requests</code>、<code>rich</code>、<code>click</code>、<code>qrcode</code>，二维码登录无需 Playwright。</p>
+<h2 id="登录与认证">登录与认证</h2>
+<p>zhihu-cli 支持两种登录方式，登录态保存在 <code>~/.zhihu-cli/cookies.json</code>（文件权限 0600，仅当前用户可读）。</p>
+<h3 id="方式一二维码扫码推荐">方式一：二维码扫码（推荐）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 执行后终端会渲染一个二维码</span>
+</span></span><span class="line"><span class="cl">zhihu login --qrcode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>扫码过程中二维码也会保存为 <code>~/.zhihu-cli/login_qrcode.png</code>，方便你在手机上用知乎 App 扫码，或者由 AI Agent 读取后发送给用户。</p>
+<h3 id="方式二手动粘贴-cookie">方式二：手动粘贴 Cookie</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Cookie 至少包含 z_c0、_xsrf、d_c0 这三个字段</span>
+</span></span><span class="line"><span class="cl">zhihu login --cookie <span class="s2">&#34;z_c0=xxx; _xsrf=yyy; d_c0=zzz&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cookie 可以从浏览器开发者工具中复制，注意该方式不会自动获取浏览器 Cookie。</p>
+<h3 id="登录状态管理">登录状态管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查登录状态（仅检查本地 cookie，不发网络请求）</span>
+</span></span><span class="line"><span class="cl">zhihu status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前登录用户资料</span>
+</span></span><span class="line"><span class="cl">zhihu whoami
+</span></span><span class="line"><span class="cl">zhihu whoami --json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出登录</span>
+</span></span><span class="line"><span class="cl">zhihu <span class="nb">logout</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用命令与示例">常用命令与示例</h2>
+<h3 id="搜索内容">搜索内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 搜索问题/回答/文章</span>
+</span></span><span class="line"><span class="cl">zhihu search <span class="s2">&#34;Python 学习&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 按类型过滤：搜索话题、用户</span>
+</span></span><span class="line"><span class="cl">zhihu search <span class="s2">&#34;机器学习&#34;</span> --type topic
+</span></span><span class="line"><span class="cl">zhihu search <span class="s2">&#34;张三&#34;</span> --type people
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># JSON 输出，方便脚本处理</span>
+</span></span><span class="line"><span class="cl">zhihu search <span class="s2">&#34;Python&#34;</span> --json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="浏览热榜">浏览热榜</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 全部热榜 + 每条附带 3 条热门回答</span>
+</span></span><span class="line"><span class="cl">zhihu hot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 只看前 10 条热榜</span>
+</span></span><span class="line"><span class="cl">zhihu hot -l <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 每条热榜带 5 条回答</span>
+</span></span><span class="line"><span class="cl">zhihu hot -a <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 只要标题列表，不带回答</span>
+</span></span><span class="line"><span class="cl">zhihu hot -a <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># JSON 输出</span>
+</span></span><span class="line"><span class="cl">zhihu hot --json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查看问题与回答">查看问题与回答</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看问题详情</span>
+</span></span><span class="line"><span class="cl">zhihu question &lt;question_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连带回答一起看</span>
+</span></span><span class="line"><span class="cl">zhihu question &lt;question_id&gt; --answers
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 限制回答数量（默认全部）</span>
+</span></span><span class="line"><span class="cl">zhihu question &lt;question_id&gt; --answers --limit <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看回答详情</span>
+</span></span><span class="line"><span class="cl">zhihu answer &lt;answer_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 展开评论（默认显示全部）</span>
+</span></span><span class="line"><span class="cl">zhihu answer &lt;answer_id&gt; --comments
+</span></span><span class="line"><span class="cl">zhihu answer &lt;answer_id&gt; -c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 限制评论数量</span>
+</span></span><span class="line"><span class="cl">zhihu answer &lt;answer_id&gt; -c -l <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="用户相关">用户相关</h3>
+<p>用户查询使用 <strong>URL Token</strong>，即知乎个人主页路径中的部分，比如 <code>zhihu.com/people/zhang-san</code> 中的 <code>zhang-san</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看用户资料</span>
+</span></span><span class="line"><span class="cl">zhihu user &lt;url_token&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看该用户全部回答（可按赞同数排序）</span>
+</span></span><span class="line"><span class="cl">zhihu user-answers &lt;url_token&gt;
+</span></span><span class="line"><span class="cl">zhihu user-answers &lt;url_token&gt; --sort voteups
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看用户文章</span>
+</span></span><span class="line"><span class="cl">zhihu user-articles &lt;url_token&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 粉丝与关注列表</span>
+</span></span><span class="line"><span class="cl">zhihu followers &lt;url_token&gt;
+</span></span><span class="line"><span class="cl">zhihu following &lt;url_token&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="推荐流与话题">推荐流与话题</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 推荐列表（ID、类型、标题、作者）</span>
+</span></span><span class="line"><span class="cl">zhihu feed
+</span></span><span class="line"><span class="cl">zhihu feed --limit <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 推荐 + 内容 + 评论</span>
+</span></span><span class="line"><span class="cl">zhihu feeds
+</span></span><span class="line"><span class="cl">zhihu feeds -l <span class="m">3</span>        <span class="c1"># 只看 3 条推荐</span>
+</span></span><span class="line"><span class="cl">zhihu feeds -c <span class="m">5</span>        <span class="c1"># 每条带 5 条评论</span>
+</span></span><span class="line"><span class="cl">zhihu feeds -c <span class="m">0</span>        <span class="c1"># 不带评论</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 话题详情及热门问题</span>
+</span></span><span class="line"><span class="cl">zhihu topic &lt;topic_id&gt; --questions
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="互动赞同与关注">互动：赞同与关注</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 赞同回答</span>
+</span></span><span class="line"><span class="cl">zhihu vote &lt;answer_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消赞同</span>
+</span></span><span class="line"><span class="cl">zhihu vote &lt;answer_id&gt; --undo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关注问题</span>
+</span></span><span class="line"><span class="cl">zhihu follow-question &lt;question_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取消关注</span>
+</span></span><span class="line"><span class="cl">zhihu follow-question &lt;question_id&gt; --undo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创作发布提问想法文章">创作：发布提问、想法、文章</h3>
+<p>发布内容时，描述与正文都支持 HTML 富文本（如 <code>&lt;p&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;a&gt;</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 发布提问</span>
+</span></span><span class="line"><span class="cl">zhihu ask <span class="s2">&#34;如何学习 Python？&#34;</span>
+</span></span><span class="line"><span class="cl">zhihu ask <span class="s2">&#34;什么是机器学习？&#34;</span> -d <span class="s2">&#34;请详细解释&#34;</span> -t <span class="m">19550517</span> -t <span class="m">19551275</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发布想法（标题 + 可选正文）</span>
+</span></span><span class="line"><span class="cl">zhihu pin <span class="s2">&#34;今天天气真好！&#34;</span>
+</span></span><span class="line"><span class="cl">zhihu pin <span class="s2">&#34;标题&#34;</span> -c <span class="s2">&#34;想法正文内容&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发布文章</span>
+</span></span><span class="line"><span class="cl">zhihu article <span class="s2">&#34;文章标题&#34;</span> <span class="s2">&#34;文章内容&#34;</span>
+</span></span><span class="line"><span class="cl">zhihu article <span class="s2">&#34;标题&#34;</span> <span class="s2">&#34;内容&#34;</span> -t <span class="m">19550517</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 带图片发布（-i 可重复使用添加多张图片）</span>
+</span></span><span class="line"><span class="cl">zhihu ask <span class="s2">&#34;求推荐&#34;</span> -d <span class="s2">&#34;详情&#34;</span> -i photo.jpg
+</span></span><span class="line"><span class="cl">zhihu pin <span class="s2">&#34;标题&#34;</span> -c <span class="s2">&#34;正文&#34;</span> -i image1.jpg -i image2.jpg
+</span></span><span class="line"><span class="cl">zhihu article <span class="s2">&#34;标题&#34;</span> <span class="s2">&#34;内容&#34;</span> -i cover.jpg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除自己发布的内容">删除自己发布的内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除前会确认，加 -y 直接跳过确认</span>
+</span></span><span class="line"><span class="cl">zhihu delete-question &lt;问题ID&gt;
+</span></span><span class="line"><span class="cl">zhihu delete-pin &lt;想法ID&gt;
+</span></span><span class="line"><span class="cl">zhihu delete-article &lt;文章ID&gt;
+</span></span><span class="line"><span class="cl">zhihu delete-question <span class="m">12345678</span> -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他实用命令">其他实用命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 收藏夹列表</span>
+</span></span><span class="line"><span class="cl">zhihu collections
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通知消息</span>
+</span></span><span class="line"><span class="cl">zhihu notifications
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调试日志输出</span>
+</span></span><span class="line"><span class="cl">zhihu -v search <span class="s2">&#34;Python&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 完整帮助</span>
+</span></span><span class="line"><span class="cl">zhihu --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="实战一条命令看今日热榜">实战：一条命令看今日热榜</h2>
+<p>下面用一个完整示例演示 zhihu-cli 的实际效果。假设我们要看看今天知乎上大家在讨论什么：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 登录（只需一次）</span>
+</span></span><span class="line"><span class="cl">zhihu login --qrcode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 查看热榜前 5 条，每条带 3 条回答</span>
+</span></span><span class="line"><span class="cl">zhihu hot -l <span class="m">5</span> -a <span class="m">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 挑一条热门问题看详情 + 前 10 条回答</span>
+</span></span><span class="line"><span class="cl">zhihu question <span class="m">12345678</span> --answers --limit <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 把热榜以 JSON 形式导出，供脚本分析</span>
+</span></span><span class="line"><span class="cl">zhihu hot --json &gt; hot.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配合 <code>jq</code> 可以做更多自动化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 只提取热榜标题</span>
+</span></span><span class="line"><span class="cl">zhihu hot --json <span class="p">|</span> jq -r <span class="s1">&#39;.[].title&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="工作原理">工作原理</h2>
+<p>zhihu-cli 的架构很清晰，三层分工：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CLI (click) → ZhihuClient (requests)
+</span></span><span class="line"><span class="cl">                  ↓ API 请求
+</span></span><span class="line"><span class="cl">              Zhihu V4 API → JSON 响应
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">zhihu_cli/
+</span></span><span class="line"><span class="cl">├── config.py      # 集中配置：路径、URL、统一 UA/Chrome 版本
+</span></span><span class="line"><span class="cl">├── auth.py        # Cookie 管理、QR 码登录、scan_info 轮询
+</span></span><span class="line"><span class="cl">├── client.py      # ZhihuClient — 所有 API 调用封装
+</span></span><span class="line"><span class="cl">├── display.py     # Rich 终端输出
+</span></span><span class="line"><span class="cl">└── commands/      # Click 子命令
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行流程大致为：</p>
+<ol>
+<li><strong>认证</strong>：通过二维码扫码或手动 Cookie 完成登录，登录态保存到 <code>~/.zhihu-cli/cookies.json</code></li>
+<li><strong>校验</strong>：通过 <code>/api/v4/me</code> 接口验证会话有效性</li>
+<li><strong>取数</strong>：用 requests 请求知乎 V4 API，获取结构化 JSON</li>
+<li><strong>展示</strong>：用 Rich 渲染成表格、带颜色的终端输出</li>
+</ol>
+<p>值得留意的是它的<strong>反爬与风控设计</strong>：全局统一 Chrome 浏览器指纹（<code>User-Agent</code>、<code>sec-ch-ua</code>、<code>sec-ch-ua-platform</code> 版本号一致，集中管理在 <code>config.CHROME_VERSION</code>），登录与写操作带 CSRF token（<code>_xsrf</code> / <code>x-xsrftoken</code>），能有效降低被风控拦截的概率。</p>
+<h2 id="网络安全设计">网络安全设计</h2>
+<p>项目在 README 中专门说明了安全设计，使用前值得了解：</p>
+<ul>
+<li><strong>凭证仅存本地</strong>：Cookie 只写入本机 <code>~/.zhihu-cli/cookies.json</code>，权限 0600，不会上传给任何第三方</li>
+<li><strong>全程 HTTPS</strong>：所有请求只发往知乎官方域名（<code>www.zhihu.com</code>、<code>api.zhihu.com</code>）</li>
+<li><strong>无密码落地</strong>：仅支持二维码扫码或 Cookie 登录，不收集、不存储账号密码</li>
+<li><strong>最小权限</strong>：只请求完成当前命令所需的 API，不额外拉取数据</li>
+<li><strong>可审计</strong>：项目开源，依赖在 <code>pyproject.toml</code> 声明，无闭源运行时</li>
+</ul>
+<blockquote>
+<p>建议只在可信环境使用，妥善保管本地 Cookie 文件，退出后可用 <code>zhihu logout</code> 清除登录态。</p>
+</blockquote>
+<h2 id="常见问题-faq">常见问题 FAQ</h2>
+<p><strong>Q: 登录后报&quot;请先登录&quot;？</strong>
+A: 检查 <code>zhihu status</code> 是否显示已登录。手动粘贴的 Cookie 里必须包含 <code>z_c0</code>、<code>_xsrf</code>、<code>d_c0</code> 三个字段，缺一不可，注意 Cookie 过期后需要重新登录。</p>
+<p><strong>Q: 发布的文字可以格式化吗？</strong>
+A: 可以。提问描述、想法正文、文章内容都支持 HTML 富文本，比如 <code>&lt;strong&gt;加粗&lt;/strong&gt;</code>、<code>&lt;a href=&quot;...&quot;&gt;链接&lt;/a&gt;</code>。</p>
+<p><strong>Q: 如何彻底退出登录并清除数据？</strong>
+A: <code>zhihu logout</code> 会清除本地保存的登录态，同时可手动删除 <code>~/.zhihu-cli/cookies.json</code> 文件。</p>
+<p><strong>Q: 能发布回答和评论吗？</strong>
+A: 目前还不能，官方路线图里&quot;发布回答、发布评论、发布视频&quot;还在后续开发中。</p>
+<p><strong>Q: 浏览器指纹版本号怎么更新？</strong>
+A: 所有指纹版本号集中管理在 <code>config.py</code> 的 <code>CHROME_VERSION</code> 常量，当知乎风控收紧时更新这一处即可全局生效。</p>
+<h2 id="总结">总结</h2>
+<p>zhihu-cli 把知乎的核心浏览与创作能力带进了终端，安装一条命令、登录扫码一次即可使用。对程序员来说，最实用的组合是 <code>zhihu search</code> + <code>zhihu hot --json</code> + <code>jq</code>：随时在终端查资料、抓热榜做数据分析；对 AI Agent 来说，它提供了一套纯 API 的知乎访问通道，配合 JSON 输出可以轻松集成到工作流里。</p>
+<p>感兴趣的读者可以进一步关注：</p>
+<ul>
+<li>项目主页：https://github.com/BAIGUANGMEI/zhihu-cli</li>
+<li>PyPI 页面：https://pypi.org/project/pyzhihu-cli/</li>
+<li>知乎开放平台（官方 API，供学习参考）：https://developer.zhihu.com</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-08-08&#32;18:48:35>更新于 2026-08-08&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/zhihu-cli-usage-guide/" data-title="zhihu-cli 使用指南：终端里的知乎客户端"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/zhihu/">zhihu</a>,&nbsp;<a href="/tags/cli/">cli</a>,&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>,&nbsp;<a href="/tags/%E7%BB%88%E7%AB%AF/">终端</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/mysql-vs-postgresql/" class="prev" rel="prev" title="MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>MySQL 与 PostgreSQL 深入对比：架构、特性与选型指南</a>
+      <a href="/workbuddy-core-usage-guide/" class="next" rel="next" title="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南">WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>
