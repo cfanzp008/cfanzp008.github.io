@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>DBX：20MB 轻量级跨平台数据库客户端 - cfanzp学习笔记</title><meta name="author" content="cfanzp">
+<meta name="author-link" content="">
+<meta name="description" content="DBX 是一个基于 Rust/Tauri 构建的 20MB 开源数据库客户端，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 70&#43; 数据库，原生内置 AI SQL 助手和 MCP Server，提供桌面端、Docker、Web 与 CLI 四种形态。" /><meta name="keywords" content='dbx, database, sql, mcp, 工具' /><meta itemprop="name" content="DBX：20MB 轻量级跨平台数据库客户端">
+<meta itemprop="description" content="DBX 是一个基于 Rust/Tauri 构建的 20MB 开源数据库客户端，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 70&#43; 数据库，原生内置 AI SQL 助手和 MCP Server，提供桌面端、Docker、Web 与 CLI 四种形态。"><meta itemprop="datePublished" content="2026-08-13T15:18:23+08:00" />
+<meta itemprop="dateModified" content="2026-08-13T15:18:23+08:00" />
+<meta itemprop="wordCount" content="615"><meta itemprop="image" content="https://cfanzp008.github.io/logo.png" />
+<meta itemprop="keywords" content="dbx,database,sql,mcp,工具," /><meta property="og:title" content="DBX：20MB 轻量级跨平台数据库客户端" />
+<meta property="og:description" content="DBX 是一个基于 Rust/Tauri 构建的 20MB 开源数据库客户端，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 70&#43; 数据库，原生内置 AI SQL 助手和 MCP Server，提供桌面端、Docker、Web 与 CLI 四种形态。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cfanzp008.github.io/dbx-database-client-guide/" /><meta property="og:image" content="https://cfanzp008.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-08-13T15:18:23+08:00" />
+<meta property="article:modified_time" content="2026-08-13T15:18:23+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cfanzp008.github.io/logo.png" /><meta name="twitter:title" content="DBX：20MB 轻量级跨平台数据库客户端"/>
+<meta name="twitter:description" content="DBX 是一个基于 Rust/Tauri 构建的 20MB 开源数据库客户端，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 70&#43; 数据库，原生内置 AI SQL 助手和 MCP Server，提供桌面端、Docker、Web 与 CLI 四种形态。"/>
+<meta name="application-name" content="cfanzp学习笔记">
+<meta name="apple-mobile-web-app-title" content="cfanzp学习笔记"><meta name="theme-color" data-light="#ffffff" data-dark="#252627" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cfanzp008.github.io/dbx-database-client-guide/" /><link rel="prev" href="https://cfanzp008.github.io/workbuddy-core-usage-guide/" /><link rel="next" href="https://cfanzp008.github.io/cpp-stl-vector/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "DBX：20MB 轻量级跨平台数据库客户端",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/cfanzp008.github.io\/dbx-database-client-guide\/"
+    },"genre": "posts","keywords": "dbx, database, sql, mcp, 工具","wordcount":  615 ,
+    "url": "https:\/\/cfanzp008.github.io\/dbx-database-client-guide\/","datePublished": "2026-08-13T15:18:23+08:00","dateModified": "2026-08-13T15:18:23+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "cfanzp"
+      },"description": "DBX 是一个基于 Rust/Tauri 构建的 20MB 开源数据库客户端，支持 MySQL、PostgreSQL、SQLite、Redis、MongoDB、达梦等 70+ 数据库，原生内置 AI SQL 助手和 MCP Server，提供桌面端、Docker、Web 与 CLI 四种形态。"
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="cfanzp学习笔记"
+    title="cfanzp学习笔记" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/self-improvement/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li class="menu-item has-children">
+              <a
+                class="menu-link"
+                href="/categories/language/"
+                
+                
+              ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/ai/"
+                
+                
+              ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/search/"
+                title="搜索"
+                
+              ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="cfanzp学习笔记"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/logo.png"
+    data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+    data-sizes="auto"
+    alt="/logo.png"
+    title="/logo.png" /><span class="header-title-text">学习笔记</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/"
+                    
+                    
+                  ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/linux/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> linux</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/net/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/development-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/%E7%A1%AC%E4%BB%B6/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 硬件</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/self-improvement/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 自我成长</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/book/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 读书</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/habbit/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 习惯</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><span class="nested-item">
+                  <a
+                    class="menu-link"
+                    href="/categories/language/"
+                    
+                    
+                  ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 编程</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu">
+                  <li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/language/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 语言</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/c&#43;&#43;/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c/c&#43;&#43;</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/lua/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/golang/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> golang</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/dev-manual/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/lua-man/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> lua开发手册</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/google-cpp-style/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> c&#43;&#43;风格指南(google)</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/docker/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> docker</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/vim/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> vim</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/network/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/network-security/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 网络安全</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/proj/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/game/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 游戏开发</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/skynet/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> skynet</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/categories/opensource/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 开源项目</a>
+                      </li><li
+                        class="menu-item"
+                      >
+                        <a
+                          class="menu-link"
+                          href="/main-embedded/"
+                          
+                          
+                        ><i class='fa-brands fa-readme fa-fw fa-sm'></i> 嵌入式开发</a>
+                      </li></ul></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/ai/"
+                  
+                  
+                ><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> AI</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-user-tie fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/search/"
+                  title="搜索"
+                  
+                ><i class='fas fa-fw fa-search'></i> 搜索</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><main class="container" data-page-style="normal">
+        <aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>DBX：20MB 轻量级跨平台数据库客户端</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>
+          <span class="post-category">收录于 <a href="/categories/tools/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 工具</a></span></div>
+      <div class="post-meta-line"><span title=2026-08-13&#32;15:18:23><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-08-13">2026-08-13</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 615 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="DBX：20MB 轻量级跨平台数据库客户端">
+            <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+          </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#dbx-是什么">DBX 是什么</a></li>
+    <li><a href="#项目信息">项目信息</a></li>
+    <li><a href="#安装-dbx">安装 DBX</a>
+      <ul>
+        <li><a href="#桌面端">桌面端</a></li>
+        <li><a href="#docker-自托管">Docker 自托管</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速上手">快速上手</a></li>
+    <li><a href="#ai-sql-助手">AI SQL 助手</a></li>
+    <li><a href="#mcp-server让-ai-编程助手直连数据库">MCP Server：让 AI 编程助手直连数据库</a></li>
+    <li><a href="#cli-用法">CLI 用法</a></li>
+    <li><a href="#数据管理与-schema-工具">数据管理与 Schema 工具</a>
+      <ul>
+        <li><a href="#专项浏览器">专项浏览器</a></li>
+      </ul>
+    </li>
+    <li><a href="#安全与企业能力">安全与企业能力</a></li>
+    <li><a href="#常见问题">常见问题</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h1 id="dbx20mb-轻量级跨平台数据库客户端">DBX：20MB 轻量级跨平台数据库客户端</h1>
+<p>说到数据库客户端，你可能会先想到 DBeaver（依赖 Java 运行时，动辄几百 MB）或 TablePlus（仅限 macOS）。而 <strong>DBX</strong> 给出了另一个答案：单个 20MB 的二进制文件，无需 Java、无需 Python 环境、不内嵌 Chromium，却能同时支持 70+ 种数据库，并且把 AI SQL 助手和 MCP Server 内建到了编辑器里。</p>
+<p>本文基于 GitHub 上 <a
+  href="https://github.com/t8y2/dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>t8y2/dbx</a> 项目官方文档编写，覆盖项目背景、安装方式、桌面端/Web 端/Docker 部署、CLI 与 MCP Server 用法。</p>
+<h2 id="dbx-是什么">DBX 是什么</h2>
+<p>DBX 是一个用 Rust 构建的开源跨平台数据库管理工具，核心卖点是&quot;小而全&quot;：</p>
+<ul>
+<li><strong>极致轻量</strong>：安装包约 20MB，无 Java/Python 等运行时依赖，全平台可用</li>
+<li><strong>70+ 数据库</strong>：MySQL、PostgreSQL、SQLite、Redis、MongoDB、DuckDB、ClickHouse、SQL Server、Oracle、达梦（DM）、OceanBase、openGauss、TiDB 等开箱即用，Agent 驱动还可扩展 Snowflake、Hive、Neo4j、Cassandra、DB2 等，并支持消息队列（Pulsar、Kafka、RocketMQ）</li>
+<li><strong>AI 原生</strong>：内置 AI SQL 助手，支持自然语言生成 SQL、解释查询、优化 SQL，也支持解释执行计划</li>
+<li><strong>MCP 协议</strong>：原生提供 MCP Server，Claude Code、Cursor、Windsurf 等 AI 编程助手可直接查询 DBX 中配置的连接</li>
+<li><strong>四种形态</strong>：桌面端（macOS/Windows/Linux）、Docker 自托管、Web 版本、独立 CLI，共享同一套连接配置</li>
+</ul>
+<p>常见误区澄清：DBX 不是 DBeaver 的替代插件，也不是只支持某一类数据库；它是一个独立的完整产品，AI 和 MCP 是原生内置功能而非第三方插件。</p>
+<h2 id="项目信息">项目信息</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub 仓库</td>
+<td><a
+  href="https://github.com/t8y2/dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>t8y2/dbx</a></td>
+</tr>
+<tr>
+<td>开源协议</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>技术栈</td>
+<td>Tauri 2 + Vue 3 + TypeScript + Rust（sqlx / tiberius / redis-rs / mongodb）</td>
+</tr>
+<tr>
+<td>安装包大小</td>
+<td>约 20MB</td>
+</tr>
+<tr>
+<td>数据库支持</td>
+<td>70+（原生驱动 + Agent/JDBC 驱动）</td>
+</tr>
+<tr>
+<td>界面语言</td>
+<td>简体中文、English、Español</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装-dbx">安装 DBX</h2>
+<h3 id="桌面端">桌面端</h3>
+<p>从 <a
+  href="https://github.com/t8y2/dbx/releases/latest"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>Releases 页面</a> 下载对应系统的最新安装包即可，也可以用包管理器安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># macOS（Homebrew）</span>
+</span></span><span class="line"><span class="cl">brew install --cask dbx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Windows（Scoop）</span>
+</span></span><span class="line"><span class="cl">scoop bucket add dbx https://github.com/t8y2/scoop-bucket
+</span></span><span class="line"><span class="cl">scoop install dbx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Windows（WinGet）</span>
+</span></span><span class="line"><span class="cl">winget install t8y2.dbx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux（Flatpak）</span>
+</span></span><span class="line"><span class="cl">flatpak remote-add --if-not-exists flatpark https://dl.flatpark.org/flatpark.flatpakrepo
+</span></span><span class="line"><span class="cl">flatpak install flatpark com.dbxio.dbx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>银河麒麟 V10、统信 UOS 等国产系统推荐选择 <strong>APM（AmberPM）版本</strong>，可减少发行版依赖差异导致的安装问题。</p>
+</blockquote>
+<h3 id="docker-自托管">Docker 自托管</h3>
+<p>DBX 提供 Web 版本，一条命令即可部署到服务器供团队使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d --pull<span class="o">=</span>always --name dbx -p 4224:4224 -v dbx-data:/app/data t8y2/dbx:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浏览器访问 <code>http://localhost:4224</code>。支持 amd64 / arm64 双架构镜像，中国大陆用户可换用 CNB 镜像 <code>docker.cnb.cool/dbxio.com/dbx:latest</code> 加速拉取。</p>
+<p>如需通过 nginx 反向代理发布到 <code>/dbx</code> 子路径，设置环境变量 <code>DBX_PUBLIC_BASE_PATH=/dbx</code> 即可。</p>
+<h2 id="快速上手">快速上手</h2>
+<p>启动 DBX 后，在连接列表中新建连接，选择数据库类型并填写主机、端口、用户名、密码即可。下面用一个 MySQL 例子演示基本操作流程：</p>
+<ol>
+<li><strong>新建连接</strong>：选择 MySQL，填写 <code>localhost:3306</code> 与账号密码，测试连接成功后保存</li>
+<li><strong>浏览结构</strong>：左侧边栏展开数据库，查看 Schema、表、字段、索引、外键、触发器，支持搜索和置顶</li>
+<li><strong>查询数据</strong>：在查询编辑器中输入 SQL，按 <code>Cmd+Enter</code>（Windows 为 <code>Ctrl+Enter</code>）执行，也支持只执行选中的 SQL</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 在 DBX 查询编辑器中的示例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">u</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">created_at</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;2026-01-01&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行结果以虚拟滚动表格展示，支持行内编辑（保存前预览 SQL）、排序、全文搜索、分页、列宽调整、DataGrip 风格过滤器，以及右键按 <code>LIKE</code> / <code>NOT LIKE</code> 过滤。结果可以一键导出或复制为 CSV、JSON、Markdown、XLSX 甚至 INSERT 语句。</p>
+<h2 id="ai-sql-助手">AI SQL 助手</h2>
+<p>这是 DBX 区别于传统客户端的核心功能。在编辑器中选中一张表，用自然语言描述需求，即可直接得到 SQL，全程无需在工具之间复制粘贴：</p>
+<ul>
+<li><strong>生成 SQL</strong>：描述需求直接生成，例如&quot;统计每月的销售额&quot;</li>
+<li><strong>解释查询</strong>：选中一段 SQL，让 AI 解释它的含义</li>
+<li><strong>优化 SQL</strong>：分析慢查询并给出优化建议</li>
+<li><strong>修复错误</strong>：执行报错时让 AI 自动修正</li>
+<li><strong>安全检查</strong>：内置检查会在执行 AI 生成的 SQL 前审查，避免误操作</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">用户输入：查询最近 30 天每天的新增用户数，按天分组
+</span></span><span class="line"><span class="cl">AI 生成：
+</span></span><span class="line"><span class="cl">SELECT DATE(created_at) AS day, COUNT(*) AS new_users
+</span></span><span class="line"><span class="cl">FROM users
+</span></span><span class="line"><span class="cl">WHERE created_at &gt;= NOW() - INTERVAL 30 DAY
+</span></span><span class="line"><span class="cl">GROUP BY DATE(created_at)
+</span></span><span class="line"><span class="cl">ORDER BY day;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>模型配置支持 Claude、OpenAI，以及任意 OpenAI 兼容端点；也可以通过 Ollama 接入本地模型，实现完全离线的 AI 辅助。数据库错误信息可以直接发送给 AI，让它基于实际报错内容给出修复建议。</p>
+<h2 id="mcp-server让-ai-编程助手直连数据库">MCP Server：让 AI 编程助手直连数据库</h2>
+<p>DBX 原生支持 Model Context Protocol。安装 MCP Server 后，Claude Code、Cursor、Windsurf 等 AI 编程助手可以直接通过 DBX 中已配置的数据库连接查询数据，一次配置、处处可用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npx @dbx-app/mcp-server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在项目的 <code>.mcp.json</code> 中添加配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mcpServers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;dbx&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;npx&#34;</span><span class="p">,</span> <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;-y&#34;</span><span class="p">,</span> <span class="s2">&#34;@dbx-app/mcp-server&#34;</span><span class="p">]</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>MCP Server 可以列出连接、浏览表、执行 SQL，还能直接在 DBX 界面中打开表。执行权限分为三档，在 DBX 的&quot;设置 → MCP&quot;中统一管理：</p>
+<table>
+<thead>
+<tr>
+<th>权限档位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_only</code></td>
+<td>只读查询，禁止任何写入</td>
+</tr>
+<tr>
+<td><code>safe_write</code></td>
+<td>允许安全的写操作</td>
+</tr>
+<tr>
+<td><code>high_risk_write</code></td>
+<td>允许高风险写操作（如 DROP、DELETE）</td>
+</tr>
+</tbody>
+</table>
+<p>如果连接的是 DBX Web 或 Docker 部署，需要让 MCP Server 指向 Web 后端 API；Web 登录页有密码时配置 <code>DBX_WEB_PASSWORD</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mcpServers&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;dbx&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;npx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;-y&#34;</span><span class="p">,</span> <span class="s2">&#34;@dbx-app/mcp-server&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;DBX_WEB_URL&#34;</span><span class="p">:</span> <span class="s2">&#34;http://localhost:4224&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;DBX_WEB_PASSWORD&#34;</span><span class="p">:</span> <span class="s2">&#34;你的 Web 登录密码&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cli-用法">CLI 用法</h2>
+<p>DBX 提供独立 CLI 包，适合终端、脚本和 Codex 工作流：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># npm 全局安装</span>
+</span></span><span class="line"><span class="cl">npm install -g @dbx-app/cli
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或通过 Homebrew</span>
+</span></span><span class="line"><span class="cl">brew tap t8y2/tap <span class="o">&amp;&amp;</span> brew install dbx-cli
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>CLI 共享桌面端的连接配置，常用命令示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 列出所有连接</span>
+</span></span><span class="line"><span class="cl">dbx connections list --json
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对本地连接执行查询</span>
+</span></span><span class="line"><span class="cl">dbx query <span class="nb">local</span> <span class="s2">&#34;select 1&#34;</span> --json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="数据管理与-schema-工具">数据管理与 Schema 工具</h2>
+<p>除了基础的查询浏览，DBX 还内置了一批生产环境常用的数据工具：</p>
+<ul>
+<li><strong>数据导入</strong>：从 CSV、Excel 导入数据</li>
+<li><strong>数据迁移</strong>：在数据库之间迁移数据，支持跨异构数据库</li>
+<li><strong>数据对比</strong>：对比两张表的数据差异，审查后同步结果</li>
+<li><strong>数据库导出</strong>：完整导出整个数据库</li>
+<li><strong>SQL 文件执行</strong>：直接执行 <code>.sql</code> 文件</li>
+<li><strong>文件预览</strong>：拖入 Parquet、CSV、JSON 文件即时预览（基于 DuckDB）</li>
+<li><strong>连接导入</strong>：从 DBeaver 或 Navicat 导入现有连接配置，迁移零成本</li>
+<li><strong>表结构编辑器</strong>：对支持的数据库执行可审查的字段和索引变更</li>
+<li><strong>Schema 对比</strong>：跨连接对比两张表的表结构差异</li>
+<li><strong>ER 关系图</strong>：可视化展示表间关联关系</li>
+<li><strong>执行计划</strong>：可视化查看 SQL 执行计划</li>
+<li><strong>字段血缘</strong>：字段级血缘分析</li>
+</ul>
+<h3 id="专项浏览器">专项浏览器</h3>
+<ul>
+<li><strong>Redis</strong>：支持模式匹配搜索、批量键操作、命令执行器、TTL 编辑，全数据类型支持（String、Hash、List、Set、ZSet、Stream）</li>
+<li><strong>MongoDB</strong>：文档增删改查、分页浏览，支持 Atlas 和副本集 URL 直连</li>
+</ul>
+<h2 id="安全与企业能力">安全与企业能力</h2>
+<p>对于生产环境，DBX 提供以下安全特性：</p>
+<ul>
+<li><strong>SSH 隧道</strong>：支持密钥和密码两种认证方式</li>
+<li><strong>危险操作确认</strong>：执行 DROP、DELETE 等危险操作前弹出确认对话框</li>
+<li><strong>连接配置加密</strong>：导出/导入连接配置时加密保护</li>
+<li><strong>断线自动重连</strong>：网络抖动时自动恢复连接</li>
+<li><strong>离线驱动包</strong>：内网环境可在有网机器下载离线驱动包，传输后在&quot;设置 → 驱动管理&quot;中导入</li>
+<li><strong>数据隐私</strong>：不收集任何遥测数据，自动更新仅检查 GitHub Releases（可在设置中禁用）</li>
+</ul>
+<h2 id="常见问题">常见问题</h2>
+<p><strong>DBX 是免费的吗？</strong></p>
+<p>是的。DBX 基于 Apache-2.0 协议开源，所有功能均免费使用。</p>
+<p><strong>DBX 和 DBeaver / TablePlus 有什么区别？</strong></p>
+<p>DBX 仅 20MB，无需 Java/Python 运行时；AI 和 MCP 是原生内置功能而不是插件；单一代码库同时支持 70+ 数据库和桌面端、Docker、Web 三种形态。</p>
+<p><strong>可以完全离线使用吗？</strong></p>
+<p>可以。桌面端完全支持离线使用，AI 功能可通过 Ollama 使用本地模型。内网环境可通过离线驱动包安装数据库驱动。</p>
+<p><strong>支持哪些数据库？</strong></p>
+<p>MySQL、PostgreSQL、SQLite、Redis、MongoDB、DuckDB、ClickHouse、SQL Server、Oracle、达梦、OceanBase、openGauss、TiDB 等 70+ 数据库开箱即用，Agent 驱动还可扩展到 Snowflake、Hive、DB2、Neo4j、Cassandra 等，并支持 Pulsar、Kafka、RocketMQ 消息队列。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a
+  href="https://github.com/t8y2/dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>DBX GitHub 仓库</a></li>
+<li><a
+  href="https://dbxio.com/cn/docs/what-is-dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>DBX 官方文档</a></li>
+<li><a
+  href="https://github.com/t8y2/dbx/releases/latest"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>DBX Releases 下载页</a></li>
+<li><a
+  href="https://github.com/t8y2/dbx/tree/main/packages/mcp-server"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>MCP Server 说明</a></li>
+<li><a
+  href="https://github.com/t8y2/dbx/tree/main/packages/cli"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>CLI 说明</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2026-08-13&#32;15:18:23>更新于 2026-08-13&nbsp;</span>
+      </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://cfanzp008.github.io/dbx-database-client-guide/" data-title="DBX：20MB 轻量级跨平台数据库客户端"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/dbx/">dbx</a>,&nbsp;<a href="/tags/database/">database</a>,&nbsp;<a href="/tags/sql/">sql</a>,&nbsp;<a href="/tags/mcp/">mcp</a>,&nbsp;<a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/workbuddy-core-usage-guide/" class="prev" rel="prev" title="WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>WorkBuddy 核心用法详解：腾讯全场景 AI 智能体实战指南</a>
+      <a href="/cpp-stl-vector/" class="next" rel="next" title="C&#43;&#43; STL vector 终结篇：从入门到实战的完整用法指南">C&#43;&#43; STL vector 终结篇：从入门到实战的完整用法指南<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a
+  href="/"
+  
+  
+  
+  
+  
+>cfanzp</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"><span class="site-time" title='网站运行中 ...'><i class="fa-solid fa-heartbeat fa-fw animate-icon" aria-hidden="true"></i>&nbsp;<span class="run-times">网站运行中 ...</span></span></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><script>
+        var _hmt = _hmt || [];
+(function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c744ffc2b1497265b0a37442ed91357c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+})();
+    </script>
+
+    </div>
+  </footer>
+    </div><div class="widgets">
+  <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i></a><a href="#" id="view-comments" class="fixed-button" title="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></a>
+  </div><div id="mask"></div>
+</div>
+<link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/lightgallery/lightgallery.min.js" defer></script><script src="/lib/lightgallery/lg-thumbnail.min.js" defer></script><script src="/lib/lightgallery/lg-zoom.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":50},"comment":{},"enablePWA":true,"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"siteTime":"2022-07-01T19:30:34+08:00"};</script><script src="/js/theme.min.js" defer></script><script src="/js/_custom.min.js" defer></script></body>
+</html>

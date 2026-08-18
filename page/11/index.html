@@ -701,6 +701,66 @@
 ><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/openai-tokenizer-introduction/">OpenAI Tokenizer 在线工具详解</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 10:25:57'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenAI Tokenizer 在线工具详解 什么是 Tokenizer 在深入了解 OpenAI Tokenizer 工具之前，我们首先需要理解什么是 Token（词元）。
+Token 是 OpenAI 模型处理文本的基本单位。它们可以是短至单个字符，也可以长至整个单词，具体取决于语言和编码方式。对于英文文本，大约 4 个字符等于 1 个 Token；对于中文文本，通常 1-2 个汉字等于 1 个 Token。
+理解 Token 的概念对于使用 OpenAI API 至关重要，因为：
+API 计费：OpenAI 按 Token 数量计费，了解 Token 数量可以帮助估算成本 上下文窗口：每个模型有固定的上下文窗口限制（通常是 4K、8K、16K、32K、128K 等），Token 数决定了能输入多少内容 优化提示：了解 Token 计数可以帮助优化提示词，提高效率 OpenAI Tokenizer 工具概述 OpenAI Tokenizer 是官方提供的在线工具，访问地址为：https://platform.openai.com/tokenizer
+这个工具允许开发者直观地看到任意文本被如何分词（Tokenize），以及对应的 Token 数量。这对于以下场景特别有用：
+学习 Token 概念 估算 API 调用成本 优化提示词长度 调试 Token 相关问题 工具界面与功能 主要功能区域 OpenAI Tokenizer 工具界面主要包含以下几个部分：
+1. 文本输入区</div><div class="post-footer">
+    <a href="/openai-tokenizer-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openai/">openai</a>,&nbsp;<a href="/tags/tokenizer/">tokenizer</a>,&nbsp;<a href="/tags/token/">token</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/harness-engineering-ralph-loop-relation/">Harness Engineering 与 Ralph Loop 的关系解析</a>
+  </h1><div class="post-meta"><span class="post-author"><a
+  href="https://cfanzp008.github.io/about/"
+  
+    title="作者"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer author"
+  
+  
+    class="author"
+  
+  
+><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    </a></span>&nbsp;<span class="post-publish" title='2026-04-07 10:07:25'>发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">Harness Engineering 与 Ralph Loop 的关系解析 背景介绍 在AI辅助软件开发领域，两种重要的方法论正在引起广泛关注：Harness Engineering（架具工程） 和 Ralph Loop。前者由Thoughtworks的Birgitta Böckeler在Martin Fowler博客上系统阐述，后者是Ralphable团队提出的自动化循环方法。虽然两者出现的背景和关注点不同，但它们在提升AI Agent可靠性方面存在着深刻的互补关系。
+什么是Harness Engineering Harness Engineering（架具工程）是一种系统性地构建AI Agent运行环境的方法论，其核心观点是：Agent = Model + Harness。也就是说，除了模型本身的智能之外，围绕模型构建的“架具”系统同样关键。
+核心组件：引导与传感器 Harness Engineering将架具分为两大类组件：
+引导（Guides）- 前馈控制
+引导旨在预测Agent的行为并在其行动之前进行引导，目标是在第一次尝试就产生良好结果。引导可以是：
+计算型引导：确定性且快速，如LSP、语言服务器、CLI工具、脚本、codemods 推理型引导：基于语义分析，如AGENTS.md、Skills、文档 传感器（Sensors）- 反馈控制
+传感器在Agent行动后进行观察，帮助其自我修正。特别强大的是那些针对LLM消费优化的传感器，例如包含修正指令的自定义linter消息——一种积极的提示注入。
+1 2 3 4 5 6 7 8 # 计算型传感器示例 npx eslint # 代码风格检查 npm run coverage # 测试覆盖率 semgrep # 安全扫描 # 推理型传感器示例 /code-review # AI代码审查 /architecture-review # 架构审查 调节类别 Harness Engineering将架具分为三个调节维度：
+可维护性架具：调节代码质量和内部结构，如代码风格、复杂度、测试覆盖 架构适应性架具：定义和检查应用的架构特性，如性能要求、可观测性标准 行为架具：指导并感知应用功能行为，这是目前最具挑战性的领域 什么是Ralph Loop Ralph Loop是一种结构化的任务执行循环方法论，让AI能够自动迭代直到所有显式的成功标准都满足。其核心是一个四阶段循环：执行 → 评估 → 修复 → 重复。</div><div class="post-footer">
+    <a href="/harness-engineering-ralph-loop-relation/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/harness-engineering/">harness engineering</a>,&nbsp;<a href="/tags/ralph-loop/">ralph loop</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/">开发者工具</a>,&nbsp;<a href="/tags/ai-agent/">ai agent</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/ralph-loop-introduction/">Ralph Loop：让AI自动循环直到任务完成</a>
   </h1><div class="post-meta"><span class="post-author"><a
   href="https://cfanzp008.github.io/about/"
@@ -832,69 +892,6 @@ Node.js：需要 npm 或 npx 包管理器 Go 1.23+ 和 Python 3：仅在使用�
     </a></span>&nbsp;<span class="post-publish" title='2026-04-05 00:20:00'>发布于 <time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">last30days：AI 驱动的全网研究技能 什么是 last30days last30days 是一个 AI Agent 技能，专门用于在多个平台进行深度研究并合成有根据的总结。该项目在 GitHub 上已获得 18,100+ 颗星，是 AI 研究工具领域的热门开源项目。
 核心理念 跨平台研究：同时搜索 Reddit、X (Twitter)、YouTube、Hacker News、Polymarket 等平台 智能合成：将分散的信息整合为结构化的总结报告 有据可查：所有结论都基于真实数据，而非主观猜测 实时更新：获取最近 30 天的最新信息 支持的平台 平台 用途 Reddit 社区讨论、热门话题 X (Twitter) 实时动态、专家观点 YouTube 视频内容、教程 Hacker News 技术讨论、创业热点 Polymarket 预测市场、趋势分析 Web Search 通用搜索补充 核心功能 1. 智能研究 输入任意主题 自动在多个平台搜索相关信息 过滤噪音，提取关键信息 2. 趋势分析 识别热门话题 分析讨论趋势 预测未来走向 3. 多维度总结 技术角度分析 社区反馈汇总 市场情绪评估 4. 证据溯源 引用来源链接 数据可验证 避免虚假信息 安装配置 前置要求 Python 3.8+ Claude Code 或兼容的 AI 助手 API 密钥（根据使用的平台） 安装步骤 1 2 3 4 5 6 7 8 # 克隆仓库 git clone https://github.</div><div class="post-footer">
     <a href="/last30days-skill-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/last30days/">last30days</a>,&nbsp;<a href="/tags/ai/">ai</a>,&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/%E7%A0%94%E7%A9%B6/">研究</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/openscreen-introduction/">OpenScreen：免费开源的屏幕录制神器</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-05 00:10:30'>发布于 <time datetime="2026-04-05">2026-04-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div><div class="content">OpenScreen：免费开源的屏幕录制神器 什么是 OpenScreen OpenScreen 是一款免费、开源的屏幕录制和演示视频制作工具，旨在帮助用户创建专业级别的产品演示视频。该项目在 GitHub 上已获得 18,400+ 颗星，是 Screen Studio 的优秀开源替代品。
-核心理念 完全免费：无需订阅，无广告，无水印 开源透明：代码完全开放，可自由修改 商业可用：MIT 许可证，允许商业使用 核心特性 1. 高质量屏幕录制 支持全屏录制 支持单个应用窗口录制 录制时显示光标追踪 高清视频输出 2. 智能缩放效果 自动缩放：跟随鼠标移动自动缩放 手动缩放：通过快捷键控制缩放 平滑过渡：缩放效果流畅自然 3. 标注功能 添加文本注释 绘制箭头和形状 插入图片标注 高亮重要内容 4. 后期编辑 时间轴编辑 关键帧动画 裁剪和拼接 背景自定义 5. 导出选项 多种视频格式 自定义分辨率 质量调节 GIF 导出 支持平台 平台 状态 macOS ✅ 支持 Windows ✅ 支持 Linux ✅ 支持 安装方法 macOS 1 2 # 使用 Homebrew 安装 brew install --cask openscreen 或直接下载 DMG 文件从 GitHub Releases。</div><div class="post-footer">
-    <a href="/openscreen-introduction/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/openscreen/">OpenScreen</a>,&nbsp;<a href="/tags/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6/">屏幕录制</a>,&nbsp;<a href="/tags/%E5%BC%80%E6%BA%90/">开源</a>,&nbsp;<a href="/tags/github/">github</a>,&nbsp;<a href="/tags/%E5%BD%95%E5%B1%8F/">录屏</a>,&nbsp;<a href="/tags/%E6%BC%94%E7%A4%BA/">演示</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/rich-dad-poor-dad-summary/">《富爸爸穷爸爸》：改变你金钱观的经典之作</a>
-  </h1><div class="post-meta"><span class="post-author"><a
-  href="https://cfanzp008.github.io/about/"
-  
-    title="作者"
-  
-  
-    
-    
-    target="_blank"
-  
-  
-    rel="external nofollow noopener noreferrer author"
-  
-  
-    class="author"
-  
-  
-><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    </a></span>&nbsp;<span class="post-publish" title='2026-04-04 22:30:00'>发布于 <time datetime="2026-04-04">2026-04-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/others/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 杂谈</a></span></div><div class="content">《富爸爸穷爸爸》：改变你金钱观的经典之作 什么是真正的财富 《富爸爸穷爸爸》这本书自1999年出版以来，已经影响了全球数以千万计的读者。作者罗伯特·清崎通过亲身经历，讲述了他有两个&quot;爸爸&quot;——一个是受过良好教育的穷爸爸，另一个是善于投资的富爸爸——给他带来的不同金钱观念。
-书中首先颠覆了我们对财富的认知。财富不是看你赚了多少钱，而是看你留下了多少钱。很多人收入很高，但开销同样很大，最终没有积累下任何资产。真正的财富是能够持续为你带来收入的资产，而不是你银行账户里的数字。
-富人 vs 穷人的思维方式 书中最重要的观点之一是：富人不为钱工作，而是让钱为自己工作。
-穷人和中产阶级往往陷入&quot;工作赚钱&quot;的循环：
-拿到工资 → 支付账单 → 剩余部分存起来 → 等待加薪 → 重复这个循环 而富人思维是：
-赚取收入 → 购买资产 → 资产产生收入 → 用收入购买更多资产 → 财富持续增长 这就是所谓的&quot;老鼠赛跑&quot;——无论收入多高，只要还在为钱工作，就永远无法逃脱。
-区分资产与负债 书中另一个核心概念是：分清什么是真正的资产。
-罗伯特·清崎对资产和负债的定义非常简单：
-资产：是把钱放进你口袋的东西（股票、债券、房产租金、版税等） 负债：是把钱从你口袋取出的东西（房贷、车贷、信用卡债务等） 很多人以为自己买了房子就是拥有了资产，但实际上，如果房子需要你还贷款、支付物业费，它就是负债。真正的富人会不断买入能产生现金流的资产，而不是购买负债。
-为什么要学习财务知识 书中强调，理财最重要的是财务知识，而不是单纯的省钱或存钱。
-财务知识包括四个方面：
-会计（财务知识，看懂财务报表） 投资（钱生钱的科学） 了解市场（供给与需求的关系） 法律（税收和公司架构的优势） 如果你不懂财务知识，即使中了彩票大奖，最终也会失去财富。知识才能带来持续的财富。
-克服困难，勇于行动 书中还提到，追求财富的道路上最大的障碍是恐惧和贪婪。
-恐惧让人不敢投资，把钱放在银行里接受通货膨胀的贬值 贪婪让人盲目消费，买下不必要的奢侈品 成功的人不是没有恐惧，而是能够克服恐惧采取行动。行动永远比等待更重要，即使你只有很少的资金，也可以从小额投资开始学习和积累。
-改变，从今天开始 《富爸爸穷爸爸》教会我们的最宝贵的一课是：观念决定命运。
-如果你的观念还停留在&quot;努力工作赚钱、存钱、还房贷&quot;上，那么你的财务状况很难改变。只有转变思维，理解金钱运行的规律，学会让钱为自己工作，才能真正走向财富自由。
-这本书可能改变你对金钱的全部认知，值得反复阅读和实践。无论你现在处于什么财务状态，这本书都能给你启发——从今天开始，建立正确的财富思维，永远不会太晚。</div><div class="post-footer">
-    <a href="/rich-dad-poor-dad-summary/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E7%90%86%E8%B4%A2/">理财</a>,&nbsp;<a href="/tags/%E8%B4%A2%E5%AF%8C/">财富</a>,&nbsp;<a href="/tags/%E6%80%9D%E7%BB%B4/">思维</a>,&nbsp;<a href="/tags/%E4%BA%BA%E7%94%9F/">人生</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item ">
           <span class="page-link">

@@ -1,0 +1,31 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>mcp - 标签 - cfanzp学习笔记</title>
+    <link>https://cfanzp008.github.io/tags/mcp/</link>
+    <description>mcp - 标签 - cfanzp学习笔记</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 13 Aug 2026 15:18:23 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/tags/mcp/" rel="self" type="application/rss+xml" /><item>
+  <title>DBX：20MB 轻量级跨平台数据库客户端</title>
+  <link>https://cfanzp008.github.io/dbx-database-client-guide/</link>
+  <pubDate>Thu, 13 Aug 2026 15:18:23 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/dbx-database-client-guide/</guid>
+  <description><![CDATA[<h1 id="dbx20mb-轻量级跨平台数据库客户端">DBX：20MB 轻量级跨平台数据库客户端</h1>
+<p>说到数据库客户端，你可能会先想到 DBeaver（依赖 Java 运行时，动辄几百 MB）或 TablePlus（仅限 macOS）。而 <strong>DBX</strong> 给出了另一个答案：单个 20MB 的二进制文件，无需 Java、无需 Python 环境、不内嵌 Chromium，却能同时支持 70+ 种数据库，并且把 AI SQL 助手和 MCP Server 内建到了编辑器里。</p>
+<p>本文基于 GitHub 上 <a
+  href="https://github.com/t8y2/dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>t8y2/dbx</a> 项目官方文档编写，覆盖项目背景、安装方式、桌面端/Web 端/Docker 部署、CLI 与 MCP Server 用法。</p>]]></description>
+</item>
+</channel>
+</rss>

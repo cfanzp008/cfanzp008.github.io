@@ -4,7 +4,30 @@
     <link>https://cfanzp008.github.io/categories/tools/</link>
     <description>工具 - 分类 - cfanzp学习笔记</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>cfan.zp@qq.com (cfanzp)</managingEditor>
-      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>cfan.zp@qq.com (cfanzp)</webMaster><lastBuildDate>Thu, 13 Aug 2026 15:18:23 &#43;0800</lastBuildDate><atom:link href="https://cfanzp008.github.io/categories/tools/" rel="self" type="application/rss+xml" /><item>
+  <title>DBX：20MB 轻量级跨平台数据库客户端</title>
+  <link>https://cfanzp008.github.io/dbx-database-client-guide/</link>
+  <pubDate>Thu, 13 Aug 2026 15:18:23 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://cfanzp008.github.io/dbx-database-client-guide/</guid>
+  <description><![CDATA[<h1 id="dbx20mb-轻量级跨平台数据库客户端">DBX：20MB 轻量级跨平台数据库客户端</h1>
+<p>说到数据库客户端，你可能会先想到 DBeaver（依赖 Java 运行时，动辄几百 MB）或 TablePlus（仅限 macOS）。而 <strong>DBX</strong> 给出了另一个答案：单个 20MB 的二进制文件，无需 Java、无需 Python 环境、不内嵌 Chromium，却能同时支持 70+ 种数据库，并且把 AI SQL 助手和 MCP Server 内建到了编辑器里。</p>
+<p>本文基于 GitHub 上 <a
+  href="https://github.com/t8y2/dbx"
+  
+  
+    
+    
+    target="_blank"
+  
+  
+    rel="external nofollow noopener noreferrer"
+  
+  
+  
+>t8y2/dbx</a> 项目官方文档编写，覆盖项目背景、安装方式、桌面端/Web 端/Docker 部署、CLI 与 MCP Server 用法。</p>]]></description>
+</item>
+<item>
   <title>RemoveWatermark.exe 完全指南：视频去水印工具的安装与使用</title>
   <link>https://cfanzp008.github.io/removewatermark-exe-guide/</link>
   <pubDate>Thu, 30 Jul 2026 18:22:20 &#43;0800</pubDate>
@@ -101,18 +124,6 @@ Codex CLI - OpenAI 官方出品 Claude Code - Anthropic 官方出品 OpenCode - 
   <description><![CDATA[OpenAI Codex CLI 深度分析 - 终端 AI 编程助手 简介 Codex CLI 是 OpenAI 推出的轻量级命令行 AI 编程助手，可以在终端中直接帮助开发者完成代码生成、重构、调试等任务。
 GitHub: https://github.com/openai/codex Stars: 75,000+ | Forks: 10,000+
 系统要求 要求 详情 操作系统 macOS 12+、Ubuntu 20.04+/Debian 10+、Windows 11 (WSL2) 内存 最低 4GB（推荐 8GB） Git 可选（推荐 2.23+） 安装 npm 安装（推荐） 1 npm install -g @openai/codex Homebrew 安装 1 brew install --cask codex 验证安装 1 codex --version 认证配置 方式一：ChatGPT 账号登录 1 codex login 使用 ChatGPT Plus、Pro、Team、Edu 或 Enterprise 账号登录。]]></description>
-</item>
-<item>
-  <title>AI Stupid Level - AI 模型实时基准测试平台</title>
-  <link>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</link>
-  <pubDate>Thu, 16 Apr 2026 13:48:00 &#43;0800</pubDate>
-  <author>作者</author>
-  <guid>https://cfanzp008.github.io/aistupidlevel-ai-benchmark/</guid>
-  <description><![CDATA[AI Stupid Level - AI 模型实时基准测试平台 简介 AI Stupid Level 是一个实时 AI 模型基准测试和排名平台。它追踪 50+ 主流 AI 模型，通过 7 维度评分体系对模型进行客观评测对比。
-网站：https://aistupidlevel.info/
-核心功能 7 维度评分体系 平台采用 7 个维度评估 AI 模型：
-维度 说明 正确性 答案准确程度 规范遵循 符合指令要求 代码质量 代码规范和可维护性 效率 响应速度和资源消耗 稳定性 输出一致性 拒绝率 不当请求处理 特色功能 特殊能力支持 追踪模型 平台追踪 50+ 主流 AI 模型，包括：
-OpenAI GPT-5 / GPT-4 / GPT-3.5 Anthropic Claude Opus 4 / Sonnet 4 Google Gemini 2.5 系列 xAI Grok 4 以及其他主流模型 实时更新 速度测试：每 4 小时更新 深度推理测试：每日更新 95% 置信区间统计 Smart Router API 功能特点 智能路由 API 可以自动选择最佳模型：]]></description>
 </item>
 </channel>
 </rss>
